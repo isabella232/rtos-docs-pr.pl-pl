@@ -1,0 +1,45 @@
+- name: Dokumentacja modułów usługi Azure RTO ThreadX
+  href: index.yml
+- name: Podręcznik użytkownika modułów ThreadX
+  expanded: true
+  items:
+    - name: Ch. 1 — przegląd
+      href: chapter1.md
+    - name: Ch. wymagania 2-modułowe
+      href: chapter2.md
+    - name: Ch. 3 — wymagania dotyczące Menedżera modułów
+      href: chapter3.md
+    - name: Ch. 4-modułowe interfejsy API
+      href: chapter4.md
+    - name: Ch. 5 — interfejsy API Menedżera modułów
+      href: chapter5.md
+    - name: Dodatek-przykłady dotyczące portów
+      href: appendix.md
+- name: Repozytorium ThreadX
+  href: 'https://github.com/azure-rtos/threadx'
+- name: Powiązane usługi
+  items:
+    - name: Defender for IoT — RTO (wersja zapoznawcza)
+      href: 'https://docs.microsoft.com/azure/defender-for-iot/iot-security-azure-rtos'
+- name: Microsoft Azure składniki RTO
+  items:
+    - name: Microsoft Azure RTO
+      href: ../index.yml
+    - name: ThreadX
+      href: ../threadx/index.yml
+    - name: Moduły ThreadX
+      href: ../threadx-modules/index.yml
+    - name: NetX Duo
+      href: ../netx-duo/index.yml
+    - name: NetX
+      href: ../netx/index.yml
+    - name: GUIX
+      href: ../guix/index.yml
+    - name: FileX
+      href: ../filex/index.yml
+    - name: LevelX
+      href: ../levelx/index.yml
+    - name: USBX
+      href: ../usbx/index.yml
+    - name: TraceX
+      href: ../tracex/index.yml

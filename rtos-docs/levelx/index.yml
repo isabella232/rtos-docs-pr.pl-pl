@@ -1,0 +1,31 @@
+### YamlMime:Landing
+title: Dokumentacja usługi Azure RTO LevelX
+summary: Usługa Azure RTO LevelX zapewnia ni i lub Flash funkcje do wyrównywania zużycia w aplikacjach osadzonych.
+metadata:
+  title: Co to jest Azure RTO LevelX?
+  description: Usługa Azure RTO LevelX zapewnia ni i lub Flash funkcje do wyrównywania zużycia w aplikacjach osadzonych.
+  services: rtos
+  ms.service: rtos
+  ms.topic: landing-page
+  author: philmea
+  ms.author: philmea
+  ms.date: 07/10/2020
+  ms.openlocfilehash: 27ce4d34d53b2a6daec651dd83c648024aad0291
+  ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+  ms.translationtype: MT
+  ms.contentlocale: pl-PL
+  ms.lasthandoff: 03/22/2021
+  ms.locfileid: "104797881"
+landingContent:
+- title: Wprowadzenie do usługi Azure RTO LevelX
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: Co to jest Azure RTO LevelX?
+      url: chapter1.md
+- title: Instalowanie i używanie usługi Azure RTO LevelX
+  linkLists:
+  - linkListType: get-started
+    links:
+    - text: Podręcznik użytkownika usługi Azure RTO LevelX
+      url: chapter2.md

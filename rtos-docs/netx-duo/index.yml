@@ -1,0 +1,31 @@
+### YamlMime:Landing
+title: Dokumentacja usługi Azure RTO NetX Duo
+summary: Usługa Azure RTO NetX Duo to zaawansowany stos sieci TCP/IP klasy przemysłowej zaprojektowany specjalnie z myślą o głęboko osadzonych aplikacjach w czasie rzeczywistym i IoT.
+metadata:
+  title: Co to jest Azure RTO NetX Duo?
+  description: Usługa Azure RTO NetX Duo to zaawansowany stos sieci TCP/IP klasy przemysłowej zaprojektowany specjalnie z myślą o głęboko osadzonych aplikacjach w czasie rzeczywistym i IoT.
+  services: rtos
+  ms.service: rtos
+  ms.topic: landing-page
+  author: philmea
+  ms.author: philmea
+  ms.date: 5/19/2020
+  ms.openlocfilehash: 6eca4b135a5cfa3413fc0828de4caeffa734d90a
+  ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+  ms.translationtype: MT
+  ms.contentlocale: pl-PL
+  ms.lasthandoff: 03/22/2021
+  ms.locfileid: "104797905"
+landingContent:
+- title: Wprowadzenie do usługi Azure RTO NetX Duo
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: Co to jest Azure RTO NetX Duo?
+      url: overview-netx-duo.md
+- title: Wprowadzenie do usługi Azure RTO NetX Duo
+  linkLists:
+  - linkListType: get-started
+    links:
+    - text: Podręcznik użytkownika usługi Azure RTO NetX Duo
+      url: about-this-guide.md

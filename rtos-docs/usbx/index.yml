@@ -1,0 +1,33 @@
+### YamlMime:Landing
+title: Dokumentacja usługi Azure RTO USBX
+summary: Azure RTO USBX to osadzony stos hosta USB o wysokiej wydajności, urządzenia i na platformie (OTG). Usługa Azure RTO USBX jest w pełni zintegrowana z platformą Azure RTO ThreadX i jest dostępna dla wszystkich obsługiwanych procesorów platformy Azure RTO ThreadX.
+metadata:
+  title: Co to jest Azure RTO USBX?
+  description: Azure RTO USBX to osadzony stos hosta USB o wysokiej wydajności, urządzenia i na platformie (OTG). Usługa Azure RTO USBX jest w pełni zintegrowana z platformą Azure RTO ThreadX i jest dostępna dla wszystkich obsługiwanych procesorów platformy Azure RTO ThreadX.
+  services: rtos
+  ms.service: rtos
+  ms.topic: landing-page
+  author: philmea
+  ms.author: philmea
+  ms.date: 5/19/2020
+  ms.openlocfilehash: 05ff41048304d3cb66b74cbf342de664e8ad88ab
+  ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+  ms.translationtype: MT
+  ms.contentlocale: pl-PL
+  ms.lasthandoff: 03/22/2021
+  ms.locfileid: "104798083"
+landingContent:
+- title: Wprowadzenie do usługi Azure RTO USBX
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: Co to jest Azure RTO USBX?
+      url: overview-usbx.md
+- title: Wprowadzenie do usługi Azure RTO USBX
+  linkLists:
+  - linkListType: get-started
+    links:
+    - text: Przewodnik użytkownika stosu urządzeń usługi Azure RTO USBX
+      url: usbx-device-stack-about.md
+    - text: Przewodnik użytkownika stosu hosta usługi Azure RTO USBX
+      url: usbx-host-stack-about.md

@@ -1,0 +1,31 @@
+### YamlMime:Landing
+title: Dokumentacja usługi Azure RTO FileX
+summary: Usługa Azure RTO FileX to system plików zgodny z tabelą alokacji plików (FAT), który jest w pełni zintegrowany z platformą Azure RTO ThreadX i jest dostępny dla wszystkich obsługiwanych procesorów. Podobnie jak w przypadku platformy Azure RTO ThreadX, usługa Azure RTO FileX została zaprojektowana tak, aby miała niewielki rozmiar i wysoką wydajność, dzięki czemu jest idealnym rozwiązaniem dla współczesnych aplikacji, które wymagają operacji zarządzania plikami. Usługa FileX obsługuje większość nośników fizycznych, w tym pamięci RAM, Azure RTO USBX, SD CARD i ni/lub Flash pamiątk za pośrednictwem platformy Azure RTO LevelX.
+metadata:
+  title: Co to jest Azure RTO FileX?
+  description: Usługa Azure RTO FileX to system plików zgodny z tabelą alokacji plików (FAT), który jest w pełni zintegrowany z platformą Azure RTO ThreadX i jest dostępny dla wszystkich obsługiwanych procesorów. Podobnie jak w przypadku platformy Azure RTO ThreadX, usługa Azure RTO FileX została zaprojektowana tak, aby miała niewielki rozmiar i wysoką wydajność, dzięki czemu jest idealnym rozwiązaniem dla współczesnych aplikacji, które wymagają operacji zarządzania plikami. Usługa FileX obsługuje większość nośników fizycznych, w tym pamięci RAM, Azure RTO USBX, SD CARD i ni/lub Flash pamiątk za pośrednictwem platformy Azure RTO LevelX.
+  services: rtos
+  ms.service: rtos
+  ms.topic: landing-page
+  author: philmea
+  ms.author: philmea
+  ms.date: 05/19/2020
+  ms.openlocfilehash: bf7fd9f842c363b753f8acd52f54b9f8e462616c
+  ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+  ms.translationtype: MT
+  ms.contentlocale: pl-PL
+  ms.lasthandoff: 03/22/2021
+  ms.locfileid: "104797899"
+landingContent:
+- title: Wprowadzenie do usługi Azure RTO FileX
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: Co to jest Azure RTO FileX?
+      url: overview-filex.md
+- title: Wprowadzenie do usługi Azure RTO FileX
+  linkLists:
+  - linkListType: get-started
+    links:
+    - text: Podręcznik użytkownika usługi Azure RTO FileX
+      url: about-this-guide.md
