@@ -1,0 +1,25 @@
+### YamlMime:Landing
+title: Dokumentacja modułów usługi Azure RTO ThreadX
+summary: Składnik modułów ThreadX usługi Azure RTO udostępnia infrastrukturę dla aplikacji do dynamicznego ładowania modułów, które są zbudowane niezależnie od rezydentnej części aplikacji.
+metadata:
+  title: Co to są moduły ThreadX usługi Azure RTO?
+  description: Moduły ThreadX usługi Azure RTO umożliwiają dynamiczne ładowanie modułów, które są zbudowane niezależnie od aplikacji.
+  services: rtos
+  ms.service: rtos
+  ms.topic: landing-page
+  author: philmea
+  ms.author: philmea
+  ms.date: 07/10/2020
+  ms.openlocfilehash: 40958716dfaa14813279fbce3b63d696e3dc21d2
+  ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+  ms.translationtype: MT
+  ms.contentlocale: pl-PL
+  ms.lasthandoff: 03/22/2021
+  ms.locfileid: "104797833"
+landingContent:
+- title: Wprowadzenie do modułów usługi Azure RTO ThreadX
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: Co to są moduły ThreadX usługi Azure RTO?
+      url: chapter1.md

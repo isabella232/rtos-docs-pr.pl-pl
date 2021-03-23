@@ -1,0 +1,86 @@
+- name: Dokumentacja usługi Azure RTO USBX
+  href: index.yml
+- name: Przegląd USBX
+  href: overview-usbx.md
+- name: Podręcznik użytkownika stosu urządzeń USBX
+  items:
+    - name: O tym przewodniku
+      href: usbx-device-stack-about.md
+    - name: Ch. 1 — wprowadzenie do USBX
+      href: usbx-device-stack-1.md
+    - name: Ch. 2 — Instalacja USBX
+      href: usbx-device-stack-2.md
+    - name: Ch. 3-funkcjonalne składniki stosu urządzeń USBX
+      href: usbx-device-stack-3.md
+    - name: Ch. 4 — Opis usług urządzenia USBX
+      href: usbx-device-stack-4.md
+    - name: Ch. 5 — zagadnienia dotyczące klas urządzeń USBX
+      href: usbx-device-stack-5.md
+- name: Uzupełnienie stosu urządzeń USBX
+  items:
+    - name: Ch. 1 — wprowadzenie do podręcznika użytkownika stosu urządzeń USBX
+      href: usbx-device-stack-supplemental-1.md
+    - name: Ch. 2 — zagadnienia dotyczące klas urządzeń USBX
+      href: usbx-device-stack-supplemental-2.md
+    - name: Ch. 3 — USBX DPUMP — zagadnienia dotyczące klas
+      href: usbx-device-stack-supplemental-3.md
+    - name: Ch. 4 — implementacja technologii PictBridge w USBX
+      href: usbx-device-stack-supplemental-4.md
+    - name: Ch. 5 — USBX OTG
+      href: usbx-device-stack-supplemental-5.md
+- name: Podręcznik użytkownika stosu hosta USBX
+  items:
+    - name: O tym przewodniku
+      href: usbx-host-stack-about.md
+    - name: Ch. 1 — wprowadzenie do USBX
+      href: usbx-host-stack-1.md
+    - name: Ch. 2 — Instalacja USBX
+      href: usbx-host-stack-2.md
+    - name: Ch. 3-funkcjonalne składniki stosu hosta USBX
+      href: usbx-host-stack-3.md
+    - name: Ch. 4 — Opis usług hosta USBX
+      href: usbx-host-stack-4.md
+    - name: Ch. 5 — interfejs API klas hosta USBX
+      href: usbx-host-stack-5.md
+    - name: Ch. 6 — USBX przechwytywania zmian — ECM klasy
+      href: usbx-host-stack-6.md
+- name: Uzupełnienie stosu hosta USBX
+  items:
+    - name: Ch. 1 — wprowadzenie do podręcznika użytkownika stosu hosta USBX
+      href: usbx-host-stack-supplemental-1.md
+    - name: Ch. USBX interfejs API klas hosta
+      href: usbx-host-stack-supplemental-2.md
+    - name: Ch. 3 — USBX DPUMP — zagadnienia dotyczące klas
+      href: usbx-host-stack-supplemental-3.md
+    - name: Ch. 4 — implementacja technologii PictBridge w USBX
+      href: usbx-host-stack-supplemental-4.md
+    - name: Ch. 5 — USBX OTG
+      href: usbx-host-stack-supplemental-5.md
+- name: Repozytorium USBX
+  href: 'https://github.com/azure-rtos/usbx/'
+- name: Powiązane usługi
+  items:
+    - name: Defender for IoT — RTO (wersja zapoznawcza)
+      href: 'https://docs.microsoft.com/azure/defender-for-iot/iot-security-azure-rtos'
+- name: Microsoft Azure składniki RTO
+  items:
+    - name: Microsoft Azure RTO
+      href: ../index.yml
+    - name: ThreadX
+      href: ../threadx/index.yml
+    - name: Moduły ThreadX
+      href: ../threadx-modules/index.yml
+    - name: NetX Duo
+      href: ../netx-duo/index.yml
+    - name: NetX
+      href: ../netx/index.yml
+    - name: GUIX
+      href: ../guix/index.yml
+    - name: FileX
+      href: ../filex/index.yml
+    - name: LevelX
+      href: ../levelx/index.yml
+    - name: USBX
+      href: ../usbx/index.yml
+    - name: TraceX
+      href: ../tracex/index.yml

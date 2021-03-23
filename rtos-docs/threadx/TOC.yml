@@ -1,0 +1,81 @@
+- name: Dokumentacja usługi Azure RTO ThreadX
+  href: index.yml
+- name: Przegląd ThreadX
+  href: overview-threadx.md
+- name: Podręcznik użytkownika ThreadX
+  expanded: true
+  items:
+    - name: O tym przewodniku
+      href: about-this-guide.md
+    - name: Ch. 1 — wprowadzenie do ThreadX
+      href: chapter1.md
+    - name: Ch. 2 — Instalowanie i korzystanie z ThreadX
+      href: chapter2.md
+    - name: Ch. 3-funkcjonalne składniki ThreadX
+      href: chapter3.md
+    - name: Ch. 4 — Opis usług ThreadX Services
+      href: chapter4.md
+    - name: Ch. 5 — sterowniki urządzeń dla ThreadX
+      href: chapter5.md
+    - name: Ch. System 6-demonstracyjny dla ThreadX
+      href: chapter6.md
+    - name: Aplikacje. Usługi interfejsu API ThreadX
+      href: appendix-a.md
+    - name: Aplikacje. B — stałe ThreadX
+      href: appendix-b.md
+    - name: Aplikacje. C-ThreadX — typy danych
+      href: appendix-c.md
+    - name: Aplikacje. Kody znaków D-ASCII
+      href: appendix-d.md
+- name: Podręcznik użytkownika SMP ThreadX
+  items:
+    - name: O tym przewodniku
+      href: ./threadx-smp/about-this-guide.md
+    - name: Ch. 1 — wprowadzenie do ThreadX SMP
+      href: ./threadx-smp/chapter1.md
+    - name: Ch. 2 — Instalacja & użycie ThreadX SMP
+      href: ./threadx-smp/chapter2.md
+    - name: Ch. 3-funkcjonalne składniki ThreadX SMP
+      href: ./threadx-smp/chapter3.md
+    - name: Ch. 4 — Opis usług SMP ThreadX
+      href: ./threadx-smp/chapter4.md
+    - name: Ch. 5 — sterowniki urządzeń do ThreadX SMP
+      href: ./threadx-smp/chapter5.md
+    - name: Ch. System 6-demonstracyjny dla ThreadX SMP
+      href: ./threadx-smp/chapter6.md
+    - name: Aplikacje. Usługi interfejsu API SMP A-ThreadX
+      href: ./threadx-smp/appendix-a.md
+    - name: Aplikacje. B-ThreadX stałe SMP
+      href: ./threadx-smp/appendix-b.md
+    - name: Aplikacje. Typy danych SMP C-ThreadX
+      href: ./threadx-smp/appendix-c.md
+    - name: Aplikacje. Kody znaków D-ASCII
+      href: ./threadx-smp/appendix-d.md
+- name: Repozytorium ThreadX
+  href: 'https://github.com/azure-rtos/threadx'
+- name: Powiązane usługi
+  items:
+    - name: Defender for IoT — RTO (wersja zapoznawcza)
+      href: 'https://docs.microsoft.com/azure/defender-for-iot/iot-security-azure-rtos'
+- name: Microsoft Azure składniki RTO
+  items:
+    - name: Microsoft Azure RTO
+      href: ../index.yml
+    - name: ThreadX
+      href: ../threadx/index.yml
+    - name: Moduły ThreadX
+      href: ../threadx-modules/index.yml
+    - name: NetX Duo
+      href: ../netx-duo/index.yml
+    - name: NetX
+      href: ../netx/index.yml
+    - name: GUIX
+      href: ../guix/index.yml
+    - name: FileX
+      href: ../filex/index.yml
+    - name: LevelX
+      href: ../levelx/index.yml
+    - name: USBX
+      href: ../usbx/index.yml
+    - name: TraceX
+      href: ../tracex/index.yml

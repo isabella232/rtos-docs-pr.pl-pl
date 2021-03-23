@@ -1,0 +1,10 @@
+- name: Podręcznik użytkownika translacji adresów sieciowych usługi Azure RTO NetX Duo
+  items:
+    - name: Ch. 1 — wprowadzenie do translacji adresów sieciowych
+      href: chapter1.md
+    - name: Ch. 2 — Instalowanie i korzystanie z translatora adresów sieciowych
+      href: chapter2.md
+    - name: Ch. 3 — opcje konfiguracji NAT
+      href: chapter3.md
+    - name: Ch. 4 — Opis usług translatora adresów sieciowych
+      href: chapter4.md

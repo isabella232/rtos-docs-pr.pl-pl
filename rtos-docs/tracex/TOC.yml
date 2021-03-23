@@ -1,0 +1,67 @@
+- name: Dokumentacja usługi Azure RTO TraceX
+  href: index.yml
+- name: Przegląd TraceX
+  href: overview-tracex.md
+- name: Podręcznik użytkownika TraceX
+  expanded: true
+  items:
+    - name: O tym przewodniku
+      href: about-this-guide.md
+    - name: Ch. 1 — wprowadzenie do TraceX
+      href: chapter1.md
+    - name: Ch. 2 — Instalowanie i korzystanie z TraceX
+      href: chapter2.md
+    - name: Ch. 3 — Opis TraceX
+      href: chapter3.md
+    - name: Ch. 4 — Analiza wydajności TraceX
+      href: chapter4.md
+    - name: Ch. 5 — generowanie buforów śledzenia
+      href: chapter5.md
+    - name: Ch. 6-ThreadX zdarzenia śledzenia
+      href: chapter6.md
+    - name: Ch. 7 — zdarzenia śledzenia FileX
+      href: chapter7.md
+    - name: Ch. 8-NetX zdarzeń śledzenia
+      href: chapter8.md
+    - name: Ch. 9-USBX zdarzenia śledzenia
+      href: chapter9.md
+    - name: Ch. 10 — zdarzenia użytkownika dla klientów
+      href: chapter10.md
+    - name: Ch. 11-format buforu śledzenia zdarzeń
+      href: chapter11.md
+    - name: Aplikacje. A-przykład tx_port. h
+      href: appendix-a.md
+    - name: Aplikacje. B — plik tx_trace. h
+      href: appendix-b.md
+    - name: Aplikacje. Narzędzia wiersza polecenia języka C-DOS
+      href: appendix-c.md
+    - name: Aplikacje. D-zrzucanie i bufor śledzenia
+      href: appendix-d.md
+- name: Pobierz TraceX
+  href: 'https://aka.ms/azrtos-tracex-installer'
+- name: Powiązane usługi
+  items:
+    - name: Defender for IoT — RTO (wersja zapoznawcza)
+      href: 'https://docs.microsoft.com/azure/defender-for-iot/iot-security-azure-rtos'
+- name: Microsoft Azure składniki RTO
+  items:
+    - name: Microsoft Azure RTO
+      href: ../index.yml
+    - name: ThreadX
+      href: ../threadx/index.yml
+    - name: Moduły ThreadX
+      href: ../threadx-modules/index.yml
+    - name: NetX Duo
+      href: ../netx-duo/index.yml
+    - name: NetX
+      href: ../netx/index.yml
+    - name: GUIX
+      href: ../guix/index.yml
+    - name: FileX
+      href: ../filex/index.yml
+    - name: LevelX
+      href: ../levelx/index.yml
+    - name: USBX
+      href: ../usbx/index.yml
+    - name: TraceX
+      href: ../tracex/index.yml
