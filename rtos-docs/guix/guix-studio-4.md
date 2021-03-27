@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: 3c3769c3ddf0eef73546627f1f50fa3d11b16948
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 7dd3485f112bce379ab7d6b11a808605bca191a0
+ms.sourcegitcommit: 1d90854d1da01f4b65e54d732ee9190b57a531e1
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823059"
+ms.lasthandoff: 03/26/2021
+ms.locfileid: "105569001"
 ---
 # <a name="chapter-4-guix-studio-resources"></a>Rozdział 4: zasoby programu GUIX Studio
 
@@ -193,6 +193,24 @@ Po wybraniu wszystkich opcji kliknij przycisk OK, aby utworzyć nowy zasób mapy
 Aby dodać nowy zasób mapy pikseli, w `Pixelmaps` sekcji ***Widok zasobów*** wybierz następujący przycisk:
 
 ![Przycisk Dodaj nowy piksel-mapa.](./media/guix-studio/image50.jpg)
+
+**Edytuj Pixelmap wsadowe**
+
+Aby zmodyfikować właściwości pęczka pixelmaps, kliknij prawym przyciskiem myszy grupę lub folder Pixelmap i wybierz polecenie **Edytuj Pixelmap** menu, aby wywołać okno dialogowe **Edycja Pixelmap (s)** .
+
+![Zrzut ekranu przedstawiający okno dialogowe Edytuj wiele pikseli-Maps.](./media/guix-studio/batch_pixelmap_edit.jpg)
+
+Opis stanu pola wyboru:
+
+![Przycisk zaznaczony.](./media/guix-studio/checkbox_checked.jpg)
+Ten stan oznacza, że wszystkie pixelmaps mają zaznaczone właściwości, można usunąć zaznaczenie tego przycisku, aby zmienić właściwość dla wszystkich pixelmaps.
+
+![Przycisk niezaznaczony.](./media/guix-studio/checkbox_unchecked.jpg)
+Ten stan oznacza, że wszystkie pixelmaps mają niesprawdzoną właściwość, można zaznaczyć przycisk, aby zmienić właściwość dla wszystkich pixelmaps.
+
+![Przycisk nieokreślony.](./media/guix-studio/checkbox_undetermined.jpg)
+Ten stan oznacza, że pixelmaps ma inny stan dla właściwości, można zaznaczyć lub usunąć zaznaczenie przycisku, aby zmienić właściwość dla wszystkich pixelmaps, w przeciwnym razie Właściwość pozostaje niezmieniona.
+
 
 ## <a name="string-resources"></a>Zasoby ciągów
 
