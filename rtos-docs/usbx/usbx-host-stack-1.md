@@ -1,17 +1,17 @@
 ---
 title: Rozdział 1 — wprowadzenie do stosu hosta usługi Azure RTO USBX
-description: USBX to w pełni funkcjonalny stos USB dla głęboko osadzonych aplikacji. W tym rozdziale wprowadzono USBX opisujące swoje aplikacje i korzyści.
+description: W tym rozdziale przedstawiono stos hosta USBX, opisujący jego aplikacje i korzyści.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: 9ee49903e764e20316438be16b47d2d9208b1363
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: a9fdd86d47bd4680409cc550c87bc6f456d146a9
+ms.sourcegitcommit: d8edbb3207fe99f8afb431597dac063e73383e68
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104824450"
+ms.lasthandoff: 04/05/2021
+ms.locfileid: "106377054"
 ---
 # <a name="chapter-1---introduction-to-azure-rtos-usbx-host-stack"></a>Rozdział 1 — wprowadzenie do stosu hosta usługi Azure RTO USBX
 
