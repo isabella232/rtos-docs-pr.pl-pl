@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: ede57b7512f4a1a4c30759f428962739aaa2777c
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 305c333bf3fb3f6fe76d661426c196afe25fbd5d
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822087"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106549797"
 ---
 # <a name="chapter-5---azure-rtos-netx-duo-network-drivers"></a>Rozdział 5 — sterowniki sieciowe usługi Azure RTO NetX Duo
 
@@ -494,7 +494,7 @@ Funkcja wejścia sterownika sieci jest ***_nx_ram_network_driver (),** która je
 
 Wystąpienie IP przesyła pakiety sieciowe za pomocą jednego z następujących poleceń:
 
-|                                 |                                                                |
+| Polecenie                         |  Opis                                                   |
 | ------------------------------- | -------------------------------------------------------------- |
 | ***NX_LINK_PACKET_SEND***    | Trwa przesyłanie pakietu IPv4 lub IPv6.                   |
 | ***NX_LINK_ARP_SEND***       | Trwa przesyłanie żądania ARP lub pakietu odpowiedzi ARP,    |

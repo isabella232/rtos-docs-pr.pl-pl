@@ -1,17 +1,17 @@
 ---
 title: Rozdział 1 — wprowadzenie do usługi Azure RTO USBX Stack
-description: W tym rozdziale przedstawiono stos urządzeń USBX, opisujący jego aplikacje i korzyści.
+description: USBX to w pełni funkcjonalny stos USB dla głęboko osadzonych aplikacji. W tym rozdziale wprowadzono USBX, opisując jego zalety i aplikację.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: 383651bb0af42842329ad15b212e597f63a916aa
-ms.sourcegitcommit: d8edbb3207fe99f8afb431597dac063e73383e68
+ms.openlocfilehash: 8b1e08130d4531fd82629378761cd5b1752f0a07
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 04/05/2021
-ms.locfileid: "106377071"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550290"
 ---
 # <a name="chapter-1---introduction-to-azure-rtos-usbx-device-stack"></a>Rozdział 1 — wprowadzenie do usługi Azure RTO USBX Stack
 

@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 8e1c23892c4360ddc8783b04ae8f23e371899f1d
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 01077e3315e87b918cdfd47423d8e0c1b6bbdbbd
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822824"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550273"
 ---
 # <a name="about-the-azure-rtos-netx-user-guide"></a>Podręcznik użytkownika usługi Azure RTO NetX — informacje
 
@@ -47,7 +47,7 @@ Oprócz niestandardowych typów danych struktury formantów NetX usługi Azure R
 
 Poniżej znajduje się lista typów danych wywołań usługi Azure RTO NetX i skojarzonych z nimi znaczenia:
 
-| <!-- -->    | <!-- -->    |
+| Typy danych | Opis  |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | **UINT**  | Podstawowa niepodpisana liczba całkowita. Ten typ musi obsługiwać 32-bitowe dane niepodpisane; Jednak jest on mapowany na najbardziej wygodny typ danych bez znaku. |
 | **ULONG** | Typ Long unsigned. Ten typ musi obsługiwać 32-bitowe dane niepodpisane.                                                                      |

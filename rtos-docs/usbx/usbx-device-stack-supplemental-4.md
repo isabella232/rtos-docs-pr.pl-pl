@@ -1,17 +1,17 @@
 ---
 title: Rozdział 4 — implementacja technologii PictBridge w USBX
-description: UBSX obsługuje pełną implementację technologii PictBridge zarówno na hoście, jak i urządzeniu. PictBridge znajduje się na szczycie klasy USBX PIMA po obu stronach.
+description: UBSX obsługuje pełną implementację technologii PictBridge zarówno na urządzeniu, jak i na hoście. PictBridge znajduje się na szczycie klasy USBX PIMA po obu stronach.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 2ef1809dac046d49b15aba000cabed6c9fd458a3
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 4fdf1e46a7123c10d17e11d09c1b16c2f68f4a31
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104824457"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550239"
 ---
 # <a name="chapter-4---usbx-pictbridge-implementation"></a>Rozdział 4 — implementacja technologii PictBridge w USBX
 

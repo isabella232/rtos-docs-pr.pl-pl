@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: b44822b9d8f16208cf470a84013be5a5ff833325
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 8f2ef697f68a269b24a34147a4bc076b8a2b1660
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822441"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550086"
 ---
 # <a name="chapter-5---io-drivers-for-azure-rtos-filex"></a>Rozdział 5 — sterowniki we/wy dla usługi Azure RTO FileX
 
@@ -93,8 +93,7 @@ FileX zapisuje jeden lub więcej sektorów na nośniku fizycznym, wysyłając ż
 |fx_media_driver_sectors|Liczba sektorów do zapisu|
 |fx_media_driver_buffer|Bufor źródłowy dla sektorów do zapisu|
 |fx_media_driver_system_write| Ustaw na FX_TRUE w przypadku żądania sektora systemu (FAT lub sektor katalogu). W przeciwnym razie FX_FALSE, jeśli zażądano sektora danych pliku.|
-|fx_media_driver_sector_type|Definiuje jawny typ żądanego sektora w następujący sposób:
-FX_FAT_SECTOR (2) FX_DIRECTORY_SECTOR (3) FX_DATA_SECTOR (4) |
+|fx_media_driver_sector_type|Definiuje jawny typ żądanego sektora w następujący sposób:<br> <br>FX_FAT_SECTOR (2) <br> FX_DIRECTORY_SECTOR (3) <br>FX_DATA_SECTOR (4).|
 
 ### <a name="driver-flush"></a>Opróżnianie sterownika
 

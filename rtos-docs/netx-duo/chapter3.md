@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 07e51643c828afc8e6c0b968e78380316e84ccd7
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 31900c7b822c88079e4b9fe28a8a388d20f819aa
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822116"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106549848"
 ---
 # <a name="chapter-3---functional-components-of-azure-rtos-netx-duo"></a>Rozdział 3 — funkcjonalne składniki platformy Azure RTO NetX Duo
 
@@ -204,7 +204,7 @@ Pola nagłówka pakietu są zdefiniowane w następujący sposób. Należy zauwa�
 > [!CAUTION]
 > *Ze względu na wydajność NetX Duo zakłada, że gdy pakiet jest przekazywany do usługi NetX Duo do transmisji, wskaźnik poprzedź wskazuje na długi adres wyrównany do wyrazu.*
 
-|   |   |
+| Nagłówek pakietu | Przeznaczenie |
 |---|---|
 |***nx_packet_append_ptr** _|To pole wskazuje koniec danych znajdujących się obecnie w obszarze ładunku pakietu. Musi znajdować się między lokalizacją pamięci wskazywaną przez _nx_packet_prepend_ptr * i *nx_packet_data_end.* Różnica między tym polem a polem *nx_packet_prepend_ptr* reprezentuje ilość danych w tym pakiecie.|
 |***nx_packet_packet_pad** _|Te pola definiują długość wypełnienia w przypadku wyrazów 4-bajtowych w celu osiągnięcia wymaganego wymagania dotyczącego wyrównania. To pole jest usuwane, jeśli nie zdefiniowano _*_NX_PACKET_HEADER_PAD_*_ . Można również użyć _*_NX_PACKET_ALIGNMENT_*_ zamiast definiować _nx_packet_header_pad. *|

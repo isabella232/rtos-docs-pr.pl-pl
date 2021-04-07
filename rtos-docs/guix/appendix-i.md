@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 03a10aeb65017befaf5e7b440046dbff9f9252ef
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: dc7775cdde8f1aa89ca650561713f54ac6c069eb
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823113"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550222"
 ---
 # <a name="appendix-i---guix-information-structures"></a>Dodatek I-GUIX struktury informacji 
 
@@ -27,10 +27,7 @@ typedef struct GX_BIDI_TEXT_INFO_STRUCT
     GX_VALUE  gx_bidi_text_info_display_width;
 } GX_BIDI_TEXT_INFO;
 ```
-
-### <a name="members"></a>Elementy członkowskie
-
-|                                    |                                                            |
+| Elementy członkowskie | Opis |
 | ---------------------------------- | ---------------------------------------------------------- |
 | **gx_bidi_text_info_text**               | Tekst do zmiany kolejności |
 | **gx_bidi_text_info_font**               | Czcionka używana do wyświetlania tekstu, ustawiana na GX_NULL, jeśli podział wiersza nie jest wymagany |
@@ -49,9 +46,7 @@ typedef struct GX_BIDI_RESOLVED_TEXT_INFO_STRUCT
 } GX_BIDI_RESOLVED_TEXT_INFO;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                    |                                                            |
+| Elementy członkowskie | Opis |
 | ---------------------------------- | ---------------------------------------------------------- |
 | **gx_bidi_resolved_text_info_text**             | Wskaźnik do tablicy zmiany kolejności tekstu dwukierunkowego |
 | **gx_bidi_resolved_text_info_total_lines**      | Łączna liczba wierszy rozwiązanego tekstu dwukierunkowego w jednym akapicie |
@@ -73,9 +68,8 @@ typedef struct GX_CIRCULAR_GAUGE_INFO_STRUCT
     GX_RESOURCE_ID  gx_circular_gauge_info_needle_pixelmap;
 } GX_CIRCULAR_GAUGE_INFO;
 ```
-### <a name="members"></a>Elementy członkowskie
 
-|                                                  |                                              |
+| Elementy członkowskie | Opis |
 | ------------------------------------------------ | -------------------------------------------- |
 | **gx_circular_gauge_info_animation_steps**       | Łączna liczba kroków przenoszonych przez wskazówkę podczas przesuwania z bieżącego kąta wskazówki do nowo przypisanego kąta wskazówki |
 | **gx_circular_gauge_info_animation_delay**       | Liczba taktów zegara GUIX na opóźnienie między krokami animacji |
@@ -112,9 +106,7 @@ typedef struct GX_LINE_CHART_INFO_STRUCT
 } GX_LINE_CHART_INFO;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                    |                                                            |
+| Elementy członkowskie | Opis |
 | ---------------------------------- | ---------------------------------------------------------- |
 | **gx_line_chart_min_val**          | Minimalna wartość danych, która jest używana do obliczania skalowania
 | **gx_line_chart_max_val**          | Maksymalna wartość danych, która jest używana do obliczania skalowania |
@@ -140,9 +132,7 @@ typedef struct GX_MOUSE_CURSOR_INFO_STRUCT
 } GX_MOUSE_CURSOR_INFO;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                    |                                                            |
+| Elementy członkowskie | Opis |
 | ---------------------------------- | ---------------------------------------------------------- |
 | **gx_mouse_cursor_image_id**       | Identyfikator zasobu obrazu myszy |
 | **gx_mouse_cursor_hotspot_x**      | Przesunięcie od lewej krawędzi obrazu myszy do hotspotu obrazu myszy. |
@@ -160,9 +150,7 @@ typedef struct GX_PEN_CONFIGURATION_STRUCT
 }GX_PEN_CONFIGURATION;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                              |                                                  |
+| Elementy członkowskie | Opis |
 | -------------------------------------------- | ------------------------------------------------ |
 | **gx_pen_configuration_min_drag_dist**       | Minimalną odległość przeciągania na cykl czasomierza GUIX, aby wyzwolić zdarzenie szybkiego ruchu. Wywołaj GX_FIXED_VAL_MAKE, aby utworzyć stałą wartość typu danych |
 | **gx_pen_configuration_max_pen_speed_ticks** | Maksymalna szybkość przeciągania w taktach czasomierza GUIX w celu wyzwalania zdarzenia szybkiego ruchu | 
@@ -180,9 +168,7 @@ typedef struct GX_PIXELMAP_SLIDER_INFO_STRUCT
 } GX_PIXELMAP_SLIDER_INFO;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                                       |                                          |
+| Elementy członkowskie | Opis |
 | ----------------------------------------------------- | ---------------------------------------- |
 | **gx_pixelmap_slider_info_lower_background_pixelmap** | Identyfikator zasobu Pixelmap do wypełniania tła przed wskazówką. Jeśli nie ustawiono górnego Pixelmap w tle, jest on używany do wypełniania tła przed i po wskazówkę |
 | **gx_pixelmap_slider_info_upper_background_pixelmap** | Identyfikator zasobu Pixelmap do wypełnienia tła po wskazówki |
@@ -206,9 +192,7 @@ typedef struct GX_PROGRESS_BAR_INFO_STRUCT
 } GX_PROGRESS_BAR_INFO;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                              |                                                  |
+| Elementy członkowskie | Opis |
 | -------------------------------------------- | ------------------------------------------------ |
 | **gx_progress_bar_info_min_val**             | Minimalna raportowana wartość |
 | **gx_progress_bar_info_max_val**             | Maksymalna raportowana wartość |
@@ -242,9 +226,7 @@ typedef struct GX_RADIAL_PROGRESS_BAR_INFO_STRUCT
 } GX_RADIAL_PROGRESS_BAR_INFO;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                                   |                                              |
+| Elementy członkowskie | Opis |
 | ------------------------------------------------- | -------------------------------------------- |
 | **gx_radial_progress_bar_info_xcenter**           | Położenie elementu widget w współrzędnej x |
 | **gx_radial_progress_bar_info_ycenter**           | Położenie elementu widget w współrzędnym y  |
@@ -281,9 +263,7 @@ typedef struct GX_RADIAL_SLIDER_INFO_STRUCT
 } GX_RADIAL_SLIDER_INFO;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                               |                                                  |
+| Elementy członkowskie | Opis |
 | --------------------------------------------- | ------------------------------------------------ |
 **gx_radial_slider_info_xcenter**               | Odległość od lewej krawędzi elementu widget suwaka do środka obrotu wskazówki kontrolki suwaka |
 | **gx_radial_slider_info_ycenter**             | Odległość od góry elementu widget suwaka do środka obrotu wskazówki kontrolki suwaka |
@@ -311,9 +291,7 @@ typedef struct GX_RECTANGLE_STRUCT
 } GX_RECTANGLE;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                  |                         |
+| Elementy członkowskie | Opis |
 | -------------------------------- | ------------------------|
 | **gx_rectangle_left**            | Po lewej stronie prostokąta   |  
 | **gx_rectangle_top**             | Góra prostokąta    | 
@@ -334,9 +312,7 @@ typedef struct GX_RICH_TEXT_FONTS_STRUCT
 } GX_RICH_TEXT_FONTS;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                    |                                                            |
+| Elementy członkowskie | Opis |
 | ---------------------------------- | ---------------------------------------------------------- |
 | **gx_rich_text_fonts_normal_id**   | Identyfikator zasobu zwykłej czcionki tekstu |
 | **gx_rich_text_fonts_bold_id**     | Identyfikator zasobu czcionki pogrubionej tekstu |
@@ -357,9 +333,7 @@ typedef struct GX_SCROLL_INFO_STRUCT
 } GX_SCROLL_INFO;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                         |                               |
+| Elementy członkowskie | Opis |
 | ----------------------- | ----------------------------- |
 | **gx_scroll_value**     | Bieżąca pozycja przewijania       |
 | **gx_scroll_minimum**   | Minimalna zgłoszona pozycja     |
@@ -389,9 +363,7 @@ typedef struct GX_SCROLLBAR_APPEARANCE_STRUCT
 } GX_SCROLLBAR_APPEARANCE;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                          |                                                       |
+| Elementy członkowskie | Opis |
 | ---------------------------------------- | ----------------------------------------------------- |
 | **gx_scroll_width**                      | Szerokość widżetu ScrollBar w pikselach |
 | **gx_scroll_thumb_width**                | Szerokość przycisku przewijania, które slajdy na pasku przewijania (w pikselach). Ta wartość jest zwykle pewną liczbą pikseli mniejszą niż całkowita szerokość paska przewijania. |
@@ -426,9 +398,7 @@ typedef struct GX_SLIDER_INFO_STRUCT
 } GX_SLIDER_INFO;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                         |                                                        |
+| Elementy członkowskie | Opis |
 | --------------------------------------- | ------------------------------------------------------ |
 | **gx_slider_info_min_val**              | Minimalna raportowana wartość |
 | **gx_slider_info_max_val**              | Maksymalna raportowana wartość |
@@ -456,9 +426,7 @@ typedef struct GX_SPRITE_FRAME_STRUCT
 } GX_SPRITE_FRAME;
 ```
 
-### <a name="members"></a>Elementy członkowskie
-
-|                                          |                                                       |
+| Elementy członkowskie | Opis |
 | ---------------------------------------- | ----------------------------------------------------- |
 | **gx_sprite_frame_pixelmap**             | Identyfikator zasobu Pixelmap, który ma być wyświetlany dla tej ramki. Identyfikator może być równy 0. |
 | **gx_sprite_frame_x_offset**             | Przesunięcie od widgetu Sprite po lewej stronie, aby wyświetlić Pixelmap |

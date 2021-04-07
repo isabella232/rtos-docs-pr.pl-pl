@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 2057b86e6f44912fe8ca349cdf0ad2cc10f5c4cd
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 53ffc900debd3bfaa1a38d792ddf294b2ce92461
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823106"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550307"
 ---
 # <a name="chapter-3---functional-overview-of-guix"></a>Rozdział 3 — Omówienie funkcjonalne GUIX
 
@@ -310,7 +310,7 @@ Na koniec bloki sterujące dla ekranów i widżetów GUIX można statycznie lub 
 
 Interfejsy API GUIX są podzielone i zorganizowane w kilka podstawowych grup, które odpowiadają podstawowym składnikom systemu GUIX. Podstawowe składniki obejmują:
 
-| <!-- -->    | <!-- -->    |
+| Składniki  | Opis  |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | GX_SYSTEM  | Składnik systemu GUIX, odpowiedzialny za inicjalizację, zdarzenia, czasomierze i tabele ciągów oraz Zarządzanie hierarchią widżetów widocznych.                                                                                                                                                                                                                                                                      |
 | GX_CANVAS  | Obszar rysowania. Kanwa może być cienką abstrakcją buforu klatek sprzętowych lub może być również czystą kanwą pamięci. Typ kanwy jest określany przez parametry przesłane do funkcji API gx_canvas_create.                                                                                                                                                                                   |

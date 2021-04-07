@@ -1,17 +1,17 @@
 ---
 title: Rozdział 5 — USBX OTG
-description: USBX obsługuje funkcje OTG USB, gdy kontroler USB zgodny z OTG jest dostępny w projekcie sprzętu.
+description: Dowiedz się, w jaki sposób USBX obsługuje funkcje OTG USB, gdy w projekcie sprzętu jest dostępny kontroler USB zgodny z OTG.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: da562fd843c6ef0fd17f0d979ca57bd37572748d
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 64a3c44f84b9ffca31d9e616d14d3d5d87c56bd7
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823317"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550324"
 ---
 # <a name="chapter-5---usbx-otg"></a>Rozdział 5 — USBX OTG
 

@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 468f1dc8a8334dc89064594b29dc8cfabd7d8fae
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 347bd83fa8c72ced2e8678a92ec5c5f8393c136d
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822884"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550205"
 ---
 # <a name="chapter-3-functional-description-of-azure-rtos-netx-secure-dtls"></a>Rozdział 3: Opis funkcjonalny usługi Azure RTO NetX Secure DTLS
 
@@ -64,14 +64,14 @@ Każdy prawidłowy rekord uzgadniania DTLS musi mieć nagłówek uzgadniania DTL
 
 Pola nagłówka rekordu uzgadniania DTLS są zdefiniowane w następujący sposób:
 
-| Pole nagłówka TLS | Przeznaczenie |
+| Pole nagłówka TLS | Przeznaczenie  |
 | ---------------- | ------------------------------------------------ |
 | **8-bitowy typ komunikatu** | To pole zawiera typ wysyłanego rekordu DTLS. Prawidłowe typy są następujące:<br />- ChangeCipherSpec: 0x14<br />-Alert: 0x15<br />-Uzgadnianie: 0x16<br />-Dane aplikacji: 0x17 |
 |  **16-bitowa Epoka** | To pole zawiera DTLS "epoki", czyli licznik, który jest zwiększany za każdym razem, gdy stan szyfrowania zostanie zmieniony (na przykład podczas generowania nowych kluczy sesji). |
 |  **48-bitowy numer sekwencji** | To pole zawiera numer sekwencyjny, który identyfikuje ten konkretny rekord. Jest on używany przez DTLS do zachowywania kolejności rekordów i sprawdzania, czy są wymagane retransmisje. |
 |  **16-bitowa wersja protokołu** | To pole zawiera wersję protokołu DTLS. Prawidłowe wartości są następujące:<br />-DTLS 1,1:0xFEFD |
 | **16-bitowa Długość** | To pole zawiera długość danych hermetyzowanych w rekordzie DTLS. |
-| **Typ uzgadniania 8-bitowego** | To pole zawiera typ komunikatu uzgadniania. Prawidłowe wartości są następujące:<br />-HelloRequest: 0x00<br />-Komunikacie ClientHello: 0x01<br />-ServerHello: 0x02<br />-Certificate: 0x0B<br />- ServerKeyExchange: 0x0C<br />-CertificateRequest: 0x0D<br />- ServerHelloDone: 0x0E<br />- CertificateVerify: 0x0F<br />-ClientKeyExchange: 0x10<br />- Ukończono | 0x14 |
+| **Typ uzgadniania 8-bitowego** | To pole zawiera typ komunikatu uzgadniania. Prawidłowe wartości są następujące:<br />-HelloRequest: 0x00<br />-Komunikacie ClientHello: 0x01<br />-ServerHello: 0x02<br />-Certificate: 0x0B<br />- ServerKeyExchange: 0x0C<br />-CertificateRequest: 0x0D<br />- ServerHelloDone: 0x0E<br />- CertificateVerify: 0x0F<br />-ClientKeyExchange: 0x10<br />-Zakończono: 0x14 |
 | **Długość 24-bitowa** | To pole zawiera długość danych komunikatu uzgadniania. |
 | **16-bitowy numer sekwencji** | To pole zawiera numer sekwencyjny. |
 

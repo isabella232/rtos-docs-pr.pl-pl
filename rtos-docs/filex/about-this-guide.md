@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 0ebcebdd2b227ed8d9ccf8b3078b716f90f35bef
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 640d9ed4c8037d3af6c5f45158c9496ad1258a3c
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821463"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550103"
 ---
 # <a name="about-this-filex-user-guide"></a>Informacje o tym podręczniku użytkownika FileX
 
@@ -56,6 +56,7 @@ Ten przewodnik zawiera wyczerpujące informacje na temat usługi Azure RTO FileX
 Oprócz niestandardowych typów danych struktury formantu FileX usługi Azure RTO istnieje szereg specjalnych typów danych, które są używane w interfejsie wywołań usługi Azure RTO FileX. Te specjalne typy danych są mapowane bezpośrednio na typy danych podstawowego kompilatora języka C. Jest to realizowane w celu zapewnienia przenośności między różnymi kompilatorami języka C. Dokładna implementacja jest dziedziczona z usługi Azure RTO ThreadX i można ją znaleźć w pliku tx_port. h zawartym w dystrybucji usługi Azure RTO ThreadX.
 
 Poniżej znajduje się lista typów danych wywołań usługi Azure RTO FileX i skojarzonych z nimi znaczenia.
+
 | Typ  | Opis  |
 |---|---|
 | **UINT** | Podstawowa niepodpisana liczba całkowita. Ten typ musi obsługiwać 8-bitowe dane niepodpisane; Jednak jest on mapowany na najbardziej wygodny typ danych bez znaku. |

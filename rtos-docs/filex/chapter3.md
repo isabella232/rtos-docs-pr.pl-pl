@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 1e1e1a1dbd844d811c7ee3122113f28162639fb4
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: a94344a7079e3f0e3e451bc678c369fee543aef6
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821438"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550171"
 ---
 # <a name="chapter-3---functional-components-of-azure-rtos-filex"></a>Rozdział 3 — funkcjonalne składniki platformy Azure RTO FileX
 
@@ -42,6 +42,7 @@ Dokładne przesunięcie sektora innych obszarów w widoku sektora logicznego no�
 - **Sektory na klaster** Pola *sektory na klaster* w rekordzie rozruchowym multimediów definiują liczbę sektorów przypisanych do klastra. Klaster jest podstawowym elementem alokacji w systemie plików zgodnym ze standardem FAT. Wszystkie informacje o pliku i podkatalogach są przydzielane z dostępnych klastrów nośnika zgodnie z opisem w tabeli alokacji plików (FAT).
 
     **TABELA 1. Rekord rozruchowy multimediów FileX**
+    
     |Przesunięcie  |Pole  |Liczba bajtów|
     |----------|-----------|------------|
     |0x00|Instrukcje skoku (E9, XX, XX lub EB, XX, 90)|3|
@@ -161,6 +162,7 @@ Pierwsze dwa wpisy w tabeli FAT nie są używane i zazwyczaj mają poniższą za
 Numer wpisu systemu FAT 2 reprezentuje pierwszy klaster w obszarze danych nośnika. Zawartość każdego wpisu klastra określa, czy jest to wolna czy część połączonej listy klastrów przyznanych dla pliku lub podkatalogu. Jeśli wpis klastra zawiera inny prawidłowy wpis klastra, zostanie przydzielony klaster, a jego wartość wskazuje następny klaster przydzielony w łańcuchu klastra.
 
 Możliwe wpisy klastra są zdefiniowane w następujący sposób.
+
 |Znaczenie|12-bitowy system plików FAT|16-bitowy system plików FAT|32 — bit FAT| exFAT|
 |----------|-----------|------------|-------|------|
 |Bezpłatny klaster|0x000|0x0000|0x00000000|0x00000000|
@@ -283,26 +285,26 @@ FileX obsługuje 8,3 zarówno formaty nazw, jak i LFN (Windows Long File Name). 
 
     **TABELA 4. Wpis katalogu długich nazw plików**
 
-    |Przesunięcie|Pole|Liczba bajtów|
+    | Przesunięcie | Pole | Liczba bajtów |
     |------------|-----------|------------|
-    0x00|Pole porządkowe|1|
-    0x01|Unicode — znak 1|2|
-    0x03|Unicode — znak 2|2|
-    0x05|Unicode — znak 3|2|
-    0x07|Unicode — znak 4|2|
-    0x09|Znak Unicode 5|2|
-    0x0B|LFN — atrybuty|1|
-    0x0C|Typ LFN (zarezerwowane zawsze 0)|1|
-    0x0D|Suma kontrolna LFN|1|
-    0x0E|Unicode — znak 6|2|
-    0x10|Znak Unicode 7|2|
-    0x12|Znak Unicode 8|2|
-    0x14|Unicode — znak 9|2|
-    0x16|Unicode — znak 10|2|
-    0x18|Znak Unicode 11|2|
-    0x1A|Klaster LFN (nieużywany zawsze 0)|2|
-    0x1C|Znak Unicode 12|2|
-    0x1E|Znak Unicode |13|2|
+    | 0x00 | Pole porządkowe | 1 |
+    | 0x01 | Unicode — znak 1 | 2 |
+    | 0x03 | Unicode — znak 2 | 2 |
+    | 0x05 | Unicode — znak 3 | 2 |
+    | 0x07 | Unicode — znak 4 | 2 |
+    | 0x09 | Znak Unicode 5 | 2 |
+    | 0x0B | LFN — atrybuty | 1 |
+    | 0x0C | Typ LFN (zarezerwowane zawsze 0) | 1 |
+    | 0x0D | Suma kontrolna LFN | 1 |
+    | 0x0E | Unicode — znak 6 | 2 | 
+    | 0x10 | Znak Unicode 7 | 2 |
+    | 0x12 | Znak Unicode 8 | 2 |
+    | 0x14 | Unicode — znak 9 | 2 |
+    | 0x16 | Unicode — znak 10 | 2 |
+    | 0x18 | Znak Unicode 11 | 2 |
+    | 0x1A | Klaster LFN (nieużywany zawsze 0) | 2 |
+    | 0x1C | Znak Unicode 12 | 2 |
+    | 0x1E | Znak Unicode 13 | 2 |
 
 - **Znak Unicode**
 
@@ -472,6 +474,7 @@ Opis wpisu katalogu rozszerzenia strumienia i jego zawartości znajduje się w p
 - **Znaczników**
 
     To pole zawiera serię bitów, która określa różne właściwości:
+    
     |Bit flagi|Znaczenie    |
     |-----------------|-----------|
     |0x01            |To pole wskazuje, czy jest możliwe przydzielenie klastrów. To pole powinno mieć 1.|

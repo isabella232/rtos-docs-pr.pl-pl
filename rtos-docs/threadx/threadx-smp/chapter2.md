@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 53d73789d93cac7bed241a54b1dde20b8610ef13
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: cc352ebd7965c84c341d25dfa7bff2671dfb5e66
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822471"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550256"
 ---
 # <a name="chapter-2---installation--use-of-azure-rtos-threadx-smp"></a>Rozdział 2 — Instalacja & użycie usługi Azure RTO ThreadX SMP
 
@@ -51,7 +51,7 @@ Ten plik PDF zawiera prostą, czwartą procedurę do uzyskania ThreadX SMP dzia�
 
 Plik tekstowy zawierający określone informacje o porcie SMP ThreadX, w tym informacje o procesorze docelowym i narzędziach programistycznych.
 
-|                 |                     |
+| Narzędzie | Opis |
 | -------------- | ------------------------------------------------------------------------------------------------- |
 | **tx_api. h**  | Plik nagłówkowy języka C zawierający wszystkie równe systemowe, struktury danych i prototypy usługi.             |
 | **tx_port. h** | Plik nagłówkowy języka C zawierający wszystkie definicje i targetspecific danych. |
