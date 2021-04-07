@@ -1,37 +1,37 @@
 ---
 title: Rozdział 4 — implementacja technologii PictBridge w USBX
-description: UBSX obsługuje pełną implementację technologii PictBridge zarówno na hoście, jak i urządzeniu. PictBridge znajduje się na szczycie klasy USBX PIMA po obu stronach.
+description: UBSX obsługuje pełną implementację technologii PictBridge zarówno na urządzeniu, jak i na hoście. PictBridge znajduje się na szczycie klasy USBX PIMA po obu stronach.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 2ef1809dac046d49b15aba000cabed6c9fd458a3
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 4fdf1e46a7123c10d17e11d09c1b16c2f68f4a31
+ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104824457"
+ms.lasthandoff: 04/07/2021
+ms.locfileid: "106550239"
 ---
-# <a name="chapter-4---usbx-pictbridge-implementation"></a><span data-ttu-id="4831b-104">Rozdział 4 — implementacja technologii PictBridge w USBX</span><span class="sxs-lookup"><span data-stu-id="4831b-104">Chapter 4 - USBX Pictbridge implementation</span></span>
+# <a name="chapter-4---usbx-pictbridge-implementation"></a><span data-ttu-id="61a33-104">Rozdział 4 — implementacja technologii PictBridge w USBX</span><span class="sxs-lookup"><span data-stu-id="61a33-104">Chapter 4 - USBX Pictbridge implementation</span></span>
 
-<span data-ttu-id="4831b-105">UBSX obsługuje pełną implementację technologii PictBridge zarówno na hoście, jak i urządzeniu.</span><span class="sxs-lookup"><span data-stu-id="4831b-105">UBSX supports the full Pictbridge implementation both on the host and the device.</span></span> <span data-ttu-id="4831b-106">PictBridge znajduje się na szczycie klasy USBX PIMA po obu stronach.</span><span class="sxs-lookup"><span data-stu-id="4831b-106">Pictbridge sits on top of USBX PIMA class on both sides.</span></span>
+<span data-ttu-id="61a33-105">UBSX obsługuje pełną implementację technologii PictBridge zarówno na hoście, jak i urządzeniu.</span><span class="sxs-lookup"><span data-stu-id="61a33-105">UBSX supports the full Pictbridge implementation both on the host and the device.</span></span> <span data-ttu-id="61a33-106">PictBridge znajduje się na szczycie klasy USBX PIMA po obu stronach.</span><span class="sxs-lookup"><span data-stu-id="61a33-106">Pictbridge sits on top of USBX PIMA class on both sides.</span></span>
 
-<span data-ttu-id="4831b-107">Standardy PictBridge umożliwiają połączenie cyfrowego aparatu fotograficznego lub inteligentnego telefonu bezpośrednio z drukarką bez komputera, co umożliwia bezpośrednie drukowanie na określonych drukarkach z obsługą technologii PictBridge.</span><span class="sxs-lookup"><span data-stu-id="4831b-107">The PictBridge standards allows the connection of a digital still camera or a smart phone directly to a printer without a PC, enabling direct printing to certain Pictbridge aware printers.</span></span>
+<span data-ttu-id="61a33-107">Standardy PictBridge umożliwiają połączenie cyfrowego aparatu fotograficznego lub inteligentnego telefonu bezpośrednio z drukarką bez komputera, co umożliwia bezpośrednie drukowanie na określonych drukarkach z obsługą technologii PictBridge.</span><span class="sxs-lookup"><span data-stu-id="61a33-107">The PictBridge standards allows the connection of a digital still camera or a smart phone directly to a printer without a PC, enabling direct printing to certain Pictbridge aware printers.</span></span>
 
-<span data-ttu-id="4831b-108">Gdy do drukarki jest podłączony aparat lub telefon, drukarka jest hostem USB, a aparat jest urządzeniem USB.</span><span class="sxs-lookup"><span data-stu-id="4831b-108">When a camera or phone is connected to a printer, the printer is the USB host and the camera is the USB device.</span></span> <span data-ttu-id="4831b-109">Jednak w przypadku technologii PictBridge aparat będzie wyświetlany jako host, a polecenia są sterowane przez aparat.</span><span class="sxs-lookup"><span data-stu-id="4831b-109">However, with Pictbridge, the camera will appear as being the host and commands are driven from the camera.</span></span> <span data-ttu-id="4831b-110">Aparat jest serwerem magazynu, drukarką klienta magazynu.</span><span class="sxs-lookup"><span data-stu-id="4831b-110">The camera is the storage server, the printer the storage client.</span></span> <span data-ttu-id="4831b-111">Aparat jest klientem drukowania, a drukarka jest oczywiście serwerem wydruku.</span><span class="sxs-lookup"><span data-stu-id="4831b-111">The camera is the print client and the printer is of course the print server.</span></span>
+<span data-ttu-id="61a33-108">Gdy do drukarki jest podłączony aparat lub telefon, drukarka jest hostem USB, a aparat jest urządzeniem USB.</span><span class="sxs-lookup"><span data-stu-id="61a33-108">When a camera or phone is connected to a printer, the printer is the USB host and the camera is the USB device.</span></span> <span data-ttu-id="61a33-109">Jednak w przypadku technologii PictBridge aparat będzie wyświetlany jako host, a polecenia są sterowane przez aparat.</span><span class="sxs-lookup"><span data-stu-id="61a33-109">However, with Pictbridge, the camera will appear as being the host and commands are driven from the camera.</span></span> <span data-ttu-id="61a33-110">Aparat jest serwerem magazynu, drukarką klienta magazynu.</span><span class="sxs-lookup"><span data-stu-id="61a33-110">The camera is the storage server, the printer the storage client.</span></span> <span data-ttu-id="61a33-111">Aparat jest klientem drukowania, a drukarka jest oczywiście serwerem wydruku.</span><span class="sxs-lookup"><span data-stu-id="61a33-111">The camera is the print client and the printer is of course the print server.</span></span>
 
-<span data-ttu-id="4831b-112">PictBridge korzysta z portów USB jako warstwy transportowej, ale korzysta z protokołu PTP (Picture Transfering Protocol) dla protokołu komunikacyjnego.</span><span class="sxs-lookup"><span data-stu-id="4831b-112">Pictbridge uses USB as a transport layer but relies on PTP (Picture Transfer Protocol) for the communication protocol.</span></span>
+<span data-ttu-id="61a33-112">PictBridge korzysta z portów USB jako warstwy transportowej, ale korzysta z protokołu PTP (Picture Transfering Protocol) dla protokołu komunikacyjnego.</span><span class="sxs-lookup"><span data-stu-id="61a33-112">Pictbridge uses USB as a transport layer but relies on PTP (Picture Transfer Protocol) for the communication protocol.</span></span>
 
-<span data-ttu-id="4831b-113">Poniżej znajduje się Diagram poleceń/odpowiedzi między klientem DPS a serwerem DPS w przypadku wystąpienia zadania drukowania:</span><span class="sxs-lookup"><span data-stu-id="4831b-113">The following is a diagram of the commands/responses between the DPS client and the DPS server when a print job occurs:</span></span>
+<span data-ttu-id="61a33-113">Poniżej znajduje się Diagram poleceń/odpowiedzi między klientem DPS a serwerem DPS w przypadku wystąpienia zadania drukowania:</span><span class="sxs-lookup"><span data-stu-id="61a33-113">The following is a diagram of the commands/responses between the DPS client and the DPS server when a print job occurs:</span></span>
 
 ![Polecenia i odpowiedzi DPS](./media/usbx-device-stack-supplemental/dps-client-server.png)
 
-## <a name="pictbridge-client-implementation"></a><span data-ttu-id="4831b-115">Implementacja klienta PictBridge</span><span class="sxs-lookup"><span data-stu-id="4831b-115">Pictbridge client implementation</span></span>
+## <a name="pictbridge-client-implementation"></a><span data-ttu-id="61a33-115">Implementacja klienta PictBridge</span><span class="sxs-lookup"><span data-stu-id="61a33-115">Pictbridge client implementation</span></span>
 
-<span data-ttu-id="4831b-116">Aby program PictBridge na kliencie wymagał pierwszego uruchomienia stosu urządzenia USBX oraz klasy PIMA.</span><span class="sxs-lookup"><span data-stu-id="4831b-116">The Pictbridge on the client requires the USBX device stack and the PIMA class to be running first.</span></span>
+<span data-ttu-id="61a33-116">Aby program PictBridge na kliencie wymagał pierwszego uruchomienia stosu urządzenia USBX oraz klasy PIMA.</span><span class="sxs-lookup"><span data-stu-id="61a33-116">The Pictbridge on the client requires the USBX device stack and the PIMA class to be running first.</span></span>
 
-<span data-ttu-id="4831b-117">Platforma urządzeń opisuje klasę PIMA w następujący sposób.</span><span class="sxs-lookup"><span data-stu-id="4831b-117">A device framework describes the PIMA class in the following way.</span></span>
+<span data-ttu-id="61a33-117">Platforma urządzeń opisuje klasę PIMA w następujący sposób.</span><span class="sxs-lookup"><span data-stu-id="61a33-117">A device framework describes the PIMA class in the following way.</span></span>
 
 ```C
 UCHAR device_framework_full_speed[] =
@@ -53,11 +53,11 @@ UCHAR device_framework_full_speed[] =
 };
 ```
 
-<span data-ttu-id="4831b-118">Klasa Pima używa pola ID 0x06 i ma jego podklasę na wartość 0x01 dla obrazu wciąż, a protokół to 0x01 dla PIMA 15740.</span><span class="sxs-lookup"><span data-stu-id="4831b-118">The Pima class is using the ID field 0x06 and has its subclass is 0x01 for Still Image and the protocol is 0x01 for PIMA 15740.</span></span>
+<span data-ttu-id="61a33-118">Klasa Pima używa pola ID 0x06 i ma jego podklasę na wartość 0x01 dla obrazu wciąż, a protokół to 0x01 dla PIMA 15740.</span><span class="sxs-lookup"><span data-stu-id="61a33-118">The Pima class is using the ID field 0x06 and has its subclass is 0x01 for Still Image and the protocol is 0x01 for PIMA 15740.</span></span>
 
-<span data-ttu-id="4831b-119">Trzy punkty końcowe są zdefiniowane w tej klasie; dwa zbiorczo do wysyłania/otrzymywania danych oraz jedno przerwanie dla zdarzeń.</span><span class="sxs-lookup"><span data-stu-id="4831b-119">Three endpoints are defined in this class; two bulks for sending/receiving data and one interrupt for events.</span></span>
+<span data-ttu-id="61a33-119">Trzy punkty końcowe są zdefiniowane w tej klasie; dwa zbiorczo do wysyłania/otrzymywania danych oraz jedno przerwanie dla zdarzeń.</span><span class="sxs-lookup"><span data-stu-id="61a33-119">Three endpoints are defined in this class; two bulks for sending/receiving data and one interrupt for events.</span></span>
 
-<span data-ttu-id="4831b-120">W przeciwieństwie do innych implementacji urządzeń USBX, aplikacja PictBridge nie musi definiować samej klasy.</span><span class="sxs-lookup"><span data-stu-id="4831b-120">Unlike other USBX device implementations, the Pictbridge application does not need to define a class itself.</span></span> <span data-ttu-id="4831b-121">Zamiast wywołuje funkcję ***ux_pictbridge_dpsclient_start***.</span><span class="sxs-lookup"><span data-stu-id="4831b-121">Rather it invokes the function ***ux_pictbridge_dpsclient_start***.</span></span> <span data-ttu-id="4831b-122">Poniżej znajduje się przykład.</span><span class="sxs-lookup"><span data-stu-id="4831b-122">An example is below.</span></span>
+<span data-ttu-id="61a33-120">W przeciwieństwie do innych implementacji urządzeń USBX, aplikacja PictBridge nie musi definiować samej klasy.</span><span class="sxs-lookup"><span data-stu-id="61a33-120">Unlike other USBX device implementations, the Pictbridge application does not need to define a class itself.</span></span> <span data-ttu-id="61a33-121">Zamiast wywołuje funkcję ***ux_pictbridge_dpsclient_start***.</span><span class="sxs-lookup"><span data-stu-id="61a33-121">Rather it invokes the function ***ux_pictbridge_dpsclient_start***.</span></span> <span data-ttu-id="61a33-122">Poniżej znajduje się przykład.</span><span class="sxs-lookup"><span data-stu-id="61a33-122">An example is below.</span></span>
 
 ```C
 /* Initialize the Pictbridge string components. */
@@ -85,7 +85,7 @@ if(status != UX_SUCCESS)
     return;
 ```
 
-<span data-ttu-id="4831b-123">Parametry przesłane do klienta PictBridge są następujące.</span><span class="sxs-lookup"><span data-stu-id="4831b-123">The parameters passed to the pictbridge client are as follows.</span></span>
+<span data-ttu-id="61a33-123">Parametry przesłane do klienta PictBridge są następujące.</span><span class="sxs-lookup"><span data-stu-id="61a33-123">The parameters passed to the pictbridge client are as follows.</span></span>
 
 ```C
 pictbridge.ux_pictbridge_dpslocal.ux_pictbridge_devinfo_vendor_name
@@ -100,9 +100,9 @@ pictbridge.ux_pictbridge_dpslocal.ux_pictbridge_devinfo_vendor_specific_version
     : Value set to 0x0100;
 ```
 
-<span data-ttu-id="4831b-124">Następnym krokiem jest zasynchronizowanie urządzenia i hosta oraz gotowość do wymiany informacji.</span><span class="sxs-lookup"><span data-stu-id="4831b-124">The next step is for the device and the host to synchronize and be ready to exchange information.</span></span>
+<span data-ttu-id="61a33-124">Następnym krokiem jest zasynchronizowanie urządzenia i hosta oraz gotowość do wymiany informacji.</span><span class="sxs-lookup"><span data-stu-id="61a33-124">The next step is for the device and the host to synchronize and be ready to exchange information.</span></span>
 
-<span data-ttu-id="4831b-125">Jest to realizowane przez oczekiwanie na flagę zdarzenia w następujący sposób.</span><span class="sxs-lookup"><span data-stu-id="4831b-125">This is done by waiting on an event flag as follows.</span></span>
+<span data-ttu-id="61a33-125">Jest to realizowane przez oczekiwanie na flagę zdarzenia w następujący sposób.</span><span class="sxs-lookup"><span data-stu-id="61a33-125">This is done by waiting on an event flag as follows.</span></span>
 
 ```C
 /* We should wait for the host and the client to discover one another. */
@@ -111,9 +111,9 @@ status = ux_utility_event_flags_get(&pictbridge.ux_pictbridge_event_flags_group,
     &actual_flags, UX_PICTBRIDGE_EVENT_TIMEOUT);
 ```
 
-<span data-ttu-id="4831b-126">Jeśli stan komputera jest w stanie **DISCOVERY_COMPLETE** , Strona aparatu (klient DPS) będzie zbierać informacje dotyczące drukarki i jej możliwości.</span><span class="sxs-lookup"><span data-stu-id="4831b-126">If the state machine is in the **DISCOVERY_COMPLETE** state, the camera side (the DPS client) will gather information regarding the printer and its capabilities.</span></span>
+<span data-ttu-id="61a33-126">Jeśli stan komputera jest w stanie **DISCOVERY_COMPLETE** , Strona aparatu (klient DPS) będzie zbierać informacje dotyczące drukarki i jej możliwości.</span><span class="sxs-lookup"><span data-stu-id="61a33-126">If the state machine is in the **DISCOVERY_COMPLETE** state, the camera side (the DPS client) will gather information regarding the printer and its capabilities.</span></span>
 
-<span data-ttu-id="4831b-127">Jeśli klient DPS jest gotowy do zaakceptowania zadania drukowania, jego stan zostanie ustawiony na **UX_PICTBRIDGE_NEW_JOB_TRUE**.</span><span class="sxs-lookup"><span data-stu-id="4831b-127">If the DPS client is ready to accept a print job, its status will be set to **UX_PICTBRIDGE_NEW_JOB_TRUE**.</span></span> <span data-ttu-id="4831b-128">Można to sprawdzić poniżej.</span><span class="sxs-lookup"><span data-stu-id="4831b-128">It can be checked below.</span></span>
+<span data-ttu-id="61a33-127">Jeśli klient DPS jest gotowy do zaakceptowania zadania drukowania, jego stan zostanie ustawiony na **UX_PICTBRIDGE_NEW_JOB_TRUE**.</span><span class="sxs-lookup"><span data-stu-id="61a33-127">If the DPS client is ready to accept a print job, its status will be set to **UX_PICTBRIDGE_NEW_JOB_TRUE**.</span></span> <span data-ttu-id="61a33-128">Można to sprawdzić poniżej.</span><span class="sxs-lookup"><span data-stu-id="61a33-128">It can be checked below.</span></span>
 
 ```C
 /* Check if the printer is ready for a print job. */
@@ -122,7 +122,7 @@ if (pictbridge.ux_pictbridge_dpsclient.ux_pictbridge_devinfo_newjobok ==
 /* We can print something … */
 ```
 
-<span data-ttu-id="4831b-129">Kolejne przykłady dla deskryptorów joib drukowania muszą zostać wypełnione w następujący sposób:</span><span class="sxs-lookup"><span data-stu-id="4831b-129">Next some print joib descriptors need to be filled as follows:</span></span>
+<span data-ttu-id="61a33-129">Kolejne przykłady dla deskryptorów joib drukowania muszą zostać wypełnione w następujący sposób:</span><span class="sxs-lookup"><span data-stu-id="61a33-129">Next some print joib descriptors need to be filled as follows:</span></span>
 
 ```C
 /* We can start a new job. Fill in the JobConfig and PrintInfo structures. */
@@ -185,19 +185,19 @@ ux_utility_string_to_unicode("JPEG Image", object ->
 status =ux_pictbridge_dpsclient_api_start_job(&pictbridge);
 ```
 
-<span data-ttu-id="4831b-130">Klient PictBridge ma teraz zadanie drukowania do wykonania i pobierze bloki obrazu z aplikacji za pośrednictwem wywołania zwrotnego zdefiniowanego w polu</span><span class="sxs-lookup"><span data-stu-id="4831b-130">The Pictbridge client now has a print job to do and will fetch the image blocks at a time from the application through the callback defined in the field</span></span>
+<span data-ttu-id="61a33-130">Klient PictBridge ma teraz zadanie drukowania do wykonania i pobierze bloki obrazu z aplikacji za pośrednictwem wywołania zwrotnego zdefiniowanego w polu</span><span class="sxs-lookup"><span data-stu-id="61a33-130">The Pictbridge client now has a print job to do and will fetch the image blocks at a time from the application through the callback defined in the field</span></span>
 
 ```C
 jobinfo -> ux_pictbridge_jobinfo_object_data_read
 ```
 
-<span data-ttu-id="4831b-131">Prototyp tej funkcji jest zdefiniowany jako:</span><span class="sxs-lookup"><span data-stu-id="4831b-131">The prototype of that function is defined as:</span></span>
+<span data-ttu-id="61a33-131">Prototyp tej funkcji jest zdefiniowany jako:</span><span class="sxs-lookup"><span data-stu-id="61a33-131">The prototype of that function is defined as:</span></span>
 
-## <a name="ux_pictbridge_jobinfo_object_data_read"></a><span data-ttu-id="4831b-132">ux_pictbridge_jobinfo_object_data_read</span><span class="sxs-lookup"><span data-stu-id="4831b-132">ux_pictbridge_jobinfo_object_data_read</span></span>
+## <a name="ux_pictbridge_jobinfo_object_data_read"></a><span data-ttu-id="61a33-132">ux_pictbridge_jobinfo_object_data_read</span><span class="sxs-lookup"><span data-stu-id="61a33-132">ux_pictbridge_jobinfo_object_data_read</span></span>
 
-<span data-ttu-id="4831b-133">Kopiowanie bloku danych z obszaru użytkownika do drukowania</span><span class="sxs-lookup"><span data-stu-id="4831b-133">Copying a block of data from user space for printing</span></span>
+<span data-ttu-id="61a33-133">Kopiowanie bloku danych z obszaru użytkownika do drukowania</span><span class="sxs-lookup"><span data-stu-id="61a33-133">Copying a block of data from user space for printing</span></span>
 
-### <a name="prototype"></a><span data-ttu-id="4831b-134">Prototype</span><span class="sxs-lookup"><span data-stu-id="4831b-134">Prototype</span></span>
+### <a name="prototype"></a><span data-ttu-id="61a33-134">Prototype</span><span class="sxs-lookup"><span data-stu-id="61a33-134">Prototype</span></span>
 
 ```C
 UINT ux_pictbridge_jobinfo_object_data_read( 
@@ -208,24 +208,24 @@ UINT ux_pictbridge_jobinfo_object_data_read(
     ULONG *actual_length)
 ```
 
-### <a name="description"></a><span data-ttu-id="4831b-135">Opis</span><span class="sxs-lookup"><span data-stu-id="4831b-135">Description</span></span>
+### <a name="description"></a><span data-ttu-id="61a33-135">Opis</span><span class="sxs-lookup"><span data-stu-id="61a33-135">Description</span></span>
 
-<span data-ttu-id="4831b-136">Ta funkcja jest wywoływana, gdy klient DPS musi pobrać blok danych w celu drukowania do docelowej drukarki PictBridge.</span><span class="sxs-lookup"><span data-stu-id="4831b-136">This function is called when the DPS client needs to retrieve a data block to print to the target Pictbridge printer.</span></span>
+<span data-ttu-id="61a33-136">Ta funkcja jest wywoływana, gdy klient DPS musi pobrać blok danych w celu drukowania do docelowej drukarki PictBridge.</span><span class="sxs-lookup"><span data-stu-id="61a33-136">This function is called when the DPS client needs to retrieve a data block to print to the target Pictbridge printer.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="4831b-137">Parametry</span><span class="sxs-lookup"><span data-stu-id="4831b-137">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="61a33-137">Parametry</span><span class="sxs-lookup"><span data-stu-id="61a33-137">Parameters</span></span>
 
-- <span data-ttu-id="4831b-138">**PictBridge**: wskaźnik do wystąpienia klasy PictBridge.</span><span class="sxs-lookup"><span data-stu-id="4831b-138">**pictbridge**: Pointer to the pictbridge class instance.</span></span>
-- <span data-ttu-id="4831b-139">**object_buffer**: wskaźnik do buforu obiektów</span><span class="sxs-lookup"><span data-stu-id="4831b-139">**object_buffer**: Pointer to object buffer</span></span>
-- <span data-ttu-id="4831b-140">**object_offset**: gdzie zaczynamy odczytywanie bloku danych</span><span class="sxs-lookup"><span data-stu-id="4831b-140">**object_offset**: Where we are starting to read the data block</span></span>
-- <span data-ttu-id="4831b-141">**object_length**: długość do zwrócenia</span><span class="sxs-lookup"><span data-stu-id="4831b-141">**object_length**: Length to be returned</span></span>
-- <span data-ttu-id="4831b-142">**actual_length**: zwrócono rzeczywistą Długość</span><span class="sxs-lookup"><span data-stu-id="4831b-142">**actual_length**: Actual length returned</span></span>
+- <span data-ttu-id="61a33-138">**PictBridge**: wskaźnik do wystąpienia klasy PictBridge.</span><span class="sxs-lookup"><span data-stu-id="61a33-138">**pictbridge**: Pointer to the pictbridge class instance.</span></span>
+- <span data-ttu-id="61a33-139">**object_buffer**: wskaźnik do buforu obiektów</span><span class="sxs-lookup"><span data-stu-id="61a33-139">**object_buffer**: Pointer to object buffer</span></span>
+- <span data-ttu-id="61a33-140">**object_offset**: gdzie zaczynamy odczytywanie bloku danych</span><span class="sxs-lookup"><span data-stu-id="61a33-140">**object_offset**: Where we are starting to read the data block</span></span>
+- <span data-ttu-id="61a33-141">**object_length**: długość do zwrócenia</span><span class="sxs-lookup"><span data-stu-id="61a33-141">**object_length**: Length to be returned</span></span>
+- <span data-ttu-id="61a33-142">**actual_length**: zwrócono rzeczywistą Długość</span><span class="sxs-lookup"><span data-stu-id="61a33-142">**actual_length**: Actual length returned</span></span>
 
-### <a name="return-value"></a><span data-ttu-id="4831b-143">Wartość zwracana</span><span class="sxs-lookup"><span data-stu-id="4831b-143">Return Value</span></span>
+### <a name="return-value"></a><span data-ttu-id="61a33-143">Wartość zwracana</span><span class="sxs-lookup"><span data-stu-id="61a33-143">Return Value</span></span>
 
-- <span data-ttu-id="4831b-144">**UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.</span><span class="sxs-lookup"><span data-stu-id="4831b-144">**UX_SUCCESS** (0x00) This operation was successful.</span></span>
-- <span data-ttu-id="4831b-145">**UX_ERROR** (0x01) aplikacja nie mogła pobrać danych.</span><span class="sxs-lookup"><span data-stu-id="4831b-145">**UX_ERROR** (0x01) The application could not retrieve data.</span></span>
+- <span data-ttu-id="61a33-144">**UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.</span><span class="sxs-lookup"><span data-stu-id="61a33-144">**UX_SUCCESS** (0x00) This operation was successful.</span></span>
+- <span data-ttu-id="61a33-145">**UX_ERROR** (0x01) aplikacja nie mogła pobrać danych.</span><span class="sxs-lookup"><span data-stu-id="61a33-145">**UX_ERROR** (0x01) The application could not retrieve data.</span></span>
 
-### <a name="example"></a><span data-ttu-id="4831b-146">Przykład</span><span class="sxs-lookup"><span data-stu-id="4831b-146">Example</span></span>
+### <a name="example"></a><span data-ttu-id="61a33-146">Przykład</span><span class="sxs-lookup"><span data-stu-id="61a33-146">Example</span></span>
 
 ```C
 /* Copy the object data. */
@@ -246,11 +246,11 @@ UINT ux_demo_object_data_copy(
 }
 ```
 
-## <a name="pictbridge-host-implementation"></a><span data-ttu-id="4831b-147">Implementacja hosta PictBridge</span><span class="sxs-lookup"><span data-stu-id="4831b-147">Pictbridge host implementation</span></span>
+## <a name="pictbridge-host-implementation"></a><span data-ttu-id="61a33-147">Implementacja hosta PictBridge</span><span class="sxs-lookup"><span data-stu-id="61a33-147">Pictbridge host implementation</span></span>
 
-<span data-ttu-id="4831b-148">Implementacja hosta PictBridge różni się od klienta.</span><span class="sxs-lookup"><span data-stu-id="4831b-148">The host implementation of Pictbridge is different from the client.</span></span>
+<span data-ttu-id="61a33-148">Implementacja hosta PictBridge różni się od klienta.</span><span class="sxs-lookup"><span data-stu-id="61a33-148">The host implementation of Pictbridge is different from the client.</span></span>
 
-<span data-ttu-id="4831b-149">Pierwsza czynność do wykonania w środowisku hosta PictBridge polega na zarejestrowaniu klasy Pima, jak pokazano na poniższym przykładzie:</span><span class="sxs-lookup"><span data-stu-id="4831b-149">The first thing to do in a Pictbridge host environment is to register the Pima class as the example below shows:</span></span>
+<span data-ttu-id="61a33-149">Pierwsza czynność do wykonania w środowisku hosta PictBridge polega na zarejestrowaniu klasy Pima, jak pokazano na poniższym przykładzie:</span><span class="sxs-lookup"><span data-stu-id="61a33-149">The first thing to do in a Pictbridge host environment is to register the Pima class as the example below shows:</span></span>
 
 ```C
 status = ux_host_stack_class_register(_ux_system_host_class_pima_name,
@@ -259,60 +259,60 @@ if(status != UX_SUCCESS)
     return;
 ```
 
-<span data-ttu-id="4831b-150">Ta klasa jest ogólną warstwą PTP znajdującą się między stosem USB a warstwą PictBridge.</span><span class="sxs-lookup"><span data-stu-id="4831b-150">This class is the generic PTP layer sitting between the USB stack and the Pictbridge layer.</span></span>
+<span data-ttu-id="61a33-150">Ta klasa jest ogólną warstwą PTP znajdującą się między stosem USB a warstwą PictBridge.</span><span class="sxs-lookup"><span data-stu-id="61a33-150">This class is the generic PTP layer sitting between the USB stack and the Pictbridge layer.</span></span>
 
-<span data-ttu-id="4831b-151">Następnym krokiem jest zainicjowanie wartości domyślnych PictBridge dla usług drukowania w następujący sposób:</span><span class="sxs-lookup"><span data-stu-id="4831b-151">The next step is to initialize the Pictbridge default values for print services as follows:</span></span>
+<span data-ttu-id="61a33-151">Następnym krokiem jest zainicjowanie wartości domyślnych PictBridge dla usług drukowania w następujący sposób:</span><span class="sxs-lookup"><span data-stu-id="61a33-151">The next step is to initialize the Pictbridge default values for print services as follows:</span></span>
 
-| <span data-ttu-id="4831b-152">Pole PictBridge</span><span class="sxs-lookup"><span data-stu-id="4831b-152">Pictbridge field</span></span>       | <span data-ttu-id="4831b-153">Wartość</span><span class="sxs-lookup"><span data-stu-id="4831b-153">Value</span></span>                                  |
+| <span data-ttu-id="61a33-152">Pole PictBridge</span><span class="sxs-lookup"><span data-stu-id="61a33-152">Pictbridge field</span></span>       | <span data-ttu-id="61a33-153">Wartość</span><span class="sxs-lookup"><span data-stu-id="61a33-153">Value</span></span>                                  |
 |------------------------|----------------------------------------|
-| <span data-ttu-id="4831b-154">DpsVersion [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-154">DpsVersion[0]</span></span>          | <span data-ttu-id="4831b-155">0x00010000</span><span class="sxs-lookup"><span data-stu-id="4831b-155">0x00010000</span></span>                             |
-| <span data-ttu-id="4831b-156">DpsVersion [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-156">DpsVersion[1]</span></span>          | <span data-ttu-id="4831b-157">0x00010001</span><span class="sxs-lookup"><span data-stu-id="4831b-157">0x00010001</span></span>                             |
-| <span data-ttu-id="4831b-158">DpsVersion [2]</span><span class="sxs-lookup"><span data-stu-id="4831b-158">DpsVersion[2]</span></span>          | <span data-ttu-id="4831b-159">0x00000000</span><span class="sxs-lookup"><span data-stu-id="4831b-159">0x00000000</span></span>                             |
-| <span data-ttu-id="4831b-160">VendorSpecificVersion</span><span class="sxs-lookup"><span data-stu-id="4831b-160">VendorSpecificVersion</span></span>  | <span data-ttu-id="4831b-161">0x00010000</span><span class="sxs-lookup"><span data-stu-id="4831b-161">0x00010000</span></span>                             |
-| <span data-ttu-id="4831b-162">PrintServiceAvailable</span><span class="sxs-lookup"><span data-stu-id="4831b-162">PrintServiceAvailable</span></span>  | <span data-ttu-id="4831b-163">0x30010000</span><span class="sxs-lookup"><span data-stu-id="4831b-163">0x30010000</span></span>                             |
-| <span data-ttu-id="4831b-164">Jakość [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-164">Qualities[0]</span></span>           | <span data-ttu-id="4831b-165">UX_PICTBRIDGE_QUALITIES_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="4831b-165">UX_PICTBRIDGE_QUALITIES_DEFAULT</span></span>        |
-| <span data-ttu-id="4831b-166">Jakość [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-166">Qualities[1]</span></span>           | <span data-ttu-id="4831b-167">UX_PICTBRIDGE_QUALITIES_NORMAL</span><span class="sxs-lookup"><span data-stu-id="4831b-167">UX_PICTBRIDGE_QUALITIES_NORMAL</span></span>         |
-| <span data-ttu-id="4831b-168">Jakość [2]</span><span class="sxs-lookup"><span data-stu-id="4831b-168">Qualities[2]</span></span>           | <span data-ttu-id="4831b-169">UX_PICTBRIDGE_QUALITIES_DRAFT</span><span class="sxs-lookup"><span data-stu-id="4831b-169">UX_PICTBRIDGE_QUALITIES_DRAFT</span></span>          |
-| <span data-ttu-id="4831b-170">Jakość [3]</span><span class="sxs-lookup"><span data-stu-id="4831b-170">Qualities[3]</span></span>           | <span data-ttu-id="4831b-171">UX_PICTBRIDGE_QUALITIES_FINE</span><span class="sxs-lookup"><span data-stu-id="4831b-171">UX_PICTBRIDGE_QUALITIES_FINE</span></span>           |
-| <span data-ttu-id="4831b-172">Wartości PaperSize [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-172">PaperSizes[0]</span></span>          | <span data-ttu-id="4831b-173">UX_PICTBRIDGE_PAPER_SIZES_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="4831b-173">UX_PICTBRIDGE_PAPER_SIZES_DEFAULT</span></span>      |
-| <span data-ttu-id="4831b-174">Moje PaperSize [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-174">PaperSizes[1]</span></span>          | <span data-ttu-id="4831b-175">UX_PICTBRIDGE_PAPER_SIZES_4IX6I</span><span class="sxs-lookup"><span data-stu-id="4831b-175">UX_PICTBRIDGE_PAPER_SIZES_4IX6I</span></span>        |
-| <span data-ttu-id="4831b-176">Moje PaperSize [2]</span><span class="sxs-lookup"><span data-stu-id="4831b-176">PaperSizes[2]</span></span>          | <span data-ttu-id="4831b-177">UX_PICTBRIDGE_PAPER_SIZES_L</span><span class="sxs-lookup"><span data-stu-id="4831b-177">UX_PICTBRIDGE_PAPER_SIZES_L</span></span>            |
-| <span data-ttu-id="4831b-178">Moje PaperSize [3]</span><span class="sxs-lookup"><span data-stu-id="4831b-178">PaperSizes[3]</span></span>          | <span data-ttu-id="4831b-179">UX_PICTBRIDGE_PAPER_SIZES_2L</span><span class="sxs-lookup"><span data-stu-id="4831b-179">UX_PICTBRIDGE_PAPER_SIZES_2L</span></span>           |
-| <span data-ttu-id="4831b-180">Moje PaperSize [4]</span><span class="sxs-lookup"><span data-stu-id="4831b-180">PaperSizes[4]</span></span>          | <span data-ttu-id="4831b-181">UX_PICTBRIDGE_PAPER_SIZES_LETTER</span><span class="sxs-lookup"><span data-stu-id="4831b-181">UX_PICTBRIDGE_PAPER_SIZES_LETTER</span></span>       |
-| <span data-ttu-id="4831b-182">PaperTypes [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-182">PaperTypes[0]</span></span>          | <span data-ttu-id="4831b-183">UX_PICTBRIDGE_PAPER_TYPES_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="4831b-183">UX_PICTBRIDGE_PAPER_TYPES_DEFAULT</span></span>      |
-| <span data-ttu-id="4831b-184">PaperTypes [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-184">PaperTypes[1]</span></span>          | <span data-ttu-id="4831b-185">UX_PICTBRIDGE_PAPER_TYPES_PLAIN</span><span class="sxs-lookup"><span data-stu-id="4831b-185">UX_PICTBRIDGE_PAPER_TYPES_PLAIN</span></span>        |
-| <span data-ttu-id="4831b-186">PaperTypes [2</span><span class="sxs-lookup"><span data-stu-id="4831b-186">PaperTypes[2</span></span>           | <span data-ttu-id="4831b-187">UX_PICTBRIDGE_PAPER_TYPES_PHOTO</span><span class="sxs-lookup"><span data-stu-id="4831b-187">UX_PICTBRIDGE_PAPER_TYPES_PHOTO</span></span>        |
-| <span data-ttu-id="4831b-188">Typ_plikus [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-188">FileTypes[0]</span></span>           | <span data-ttu-id="4831b-189">UX_PICTBRIDGE_FILE_TYPES_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="4831b-189">UX_PICTBRIDGE_FILE_TYPES_DEFAULT</span></span>       |
-| <span data-ttu-id="4831b-190">Typ_plikus [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-190">FileTypes[1]</span></span>           | <span data-ttu-id="4831b-191">UX_PICTBRIDGE_FILE_TYPES_EXIF_JPEG</span><span class="sxs-lookup"><span data-stu-id="4831b-191">UX_PICTBRIDGE_FILE_TYPES_EXIF_JPEG</span></span>     |
-| <span data-ttu-id="4831b-192">Typ_plikus [2]</span><span class="sxs-lookup"><span data-stu-id="4831b-192">FileTypes[2]</span></span>           | <span data-ttu-id="4831b-193">UX_PICTBRIDGE_FILE_TYPES_JFIF</span><span class="sxs-lookup"><span data-stu-id="4831b-193">UX_PICTBRIDGE_FILE_TYPES_JFIF</span></span>          |
-| <span data-ttu-id="4831b-194">Typ_plikus [3]</span><span class="sxs-lookup"><span data-stu-id="4831b-194">FileTypes[3]</span></span>           | <span data-ttu-id="4831b-195">UX_PICTBRIDGE_FILE_TYPES_DPOF</span><span class="sxs-lookup"><span data-stu-id="4831b-195">UX_PICTBRIDGE_FILE_TYPES_DPOF</span></span>          |
-| <span data-ttu-id="4831b-196">DatePrints [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-196">DatePrints[0]</span></span>          | <span data-ttu-id="4831b-197">UX_PICTBRIDGE_DATE_PRINTS_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="4831b-197">UX_PICTBRIDGE_DATE_PRINTS_DEFAULT</span></span>      |
-| <span data-ttu-id="4831b-198">DatePrints [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-198">DatePrints[1]</span></span>          | <span data-ttu-id="4831b-199">UX_PICTBRIDGE_DATE_PRINTS_OFF</span><span class="sxs-lookup"><span data-stu-id="4831b-199">UX_PICTBRIDGE_DATE_PRINTS_OFF</span></span>          |
-| <span data-ttu-id="4831b-200">DatePrints [2]</span><span class="sxs-lookup"><span data-stu-id="4831b-200">DatePrints[2]</span></span>          | <span data-ttu-id="4831b-201">UX_PICTBRIDGE_DATE_PRINTS_ON</span><span class="sxs-lookup"><span data-stu-id="4831b-201">UX_PICTBRIDGE_DATE_PRINTS_ON</span></span>           |
-| <span data-ttu-id="4831b-202">FileNamePrints [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-202">FileNamePrints[0]</span></span>      | <span data-ttu-id="4831b-203">UX_PICTBRIDGE_FILE_NAME_PRINTS_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="4831b-203">UX_PICTBRIDGE_FILE_NAME_PRINTS_DEFAULT</span></span> |
-| <span data-ttu-id="4831b-204">FileNamePrints [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-204">FileNamePrints[1]</span></span>      | <span data-ttu-id="4831b-205">UX_PICTBRIDGE_FILE_NAME_PRINTS_OFF</span><span class="sxs-lookup"><span data-stu-id="4831b-205">UX_PICTBRIDGE_FILE_NAME_PRINTS_OFF</span></span>     |
-| <span data-ttu-id="4831b-206">FileNamePrints [2]</span><span class="sxs-lookup"><span data-stu-id="4831b-206">FileNamePrints[2]</span></span>      | <span data-ttu-id="4831b-207">UX_PICTBRIDGE_FILE_NAME_PRINTS_ON</span><span class="sxs-lookup"><span data-stu-id="4831b-207">UX_PICTBRIDGE_FILE_NAME_PRINTS_ON</span></span>      |
-| <span data-ttu-id="4831b-208">ImageOptimizes [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-208">ImageOptimizes[0]</span></span>      | <span data-ttu-id="4831b-209">UX_PICTBRIDGE_IMAGE_OPTIMIZES_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="4831b-209">UX_PICTBRIDGE_IMAGE_OPTIMIZES_DEFAULT</span></span>  |
-| <span data-ttu-id="4831b-210">ImageOptimizes [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-210">ImageOptimizes[1]</span></span>      | <span data-ttu-id="4831b-211">UX_PICTBRIDGE_IMAGE_OPTIMIZES_OFF</span><span class="sxs-lookup"><span data-stu-id="4831b-211">UX_PICTBRIDGE_IMAGE_OPTIMIZES_OFF</span></span>      |
-| <span data-ttu-id="4831b-212">ImageOptimizes [2]</span><span class="sxs-lookup"><span data-stu-id="4831b-212">ImageOptimizes[2]</span></span>      | <span data-ttu-id="4831b-213">UX_PICTBRIDGE_IMAGE_OPTIMIZES_ON</span><span class="sxs-lookup"><span data-stu-id="4831b-213">UX_PICTBRIDGE_IMAGE_OPTIMIZES_ON</span></span>       |
-| <span data-ttu-id="4831b-214">Układy [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-214">Layouts[0]</span></span>             | <span data-ttu-id="4831b-215">UX_PICTBRIDGE_LAYOUTS_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="4831b-215">UX_PICTBRIDGE_LAYOUTS_DEFAULT</span></span>          |
-| <span data-ttu-id="4831b-216">Układy [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-216">Layouts[1]</span></span>             | <span data-ttu-id="4831b-217">UX_PICTBRIDGE_LAYOUTS_1_UP_BORDER</span><span class="sxs-lookup"><span data-stu-id="4831b-217">UX_PICTBRIDGE_LAYOUTS_1_UP_BORDER</span></span>      |
-| <span data-ttu-id="4831b-218">Układy [2]</span><span class="sxs-lookup"><span data-stu-id="4831b-218">Layouts[2]</span></span>             | <span data-ttu-id="4831b-219">UX_PICTBRIDGE_LAYOUTS_INDEX_PRINT</span><span class="sxs-lookup"><span data-stu-id="4831b-219">UX_PICTBRIDGE_LAYOUTS_INDEX_PRINT</span></span>      |
-| <span data-ttu-id="4831b-220">Układy [3]</span><span class="sxs-lookup"><span data-stu-id="4831b-220">Layouts[3]</span></span>             | <span data-ttu-id="4831b-221">UX_PICTBRIDGE_LAYOUTS_1_UP_BORDERLESS</span><span class="sxs-lookup"><span data-stu-id="4831b-221">UX_PICTBRIDGE_LAYOUTS_1_UP_BORDERLESS</span></span>  |
-| <span data-ttu-id="4831b-222">FixedSizes [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-222">FixedSizes[0]</span></span>          | <span data-ttu-id="4831b-223">UX_PICTBRIDGE_FIXED_SIZE_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="4831b-223">UX_PICTBRIDGE_FIXED_SIZE_DEFAULT</span></span>       |
-| <span data-ttu-id="4831b-224">FixedSizes [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-224">FixedSizes[1]</span></span>          | <span data-ttu-id="4831b-225">UX_PICTBRIDGE_FIXED_SIZE_35IX5I</span><span class="sxs-lookup"><span data-stu-id="4831b-225">UX_PICTBRIDGE_FIXED_SIZE_35IX5I</span></span>        |
-| <span data-ttu-id="4831b-226">FixedSizes [2]</span><span class="sxs-lookup"><span data-stu-id="4831b-226">FixedSizes[2]</span></span>          | <span data-ttu-id="4831b-227">UX_PICTBRIDGE_FIXED_SIZE_4IX6I</span><span class="sxs-lookup"><span data-stu-id="4831b-227">UX_PICTBRIDGE_FIXED_SIZE_4IX6I</span></span>         |
-| <span data-ttu-id="4831b-228">FixedSizes [3]</span><span class="sxs-lookup"><span data-stu-id="4831b-228">FixedSizes[3]</span></span>          | <span data-ttu-id="4831b-229">UX_PICTBRIDGE_FIXED_SIZE_5IX7I</span><span class="sxs-lookup"><span data-stu-id="4831b-229">UX_PICTBRIDGE_FIXED_SIZE_5IX7I</span></span>         |
-| <span data-ttu-id="4831b-230">FixedSizes [4]</span><span class="sxs-lookup"><span data-stu-id="4831b-230">FixedSizes[4]</span></span>          | <span data-ttu-id="4831b-231">UX_PICTBRIDGE_FIXED_SIZE_7CMX10CM</span><span class="sxs-lookup"><span data-stu-id="4831b-231">UX_PICTBRIDGE_FIXED_SIZE_7CMX10CM</span></span>      |
-| <span data-ttu-id="4831b-232">FixedSizes [5]</span><span class="sxs-lookup"><span data-stu-id="4831b-232">FixedSizes[5]</span></span>          | <span data-ttu-id="4831b-233">UX_PICTBRIDGE_FIXED_SIZE_LETTER</span><span class="sxs-lookup"><span data-stu-id="4831b-233">UX_PICTBRIDGE_FIXED_SIZE_LETTER</span></span>        |
-| <span data-ttu-id="4831b-234">FixedSizes [6]</span><span class="sxs-lookup"><span data-stu-id="4831b-234">FixedSizes[6]</span></span>          | <span data-ttu-id="4831b-235">UX_PICTBRIDGE_FIXED_SIZE_A4</span><span class="sxs-lookup"><span data-stu-id="4831b-235">UX_PICTBRIDGE_FIXED_SIZE_A4</span></span>            |
-| <span data-ttu-id="4831b-236">Przycinanie [0]</span><span class="sxs-lookup"><span data-stu-id="4831b-236">Croppings[0]</span></span>           | <span data-ttu-id="4831b-237">UX_PICTBRIDGE_CROPPINGS_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="4831b-237">UX_PICTBRIDGE_CROPPINGS_DEFAULT</span></span>        |
-| <span data-ttu-id="4831b-238">Przycinanie [1]</span><span class="sxs-lookup"><span data-stu-id="4831b-238">Croppings[1]</span></span>           | <span data-ttu-id="4831b-239">UX_PICTBRIDGE_CROPPINGS_OFF</span><span class="sxs-lookup"><span data-stu-id="4831b-239">UX_PICTBRIDGE_CROPPINGS_OFF</span></span>            |
-| <span data-ttu-id="4831b-240">Przycinanie [2]</span><span class="sxs-lookup"><span data-stu-id="4831b-240">Croppings[2]</span></span>           | <span data-ttu-id="4831b-241">UX_PICTBRIDGE_CROPPINGS_ON</span><span class="sxs-lookup"><span data-stu-id="4831b-241">UX_PICTBRIDGE_CROPPINGS_ON</span></span>             |
+| <span data-ttu-id="61a33-154">DpsVersion [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-154">DpsVersion[0]</span></span>          | <span data-ttu-id="61a33-155">0x00010000</span><span class="sxs-lookup"><span data-stu-id="61a33-155">0x00010000</span></span>                             |
+| <span data-ttu-id="61a33-156">DpsVersion [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-156">DpsVersion[1]</span></span>          | <span data-ttu-id="61a33-157">0x00010001</span><span class="sxs-lookup"><span data-stu-id="61a33-157">0x00010001</span></span>                             |
+| <span data-ttu-id="61a33-158">DpsVersion [2]</span><span class="sxs-lookup"><span data-stu-id="61a33-158">DpsVersion[2]</span></span>          | <span data-ttu-id="61a33-159">0x00000000</span><span class="sxs-lookup"><span data-stu-id="61a33-159">0x00000000</span></span>                             |
+| <span data-ttu-id="61a33-160">VendorSpecificVersion</span><span class="sxs-lookup"><span data-stu-id="61a33-160">VendorSpecificVersion</span></span>  | <span data-ttu-id="61a33-161">0x00010000</span><span class="sxs-lookup"><span data-stu-id="61a33-161">0x00010000</span></span>                             |
+| <span data-ttu-id="61a33-162">PrintServiceAvailable</span><span class="sxs-lookup"><span data-stu-id="61a33-162">PrintServiceAvailable</span></span>  | <span data-ttu-id="61a33-163">0x30010000</span><span class="sxs-lookup"><span data-stu-id="61a33-163">0x30010000</span></span>                             |
+| <span data-ttu-id="61a33-164">Jakość [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-164">Qualities[0]</span></span>           | <span data-ttu-id="61a33-165">UX_PICTBRIDGE_QUALITIES_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="61a33-165">UX_PICTBRIDGE_QUALITIES_DEFAULT</span></span>        |
+| <span data-ttu-id="61a33-166">Jakość [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-166">Qualities[1]</span></span>           | <span data-ttu-id="61a33-167">UX_PICTBRIDGE_QUALITIES_NORMAL</span><span class="sxs-lookup"><span data-stu-id="61a33-167">UX_PICTBRIDGE_QUALITIES_NORMAL</span></span>         |
+| <span data-ttu-id="61a33-168">Jakość [2]</span><span class="sxs-lookup"><span data-stu-id="61a33-168">Qualities[2]</span></span>           | <span data-ttu-id="61a33-169">UX_PICTBRIDGE_QUALITIES_DRAFT</span><span class="sxs-lookup"><span data-stu-id="61a33-169">UX_PICTBRIDGE_QUALITIES_DRAFT</span></span>          |
+| <span data-ttu-id="61a33-170">Jakość [3]</span><span class="sxs-lookup"><span data-stu-id="61a33-170">Qualities[3]</span></span>           | <span data-ttu-id="61a33-171">UX_PICTBRIDGE_QUALITIES_FINE</span><span class="sxs-lookup"><span data-stu-id="61a33-171">UX_PICTBRIDGE_QUALITIES_FINE</span></span>           |
+| <span data-ttu-id="61a33-172">Wartości PaperSize [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-172">PaperSizes[0]</span></span>          | <span data-ttu-id="61a33-173">UX_PICTBRIDGE_PAPER_SIZES_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="61a33-173">UX_PICTBRIDGE_PAPER_SIZES_DEFAULT</span></span>      |
+| <span data-ttu-id="61a33-174">Moje PaperSize [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-174">PaperSizes[1]</span></span>          | <span data-ttu-id="61a33-175">UX_PICTBRIDGE_PAPER_SIZES_4IX6I</span><span class="sxs-lookup"><span data-stu-id="61a33-175">UX_PICTBRIDGE_PAPER_SIZES_4IX6I</span></span>        |
+| <span data-ttu-id="61a33-176">Moje PaperSize [2]</span><span class="sxs-lookup"><span data-stu-id="61a33-176">PaperSizes[2]</span></span>          | <span data-ttu-id="61a33-177">UX_PICTBRIDGE_PAPER_SIZES_L</span><span class="sxs-lookup"><span data-stu-id="61a33-177">UX_PICTBRIDGE_PAPER_SIZES_L</span></span>            |
+| <span data-ttu-id="61a33-178">Moje PaperSize [3]</span><span class="sxs-lookup"><span data-stu-id="61a33-178">PaperSizes[3]</span></span>          | <span data-ttu-id="61a33-179">UX_PICTBRIDGE_PAPER_SIZES_2L</span><span class="sxs-lookup"><span data-stu-id="61a33-179">UX_PICTBRIDGE_PAPER_SIZES_2L</span></span>           |
+| <span data-ttu-id="61a33-180">Moje PaperSize [4]</span><span class="sxs-lookup"><span data-stu-id="61a33-180">PaperSizes[4]</span></span>          | <span data-ttu-id="61a33-181">UX_PICTBRIDGE_PAPER_SIZES_LETTER</span><span class="sxs-lookup"><span data-stu-id="61a33-181">UX_PICTBRIDGE_PAPER_SIZES_LETTER</span></span>       |
+| <span data-ttu-id="61a33-182">PaperTypes [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-182">PaperTypes[0]</span></span>          | <span data-ttu-id="61a33-183">UX_PICTBRIDGE_PAPER_TYPES_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="61a33-183">UX_PICTBRIDGE_PAPER_TYPES_DEFAULT</span></span>      |
+| <span data-ttu-id="61a33-184">PaperTypes [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-184">PaperTypes[1]</span></span>          | <span data-ttu-id="61a33-185">UX_PICTBRIDGE_PAPER_TYPES_PLAIN</span><span class="sxs-lookup"><span data-stu-id="61a33-185">UX_PICTBRIDGE_PAPER_TYPES_PLAIN</span></span>        |
+| <span data-ttu-id="61a33-186">PaperTypes [2</span><span class="sxs-lookup"><span data-stu-id="61a33-186">PaperTypes[2</span></span>           | <span data-ttu-id="61a33-187">UX_PICTBRIDGE_PAPER_TYPES_PHOTO</span><span class="sxs-lookup"><span data-stu-id="61a33-187">UX_PICTBRIDGE_PAPER_TYPES_PHOTO</span></span>        |
+| <span data-ttu-id="61a33-188">Typ_plikus [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-188">FileTypes[0]</span></span>           | <span data-ttu-id="61a33-189">UX_PICTBRIDGE_FILE_TYPES_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="61a33-189">UX_PICTBRIDGE_FILE_TYPES_DEFAULT</span></span>       |
+| <span data-ttu-id="61a33-190">Typ_plikus [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-190">FileTypes[1]</span></span>           | <span data-ttu-id="61a33-191">UX_PICTBRIDGE_FILE_TYPES_EXIF_JPEG</span><span class="sxs-lookup"><span data-stu-id="61a33-191">UX_PICTBRIDGE_FILE_TYPES_EXIF_JPEG</span></span>     |
+| <span data-ttu-id="61a33-192">Typ_plikus [2]</span><span class="sxs-lookup"><span data-stu-id="61a33-192">FileTypes[2]</span></span>           | <span data-ttu-id="61a33-193">UX_PICTBRIDGE_FILE_TYPES_JFIF</span><span class="sxs-lookup"><span data-stu-id="61a33-193">UX_PICTBRIDGE_FILE_TYPES_JFIF</span></span>          |
+| <span data-ttu-id="61a33-194">Typ_plikus [3]</span><span class="sxs-lookup"><span data-stu-id="61a33-194">FileTypes[3]</span></span>           | <span data-ttu-id="61a33-195">UX_PICTBRIDGE_FILE_TYPES_DPOF</span><span class="sxs-lookup"><span data-stu-id="61a33-195">UX_PICTBRIDGE_FILE_TYPES_DPOF</span></span>          |
+| <span data-ttu-id="61a33-196">DatePrints [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-196">DatePrints[0]</span></span>          | <span data-ttu-id="61a33-197">UX_PICTBRIDGE_DATE_PRINTS_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="61a33-197">UX_PICTBRIDGE_DATE_PRINTS_DEFAULT</span></span>      |
+| <span data-ttu-id="61a33-198">DatePrints [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-198">DatePrints[1]</span></span>          | <span data-ttu-id="61a33-199">UX_PICTBRIDGE_DATE_PRINTS_OFF</span><span class="sxs-lookup"><span data-stu-id="61a33-199">UX_PICTBRIDGE_DATE_PRINTS_OFF</span></span>          |
+| <span data-ttu-id="61a33-200">DatePrints [2]</span><span class="sxs-lookup"><span data-stu-id="61a33-200">DatePrints[2]</span></span>          | <span data-ttu-id="61a33-201">UX_PICTBRIDGE_DATE_PRINTS_ON</span><span class="sxs-lookup"><span data-stu-id="61a33-201">UX_PICTBRIDGE_DATE_PRINTS_ON</span></span>           |
+| <span data-ttu-id="61a33-202">FileNamePrints [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-202">FileNamePrints[0]</span></span>      | <span data-ttu-id="61a33-203">UX_PICTBRIDGE_FILE_NAME_PRINTS_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="61a33-203">UX_PICTBRIDGE_FILE_NAME_PRINTS_DEFAULT</span></span> |
+| <span data-ttu-id="61a33-204">FileNamePrints [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-204">FileNamePrints[1]</span></span>      | <span data-ttu-id="61a33-205">UX_PICTBRIDGE_FILE_NAME_PRINTS_OFF</span><span class="sxs-lookup"><span data-stu-id="61a33-205">UX_PICTBRIDGE_FILE_NAME_PRINTS_OFF</span></span>     |
+| <span data-ttu-id="61a33-206">FileNamePrints [2]</span><span class="sxs-lookup"><span data-stu-id="61a33-206">FileNamePrints[2]</span></span>      | <span data-ttu-id="61a33-207">UX_PICTBRIDGE_FILE_NAME_PRINTS_ON</span><span class="sxs-lookup"><span data-stu-id="61a33-207">UX_PICTBRIDGE_FILE_NAME_PRINTS_ON</span></span>      |
+| <span data-ttu-id="61a33-208">ImageOptimizes [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-208">ImageOptimizes[0]</span></span>      | <span data-ttu-id="61a33-209">UX_PICTBRIDGE_IMAGE_OPTIMIZES_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="61a33-209">UX_PICTBRIDGE_IMAGE_OPTIMIZES_DEFAULT</span></span>  |
+| <span data-ttu-id="61a33-210">ImageOptimizes [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-210">ImageOptimizes[1]</span></span>      | <span data-ttu-id="61a33-211">UX_PICTBRIDGE_IMAGE_OPTIMIZES_OFF</span><span class="sxs-lookup"><span data-stu-id="61a33-211">UX_PICTBRIDGE_IMAGE_OPTIMIZES_OFF</span></span>      |
+| <span data-ttu-id="61a33-212">ImageOptimizes [2]</span><span class="sxs-lookup"><span data-stu-id="61a33-212">ImageOptimizes[2]</span></span>      | <span data-ttu-id="61a33-213">UX_PICTBRIDGE_IMAGE_OPTIMIZES_ON</span><span class="sxs-lookup"><span data-stu-id="61a33-213">UX_PICTBRIDGE_IMAGE_OPTIMIZES_ON</span></span>       |
+| <span data-ttu-id="61a33-214">Układy [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-214">Layouts[0]</span></span>             | <span data-ttu-id="61a33-215">UX_PICTBRIDGE_LAYOUTS_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="61a33-215">UX_PICTBRIDGE_LAYOUTS_DEFAULT</span></span>          |
+| <span data-ttu-id="61a33-216">Układy [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-216">Layouts[1]</span></span>             | <span data-ttu-id="61a33-217">UX_PICTBRIDGE_LAYOUTS_1_UP_BORDER</span><span class="sxs-lookup"><span data-stu-id="61a33-217">UX_PICTBRIDGE_LAYOUTS_1_UP_BORDER</span></span>      |
+| <span data-ttu-id="61a33-218">Układy [2]</span><span class="sxs-lookup"><span data-stu-id="61a33-218">Layouts[2]</span></span>             | <span data-ttu-id="61a33-219">UX_PICTBRIDGE_LAYOUTS_INDEX_PRINT</span><span class="sxs-lookup"><span data-stu-id="61a33-219">UX_PICTBRIDGE_LAYOUTS_INDEX_PRINT</span></span>      |
+| <span data-ttu-id="61a33-220">Układy [3]</span><span class="sxs-lookup"><span data-stu-id="61a33-220">Layouts[3]</span></span>             | <span data-ttu-id="61a33-221">UX_PICTBRIDGE_LAYOUTS_1_UP_BORDERLESS</span><span class="sxs-lookup"><span data-stu-id="61a33-221">UX_PICTBRIDGE_LAYOUTS_1_UP_BORDERLESS</span></span>  |
+| <span data-ttu-id="61a33-222">FixedSizes [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-222">FixedSizes[0]</span></span>          | <span data-ttu-id="61a33-223">UX_PICTBRIDGE_FIXED_SIZE_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="61a33-223">UX_PICTBRIDGE_FIXED_SIZE_DEFAULT</span></span>       |
+| <span data-ttu-id="61a33-224">FixedSizes [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-224">FixedSizes[1]</span></span>          | <span data-ttu-id="61a33-225">UX_PICTBRIDGE_FIXED_SIZE_35IX5I</span><span class="sxs-lookup"><span data-stu-id="61a33-225">UX_PICTBRIDGE_FIXED_SIZE_35IX5I</span></span>        |
+| <span data-ttu-id="61a33-226">FixedSizes [2]</span><span class="sxs-lookup"><span data-stu-id="61a33-226">FixedSizes[2]</span></span>          | <span data-ttu-id="61a33-227">UX_PICTBRIDGE_FIXED_SIZE_4IX6I</span><span class="sxs-lookup"><span data-stu-id="61a33-227">UX_PICTBRIDGE_FIXED_SIZE_4IX6I</span></span>         |
+| <span data-ttu-id="61a33-228">FixedSizes [3]</span><span class="sxs-lookup"><span data-stu-id="61a33-228">FixedSizes[3]</span></span>          | <span data-ttu-id="61a33-229">UX_PICTBRIDGE_FIXED_SIZE_5IX7I</span><span class="sxs-lookup"><span data-stu-id="61a33-229">UX_PICTBRIDGE_FIXED_SIZE_5IX7I</span></span>         |
+| <span data-ttu-id="61a33-230">FixedSizes [4]</span><span class="sxs-lookup"><span data-stu-id="61a33-230">FixedSizes[4]</span></span>          | <span data-ttu-id="61a33-231">UX_PICTBRIDGE_FIXED_SIZE_7CMX10CM</span><span class="sxs-lookup"><span data-stu-id="61a33-231">UX_PICTBRIDGE_FIXED_SIZE_7CMX10CM</span></span>      |
+| <span data-ttu-id="61a33-232">FixedSizes [5]</span><span class="sxs-lookup"><span data-stu-id="61a33-232">FixedSizes[5]</span></span>          | <span data-ttu-id="61a33-233">UX_PICTBRIDGE_FIXED_SIZE_LETTER</span><span class="sxs-lookup"><span data-stu-id="61a33-233">UX_PICTBRIDGE_FIXED_SIZE_LETTER</span></span>        |
+| <span data-ttu-id="61a33-234">FixedSizes [6]</span><span class="sxs-lookup"><span data-stu-id="61a33-234">FixedSizes[6]</span></span>          | <span data-ttu-id="61a33-235">UX_PICTBRIDGE_FIXED_SIZE_A4</span><span class="sxs-lookup"><span data-stu-id="61a33-235">UX_PICTBRIDGE_FIXED_SIZE_A4</span></span>            |
+| <span data-ttu-id="61a33-236">Przycinanie [0]</span><span class="sxs-lookup"><span data-stu-id="61a33-236">Croppings[0]</span></span>           | <span data-ttu-id="61a33-237">UX_PICTBRIDGE_CROPPINGS_DEFAULT</span><span class="sxs-lookup"><span data-stu-id="61a33-237">UX_PICTBRIDGE_CROPPINGS_DEFAULT</span></span>        |
+| <span data-ttu-id="61a33-238">Przycinanie [1]</span><span class="sxs-lookup"><span data-stu-id="61a33-238">Croppings[1]</span></span>           | <span data-ttu-id="61a33-239">UX_PICTBRIDGE_CROPPINGS_OFF</span><span class="sxs-lookup"><span data-stu-id="61a33-239">UX_PICTBRIDGE_CROPPINGS_OFF</span></span>            |
+| <span data-ttu-id="61a33-240">Przycinanie [2]</span><span class="sxs-lookup"><span data-stu-id="61a33-240">Croppings[2]</span></span>           | <span data-ttu-id="61a33-241">UX_PICTBRIDGE_CROPPINGS_ON</span><span class="sxs-lookup"><span data-stu-id="61a33-241">UX_PICTBRIDGE_CROPPINGS_ON</span></span>             |
 
-<span data-ttu-id="4831b-242">Komputer stanu hosta DPS zostanie ustawiony na wartość bezczynną i będzie gotowy do zaakceptowania nowego zadania drukowania.</span><span class="sxs-lookup"><span data-stu-id="4831b-242">The state machine of the DPS host will be set to Idle and ready to accept a new print job.</span></span>
+<span data-ttu-id="61a33-242">Komputer stanu hosta DPS zostanie ustawiony na wartość bezczynną i będzie gotowy do zaakceptowania nowego zadania drukowania.</span><span class="sxs-lookup"><span data-stu-id="61a33-242">The state machine of the DPS host will be set to Idle and ready to accept a new print job.</span></span>
 
-<span data-ttu-id="4831b-243">Część hosta PictBridge może teraz zostać uruchomiona, jak pokazano na poniższym przykładzie:</span><span class="sxs-lookup"><span data-stu-id="4831b-243">The host portion of Pictbridge can now be started as the example below shows:</span></span>
+<span data-ttu-id="61a33-243">Część hosta PictBridge może teraz zostać uruchomiona, jak pokazano na poniższym przykładzie:</span><span class="sxs-lookup"><span data-stu-id="61a33-243">The host portion of Pictbridge can now be started as the example below shows:</span></span>
 
 ```C
 /* Activate the pictbridge dpshost. */
@@ -322,7 +322,7 @@ if (status != UX_SUCCESS)
     return;
 ```
 
-<span data-ttu-id="4831b-244">Funkcja hosta PictBridge wymaga wywołania zwrotnego, gdy dane są gotowe do wydrukowania.</span><span class="sxs-lookup"><span data-stu-id="4831b-244">The Pictbridge host function requires a callback when data is ready to be printed.</span></span> <span data-ttu-id="4831b-245">W tym celu należy przekazać wskaźnik funkcji do struktury hosta PictBridge w następujący sposób.</span><span class="sxs-lookup"><span data-stu-id="4831b-245">This is accomplished by passing a function pointer in the pictbridge host structure as follows.</span></span>
+<span data-ttu-id="61a33-244">Funkcja hosta PictBridge wymaga wywołania zwrotnego, gdy dane są gotowe do wydrukowania.</span><span class="sxs-lookup"><span data-stu-id="61a33-244">The Pictbridge host function requires a callback when data is ready to be printed.</span></span> <span data-ttu-id="61a33-245">W tym celu należy przekazać wskaźnik funkcji do struktury hosta PictBridge w następujący sposób.</span><span class="sxs-lookup"><span data-stu-id="61a33-245">This is accomplished by passing a function pointer in the pictbridge host structure as follows.</span></span>
 
 ```C
 /* Set a callback when an object is being received. */
@@ -330,13 +330,13 @@ pictbridge.ux_pictbridge_application_object_data_write =
     tx_demo_object_data_write;
 ```
 
-<span data-ttu-id="4831b-246">Ta funkcja ma następujące właściwości.</span><span class="sxs-lookup"><span data-stu-id="4831b-246">This function has the following properties.</span></span>
+<span data-ttu-id="61a33-246">Ta funkcja ma następujące właściwości.</span><span class="sxs-lookup"><span data-stu-id="61a33-246">This function has the following properties.</span></span>
 
-## <a name="ux_pictbridge_application_object_data_write"></a><span data-ttu-id="4831b-247">ux_pictbridge_application_object_data_write</span><span class="sxs-lookup"><span data-stu-id="4831b-247">ux_pictbridge_application_object_data_write</span></span>
+## <a name="ux_pictbridge_application_object_data_write"></a><span data-ttu-id="61a33-247">ux_pictbridge_application_object_data_write</span><span class="sxs-lookup"><span data-stu-id="61a33-247">ux_pictbridge_application_object_data_write</span></span>
 
-<span data-ttu-id="4831b-248">Zapisywanie bloku danych do drukowania</span><span class="sxs-lookup"><span data-stu-id="4831b-248">Writing a block of data for printing</span></span>
+<span data-ttu-id="61a33-248">Zapisywanie bloku danych do drukowania</span><span class="sxs-lookup"><span data-stu-id="61a33-248">Writing a block of data for printing</span></span>
 
-### <a name="prototype"></a><span data-ttu-id="4831b-249">Prototype</span><span class="sxs-lookup"><span data-stu-id="4831b-249">Prototype</span></span>
+### <a name="prototype"></a><span data-ttu-id="61a33-249">Prototype</span><span class="sxs-lookup"><span data-stu-id="61a33-249">Prototype</span></span>
 
 ```C
 UINT ux_pictbridge_application_object_data_write(
@@ -347,24 +347,24 @@ UINT ux_pictbridge_application_object_data_write(
     ULONG length);
 ```
 
-### <a name="description"></a><span data-ttu-id="4831b-250">Opis</span><span class="sxs-lookup"><span data-stu-id="4831b-250">Description</span></span>
+### <a name="description"></a><span data-ttu-id="61a33-250">Opis</span><span class="sxs-lookup"><span data-stu-id="61a33-250">Description</span></span>
 
-<span data-ttu-id="4831b-251">Ta funkcja jest wywoływana, gdy serwer DPS musi pobrać blok danych z klienta usługi DPS, aby drukować na drukarce lokalnej.</span><span class="sxs-lookup"><span data-stu-id="4831b-251">This function is called when the DPS server needs to retrieve a data block from the DPS client to print to the local printer.</span></span>
+<span data-ttu-id="61a33-251">Ta funkcja jest wywoływana, gdy serwer DPS musi pobrać blok danych z klienta usługi DPS, aby drukować na drukarce lokalnej.</span><span class="sxs-lookup"><span data-stu-id="61a33-251">This function is called when the DPS server needs to retrieve a data block from the DPS client to print to the local printer.</span></span>
 
-### <a name="parameters"></a><span data-ttu-id="4831b-252">Parametry</span><span class="sxs-lookup"><span data-stu-id="4831b-252">Parameters</span></span>
+### <a name="parameters"></a><span data-ttu-id="61a33-252">Parametry</span><span class="sxs-lookup"><span data-stu-id="61a33-252">Parameters</span></span>
 
-- <span data-ttu-id="4831b-253">**PictBridge**: wskaźnik do wystąpienia klasy PictBridge.</span><span class="sxs-lookup"><span data-stu-id="4831b-253">**pictbridge**: Pointer to the pictbridge class instance.</span></span>
-- <span data-ttu-id="4831b-254">**object_buffer**: wskaźnik do buforu obiektów</span><span class="sxs-lookup"><span data-stu-id="4831b-254">**object_buffer**: Pointer to object buffer</span></span>
-- <span data-ttu-id="4831b-255">**object_offset**: gdzie zaczynamy odczytywanie bloku danych</span><span class="sxs-lookup"><span data-stu-id="4831b-255">**object_offset**: Where we are starting to read the data block</span></span>
-- <span data-ttu-id="4831b-256">**total_length**: cała długość obiektu</span><span class="sxs-lookup"><span data-stu-id="4831b-256">**total_length**: Entire length of object</span></span>
-- <span data-ttu-id="4831b-257">**Długość**: długość tego buforu</span><span class="sxs-lookup"><span data-stu-id="4831b-257">**length**: Length of this buffer</span></span>
+- <span data-ttu-id="61a33-253">**PictBridge**: wskaźnik do wystąpienia klasy PictBridge.</span><span class="sxs-lookup"><span data-stu-id="61a33-253">**pictbridge**: Pointer to the pictbridge class instance.</span></span>
+- <span data-ttu-id="61a33-254">**object_buffer**: wskaźnik do buforu obiektów</span><span class="sxs-lookup"><span data-stu-id="61a33-254">**object_buffer**: Pointer to object buffer</span></span>
+- <span data-ttu-id="61a33-255">**object_offset**: gdzie zaczynamy odczytywanie bloku danych</span><span class="sxs-lookup"><span data-stu-id="61a33-255">**object_offset**: Where we are starting to read the data block</span></span>
+- <span data-ttu-id="61a33-256">**total_length**: cała długość obiektu</span><span class="sxs-lookup"><span data-stu-id="61a33-256">**total_length**: Entire length of object</span></span>
+- <span data-ttu-id="61a33-257">**Długość**: długość tego buforu</span><span class="sxs-lookup"><span data-stu-id="61a33-257">**length**: Length of this buffer</span></span>
 
-### <a name="return-value"></a><span data-ttu-id="4831b-258">Wartość zwracana</span><span class="sxs-lookup"><span data-stu-id="4831b-258">Return Value</span></span>
+### <a name="return-value"></a><span data-ttu-id="61a33-258">Wartość zwracana</span><span class="sxs-lookup"><span data-stu-id="61a33-258">Return Value</span></span>
 
-- <span data-ttu-id="4831b-259">**UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.</span><span class="sxs-lookup"><span data-stu-id="4831b-259">**UX_SUCCESS** (0x00) This operation was successful.</span></span>
-- <span data-ttu-id="4831b-260">**UX_ERROR** (0x01) aplikacja nie mogła wydrukować danych.</span><span class="sxs-lookup"><span data-stu-id="4831b-260">**UX_ERROR** (0x01) The application could not print data.</span></span>
+- <span data-ttu-id="61a33-259">**UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.</span><span class="sxs-lookup"><span data-stu-id="61a33-259">**UX_SUCCESS** (0x00) This operation was successful.</span></span>
+- <span data-ttu-id="61a33-260">**UX_ERROR** (0x01) aplikacja nie mogła wydrukować danych.</span><span class="sxs-lookup"><span data-stu-id="61a33-260">**UX_ERROR** (0x01) The application could not print data.</span></span>
 
-### <a name="example"></a><span data-ttu-id="4831b-261">Przykład</span><span class="sxs-lookup"><span data-stu-id="4831b-261">Example</span></span>
+### <a name="example"></a><span data-ttu-id="61a33-261">Przykład</span><span class="sxs-lookup"><span data-stu-id="61a33-261">Example</span></span>
 
 ```C
 /* Copy the object data. */
