@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 948adff65a080649db0870e35bc75ee774775cb7
-ms.sourcegitcommit: 4cbe92b337e82124bb5a86d319b787eb05b4ea76
+ms.openlocfilehash: f70b8890be6b12f917ac1724a29559afab33b88d
+ms.sourcegitcommit: 0520b2afb6b7f8ae1ea48581e160459fc9292ca7
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 04/27/2021
-ms.locfileid: "108067016"
+ms.lasthandoff: 04/30/2021
+ms.locfileid: "108297500"
 ---
 # <a name="chapter-4--description-of-azure-rtos-filex-services"></a>Rozdział 4 — Opis Azure RTOS FileX
 
@@ -893,7 +893,7 @@ Ta usługa przywraca wcześniej ustawioną ścieżkę lokalną. Przywracana jest
 
 - **FX_SUCCESS** (0x00) Pomyślne przywracanie ścieżki lokalnej.
 - **FX_MEDIA_NOT_OPEN** (0x11) Określony nośnik nie jest obecnie otwarty.
-- **FX_NOT_IMPLEMENTED** (0x22) FX_NO_LCOAL_PATH jest zdefiniowany.
+- **FX_NOT_IMPLEMENTED** (0x22) FX_NO_LCOAL_PATH jest zdefiniowana.
 - **FX_PTR_ERROR** (0x18) Nieprawidłowy wskaźnik ścieżki nośnika lub ścieżki lokalnej.
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -964,7 +964,7 @@ Ta usługa konfiguruje ścieżkę specyficzną dla wątku określoną przez ****
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **FX_SUCCESS** (0x00) Zestaw katalogów domyślnych powodzenie.
+- **FX_SUCCESS** (0x00) Zestaw katalogów domyślnych Powodzenie.
 - **FX_MEDIA_NOT_OPEN** (0x11) Określony nośnik nie jest otwarty.
 - **FX_NOT_IMPLEMENTED** (0x22) **FX_NO_LCOAL_PATH
 - **FX_INVALID_PATH** (0x0D) Nie można odnaleźć nowego katalogu.
@@ -1034,7 +1034,7 @@ Ta usługa pobiera długą nazwę (jeśli jest) skojarzoną z podaną krótką n
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **media_ptr:** wskaźnik do bloku sterowania multimediami.
-- **short_name:** Wskaźnik do krótkiej nazwy źródła (format 8.3).
+- **short_name:** Wskaźnik do źródła skróconej nazwy (format 8.3).
 - **long_name:** Wskaźnik do miejsca docelowego dla długiej nazwy. Jeśli nie ma długiej nazwy, zwracana jest krótka nazwa. Należy pamiętać, że miejsce docelowe długiej nazwy musi być wystarczająco duże, aby FX_MAX_LONG_NAME_LEN znaków.
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -1108,7 +1108,7 @@ Ta usługa pobiera długą nazwę (jeśli jest) skojarzoną z podaną krótką n
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **media_ptr:** wskaźnik do bloku sterowania multimediami.
-- **short_name:** Wskaźnik do krótkiej nazwy źródła (format 8.3).
+- **short_name:** Wskaźnik do źródła skróconej nazwy (format 8.3).
 - **long_name:** Wskaźnik do miejsca docelowego dla długiej nazwy. Jeśli nie ma długiej nazwy, zwracana jest krótka nazwa. Uwaga: miejsce docelowe długiej nazwy musi być wystarczająco duże, aby **FX_MAX_LONG_NAME_LEN** znaków.
 - **long_file_name_buffer_length:** długość buforu długich nazw.
 
@@ -1261,7 +1261,7 @@ Ta usługa zwraca nazwę następnego wpisu w bieżącym katalogu domyślnym.
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **media_ptr:** wskaźnik do bloku sterowania multimediami.
-- **return_entry_name:** Wskaźnik do miejsca docelowego dla następnej nazwy wpisu w katalogu domyślnym. Bufor, do który wskazuje ten wskaźnik, musi być wystarczająco duży, aby pomieścić maksymalny rozmiar nazwy FileX zdefiniowany przez FX_MAX_LONG_NAME_LEN **_._**
+- **return_entry_name:** wskaźnik do miejsca docelowego dla następnej nazwy wpisu w katalogu domyślnym. Bufor, do który wskazuje ten wskaźnik, musi być wystarczająco duży, aby pomieścić maksymalny rozmiar nazwy FileX zdefiniowany przez FX_MAX_LONG_NAME_LEN **_._**
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -1274,7 +1274,7 @@ Ta usługa zwraca nazwę następnego wpisu w bieżącym katalogu domyślnym.
 - **FX_SECTOR_INVALID** (0x89) Nieprawidłowy sektor.
 - **FX_FAT_READ_ERROR** (0x03) Nie można odczytać wpisu FAT.
 - **FX_PTR_ERROR** (0x18) Nieprawidłowy wskaźnik nośnika.
-- **FX_CALLER_ERROR** (0x20) Nie jest wątkiem.
+- **FX_CALLER_ERROR** (0x20) nie jest wątkiem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1445,7 +1445,7 @@ UINT fx_directory_rename(
 
 ### <a name="description"></a>Opis
 
-Ta usługa zmienia nazwę katalogu na określoną nową nazwę katalogu. Zmiana nazwy jest również wykonywana względem określonej ścieżki lub ścieżki domyślnej. Jeśli ścieżka jest określona w nowej nazwie katalogu, katalog o zmienionej nazwie jest skutecznie przenoszony do określonej ścieżki. Jeśli ścieżka nie zostanie określona, zmieniono nazwę katalogu jest umieszczana w bieżącej ścieżce domyślnej.
+Ta usługa zmienia nazwę katalogu na określoną nową nazwę katalogu. Zmiana nazwy jest również wykonywana względem określonej ścieżki lub ścieżki domyślnej. Jeśli ścieżka jest określona w nowej nazwie katalogu, zmieniona nazwa katalogu jest skutecznie przenoszony do określonej ścieżki. Jeśli ścieżka nie zostanie określona, zmieniono nazwę katalogu jest umieszczana w bieżącej ścieżce domyślnej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1527,7 +1527,7 @@ UINT fx_directory_short_name_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera krótką nazwę (w formacie 8.3) skojarzoną z podaną długą nazwą. Długa nazwa może być nazwą pliku lub nazwą katalogu.
+Ta usługa pobiera krótką nazwę (format 8.3) skojarzoną z podaną długą nazwą. Długa nazwa może być nazwą pliku lub nazwą katalogu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1606,7 +1606,7 @@ UINT fx_directory_short_name_get_extended(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera krótką nazwę (w formacie 8.3) skojarzoną z podaną długą nazwą. Długa nazwa może być nazwą pliku lub nazwą katalogu.
+Ta usługa pobiera krótką nazwę (format 8.3) skojarzoną z podaną długą nazwą. Długa nazwa może być nazwą pliku lub nazwą katalogu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1862,7 +1862,7 @@ Ta usługa odczytuje atrybuty pliku z określonego nośnika.
 - **FX_NOT_A_FILE** (0x05) Określony plik jest katalogiem.
 - **FX_SECTOR_INVALID** (0x89) Nieprawidłowy sektor.
 - **FX_FAT_READ_ERROR** (0x03) Nie można odczytać wpisu FAT.
-- **FX_NO_MORE_ENTRIES** (0x0F) Nie ma więcej wpisów FAT.
+- **FX_NO_MORE_ENTRIES** (0x0F) Koniec z wpisami FAT.
 - **FX_NO_MORE_SPACE** (0x0A) Nie ma więcej miejsca na ukończenie operacji
 - **FX_IO_ERROR** (0x90) Sterownik We/Wy.
 - **FX_PTR_ERROR** (0x18) Wskaźnik nieprawidłowych nośników lub atrybutów.
@@ -2190,7 +2190,7 @@ UINT fx_file_create(
 Ta usługa tworzy określony plik w katalogu domyślnym lub w ścieżce katalogu dostarczonej z nazwą pliku.
 
 > [!WARNING]
-> *Ta usługa tworzy plik o zerowej długości, tj. nie przydzielone klastry. Alokacja odbywa się automatycznie przy kolejnych zapisach plików lub może być wykonywana z wyprzedzeniem za pomocą usługi fx_file_allocate lub fx_file_extended_allocate dla miejsca spoza 4 GB).*
+> *Ta usługa tworzy plik o zerowej długości, tj. nie przydzielone klastry. Alokacja będzie automatycznie odbywać się przy kolejnych zapisach plików lub może być wykonywana z wyprzedzeniem za pomocą usługi fx_file_allocate lub fx_file_extended_allocate dla miejsca spoza 4 GB).*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -2314,7 +2314,7 @@ status = fx_file_date_time_set(&my_media, "my_file", 1999, 12, 31, 23, 59, 59);
 - **FX_FILE_CORRUPT** (0x08) jest uszkodzony.
 - **FX_SECTOR_INVALID** (0x89) Nieprawidłowy sektor.
 - **FX_FAT_READ_ERROR** (0x03) Nie można odczytać wpisu FAT.
-- **FX_NO_MORE_ENTRIES** (0x0F) Nie ma więcej wpisów FAT.
+- **FX_NO_MORE_ENTRIES** (0x0F) Koniec z wpisami FAT.
 - **FX_NO_MORE_SPACE** (0x0A) Nie ma więcej miejsca na ukończenie operacji.
 - **FX_IO_ERROR** (0x90) Sterownik We/Wy.
 - **FX_WRITE_PROTECT** (0x23) Określony nośnik jest chroniony zapisem.
@@ -2404,7 +2404,7 @@ Ta usługa usuwa określony plik.
 - **FX_FILE_CORRUPT** (0x08) jest uszkodzony.
 - **FX_SECTOR_INVALID** (0x89) Nieprawidłowy sektor.
 - **FX_FAT_READ_ERROR** (0x03) Nie można odczytać wpisu FAT.
-- **FX_NO_MORE_ENTRIES** (0x0F) Nie ma więcej wpisów FAT.
+- **FX_NO_MORE_ENTRIES** (0x0F) Koniec z wpisami FAT.
 - **FX_NO_MORE_SPACE** (0x0A) Nie ma więcej miejsca na ukończenie operacji
 - **FX_IO_ERROR** (0x90) Sterownik We/Wy.
 - **FX_WRITE_PROTECT** (0x23) Określony nośnik jest chroniony zapisem.
@@ -2740,7 +2740,7 @@ Ta usługa jest przeznaczona dla usługi exFAT. Parametr *byte_offset* przyjmuje
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **file_ptr:** wskaźnik do bloku sterowania plikami.
-- **byte_offset:** przesunięcie żądanego bajtu w pliku. Wartość zero spowoduje położenie wskaźnika odczytu/zapisu na początku pliku, podczas gdy wartość większa niż rozmiar pliku ustawi wskaźnik odczytu/zapisu na końcu pliku.
+- **byte_offset:** żądane przesunięcie bajtów w pliku. Wartość zero spowoduje położenie wskaźnika odczytu/zapisu na początku pliku, podczas gdy wartość większa niż rozmiar pliku ustawi wskaźnik odczytu/zapisu na końcu pliku.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -2830,7 +2830,7 @@ Ta usługa jest przeznaczona dla usługi exFAT. Parametr *size* przyjmuje warto�
 - **FX_ACCESS_ERROR** (0x06) Określony plik nie jest otwarty do zapisu.
 - **FX_FILE_CORRUPT** (0x08) jest uszkodzony.
 - **FX_SECTOR_INVALID** (0x89) Nieprawidłowy sektor.
-- **FX_NO_MORE_ENTRIES** (0x0F) Nie ma więcej wpisów FAT.
+- **FX_NO_MORE_ENTRIES** (0x0F) Koniec z wpisami FAT.
 - **FX_NO_MORE_SPACE** (0x0A) Nie ma więcej miejsca na ukończenie operacji
 - **FX_IO_ERROR** (0x90) sterownika We/Wy.
 - **FX_WRITE_PROTECT** (0x23) Nośniki bazowe są chronione przed zapisem.
@@ -3018,7 +3018,7 @@ Otwieranie plików z FX_OPEN_FOR_READ i FX_OPEN_FOR_READ_FAST jest podobne:
 - **FX_IO_ERROR** (0x90) Sterownik We/Wy.
 - **FX_WRITE_PROTECT** (0x23) Nośniki bazowe są chronione przed zapisem.
 - **FX_PTR_ERROR** (0x18) Nieprawidłowy wskaźnik nośnika lub pliku.
-- **FX_CALLER_ERROR** (0x20) Nie jest wątkiem.
+- **FX_CALLER_ERROR** (0x20) nie jest wątkiem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -3284,7 +3284,7 @@ Ta usługa zmienia nazwę pliku określoną przez old_file_name *.* Zmiana nazwy
 - **FX_MEDIA_INVALID** (0x02) Jest nieprawidłowy.
 - **FX_FILE_CORRUPT** (0x08) jest uszkodzony.
 - **FX_SECTOR_INVALID** (0x89) Nieprawidłowy sektor.
-- **FX_NO_MORE_ENTRIES** (0x0F) Nie ma więcej wpisów FAT.
+- **FX_NO_MORE_ENTRIES** (0x0F) Koniec z wpisami FAT.
 - **FX_NO_MORE_SPACE** (0x0A) Nie ma więcej miejsca na ukończenie operacji
 - **FX_FAT_READ_ERROR** (0x03) Nie można odczytać tabeli FAT.
 - **FX_PTR_ERROR** (0x18) Nieprawidłowy wskaźnik nośnika.
@@ -3448,7 +3448,7 @@ Aby działać dłużej niż 4 GB, aplikacja musi korzystać z *usługi* fx_file_
 - **FX_WRITE_PROTECT** (0x23) Określony nośnik jest chroniony zapisem.
 - **FX_FILE_CORRUPT** (0x08) jest uszkodzony.
 - **FX_SECTOR_INVALID** (0x89) Nieprawidłowy sektor.
-- **FX_NO_MORE_ENTRIES** (0x0F) Nie ma więcej wpisów FAT.
+- **FX_NO_MORE_ENTRIES** (0x0F) Koniec z wpisami FAT.
 - **FX_NO_MORE_SPACE** (0x0A) Nie ma więcej miejsca na ukończenie operacji
 - **FX_PTR_ERROR** (0x18) Nieprawidłowy wskaźnik pliku.
 - **FX_CALLER_ERROR** (0x20) Nie jest wątkiem.
@@ -3903,7 +3903,7 @@ Usługa fx_media_check wymaga pamięci tymczasowej do pierwszej analizy katalog�
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **FX_SUCCESS** (0x00) Pomyślne sprawdzenie nośnika, aby uzyskać szczegółowe informacje o wykrytych błędach.
-- **FX_ACCESS_ERROR** (0x06) Nie można sprawdzić otwartych plików.
+- **FX_ACCESS_ERROR** (0x06) Nie można wykonać sprawdzania otwartych plików.
 - **FX_FILE_CORRUPT** (0x08) jest uszkodzony.
 - **FX_MEDIA_NOT_OPEN** (0x11) Określony nośnik nie jest otwarty.
 - **FX_NO_MORE_SPACE** (0x0A) Brak więcej miejsca na nośniku.
@@ -4107,7 +4107,7 @@ Ta usługa formatuje dostarczony nośnik w sposób zgodny z exFAT na podstawie p
 > *Formatowanie już sformatowanego nośnika skutecznie wymazuje wszystkie pliki i katalogi na nośniku.*
 
 > [!IMPORTANT]
-> *Rozmiar woluminu exFAT powinien odpowiadać rozmiarowi partycji (jeśli istnieje układ MBR lub GPT) lub rozmiar całego urządzenia, jeśli nie ma układu partycji (bez MBR lub GPT). W systemie Windows istnieje ograniczenie, że dysk exFAT nie zostanie ponownie skoginzowany, jeśli zostanie sformatowany z pewnymi wartościami całkowitej liczby sektorów, które są mniejsze niż sektory o mniejszej wydajności*
+> *Rozmiar woluminu exFAT powinien odpowiadać rozmiarowi partycji (jeśli istnieje układ MBR lub GPT) lub rozmiar całego urządzenia, jeśli nie ma układu partycji (bez MBR lub GPT). W systemie Windows istnieje ograniczenie, że dysk exFAT nie zostanie ponownie sformatowany w przypadku formatowania z pewnymi wartościami całkowitej liczby sektorów, które są mniejsze niż dostępne sektory*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -4319,7 +4319,7 @@ status = fx_media_flush(&my_media);
 
 ## <a name="fx_media_format"></a>fx_media_format
 
-Formatuje nośniki
+Formatuje multimedia
 
 ### <a name="prototype"></a>Prototype
 
@@ -4350,9 +4350,9 @@ Ta usługa formatuje dostarczony nośnik w sposób zgodny ze standardem FAT 12/1
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **media_ptr:** wskaźnik do bloku sterowania multimediami. Służy to tylko do podania podstawowych informacji niezbędnych do działania sterownika.
-- **sterownik:** wskaźnik do sterownika We/Wy dla tego nośnika. Zazwyczaj będzie to ten sam sterownik dostarczony do następnego fx_media_open wywołania.
+- **sterownik:** wskaźnik do sterownika We/Wy dla tego nośnika. Zazwyczaj będzie to ten sam sterownik, który został dostarczony do następnego fx_media_open wywołania.
 - **driver_info_ptr:** Wskaźnik do opcjonalnych informacji, które mogą być używane przez sterownik we/wy.
-- **memory_ptr:** Wskaźnik do pamięci roboczej nośnika.
+- **memory_ptr:** wskaźnik do pamięci roboczej nośnika.
 - **memory_size:** określa rozmiar pamięci nośnika roboczego. Rozmiar musi być co najmniej tak duży, jak rozmiar sektora nośnika.
 - **volume_name:** wskaźnik do ciągu nazwy woluminu, który ma maksymalnie 11 znaków.
 - **number_of_fats:** liczba otchłani na nośniku. Minimalna wartość wynosi 1 dla podstawowego FAT. Wartości większe niż 1 spowodować dodatkowe kopie FAT są utrzymywane w czasie uruchamiania.
@@ -4520,14 +4520,14 @@ Ta usługa ustawia funkcję wywołania zwrotnego powiadamiania, która zostanie 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **media_ptr:** wskaźnik do bloku sterowania multimediami.
-- **media_open_notify:** funkcja wywołania zwrotnego powiadomienia o otwarciu nośnika do zainstalowania. Przekazywanie wartości NULL jako funkcji wywołania zwrotnego wyłącza otwarte wywołanie zwrotne multimediów.
+- **media_open_notify:** Funkcja wywołania zwrotnego powiadomienia o otwarciu nośnika do zainstalowania. Przekazywanie wartości NULL jako funkcji wywołania zwrotnego wyłącza otwarte wywołanie zwrotne multimediów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
 
 - **FX_SUCCESS** (0x00) Pomyślnie zainstalowano funkcję wywołania zwrotnego.
 - **FX_PTR_ERROR** (0x18) media_ptr wartość NULL.
-- **FX_CALLER_ERROR**    (0x20) Nie jest wątkiem.
+- **FX_CALLER_ERROR**    (0x20) nie jest wątkiem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -4589,7 +4589,7 @@ Ta usługa odczytuje sektor logiczny z nośnika i umieszcza go w dostarczonym bu
 - **FX_IO_ERROR** (0x90) Sterownik We/Wy.
 - **FX_SECTOR_INVALID** (0x89) Nieprawidłowy sektor.
 - **FX_PTR_ERROR** (0x18) Nieprawidłowy wskaźnik nośnika lub buforu.
-- **FX_CALLER_ERROR** (0x20) Nie jest wątkiem.
+- **FX_CALLER_ERROR** (0x20) nie jest wątkiem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -4862,7 +4862,7 @@ Ta usługa ustawia nazwę woluminu wcześniej otwartego nośnika.
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **media_ptr:** wskaźnik do bloku sterowania multimediami.
-- **volume_name:** Wskaźnik do nazwy woluminu.
+- **volume_name:** wskaźnik do nazwy woluminu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -4941,7 +4941,7 @@ Ta usługa zapisuje dostarczony bufor do określonego sektora logicznego.
 - **FX_IO_ERROR** (0x90) Sterownik We/Wy.
 - **FX_WRITE_PROTECT** (0x23) Określony nośnik jest chroniony zapisem.
 - **FX_PTR_ERROR** (0x18) Nieprawidłowy wskaźnik nośnika.
-- **FX_CALLER_ERROR**    (0x20) Nie jest wątkiem.
+- **FX_CALLER_ERROR**    (0x20) nie jest wątkiem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -5054,13 +5054,13 @@ UINT fx_system_date_set(
 Ta usługa ustawia datę systemową w określony sposób.
 
 > [!WARNING]
-> *Ta usługa powinna być wywoływana wkrótce po **fx_system_initialize,** aby ustawić początkową datę systemu. Domyślnie data systemowa to data ostatniej ogólnej wersji pliku FileX.*
+> *Ta usługa powinna zostać wywołana wkrótce po **fx_system_initialize,** aby ustawić początkową datę systemową. Domyślnie data systemowa to data ostatniej ogólnej wersji pliku FileX.*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **year**: Nowy rok. Prawidłowy zakres to od 1980 do 2107 roku.
-- **month**: New month (nowy miesiąc). Prawidłowy zakres to od 1 do 12.
-- **day**: Nowy dzień. Prawidłowy zakres wynosi od 1 do 31 w zależności od miesiąca i roku przestępnych.
+- **month**: New month (miesiąc): Nowy miesiąc. Prawidłowy zakres wynosi od 1 do 12.
+- **day**: Nowy dzień. Prawidłowy zakres wynosi od 1 do 31, w zależności od miesiąca i roku przestępnych warunków.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -5221,7 +5221,7 @@ UINT fx_system_time_set(UINT hour, UINT minute, UINT second);
 Ta usługa ustawia bieżący czas systemowy na określony przez parametry wejściowe.
 
 > [!WARNING]
-> *Ta usługa powinna być wywoływana wkrótce po **fx_system_initialize,** aby ustawić początkowy czas systemowy. Domyślnie czas systemowy to 0:0:0.*
+> *Ta usługa powinna zostać wywołana wkrótce po **fx_system_initialize,** aby ustawić początkowy czas systemowy. Domyślnie czas systemowy to 0:0:0.*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -5988,10 +5988,10 @@ Ta usługa pobiera krótką nazwę (format 8.3) skojarzoną z nazwą Unicode w b
 - **FX_IO_ERROR** (0x90) Sterownik We/Wy.
 - **FX_MEDIA_NOT_OPEN** (0x11) Określony nośnik nie jest otwarty.
 - **FX_NOT_FOUND** (0x04) Nie znaleziono nazwy Unicode.
-- **FX_NOT_IMPLEMENTED** (0x22) service not implemented for exFAT file system (Usługa nie zaimplementowana dla systemu plików exFAT).
+- **FX_NOT_IMPLEMENTED** (0x22) Nie zaimplementowano usługi dla systemu plików exFAT.
 - **FX_SECTOR_INVALID** (0x89) Nieprawidłowy sektor.
 - **FX_PTR_ERROR** (0x18) Nieprawidłowe wskaźniki nośnika lub nazwy.
-- **FX_CALLER_ERROR** (0x20) Nie jest wątkiem.
+- **FX_CALLER_ERROR** (0x20) nie jest wątkiem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
