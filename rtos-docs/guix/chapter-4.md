@@ -6,35 +6,35 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 2513c1b6f349260c615abbc4056fb856005446c9
-ms.sourcegitcommit: 5c870219b8e7e3f303acc8ddc70320ef3506a3f0
+ms.openlocfilehash: b07e275468484ccc905655dcd13197de42b2ac86
+ms.sourcegitcommit: 4ebe7c51ba850951c6a9d0f15e22d07bb752bc28
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 05/19/2021
-ms.locfileid: "110027966"
+ms.lasthandoff: 05/20/2021
+ms.locfileid: "110223413"
 ---
 # <a name="chapter-4---description-of-guix-services"></a>Rozdział 4 — Opis usług GUIX
 
 Ten rozdział zawiera opis wszystkich usług GUIX (wymienionych poniżej) w kolejności alfabetycznej.  
 
-W sekcji "Wartości zwracane" w poniższych  opisach interfejsu API definicje interfejsu **GX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości z pogrubieniem, ale są całkowicie wyłączone. 
+W sekcji "Wartości zwracane" w następujących  opisach interfejsu API definicje interfejsu **GX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości pogrubione, a wartości niedugrubione są całkowicie wyłączone. 
 
 | **Usługa GUIX**                      | **Opis**                                                                             |
 | -------------------------------------- | -------------------------------------------------------------------------------------------- |
 | gx_accordion_menu_create            | Menu Tworzenia elementu accordion                                                                        |
-| gx_accordion_menu_draw              | Menu narysowania przycisku accordion                                                                          |
-| gx_accordion_menu_event_process    | Zdarzenie menu przetwarzania elementu accordion                                                                 |
+| gx_accordion_menu_draw              | Menu draw accordion (Rysowanie)                                                                          |
+| gx_accordion_menu_event_process    | Przetwarzanie zdarzenia menu accordion                                                                 |
 | gx_accordion_menu_position          | Elementy menu Położenie                                                                          |
 | gx_animation_canvas_define          | Zapewnij pamięć kontrolerowi animacji, aby kanwa została użyta do kolejnych animacji. |
 | gx_animation_create                  | Tworzenie kontrolera animacji                                                               |
-| gx_animation_delete                  | Usuwanie kontrolera animacji                                                               |
+| gx_animation_delete                  | Usuwanie jednego lub wielu kontrolerów animacji |
 | gx_animation_drag_disable           | Wyłącz element zaczepienia animacji przeciągania ekranu                                                           |
-| gx_animation_drag_enable            | Włączanie wpinania animacji przeciągania ekranu                                                            |
+| gx_animation_drag_enable            | Włącz element zaczepienia animacji przeciągania ekranu                                                            |
 | gx_animation_landing_speed_set     | Ustawianie szybkości docelowej animacji przeciągania ekranu                                                  |
 | gx_animation_start                   | Inicjowanie sekwencji animacji                                                               |
 | gx_animation_stop                    | Wstrzymywanie sekwencji animacji                                                                |
-| gx_binres_language_count_get      |  Pobieranie liczby języków z pliku zasobów binarnych                                          |
-| gx_binres_language_info_load      |  Odczytaj informacje o nazwie i rozmiarze języka z pliku zasobów binarnych.                           |
+| gx_binres_language_count_get      |  Pobieranie liczby języków z binarnego pliku zasobów                                          |
+| gx_binres_language_info_load      |  Odczytaj informacje o nazwie i rozmiarze języka z binarnego pliku zasobów.                           |
 | gx_binres_language_table_load      | (przestarzałe) Ładowanie tabeli języka z binarnego buforu danych zasobów                          |
 | gx_binres_language_table_load_ext | Ładowanie tabeli języka z binarnego buforu danych zasobów                                       |
 | gx_binres_theme_load                | Ładowanie motywu z binarnego buforu danych zasobów                                                |
@@ -388,7 +388,7 @@ W sekcji "Wartości zwracane" w poniższych  opisach interfejsu API definicje in
 | gx_text_scroll_wheel_event_process      | Zdarzenie koła przewijania tekstu przetwarzania                        |
 | gx_text_scroll_wheel_font_set          | Przypisywanie czcionek z kółka przewijania tekstu                         |
 | gx_text_scroll_wheel_text_color_set   | Przypisywanie kolorów tekstu z kółka przewijania tekstu                   |
-| gx_tree_view_create                    | Cretae a tree view (Poślij widok drzewa)                          |
+| gx_tree_view_create                    | Tworzenie widoku drzewa                          |
 | gx_tree_view_draw                      | Rysowanie widoku drzewa                              |
 | gx_tree_view_event_process            | Zdarzenie widoku drzewa procesu                     |
 | gx_tree-view_indentation_set           | Ustawianie wcięcia widoku drzewa                   |
@@ -868,11 +868,11 @@ if (status == GX_SUCCESS)
 
 ### <a name="see-also"></a>Zobacz też
 
-- gx_animation_create,
+- gx_animation_create
 - gx_animation_delete
-- gx_animation_drag_disable,
+- gx_animation_drag_disable
 - gx_animation_drag_enable
-- gx_animation_landing_speed_set,
+- gx_animation_landing_speed_set
 - gx_animation_start
 - gx_animation_stop
 
@@ -917,7 +917,7 @@ gx_system_animation_get(&animation);
 
 if (animation)
 {
-    status = gx_animation_create(&animation);
+    status = gx_animation_create(animation);
 }
 
 /* If status is GX_SUCCESS the new animation controller was successfully created and initialized. */
@@ -926,8 +926,81 @@ if (animation)
 
 ### <a name="see-also"></a>Zobacz też
 
-- gx_animation_canvas_define,
+- gx_animation_canvas_define
 - gx_animation_delete
+- gx_animation_drag_disable
+- gx_animation_drag_enable
+- gx_animation_start
+- gx_animation_landing_speed_set
+- gx_animation_stop
+- gx_system_animation_get
+- gx_system_animation_free
+
+## <a name="gx_animation_delete"></a>gx_animation_delete
+
+Usuwanie jednego lub wielu kontrolerów animacji
+
+### <a name="prototype"></a>Prototype
+
+```C
+UINT gx_animation_delete(GX_ANIMATION *animation, GX_WIDGET *parent);
+```
+
+### <a name="description"></a>Opis
+
+Ta usługa usuwa sekwencję animacji, jeśli wejściowy wskaźnik animacji jest ustawiony. W przeciwnym razie usuwa wszystkie animacje należące do określonego widżetu nadrzędnego.
+
+### <a name="parameters"></a>Parametry
+
+- **animacja** Wskaźnik do bloku sterowania animacją
+- **element nadrzędny** Wskaźnik do widżetu nadrzędnego
+
+
+### <a name="return-values"></a>Wartości zwrócone
+
+- **GX_SUCCESS** (0x00) Pomyślnie usunięto kontrolery animacji
+- **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
+
+### <a name="allowed-from"></a>Dozwolone z
+
+Inicjowanie i wątki
+
+### <a name="example"></a>Przykład
+
+- Usuwanie jednej animacji
+
+```C
+GX_ANIMATION *animation;
+
+/* Allocate an animaton control from system pool */
+gx_system_animation_get(&animation);
+
+if (animation)
+{
+    /* Create an animation.  */
+    gx_animation_create(animation);
+
+    /* Delete an animation.  */
+    status = gx_animation_delete(animation, GX_NULL);
+}
+
+/* If status is GX_SUCCESS the animation controller was successfully deleted and returned back to system animation pool. */
+
+```
+
+- Usuwanie wielu animacji
+```C
+
+status = gx_animation_delete(GX_NULL, parent);
+
+/* If status is GX_SUCCESS all the animations belong to the parent were successfully deleted. */
+
+```
+
+### <a name="see-also"></a>Zobacz też
+
+- gx_animation_canvas_define,
+- gx_animation_create
 - gx_animation_drag_disable,
 - gx_animation_drag_enable
 - gx_animation_start
@@ -950,11 +1023,11 @@ UINT gx_animation_drag_disable(
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa procedurę przeciągania elementu zaczepienia animacji ekranu z domyślnej funkcji procesu zdarzeń widżetu i zatrzymuje sekwencję animacji. Procedura przeciągania animacji napięcie ekranu obsługuje zdarzenia animacji przeciągania ekranu.
+Ta usługa usuwa procedurę podłączania animacji przeciągania ekranu z domyślnej funkcji procesu zdarzeń widżetu i zatrzymuje sekwencję animacji. Procedura przeciągania kursora animacji na ekranie obsługuje zdarzenia animacji przeciągania ekranu.
 
 ### <a name="parameters"></a>Parametry
 
-- **animacja** Wskaźnik do bloku sterowania animacją
+- **animacja** Wskaźnik do bloku kontrolki animacji
 - **widżet** Wskaźnik do bloku kontrolki widżetu
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -983,18 +1056,19 @@ status = gx_animation_drag_disable(&animation, animation_parent);
 
 ### <a name="see-also"></a>Zobacz też
 
-- gx_animation_canvas_define,
-- gx__animation_create
+- gx_animation_canvas_define
+- gx_animation_create
+- gx_animation_delete
 - gx_animation_drag_enable
-- gx_animation_landing_speed_set,
-- gx__animation_start
+- gx_animation_landing_speed_set
+- gx_animation_start
 - gx_animation_stop
-- gx_system_animation_get,
-- gx__system_animation_free
+- gx_system_animation_get
+- gx_system_animation_free
 
 ## <a name="gx_animation_drag_enable"></a>gx_animation_drag_enable
 
-Włącz element zaczepienia animacji przeciągania ekranu
+Włączanie wpinania animacji przeciągania ekranu
 
 ### <a name="prototype"></a>Prototype
 
@@ -1007,13 +1081,13 @@ UINT gx_animation_drag_enable(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia wewnętrznie zdefiniowaną funkcję procesu zdarzenia przeciągania ekranu jako procedurę podłączania domyślnej funkcji procesu zdarzeń widżetu. Funkcja procesu zdarzeń przeciągania animacji na ekranie obsługuje zdarzenia animacji przeciągania ekranu.
+Ta usługa ustawia wewnętrznie zdefiniowaną funkcję procesu zdarzeń animacji przeciągania ekranu jako procedurę podłączania domyślnej funkcji procesu zdarzeń widżetu. Funkcja procesu zdarzeń przeciągania animacji na ekranie obsługuje zdarzenia animacji przeciągania ekranu.
 
-Procedura przeciągania elementu zaczepienia ekranu staje się domyślną procedurą obsługi zdarzeń wprowadzania piórem wysyłanych do widżetu docelowego. Funkcja przetwarzania zdarzeń oryginalnego widżetu jest wywoływana w sposób łańcuchowy po sprawdzeniu typów zdarzeń wejściowych przeciągania ekranu.
+Procedura przeciągania elementu zaczepienia ekranu staje się domyślną procedurą obsługi zdarzeń wprowadzania piórem wysyłanych do widżetu docelowego. Oryginalna funkcja przetwarzania zdarzeń widżetu jest wywoływana w sposób łańcuchowy po sprawdzeniu typów zdarzeń wejściowych przeciągania ekranu.
 
 ### <a name="parameters"></a>Parametry
 
-- **animacja** Wskaźnik do bloku kontrolki animacji
+- **animacja** Wskaźnik do bloku sterowania animacją
 - **widżet** Wskaźnik do bloku kontrolki widżetu
 - **info (informacje)** Informacje o animacji
 
@@ -1023,7 +1097,7 @@ Procedura przeciągania elementu zaczepienia ekranu staje się domyślną proced
 - **GX_INVALID_STATUS** (0x26) Nieprawidłowy stan animacji
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_VALUE** (0x22) Nieprawidłowa wartość
-- **GX_INVALID_WIDGET** (0x12) Lista ekranów slajdów nie jest dostarczana
+- **GX_INVALID_WIDGET** (0x12) Nie podano listy ekranów slajdów
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1062,13 +1136,14 @@ status = gx_animation_drag_enable(&animation, animation_parent,
 
 ### <a name="see-also"></a>Zobacz też
 
-- gx_animation_canvas_define,
-- gx__animation_create
-- gx_animation_drag_disable,
-- gx__animation_landing_speed_set
-- gx_animation_start,
-- gx__animation_stop,
-- gx__system_animation_get
+- gx_animation_canvas_define
+- gx_animation_create
+- gx_animation_delete
+- gx_animation_drag_disable
+- gx_animation_landing_speed_set
+- gx_animation_start
+- gx_animation_stop
+- gx_system_animation_get
 - gx_system_animation_free
 
 ## <a name="gx_animation_landing_speed_set"></a>gx_animation_landing_speed_set
@@ -1089,7 +1164,7 @@ Ta usługa ustawia szybkość docelową animacji przeciągania ekranu.
 
 ### <a name="parameters"></a>Parametry
 
-- **animacja** Wskaźnik do bloku sterowania animacją
+- **animacja** Wskaźnik do bloku kontrolki animacji
 - **shift_per_step** Przesunięcie odległości dla każdego kroku
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -1112,13 +1187,14 @@ status = gx_animation_landing_peed_set(&my_animation, 20);
 
 ### <a name="see-also"></a>Zobacz też
 
-- gx_animation_canvas_define,
-- gx__animation_create
-- gx_animation_slide_disable,
-- gx__animation_slide_enable
-- gx_animation_start,
-- gx__animation_stop,
-- gx__system_animation_get
+- gx_animation_canvas_define
+- gx_animation_create
+- gx_animation_delete
+- gx_animation_slide_disable
+- gx_animation_slide_enable
+- gx_animation_start
+- gx_animation_stop
+- gx_system_animation_get
 - gx_system_animation_free
 
 ## <a name="gx_animation_start"></a>gx_animation_start
@@ -1137,14 +1213,14 @@ UINT gx_animation_start(
 
 Ta usługa inicjuje sekwencję animacji przy użyciu utworzonego wcześniej wystąpienia animacji i nowego zestawu parametrów animacji. Ta funkcja tworzy lokalną kopię parametrów, co oznacza, że struktura parametrów nie musi być zdefiniowana statycznie.
 
-Struktura GX_ANIMATION może być statycznie zdefiniowana przez aplikację lub można ją uzyskać przy użyciu interfejsu API gx_system_animation_get().
+Struktura GX_ANIMATION może zostać statycznie zdefiniowana przez aplikację lub uzyskana przy użyciu interfejsu API gx_system_animation_get().
 
-Struktura GX_ANIMATION_INFO definiuje parametry animacji do wykonania. Pełny opis tej struktury i znaczenia każdego pola można znaleźć w sekcji Składnik animacji GUIX w rozdziale 3 tego podręcznika.
+Struktura GX_ANIMATION_INFO definiuje parametry animacji do wykonania. Pełny opis tej struktury i znaczenia poszczególnych pól można znaleźć w sekcji Składnik animacji GUIX w rozdziale 3 tego podręcznika.
 
 ### <a name="parameters"></a>Parametry
 
-- **animacja** Wskaźnik do bloku kontrolki animacji
-- **params** Wskaźnik do struktury parametrów
+- **animacja** Wskaźnik do bloku sterowania animacją
+- **params (params)** Wskaźnik do struktury parametrów
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -1203,7 +1279,7 @@ if (animation)
 
 ## <a name="gx_animation_stop"></a>gx_animation_stop
 
-Zatrzymywanie aktywnej animacji opartej na czasomierzu
+Zatrzymywanie aktywnej animacji sterowanej czasomierzem
 
 ### <a name="prototype"></a>Prototype
 
@@ -1213,11 +1289,11 @@ UINT gx_animation_stop(GX_ANIMATION *animation);
 
 ### <a name="description"></a>Opis
 
-Zatrzymaj animację, która została wcześniej uruchomiona. Jeśli wskaźnik bloku sterowania animacji został przydzielony przy użyciu gx_system_animation_get, aplikacja może ponownie użyć bloku sterowania lub zwrócić go do puli systemowej przy użyciu funkcji gx_system_animation_free().
+Zatrzymaj wcześniej rozpoczętą animację. Jeśli wskaźnik bloku sterowania animacją został przydzielony przy użyciu gx_system_animation_get, aplikacja może ponownie użyć bloku sterowania lub zwrócić go do puli systemowej przy użyciu funkcji gx_system_animation_free().
 
 ### <a name="parameters"></a>Parametry
 
-- **animacja** Wskaźnik do bloku sterowania animacją
+- **animacja** Wskaźnik do bloku kontrolki animacji
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -1242,12 +1318,13 @@ status = gx_animation_stop(&animation);
 
 ### <a name="see-also"></a>Zobacz też
 
-- gx_animation_canvas_define,
-- gx__animation_create
-- gx_animation_drag_disable,
-- gx__animation_drag_enable
-- gx_animation_start,
-- gx__system_animation_get
+- gx_animation_canvas_define
+- gx_animation_create
+- gx_animation_delete
+- gx_animation_drag_disable
+- gx_animation_drag_enable
+- gx_animation_start
+- gx_system_animation_get
 - gx_system_animation_free
 
 ## <a name="gx_binres_language_count_get"></a>gx_binres_language_count_get
@@ -1442,7 +1519,7 @@ UINT gx_binres_language_table_load_ext(
 
 Ta usługa tworzy strukturę tabel języka zawierającą wskaźniki do zasobów tabeli, wygenerowane struktury danych wskazują dane zasobów "na miejscu", ale nie kopiują danych zasobów. Dane zasobów muszą być umieszczone w ogólnej lokalizacji pamięci dostępu, a adres podstawowy tej lokalizacji pamięci jest przekazywany do tego interfejsu API.
 
-Ta usługa wymaga bloku pamięci przydzielonego w czasie wykonywania o rozmiarze wystarczającym do przechowywania struktury tabel języka, dlatego interfejs API gx_system_memory_allocator_set musi zostać wywołany raz przed zażądaniem tej usługi.
+Ta usługa wymaga, aby rozmiar bloku pamięci przydzielonego w czasie wykonywania był wystarczający do przechowywania struktury tabel języka, dlatego interfejs API gx_system_memory_allocator_set musi zostać wywołany raz przed zażądaniem tej usługi.
 
 Zwracana tabela języka definiuje co najmniej jedną tabelę ciągów, każdą tabelę ciągów zawierającą wskaźniki do ciągów zasobów w pamięci danych zasobów.
 
@@ -1483,7 +1560,7 @@ status = gx_binres_language_table_load_ext(root_address,
 
 ## <a name="gx_binres_theme_load"></a>gx_binres_theme_load
 
-Załaduj zasób motywu
+Ładowanie zasobu motywu
 
 ### <a name="prototype"></a>Prototype
 
@@ -1495,7 +1572,7 @@ UINT gx_binres_theme_load(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy strukturę GX_THEME zawierającą wskaźniki do tabel zasobów dla żądanego motywu. Wygenerowane struktury danych wskazują dane zasobów "na miejscu", ale nie kopiują danych zasobów. W związku z tym dane zasobów muszą być umieszczone w ogólnej lokalizacji pamięci dostępu, a adres podstawowy tej lokalizacji pamięci jest przekazywany do tego interfejsu API.
+Ta usługa tworzy strukturę GX_THEME zawierającą wskaźniki do tabel zasobów dla żądanego motywu. Wygenerowane struktury danych wskazują dane zasobów "na miejscu", ale nie kopiują danych zasobów. W związku z tym dane zasobów muszą być umieszczone w ogólnej lokalizacji pamięci dostępu, a podstawowy adres tej lokalizacji pamięci jest przekazywany do tego interfejsu API.
 
 Ta usługa wymaga przydzielonego w czasie wykonywania bloku pamięci wystarczającego do przechowywania struktury tabeli motywów, dlatego interfejs API gx_system_memory_allocator_set musi zostać wywołany raz przed zażądaniem tej usługi.
 
@@ -1632,11 +1709,11 @@ VOID gx_button_background_draw(GX_BUTTON *button);
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje tło przycisku. Ta funkcja jest zwykle wywoływana wewnętrznie przez funkcję gx_button_draw, ale jest narażona na działanie aplikacji, aby pomóc w pisaniu niestandardowych funkcji rysowania.
+Ta usługa rysuje tło przycisku. Ta funkcja jest zwykle wywoływana wewnętrznie przez gx_button_draw, ale jest narażona na aplikację, aby pomóc w pisaniu niestandardowych funkcji rysowania.
 
 ### <a name="parameters"></a>Parametry
 
-- **przycisk** Wskaźnik do bloku sterowania przycisku
+- **przycisk** Wskaźnik do bloku kontrolki przycisku
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -1699,7 +1776,7 @@ Ta usługa tworzy określony przycisk i kojarzy go z dostarczonym widżetem nadr
 
 ### <a name="parameters"></a>Parametry
 
-- **przycisk** Wskaźnik do bloku kontrolki przycisku
+- **przycisk** Wskaźnik do bloku sterowania przycisku
 - **name (nazwa)** Nazwa logiczna przycisku
 - **element nadrzędny** Wskaźnik do widżetu nadrzędnego przycisku
 - **style (styl)** Styl przycisku. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
@@ -1776,7 +1853,7 @@ Ta usługa usuwa zaznaczenie określonego przycisku i generuje zdarzenie sygnał
 
 ### <a name="parameters"></a>Parametry
 
-- **przycisk** Wskaźnik do bloku kontrolki przycisku
+- **przycisk** Wskaźnik do bloku sterowania przycisku
 - **gen_event** Jeśli GX_TRUE, przycisk wygeneruje zdarzenie GX_EVENT_CLICKED, GX_EVENT_DESELECT lub GX_EVENT_TOGGLE_OFFSET w zależności od stylu przycisku. Jeśli GX_FALSE, przycisk nie wygeneruje żadnego zdarzenia wyższego poziomu, nawet jeśli normalnie to zrobi.
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -1784,7 +1861,7 @@ Ta usługa usuwa zaznaczenie określonego przycisku i generuje zdarzenie sygnał
 - **GX_SUCCESS** (0x00) Przycisk Powodzenie usuń zaznaczenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1831,7 +1908,7 @@ Ta usługa rysuje określony przycisk. Ta funkcja jest zwykle wywoływana wewnę
 
 ### <a name="parameters"></a>Parametry
 
-- **przycisk** Wskaźnik do bloku sterowania przycisku
+- **przycisk** Wskaźnik do bloku kontrolki przycisku
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -1890,12 +1967,12 @@ Ta usługa przetwarza zdarzenie dla określonego przycisku.
 
 ### <a name="parameters"></a>Parametry
 
-- **przycisk** Wskaźnik do bloku kontrolki przycisku
+- **przycisk** Wskaźnik do bloku sterowania przycisku
 - **event_ptr** Wskaźnik do zdarzenia do przetwarzania
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne zdarzenie przycisku
+- **GX_SUCCESS** (0x00) Powodzenie procesu zdarzenia przycisku
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -1946,7 +2023,7 @@ UINT custom_button_event_process(GX_BUTTON *button,
 
 ## <a name="gx_button_select"></a>gx_button_select
 
-Wybieranie przycisku
+Przycisk Wybierz
 
 ### <a name="prototype"></a>Prototype
 
@@ -1975,7 +2052,7 @@ Usuwa zaznaczenie elementów równorzędnych dla grupy przycisków radiowych.
 
 - **GX_SUCCESS** (0x00) Przycisk Powodzenie wybierz
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -2026,11 +2103,11 @@ Ta usługa ustawia wartość alfa-blend dla określonej kanwy. Wartości alfa ka
 
 Sprzętowa obsługa mieszania kanwy jest włączana przez wywołania interfejsu API gx_canvas_hardware_layer_bind() przed ustawieniem wartości alfa kanwy. Gdy kanwa jest powiązana ze sprzętową warstwą grafiki, wywołanie interfejsu API gx_canvas_alpha_set() bezpośrednio wywołuje usługi mieszania sprzętowej warstwy grafiki.
 
-Aby wykorzystać obsługę oprogramowania do mieszania kanwy, aplikacja musi utworzyć kanwę w stylu GX_CANVAS_COMPOSITE, w którym wszystkie inne zarządzane kanwy są złożone przed ostatecznym wyświetleniem. Obsługa programowa mieszania kanwy jest zapewniana tylko w przypadku korzystania ze sterownika wyświetlania o głębokości kolorów co najmniej 16 bpp.
+Aby korzystać z obsługi oprogramowania do mieszania kanwy, aplikacja musi utworzyć kanwę ze stylem GX_CANVAS_COMPOSITE, w którym wszystkie inne zarządzane kanwy są złożone przed ostatecznym wyświetleniem. Obsługa oprogramowania w przypadku mieszania kanwy jest zapewniana tylko w przypadku korzystania ze sterownika wyświetlania o głębokości kolorów co najmniej 16 bpp.
 
 ### <a name="parameters"></a>Parametry
 
-- **kanwa** Wskaźnik do bloku sterowania kanwy
+- **kanwa** Wskaźnik do bloku kontrolki kanwy
 - **alfa** Wartość mieszania alfa, zakres od 0 (przezroczysty) do 255 (nieprzezroczysty).
 
 ### <a name="return--values"></a>Wartości zwracane
@@ -2081,19 +2158,19 @@ UINT gx_canvas_arc_draw(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje okrąg arc na kanwie przy użyciu bieżącego pędzla. Okrąg arc jest obcinany do kanwy w nieprawidłowym regionie. Ta usługa wymaga GX_ARC_DRAWING_SUPPORT zdefiniowanej.
+Ta usługa rysuje okrąg arc na kanwie przy użyciu bieżącego pędzla. Arc okrąg jest obcięty do kanwy w nieprawidłowym regionie. Ta usługa wymaga GX_ARC_DRAWING_SUPPORT zdefiniowanej usługi.
 
 ### <a name="parameters"></a>Parametry
 
 - **xcenter** x-position of center of the circle arc
 - **ycenter** y-position of center of the circle arc
-- **r** Promień łuku okręgu
+- **r** Radius łuku okręgu
 - **start_angle** Kąt początkowy łuku okręgu
 - **end_angle** Końcowy kąt łuku okręgu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne rysowanie łuku
+- **GX_SUCCESS** (0x00) Pomyślne narysowanie łuku
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_INVALID_VALUE** (0x22) Nieprawidłowa wartość
 - **GX_INVALID_CONTEXT** (0x06) Brak otwartego kontekstu rysowania
@@ -2145,7 +2222,7 @@ Ta usługa przenosi blok danych pikseli kanwy w określonym kierunku. Ta usługa
 - **blokuj** Współrzędne obszaru do przeniesienia
 - **x_shift** Liczba pikseli do przesunięcia na osi X
 - **y_shift** Liczba pikseli do przesunięcia na osi y
-- **zanieczyszczone** Jeśli przenoszenie bloków powiedzie się, ta funkcja zwraca część prostokąta źródłowego, która nadal jest zanieczyszczona dla obiektu wywołującego w tym parametrze.
+- **zanieczyszczone** Jeśli przeniesienie bloku powiedzie się, ta funkcja zwraca część prostokąta źródłowego, która nadal jest zanieczyszczona do obiektu wywołującego w tym parametrze.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -2203,7 +2280,7 @@ UINT gx_canvas_circle_draw(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje okrąg na kanwie przy użyciu bieżącego pędzla. Okrąg zostanie przycięty do kanwy w nieprawidłowym regionie. Ta usługa wymaga GX_ARC_DRAWING_SUPPORT zdefiniowanej.
+Ta usługa rysuje okrąg na kanwie przy użyciu bieżącego pędzla. Okrąg jest obcięty do kanwy w nieprawidłowym regionie. Ta usługa wymaga GX_ARC_DRAWING_SUPPORT zdefiniowanej usługi.
 
 ### <a name="parameters"></a>Parametry
 
@@ -2337,11 +2414,11 @@ UINT gx_canvas_delete(GX_CANVAS *canvas);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa kanwę. Kanwa zostanie usunięta z wewnętrznej połączonej listy kanwy utrzymywanej przez graficzny interfejs użytkownika (GUIX).
+Ta usługa usuwa kanwę. Kanwa zostanie usunięta z wewnętrznej połączonej listy kanwy utrzymywanej przez guix.
 
 ### <a name="parameters"></a>Parametry
 
-- **kanwa** Wskaźnik do bloku sterowania kanwy
+- **kanwa** Wskaźnik do bloku kontrolki kanwy
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -2374,7 +2451,7 @@ status = gx_canvas_delete (&my_canvas);
 
 ## <a name="gx_canvas_drawing_complete"></a>gx_canvas_drawing_complete
 
-Kompletne rysowanie kanwy
+Kompletny rysunek kanwy
 
 ### <a name="prototype"></a>Prototype
 
@@ -2386,16 +2463,16 @@ UINT gx_canvas_drawing_complete(
 
 ### <a name="description"></a>Opis
 
-Ta usługa informuje guix o ukończeniu rysowania aplikacji na określonej kanwie.
+Ta usługa informuje program GUIX o ukończeniu rysowania aplikacji na określonej kanwie.
 
-Aplikacja może użyć tej usługi, aby wymusić natychmiastowe rysowanie na kanwie. W zależności od architektury pamięci systemowej kanwa opróżnia kanwę do widocznego buforu ramowego i/lub wyzwala operację przełączania usterki.
+Aplikacja może użyć tej usługi, aby wymusić natychmiastowe rysowanie na kanwie. Powoduje to opróżnienie kanwy do widocznego bufora ramek i/lub wyzwolenie operacji przełączania usterki w zależności od architektury pamięci systemowej.
 
 Ta usługa powinna być wywoływana tylko przez aplikację, aby zamknąć sekwencję rysowania rozpoczętą za pomocą gx_canvas_drawing_initiate().
 
 ### <a name="parameters"></a>Parametry
 
-- **kanwa** Wskaźnik do bloku kontrolki kanwy
-- **opróżnienie** Jeśli **_GX_TRUE,_** zmiany kanwy zostaną opróżnione do ekranu
+- **kanwa** Wskaźnik do bloku sterowania kanwy
+- **flush (opróżnienie)** Jeśli **_GX_TRUE,_** zmiany kanwy zostaną opróżnione do ekranu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -2440,17 +2517,17 @@ UINT gx_canvas_drawing_initiate(
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje rysowanie na określonej kanwie. Ta usługa jest wywoływana wewnętrznie w ramach odroczonej operacji rysowania wykonywanej automatycznie przez interfejs GUIX, gdy należy zaktualizować kanwę. Jednak aplikacja może pominąć algorytm rysowania odroczonego GUIX i wykonać natychmiastowe i bezpośrednie rysowanie na kanwie, najpierw wywołując funkcję gx_canvas_drawing_inititate, a następnie wywołując żądane funkcje rysowania, a następnie wywołując funkcję gx_canvas_drawing_complete().
+Ta usługa inicjuje rysowanie na określonej kanwie. Ta usługa jest wywoływana wewnętrznie w ramach odroczonej operacji rysowania wykonywanej automatycznie przez graficzny interfejs użytkownika, gdy należy zaktualizować kanwę. Jednak aplikacja może pominąć algorytm rysowania odroczonego w graficznym interfejsie GUIX i wykonać natychmiastowe i bezpośrednie rysowanie na kanwie, najpierw wywołując funkcję gx_canvas_drawing_inititate, a następnie wywołując żądane funkcje rysowania, a następnie wywołując funkcję gx_canvas_drawing_complete().
 
 ### <a name="parameters"></a>Parametry
 
-- **kanwa** Wskaźnik do bloku sterowania kanwy
-- **who (kto)** Wskaźnik do bloku sterowania widżetem elementu wywołującego. Ten parametr służy do inicjowania przycinania rysowania i wyświetlania parametrów dla kolejnych operacji rysowania.
+- **kanwa** Wskaźnik do bloku kontrolki kanwy
+- **who (kto)** Wskaźnik do bloku sterowania widżetem elementu wywołującego. Ten parametr służy do inicjowania obcinania rysowania i wyświetlania parametrów dla kolejnych operacji rysowania.
 - **dirty_area** Obszar do narysowania. Ten parametr jest przekazywany przez obiekt wywołujący, aby wskazać obszar, do którego obiekt wywołujący chce przycinać wszystkie operacje rysowania. Zazwyczaj jest to obszar wcześniej oznaczony jako zanieczyszczony, ale obiekt wywołujący może rozwinąć lub zawędzić obszar obcinania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślna inicjacja rysowania
+- **GX_SUCCESS** (0x00) Pomyślne zainicjowanie rysowania
 - **GX_DRAW_NESTING_EXCEEDED** (0x05) Przekroczenie maksymalnej liczby zagnieżdżeń
 - **GX_NO_VIEW** (0x03) Brak widoków dla wywołującego
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
@@ -2497,7 +2574,7 @@ UINT gx_canvas_ellipse_draw(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje wielokropek na kanwie przy użyciu bieżącego pędzla. Wielokropek jest obcinany do kanwy w nieprawidłowym regionie. Ta usługa wymaga GX_ARC_DRAWING_SUPPORT zdefiniowanej.
+Ta usługa rysuje wielokropek na kanwie przy użyciu bieżącego pędzla. Wielokropek jest obcięty do kanwy w nieprawidłowym regionie. Ta usługa wymaga GX_ARC_DRAWING_SUPPORT zdefiniowanej usługi.
 
 ### <a name="parameters"></a>Parametry
 
@@ -2508,7 +2585,7 @@ Ta usługa rysuje wielokropek na kanwie przy użyciu bieżącego pędzla. Wielok
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne rysowanie okręgu
+- **GX_SUCCESS** (0x00) Pomyślne rysowanie okręgów
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_INVALID_VALUE** (0x22) Nieprawidłowa wartość
 - **GX_INVALID_CONTEXT** (0x06) Brak otwartego kontekstu rysowania
@@ -2556,7 +2633,7 @@ UINT gx_canvas_hardware_layer_bind(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wiąże kanwę rysowania GUIX ze sprzętową warstwą grafiki. Ta usługa jest wymagana tylko w przypadku urządzeń sprzętowych, które obsługują wiele sprzętowych warstw graficznych.
+Ta usługa wiąże kanwę rysunku GUIX ze sprzętową warstwą grafiki. Ta usługa jest wymagana tylko w przypadku urządzeń sprzętowych, które obsługują wiele sprzętowych warstw graficznych.
 
 Powiązanie kanwy ze sprzętową warstwą grafiki powoduje, że interfejsy API gx_canvas_show(), gx_canvas_hide(), gx_canvas_alpha_set() i gx_canvas_offset_set() są implementowane bezpośrednio przez usługi sterowników wyświetlania sprzętu.
 
@@ -2564,7 +2641,7 @@ Jeśli sprzętowy sterownik wyświetlania nie obsługuje wielu warstw grafiki, t
 
 ### <a name="parameters"></a>Parametry
 
-- **kanwa** kanwy do zaimplementowania w sprzęcie
+- **Kanwa** kanwy do zaimplementowania na sprzęcie
 - **warstwa** sprzętowa warstwa grafiki
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -2597,7 +2674,7 @@ status = gx_canvas_hardware_layer_bind(&my_canvas, 1);
 
 ## <a name="gx_canvas_hide"></a>gx_canvas_hide
 
-Ukrywanie kanwy, dzięki czemu staje się niewidoczna
+Ukrywanie kanwy, ukrywanie jej
 
 ### <a name="prototype"></a>Prototype
 
@@ -2607,7 +2684,7 @@ UINT gx_canvas_hide(GX_CANVAS *canvas);
 
 ### <a name="description"></a>Opis
 
-Ta usługa ukrywa kanwę GUIX. Jeśli kanwa została powiązana ze sprzętową warstwą grafiki przy użyciu funkcji gx_canvas_hardware_layer_bind(), ta usługa jest implementowana przy użyciu obsługi sprzętowej.
+Ta usługa ukrywa kanwę GUIX. Jeśli kanwa została powiązana ze sprzętową warstwą grafiki przy użyciu funkcji gx_canvas_hardware_layer_bind(), ta usługa jest implementowane przy użyciu obsługi sprzętowej.
 
 ### <a name="parameters"></a>Parametry
 
@@ -2661,13 +2738,13 @@ UINT gx_canvas_line_draw(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje linię na kanwie przy użyciu bieżącego pędzla. Linia jest przycinana do nieprawidłowego regionu kanwy.
+Ta usługa rysuje linię na kanwie przy użyciu bieżącego pędzla. Linia jest obcinana do nieprawidłowego regionu kanwy.
 
 ### <a name="parameters"></a>Parametry
 
 - **x_start** Początkowa pozycja x wiersza
-- **y_end** Pozycja początkowa y wiersza
-- **x_start** Końcowa pozycja x wiersza
+- **y_end** Początkowa pozycja y linii
+- **x_start** Zakończenie x-pozycji wiersza
 - **y_end** Końcowa pozycja y wiersza
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -2769,16 +2846,16 @@ UINT gx_canvas_mouse_define(GX_CANVAS *canvas,
 
 ### <a name="description"></a>Opis
 
-Ta usługa definiuje informacje o myszy dla określonej kanwy. Ta usługa wymaga GX_MOUSE_SUPPORT zdefiniowanej usługi.
+Ta usługa definiuje informacje o myszy dla określonej kanwy. Ta usługa wymaga GX_MOUSE_SUPPORT zdefiniowanej.
 
 ### <a name="parameters"></a>Parametry
 
-- **kanwa** Wskaźnik do bloku sterowania kanwy
-- **info (informacje)** Wskaźnik myszy na informacje o kursorze. **Dodatek I** zawiera definicję GX_MOUSE_CURSOR_INFO struktury.
+- **kanwa** Wskaźnik do bloku kontrolki kanwy
+- **info (informacje)** Wskaźnik do informacji o kursorze myszy. **Dodatek I** zawiera definicję GX_MOUSE_CURSOR_INFO struktury.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw informacji o pomyślnym wskaźniku myszy
+- **GX_SUCCESS** (0x00) Zestaw informacji o pomyślnym myszy
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 
@@ -2820,11 +2897,11 @@ UINT gx_canvas_mouse_hide(GX_CANVAS *canvas);
 
 ### <a name="description"></a>Opis
 
-Ta usługa sprawia, że kursor myszy jest ukryty przed określoną kanwą. Ta usługa wymaga GX_MOUSE_SUPPORT zdefiniowanej.
+Ta usługa sprawia, że kursor myszy jest ukryty przed określoną kanwą. Ta usługa wymaga GX_MOUSE_SUPPORT zdefiniowanej usługi.
 
 ### <a name="parameters"></a>Parametry
 
-- **kanwa** Wskaźnik do bloku kontrolki kanwy
+- **kanwa** Wskaźnik do bloku sterowania kanwy
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -2867,11 +2944,11 @@ UINT gx_canvas_mouse_show(GX_CANVAS *canvas);
 
 ### <a name="description"></a>Opis
 
-Ta usługa sprawia, że kursor myszy jest widoczny dla określonej kanwy. Ta usługa wymaga GX_MOUSE_SUPPORT zdefiniowanej. Interfejs gx_canvas_mouse_define API powinien zostać wywołany w celu zdefiniowania obrazu kursora myszy przed żądaniem tej usługi.
+Ta usługa sprawia, że kursor myszy jest widoczny dla określonej kanwy. Ta usługa wymaga GX_MOUSE_SUPPORT zdefiniowanej usługi. Interfejs gx_canvas_mouse_define API powinien zostać wywołany w celu zdefiniowania obrazu kursora myszy przed zażądaniem tej usługi.
 
 ### <a name="parameters"></a>Parametry
 
-- **kanwa** Wskaźnik do bloku kontrolki kanwy
+- **kanwa** Wskaźnik do bloku sterowania kanwy
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -2902,7 +2979,7 @@ hidden successfully. */
 ## <a name="gx_canvas_offset_set"></a>gx_canvas_offset_set
 
 
-Przypisywanie przesunięcia wyświetlania x,y kanwy
+Przypisywanie przesunięcia ekranu x,y kanwy
 
 ### <a name="prototype"></a>Prototype
 
@@ -2915,13 +2992,13 @@ UINT gx_canvas_offset_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przypisuje przesunięcie x,y wyświetlania dla określonej kanwy. Steruje to położeniem, w którym kanwa jest złożona z widocznym buforem ramek, i jest często używana, gdy kanwa jest mniejsza niż ekran fizyczny.
+Ta usługa przypisuje przesunięcie wyświetlania x,y dla określonej kanwy. Pozwala to na sterowanie położeniem, w którym kanwa jest złożona z widocznym buforem ramek, i jest często używana, gdy kanwa jest mniejsza niż ekran fizyczny.
 
 Jeśli kanwa została powiązana ze sprzętową warstwą grafiki przy użyciu interfejsu API gx_canvas_hardware_layer_bind(), usługa gx_canvas_offset_set jest implementowane bezpośrednio przy użyciu obsługi sprzętowej.
 
 ### <a name="parameters"></a>Parametry
 
-- **kanwa** Wskaźnik do bloku sterowania kanwy
+- **kanwa** Wskaźnik do bloku kontrolki kanwy
 - **Współrzędna** x X przesunięcia
 - **Współrzędna y** Y przesunięcia
 
@@ -2975,7 +3052,7 @@ UINT gx_canvas_pie_draw(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje kołowy na kanwie przy użyciu bieżącego pędzla kontekstu rysowania. Kołowy jest obcinany do kanwy w nieprawidłowym regionie. Ta usługa wymaga zdefiniowanej GX_ARC_DRAWING_SUPPORT konfiguracji.
+Ta usługa rysuje kołowe na kanwie przy użyciu bieżącego pędzla kontekstu rysowania. Obszar kołowy jest obcięty do kanwy w nieprawidłowym regionie. Ta usługa wymaga zdefiniowanej GX_ARC_DRAWING_SUPPORT konfiguracji.
 
 ### <a name="parameters"></a>Parametry
 
@@ -3032,7 +3109,7 @@ UINT gx_canvas_pixel_draw(GX_POINT position);
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje piksel na kanwie przy użyciu koloru linii bieżącego pędzla kontekstu rysowania. Jeśli zdefiniowano GX_BRUSH_ALPHA_SUPPORT konfiguracji, należy w przeciwnym razie wtopić piksel jako całkowicie nieprzezroczysty.
+Ta usługa rysuje piksel na kanwie przy użyciu koloru linii bieżącego pędzla kontekstowego rysowania. Jeśli zdefiniowano GX_BRUSH_ALPHA_SUPPORT konfiguracji, należy w przeciwnym razie wtopić piksel jako całkowicie nieprzezroczysty.
 
 - **punkt** x,y położenie pikseli do narysowania
 
@@ -3084,7 +3161,7 @@ gx_canvas_drawing_complete(mycanvas, GX_TRUE);
 
 ## <a name="gx_canvas_pixelmap_blend"></a>gx_canvas_pixelmap_blend
 
-Mapa pikseli blend
+Blend pixelmap
 
 ### <a name="prototype"></a>Prototype
 
@@ -3098,13 +3175,13 @@ UINT gx_canvas_pixelmap_blend(
 
 ### <a name="description"></a>Opis
 
-Ta usługa łączy mapę pikseli z tłem kanwy. Współczynnik mieszania jest określony przez wywołującego. Wartość alfa może być z zakresu od 0 (w pełni przezroczysta) do 255 (w pełni nieprzezroczysta). Mapa pikseli może również zawierać wewnętrzny kanał alfa, który jest połączony z wartością mieszania przychodzącego. Ta usługa jest obsługiwana tylko przez sterowniki wyświetlania działające z głębokością koloru 16 bpp lub wyższą.
+Ta usługa łączy mapę pikseli z tłem kanwy. Współczynnik mieszania jest określony przez wywołującego. Wartość alfa może być z zakresu od 0 (w pełni przezroczysta) do 255 (w pełni nieprzezroczysta). Mapa pikseli może również zawierać wewnętrzny kanał alfa, który jest połączony z wartością mieszania przychodzącego. Ta usługa jest obsługiwana tylko przez sterowniki wyświetlania działające na głębokości kolorów 16 bpp lub wyższej.
 
 ### <a name="parameters"></a>Parametry
 
-- **x_start** Uruchamianie x-położenie mapy pikseli
+- **x_start** Początkowa pozycja x mapy pikseli
 - **y_end** Początkowa pozycja y mapy pikseli
-- **mapa pikseli** Wskaźnik do mapy pikseli
+- **pixelmap** Wskaźnik do mapy pikseli
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -3157,9 +3234,9 @@ Ta usługa rysuje mapę pikseli na kanwie.
 
 ### <a name="parameters"></a>Parametry
 
-- **x_start** Początkowa pozycja x mapy pikseli
+- **x_start** Uruchamianie x-położenie mapy pikseli
 - **y_end** Początkowa pozycja y mapy pikseli
-- **pixelmap** Wskaźnik do mapy pikseli
+- **mapa pikseli** Wskaźnik do mapy pikseli
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -3200,11 +3277,11 @@ UINT gx_canvas_pixelmap_get(GX_PIXELMAP *pixelmap);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwraca strukturę GX_PIXELMAP na dane kanwy. Format mapy pikseli jest ustawiony na bieżący format kolorów wyświetlania.
+Ta usługa zwraca strukturę GX_PIXELMAP danych kanwy. Format pixelmap jest ustawiony na bieżący format koloru wyświetlania.
 
 ### <a name="parameters"></a>Parametry
 
-- **mapa pikseli** Zwrócona mapa pikseli
+- **pixelmap** Zwrócona mapa pikseli
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -3254,16 +3331,16 @@ UINT gx_canvas_pixelmap_rotate(
 
 Ta usługa obraca mapę pikseli pod określonym kątem i renderuje mapę pikseli na kanwie bezpośrednio podczas obracania. Ta usługa różni się gx_utility_pixelmap_rotate tym, że dane wyjściowe obrotu są bezpośrednio renderowane w pamięci kanwy, a obracana mapa pikseli nie jest zwracana do obiektu wywołującego.
 
-Zaletą tej usługi w porównaniu gx_utility_pixelmap_rotate jest to, że do przechowywania obróconej mapy pikseli nie jest wymagana żadna dodatkowa pamięć. Wadą jest to, że kod rotacji musi być wykonywany przy każdym rysowaniu mapy pikseli.
+Zaletą tej usługi w porównaniu gx_utility_pixelmap_rotate jest to, że do przechowywania obróconej mapy pikseli nie jest wymagana żadna dodatkowa pamięć. Wadą jest to, że kod obrotu musi być wykonywany za każdym razem, gdy mapa pikseli jest rysowana.
 
-Obcinanie i sprawdzanie poprawności ekranu są wymuszane podczas renderowania obróconej mapy pikseli.
+Przycinanie i sprawdzanie poprawności ekranu są wymuszane podczas renderowania obróconej mapy pikseli.
 
 ### <a name="parameters"></a>Parametry
 
-- **x_position** Początkowa pozycja x mapy pikseli
+- **x_position** Uruchamianie x-położenie mapy pikseli
 - **y_position** Początkowa pozycja y mapy pikseli
-- **pixelmap** Wskaźnik do mapy pikseli
-- **kąt** Kąt do obracania
+- **mapa pikseli** Wskaźnik do mapy pikseli
+- **kąt** Kąt do rotacji
 - **rot_cx** X-koord środka obrotu. Jeśli ta wartość jest ustawiona na -1, środek obrazu jest używany jako środek obrotu.
 - **rot_cy** Y-coord środka obrotu. Jeśli ta wartość jest ustawiona na -1, środek obrazu jest używany jako środek obrotu.
 
@@ -3500,7 +3577,7 @@ Tej usługi należy używać tylko do renderowania obracanego tekstu "jeden raz"
 - **GX_SUCCESS** (0x00) Pomyślne renderowanie tekstu
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
-- **GX_SYSTEM_MEMORY_ERROR** (0x30) Niewystarczająca ilość pamięci gx_system_memory_allocator nie została przypisana
+- **GX_SYSTEM_MEMORY_ERROR** (0x30) Niewystarczająca ilość dostępnej pamięci lub gx_system_memory_allocator nie została przypisana
 - **GX_INVALID_STRING_LENGTH** (0x34) Nieprawidłowa długość ciągu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -3560,11 +3637,11 @@ UINT gx_canvas_rotated_text_draw_ext(
 
 Ta usługa rysuje tekst na kanwie. Tekst jest rysowany obrócony o żądany punkt środkowy. Bieżąca czcionka kontekstu rysowania i kolor linii kontekstu rysowania są używane do renderowania tekstu.
 
-Ta usługa używa funkcji gx_utility_string_to_alphamap do renderowania ciągu tekstowego do tymczasowej mapy pikseli 8bpp zawierającej tylko wartość alfa. Następnie usługa obraca mapę alfamapy przy użyciu funkcji gx_utility_pixelmap_rotate. Po zakończeniu renderowania końcowej mapy alfamapy na kanwie ta usługa uwolni tymczasową mapę alfamapy i skojarzoną pamięć.
+Ta usługa używa funkcji gx_utility_string_to_alphamap do renderowania ciągu tekstowego do tymczasowej mapy pikseli 8bpp zawierającej tylko wartość alfa. Następnie usługa obraca mapę alfamapy przy użyciu funkcji gx_utility_pixelmap_rotate. Po zrenderowania końcowej mapy alfa na kanwie ta usługa powoduje wolne tymczasowej mapy alfamapy i skojarzonej pamięci.
 
-Ponieważ tymczasowa mapa alfamapy jest wymagana do renderowania obróconego tekstu, aplikacja musi skonfigurować gx_system_memory_allocator przez wywołujący interfejs ***API*** gx_system_memory_allocator_set przed próbą narysowania obróconego tekstu.
+Ponieważ do renderowania obróconego tekstu jest wymagana tymczasowa mapa alfamapy, aplikacja musi skonfigurować gx_system_memory_allocator przez wywołujący interfejs ***API*** gx_system_memory_allocator_set przed próbą narysowania obróconego tekstu.
 
-Ta usługa powinna być używana tylko do renderowania obracanego tekstu "jeden raz". Jeśli ten sam ciąg tekstowy będzie rysowany wiele razy w różnych lokalizacjach lub pod różnymi kątami obrotu, wydajniej jest użyć funkcji narzędzia gx_utility_string_to_alphamap(), aby utworzyć tekstową mapę alfamapy raz, gx_utility_pixelmap_rotate użyć wielokrotnie, aby wielokrotnie obracać wynikową mapę alfamapy.
+Tej usługi należy używać tylko do renderowania obracanego tekstu "jeden raz". Jeśli ten sam ciąg tekstowy zostanie narysowany wiele razy w różnych lokalizacjach lub różnych kątach obrotu, bardziej efektywne jest użycie funkcji narzędzia gx_utility_string_to_alphamap() w celu utworzenia tekstu alfamapy raz, a następnie wielokrotne użycie funkcji gx_utility_pixelmap_rotate do wielokrotnego obracania wynikowej mapy alfamapy.
 
 ### <a name="parameters"></a>Parametry
 
@@ -3741,7 +3818,7 @@ UINT gx_canvas_text_draw(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje tekst na kanwie. Ten interfejs API, mimo że jest nadal obsługiwany, jest przestarzały i nowe aplikacje powinny zamiast tego używać gx_canvas_text_draw_ext().
+Ta usługa rysuje tekst na kanwie. Ten interfejs API, mimo że jest nadal obsługiwany, jest przestarzały, a nowe aplikacje powinny zamiast tego używać funkcji gx_canvas_text_draw_ext().
 
 ### <a name="parameters"></a>Parametry
 
@@ -3963,7 +4040,7 @@ VOID custom_checkbox_draw(GX_CHECKBOX *checkbox)
 ## <a name="gx_checkbox_event_process"></a>gx_checkbox_event_process
 
 
-Zdarzenie pola wyboru Proces
+Zdarzenie pola wyboru Procesu
 
 ### <a name="prototype"></a>Prototype
 
@@ -4049,8 +4126,8 @@ Ta usługa przypisuje mapy pikseli, które mają być wyświetlane przez określ
 
 - **pole wyboru** Wskaźnik do bloku kontrolki pola wyboru
 - **unchecked_id** Mapa pikseli używana dla stanu niezaznaczonego
-- **checked_id** Mapa pikseli używana do sprawdzenia stanu
-- **unchecked_disabled_id** Mapa pikseli używana dla wyłączonego i niezaznaczonego pola wyboru
+- **checked_id** Mapa pikseli używana dla stanu zaznaczonego
+- **unchecked_disabled_id** Mapa pikseli używana dla pola wyboru wyłączonego i niezaznaczonego
 - **checked_disabled_id** Pole wyboru Pixelmap używane dla wyłączonego i zaznaczonego pola wyboru
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -4105,7 +4182,7 @@ Ta usługa wymusza zaznaczone pole wyboru.
 - **GX_SUCCESS** (0x00) Powodzenie zaznacz pole wyboru
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -4192,7 +4269,7 @@ UINT gx_circular_gauge_angle_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia kąt docelowy widżetu miernika cyklicznego.
+Ta usługa ustawia kąt docelowy widżetu z okrągłym miernikiem.
 
 ### <a name="parameters"></a>Parametry
 
@@ -4248,12 +4325,12 @@ Ta usługa ustawia kroki animacji i czas opóźnienia dla widżetu miernika cykl
 ### <a name="parameters"></a>Parametry
 
 - **miernik** Wskaźnik do bloku sterowania miernika cyklicznego
-- **kroki** Łączna liczba kroków dla jednego obrotu
+- **kroki** Łączna liczba kroków dla jednej rotacji
 - **opóźnienie** Czas opóźnienia dla każdego kroku
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Powodzenie zaznacz pole wyboru
+- **GX_SUCCESS** (0x00) Pole wyboru Powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_VALUE** (0x22) Nieprawidłowa wartość
@@ -4363,7 +4440,7 @@ Ta usługa tworzy widżet miernika cyklicznego z określonymi właściwościami.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Powodzenie zaznacz pole wyboru
+- **GX_SUCCESS** (0x00) Pole wyboru Powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku sterowania
@@ -5064,7 +5141,7 @@ Ta usługa pobiera wskaźnik czcionki skojarzony ze wskazanym identyfikatorem cz
 
 ### <a name="parameters"></a>Parametry
 
-- **font_id** Identyfikator zasobu żądanej czcionki.
+- **font_id** Żądany identyfikator zasobu czcionki.
 - **return_font** Adres zmiennej do przechowywania zwróconego wskaźnika czcionki.
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -5343,7 +5420,7 @@ Ta usługa definiuje nieprzetworzone pędzle bieżącego kontekstu ekranu. Defin
 ### <a name="parameters"></a>Parametry
 
 - **line_color** Kolor linii w 32-bitowym nieprzetworzowym formacie ARGB. **Dodatek A** zawiera wstępnie zdefiniowane kolory. Pamiętaj, że aplikacja może również dodawać kolory niestandardowe.
-- **fill_color** Kolor wypełnienia w 32-bitowym formacie nieprzetworzącego koloru ARGB. **Dodatek A** zawiera wstępnie zdefiniowane kolory. Pamiętaj, że aplikacja może również dodawać kolory niestandardowe.
+- **fill_color** Kolor wypełnienia w 32-bitowym nieprzetworzonej formacie ARGB. **Dodatek A** zawiera wstępnie zdefiniowane kolory. Pamiętaj, że aplikacja może również dodawać kolory niestandardowe.
 - **style (styl)** Styl pędzla. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -5610,7 +5687,7 @@ Różne ekrany w systemie z wieloma ekranami mogą uruchamiać różne aktywne j
 ### <a name="parameters"></a>Parametry
 
 - **wyświetlanie** Wskaźnik do wyświetlania bloku sterowania
-- **language (język)** Indeks aktywnego języka
+- **language (język)** Indeks języka aktywnego
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -5755,7 +5832,7 @@ Ta usługa tworzy ekran i wywołuje funkcję konfiguracji sterownika wyświetlan
 ### <a name="parameters"></a>Parametry
 
 - **wyświetlanie** Wskaźnik do wyświetlania bloku sterowania
-- **name (nazwa)** Nazwa ekranu
+- **name (nazwa)** Nazwa wyświetlanego ekranu
 - **display_driver_setup** Wskaźnik do wyświetlania funkcji konfiguracji sterownika
 - **optional_driver_info** Wskaźnik do opcjonalnych informacji o sterowniku
 - **color_format** Format kolorów, zgodnie z definicją w **dodatku C**
@@ -5815,7 +5892,7 @@ Ta usługa zamyka ekran i czyści przydzielone zasoby.
 ### <a name="parameters"></a>Parametry
 
 - **wyświetlanie** Wskaźnik do wyświetlania bloku sterowania
-- **display_driver_cleanup** Wskaźnik do wyświetlania funkcji oczyszczania sterownika
+- **display_driver_cleanup** Wskaźnik do wyświetlania funkcji oczyszczania sterowników
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -5878,7 +5955,7 @@ Ta usługa ponownie przypisuje tabelę czcionek do wyświetlania. Ta usługa jes
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw pomyślnych tabel czcionek
+- **GX_SUCCESS** (0x00) Zestaw tabel czcionek pomyślny
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -5932,7 +6009,7 @@ Ten interfejs API jest przestarzały i jest obsługiwany tylko w przypadku aplik
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw tabel czcionek pomyślny
+- **GX_SUCCESS** (0x00) Zestaw pomyślnych tabel czcionek
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -6127,7 +6204,7 @@ status = gx_display_language_table_set_ext(&my_display,
 
 ## <a name="gx_display_pixelmap_table_set"></a>gx_display_pixelmap_table_set
 
-Przypisywanie wyświetlanej tabeli czcionek
+Przypisywanie tabeli czcionek wyświetlanych
 
 ### <a name="prototype"></a>Prototype
 
@@ -6199,7 +6276,7 @@ Identyfikatory ciągów są generowane przez program GUIX Studio i znajdują si�
 ### <a name="parameters"></a>Parametry
 
 - **wyświetlanie** Wskaźnik do wyświetlania bloku sterowania
-- **string_id** Identyfikator ciągu generowany przez program GUIX Studio.
+- **string_id** Identyfikator ciągu wygenerowany przez program GUIX Studio.
 - **ciąg** Adres zmiennej wskaźnika ciągu
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -6565,7 +6642,7 @@ UINT gx_drop_list_create(
 
 Ta usługa tworzy listę rozwijaną. Lista rozwijana jest kombinacją widżetu listy rozwijanej i pionowej listy podręcznej, która jest wyświetlana po otwarciu listy rozwijanej. Pionowa lista podręczna jest tworzona automatycznie po utworzeniu widżetu listy rozwijanej i wyświetlana lub ukryta po otwarciu lub zamknięciu widżetu listy rozwijanej.
 
-Widżet listy rozwijanej obsługuje dwa skojarzone mapy pikseli. Pierwsza, opisana jako "Tapeta listy" w widoku właściwości programu Studio, to opcjonalna mapa pikseli tapety wyświetlana jako tło pionowej listy wyświetlanej po otwarciu widżetu listy rozwijanej. Druga mapa pikseli, opisana jako "Obraz tła" w widoku właściwości programu Studio, jest opcjonalnym obrazem wyświetlanym jako tło samej listy rozwijanej.
+Widżet listy rozwijanej obsługuje dwie skojarzone mapy pikseli. Pierwsza, opisana jako "Tapeta listy" w widoku właściwości programu Studio, to opcjonalna mapa pikseli tapety wyświetlana jako tło pionowej listy wyświetlanej po otwarciu widżetu listy rozwijanej. Druga mapa pikseli, opisana jako "Obraz tła" w widoku właściwości programu Studio, jest opcjonalnym obrazem wyświetlanym jako tło samej listy rozwijanej.
 
 Widżet listy rozwijanej może mieć (ale nie jest wymagany) widżet podrzędny, który jest używany do otwierania i zamykania listy rozwijanej. Jest to niestandardowy widżet ikony lub przycisku, ale nawet niestandardowy widżet może służyć jako przełącznik otwierania/zamykania nadrzędnej listy rozwijanej. Kluczowym ustawieniem, które sprawia, że ten widżet podrzędny działa na liście rozwijanej, jest to, że ten widżet podrzędny musi mieć wstępnie zdefiniowany identyfikator ID_DROP_LIST_BUTTON.
 
@@ -6593,7 +6670,7 @@ Następnie użyj widoku właściwości programu Studio, aby przypisać temu elem
 - **GX_SUCCESS** (0x00) Pomyślne utworzenie listy rozwijanej
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
+- **GX_ALREADY_CREATED** (0x13) widget
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -6822,7 +6899,7 @@ Widżet listy rozwijanej składa się z samego widżetu listy rozwijanej i piono
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie pobrano okno podręczne z pionową listą
+- **GX_SUCCESS** (0x00) Successfully retrieved popup vertical list (Pomyślnie pobrano okno podręczne listy pionowej)
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -6903,7 +6980,7 @@ status = gx_generic_scroll_wheel_children_position (&wheel);
 ## <a name="gx_generic_scroll_wheel_create"></a>gx_generic_scroll_wheel_create
 
 
-Tworzenie ogólnego kółka przewijania
+Tworzenie ogólnego koła przewijania
 
 ### <a name="prototype"></a>Prototype
 
@@ -6925,14 +7002,14 @@ Ta usługa tworzy ogólny widżet koła przewijania.
 
 Ogólne koło przewijania to typ widżetu koła przewijania, który składa się z widżetów podrzędnych. Dostępne są również inne typy widżetów z kółkami przewijania. Aby uzyskać więcej informacji na temat hierarchii widżetów koła przewijania, typów widżetów i pochodnych widżetów, zobacz interfejs API gx_scroll_wheel_create().
 
-GX_GENERIC_SCROLL_WHEEL pochodzi od usługi GX_SCROLL_WHEEL obsługuje wszystkie gx_scroll_wheel usług.
+GX_GENERIC_SCROLL_WHEEL pochodzi od usługi GX_SCROLL_WHEEL obsługuje wszystkie usługi gx_scroll_wheel.
 
-Wszystkie typy kółka przewijania GX_EVENT_LIST_SELECT zdarzeń nadrzędnych po przewinięciu koła przewijania.
+Wszystkie typy kółka przewijania GX_EVENT_LIST_SELECT zdarzenia nadrzędne po przewinięciu koła przewijania.
 
 ### <a name="parameters"></a>Parametry
 
-- **wheel** Wskaźnik do ogólnego bloku sterowania kółka przewijania
-- **name (nazwa)** Nazwa logiczna widżetu ogólnego koła przewijania
+- **wheel (koło)** Wskaźnik do ogólnego bloku sterowania kółka przewijania
+- **name (nazwa)** Nazwa logiczna ogólnego widżetu kółka przewijania
 - **element nadrzędny** Wskaźnik do widżetu nadrzędnego
 - **total_rows** Łączna liczba wierszy koła przewijania.
 - **wywołanie zwrotne** Funkcja wywołania zwrotnego do tworzenia wiersza widżetu. Można go GX_NULL, jeśli łączna liczba wierszy odpowiada liczbie wierszy podrzędnej. Należy go użyć do ponownego użycia widżetu, gdy liczba elementów podrzędnych jest mniejsza niż łączna liczba wierszy lub GX_STYLE_WRAP ustawiony styl. W tym przypadku upewnij się, że liczba dzieci jest o 1 większa niż liczba widocznych wierszy.
@@ -7218,8 +7295,8 @@ Ta usługa przypisuje lub zmienia łączną liczbę ogólnych wierszy kółka pr
 - **GX_SUCCESS** (0x00) Pomyślnie ustawiono wiersz sumy ogólnego koła przewijania
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
-- **GX_INVALID_VALUE** (0x22) Nieprawidłowa liczba wszystkich wierszy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_VALUE** (0x22) Nieprawidłowa liczba łącznej liczby wierszy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -7260,7 +7337,7 @@ UINT gx_horizontal_list_children_position(GX_HORIZONTAL_LIST *horizontal_list);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja umieszcza dzieci na liście poziomej. Ta funkcja jest wywoływana automatycznie, gdy lista odbiera zdarzenie GX_EVENT_SHOW, ale powinna być wywoływana bezpośrednio, jeśli lista zostanie zmodyfikowana po jej wychłodzeniu.
+Ta funkcja umieszcza dzieci na liście poziomej. Ta funkcja jest wywoływana automatycznie, gdy lista odbiera zdarzenie GX_EVENT_SHOW, ale powinna być wywoływana bezpośrednio, jeśli lista zostanie zmodyfikowana po jej zmianie.
 
 ### <a name="parameters"></a>Parametry
 
@@ -7268,7 +7345,7 @@ Ta funkcja umieszcza dzieci na liście poziomej. Ta funkcja jest wywoływana aut
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie pozycjonowano dzieci na liście poziomej
+- **GX_SUCCESS** (0x00) Pomyślnie pozycjonowano dzieci dla listy poziomej
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -7325,7 +7402,7 @@ Ta usługa tworzy listę poziomą.
 - **name (nazwa)** Nazwa listy poziomej
 - **element nadrzędny** Wskaźnik do widżetu nadrzędnego
 - **total_columns** Łączna liczba przecinków na liście poziomej
-- **wywołanie zwrotne** Jest to wskaźnik do funkcji wywołania zwrotnego dostarczonej przez aplikację. Funkcja wywołania zwrotnego jest wywoływana po przewinięciu poziomej listy w celu utworzenia nowo widocznych elementów listy. W ten sposób lista pozioma może wyświetlać dowolny typ widżetu zdefiniowanego przez użytkownika jako elementy listy.
+- **wywołanie zwrotne** Jest to wskaźnik do funkcji wywołania zwrotnego dostarczonej przez aplikację. Funkcja wywołania zwrotnego jest wywoływana po przewinięciu listy poziomej w celu utworzenia nowo widocznych elementów listy. W ten sposób lista pozioma może wyświetlać dowolny typ widżetu zdefiniowanego przez użytkownika jako elementy listy.
 - **style (styl)** Styl widżetu paska przewijania. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 - **horizontal_list_id** Zdefiniowany przez aplikację identyfikator listy poziomej
 - **rozmiar** Wymiary listy hogonal
@@ -7435,7 +7512,7 @@ UINT custom_list_event_process(
 ## <a name="gx_horizontal_list_page_index_set"></a>gx_horizontal_list_page_index_set
 
 
-Ustawianie początkowego indeksu strony
+Ustawianie indeksu stron początkowych
 
 ### <a name="prototype"></a>Prototype
 
@@ -7451,7 +7528,7 @@ Ta usługa ustawia indeks początkowy dla listy poziomej.
 
 ### <a name="parameters"></a>Parametry
 
-- **lista** Blok sterowania widżetem listy poziomej
+- **list (lista)** Blok sterowania widżetem listy poziomej
 - **indeks** Nowy górny indeks
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -7504,7 +7581,7 @@ Ta usługa zwraca wybrany indeks wpisów listy listy poziomej.
 ### <a name="parameters"></a>Parametry
 
 - **horizontal_list** Blok sterowania widżetem listy poziomej
-- **return_index** Miejsce docelowe dla indeksu listy zwracanych
+- **return_index** Miejsce docelowe indeksu listy zwracanych
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -7561,7 +7638,7 @@ Ta usługa przypisuje wybrany wpis na liście poziomej. W razie potrzeby pozioma
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie ustawiono wpis listy poziomej
+- **GX_SUCCESS** (0x00) Pomyślnie ustaw wpis listy poziomej
 - **GX_FAILURE** (0x10) Indeks nie znajduje się w nieprawidłowym zakresie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
@@ -7615,7 +7692,7 @@ Ta usługa zwraca wybrany wpis listy poziomej. Należy pamiętać, że jeśli li
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **GX_SUCCESS** (0x00) Pomyślnie uzyskano wpis listy poziomej
-- **GX_FAILURE** (0x10) Wybrany widżet został przewińony z widoku na liście z większą liczbę wierszy niż elementy klienckie.
+- **GX_FAILURE** (0x10) Wybrany widżet został przewinięcie z widoku na liście z większą liczbę wierszy niż elementy klienckie.
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -7671,7 +7748,7 @@ Ta usługa przypisuje łączną liczbę kolumn do wyświetlania na liście pozio
 - **GX_SUCCESS** (0x00) Pomyślnie przypisana liczba kolumn
 - **GX_CALLER_ERROR** (0x10) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_VALUE** (0x22) Nieprawidłowa wartość liczby
+- **GX_INVALID_VALUE** (0x22) Nieprawidłowa wartość licznika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -8037,7 +8114,7 @@ Ta usługa tworzy określony widżet ikon.
 - **GX_SUCCESS** (0x00) Pomyślne utworzenie ikony
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) widget
+- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -8175,7 +8252,7 @@ UINT gx_icon_pixelmap_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia mapę pikseli dla określonego widżetu ikony.
+Ta usługa ustawia mapę pikseli dla określonego widżetu ikon.
 
 ### <a name="parameters"></a>Parametry
 
@@ -8185,7 +8262,7 @@ Ta usługa ustawia mapę pikseli dla określonego widżetu ikony.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw map pikseli ikony powodzenie
+- **GX_SUCCESS** (0x00) Zestaw map pikseli pomyślnej ikony
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -8228,7 +8305,7 @@ UINT gx_image_reader_create(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja tworzy czytnik obrazów pierwotnych środowiska uruchomieniowego/dekoder. Obecnie obsługiwane są tylko nieprzetworzone typy obrazów JPEG i PNG. Ta usługa wymaga GX_SOFTWARE_DECODER_SUPPORT zdefiniowanej.
+Ta funkcja tworzy czytnik/dekoder nieprzetworzonych obrazów środowiska uruchomieniowego. Obecnie obsługiwane są tylko nieprzetworzone typy obrazów JPEG i PNG. Ta usługa wymaga GX_SOFTWARE_DECODER_SUPPORT zdefiniowanej usługi.
 
 ### <a name="parameters"></a>Parametry
 
@@ -8236,7 +8313,7 @@ Ta funkcja tworzy czytnik obrazów pierwotnych środowiska uruchomieniowego/deko
 - **dane** Wskaźnik do nieprzetworzonych danych wejściowych.
 - **data_size** Rozmiar nieprzetworzonych danych wejściowych.
 - **color_format** Żądany format koloru danych wyjściowych.
-- **tryb** Flagi trybów kompresji, dither i alfa.
+- **tryb** Flagi kompresowania, dither i trybów alfa.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -8299,7 +8376,7 @@ Ta usługa ustawia paletę dla bloku sterowania czytnika obrazów. Ta usługa wy
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw palety czytnika obrazów pomyślnych
+- **GX_SUCCESS** (0x00) Zestaw palety czytnika obrazów pomyślnie
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_VALUE** (0x22) Nieprawidłowy rozmiar palety
 
@@ -8336,7 +8413,7 @@ UINT gx_image_reader_start(
 
 ### <a name="description"></a>Opis
 
-Ta usługa dekoduje nieprzetworzone obrazy do określonego formatu kolorów. Obecnie obsługiwane są tylko nieprzetworzone typy obrazów JPEG i PNG. Wymaga to GX_SOFTWARE_DECODER_SUPPORT zdefiniowanych.
+Ta usługa dekoduje nieprzetworzone obrazy do określonego formatu kolorów. Obecnie obsługiwane są tylko nieprzetworzone typy obrazów JPEG i PNG. Wymaga to GX_SOFTWARE_DECODER_SUPPORT zdefiniowanej.
 
 ### <a name="parameters"></a>Parametry
 
@@ -8389,7 +8466,7 @@ VOID gx_line_chart_axis_draw(GX_LINE_CHART *chart);
 
 Ta usługa rysuje oś x,y wykresu liniowego. Kolory osi i parametry szerokości linii są pobierane ze struktury informacji wykresu liniowego.
 
-Ta usługa jest zwykle wywoływana wewnętrznie przez funkcję gx_line_chart_draw, ale jest narażona na aplikację, aby pomóc w pisaniu niestandardowych funkcji rysowania.
+Ta usługa jest zwykle wywoływana wewnętrznie przez funkcję gx_line_chart_draw, ale jest narażona na działanie aplikacji, aby pomóc w pisaniu niestandardowych funkcji rysowania.
 
 ### <a name="parameters"></a>Parametry
 
@@ -8452,7 +8529,7 @@ UINT gx_line_chart_create(
 
 Ta usługa tworzy okno wykresu liniowego. Parametry rysowania wykresu i dane wykresu są przekazywane za pośrednictwem GX_LINE_CHART_INFO struktury.
 
-GX_LINE_CHART jest oparta na GX_WINDOW i obsługuje wszystkie interfejsy API GX_WINDOW.
+GX_LINE_CHART jest oparta na GX_WINDOW i obsługuje wszystkie GX_WINDOW API.
 
 ### <a name="parameters"></a>Parametry
 
@@ -8470,7 +8547,7 @@ GX_LINE_CHART jest oparta na GX_WINDOW i obsługuje wszystkie interfejsy API GX_
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
-- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
+- **GX_ALREADY_CREATED** (0x13) widget
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -8533,7 +8610,7 @@ VOID gx_line_chart_data_draw(GX_LINE_CHART *chart);
 
 Ta usługa rysuje linię danych wykresu liniowego. Kolory linii i parametry szerokości linii są pobierane ze struktury informacji wykresu liniowego.
 
-Ta usługa jest zwykle wywoływana wewnętrznie przez funkcję gx_line_chart_draw, ale jest narażona na aplikację, aby pomóc w pisaniu niestandardowych funkcji rysowania.
+Ta usługa jest zwykle wywoływana wewnętrznie przez funkcję gx_line_chart_draw, ale jest narażona na działanie aplikacji, aby pomóc w pisaniu niestandardowych funkcji rysowania.
 
 ### <a name="parameters"></a>Parametry
 
@@ -8690,16 +8767,16 @@ UINT gx_line_chart_y_scale_calculate(
 
 ### <a name="description"></a>Opis
 
-Ta usługa oblicza wartość skalowania o stałym punkcie używaną do wykreślania wartości danych na osi wykresu Y. Parametry chart_info i prostokąt ograniczający wykres są używane do obliczania tej wartości skalowania.
+Ta usługa oblicza wartość skalowania o stałym punkcie używaną do wykreślania wartości danych na osi Y wykresu. Parametry chart_info i prostokąt ograniczający wykres są używane do obliczania tej wartości skalowania.
 
 ### <a name="parameters"></a>Parametry
 
 - **wykres** Blok sterowania wykresem liniowym
-- **return_val** Adres wartości do przechowywania wartości zwracanej o stałym punkcie.
+- **return_val** Adres wartości do przechowywania wartości zwracanej ze stałym punktem.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Obliczanie pomyślnej wartości skalowania y
+- **GX_SUCCESS** (0x00) Obliczanie wartości skalowania pomyślnych wartości y
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -8745,7 +8822,7 @@ UINT gx_menu_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy określone menu i kojarzy je z dostarczonym widżetem nadrzędnym. Akceptuje wszystkie typy widżetów jako podrzędny element menu. Aby wstawić widżet jako podrzędny element menu, **wywołaj** gx_menu_insert .
+Ta usługa tworzy określone menu i kojarzy je z podanym widżetem nadrzędnym. Akceptuje wszystkie typy widżetów jako podrzędny element menu. Aby wstawić widżet jako podrzędny element menu, **wywołaj** gx_menu_insert .
 
 GX_MENU pochodzi od usługi GX_PIXELMAP_PROMPT obsługuje wszystkie usługi gx_pixelmap_prompt API.
 
@@ -8765,7 +8842,7 @@ GX_MENU pochodzi od usługi GX_PIXELMAP_PROMPT obsługuje wszystkie usługi gx_p
 - **GX_SUCCESS** (0x00) Pomyślne utworzenie menu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
+- **GX_ALREADY_CREATED** (0x13) widget
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -8864,7 +8941,7 @@ UINT gx_menu_event_process(GX_MENU *menu, GX_EVENT *event_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa przetwarza zdarzenie dla określonego menu. Ta usługa powinna być wywoływana jako domyślna procedura obsługi zdarzeń przez wszystkie funkcje przetwarzania zdarzeń menu niestandardowego.
+Ta usługa przetwarza zdarzenie dla określonego menu. Ta usługa powinna być wywoływana jako domyślna procedura obsługi zdarzeń przez dowolne funkcje przetwarzania zdarzeń menu niestandardowego.
 
 ### <a name="parameters"></a>Parametry
 
@@ -8876,7 +8953,7 @@ Ta usługa przetwarza zdarzenie dla określonego menu. Ta usługa powinna być w
 - **GX_SUCCESS** (0x00) Pomyślne zdarzenie menu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x23) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x23) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -9089,7 +9166,7 @@ VOID my_menu_draw(GX_MENU *menu)
 ## <a name="gx_menu_text_offset_set"></a>gx_menu_text_offset_set
 
 
-Ustawianie przesunięcia rysowania tekstu w menu
+Ustawianie przesunięcia rysowania tekstu menu
 
 ### <a name="prototype"></a>Prototype
 
@@ -9112,7 +9189,7 @@ Ta usługa ustawia przesunięcie ekranu x, y dla tekstu menu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Przesunięcie narysowania tekstu w menu Zestaw pomyślnych
+- **GX_SUCCESS** (0x00) Przesunięcie narysowania tekstu w menu Zestaw pomyślny
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -9162,17 +9239,17 @@ UINT gx_multi_line_text_button_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy widżet wielo wiersza przycisku tekstowego. Przycisk tekstu wielo wierszowego wyświetla tekst przycisku w ponad 1 n wierszach. Maksymalna liczba wierszy jest definiowana przez stałą GX_MULTI_LINE_TEXT_BUTTON_MAX_LINES, która domyślnie wynosi 4. Podziały wierszy są ustawiane według powrotu karetki i/lub powrotu karetki + pary znaków wiersza w ciągu tekstowym przypisanym do przycisku tekstu wielo wierszowego.
+Ta usługa tworzy widżet wielo wiersza przycisku tekstowego. Przycisk tekstu wielo wierszowego wyświetla tekst przycisku w ponad 1 n wierszach. Maksymalna liczba wierszy jest definiowana przez stałą GX_MULTI_LINE_TEXT_BUTTON_MAX_LINES, która domyślnie wynosi 4. Podziały wierszy są ustawiane za pomocą powrotu karetki i/lub powrotu karetki + pary znaków wiersza w ciągu tekstowym przypisanym do przycisku tekstu wielo wierszowego.
 
 GX_MULTI_LINE_TEXT_BUTTON pochodzi od usługi GX_TEXT_BUTTON obsługuje wszystkie usługi gx_text_button API.
 
 ### <a name="parameters"></a>Parametry
 
-- **text_button** Wskaźnik do bloku kontrolki przycisku tekstowego
+- **text_button** Blok sterujący wskaźnika do przycisku tekstowego
 - **name (nazwa)** Nazwa logiczna przycisku tekstowego
 - **element nadrzędny** Wskaźnik do widżetu nadrzędnego przycisku
 - **text_id** Identyfikator zasobu tekstu
-- **style (styl)** Styl przycisku Tekst. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
+- **style (styl)** Styl przycisku tekstowego. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 - **text_button_id** Zdefiniowany przez aplikację identyfikator przycisku tekstowego
 - **rozmiar** Rozmiar przycisku
 
@@ -9181,7 +9258,7 @@ GX_MULTI_LINE_TEXT_BUTTON pochodzi od usługi GX_TEXT_BUTTON obsługuje wszystki
 - **GX_SUCCESS** (0x00) Pomyślne utworzenie przycisku tekstowego z wieloma wierszami
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) widget
+- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -9222,11 +9299,11 @@ VOID gx_multi_line_text_button_draw(GX_MULTI_LINE_TEXT_BUTTON *button);
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje wielo wierszowy przycisk tekstowy. Ta funkcja jest zwykle wywoływana wewnętrznie przez guix jako część operacji odświeżania kanwy, ale jest również narażona na działanie aplikacji, która może chcieć udostępnić niestandardową funkcję rysowania i wywołać domyślny wielowierszowy przycisk tekstowy rysując jako niestandardową bazę rysowania.
+Ta usługa rysuje wielo wierszowy przycisk tekstowy. Ta funkcja jest zwykle wywoływana wewnętrznie przez graficzny interfejs użytkownika (GUIX) jako część operacji odświeżania kanwy, ale jest również narażona na aplikację, która może chcieć udostępnić niestandardową funkcję rysowania i wywołać domyślny wielowierszowy przycisk rysowania tekstu jako niestandardową bazę rysowania.
 
 ### <a name="parameters"></a>Parametry
 
-- **przycisk** Blok sterujący wskaźnika do przycisku tekstowego
+- **przycisk** Wskaźnik do bloku kontrolki przycisku tekstowego
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -9332,7 +9409,7 @@ VOID gx_multi_line_text_button_text_draw(GX_MULTI_LINE_TEXT_BUTTON *text_button)
 
 ### <a name="description"></a>Opis
 
-Ta funkcja obsługi rysuje część tekstową przycisku tekstu wielo wierszowego. Ta funkcja jest wywoływana wewnętrznie przez funkcję gx_multi_line_text_button_draw() i jest dostarczana jako oddzielny interfejs API jako udogodnienie dla aplikacji, które definiują niestandardową funkcję rysowania przycisków tekstowych w wielu wierszach. Aplikacje, które chcą dostosować rysunek tła przycisku, mogą zapewnić niestandardową funkcję rysowania i wywołać usługę multi_line_text_button_text_draw jako część niestandardowego rysowania, aby narysować tekst przycisku w tle.
+Ta funkcja obsługi rysuje część tekstową przycisku tekstu wielo wierszowego. Ta funkcja jest wywoływana wewnętrznie przez funkcję gx_multi_line_text_button_draw() i jest dostarczana jako oddzielny interfejs API jako udogodnienie dla aplikacji, które definiują niestandardową funkcję rysowania wielo wierszowego przycisku tekstowego. Aplikacje, które chcą dostosować rysunek tła przycisku, mogą zapewnić niestandardową funkcję rysowania i wywołać usługę multi_line_text_button_text_draw jako część niestandardowego rysowania, aby narysować tekst przycisku w tle.
 
 ### <a name="parameters"></a>Parametry
 
@@ -9391,7 +9468,7 @@ Ta usługa ustawia określony identyfikator zasobu ciągu na przycisk tekstowy. 
 
 ### <a name="parameters"></a>Parametry
 
-- **text_button** Blok sterujący wskaźnika do przycisku tekstowego
+- **text_button** Wskaźnik do bloku kontrolki przycisku tekstowego
 - **string_id** Identyfikator zasobu ciągu
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -9440,11 +9517,11 @@ UINT gx_mult_line_text_button_text_set(
 
 Ta usługa jest przestarzała na rzecz gx_multi_line_text_button_text_set_ext().
 
-Ta usługa przypisuje określony ciąg do przycisku tekstowego. Jeśli widżet text_button został utworzony za pomocą stylu GX_STYLE_TEXT_COPY, widżet tworzy prywatną kopię przypisanego ciągu tekstowego i dlatego interfejs API usługi gx_system_memmory_allocate_set musi zostać wywołany raz przed żądaniem tej usługi. Jeśli GX_STYLE_TEXT_COPY nie jest aktywny, widżet nie robi prywatnej kopii przychodzącego ciągu, dlatego ciąg musi być przydzielany statycznie lub globalnie, tzn. może nie być automatyczną ani tymczasową zmienną.
+Ta usługa przypisuje określony ciąg do przycisku tekstowego. Jeśli widżet text_button został utworzony za pomocą stylu GX_STYLE_TEXT_COPY, widżet tworzy prywatną kopię przypisanego ciągu tekstowego i dlatego interfejs API usługi gx_system_memmory_allocate_set musi zostać wywołany raz przed żądaniem tej usługi. Jeśli GX_STYLE_TEXT_COPY nie jest aktywny, widżet nie będzie prywatną kopią ciągu przychodzącego, dlatego ciąg musi być przydzielany statycznie lub globalnie, tzn. może nie być zmienną automatyczną lub tymczasową.
 
 ### <a name="parameters"></a>Parametry
 
-- **text_button** Wskaźnik do bloku kontrolki przycisku tekstowego
+- **text_button** Blok sterujący wskaźnika do przycisku tekstowego
 - **wskaźnik tekstowy** do ciągu zakończonego wartością NULL
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -9494,12 +9571,12 @@ UINT gx_mult_line_text_button_text_set_ext(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przypisuje określony ciąg do przycisku tekstowego. Jeśli widżet text_button został utworzony za pomocą stylu GX_STYLE_TEXT_COPY, widżet tworzy prywatną kopię przypisanego ciągu tekstowego i dlatego interfejs API usługi gx_system_memmory_allocate_set musi zostać wywołany raz przed żądaniem tej usługi. Jeśli GX_STYLE_TEXT_COPY nie jest aktywny, widżet nie będzie prywatną kopią ciągu przychodzącego, dlatego ciąg musi być przydzielany statycznie lub globalnie, tzn. może nie być zmienną automatyczną lub tymczasową.
+Ta usługa przypisuje określony ciąg do przycisku tekstowego. Jeśli widżet text_button został utworzony za pomocą stylu GX_STYLE_TEXT_COPY, widżet tworzy prywatną kopię przypisanego ciągu tekstowego i dlatego interfejs API usługi gx_system_memmory_allocate_set musi zostać wywołany raz przed żądaniem tej usługi. Jeśli GX_STYLE_TEXT_COPY nie jest aktywny, widżet nie robi prywatnej kopii przychodzącego ciągu, dlatego ciąg musi być przydzielany statycznie lub globalnie, tzn. może nie być automatyczną ani tymczasową zmienną.
 
 ### <a name="parameters"></a>Parametry
 
-- **text_button** Blok sterujący wskaźnika do przycisku tekstowego
-- **wskaźnik ciągu** do GX_STRING zmiennej
+- **text_button** Wskaźnik do bloku kontrolki przycisku tekstowego
+- **wskaźnik** ciągu do GX_STRING zmiennej
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -9549,7 +9626,7 @@ UINT gx_multi_line_text_input_backspace(
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa znak przed położeniem kursora wprowadzania tekstu w wielu wierszach. Ta usługa jest wywoływana wewnętrznie po otrzymaniu zdarzenia wywrócenia klucza backspace, ale może być również wywoływana przez aplikację.
+Ta usługa usuwa znak przed położeniem kursora wprowadzania tekstu w wielu wierszach. Ta usługa jest wywoływana wewnętrznie po otrzymaniu zdarzenia down klawisza Backspace, ale może być również wywoływana przez aplikację.
 
 ### <a name="parameters"></a>Parametry
 
@@ -9557,10 +9634,10 @@ Ta usługa usuwa znak przed położeniem kursora wprowadzania tekstu w wielu wie
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Successful multi-line text input backspace (Pomyślne wprowadzanie tekstu w wielu wierszach)
+- **GX_SUCCESS** (0x00) Successful multi-line text input backspace (Pomyślne wprowadzanie tekstu w wielu wierszach — backspace)
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x23) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x23) Widżet jest nieprawidłowy
 - **GX_FAILURE** (0x10) Nieprawidłowa czcionka
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -9622,7 +9699,7 @@ UINT gx_multi_line_text_input_buffer_clear(GX_MULTI_LINE_TEXT_INPUT *text_input)
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wszystkie znaki z bufora wprowadzania tekstu.
+Ta usługa usuwa wszystkie znaki z buforu wprowadzania tekstu.
 
 ### <a name="parameters"></a>Parametry
 
@@ -9630,7 +9707,7 @@ Ta usługa usuwa wszystkie znaki z bufora wprowadzania tekstu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Wyczyść bufor pomyślne wprowadzanie tekstu w wielu wierszach
+- **GX_SUCCESS** (0x00) Wyczyść bufor pomyślne wprowadzanie tekstu wielo wiersza
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -9767,7 +9844,7 @@ status = gx_multi_line_text_input_buffer_get(&my_text_input,
 ## <a name="gx_multi_line_text_input_char_insert"></a>gx_multi_line_text_input_char_insert
 
 
-Wstawianie ciągu znaków w bieżącej pozycji kursora wprowadzania tekstu w wielu wierszach (przestarzałe)
+Wstaw ciąg znaków w bieżącej pozycji kursora wprowadzania tekstu w wielu wierszach (przestarzałe)
 
 ### <a name="prototype"></a>Prototype
 
@@ -9780,9 +9857,9 @@ UINT gx_multi_line_text_input_char_insert(
 
 ### <a name="description"></a>Opis
 
-Ten interfejs API jest przestarzały i został zastąpiony przez gx_multi_line_text_input_char_insert_ext().
+Ten interfejs API jest przestarzały i zastąpiony przez gx_multi_line_text_input_char_insert_ext().
 
-Ta usługa wstawia ciąg znaków do buforu ciągu wejściowego tekstu wielo wierszowego w bieżącym położeniu kursora. Ta usługa jest wywoływana wewnętrznie, gdy zostanie odebrane określone zdarzenie key down, ale może być również wywoływana przez aplikację.
+Ta usługa wstawia ciąg znaków do buforu ciągu wejściowego tekstu wielo wierszowego na bieżącym miejscu kursora. Ta usługa jest wywoływana wewnętrznie po otrzymaniu określonego zdarzenia kluczowych kluczy, ale może być również wywoływana przez aplikację.
 
 ### <a name="parameters"></a>Parametry
 
@@ -9822,7 +9899,7 @@ status = gx_multi_line_text_input_char_insert(&my_text_input,
 ## <a name="gx_multi_line_text_input_char_insert_ext"></a>gx_multi_line_text_input_char_insert_ext
 
 
-Wstaw ciąg znaków w bieżącej pozycji kursora wprowadzania tekstu w wielu wierszach (przestarzałe)
+Wstawianie ciągu znaków w bieżącej pozycji kursora wprowadzania tekstu w wielu wierszach (przestarzałe)
 
 ### <a name="prototype"></a>Prototype
 
@@ -9834,7 +9911,7 @@ UINT gx_multi_line_text_input_char_insert_ext(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wstawia ciąg znaków do buforu ciągu wejściowego tekstu wielo wierszowego na bieżącym miejscu kursora. Ta usługa jest wywoływana wewnętrznie po otrzymaniu określonych zdarzeń kluczowych, ale może być również wywoływana przez aplikację.
+Ta usługa wstawia ciąg znaków do buforu ciągu wejściowego tekstu wielo wierszowego w bieżącym położeniu kursora. Ta usługa jest wywoływana wewnętrznie po otrzymaniu określonych zdarzeń kluczowych, ale może być również wywoływana przez aplikację.
 
 ### <a name="parameters"></a>Parametry
 
@@ -9846,9 +9923,9 @@ Ta usługa wstawia ciąg znaków do buforu ciągu wejściowego tekstu wielo wier
 - **GX_SUCCESS** (0x00) Pomyślnie wstawiono ciąg znaków
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 - **GX_INVALID_VALUE** (0x22) Nieprawidłowy rozmiar ciągu
-- **GX_FAILURE** (0x10) Nieprawidłowa czcionka lub poza rozmiarem buforu
+- **GX_FAILURE** (0x10) Nieprawidłowa czcionka lub rozmiar buforu jest poza
 - **GX_INVALID_STRING_LENGTH** (0x34) Nieprawidłowa długość ciągu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -9923,14 +10000,14 @@ UINT gx_multi_line_text_input_create(
 
 Ta usługa tworzy widżet wprowadzania tekstu w wielu wierszach.
 
-GX_MULTI_LINE_TEXT_INPUT pochodzi od GX_MULTI_LINE_TEXT_VIEW i obsługuje wszystkie usługi gx_multi_line_text_view danych.
+GX_MULTI_LINE_TEXT_INPUT pochodzi od usługi GX_MULTI_LINE_TEXT_VIEW obsługuje wszystkie usługi gx_multi_line_text_view.
 
 ### <a name="parameters"></a>Parametry
 
 - **text_input** Blok sterowania widżetem wprowadzania tekstu w wielu wierszach
 - **name (nazwa)** Nazwa widżetu wprowadzania tekstu
 - **element nadrzędny** Wskaźnik do widżetu nadrzędnego
-- **input_buffer** Wskaźnik do buforu wprowadzania tekstu
+- **input_buffer** Wskaźnik do bufora wprowadzania tekstu
 - **buffer_size** Rozmiar buforu wprowadzania tekstu w bajtach
 - **style (styl)** Styl widżetu wprowadzania tekstu. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 - **text_input_id** Zdefiniowany przez aplikację identyfikator wprowadzania tekstu
@@ -9938,10 +10015,10 @@ GX_MULTI_LINE_TEXT_INPUT pochodzi od GX_MULTI_LINE_TEXT_VIEW i obsługuje wszyst
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne utworzenie wielo wierszowego tekstu wejściowego
+- **GX_SUCCESS** (0x00) Pomyślne tworzenie wielo wiersza tekstu wejściowego
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) widget
+- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
 - **GX_INVALID_WIDGET** (0x12) Widżet nadrzędny jest nieprawidłowy
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 
@@ -10016,7 +10093,7 @@ UINT gx_multi_line_text_input_cursor_pos_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera położenie kursora wprowadzania tekstu mult-line.
+Ta usługa pobiera pozycję kursora wprowadzania tekstu mult-line.
 
 ### <a name="parameters"></a>Parametry
 
@@ -10027,7 +10104,7 @@ Ta usługa pobiera położenie kursora wprowadzania tekstu mult-line.
 
 - **GX_SUCCESS** (0x00) Pomyślnie pobrano położenie kursora
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -10081,7 +10158,7 @@ status = gx_multi_line_text_input_cursor_pos_get(&my_text_input,
 ## <a name="gx_multi_line_text_input_delete"></a>gx_multi_line_text_input_delete
 
 
-Usuwanie znaku na pozycji kursora wprowadzania tekstu w wielu wierszach
+Usuń znak na pozycji kursora wprowadzania tekstu wielo wierszowego
 
 ### <a name="prototype"></a>Prototype
 
@@ -10091,7 +10168,7 @@ UINT gx_multi_line_text_input_delete(GX_MULTI_LINE_TEXT_INPUT *text_input);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa znak po pozycji kursora wprowadzania tekstu w wielu wierszach. Ta usługa jest wywoływana wewnętrznie po otrzymaniu zdarzenia usuwania klucza w dół, ale może być również wywoływana przez aplikację.
+Ta usługa usuwa znak po pozycji kursora wprowadzania tekstu wielo wierszowego. Ta usługa jest wywoływana wewnętrznie po otrzymaniu zdarzenia usunięcia klucza, ale może być również wywoływana przez aplikację.
 
 ### <a name="parameters"></a>Parametry
 
@@ -10102,7 +10179,7 @@ Ta usługa usuwa znak po pozycji kursora wprowadzania tekstu w wielu wierszach. 
 - **GX_SUCCESS** (0x00) Pomyślnie usuń znak po kursorze
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 - **GX_FAILURE** (0x10) Nieprawidłowa czcionka
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -10227,7 +10304,7 @@ status = gx_multi_line_text_input_down_arrow(&my_text_input);
 ## <a name="gx_multi_line_text_input_end"></a>gx_multi_line_text_input_end
 
 
-Przenoszenie wielo wierszowego kursora wprowadzania tekstu na koniec bieżącego wiersza
+Przenieś wielo wierszowy kursor wprowadzania tekstu na koniec bieżącego wiersza
 
 ### <a name="prototype"></a>Prototype
 
@@ -10237,7 +10314,7 @@ UINT gx_multi_line_text_input_end(GX_MULTI_LINE_TEXT_INPUT *text_input);
 
 ### <a name="description"></a>Opis
 
-Ta usługa umieszcza kursor widżetu wprowadzania tekstu w wielu wierszach na końcu bieżącego wiersza ciągu. Ta usługa jest wywoływana wewnętrznie po otrzymaniu zdarzenia zakończenia klucz-dół, ale może być również wywoływana przez aplikację.
+Ta usługa umieszcza kursor widżetu wprowadzania tekstu wielo wiersza na końcu bieżącego wiersza ciągu. Ta usługa jest wywoływana wewnętrznie po otrzymaniu zdarzenia kluczowych kluczy końcowych, ale może być również wywoływana przez aplikację.
 
 ### <a name="parameters"></a>Parametry
 
@@ -10248,7 +10325,7 @@ Ta usługa umieszcza kursor widżetu wprowadzania tekstu w wielu wierszach na ko
 - **GX_SUCCESS** (0x00) Pomyślnie przeniesiono kursor wprowadzania tekstu na koniec bieżącego wiersza
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -10299,7 +10376,7 @@ status = gx_multi_line_text_input_end(&my_text_input);
 ## <a name="gx_multi_line_text_input_event_process"></a>gx_multi_line_text_input_event_process
 
 
-Domyślna obsługa zdarzeń dla wprowadzania tekstu w wielu wierszach
+Domyślna obsługa zdarzeń w przypadku wprowadzania tekstu w wielu wierszach
 
 ### <a name="prototype"></a>Prototype
 
@@ -10315,7 +10392,7 @@ Ta usługa jest domyślną funkcją obsługi zdarzeń dla widżetu wprowadzania 
 
 ### <a name="parameters"></a>Parametry
 
-- **przycisk** Wskaźnik do bloku kontrolki wprowadzania tekstu w wielu wierszach
+- **przycisk** Wskaźnik do wielo wierszowego bloku kontrolki wprowadzania tekstu
 - **event_ptr** Zdarzenie do przetworzenia
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -10492,7 +10569,7 @@ Ta usługa przenosi położenie kursora wprowadzania tekstu na początek bieżą
 - **GX_SUCCESS** (0x00) Pomyślnie przeniesiono kursor na początek bieżącego wiersza
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -10564,7 +10641,7 @@ Ta usługa przenosi wielo wierszowy kursor wprowadzania tekstu o jeden znak w le
 - **GX_SUCCESS** (0x00) Pomyślnie przeniesiono kursor w lewo
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 - **GX_FAILURE** (0x10) Nieprawidłowa czcionka
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -10627,7 +10704,7 @@ UINT gx_multi_line_text_input_right_arrow(GX_MULTI_LINE_TEXT_INPUT *text_input);
 
 ### <a name="description"></a>Opis
 
-Ta usługa przenosi wielo wierszowy kursor wprowadzania tekstu o jeden znak w prawo. Ta usługa jest wywoływana wewnętrznie po otrzymaniu zdarzenia właściwego klucza w dół, ale może być również wywoływana przez aplikację.
+Ta usługa przenosi wielo wierszowy kursor wprowadzania tekstu o jeden znak w prawo. Ta usługa jest wywoływana wewnętrznie po otrzymaniu zdarzenia kluczowych kluczy, ale może być również wywoływana przez aplikację.
 
 ### <a name="parameters"></a>Parametry
 
@@ -10710,7 +10787,7 @@ Ta usługa dodaje style do widżetu wprowadzania tekstu w wielu wierszach.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Dodawanie stylu pomyślnego wprowadzania tekstu w wielu wierszach
+- **GX_SUCCESS** (0x00) Pomyślne dodanie stylu wprowadzania tekstu w wielu wierszach
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -10838,7 +10915,7 @@ status = gx_multi_line_text_input_style_remove(&my_text_input,
 
 ## <a name="gx_multi_line_text_input_style_set"></a>gx_multi_line_text_input_style_set
 
-Ustawianie stylów wprowadzania tekstu wielo wierszowego
+Ustawianie stylów wprowadzania tekstu w wielu wierszach
 
 ### <a name="prototype"></a>Prototype
 
@@ -10850,7 +10927,7 @@ UINT gx_multi_line_text_input_style_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia style dla widżetu wprowadzania tekstu wielo wierszowego.
+Ta usługa ustawia style dla widżetu wprowadzania tekstu w wielu wierszach.
 
 ### <a name="parameters"></a>Parametry
 
@@ -10928,7 +11005,7 @@ UINT gx_multi_line_text_input_text_color_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przypisuje kolory tekstu dla widżetu wprowadzania tekstu wielo wierszowego.
+Ta usługa przypisuje kolory tekstu dla widżetu wprowadzania tekstu w wielu wierszach.
 
 ### <a name="parameters"></a>Parametry
 
@@ -11137,7 +11214,7 @@ UINT gx_mult_line_text_input_text_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przypisuje określony ciąg do wprowadzania tekstu w wielu wierszach. Jeśli multi_line_text_input bufor wejściowy widżetu jest mniejszy niż długość ciągu, ciąg zostanie obcięty.
+Ta usługa przypisuje określony ciąg do wprowadzania tekstu w wielu wierszach. Jeśli rozmiar multi_line_text_input buforu wejściowego widżetu jest mniejszy niż długość ciągu, ciąg zostanie obcięty.
 
 ### <a name="parameters"></a>Parametry
 
@@ -11205,7 +11282,7 @@ status = gx_multi_line_text_input_text_set_ext(&my_text_input,
 ## <a name="gx_multi_line_text_input_up_arrow"></a>gx_multi_line_text_input_up_arrow
 
 
-Przenoszenie wielo wierszowego kursora wprowadzania tekstu do poprzedniego wiersza
+Przenoszenie kursora wprowadzania tekstu wielo wierszowego do poprzedniego wiersza
 
 ### <a name="prototype"></a>Prototype
 
@@ -11690,14 +11767,14 @@ Ta usługa pobiera informacje o przewijaniu widoku tekstowego z wieloma wierszam
 
 ### <a name="parameters"></a>Parametry
 
-- **text_view** Blok kontrolki widżetu widoku tekstowego z wieloma wierszami
+- **text_view** Blok kontrolki widżetu widoku tekstu wielo wierszowego
 - **Styl** GX_SCROLLBAR_HORIZONTAL lub GX_SCROLLBAR_VERTICAL
 - **Informacje** Wskaźnik do miejsca docelowego dla informacji o przewijaniu. **Dodatek I** zawiera definicję GX_SCROLL_INFO struktury.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Informacje o przewijaniu widoku tekstowego pomyślnie pobrano
-- **GX_FAILURE** (0x10) Widget jest niewidoczny lub identyfikator czcionki widoku tekstowego jest nieprawidłowy
+- **GX_SUCCESS** (0x00) Pomyślnie pobrano informacje o przewijaniu widoku tekstu
+- **GX_FAILURE** (0x10) Widget nie jest widoczny lub identyfikator czcionki widoku tekstowego jest nieprawidłowy
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -11770,14 +11847,14 @@ Ta usługa przypisuje kolor tekstu do widżetu widoku tekstu wielo wierszowego.
 
 ### <a name="parameters"></a>Parametry
 
-- **text_view** Blok kontrolki widżetu widoku tekstowego z wieloma wierszami
-- **normal_text_color_id** Identyfikator zasobu normalnego koloru tekstu, który był używany w stanie normalnym
+- **text_view** Blok kontrolki widżetu widoku tekstu wielo wierszowego
+- **normal_text_color_id** Identyfikator zasobu normalnego koloru tekstu, który był używany w normalnym stanie
 - **selected_text_color_id** Identyfikator zasobu wybranego koloru tekstu, który był używany podczas koncentracji uwagi widżetu
 - **disabled_text_color_id** Identyfikator zasobu wyłączonego koloru tekstu, który GX_STYLE_ENABLED nie jest aktywny
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie ustawiono kolory dla widoku tekstu wielo wierszowego
+- **GX_SUCCESS** (0x00) Pomyślnie ustawiono kolory dla widoku tekstu wielo wiersza
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -11849,12 +11926,12 @@ Ta usługa ustawia identyfikator zasobu ciągu na widżet widoku tekstowego z wi
 
 ### <a name="parameters"></a>Parametry
 
-- **text_view** Blok kontrolki widżetu widoku tekstowego z wieloma wierszami
+- **text_view** Blok kontrolki widżetu widoku tekstu wielo wierszowego
 - **text_id** Identyfikator zasobu dla ciągu tekstowego
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie ustawiono identyfikator ciągu dla widoku tekstu wielo wierszowego
+- **GX_SUCCESS** (0x00) Pomyślnie ustawiono identyfikator ciągu dla widoku tekstu wielo wiersza
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_RESOURCE_ID** (0x33) Nieprawidłowy identyfikator zasobu
@@ -11920,11 +11997,11 @@ UINT gx_multi_line_text_view_text_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przypisuje ciąg tekstowy do widżetu widoku tekstowego z wieloma wierszami. Jeśli widżet text_view został utworzony za pomocą stylu GX_STYLE_TEXT_COPY, widżet tworzy prywatną kopię przypisanego ciągu tekstowego i dlatego interfejs API usługi gx_system_memory_allocate_set musi zostać wywołany raz przed żądaniem tej usługi. Jeśli GX_STYLE_TEXT_COPY nie jest aktywny, widżet nie robi prywatnej kopii przychodzącego ciągu, dlatego przypisany ciąg musi być przydzielany statycznie lub globalnie, tzn. może nie być automatyczną ani tymczasową zmienną.
+Ta usługa przypisuje ciąg tekstowy do widżetu widoku tekstu wielo wierszowego. Jeśli widżet text_view został utworzony za pomocą stylu GX_STYLE_TEXT_COPY, widżet tworzy prywatną kopię przypisanego ciągu tekstowego i dlatego interfejs API usługi gx_system_memory_allocate_set musi zostać wywołany raz przed żądaniem tej usługi. Jeśli GX_STYLE_TEXT_COPY nie jest aktywny, widżet nie robi prywatnej kopii przychodzącego ciągu, dlatego przypisany ciąg musi być przydzielany statycznie lub globalnie, tzn. może to nie być zmienna automatyczna lub tymczasowa.
 
 ### <a name="parameters"></a>Parametry
 
-- **text_view** Blok kontrolki widżetu widoku tekstowego z wieloma wierszami
+- **text_view** Blok kontrolki widżetu widoku tekstu wielo wierszowego
 - **tekst** Ciąg tekstowy z zakończeniem o wartości NULL
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -11995,7 +12072,7 @@ UINT gx_multi_line_text_view_whitespace_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia odstępy między konturami widżetu i obszarem klienta dla widżetu wieloliniowego widoku tekstowego.
+Ta usługa ustawia odstępy między konturami widżetu i obszarem klienta dla widżetu widoku tekstu wieloliniowego.
 
 ### <a name="parameters"></a>Parametry
 
@@ -12085,14 +12162,14 @@ GX_NUMERIC_PIXELMAP_PROMPT pochodzi od usługi GX_PIXELMAP_PROMPT obsługuje wsz
 - **fill_id** Identyfikator mapy pikseli dla obszaru wypełnienia
 - **style (styl)** Styl numerycznego monitu mapy pikseli dodatek **D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 - **pixelmap_prompt_id** Identyfikator monitu zdefiniowany przez aplikację
-- **rozmiar** Wymiary liczbowego monitu o mapę pikseli
+- **rozmiar** Wymiary liczbowego monitu o mapowanie pikseli
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie utwórz liczbowy monit pixlemap
+- **GX_SUCCESS** (0x00) Pomyślnie utwórz numeryczny monit pixlemap
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
+- **GX_ALREADY_CREATED** (0x13) widget
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -12136,12 +12213,12 @@ Ta usługa zastępuje domyślną funkcję formatowania widżetu wiersza numerycz
 
 ### <a name="parameters"></a>Parametry
 
-- **monituj** Blok sterowania monitem o mapowanie liczbowych pikseli
+- **monituj** Blok sterowania monitem mapy numerycznej pikseli
 - **format_func** Funkcja Format do ustawienia
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie ustawiono funkcję formatu numerycznego monitu pixlemap
+- **GX_SUCCESS** (0x00) Pomyślnie ustawiono funkcję formatu monitu liczbowego pixellemap
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -12184,7 +12261,7 @@ status = gx_numeric_pixelmap_prompt_format_function_set(
 ## <a name="gx_numeric_pixelmap_prompt_value_set"></a>gx_numeric_pixelmap_prompt_value_set
 
 
-Ustawianie wartości monitu liczbowego pixellemap
+Ustawianie wartości monitu liczbowych map
 
 ### <a name="prototype"></a>Prototype
 
@@ -12196,11 +12273,11 @@ UINT gx_numeric_pixelmap_prompt_value_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa jest wartością całkowitą w wierszu numerycznej mapy pikseli.
+Ta usługa ma wartość całkowitą w wierszu polecenia mapowania liczbowych pikseli.
 
 ### <a name="parameters"></a>Parametry
 
-- **monituj** Blok sterowania monitem o mapowanie liczbowych pikseli
+- **monituj** Blok sterowania monitem mapy numerycznej pikseli
 - **wartość** Wartość całkowita do ustawienia
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -12245,13 +12322,13 @@ UINT gx_numeric_prompt_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy numeryczny widżet monitu. Wiersz numeric_ to tylko monit, który przechowuje własny bufor i udostępnia interfejs API gx_numeric_ prompt_value_set(INT), a rozmiar buforu jest definiowany przez stałą GX_NUMERIC_PROMPT_BUFFER_SIZE, która domyślnie wynosi 16.
+Ta usługa tworzy numeryczny widżet monitu. Wiersz numeric_ to po prostu monit, który przechowuje własny bufor i udostępnia interfejs API gx_numeric_ prompt_value_set(INT), rozmiar buforu jest definiowany przez stałą GX_NUMERIC_PROMPT_BUFFER_SIZE, która domyślnie wynosi 16.
 
 GX_NUMERIC_PROMPT pochodzi od usługi GX_PROMPT obsługuje wszystkie usługi gx_prompt API.
 
 ### <a name="parameters"></a>Parametry
 
-- **monituj** Blok sterowania numerycznym monitem
+- **monituj** Blok sterowania monitem liczbowym
 - **name (nazwa)** Nazwa monitu
 - **element nadrzędny** Blok kontrolki widżetu nadrzędnego
 - **text_id** Identyfikator ciągu zasobu
@@ -12264,7 +12341,7 @@ GX_NUMERIC_PROMPT pochodzi od usługi GX_PROMPT obsługuje wszystkie usługi gx_
 - **GX_SUCCESS** (0x00) Pomyślnie poślij monit liczbowy
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
+- **GX_ALREADY_CREATED** (0x13) widget
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -12291,7 +12368,7 @@ status = gx_numeric_prompt_create(&my_numeric_prompt,
 ## <a name="gx_numeric_prompt_format_function_set"></a>gx_numeric_prompt_format_function_set
 
 
-Zastąp funkcję formatowania monitu liczbowego
+Zastępowanie funkcji formatowania monitu liczbowego
 
 ### <a name="prototype"></a>Prototype
 
@@ -12303,16 +12380,16 @@ UINT gx_numeric_format_function_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa zastępuje domyślną funkcję formatu widżetu monitu liczbowego. Funkcja formatu domyślnego konwertuje wartość numeryczną monitu na ciąg i zapisuje ją w prywatnym buforze widżetu. Ta usługa umożliwia aplikacji zdefiniowanie własnej funkcji formatowania do formatowania i przechowywania wartości liczbowej monitu w prywatnym buforze widżetu.
+Ta usługa zastępuje domyślną funkcję formatu widżetu monitu liczbowego. Funkcja formatu domyślnego konwertuje wartość monitu liczbowego na ciąg i zapisuje ją w prywatnym buforze widżetu. Ta usługa umożliwia aplikacji zdefiniowanie własnej funkcji formatowania do formatowania i przechowywania wartości liczbowej monitu w prywatnym buforze widżetu.
 
 ### <a name="parameters"></a>Parametry
 
-- **monituj** Blok sterowania monitem liczbowym
+- **monituj** Blok sterowania numerycznym monitem
 - **format_func** Funkcja Format do ustawienia
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie ustaw funkcję formatu monitu liczbowego
+- **GX_SUCCESS** (0x00) Pomyślnie ustaw funkcję formatowania numerycznego monitu
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -12352,7 +12429,7 @@ status = gx_numeric_prompt_format_function_set(&my_numeric_prompt,
 ## <a name="gx_numeric_prompt_value_set"></a>gx_numeric_prompt_value_set
 
 
-Ustawianie wartości liczbowej monitu
+Ustawianie liczbowej wartości monitu
 
 ### <a name="prototype"></a>Prototype
 
@@ -12407,15 +12484,15 @@ UINT gx_numeric_scroll_wheel_create( GX_NUMERIC_SCROLL_WHEEL *wheel, GX_CONST GX
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy widżet numerycznego kółka przewijania.
+Ta usługa tworzy widżet numerycznego koła przewijania.
 
-Numeryczne kółka przewijania to typ widżetu koła przewijania, który jest używany do wyświetlania zakresu liczb. Dostępne są również inne typy widżetów z kółkami przewijania. Zapoznaj się z interfejsem API gx_scroll_wheel_create(), aby uzyskać więcej informacji na temat hierarchii widżetów przewijania, typów widżetów i pochodnych widżetów.
+Numeryczne kółka przewijania to typ widżetu koła przewijania, który jest specjalnie używany do wyświetlania zakresu liczb. Dostępne są również inne typy widżetów z kółkami przewijania. Zapoznaj się z interfejsem API gx_scroll_wheel_create(), aby uzyskać więcej informacji na temat hierarchii widżetów koła przewijania, typów widżetów i pochodnych widżetów.
 
-GX_NUMERIC_SCROLL_WHEEL pochodzi od GX_TEXT_SCROLL_WHEEL i obsługuje wszystkie usługi gx_text_scroll_wheel i gx_scroll_wheel usług.
+GX_NUMERIC_SCROLL_WHEEL pochodzi od usługi GX_TEXT_SCROLL_WHEEL obsługuje wszystkie usługi gx_text_scroll_wheel i gx_scroll_wheel usług.
 
-Wszystkie typy kółka przewijania GX_EVENT_LIST_SELECT zdarzenia nadrzędne po przewinięciu koła przewijania.
+Wszystkie typy kółka przewijania GX_EVENT_LIST_SELECT zdarzeń nadrzędnych po przewinięciu koła przewijania.
 
-Numeryczne kółka przewijania domyślnie ma abs(end_val – start_val) + 1 wiersze. Innymi słowy, kółka przewijania będzie wyświetlać każdą wartość między start_val a end_val, co zwiększa się lub zmniejsza o 1 w każdym wierszu. Należy pamiętać, start_val może być większa lub mniejsza end_val, w zależności od tego, w jaki sposób aplikacja ma wyświetlać zakres.
+Numeryczne kółka przewijania domyślnie mają abs(end_val – start_val) + 1 wiersze. Innymi słowy, kółka przewijania będzie wyświetlać każdą wartość między start_val a end_val, co zwiększa się lub zmniejsza o 1 w każdym wierszu. Należy pamiętać, start_val może być większa lub mniejsza end_val, w zależności od tego, w jaki sposób aplikacja ma wyświetlać zakres.
 
 Jeśli aplikacja chce zmienić przyrost wiersza, może to zrobić, wywołując gx_scroll_wheel_total_rows_set() po utworzeniu numerycznego kółka przewijania. Na przykład aplikacja, która chce utworzyć kółka przewijania wyświetlające wartości od 1980 do 2020 roku(przyrost o 5), może to zrobić:
 
@@ -12431,21 +12508,21 @@ gx_scroll_wheel_total_rows_set(&wheel, 9);
 
 ### <a name="parameters"></a>Parametry
 
-- **wheel** Wskaźnik do bloków sterowania kółka przewijania numerycznego
+- **wheel (koło)** Wskaźnik do liczbowego bloku sterowania kółka przewijania
 - **name (nazwa)** Nazwa logiczna widżetu przycisku pixelmap
 - **element nadrzędny** Wskaźnik do widżetu nadrzędnego
 - **start_val** Początkowa wartość liczbowa
 - **end_val** Końcowa wartość liczbowa
 - **style (styl)** Styl pola wyboru. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 - **wheel_id** Zdefiniowany przez aplikację identyfikator kółka przewijania
-- **rozmiar** Wymiary widżetu koła przewijania
+- **rozmiar** Wymiary widżetu kółka przewijania
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie utworzono numeryczne kółka przewijania
+- **GX_SUCCESS** (0x00) Pomyślnie utworzono liczbowe kółka przewijania
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) widget
+- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -12503,21 +12580,21 @@ gx_numeric_scroll_wheel_range_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa modyfikuje zakres wartości dozwolonych i wyświetlanych przez widżet numerycznego kółka przewijania.
+Ta usługa modyfikuje zakres wartości dozwolonych i wyświetlanych przez widżet numerycznego koła przewijania.
 
-Numeryczne kółka przewijania to typ widżetu koła przewijania, który jest używany do wyświetlania zakresu liczb. Dostępne są również inne typy widżetów z kółkami przewijania. Zapoznaj się z interfejsem API gx_scroll_wheel_create(), aby uzyskać więcej informacji na temat hierarchii widżetów przewijania, typów widżetów i pochodnych widżetów.
+Numeryczne kółka przewijania to typ widżetu koła przewijania, który jest specjalnie używany do wyświetlania zakresu liczb. Dostępne są również inne typy widżetów z kółkami przewijania. Zapoznaj się z interfejsem API gx_scroll_wheel_create(), aby uzyskać więcej informacji na temat hierarchii widżetów przewijania, typów widżetów i pochodnych widżetów.
 
 Wywołania tego interfejsu API resetuje łączną liczbę wierszy koła przewijania na abs(end_val – start_val) + 1, co oznacza, że kółka przewijania będzie zwiększać się o 1 dla każdego wiersza. Aby to zmienić, aplikacja może wywołać gx_scroll_wheel_total_rows_set(), aby zmienić łączną liczbę wierszy, efektywnie zmieniając przyrost wartości między wierszami.
 
 ### <a name="parameters"></a>Parametry
 
-- **wheel** Wskaźnik do bloków sterowania kółka przewijania numerycznego
+- **wheel (koło)** Wskaźnik do liczbowego bloku sterowania kółka przewijania
 - **start_val** Początkowa wartość liczbowa 
 - **end_val** Końcowa wartość liczbowa
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie ustaw zakres liczbowych kółka przewijania
+- **GX_SUCCESS** (0x00) Pomyślnie ustawiono zakres liczbowych kółka przewijania
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 
@@ -12558,7 +12635,7 @@ status = gx_numeric_scroll_wheel_range_set(&year_wheel, 0, 200);
 ## <a name="gx_pixelmap_button_create"></a>gx_pixelmap_button_create
 
 
-Przycisk Create pixelmap (Utwórz mapę pikseli)
+Przycisk Utwórz mapę pikseli
 
 ### <a name="prototype"></a>Prototype
 
@@ -12577,9 +12654,9 @@ UINT gx_pixelmap_button_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy widżet przycisku pixelmap.
+Ta usługa tworzy widżet przycisku mapy pikseli.
 
-GX_PIXELMAP_BUTTON pochodzi od GX_BUTTON i obsługuje wszystkie usługi gx_button danych.
+GX_PIXELMAP_BUTTON pochodzi od usługi GX_BUTTON obsługuje wszystkie usługi gx_button.
 
 ### <a name="parameters"></a>Parametry
 
@@ -12598,7 +12675,7 @@ GX_PIXELMAP_BUTTON pochodzi od GX_BUTTON i obsługuje wszystkie usługi gx_butto
 - **GX_SUCCESS** (0x00) Przycisk Pomyślnie utworzono mapę pikseli
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) widget
+- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -12799,11 +12876,11 @@ Ta usługa ustawia mapę pikseli na przycisk pixelmap.
 - **przycisk** Wskaźnik do bloku kontrolki przycisku pixelmap
 - **normal_id** Identyfikator zasobu mapy pikseli do użycia jako stan normalny
 - **selected_id** Identyfikator zasobu mapy pikseli, która ma być używana po wybraniu przycisku
-- **disabled_id** Identyfikator zasobu mapy pikseli, która ma być używana, gdy przycisk jest wyłączony
+- **disabled_id** Identyfikator zasobu mapy pikseli, który ma być używany, gdy przycisk jest wyłączony
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Powodzenie ustawia mapę pikseli na przycisk
+- **GX_SUCCESS** (0x00) Successful (Powodzenie) ustawia mapę pikseli na przycisk
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -12881,11 +12958,11 @@ Ta usługa tworzy widżet monitu mapy pikseli. Monit mapy pikseli różni się o
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne utworzenie monitu o mapowanie pikseli
+- **GX_SUCCESS** (0x00) Pomyślne utworzenie monitu o mapę pikseli
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
-- **GX_ALREADY_CREATED** (0x13) widget
+- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -13000,21 +13077,21 @@ UINT gx_pixelmap_prompt_pixelmap_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przypisuje identyfikatory pikselimapy do monitu mapy pikseli. Identyfikatory mapy pikseli po lewej stronie, wypełnienie i prawe umożliwiają aplikacji korzystanie z jednego zestawu map pikseli w przypadku monitów o różnych szerokościach, ale wspólnej wysokości w celu zaoszczędenia na wymaganiach dotyczących magazynu. Jeśli identyfikatory po lewej i prawej stronie nie są używane, powinny być ustawione na 0. Jeśli monit powinien narysować się inaczej, gdy uzyska fokus wejściowy, wybrane identyfikatory mapy pikseli są używane do tego celu. Jeśli wybrane identyfikatory nie są używane lub są takie same jak normalne identyfikatory, ustaw je na 0.
+Ta usługa przypisuje identyfikatory pixelmap do monitu mapy pikseli. Identyfikatory mapy pikseli po lewej stronie, wypełnienia i po prawej stronie umożliwiają aplikacji korzystanie z jednego zestawu map pikseli w przypadku monitów o różnej szerokości, ale o wspólnej wysokości, aby zaoszczędzić na wymaganiach dotyczących magazynu. Jeśli identyfikatory po lewej i prawej stronie nie są używane, powinny być ustawione na 0. Jeśli monit powinien narysować się inaczej, gdy uzyska fokus wejściowy, wybrane identyfikatory mapy pikseli są używane do tego celu. Jeśli wybrane identyfikatory nie są używane lub są takie same jak normalne identyfikatory, ustaw je na 0.
 
 ### <a name="parameters"></a>Parametry
 
 - **monituj** Wskaźnik do bloku sterowania monitem mapy pikseli
 - **normal_left_id** Identyfikator zasobu mapy pikseli do użycia po lewej stronie w stanie normalnym
-- **normal_fill_id** Identyfikator zasobu mapy pikseli, która ma być używana jako kafelek, wypełnia normalny stan
+- **normal_fill_id** Identyfikator zasobu mapy pikseli, która ma być używana jako kafelkowe wypełnienie w stanie normalnym
 - **normal_right_id** Identyfikator zasobu mapy pikseli do użycia po prawej stronie w stanie normalnym
 - **selected_left_id** Identyfikator zasobu mapy pikseli do użycia po lewej stronie w wybranym stanie
-- **selected_fill_id** Identyfikator zasobu mapy pikseli do użycia jako wypełnianie kafelkiem w wybranym stanie
+- **selected_fill_id** Identyfikator zasobu mapy pikseli, która ma być używana jako wypełnianie kafelkiem w wybranym stanie
 - **selected_right_id** Identyfikator zasobu mapy pikseli do użycia po prawej stronie w wybranym stanie
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Successful (Powodzenie) ustawia mapę pikseli na monit
+- **GX_SUCCESS** (0x00) Powodzenie ustawia mapę pikseli na monit
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_RESOURCE_ID** (0x33) Identyfikator zasobu jest nieprawidłowy
@@ -13060,7 +13137,7 @@ status = gx_pixelmap_prompt_pixelmap_set (&my_prompt,
 ## <a name="gx_pixelmap_slider_create"></a>gx_pixelmap_slider_create
 
 
-Tworzenie suwaka mapy pikseli
+Suwak tworzenia mapy pikseli
 
 ### <a name="prototype"></a>Prototype
 
@@ -13080,21 +13157,21 @@ Ta usługa tworzy widżet suwaka mapy pikseli.
 
 ### <a name="parameters"></a>Parametry
 
-- **suwak** Wskaźnik do bloku kontrolki suwaka mapy pikseli
+- **suwak** Wskaźnik do bloku sterowania suwaka mapy pikseli
 - **name (nazwa)** Nazwa logiczna widżetu suwaka mapy pikseli
 - **element nadrzędny** Wskaźnik do widżetu nadrzędnego
 - **info (informacje)** Wskaźnik do struktury GX_SLIDER_INFO, która zawiera wartości definiujące wartość minimalną suwaka, wartość maksymalną, bieżącą wartość i limity wskazówek. **Dodatek I** zawiera definicję GX_SLIDER_INFO struktury.
-- **pixelmap_info** Wskaźnik do GX_PIXELMAP_SLIDER_INFO, która definiuje mapy pikseli używane do rysowania tła suwaka i wskazówki. **Dodatek I** zawiera definicję GX_PIXELMAP_SLIDER_INFO struktury. Tło suwaka może używać jednej lub dwóch map pikseli. Jeśli tak, tło nie zmienia się, gdy porusza się igła. Jeśli zdefiniowano dwa tła, tło przed igłą używa pierwszej mapy pikseli tła, a tło po igłę używa drugiej mapy pikseli tła.
+- **pixelmap_info** Wskaźnik do GX_PIXELMAP_SLIDER_INFO, która definiuje mapy pikseli używane do rysowania tła suwaka i wskazówki. **Dodatek I** zawiera definicję GX_PIXELMAP_SLIDER_INFO struktury. Tło suwaka może używać jednej lub dwóch map pikseli. Jeśli tak, tło nie zmienia się w przypadku przesuwania się igły. Jeśli zdefiniowano dwa tła, tło przed igłą używa pierwszej mapy pikseli tła, a tło po igłę używa drugiej mapy pikseli tła.
 - **style (styl)** Styl suwaka. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 - **pixelmap_slider_id** Zdefiniowany przez aplikację identyfikator suwaka mapy pikseli
 - **rozmiar** Wymiary monitu o mapę pikseli
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie utworzono suwak mapy pikseli
+- **GX_SUCCESS** (0x00) Suwak mapy pikseli został pomyślnie utworzony
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
+- **GX_ALREADY_CREATED** (0x13) widget
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -13160,7 +13237,7 @@ status = gx_pixelmap_slider_create(&my_pixelmap_slider,
 ## <a name="gx_pixelmap_slider_draw"></a>gx_pixelmap_slider_draw
 
 
-Rysowanie suwaka mapy pikseli
+Suwak rysowania mapy pikseli
 
 ### <a name="prototype"></a>Prototype
 
@@ -13240,14 +13317,14 @@ Ta usługa przetwarza zdarzenie dla określonego widżetu suwaka mapy pikseli.
 ### <a name="parameters"></a>Parametry
 
 - **suwak** Wskaźnik do mapy pikseli
-- **kontrolka** suwaka blokuj zdarzenie Wskaźnik do zdarzenia do przetwarzania
+- slider control block event Pointer to event to process **(Kontrolka suwaka** blokuj zdarzenie Wskaźnik do zdarzenia do przetwarzania)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **GX_SUCCESS** (0x00) Pomyślny proces zdarzenia suwaka mapy pikseli
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -13314,12 +13391,12 @@ UINT gx_pixelmap_slider_pixelmap_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia suwak pixelmaps na mapę pikseli.
+Ta usługa ustawia mapę pikseli na suwak mapy pikseli.
 
 ### <a name="parameters"></a>Parametry
 
-- **suwak** Wskaźnik do bloku sterowania suwaka mapy pikseli
-- **pixelinfo** Wskaźnik do struktury GX_PIXELMAP_SLIDER_INFO definiującej mapy pikseli używane do rysowania tła suwaka i wskazówki. **Dodatek I** zawiera definicję GX_PIXELMAP_SLIDER_INFO struktury. Tło suwaka może używać jednej lub dwóch map pikseli. Jeśli tak, tło nie zmienia się, gdy porusza się igła. Jeśli zdefiniowano dwa tła, tło przed igłą używa pierwszej mapy pikseli tła, a tło po igłę używa drugiej mapy pikseli tła.
+- **suwak** Wskaźnik do bloku kontrolki suwaka mapy pikseli
+- **pixelinfo** Wskaźnik do GX_PIXELMAP_SLIDER_INFO, która definiuje mapy pikseli używane do rysowania tła suwaka i wskazówki. **Dodatek I** zawiera definicję GX_PIXELMAP_SLIDER_INFO struktury. Tło suwaka może używać jednej lub dwóch map pikseli. Jeśli tak, tło nie zmienia się w przypadku przesuwania się igły. Jeśli zdefiniowano dwa tła, tło przed igłą używa pierwszej mapy pikseli tła, a tło po igłę używa drugiej mapy pikseli tła.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -13387,7 +13464,7 @@ VOID gx_progress_bar_background_draw(GX_PROGRESS_BAR *progress_bar)
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje tło określonego paska postępu. Ta funkcja jest wywoływana wewnętrznie w ramach funkcji gx_progress_bar_draw(), ale jest udostępniane aplikacji w celu obsługi tych przypadków, w których aplikacja definiuje funkcję rysowania niestandardowego paska postępu.
+Ta usługa rysuje tło określonego paska postępu. Ta funkcja jest wywoływana wewnętrznie jako część funkcji gx_progress_bar_draw(), ale jest udostępniane aplikacji w celu obsługi przypadków, w których aplikacja definiuje funkcję rysowania niestandardowego paska postępu.
 
 ### <a name="parameters"></a>Parametry
 
@@ -13467,7 +13544,7 @@ Ta usługa tworzy widżet paska postępu.
 - **GX_SUCCESS** (0x00) Pomyślne utworzenie paska postępu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) widget
+- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 - **GX_INVALID_WIDGET** (0x12) Widżet nadrzędny jest nieprawidłowy
 
@@ -13692,7 +13769,7 @@ UINT status = gx_progress_bar_font_set(&progress_bar,
 ## <a name="gx_progress_bar_info_set"></a>gx_progress_bar_info_set
 
 
-Ustawianie struktury informacji paska postępu
+Ustawianie struktury informacji na pasku postępu
 
 ### <a name="prototype"></a>Prototype
 
@@ -13754,7 +13831,7 @@ status = gx_progress_bar_info_set(&progress_bar, &info);
 ## <a name="gx_progress_bar_pixelmap_set"></a>gx_progress_bar_pixelmap_set
 
 
-Ustawianie mapy pikseli używanej do narysowania paska postępu
+Ustawianie mapy pikseli używanej do rysowania paska postępu
 
 ### <a name="prototype"></a>Prototype
 
@@ -13775,7 +13852,7 @@ Ta usługa ustawia mapę pikseli używaną do wypełnienia tła paska postępu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw map pikseli na pasku postępu pomyślnych
+- **GX_SUCCESS** (0x00) Zestaw map pikseli paska postępu pomyślne
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -13826,11 +13903,11 @@ Ta usługa ustawia zakres wartości paska postępu.
 
 - **progress_bar** Blok sterowania paska postępu
 - **min_value** Minimalna wartość paska postępu
-- **max_value** Maksymalna wartość paska postępu
+- **max_value** Wartość maksymalna paska postępu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw zakresów paska postępu pomyślne
+- **GX_SUCCESS** (0x00) Zestaw zakresów paska postępu powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -13880,13 +13957,13 @@ Ta usługa ustawia kolor tekstu widżetu paska postępu.
 ### <a name="parameters"></a>Parametry
 
 - **progress_bar** Blok sterowania paska postępu
-- **normal_text_color** Identyfikator zasobu normalnego koloru tekstu, który był używany w stanie normalnym
+- **normal_text_color** Identyfikator zasobu normalnego koloru tekstu, który jest używany w stanie normalnym
 - **selected_text_color** Identyfikator zasobu wybranego koloru tekstu, który był używany podczas koncentracji uwagi widżetu
 - **disabled_text_color** Identyfikator zasobu wyłączonego koloru tekstu, który jest używany GX_STYLE_ENABLED nie jest aktywny
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw kolorów na pasku postępu powodzenie
+- **GX_SUCCESS** (0x00) Zestaw kolorów tekstu na pasku postępu powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
@@ -13931,7 +14008,7 @@ VOID gx_progress_bar_text_draw(GX_PROGRESS_BAR *progress_bar)
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje tekst określonego paska postępu. Ta funkcja jest wywoływana wewnętrznie jako część funkcji gx_progress_bar_draw(), ale jest udostępniane aplikacji w celu obsługi przypadków, w których aplikacja definiuje funkcję rysowania niestandardowego paska postępu.
+Ta usługa rysuje tekst określonego paska postępu. Ta funkcja jest wywoływana wewnętrznie w ramach funkcji gx_progress_bar_draw(), ale jest udostępniane aplikacji w celu obsługi tych przypadków, w których aplikacja definiuje funkcję rysowania niestandardowego paska postępu.
 
 ### <a name="parameters"></a>Parametry
 
@@ -14029,7 +14106,7 @@ UINT status = gx_progress_bar_value_set(progress_bar, 50);
 ## <a name="gx_prompt_create"></a>gx_prompt_create
 
 
-Tworzenie monitu
+Monit o utworzenie
 
 ### <a name="prototype"></a>Prototype
 
@@ -14052,7 +14129,7 @@ GX_PROMPT pochodzi od usługi GX_WIDGET obsługuje wszystkie usługi gx_widget.
 
 ### <a name="parameters"></a>Parametry
 
-- **Wskaźnik** do widżetu nadrzędnego
+- **Wskaźnik do** widżetu nadrzędnego
 - **text_id** Identyfikator zasobu tekstu monitu
 - **style (styl)** Styl monitu. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 - **prompt_id** Identyfikator monitu zdefiniowany przez aplikację
@@ -14584,7 +14661,7 @@ GX_PROMPT jest pochodną GX_WIDGET, dlatego wszystkie usługi gx_widget API mog�
 ### <a name="parameters"></a>Parametry
 
 - **monituj** Wskaźnik do monitowania bloku kontrolki widżetu
-- **tekst** Wskaźnik do tekstu
+- **text (tekst)** Wskaźnik do tekstu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -14634,9 +14711,9 @@ UINT gx_prompt_text_set_ext(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia tekst widżetu monitu. Jeśli widżet monitu został utworzony z GX_STYLE_TEXT_COPY, widżet tworzy prywatną kopię przypisanego ciągu tekstowego. Jeśli GX_STYLE_TEXT_COPY nie jest aktywny, widżet nie będzie prywatną kopią ciągu przychodzącego, dlatego ciąg musi być przydzielany statycznie lub globalnie, tzn. może nie być zmienną automatyczną lub tymczasową.
+Ta usługa ustawia tekst widżetu monitu. Jeśli widżet monitu został utworzony z GX_STYLE_TEXT_COPY, widżet tworzy prywatną kopię przypisanego ciągu tekstowego. Jeśli GX_STYLE_TEXT_COPY nie jest aktywny, widżet nie robi prywatnej kopii przychodzącego ciągu, dlatego ciąg musi być przydzielany statycznie lub globalnie, tzn. może nie być automatyczną ani tymczasową zmienną.
 
-GX_PROMPT pochodzi od GX_WIDGET, dlatego wszystkie usługi gx_widget API mogą być używane z GX_PROMPT.
+GX_PROMPT jest pochodną GX_WIDGET, dlatego wszystkie usługi gx_widget API mogą być używane z GX_PROMPT.
 
 ### <a name="parameters"></a>Parametry
 
@@ -14813,7 +14890,7 @@ UINT gx_radial_progress_bar_create(
 
 Ta usługa tworzy pasek postępu promieniowego.
 
-Jeśli styl widżetu GX_STYLE_ENABLED na pasku postępu, pasek postępu będzie akceptował dane wejściowe pen_down, pen_drag i pen_up, aby zmodyfikować bieżącą wartość paska postępu.
+Jeśli styl widżetu GX_STYLE_ENABLED do paska postępu, pasek postępu będzie akceptować pen_down, pen_drag i pen_up, aby zmodyfikować bieżącą wartość paska postępu.
 
 Styl widżetu GX_STYLE_PROGRESS_TEXT_DRAW umożliwia rysowanie wartości paska postępu jako tekstu w obszarze paska postępu. Jeśli ten styl jest używany w połączeniu z GX_STYLE_PROGRESS_PERCENT, wartość paska postępu jest wyświetlana jako wartość procentowa. W przeciwnym razie wartość paska postępu jest wyświetlana jako bieżąca wartość angular.
 
@@ -15035,7 +15112,7 @@ Ta usługa ustawia czcionkę widżetu paska postępu promieniowego. Ten parametr
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw czcionek na pasku postępu promieniowego powodzenie
+- **GX_SUCCESS** (0x00) Zestaw czcionek na pasku postępu promieniowego pomyślnie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_WIDGET** (0x12) Nieprawidłowy widżet
@@ -15068,7 +15145,7 @@ status = gx_radial_progress_bar_font_set(&my_progress_bar, font);
 ## <a name="gx_radial_progress_bar_info_set"></a>gx_radial_progress_bar_info_set
 
 
-Ustawianie informacji paska postępu promieniowego
+Ustawianie informacji o pasku postępu promieniowego
 
 ### <a name="prototype"></a>Prototype
 
@@ -15089,7 +15166,7 @@ Ta usługa resetuje parametry informacji przypisane do paska postępu promieniow
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw informacji o pasku postępu promieniowego pomyślne
+- **GX_SUCCESS** (0x00) Zestaw informacji o pasku postępu promieniowego powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_WIDGET** (0x12) Nieprawidłowy widżet
@@ -15157,13 +15234,13 @@ UINT gx_radial_progress_bar_text_color_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia kolor tekstu paska postępu promieniowego. Ta wartość jest używana tylko wtedy, gdy GX_STYLE_PROGRESS_TEXT_DRAW styl jest ustawiony.
+Ta usługa ustawia kolor tekstu paska postępu promieniowego. Ta wartość jest używana tylko wtedy, GX_STYLE_PROGRESS_TEXT_DRAW styl jest ustawiony.
 
 ### <a name="parameters"></a>Parametry
 
 - **pasek** postępu Wskaźnik do bloku sterowania paska postępu promieniowego
-- **normal_color** Identyfikator zasobu koloru tekstu w stanie normalnym. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
-- **selected_color** Identyfikator zasobu koloru tekstu po nabrania fokusu przez widżet. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
+- **normal_color** Identyfikator zasobu koloru tekstu w normalnym stanie. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
+- **selected_color** Identyfikator zasobu koloru tekstu w przypadku uzyskania fokusu widżetu. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 - **disabled_color** Identyfikator zasobu koloru tekstu, gdy GX_STYLE_ENABLED nie jest ustawiony. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -15280,7 +15357,7 @@ Ta usługa ustawia wartość paska postępu promieniowego. Przypisana wartość 
 
 Pasek postępu jest rysowany w taki sposób, że bieżąca wartość wskazuje różnicę kątową między położeniem kotwicy a punktem końcowy górnego łuku. Wartości ujemne powodują rysowanie łuku w kierunku zgodnym z ruchem wskazówek zegara, zaczynając od pozycji kotwicy. Dodatnia wartość bieżąca powoduje rysowanie łuku w kierunku przeciwnym do wskazówek zegara, zaczynając od pozycji kotwicy.
 
-Na przykład w celu narysowania łuku zaczynającego się od góry łuku (pozycja zegara 12) i kończącego się po prawej stronie (pozycja z trzema godzinami), przypisz wartość kotwicy 90 stopni i bieżącą wartość -90 stopni.
+Aby na przykład narysować łuku, począwszy od góry łuku (12 o'clock położenie) i kończąc po prawej stronie (trzy o'clock położenie), przypisz wartość zakotwiczenia 90 stopni i bieżącą wartość -90 stopni.
 
 ### <a name="parameters"></a>Parametry
 
@@ -15289,7 +15366,7 @@ Na przykład w celu narysowania łuku zaczynającego się od góry łuku (pozycj
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw wartości paska postępu promieniowego pomyślne
+- **GX_SUCCESS** (0x00) Zestaw wartości paska postępu promieniowego powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowe wskaźniki
 - **GX_INVALID_WIDGET** (0x12) Nieprawidłowy widżet
@@ -15642,7 +15719,7 @@ status = gx_radial_slider_angle_set(&my_radial_slider, 0);
 ## <a name="gx_radial_slider_animation_set"></a>gx_radial_slider_animation_set
 
 
-Tworzenie informacji o animacji suwaka promieniowego
+Informacje o animacji suwaka promieniowego
 
 ### <a name="prototype"></a>Prototype
 
@@ -15656,7 +15733,7 @@ UINT gx_radial_slider_animation_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia kroki animacji, style opóźnień i animacji dla animacji nagieł suwaka promieniowego.
+Ta usługa ustawia kroki animacji, czas opóźnienia i style animacji dla animacji nagieł suwaka promieniowego.
 
 ### <a name="parameters"></a>Parametry
 
@@ -16052,7 +16129,7 @@ Ta usługa pobiera wskaźnik informacji suwaka promieniowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne informacje o suwaku promieniowym
+- **GX_SUCCESS** (0x00) Informacje o pomyślnym suwaku promieniowym
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_WIDGET** (0x12) Nieprawidłowy widżet
 
@@ -16189,7 +16266,7 @@ UINT gx_radial_slider_pixelmap_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia mapy tła suwaka promieniowego i pikseli nagieł.
+Ta usługa ustawia mapy tła suwaka promieniowego i pikseli napiwków.
 
 ### <a name="parameters"></a>Parametry
 
@@ -16258,7 +16335,7 @@ Ta usługa tworzy widok tekstu sformatowanego w określony sposób.
 - **\<u>\</u>** Włączanie podkreślenia tekstu
 - **\<f GX_FONT_ID>\</f>** Ustawianie czcionki tekstu przy użyciu określonego identyfikatora czcionki
 - **\<c GX_COLOR_ID>\</c>** Ustawianie czcionki tekstu przy użyciu określonego identyfikatora koloru
-- **\<hc GX_COLOR_ID>\</hc>** Ustawianie koloru wyróżnienia tekstu określonego identyfikatora koloru
+- **\<hc GX_COLOR_ID>\</hc>** Ustawianie określonego identyfikatora koloru wyróżnienia tekstu
 - **\<align left/right/center>\</align>** Ustawianie wyrównania tekstu
 
 **Przykłady użycia tagów formatowania:**
@@ -16287,7 +16364,7 @@ Ta usługa tworzy widok tekstu sformatowanego w określony sposób.
 - **GX_SUCCESS** (0x00) Pomyślne utworzenie widoku tekstu sformatowanego
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) widget
+- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -16397,10 +16474,10 @@ Ta usługa ustawia czcionki widżetu widoku tekstu sformatowanego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw czcionek pomyślnego widoku tekstu sformatowanego
+- **GX_SUCCESS** (0x00) Zestaw czcionek widoku tekstu sformatowanego pomyślne
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -16442,7 +16519,7 @@ VOID gx_rich_text_view_text_draw(GX_RICH_TEXT_VIEW *text_view);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja obsługi rysuje część tekstową widoku tekstu sformatowanego. Ta funkcja jest wywoływana wewnętrznie przez funkcję gx_rich_text_view_draw() i jest dostarczana jako oddzielny interfejs API jako udogodnienie dla aplikacji, które definiują niestandardową funkcję rysowania widoku tekstu sformatowanego. Aplikacje, które chcą dostosować rysowanie tła w widoku tekstu sformatowanego, mogą zapewnić niestandardową funkcję rysowania i wywołać usługę gx_rich_text_view_text_draw jako część swojego niestandardowego rysowania w celu narysowania tekstu w widoku tekstu sformatowanego w tle.
+Ta funkcja obsługi rysuje część tekstową widoku tekstu sformatowanego. Ta funkcja jest wywoływana wewnętrznie przez funkcję gx_rich_text_view_draw() i jest dostarczana jako oddzielny interfejs API jako udogodnienie dla aplikacji, które definiują niestandardową funkcję rysowania widoku tekstu sformatowanego. Aplikacje, które chcą dostosować rysunek tła w widoku tekstu sformatowanego, mogą zapewnić niestandardową funkcję rysowania i wywołać usługę gx_rich_text_view_text_draw jako część swojego niestandardowego rysowania w celu narysowania tekstu w widoku tekstu sformatowanego w tle.
 
 ### <a name="parameters"></a>Parametry
 
@@ -16503,7 +16580,7 @@ Ta usługa inicjuje stos ekranu. Aplikacja musi zdefiniować blok pamięci i roz
 ### <a name="parameters"></a>Parametry
 
 - **kontrolka** Blok sterowania stosem ekranu
-- **memory_buffer** Wskaźnik do buforu pamięci używanego jako stos ekranu
+- **memory_buffer** Wskaźnik do bufora pamięci używanego jako stos ekranu
 - **buffer_size** Rozmiar pamięci w bajtach
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -16663,7 +16740,7 @@ Ta usługa usuwa wszystkie wpisy ze stosu ekranu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne utworzenie kciuka przewijania
+- **GX_SUCCESS** (0x00) Pomyślne utworzenie miniatury przewijania
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -16811,7 +16888,7 @@ Ta usługa obsługuje zdarzenia wysyłane do kciuka paska przewijania. Ta usług
 - **GX_SUCCESS** (0x00) Pomyślny proces zdarzenia przewijania miniatury
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -16885,7 +16962,7 @@ GX_SCROLL_WHEEL jest oparta na GX_WINDOW, dlatego wszystkie interfejsy API GX_WI
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie utworzono koło przewijania
+- **GX_SUCCESS** (0x00) Pomyślnie utworzono kółka przewijania
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku sterowania
@@ -17034,9 +17111,9 @@ UINT gx_scroll_wheel_gradient_alpha_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa definiuje początkowe i końcowe wartości alfa dla opcjonalnej nakładki gradientu widżetu kółka przewijania.
+Ta usługa definiuje początkowe i końcowe wartości alfa dla opcjonalnej nakładki gradientu widżetu koła przewijania.
 
-Wszystkie widżety kółka przewijania obsługują efekt "zaniknięcia" wierszy kółka przewijania jako wierszy w pobliżu górnej i dolnej krawędzi widżetu koła przewijania. Ten efekt zaniknięcia jest osiągany przez rysowanie mapy pikseli gradientu nad wierszami kółka przewijania, co sprawi, że wiersze wyglądają na zanikające, gdy wiersze są rysowane w górnej i dolnej części widżetu kółka przewijania.
+Wszystkie widżety kółka przewijania obsługują efekt "zaniknięcia" wierszy koła przewijania jako wierszy w pobliżu górnej i dolnej krawędzi widżetu koła przewijania. Ten efekt zaniknięcia jest osiągany przez narysowanie mapy pikseli gradientu na wierszach kółka przewijania, co sprawi, że wiersze wydają się zanikać, gdy wiersze są rysowane w górnej i dolnej części widżetu koła przewijania.
 
 Ta usługa interfejsu API umożliwia aplikacji modyfikowanie natężenia efektu zanikania lub wyłączenie tego efektu całkowicie przez ustawienie wartości alfa początku i końca na 0.
 
@@ -17112,7 +17189,7 @@ Ta usługa przypisuje wysokość wiersza dla każdego wiersza kółka przewijani
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie ustawiono wysokość kółka przewijania
+- **GX_SUCCESS** (0x00) Pomyślnie ustawiono wysokość koła przewijania
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
@@ -17372,7 +17449,7 @@ Ta usługa przypisuje szybkość przewijania widżetu kółka przewijania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślnie ustaw szybkość koła
+- **GX_SUCCESS** (0x00) Pomyślnie ustawiono szybkość koła
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
@@ -17488,7 +17565,7 @@ VOID gx_scrollbar_draw(GX_SCROLLBAR *scrollbar);
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje pasek przewijania. Wspólna funkcja rysowania jest używana zarówno w przypadku pionowych, jak i poziomych widżetów paska przewijania. Ta usługa jest wywoływana wewnętrznie przez odświeżanie kanwy GUIX, ale może być również wywoływana przez zastąpione funkcje rysowania.
+Ta usługa rysuje pasek przewijania. Wspólna funkcja rysowania jest używana zarówno w przypadku widżetów pionowych, jak i poziomych pasków przewijania. Ta usługa jest wywoływana wewnętrznie przez odświeżanie kanwy GUIX, ale może być również wywoływana przez zastąpione funkcje rysowania.
 
 ### <a name="parameters"></a>Parametry
 
@@ -17709,7 +17786,7 @@ UINT gx_scrollbar_value_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przypisuje bieżącą wartość paska przewijania. W oknie nadrzędnym GX_EVENT_VERTICAL_SCROLL lub GX_EVENT_HORIZONTAL_SCROLL zostanie wygenerowane zdarzenie GX_EVENT_HORIZONTAL_SCROLL.
+Ta usługa przypisuje bieżącą wartość paska przewijania. W oknie nadrzędnym GX_EVENT_VERTICAL_SCROLL lub GX_EVENT_HORIZONTAL_SCROLL zostanie wygenerowane zdarzenie nadrzędne.
 
 ### <a name="parameters"></a>Parametry
 
@@ -17764,11 +17841,11 @@ Ta usługa usuwa znak przed położeniem kursora wprowadzania tekstu. Ta usługa
 
 ### <a name="parameters"></a>Parametry
 
-- **text_input** Blok kontrolki widżetu wprowadzania tekstu w jednym wierszu
+- **text_input** Blok kontrolki widżetu wprowadzania tekstu jedno wierszowego
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne utworzenie jedno wierszowego tekstu wejściowego
+- **GX_SUCCESS** (0x00) Pomyślne utworzenie wprowadzania tekstu w jednym wierszu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_WIDGET** (0x23) Widżet jest nieprawidłowy
@@ -17893,7 +17970,7 @@ Ta usługa pobiera informacje o buforze widżetu wprowadzania tekstu.
 
 ### <a name="parameters"></a>Parametry
 
-- **text_input** Blok kontrolki widżetu wprowadzania tekstu jedno wierszowego
+- **text_input** Blok kontrolki widżetu wprowadzania tekstu w jednym wierszu
 - **buffer_address** Adres buforu wejściowego
 - **content_size** Liczba bajtów danych wejściowych
 - **buffer_size** Rozmiar buforu wejściowego
@@ -18025,7 +18102,7 @@ UINT gx_single_line_text_input_character_insert(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wstawia ciąg znaków do bufora ciągów wejściowych tekstu na bieżącym miejscu kursora.
+Ta usługa wstawia ciąg znaków do bufora ciągów wejściowych tekstu na bieżącej pozycji kursora.
 
 ### <a name="parameters"></a>Parametry
 
@@ -18249,7 +18326,7 @@ Ta usługa pobiera położenie rozpoczęcia rysowania tekstu wejściowego tekstu
 
 ### <a name="parameters"></a>Parametry
 
-- **text_input** Blok kontrolki widżetu wprowadzania tekstu jedno wierszowego
+- **text_input** Blok kontrolki widżetu wprowadzania tekstu w jednym wierszu
 - **xpos** Pozycja rozpoczęcia pobranego rysowania we współrzędnej x
 - **ypos** Pozycja rozpoczęcia pobranego rysowania we współrzędnych y
 
@@ -18476,7 +18553,7 @@ Ta usługa ustawia kolor wypełnienia danych wejściowych tekstu w jednym wiersz
 
 - **text_input** Wskaźnik do bloku kontrolki wprowadzania tekstu w jednym wierszu
 - **normal_fill_color_id** Identyfikator zasobu widżetu wypełnia kolor w normalnym stanie. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
-- **selected_fill_color_id** Identyfikator zasobu koloru wypełnienia widżetu po nabrania fokusu widżetu. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
+- **selected_fill_color_id** Identyfikator zasobu koloru wypełnienia widżetu po nabrania fokusu przez widżet. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 - **disabled_fill_color_id** Identyfikator zasobu koloru wypełnienia widżetu, gdy GX_STYLE_ENABLED nie jest ustawiony. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 - **readonly_fill_color_id** Identyfikator zasobu koloru wypełnienia widżetu, gdy ustawiono GX_STYLE_ENABLED i GX_STYLE_TEXT_INPUT_READYONLY elementy. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 
@@ -18552,7 +18629,7 @@ Ta usługa przenosi położenie kursora wprowadzania tekstu na początek ciągu 
 - **GX_SUCCESS** (0x00) Pomyślnie przeniesiono kursor do pozycji głównej
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -18665,11 +18742,11 @@ UINT gx_single_line_text_input_position_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa umieszcza tekstowy kursor wejściowy na podstawie żądanej pozycji pikseli. Indeks kursora wprowadzania tekstu zostanie obliczony na podstawie wartości x pozycji pikseli. Ta usługa jest wywoływana wewnętrznie po otrzymaniu zdarzenia pen down, ale może być również wywoływana przez aplikację.
+Ta usługa umieszcza kursor wprowadzania tekstu na podstawie żądanej pozycji pikseli. Indeks kursora wprowadzania tekstu zostanie obliczony na podstawie wartości x pozycji pikseli. Ta usługa jest wywoływana wewnętrznie po otrzymaniu zdarzenia pen down, ale może być również wywoływana przez aplikację.
 
 ### <a name="parameters"></a>Parametry
 
-- **text_input** Blok kontrolki widżetu wprowadzania tekstu jedno wierszowego
+- **text_input** Blok kontrolki widżetu wprowadzania tekstu w jednym wierszu
 - **pixel_position** Wartość X położenia pikseli
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -18797,7 +18874,7 @@ Ta usługa dodaje określone style do widżetu wprowadzania tekstu w jednym wier
 
 ### <a name="parameters"></a>Parametry
 
-- **text_input** Blok kontrolki widżetu wprowadzania tekstu w jednym wierszu
+- **text_input** Blok kontrolki widżetu wprowadzania tekstu jedno wierszowego
 - **style (styl)** Nowy styl do dodania. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -18869,7 +18946,7 @@ Ta usługa usuwa określone style z widżetu wprowadzania tekstu w jednym wiersz
 - **GX_SUCCESS** (0x00) Pomyślnie usunięto style z widżetu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -18996,7 +19073,7 @@ Ta usługa ustawia kolor tekstu dla wprowadzania tekstu w jednym wierszu.
 - **normal_text_color_id** Identyfikator zasobu koloru tekstu w stanie normalnym. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 - **selected_text_color_id** Identyfikator zasobu koloru tekstu po nabrania fokusu przez widżet. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 - **disabled_text_color_id** Identyfikator zasobu koloru tekstu, gdy nie ustawiono GX_STYLE_ENABLED stylu. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
-- **readonly_text_color_id** Identyfikator zasobu koloru tekstu, gdy ustawiono GX_STYLE_ENABLED GX_STYLE_TEXT_INPUT_READONLY styl. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
+- **readonly_text_color_id** Identyfikator zasobu koloru tekstu, gdy są ustawione GX_STYLE_ENABLED i GX_STYLE_TEXT_INPUT_READONLY styl. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -19072,8 +19149,8 @@ Ta usługa wybiera tekst z określonym indeksem znacznika rozpoczęcia i znaczni
 - **GX_SUCCESS** (0x00) Pomyślne zaznaczenie tekstu wejściowego w jednym wierszu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
-- **GX_INVALID_VALUE** (0x22) Wartość indeksu jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_VALUE** (0x22) Indeks jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -19187,7 +19264,7 @@ Ta usługa ustawia tekst pojedynczego wiersza tekstu wejściowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw kolorów tekstu wprowadzania tekstu pomyślnego tekstu w jednym wierszu
+- **GX_SUCCESS** (0x00) Successful single line text input text color set (Pomyślny zestaw kolorów tekstu wejściowego tekstu w jednym wierszu)
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
@@ -19265,7 +19342,7 @@ GX_SLIDER pochodzi od GX_WIDGET, dlatego wszystkie usługi interfejsu API gx_wid
 - **slider_info:** Wskaźnik do informacji o suwaku, który jest strukturą używaną do przekazania limitów wartości suwaka, rozmiaru i położenia wskazówki suwaka oraz innych parametrów suwaka. **Dodatek I** zawiera definicję GX_SLIDER_INFO struktury.
 - **style**: styl suwaka. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 - **slider_id:** Zdefiniowany przez aplikację identyfikator suwaka
-- **size:** Wymiary suwaka
+- **size**: Wymiary suwaka
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -19650,11 +19727,11 @@ VOID gx_slider_tickmarks_draw(GX_SLIDER *slider);
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje znaczniki znaczników suwaka. Ta funkcja jest wywoływana wewnętrznie przez funkcję gx_slider_draw, ale jest udostępniane do użytku przez aplikacje, które mogą implementować niestandardową funkcję rysowania suwaka.
+Ta usługa rysuje znaczniki znacznika suwaka. Ta funkcja jest wywoływana wewnętrznie przez funkcję gx_slider_draw, ale jest udostępniane do użytku przez aplikacje, które mogą implementować niestandardową funkcję rysowania suwaka.
 
 ### <a name="parameters"></a>Parametry
 
-- **slider:** blok kontrolki widżetu suwaka
+- **slider:** blok sterowania widżetem suwaka
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -19712,12 +19789,12 @@ UINT gx_slider_travel_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera przesuwanie suwaka.
+Ta usługa pobiera podróż suwaka.
 
 ### <a name="parameters"></a>Parametry
 
-- **slider:** blok sterowania widżetem suwaka
-- **info**: Wskaźnik do struktury informacji suwaka. **Dodatek I** zawiera definicję GX_SLIDER_INFO struktury.
+- **slider:** blok kontrolki widżetu suwaka
+- **info:** Wskaźnik do struktury informacji suwaka. **Dodatek I** zawiera definicję GX_SLIDER_INFO struktury.
 - **return_min_travel:** Wskaźnik do miejsca docelowego dla minimalnej wartości podróży</td>
 - **return_max_travell:** Wskaźnik do miejsca docelowego dla maksymalnej wartości podróży</td>
 
@@ -19836,12 +19913,12 @@ UINT gx_slider_value_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia wartość suwaka. Ten interfejs API może zostać wywołany przez aplikację, aby przenieść wskaźnik suwaka pod kontrolę programu, pomijając potrzebę wprowadzania danych przez użytkownika w celu przeciągnięcia nasuwu suwaka.
+Ta usługa ustawia wartość suwaka. Ten interfejs API może zostać wywołany przez aplikację, aby przenieść wskaźnik suwaka pod kontrolą programu, pomijając konieczność przeciągania danych wejściowych użytkownika w celu przeciągnięcia nasuwu.
 
 ### <a name="parameters"></a>Parametry
 
-- **slider:** blok sterowania widżetem suwaka
-- **info**: Wskaźnik do struktury informacji suwaka. **Dodatek I** zawiera definicję GX_SLIDER_INFO struktury
+- **slider:** blok kontrolki widżetu suwaka
+- **info:** Wskaźnik do struktury informacji suwaka. **Dodatek I** zawiera definicję GX_SLIDER_INFO struktury
 - **new_value:** Nowa wartość suwaka
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -19899,7 +19976,7 @@ UINT gx_sprite_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy GX_SPRITE widget. Sprite służy do wyświetlania sekwencji map pikseli w formie animacji lub może być używany jako widżet wyświetlania wielo state pixelmap.
+Ta usługa tworzy GX_SPRITE widget. Sprite służy do wyświetlania sekwencji map pikseli jako animacji lub może być używany jako widżet wyświetlania mapy pikseli o wielu stanach.
 
 GX_SPRITE pochodzi od usługi GX_WIDGET obsługuje wszystkie usługi gx_widget API.
 
@@ -19908,13 +19985,13 @@ Widżet GX_SPRITE wymaga tablicy struktur GX_SPRITE_FRAME definiowania animacji 
 ### <a name="parameters"></a>Parametry
 
 - **sprite:** blok sterowania widżetu sprite
-- **name**: Opcjonalna nazwa sprite'u
-- **parent**: Wskaźnik do widżetu nadrzędnego
-- **frame_list:** tablica struktur GX_SPRITE_FRAME danych
-- **frame_count**: określa liczbę wpisów w tablicy listy ramek
+- **name**: Opcjonalna nazwa sprite
+- **parent**: wskaźnik do widżetu nadrzędnego
+- **frame_list:** tablica GX_SPRITE_FRAME struktur
+- **frame_count**: określa liczbę wpisów w tablicy list ramek
 - **style**: styl sprite. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 - **sprite_id:** zdefiniowany przez aplikację identyfikator sprite
-- **size:** wymiary sprite'u
+- **size**: wymiary sprite
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -19963,12 +20040,12 @@ UINT gx_sprite_current_frame_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przypisuje bieżącą ramkę sprite. Jeśli widżet GX_SPRITE nie jest automatycznie uruchomiony, może służyć jako kontrolowane przez program światło stanu, wyświetlając polecioną mapę pikseli ramki.
+Ta usługa przypisuje bieżącą ramkę sprite. Jeśli widżet GX_SPRITE nie jest automatycznie uruchomiony, może służyć jako światło stanu kontrolowane przez program, wyświetlając polecioną mapę pikseli ramki.
 
 ### <a name="parameters"></a>Parametry
 
 - **sprite:** blok sterowania widżetu sprite
-- **frame:** ramka ze sprite'em do wyświetlenia
+- **frame**: Ramka sprite do wyświetlenia
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -20061,12 +20138,12 @@ UINT gx_sprite_start(
 
 ### <a name="description"></a>Opis
 
-Ta usługa uruchamia sekwencję automatycznego uruchamiania sprite. Widżet sprite będzie przechodzić między ramkami sprite'u aż do momentu, gdy zostanie osiągnięta ostatnia ramka, lub będzie działać w sposób ciągły, jeśli GX_SPRITE_LOOP styl.
+Ta usługa uruchamia sekwencję automatycznego uruchamiania sprite. Widżet sprite będzie przechodzić przez ramki z sprite'em aż do momentu, gdy zostanie osiągnięta ostatnia ramka, lub będzie działać w sposób ciągły, jeśli styl GX_SPRITE_LOOP ustawiony.
 
 ### <a name="parameters"></a>Parametry
 
 - **sprite:** blok sterowania widżetu sprite
-- **frame:** początkowa ramka sprite'a do wyświetlenia, zwykle ramka 0
+- **frame**: początkowa ramka sprite'a do wyświetlenia, zwykle ramka 0
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -20162,17 +20239,17 @@ UINT gx_string_scroll_wheel_create(
 
 Ta usługa tworzy koło przewijania typu ciągu.
 
-GX_STRING_SCROLL_WHEEL pochodzi od GX_TEXT_SCROLL_WHEEL, dlatego wszystkie gx_text_scroll_wheel interfejsu API mogą być używane z GX_STRING_SCROLL_WHEEL widgetami.
+GX_STRING_SCROLL_WHEEL jest pochodną GX_TEXT_SCROLL_WHEEL, dlatego wszystkie gx_text_scroll_wheel interfejsu API mogą być używane z GX_STRING_SCROLL_WHEEL widgetami.
 
-Aplikacja może przekazać prostą tablicę ciągów do funkcji create, która definiuje ciągi, które będą wyświetlane przez kółka przewijania, lub aplikacja może przekazać ciąg GX_NULL jako parametr string_list i wywołać interfejs API w celu zapewnienia tablicy identyfikatorów `gx_string_scroll_wheel_string_id_list_set()` ciągów. Jeśli zostanie użyta druga metoda, kółka przewijania ciągów automatycznie przełączy wyświetlane ciągi w przypadku zmodyfikowania aktywnego języka aplikacji.
+Aplikacja może przekazać prostą tablicę ciągów do funkcji create, która definiuje ciągi, które będą wyświetlane przez kółka przewijania, lub aplikacja może przekazać ciąg GX_NULL jako parametr string_list i wywołać interfejs API w celu zapewnienia tablicy identyfikatorów `gx_string_scroll_wheel_string_id_list_set()` ciągów. Jeśli zostanie użyta druga metoda, kółka przewijania ciągów automatycznie przełączy wyświetlane ciągi, jeśli aktywny język aplikacji zostanie zmodyfikowany.
 
-Alternatywnie, jeśli ciągi do wyświetlania nie są zdefiniowane statycznie lub nie wiadomo w czasie tworzenia kółka przewijania, aplikacja może przekazać ciąg GX_NULL jako parametr listy ciągów i wywołać funkcję interfejsu API gx_text_scroll_wheel_callback_set() w celu zdefiniowania funkcji wywołania zwrotnego, która zapewni ciągi do wyświetlania w czasie rzeczywistym zgodnie z potrzebami.
+Alternatywnie, jeśli ciągi do wyświetlania nie są zdefiniowane statycznie lub nie wiadomo, kiedy koło przewijania zostanie utworzone, aplikacja może przekazać ciąg GX_NULL jako parametr listy ciągów i wywołać funkcję interfejsu API gx_text_scroll_wheel_callback_set(), aby zdefiniować funkcję wywołania zwrotnego, która zapewni ciągi do wyświetlania w czasie rzeczywistym zgodnie z potrzebami..
 
 ### <a name="parameters"></a>Parametry
 
 - **wheel:** adres bloku sterowania kółka przewijania ciągów
 - **name**: Nazwa widżetu zdefiniowanego przez aplikację
-- **parent**: Wheel parent lub GX_NULL
+- **parent**: wheel parent lub GX_NULL
 - **total_rows:** Łączna liczba wierszy do zaprezentowania użytkownikowi
 - **string_list:** statycznie zdefiniowana tablica ciągów lub GX_NULL
 - **style**: flagi żądanego stylu
@@ -20181,10 +20258,10 @@ Alternatywnie, jeśli ciągi do wyświetlania nie są zdefiniowane statycznie lu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS:**(0x00) Pomyślnie utworzono koło przewijania ciągów
+- **GX_SUCCESS:**(0x00) Pomyślnie utworzono koło przewijania ciągu
 - **GX_CALLER_ERROR:**(0x11) Nieprawidłowy wywołujący tę funkcję
-- **GX_PTR_ERROR (0x07)**: Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED:**(0x13) Widget już utworzony
+- **GX_PTR_ERROR (0x07) :** Nieprawidłowy wskaźnik
+- **GX_ALREADY_CREATED:**(0x13) Widżet został już utworzony
 - **GX_INVALID_WIDGET:**(0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -20240,7 +20317,7 @@ status = gx_string_scroll_wheel_create(&wheel, “Day Wheel”,
 ## <a name="gx_string_scroll_wheel_event_process"></a>gx_string_scroll_wheel_event_process
 
 
-Zdarzenie koła przewijania ciągu przetwarzania
+Zdarzenie koła przewijania ciągu procesu
 
 ### <a name="prototype"></a>Prototype
 
@@ -20253,19 +20330,19 @@ UINT gx_string_scroll_wheel_string_id_list_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przetwarza zdarzenie dla określonego kółka przewijania ciągu. Ta usługa powinna być wywoływana jako domyślna procedura obsługi zdarzeń przez dowolne niestandardowe funkcje przetwarzania zdarzeń kółka przewijania ciągów.
+Ta usługa przetwarza zdarzenie dla określonego koła przewijania ciągów. Ta usługa powinna być wywoływana jako domyślna procedura obsługi zdarzeń przez dowolne funkcje przetwarzania zdarzeń koła przewijania ciągów niestandardowych.
 
 ### <a name="parameters"></a>Parametry
 
-- **wheel (koło)** Wskaźnik do bloku sterowania kółka przewijania ciągu
+- **wheel** Wskaźnik do bloku sterowania kółka przewijania ciągów
 - **event_ptr** Wskaźnik do zdarzenia do przetwarzania
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Proces zdarzenia pomyślnego przewijania ciągu koła przewijania
+- **GX_SUCCESS** (0x00) Pomyślny proces zdarzenia koła przewijania ciągów
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -20329,7 +20406,7 @@ UINT gx_string_scroll_wheel_string_id_list_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przypisuje tablicę identyfikatorów ciągów do widżetu koła przewijania ciągów. Ta metoda przypisywania ciągów do kółka przewijania ciągów jest zalecana, jeśli ciągi są zdefiniowane statycznie i widżet musi działać w wielu językach. Jeśli ten interfejs API ma być używany, najpierw należy utworzyć widżet koła przewijania z GX_NULL ciągami.
+Ta usługa przypisuje tablicę identyfikatorów ciągów do widżetu kółka przewijania ciągów. Ta metoda przypisywania ciągów do kółka przewijania ciągów jest zalecana, jeśli ciągi są zdefiniowane statycznie i widżet musi działać w wielu językach. Jeśli ten interfejs API ma być używany, najpierw należy utworzyć widżet koła przewijania z GX_NULL ciągami.
 
 ### <a name="parameters"></a>Parametry
 
@@ -20406,9 +20483,9 @@ UINT gx_string_scroll_wheel_string_list_set(
 
 ### <a name="description"></a>Opis
 
-Umożliwia to przypisanie tablicy ciągów do widżetu koła przewijania ciągów. Umożliwia to modyfikowanie ciągów wyświetlanych po początkowym utworzeniu widżetu.
+Umożliwia to przypisanie tablicy ciągów do widżetu kółka przewijania ciągów. Może to służyć do modyfikowania ciągów wyświetlanych po początkowym utworzeniu widżetu.
 
-Pamiętaj, string_scroll_wheel nie obsługuje GX_STYLE_TEXT_COPY, dlatego tablica ciągów przekazanych do tej funkcji powinna być statycznie zdefiniowana przez aplikację.
+Pamiętaj, string_scroll_wheel nie obsługuje GX_STYLE_TEXT_COPY, dlatego tablica ciągów przekazanych do tej funkcji powinna zostać statycznie zdefiniowana przez aplikację.
 
 ### <a name="parameters"></a>Parametry
 
@@ -20489,15 +20566,15 @@ Ta usługa tworzy widżet i elementy children widżetu przy użyciu specyfikacji
 
 Struktura GX_STUDIO_WIDGET jest zdefiniowana w pliku nagłówkowym specyfikacji aplikacji wygenerowanym przez program GUIX Studio.
 
-W przypadku statycznie przydzielanych widżetów blok sterowania widżetu jest definiowany w wygenerowanym pliku specifications.c i ma nazwę widżetu zdefiniowaną w programie GUIX Studio. W przypadku dynamicznie przydzielanych widżetów aplikacja powinna przekazać adres GX_NULL jako adres bloku sterowania widżetem, a funkcja podejmie próbę dynamicznego przydzielenia bloku sterowania widżetem przy użyciu funkcji , która jest również definiowana przez i dostarczana przez `gx_system_memory_allocate()` aplikację.
+W przypadku statycznie przydzielanych widżetów blok sterowania widżetu jest definiowany w wygenerowanym pliku specifications.c i ma nazwę widżetu zdefiniowaną w programie GUIX Studio. W przypadku dynamicznie przydzielanych widżetów aplikacja powinna przekazać adres GX_NULL jako adres bloku sterowania widżetem, a funkcja podejmie próbę dynamicznego przydzielenia bloku sterowania widżetu przy użyciu funkcji , która jest również definiowana przez funkcję i dostarczana przez `gx_system_memory_allocate()` aplikację.
 
-Aby aplikacja bezpośrednio odwołyła się do definicji widżetu GUIX Studio w wygenerowanym pliku specyfikacji, należy przestrzegać konwencji nazewnictwa używanej przez generator kodu gui studio. Struktura GX_STUDIO_WIDGET wygenerowana w pliku specifications.c jest zawsze nazwana zgodnie z tą konwencją: <widget_name>_define, gdzie pole <widget_name> może być powtarzane wielokrotnie, jeśli widżet jest elementem podrzędnym widżetu podrzędnego.
+Aby aplikacja bezpośrednio odwołyła się do definicji widżetu GUIX Studio w wygenerowanym pliku specyfikacji, należy postępować zgodnie z konwencją nazewnictwa używaną przez generator kodu gui studio. Struktura GX_STUDIO_WIDGET wygenerowana w pliku specifications.c jest zawsze nazwana zgodnie z tą konwencją: <widget_name>_define, gdzie pole <widget_name> może być powtarzane wielokrotnie, jeśli widżet jest elementem podrzędnym widżetu podrzędnego.
 
 ### <a name="parameters"></a>Parametry
 
-- **kontrolka** Wskaźnik do bloku kontrolki widżetu lub GX_NULL, jeśli jest przydzielany dynamicznie.
+- **kontrolka** Wskaźnik do bloku sterowania widżetu lub GX_NULL, jeśli jest przydzielany dynamicznie.
 - **definicja** Struktura definicji widżetu wygenerowanego przez program Studio
-- **wskaźnik nadrzędny** do elementu nadrzędnego widżetu, jeśli jest elementem nadrzędnym
+- **wskaźnik nadrzędny** do elementu nadrzędnego widżetu, jeśli jest
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -20668,7 +20745,7 @@ Ta usługa ustawia bieżący język. Indeks języka musi być mniejszy niż licz
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS:**(0x00) Pomyślnie ustawiono aktywny język
+- **GX_SUCCESS:**(0x00) Pomyślnie ustaw aktywny język
 - **GX_CALLER_ERROR:**** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR:**** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_VALUE:**** (0x22) Nieprawidłowy indeks języka
@@ -20704,17 +20781,17 @@ UINT gx_system_animation_get(GX_ANIMATION **animation);
 
 ### <a name="description"></a>Opis
 
-Ta usługa może służyć do uzyskiwania bloku sterowania animacji z puli takich bloków sterujących utrzymywanych przez składnik gx_system sterowania. Pula bloków sterowania animacją i powiązane usługi interfejsu API są udostępniane tylko wtedy, GX_ANIMATION_POOL_SIZE jest zdefiniowana z wartością 0. Ustawieniem domyślnym dla tej wartości jest 6, co oznacza, że pula bloków sterowania animacjami systemu zawiera rozmiar GX_ANIMATION bloku sterowania.
+Za pomocą tej usługi można uzyskać blok sterowania animacji z puli takich bloków sterujących utrzymywanych przez składnik gx_system sterowania. Pula bloków kontrolek animacji i powiązane usługi interfejsu API są udostępniane tylko wtedy, GX_ANIMATION_POOL_SIZE jest zdefiniowana z wartością 0. Domyślne ustawienie tej wartości to 6, co oznacza, że pula bloków sterowania animacją systemu zawiera rozmiar GX_ANIMATION bloku sterowania.
 
-Blok sterowania animacji przydzielony przy użyciu tego interfejsu API jest automatycznie zwracany do bezpłatnej puli, jeśli animacja zostanie ukończona. Jeśli animacja zostanie zatrzymana przy użyciu gx_animation_stop lub nie zostanie uruchomiona z powodu zwróconego błędu, blok sterowania animacji powinien zostać zwrócony do bezpłatnej puli przez aplikację używającą gx_system_animation_free.
+Blok kontrolki animacji przydzielony przy użyciu tego interfejsu API jest automatycznie zwracany do bezpłatnej puli, jeśli animacja zostanie ukończona. Jeśli animacja zostanie zatrzymana przy użyciu usługi gx_animation_stop lub nie zostanie uruchomiona z powodu zwróconego błędu, blok kontrolki animacji powinien zostać zwrócony do bezpłatnej puli przez aplikację przy użyciu gx_system_animation_free.
 
 ### <a name="parameters"></a>Parametry
 
-- **animacja:** Adres wskaźnika do odbierania GX_ANIMATION wskaźnika.
+- **animation:** adres wskaźnika do odbierania GX_ANIMATION wskaźnika.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS:**(0x00) Pomyślnie uzyskany blok sterowania animacji
+- **GX_SUCCESS:**(0x00) Pomyślnie uzyskano blok kontrolki animacji
 - **GX_CALLER_ERROR:**(0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR:**(0x07) Nieprawidłowy wskaźnik animacji
 - **GX_OUT_OF_ANIMATIONS:**(0x31) Wyczerpanie puli animacji systemu
@@ -20755,17 +20832,17 @@ UINT gx_system_animation_free(GX_ANIMATION *animation);
 
 ### <a name="description"></a>Opis
 
-Ta usługa może służyć do zwracania bloku kontrolki animacji do puli systemowej. Pula bloków kontrolek animacji i powiązane usługi interfejsu API są udostępniane tylko wtedy, GX_ANIMATION_POOL_SIZE jest zdefiniowana z wartością 0. Domyślne ustawienie tej wartości to 6, co oznacza, że pula bloków sterowania animacją systemu zawiera rozmiar GX_ANIMATION bloku sterowania.
+Ta usługa może służyć do zwracania bloku kontrolki animacji do puli systemowej. Pula bloków sterowania animacją i powiązane usługi interfejsu API są udostępniane tylko wtedy, GX_ANIMATION_POOL_SIZE jest zdefiniowana z wartością 0. Ustawieniem domyślnym dla tej wartości jest 6, co oznacza, że pula bloków sterowania animacjami systemu zawiera rozmiar GX_ANIMATION bloku sterowania.
 
-Blok kontrolki animacji przydzielony przy użyciu gx_system_animation_get() jest automatycznie zwracany do bezpłatnej puli, jeśli animacja zostanie uruchomiona do ukończenia. Próba zwrócenia bloku kontrolki animacji do bezpłatnej puli, która została już zwrócona do bezpłatnej puli, nie ma żadnego efektu.
+Blok sterowania animacji przydzielony przy użyciu gx_system_animation_get() jest automatycznie zwracany do bezpłatnej puli, jeśli animacja zostanie ukończona. Próba zwrócenia bloku sterowania animacji do bezpłatnej puli, która została już zwrócona do bezpłatnej puli, nie ma żadnego efektu.
 
 Jeśli animacja zostanie zatrzymana przy użyciu funkcji gx_animation_stop lub nie zostanie uruchomiona z powodu zwróconego błędu, blok kontrolki animacji uzyskany przy użyciu funkcji gx_system_animation_get() powinien zostać zwrócony do bezpłatnej puli przez aplikację używającą funkcji gx_system_animation_free().
 
-Animacja musi być w stanie bezczynności, zanim będzie można ją przywrócić do bezpłatnej puli. Animacja jest w stanie bezczynności, gdy nie została uruchomiona, zatrzymana lub po zakończeniu.
+Animacja musi być w stanie bezczynności, zanim będzie można ją przywrócić do bezpłatnej puli. Animacja jest w stanie bezczynności, gdy nie została uruchomiona, zatrzymana lub po jej zakończeniu.
 
 ### <a name="parameters"></a>Parametry
 
-- **animation**: wskaźnik do GX_ANIMATION kontrolki.
+- **animacja:** wskaźnik do GX_ANIMATION sterowania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -20816,7 +20893,7 @@ UINT gx_system_bidi_text_disable(VOID);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyłącza obsługę dynamicznego dwukierunkowego tekstu. Ta usługa wymaga GX_DYNAMIC_BIDI_TEXT_SUPPORT podczas budowania biblioteki GUIX i jest wymagana tylko wtedy, gdy wymagana jest zmiana kolejności danych ciągu BiDi w czasie wykonywania. Większość aplikacji używa programu GUIX Studio do tworzenia poprawnie uporządkowanych ciągów tekstowych BiDi.
+Ta usługa wyłącza obsługę dynamicznego dwukierunkowego tekstu. Ta usługa wymaga GX_DYNAMIC_BIDI_TEXT_SUPPORT podczas tworzenia biblioteki GUIX i jest wymagana tylko wtedy, gdy wymagana jest zmiana kolejności ciągów BiDi w czasie wykonywania. Większość aplikacji używa programu GUIX Studio do tworzenia poprawnie uporządkowanych ciągów tekstowych BiDi.
 
 ### <a name="parameters"></a>Parametry
 
@@ -21101,7 +21178,7 @@ Ta usługa zwraca wskaźnik do bieżącego kontekstu rysowania.
 
 ### <a name="parameters"></a>Parametry
 
-- **current_context:** wskaźnik do miejsca docelowego dla bieżącego wskaźnika kontekstu rysowania
+- **current_context:** Wskaźnik do miejsca docelowego dla bieżącego wskaźnika kontekstu rysowania
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -21448,8 +21525,8 @@ Ta usługa pobiera tabelę aktywnego języka. Ta funkcja jest przestarzała na r
 ### <a name="parameters"></a>Parametry
 
 - **language_table:** Adres wskaźnika zwracania tabeli języka.
-- **languages_count:** adres zmiennej, która ma zwracać kolumny tabeli.
-- **string_count:** adres wskaźnika, który ma zwracać wiersze tabeli.
+- **languages_count:** adres zmiennej zwracania kolumn tabeli.
+- **string_count:** Adres wskaźnika do zwracania wierszy tabeli.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -21506,7 +21583,7 @@ Ta usługa instaluje tabelę języka aktywnego. Ta funkcja została wycofana na 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS:**(0x00) Successfully set language table (Pomyślnie ustawiono tabelę języka)
+- **GX_SUCCESS:**(0x00) Pomyślnie ustawiono tabelę języka
 - **GX_CALLER_ERROR:**(0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR:**(0x07) Nieprawidłowy wskaźnik
 
@@ -21559,7 +21636,7 @@ Usługi GUIX, które wymagają alokacji pamięci środowiska uruchomieniowego i 
 
 ### <a name="parameters"></a>Parametry
 
-- **alokator:** funkcja alokatora pamięci
+- **allocator:** Funkcja alokatora pamięci
 - **release:** Funkcja bez pamięci
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -21574,7 +21651,7 @@ Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
-W poniższym przykładzie wykorzystano pulę bajtów ThreadX w celu zaimplementowania dynamicznej alokacji pamięci threadsafe i usługi cokołu alokacji pamięci.
+W poniższym przykładzie wykorzystano pulę bajtów ThreadX w celu zaimplementowania dynamicznej alokacji pamięci threadsafe i usługi delokowania pamięci.
 
 ```C
 TX_BYTE_POOL memory_pool;
@@ -21658,9 +21735,9 @@ UINT gx_system_pen_configure(GX_PEN_CONFIGURATION *pen_configuration);
 
 Ta usługa ustawia konfigurację pióra w celu kontrolowania parametrów szybkości i odległości pióra używanych do wyzwalania generowania GX_EVENT_FLICK typów zdarzeń.
 
-Typ gx_pen_configuration_min_drag_dist jest GX_PEN_CONFIGURATION typu danych stałego punktu i należy użyć funkcji GX_FIXED_VAL_MAKE(value) do konwersji z int na GX_FIXED_VAL. Jeśli na przykład chcesz ustawić minimalną odległość przeciągania na 0,5 piksela na takt, musisz ustawić gx_pen_configuration_min_drag_dist na `GX_FIXED_VAL_MAKE(1) / 2` .
+Typ gx_pen_configuration_min_drag_dist jest GX_PEN_CONFIGURATION typu danych punktu stałego i należy użyć wartości GX_FIXED_VAL_MAKE(value) do konwersji z INT na GX_FIXED_VAL. Jeśli na przykład chcesz ustawić minimalną odległość przeciągania na 0,5 piksela na takt, musisz ustawić gx_pen_configuration_min_drag_dist na `GX_FIXED_VAL_MAKE(1) / 2` .
 
-W wersji GUIX 5.4.0 i starszych typ gx_pen_configuration_min_drag_dist GX_PEN_CONFIGURATION był typu (INT << 8), a nie GX_FIXED_VAL typu. Jeśli projekt z biblioteką GUIX w wersji 5.4.0 korzysta z tego interfejsu API, podczas budowania biblioteki GUIX należy zmodyfikować parametr min_drag_dist lub #define GUIX_5_4_0_COMPATIBILITY go.
+W wersji GUIX 5.4.0 i starszych gx_pen_configuration_min_drag_dist GX_PEN_CONFIGURATION był typu (INT << 8), a nie GX_FIXED_VAL typu. Jeśli projekt z biblioteką GUIX w wersji 5.4.0 korzysta z tego interfejsu API, podczas budowania biblioteki GUIX należy zmodyfikować parametr min_drag_dist lub #define GUIX_5_4_0_COMPATIBILITY 5.4.0.
 
 ### <a name="parameters"></a>Parametry
 
@@ -21719,8 +21796,8 @@ Jeśli aplikacja zamierza korzystać z usług stosu ekranu, należy najpierw gx_
 
 ### <a name="parameters"></a>Parametry
 
-- **memory:** wskaźnik do zarezerwowanego bloku pamięci.
-- **rozmiar:** rozmiar w bajtach zarezerwowanego bloku pamięci.
+- **memory:** wskaźnik do bloku pamięci zarezerwowanej.
+- **size:** rozmiar w bajtach zarezerwowanego bloku pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -21969,7 +22046,7 @@ Ta usługa uzyskuje wygląd paska przewijania.
 ### <a name="parameters"></a>Parametry
 
 - **style**: Scrollbar style: `GX_SCROLLBAR_HORIZONTAL` lub `GX_SCROLLBAR_VERTICAL`
-- **return_appearance:** wskaźnik do miejsca docelowego, aby uzyskać wygląd. **Dodatek I** zawiera definicję GX_SCROLLBAR_APPERANCE
+- **return_appearance:** wskaźnik do miejsca docelowego dla wyglądu. **Dodatek I** zawiera definicję GX_SCROLLBAR_APPERANCE
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -22187,7 +22264,7 @@ Ta usługa pobiera ciąg dla określonego identyfikatora zasobu przy użyciu pie
 
 - **GX_SUCCESS:**(0x00) Pomyślne uzyskiwanie ciągu
 - **GX_CALLER_ERROR:**(0x11) Nieprawidłowy wywołujący tę funkcję
-- **GX_PTR_ERROR (0x07) :** Nieprawidłowy wskaźnik
+- **GX_PTR_ERROR (0x07)**: Nieprawidłowy wskaźnik
 - **GX_INVALID_RESOURCE_ID:**(0x33) Nieprawidłowy identyfikator zasobu
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -22288,7 +22365,7 @@ Ta usługa oblicza szerokość wyświetlania podanego ciągu w pikselach przy u�
 - **font:** Wskaźnik do czcionki ciągu
 - **string:** Wskaźnik do ciągu
 - **string_length:** Długość ciągu
-- **return_width:** miejsce docelowe dla szerokości ciągu
+- **return_width:** miejsce docelowe szerokości ciągu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -22404,7 +22481,7 @@ UINT gx_system_timer_start(
 
 ### <a name="description"></a>Opis
 
-Ta usługa uruchamia czasomierz dla określonego widżetu. Stała GX_MAX_ACTIVE_TIMERS zdefiniowane maksymalna liczba obsługiwanych aktywnych czasomierzy. Ustawieniem domyślnym dla tej wartości jest 32.
+Ta usługa uruchamia czasomierz dla określonego widżetu. Stała GX_MAX_ACTIVE_TIMERS zdefiniowane maksymalna liczba obsługiwanych aktywnych czasomierzy. Domyślne ustawienie tej wartości to 32.
 
 ### <a name="parameters"></a>Parametry
 
@@ -22535,7 +22612,7 @@ Ta usługa pobiera ciąg wersji biblioteki GUIX.
 
 ### <a name="parameters"></a>Parametry
 
-- **version:** wskaźnik do zwracania wartości ciągu.
+- **version**: wskaźnik do zwracania wartości ciągu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -22576,7 +22653,7 @@ Ta usługa pobiera ciąg wersji biblioteki GUIX.
 
 ### <a name="parameters"></a>Parametry
 
-- **version:** wskaźnik do zwracania wartości ciągu.
+- **version**: wskaźnik do zwracania wartości ciągu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -22639,7 +22716,7 @@ UINT gx_system_widget_find(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyszukuje określony identyfikator widżetu. W gx_widget_find() ta funkcja wyszukuje elementy główne wszystkich okien głównych zdefiniowanych w systemie, co oznacza, że jest to wyczerpujące wyszukiwanie wszystkich widocznych widżetów. Jeśli znasz element nadrzędny wyszukiwanych widżetów, zamiast tego użyj gx_widget_find().
+Ta usługa wyszukuje określony identyfikator widżetu. W gx_widget_find() ta funkcja wyszukuje elementy główne wszystkich okien głównych zdefiniowanych w systemie, co oznacza, że jest to wyczerpujące wyszukiwanie wszystkich widocznych widżetów. Jeśli znasz element nadrzędny szukanych widżetów, zamiast tego użyj gx_widget_find().
 
 ### <a name="parameters"></a>Parametry
 
@@ -22649,8 +22726,8 @@ Ta usługa wyszukuje określony identyfikator widżetu. W gx_widget_find() ta fu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS:**(0x00) Pomyślne wyszukiwanie widżetów
-- **GX_NOT_FOUND:**(0x09) Identyfikator widżetu nie został znaleziony
+- **GX_SUCCESS:**(0x00) Pomyślne wyszukiwanie widżetu
+- **GX_NOT_FOUND:** nie znaleziono identyfikatora 0x09 (0x09) widżetu
 - **GX_PTR_ERROR:**(0x07) Nieprawidłowy wskaźnik
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -22722,20 +22799,20 @@ GX_TEXT_BUTTON pochodzi od usługi GX_BUTTON obsługuje wszystkie usługi gx_but
 
 ### <a name="parameters"></a>Parametry
 
-- **text_button:** blok sterowania wskaźnika do przycisku tekstowego
+- **text_button:** wskaźnik do bloku kontrolki przycisku tekstowego
 - **name**: Nazwa logiczna przycisku tekstowego
-- **parent**: wskaźnik do widżetu nadrzędnego przycisku
+- **parent**: Wskaźnik do widżetu nadrzędnego przycisku
 - **text_id:** identyfikator zasobu tekstu
 - **style:** styl przycisku tekstowego. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
-- **text_button_id:** zdefiniowany przez aplikację identyfikator przycisku tekstowego
-- **rozmiar:** rozmiar przycisku
+- **text_button_id:** Zdefiniowany przez aplikację identyfikator przycisku tekstowego
+- **size:** rozmiar przycisku
 
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **GX_SUCCESS:**(0x00) Pomyślne utworzenie przycisku tekstowego
 - **GX_CALLER_ERROR:**(0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR:**(0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED:**(0x13) Widget już utworzony
+- **GX_ALREADY_CREATED:**(0x13) Widżet został już utworzony
 - **GX_INVALID_SIZE:**(0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 - **GX_INVALID_WIDGET:**(0x12) Widżet nadrzędny jest nieprawidłowy
 
@@ -22800,7 +22877,7 @@ Ta usługa rysuje przycisk tekstowy. Ta usługa jest zwykle wywoływana wewnętr
 
 ### <a name="parameters"></a>Parametry
 
-- **button:** wskaźnik do bloku kontrolki przycisku tekstowego
+- **button:** blok sterujący wskaźnika do przycisku tekstowego
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -22856,11 +22933,11 @@ UINT gx_text_button_event_process(GX_TEXT_BUTTON *text_button, GX_EVENT *event_p
 
 ### <a name="description"></a>Opis
 
-Ta usługa przetwarza zdarzenie dla określonego przycisku tekstowego. Ta usługa powinna być wywoływana jako domyślna procedura obsługi zdarzeń przez dowolne funkcje przetwarzania zdarzeń niestandardowego przycisku tekstu.
+Ta usługa przetwarza zdarzenie dla określonego przycisku tekstowego. Ta usługa powinna być wywoływana jako domyślna procedura obsługi zdarzeń przez dowolne niestandardowe funkcje przetwarzania zdarzeń przycisku tekstu.
 
 ### <a name="parameters"></a>Parametry
 
-- **text_button** Blok sterujący wskaźnika do przycisku tekstowego
+- **text_button** Wskaźnik do bloku kontrolki przycisku tekstowego
 - **event_ptr** Wskaźnik do zdarzenia do przetwarzania
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -23001,7 +23078,7 @@ Ta usługa ustawia kolor przycisku tekstowego.
 - **text_button:** blok sterowania wskaźnika do przycisku tekstowego
 - **normal_text_color_id:** Identyfikator zasobu zwykłego tekstu. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 - **selected_text_color_id:** identyfikator zasobu zaznaczonego tekstu. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
-- **disabled_text_color_id:** Identyfikator zasobu koloru dla wyłączonego tekstu. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
+- **disabled_text_color_id:** Identyfikator zasobu koloru dla tekstu wyłączonego. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -23297,11 +23374,11 @@ UINT gx_text_button_text_set(
 
 Ta usługa jest przestarzała na rzecz gx_text_button_text_set_ext().
 
-Ta usługa przypisuje określony ciąg do przycisku tekstowego. Jeśli widżet text_button został utworzony z GX_STYLE_TEXT_COPY, widżet tworzy prywatną kopię przypisanego ciągu tekstowego. Jeśli GX_STYLE_TEXT_COPY nie jest aktywny, widżet nie robi prywatnej kopii przychodzącego ciągu, dlatego ciąg musi być przydzielany statycznie lub globalnie, tzn. może nie być automatyczną ani tymczasową zmienną.
+Ta usługa przypisuje określony ciąg do przycisku tekstowego. Jeśli widżet text_button został utworzony z GX_STYLE_TEXT_COPY, widżet tworzy prywatną kopię przypisanego ciągu tekstowego. Jeśli GX_STYLE_TEXT_COPY nie jest aktywny, widżet nie będzie prywatną kopią ciągu przychodzącego, dlatego ciąg musi być przydzielany statycznie lub globalnie, tzn. może nie być zmienną automatyczną lub tymczasową.
 
 ### <a name="parameters"></a>Parametry
 
-- **text_button:** blok sterowania wskaźnika do przycisku tekstowego
+- **text_button:** wskaźnik do bloku kontrolki przycisku tekstowego
 - **text**: wskaźnik do ciągu zakończonego wartością NULL
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -23481,7 +23558,7 @@ Ta usługa ustawia wysokość kursora.
 
 - **GX_SUCCESS:**(0x00) Pomyślnie ustaw wysokość kursora
 - **GX_PTR_ERROR:**(0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_VALUE:**(0x22) Wysokość nie jest prawidłowa
+- **GX_INVALID_VALUE:**(0x22) Wysokość jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -23565,7 +23642,7 @@ successfully set to 2. */
 
 ## <a name="gx_text_scroll_wheel_callback_set"></a>gx_text_scroll_wheel_callback_set
 
-Przypisywanie funkcji wywołania zwrotnego typu tekst kółka przewijania (przestarzałe)
+Przypisywanie funkcji wywołania zwrotnego typu tekstowego kółka przewijania (przestarzałe)
 
 ### <a name="prototype"></a>Prototype
 
@@ -23579,9 +23656,9 @@ UINT gx_text_scroll_wheel_callback_set(
 
 Ta usługa jest przestarzała na rzecz gx_text_scroll_wheel_callback_set_ext().
 
-Ta usługa przypisuje funkcję wywołania zwrotnego, która zostanie wywołana przez koło przewijania typu tekstu w celu określenia ciągu tekstowego do wyświetlania w każdym wierszu koła przewijania.
+Ta usługa przypisuje funkcję wywołania zwrotnego, która zostanie wywołana przez kółka przewijania typu tekstu w celu określenia ciągu tekstowego do wyświetlania w każdym wierszu koła przewijania.
 
-W GX_NUMERIC_SCROLL_WHEEL i GX_STRING_SCROLL_WHEEL są udostępniane domyślne funkcje wywołania zwrotnego, a aplikacja nie musi wprowadzać żadnych zmian w celu używania tych domyślnych implementacji.
+W GX_NUMERIC_SCROLL_WHEEL i GX_STRING_SCROLL_WHEEL są udostępniane domyślne funkcje wywołania zwrotnego, a aplikacja nie musi wprowadzać żadnych zmian w celu używania tych implementacji domyślnych.
 
 Ten interfejs API umożliwia aplikacji dostosowanie formatowania lub innych parametrów ciągu wyświetlanych w każdym wierszu widżetu kółka przewijania.
 
@@ -23770,18 +23847,18 @@ Ta usługa tworzy kółka przewijania tekstu. Kółka przewijania tekstu jest wi
 
 - **wheel:** adres bloku sterowania kółka przewijania tekstu
 - **name**: Nazwa widżetu zdefiniowanego przez aplikację
-- **parent**: Wheel parent lub GX_NULL
+- **parent**: wheel parent lub GX_NULL
 - **total_rows:** Łączna liczba wierszy do zaprezentowania użytkownikowi
-- **style**: flagi żądanego stylu
-- **Identyfikator:** Flagi stylu koła zdefiniowanego przez aplikację
-- **rozmiar:** początkowy rozmiar kółka przewijania
+- **style:** flagi żądanego stylu
+- **Identyfikator:** Flagi stylu koła zdefiniowane przez aplikację
+- **rozmiar:** początkowy rozmiar koła przewijania
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS:**(0x00) Pomyślnie utworzono kółka przewijania tekstu
+- **GX_SUCCESS:**(0x00) Pomyślnie utworzono koło przewijania tekstu
 - **GX_CALLER_ERROR:**(0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR:**(0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED:**(0x13) Widżet został już utworzony
+- **GX_ALREADY_CREATED:**(0x13) Widget już utworzony
 - **GX_INVALID_WIDGET:**(0x12) Widżet jest nieprawidłowy
 
 
@@ -23917,19 +23994,19 @@ UINT gx_text_scroll_wheel_event_process(GX_TEXT_SCROLL_WHEEL *wheel, GX_EVENT *e
 
 ### <a name="description"></a>Opis
 
-Ta usługa przetwarza zdarzenie dla określonego kółka przewijania tekstu. Ta usługa powinna być wywoływana jako domyślna procedura obsługi zdarzeń przez dowolne funkcje przetwarzania zdarzeń koła przewijania tekstu niestandardowego.
+Ta usługa przetwarza zdarzenie dla określonego kółka przewijania tekstu. Ta usługa powinna być wywoływana jako domyślna procedura obsługi zdarzeń przez wszystkie funkcje przetwarzania zdarzeń niestandardowego przewijania tekstu.
 
 ### <a name="parameters"></a>Parametry
 
-- **wheel** Blok sterowania kółka przewijania wskaźnika do tekstu
+- **wheel (koło)** Blok sterujący kółka przewijania wskaźnika do tekstu
 - **event_ptr** Wskaźnik do zdarzenia do przetwarzania
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Proces zdarzenia koła przewijania tekstu pomyślne
+- **GX_SUCCESS** (0x00) Proces zdarzenia z pomyślnym przewijaniem tekstu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -23979,7 +24056,7 @@ UINT custom_text_scroll_wheel_event_process(GX_TEXT_SCROLL_WHEEL *wheel, GX_EVEN
 
 ## <a name="gx_text_scroll_wheel_font_set"></a>gx_text_scroll_wheel_font_set
 
-Przypisywanie czcionek używanych do rysowania wierszy z kółkami przewijania
+Przypisywanie czcionek używanych do rysowania wierszy kółka przewijania
 
 ### <a name="prototype"></a>Prototype
 
@@ -23992,7 +24069,7 @@ UINT gx_text_scroll_font_set(
 
 ### <a name="description"></a>Opis
 
-Przypisz czcionki używane do narysowania tekstu widżetu opartego na kółkach przewijania tekstu.
+Przypisz czcionki używane do rysowania tekstu widżetu opartego na kółkach przewijania tekstu.
 
 ### <a name="parameters"></a>Parametry
 
@@ -24124,14 +24201,14 @@ UINT gx_tree_view_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy określony widok drzewa i kojarzy widok drzewa z dostarczonym widżetem nadrzędnym. Akceptuje wszystkie typy widżetów jako podrzędny element menu. Zaleca się używanie widżetu typu GX_MENU jako podrzędnego elementu menu.
+Ta usługa tworzy określony widok drzewa i kojarzy widok drzewa z dostarczonym widżetem nadrzędnym. Akceptuje wszystkie typy widżetów jako podrzędny element menu. Zaleca się używanie widżetu typu GX_MENU jako elementu menu podrzędnego.
 
-GX_TREE_VIEW pochodzi od usługi GX_WINDOW obsługuje wszystkie usługi gx_window API.
+GX_TREE_VIEW jest pochodną usługi GX_WINDOW obsługuje wszystkie usługi gx_window API.
 
 ### <a name="parameters"></a>Parametry
 
 - **tree**: wskaźnik do bloku sterowania widoku drzewa
-- **name**: nazwa widoku drzewa
+- **name**: Nazwa widoku drzewa
 - **parent**: Wskaźnik do widżetu nadrzędnego
 - **style**: styl widżetu. **Dodatek D** zawiera wstępnie zdefiniowane style ogólne dla wszystkich widżetów, a także style specyficzne dla widżetu.
 - **menu_id:** Zdefiniowany przez aplikację identyfikator widoku drzewa
@@ -24246,7 +24323,7 @@ UINT gx_tree_view_event_process(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przetwarza zdarzenie dla określonego widoku drzewa. Ta usługa powinna być wywoływana jako domyślna procedura obsługi zdarzeń przez dowolne niestandardowe funkcje przetwarzania zdarzeń widoku drzewa.
+Ta usługa przetwarza zdarzenie dla określonego widoku drzewa. Ta usługa powinna być wywoływana jako domyślna procedura obsługi zdarzeń przez wszystkie niestandardowe funkcje przetwarzania zdarzeń widoku drzewa.
 
 ### <a name="parameters"></a>Parametry
 
@@ -24442,7 +24519,7 @@ Ta usługa przypisuje kolor linii głównej do widoku drzewa.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS:**(0x00) Kolor linii głównej pomyślnego ustawienia
+- **GX_SUCCESS:**(0x00) Pomyślnie ustawiony kolor linii głównej
 - **GX_CALLER_ERROR:**(0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR:**(0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_WIDGET:**(0x12) Widżet jest nieprawidłowy
@@ -24560,7 +24637,7 @@ Ta usługa pobiera bieżący wybrany element widoku drzewa.
 ### <a name="parameters"></a>Parametry
 
 - **tree**: wskaźnik do bloku sterowania widoku drzewa
-- **selected:** wskaźnik do wybranego wskaźnika widżetu
+- **selected**: Wskaźnik do wybranego wskaźnika widżetu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -24770,14 +24847,14 @@ Ta usługa oblicza punkt na okręgu na podstawie środka okręgu, promienia i k�
 - **yCenter:** współrzędna y środka okręgu
 - **radius:** promień okręgu
 - **kąt**: kąt, pod którym ma być obliczany punkt obwodowy okręgu w stopniach
-- **point:** adres zmiennej GX_POINT, w której ma być zapisywana obliczona współrzędna x,y
-- **end_alpha:** końcowa wartość alfa
+- **punkt:** adres zmiennej GX_POINT, w której ma być zapisywana obliczona współrzędna x,y
+- **end_alpha:** Końcowa wartość alfa
 
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **GX_SUCCESS:**(0x00) Gradient został utworzony
 - **GX_PTR_ERROR:**(0x07) Nieprawidłowy adres punktu powrotu
-- **GX_INVALID_VALUE:**(0x22) Nieprawidłowy parametr radius
+- **GX_INVALID_VALUE:**(0x22) Nieprawidłowy parametr usługi Radius
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -24838,7 +24915,7 @@ Ta usługa tworzy gradientową mapę pikseli w czasie wykonywania. Obraz gradien
 
 Szerokość i wysokość żądanego gradientu nie może być mniejsza niż 2x2 piksele.
 
-Narzędzie GUIX wewnętrznie przechowuje listę utworzonych gradientów, a ta funkcja najpierw przeszukuje listę gradientów, aby znaleźć pasującą mapę pikseli gradientu przed utworzeniem nowej mapy pikseli. Innymi słowy, ta sama mapa pikseli gradientu jest wymagana wielokrotnie, w rzeczywistości jest tworzona tylko jedna mapa pikseli, a każdy gradient, który wymaga tej mapy pikseli, udostępnia utworzoną mapę pikseli.
+Graficzny interfejs użytkownika (GUIX) wewnętrznie utrzymuje listę utworzonych gradientów, a ta funkcja najpierw przeszukuje listę gradientów, aby znaleźć pasującą mapę pikseli gradientu przed utworzeniem nowej mapy pikseli. Innymi słowy, ta sama mapa pikseli gradientu jest wymagana wielokrotnie, w rzeczywistości jest tworzona tylko jedna mapa pikseli, a każdy gradient, który wymaga tej mapy pikseli, udostępnia utworzoną mapę pikseli.
 
 Ten interfejs API wymaga gx_system_memory_allocator, aby umożliwić alokację pamięci środowiska uruchomieniowego.
 
@@ -24851,12 +24928,12 @@ Flagi typu gradientu obejmują GX_GRADIENT_TYPE_ALPHA i GX_GRADIENT_TYPE_MIRROR.
 - **height:** żądana wysokość mapy pikseli
 - **type**: żądany typ gradientu
 - **start_alpha:** początkowa wartość alfa
-- **end_alpha:** końcowa wartość alfa
+- **end_alpha:** Końcowa wartość alfa
 
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **GX_SUCCESS:**(0x00) Gradient został utworzony
-- **GX_INVALID_SIZE:**(0x19) Gradient nie jest co najmniej 2x2 piksele
+- **GX_INVALID_SIZE:** gradient (0x19) nie jest co najmniej 2x2 piksele
 - **GX_NOT_SUPPORTED:**(0x28) Gradient nie jest typem GX_GRADIENT_TYPE_ALPHA
 - **GX_FAILURE:**(0x10) Alokator pamięci nie jest zdefiniowany lub alokacja pamięci nie powiodła się
 - **GX_CALLER_ERROR:**(0x11) Nieprawidłowy wywołujący tę funkcję
@@ -24979,9 +25056,9 @@ Ta usługa konwertuje długą wartość całkowitą na ciąg ASCII.
 
 ### <a name="parameters"></a>Parametry
 
-- **value:** Całkowita wartość całkowita do konwersji
+- **value:** Liczba całkowita długa do przekonwertowania
 - **return_buffer:** Bufor docelowy dla ciągu ASCII
-- **return_buffer_size:** Rozmiar buforu docelowego
+- **return_buffer_size:** rozmiar buforu docelowego
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -25028,7 +25105,7 @@ representation of “my_value”. */
 
 ## <a name="gx_utility_math_acos"></a>gx_utility_math_acos
 
-Cosine obliczenia arcus sinus
+Cosine arcus obliczeń
 
 ### <a name="prototype"></a>Prototype
 
@@ -25038,13 +25115,13 @@ INT gx_utility_math_acos(GX_FIXED_VAL x);
 
 ### <a name="description"></a>Opis
 
-Ta usługa oblicza wartość kąta arcus cosine x.
+Ta usługa oblicza wartość kąta co sinusu arcus x.
 
-Wartość wejściowa jest typem danych punktu stałego. Wywołaj GX_FIXED_VAL_MAKE, aby przekonwertować z INT na GX_FIXED_VAL typu. Jeśli na przykład chcesz obliczyć cous sinus arcus wartości 0,5, wprowadź dane wejściowe jako GX_FIXED_VAL_MAKE(1) /2.
+Wartość wejściowa to typ danych punktu stałego, który GX_FIXED_VAL_MAKE konwersję z INT na GX_FIXED_VAL typu. Jeśli na przykład chcesz obliczyć co sinus arcus co 0,5, wprowadź dane wejściowe jako GX_FIXED_VAL_MAKE(1) / 2.
 
-W wersji 5.4.0 lub mniejszej GUIX typ wartości wejściowej tej funkcji to INT, a wartość jest ograniczona do zakresu [-256, 256]. Przed wywołaniem tej usługi aplikacja musi skalować wartość z zakresu [-1, 1] do zakresu [-256, 256]. Jeśli projekt z wersją GUIX równą lub mniejszą niż 5.4.0 zawiera odwołanie do tego interfejsu API i chcesz uaktualnić projekt przy użyciu najnowszej biblioteki guix. Dostępne są dwie opcje.
+W wersji 5.4.0 lub mniejszej GUIX typ wartości wejściowej tej funkcji to INT, a wartość jest ograniczona do zakresu [-256, 256]. Przed wywołaniem tej usługi aplikacja musi przeskalować wartość z zakresu [-1, 1] do zakresu [-256, 256]. Jeśli projekt z wersją GUIX równą lub mniejszą niż 5.4.0 zawiera odwołanie do tego interfejsu API i chcesz uaktualnić projekt przy użyciu najnowszej biblioteki guix. Dostępne są dwie opcje.
 
-1. Napraw wartość wejściową tego wywołania interfejsu API, aby użyć GX_FIXED_VAL typu danych.
+1. Napraw wartość wejściową tego wywołania interfejsu API, aby GX_FIXED_VAL typu danych.
 1. Zdefiniuj GUIX_5_4_0_COMPATIBILITY.
 
 ### <a name="parameters"></a>Parametry
@@ -25053,7 +25130,7 @@ W wersji 5.4.0 lub mniejszej GUIX typ wartości wejściowej tej funkcji to INT, 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **kąt**: wartość kąta co sinusu arcus x
+- **kąt**: wartość kąta co sinusu x
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -25106,9 +25183,9 @@ INT gx_utility_math_asin(GX_FIXED_VAL x);
 
 ### <a name="description"></a>Opis
 
-Ta usługa oblicza wartość kąta sinusu arcus x.
+Ta usługa oblicza wartość kąta sinus kąta x.
 
-Wartość wejściowa to typ danych punktu stałego, który GX_FIXED_VAL_MAKE konwersję z INT na GX_FIXED_VAL typu. Na przykład, jeśli chcesz obliczyć arc sin 0,5, wprowadź dane wejściowe jako GX_FIXED_VAL_MAKE(1) / 2.
+Wartość wejściowa jest typem danych punktu stałego. Wywołaj GX_FIXED_VAL_MAKE, aby przekonwertować z INT na GX_FIXED_VAL typu. Jeśli na przykład chcesz obliczyć arc sin 0,5, wprowadź dane wejściowe jako GX_FIXED_VAL_MAKE(1) / 2.
 
 W wersji 5.4.0 lub mniejszej GUIX typ wartości wejściowej tej funkcji to INT, a wartość jest ograniczona do zakresu [-256, 256]. Przed wywołaniem tej usługi aplikacja musi przeskalować wartość z zakresu [-1, 1] do zakresu [-256, 256]. Jeśli projekt z wersją GUIX równą lub mniejszą niż 5.4.0 i chcesz uaktualnić projekt przy użyciu najnowszej biblioteki guix. Dostępne są dwie opcje.
 
@@ -25252,14 +25329,14 @@ Wartość wejściowa to typ danych punktu stałego, który GX_FIXED_VAL_MAKE kon
 
 Wartość zwracana jest typem danych punktu stałego. Wywołanie GX_FIXED_VAL_TO_INT konwersji z GX_FIXED_VAL na INT.
 
-W wersji 5.4.0 lub mniejszej GUIX wartość wejściowa i typ wartości zwracanej to INT, wartość wejściowa i wartość zwracana są powiększone o 256. W związku z tym przed wywołaniem tej usługi aplikacja musi przeskalować wartość kąta o 256. Jeśli projekt z wersją GUIX równą lub mniejszą niż 5.4.0 i chcesz uaktualnić projekt przy użyciu najnowszej biblioteki Guix, masz dwie opcje.
+W wersji 5.4.0 lub mniejszej GUIX wartość wejściowa i typ wartości zwracanej to INT, a wartość wejściowa i wartość zwracana są powiększone o 256. W związku z tym aplikacja musi skalować wartość kąta o 256 przed wywołaniem tej usługi. Jeśli projekt z wersją GUIX równą lub mniejszą niż 5.4.0 i chcesz uaktualnić projekt przy użyciu najnowszej biblioteki guix, masz dwie opcje.
 
-1. Napraw wartość wejściową i wartość zwracaną przez to wywołanie interfejsu API, aby użyć GX_FIXED_VAL typu danych.
+1. Napraw wartość wejściową i wartość zwracaną tego wywołania interfejsu API, aby użyć GX_FIXED_VAL typu danych.
 1. Zdefiniuj GUIX_5_4_0_COMPATIBILITY.
 
 ### <a name="parameters"></a>Parametry
 
-- **kąt:** kąt obliczania sinusu
+- **kąt**: kąt obliczania sinus
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -25322,7 +25399,7 @@ Ta usługa oblicza kwadratowy katalog główny podanej wartości.
 
 ### <a name="parameters"></a>Parametry
 
-- **value**: Wartość do obliczenia kwadratowego katalogu głównego
+- **value**: Wartość do obliczenia kwadratowego elementu root
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -25540,7 +25617,7 @@ Ta usługa usuwa listę rozwiązanych informacji zwróconą przez gx_utility_bid
 
 ### <a name="parameters"></a>Parametry
 
-- **resolved_info_head:** wskaźnik do listy rozwiązanych informacji tekstowych BiDi
+- **resolved_info_head:** wskaźnik do rozwiązanej listy informacji tekstowych BiDi
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -25614,10 +25691,10 @@ Ta usługa wymaga wcześniejszego użycia gx_system_memory_allocator_set, aby um
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS:**(0x00) Zmiana rozmiaru mapy pikseli powiodła się
+- **GX_SUCCESS:**(0x00) Pomyślna zmiana rozmiaru mapy pikseli
 - **GX_PTR_ERROR:**(0x07) Nieprawidłowy źródłowy lub docelowy wskaźnik mapy pikseli
 - **GX_INVALID_VALUE:**(0x22) Wartość szerokości lub wysokości jest nieprawidłowy
-- **GX_NOT_SUPPORTED:**(0x28) Format źródłowych pikseli jest skompresowany
+- **GX_NOT_SUPPORTED:**(0x28) Skompresowana mapa pikseli źródła
 - **GX_SYSTEM_MEMORY_ERROR:**(0x30) Alokator pamięci nie jest zdefiniowany lub alokacja pamięci nie powiodła się
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -25671,7 +25748,7 @@ UINT gx_utility_pixelmap_rotate(
 
 ### <a name="description"></a>Opis
 
-Ta usługa obraca mapę pikseli i zwraca wskaźnik do nowej mapy pikseli, która jest wynikiem obrotu mapy pikseli. Aby obrócić mapę pikseli bezpośrednio na kanwę, użyj gx_canvas_pixelmap_rotate().
+Ta usługa obraca mapę pikseli i zwraca wskaźnik do nowej mapy pikseli, która jest wynikiem obrotu mapy pikseli. Aby obrócić mapę pikseli bezpośrednio do kanwy, użyj gx_canvas_pixelmap_rotate().
 
 Ta usługa wymaga wcześniejszego użycia gx_system_memory_allocator_set, aby umożliwić alokację pamięci do przechowywania obracanych danych na mapie pikseli.
 
@@ -25752,7 +25829,7 @@ Ta usługa obraca mapę pikseli o 90 stopni, 180 lub 270 stopni.
 - **kąt**: kąt obrotu w stopniach
 - **destination**: docelowy bufor wynikowej mapy pikseli
 - **rot_cx:** pobrano współrzędną x centrum obrotu w odniesieniu do docelowej mapy pikseli. Powinna być inicjowana za pomocą współrzędnych x centrum obrotu w odniesieniu do źródłowej mapy pikseli. Jeśli rot_cx jest GX_NULL, wartość nie zostanie pobrana.
-**rot_cy:** pobrano współrzędną y centrum obrotu w odniesieniu do docelowej mapy pikseli. Powinna być inicjowana za pomocą współrzędnej y centrum obrotu w odniesieniu do źródłowej mapy pikseli. Jeśli rot_cy jest GX_NULL, wartość nie zostanie pobrana.
+**rot_cy:** pobrano współrzędną y środka obrotu w odniesieniu do docelowej mapy pikseli. Powinny być inicjowane za pomocą współrzędnej y środka obrotu w odniesieniu do źródłowej mapy pikseli. Jeśli rot_cy jest GX_NULL, wartość nie zostanie pobrana.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -26016,7 +26093,7 @@ Ta usługa porównuje pierwszy i drugi prostokąt. Jeśli są równe, zwracana j
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **result**: GX_TRUE jeśli prostokąty są równe, w przeciwnym razie GX_FALSE zwracany.
+- **result**: GX_TRUE jeśli prostokąty są równe, GX_FALSE zwracane są wartości.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -26072,8 +26149,8 @@ Ta usługa definiuje prostokąt w określony sposób.
 
 - **prostokąt:** blok kontrolki prostokąta
 - **left**: lewa większość współrzędnych
-- **top:** najbardziej współrzędna najwyższego
-- **right**: najbardziej odpowiedni współrzędny
+- **top**: najbardziej współrzędna najwyższego
+- **right**: najbardziej współrzędna w prawo
 - **bottom**: najbardziej dolna współrzędna
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -26131,7 +26208,7 @@ GX_BOOL gx_utility_rectangle_overlap_detect(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wykrywa wszelkie nakładanie się dostarczonych prostokątów. Jeśli nakładanie się zostanie znalezione, usługa GX_TRUE i nakładający się prostokąt.
+Ta usługa wykrywa wszelkie nakładające się na podane prostokąty. Jeśli zostanie znalezione nakładanie się, usługa GX_TRUE i nakładający się prostokąt.
 
 ### <a name="parameters"></a>Parametry
 
@@ -26194,8 +26271,8 @@ Ta usługa wykrywa, czy określony punkt znajduje się w prostokącie. Jeśli pu
 
 ### <a name="parameters"></a>Parametry
 
-- **prostokąt:** prostokąt
-- **punkt:** punkt
+- **prostokąt:** Prostokąt
+- **punkt**: punkt
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -26254,17 +26331,17 @@ UINT gx_utility_rectangle_resize(
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwiększa rozmiar prostokąta zgodnie z podanymi wartościami.
+Ta usługa zwiększa rozmiar prostokąta zgodnie z określonymi wartościami.
 
 ### <a name="parameters"></a>Parametry
 
-- **prostokąt:** Wskaźnik do prostokąta
-- **adjust:** ilość w celu dostosowania prostokąta
+- **prostokąt:** wskaźnik do prostokąta
+- **adjust:** ilość do dostosowania prostokąta
 
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **GX_SUCCESS:**(0x00) Pomyślnie zmieniliśmy rozmiar prostokąta
-- **GX_PTR_ERROR:**(0x07) Nieprawidłowy wejściowy wskaźnik prostokąta
+- **GX_PTR_ERROR:**(0x07) Nieprawidłowy wskaźnik prostokąta wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -26323,8 +26400,8 @@ Ta usługa przesuwa prostokąt o określone wartości.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS:**(0x00) Pomyślnie przesunięty prostokąt
-- **GX_PTR_ERROR:**(0x07) Nieprawidłowy wskaźnik prostokąta wejściowego
+- **GX_SUCCESS:**(0x00) Pomyślnie przesunięte prostokąt
+- **GX_PTR_ERROR:**(0x07) Nieprawidłowy wejściowy wskaźnik prostokąta
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -26376,7 +26453,7 @@ UINT gx_utility_string_to_alphamap(
 
 Ta usługa została wycofana na rzecz gx_utility_string_to_alphamap_ext().
 
-Ta usługa renderuje ciąg tekstowy do mapy alfamapy, która jest specjalną formą mapy pikseli 8bpp zawierającej tylko wartości alfa. Ta usługa jest zwykle używana wraz z gx_utility_pixelmap_rotate i gx_canvas_pixelmap_draw do narysowania obróconego tekstu na kanwie.
+Ta usługa renderuje ciąg tekstowy do mapy alfamapy, która jest specjalną formą mapy pikseli 8bpp zawierającej tylko wartości alfa. Ta usługa jest zwykle używana wraz z gx_utility_pixelmap_rotate i gx_canvas_pixelmap_draw do rysowania obracanego tekstu na kanwie.
 
 Ta usługa oblicza rozmiar pamięci wymagany dla wynikowej mapy alfamapy i wywołuje funkcję gx_system_memory_allocator() zdefiniowaną przez aplikację w celu dynamicznego przydzielania pamięci. Aplikacja musi wywołać gx_system_memory_allocator_set() w pewnym momencie, zazwyczaj podczas uruchamiania programu, przed rozpoczęciem korzystania z tej usługi.
 
@@ -26457,11 +26534,11 @@ Ta usługa renderuje ciąg tekstowy do mapy alfamapy, która jest specjalną for
 
 Ta usługa oblicza rozmiar pamięci wymagany dla wynikowej mapy alfamapy i wywołuje funkcję gx_system_memory_allocator() zdefiniowaną przez aplikację w celu dynamicznego przydzielania pamięci. Aplikacja musi wywołać gx_system_memory_allocator_set() w pewnym momencie, zazwyczaj podczas uruchamiania programu, przed rozpoczęciem korzystania z tej usługi.
 
-Jeśli ciąg tekstowy ma być obracany i rysowany na kanwie tylko raz, usługa gx_canvas_rotated_text_draw() jest dostarczana jako alternatywa. gx_canvas_rotated_text_draw() wywoła gx_utility_string_to_alphamap(), gx_utility_pixelmap_rotate() i gx_canvas_pixelmap_draw(), aby renderować obracany tekst w jednej operacji. Jeśli jednak ten sam tekst będzie rysowany wielokrotnie obrócony pod różnymi kątami, bardziej efektywne jest utworzenie mapy alfamapy raz przy użyciu interfejsu API usługi gx_utility_string_to_alphmap, a następnie wielokrotne obracanie wynikowej mapy alfamapy wielokrotnie.
+Jeśli ciąg tekstowy ma być obracany i rysowany na kanwie tylko raz, usługa gx_canvas_rotated_text_draw() jest dostarczana jako alternatywa. gx_canvas_rotated_text_draw() wywoła gx_utility_string_to_alphamap(), gx_utility_pixelmap_rotate() i gx_canvas_pixelmap_draw(), aby renderować obracany tekst w jednej operacji. Jeśli jednak ten sam tekst zostanie narysowany wielokrotnie obrócony pod różnymi kątami, bardziej efektywne jest utworzenie mapy alfamapy raz przy użyciu interfejsu API usługi gx_utility_string_to_alphmap, a następnie wielokrotne obracanie wynikowej mapy alfamapy.
 
 ### <a name="parameters"></a>Parametry
 
-- **string:** ciąg tekstowy do renderowania do mapy alfamapy
+- **string:** ciąg tekstowy renderowany do mapy alfamapy
 - **font:** czcionka do renderowania tekstu
 - **return_map:** wskaźnik do GX_PIXELMAP, który ma zostać zwrócony do wywołującego.
 
@@ -26618,10 +26695,10 @@ GX_VERTICAL_LIST pochodzi od usługi GX_WINDOW obsługuje wszystkie usługi gx_w
 - **GX_SUCCESS** (0x00) Pomyślnie utworzono listę pionową
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) widget
+- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 - **GX_INVALID_VALUE** (0x22) Liczba nieprawidłowych wierszy
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -26672,7 +26749,7 @@ Ta usługa przetwarza zdarzenie dla pionowej listy.
 - **GX_SUCCESS** (0x00) Pomyślnie przetworzone zdarzenie listy pionowej
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -27253,7 +27330,7 @@ UINT gx_widget_back_attach(
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa dołącza widżet do określonego elementu nadrzędnego. Jeśli widżet jest już dołączony do innego elementu nadrzędnego, zostanie najpierw odłączony. Jeśli widżet jest już dołączony do tego samego elementu nadrzędnego, funkcja nie robi nic.
+Ta usługa dołącza widżet do określonego elementu nadrzędnego. Jeśli widżet jest już dołączony do innego elementu nadrzędnego, zostanie najpierw odłączony. Jeśli widżet jest już dołączony do tego samego elementu nadrzędnego, funkcja nic nie robi.
 
 Widżet staje się najbardziej podrzędnym elementem podrzędnym elementu nadrzędnego pod względem kolejności z. Jeśli widżety elementów równorzędnych nakładają się na siebie, ten widżet jest rysowany za tymi elementami równorzędnych. Aby umieścić nowy widżet przed kolejnością Z, użyj gx_widget_attach lub gx_widget_front_move.
 
@@ -27345,7 +27422,7 @@ Ta usługa przenosi widżet z powrotem do elementu nadrzędnego w kolejności Z 
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_NO_CHANGE** (0x08) Nie są stosowane żadne zmiany
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -27416,8 +27493,8 @@ Ta usługa przenosi prostokątny blok pikseli. Ta usługa jest najczęściej uż
 ### <a name="parameters"></a>Parametry
 
 - **widżet** Wskaźnik do widżetu żądający przeniesienia bloku
-- **blokuj** Blok ograniczający prostokąt do przeniesienia
-- **xshift** Ilość przesunięcia x w pikselach
+- **blokuj** Prostokątny blok ograniczający do przeniesienia
+- **xshift** Wartość x przesunięcia w pikselach
 - **yshift** Ilość przesunięcia y w pikselach
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -27426,7 +27503,7 @@ Ta usługa przenosi prostokątny blok pikseli. Ta usługa jest najczęściej uż
 - **GX_INVALID_CANVAS** (0x20) Nie znaleziono kanwy widżetu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -27480,7 +27557,7 @@ status = gx_widget_block_move(&my_widget, &size, 20, 0);
 - gx_widget_width_get
 
 ## <a name="gx_widget_border_draw"></a>gx_widget_border_draw
-### <a name="draw-widget-border"></a>Obramowanie widżetu rysowania
+### <a name="draw-widget-border"></a>Rysowanie obramowania widżetu
 
 ### <a name="prototype"></a>Prototype
 
@@ -27495,7 +27572,7 @@ VOID gx_widget_border_draw(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje obramowanie widżetu. Ta usługa jest zwykle wywoływana w ramach funkcji rysowania widżetów. Ta usługa interpretuje flagi stylu obramowania widżetu w taki sposób, aby nie rysować obramowania, obramowania zużytego, podniesionego obramowania, recessed obramowania lub obramowania grubego.
+Ta usługa rysuje obramowanie widżetu. Ta usługa jest zwykle wywoływana jako część funkcji rysowania widżetów. Ta usługa interpretuje flagi stylu obramowania widżetu w taki sposób, aby nie rysować obramowania, obramowania zużytego, podniesionego obramowania, recessed obramowania lub obramowania grubego.
 
 ### <a name="parameters"></a>Parametry
 
@@ -27591,10 +27668,10 @@ Ta usługa ustawia styl obramowania widżetu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Zestaw stylów obramowania widżetu powiodło się
+- **GX_SUCCESS** (0x00) Zestaw stylów obramowania widżetu Powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -27750,7 +27827,7 @@ Ta usługa zwraca wskaźnik do kanwy, na której jest renderowany ten widżet.
 - **GX_SUCCESS** (0x00) Pomyślne uzyskiwanie kanwy widżetu
 - **GX_FAILURE** (0x10) Nie znaleziono kanwy widżetu
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -27818,7 +27895,7 @@ UINT gx_widget_child_detect(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wykrywa, czy widżet jest elementem podrzędnym widżetu nadrzędnego. Ta usługa zagnieżdża element podrzędny i zwraca wartość TRUE, jeśli widżet nadrzędny znajduje się na dowolnym poziomie elementu nadrzędnego widżetu podrzędnego.
+Ta usługa wykrywa, czy widżet jest elementem podrzędnym widżetu nadrzędnego. Ta usługa zagnieżdża elementy podrzędne wyszukiwania i zwraca wartość TRUE, jeśli widżet nadrzędny znajduje się na dowolnym poziomie elementu nadrzędnego widżetu podrzędnego.
 
 ### <a name="parameters"></a>Parametry
 
@@ -27828,9 +27905,9 @@ Ta usługa wykrywa, czy widżet jest elementem podrzędnym widżetu nadrzędnego
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne wykrywanie elementu widget
+- **GX_SUCCESS** (0x00) Pomyślne wykrywanie podrzędne widżetu
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Element widget nadrzędny lub podrzędny jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Element nadrzędny lub podrzędny jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -27895,7 +27972,7 @@ VOID gx_widget_children_draw(GX_WIDGET *widget);
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje wszystkie elementy podrzędny widżetu nadrzędnego. Ta usługa jest zwykle wywoływana przez wszystkie standardowe funkcje rysowania widżetów w celu narysowania istniejących widżetów nadrzędnych i powinna być wywoływana przez dowolne niestandardowe funkcje rysowania, aby umożliwić dołączanie widżetów nadrzędnych do niestandardowego typu widżetu nadrzędnego.
+Ta usługa rysuje wszystkie elementy nadrzędne widżetu. Ta usługa jest zwykle wywoływana przez wszystkie standardowe funkcje rysowania widżetów w celu narysowania wszelkich istniejących widżetów nadrzędnych i powinna być wywoływana przez dowolne niestandardowe funkcje rysowania, aby umożliwić dołączanie widżetów nadrzędnych do niestandardowego typu widżetu nadrzędnego.
 
 ### <a name="parameters"></a>Parametry
 
@@ -27989,7 +28066,7 @@ Ta usługa oblicza obszar klienta widżetu, odejmując szerokość obramowania w
 - **GX_SUCCESS** (0x00) Pomyślne uzyskiwanie obszaru klienta widżetu
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
-- **GX_INVALID_VALUE** (0x22) widżetu jest nieprawidłowe
+- **GX_INVALID_VALUE** (0x22) Obramowanie widżetu jest nieprawidłowe
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -28063,15 +28140,15 @@ Ta usługa pobiera kolor skojarzony z dostarczonym identyfikatorem zasobu. Ta us
 
 - **widżet** Wskaźnik do bloku kontrolki widżetu
 - **resource_id** Identyfikator zasobu koloru. **Dodatek B** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
-- **return_color** Wskaźnik do miejsca docelowego dla koloru. **Dodatek A** zawiera wstępnie zdefiniowane kolory. Pamiętaj, że aplikacja może również dodawać kolory niestandardowe.
+- **return_color** Wskaźnik do miejsca docelowego koloru. **Dodatek A** zawiera wstępnie zdefiniowane kolory. Pamiętaj, że aplikacja może również dodawać kolory niestandardowe.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **GX_SUCCESS** (0x00) Pomyślne uzyskiwanie koloru
 - **GX_INVALID_RESOURCE_ID** (0x33) Nieprawidłowy identyfikator zasobu
-- **GX_INVALID_CANVAS** (0x20) Kanwa widżetu jest prawidłowa lub widżet jest niewidoczny
+- **GX_INVALID_CANVAS** (0x20) Kanwa widżetu jest nieprawidłowy lub widżet jest niewidoczny
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -28125,7 +28202,7 @@ Ta usługa tworzy widżet.
 - **GX_SUCCESS** (0x00) Pomyślne utworzenie widżetu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
+- **GX_ALREADY_CREATED** (0x13) widget
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 - **GX_INVALID_WIDGET** (0x12) Widżet nadrzędny jest nieprawidłowy
 
@@ -28273,7 +28350,7 @@ UINT gx_widget_delete(GX_WIDGET *widget);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa widżet. Jeśli blok sterowania widżetem jest przydzielany dynamicznie, usługa gx_system_memory_free jest wywoływana w celu bezpłatnego, dynamicznie przydzielonego magazynu.
+Ta usługa usuwa widżet. Jeśli blok sterowania widżetu jest przydzielany dynamicznie, usługa gx_system_memory_free jest wywoływana w celu wolnego dynamicznie przydzielonego magazynu.
 
 ### <a name="parameters"></a>Parametry
 
@@ -28281,9 +28358,9 @@ Ta usługa usuwa widżet. Jeśli blok sterowania widżetem jest przydzielany dyn
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne usunięcie widżetu GX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę funkcję
+- **GX_SUCCESS** (0x00) Pomyślne usunięcie widżetu GX_CALLER_ERROR (0x11) Nieprawidłowy element wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 - **GX_SYSTEM_MEMORY_ERROR** (0x30) Funkcja bez pamięci nie jest zdefiniowana
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -28355,9 +28432,9 @@ Ta usługa odłącza widżet od elementu nadrzędnego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne odłączanie GX_CALLER_ERROR (0x11) Nieprawidłowego elementu wywołującego tę funkcję
+- **GX_SUCCESS** (0x00) Pomyślny widżet odłącza GX_CALLER_ERROR (0x11) Nieprawidłowy element wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -28410,7 +28487,7 @@ status = gx_widget_detach(&my_widget);
 - gx_widget_width_get
 
 ## <a name="gx_widget_draw"></a>gx_widget_draw
-### <a name="draw-widget"></a>Widżet rysowania
+### <a name="draw-widget"></a>Rysowanie widżetu
 
 ### <a name="prototype"></a>Prototype
 
@@ -28420,7 +28497,7 @@ VOID gx_widget_draw(GX_WIDGET *widget);
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje widżet. Ta funkcja jest zwykle wywoływana wewnętrznie przez mechanizm odświeżania kanwy GUIX, ale jest udostępniane aplikacji, aby pomóc w implementowaniu niestandardowych funkcji rysowania.
+Ta usługa rysuje widżet. Ta funkcja jest zwykle wywoływana wewnętrznie przez mechanizm odświeżania kanwy GUIX, ale jest udostępniane aplikacji, aby pomóc w implementacji niestandardowych funkcji rysowania.
 
 ### <a name="parameters"></a>Parametry
 
@@ -28583,22 +28660,22 @@ UINT gx_widget_event_generate(
 
 Ta usługa generuje GX_SIGNAL typu zdarzenia, który jest określonym typem lub klasą GX_EVENT. gx_widget_event_generate() koduje 16-bitowy identyfikator widżetu wraz z przekazanym elementem event_type do pojedynczej 32-bitowej wartości GX_EVENT.gx_event_type. Parametr value jest kodowany do wygenerowanego gx_event. gx_event_payload.gx_event_longdata.
 
-Wygenerowane pole event.gx_event_target jest zawsze ładowane z elementem nadrzędnym wywołującego widżetu, co oznacza, że wygenerowane zdarzenie jest zawsze wysyłane najpierw do elementu nadrzędnego generowanego widżetu.
+Pole wygenerowanego event.gx_event_target jest zawsze ładowane z elementem nadrzędnym wywołującego widżetu, co oznacza, że wygenerowane zdarzenie jest zawsze wysyłane jako pierwsze do elementu nadrzędnego generowanego widżetu.
 
-Należy pamiętać, gx_widget_event_generate powinny być używane tylko do wysyłania GX_SIGNAL typów zdarzeń z zakresu. W przypadku wszystkich innych typów zdarzeń, w tym typów zdarzeń zdefiniowanych przez użytkownika, użyj interfejsu API gx_system_event_send(), który daje pełną kontrolę nad każdym polem zdarzenia wypchniętą w kolejce zdarzeń GUIX.
+Należy pamiętać, gx_widget_event_generate tylko do wysyłania GX_SIGNAL typów zdarzeń z zakresu. W przypadku wszystkich innych typów zdarzeń, w tym typów zdarzeń zdefiniowanych przez użytkownika, użyj interfejsu API gx_system_event_send(), który zapewnia pełną kontrolę nad każdym polem zdarzenia wypchniętą w kolejce zdarzeń GUIX.
 
 ### <a name="parameters"></a>Parametry
 
 - **widżet** Wskaźnik do widżetu
 - **event_type** Typ zdarzenia. **Dodatek E** zawiera wstępnie zdefiniowane zdarzenia GUIX. Aplikacja może dodać dodatkowe zdarzenia.
-- **wartość** Dodatkowe informacje o zdarzeniu
+- **wartość** Dodatkowe informacje o zdarzeniach
 
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **GX_SUCCESS** (0x00) Pomyślne generowanie zdarzeń widżetu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -28664,7 +28741,7 @@ UINT gx_widget_event_process(
 
 ### <a name="description"></a>Opis
 
-Jest to domyślna funkcja przetwarzania zdarzeń dla wszystkich widżetów. Po napisaniu niestandardowej funkcji przetwarzania zdarzeń domyślną akcją dla dowolnego typu zdarzenia powinno być zawsze podanie zdarzenia do typu widżetu, na którym bazuje widżet. Widżety oparte na najbardziej podstawowym przebiegu typu GX_WIDGET używają gx_widget_event_process jako domyślnej funkcji przetwarzania zdarzeń.
+Jest to domyślna funkcja przetwarzania zdarzeń dla wszystkich widżetów. Po napisaniu niestandardowej funkcji przetwarzania zdarzeń domyślną akcją dla dowolnego typu zdarzenia powinno być zawsze przekaż zdarzenie do typu widżetu, na którym jest oparty widżet. Widżety oparte na najbardziej podstawowym przebiegu typu GX_WIDGET używają gx_widget_event_process jako domyślnej funkcji przetwarzania zdarzeń.
 
 ### <a name="parameters"></a>Parametry
 
@@ -28752,7 +28829,7 @@ Ta usługa zastępuje funkcję przetwarzania zdarzeń widżetu.
 
 - **GX_SUCCESS** (0x00) Pomyślne przesłonięcie przetwarzania zdarzeń widżetu
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -28920,7 +28997,7 @@ Ta usługa ustawia kolory tła widżetu.
 
 - **widżet** Wskaźnik do widżetu
 - **normal_color_id** Identyfikator zasobu koloru wypełnienia w stanie normalnym. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
-- **selected_color_id** Identyfikator zasobu koloru wypełnienia podczas koncentracji uwagi widżetu. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
+- **selected_color_id** Identyfikator zasobu koloru wypełnienia po przywęchieniu fokusu widżetu. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 - **disabled_color_id** Identyfikator zasobu koloru wypełnienia, gdy styl GX_STYLE_ENABLED nie jest ustawiony. **Dodatek A** zawiera wstępnie zdefiniowane identyfikatory zasobów kolorów. Należy pamiętać, że aplikacja może również dodawać niestandardowe identyfikatory zasobów w kolorze.
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -29228,9 +29305,9 @@ Ta usługa pobiera czcionkę skojarzoną z określonym identyfikatorem zasobu z 
 
 - **GX_SUCCESS** (0x00) Pomyślnie pobrano czcionkę
 - **GX_INVALID_RESOURCE_ID** (0x33) Nieprawidłowy identyfikator zasobu
-- **GX_INVALID_CANVAS** (0x20) Kanwa widżetu jest prawidłowa lub widżet jest niewidoczny
+- **GX_INVALID_CANVAS** (0x20) Kanwa widżetu jest nieprawidłowy lub widżet jest niewidoczny
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik widżetu
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -29356,9 +29433,9 @@ Ta usługa przenosi widżet na front na nadrzędnej liście elementów widget el
 
 - **GX_SUCCESS** (0x00) Pomyślne przejście widżetu na przód
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_NO_CHANGE** (0x08) Widget już przed
+- **GX_NO_CHANGE** (0x08) widget już przed
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -29690,7 +29767,7 @@ UINT gx_widget_parent_get(
 ```
 ### <a name="description"></a>Opis
 
-GuiX utrzymuje listę elementów widget nadrzędnych i podrzędnych ze strukturą drzewa. Ta usługa zwraca wskaźnik do elementu nadrzędnego bieżącego widżetu.
+GuiX utrzymuje listę widżetów nadrzędnych i podrzędnych ze strukturą drzewa. Ta usługa zwraca wskaźnik do elementu nadrzędnego bieżącego widżetu.
 
 ### <a name="parameters"></a>Parametry
 
@@ -29947,7 +30024,7 @@ Ta usługa przenosi widżet i opcjonalnie oznacza go jako zanieczyszczony.
 
 - **GX_SUCCESS** (0x00) Pomyślne przesunięcie widżetu GX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -30174,7 +30251,7 @@ Ta usługa pobiera flagi stanu z widżetu.
 
 - **GX_SUCCESS** (0x00) Pomyślne uzyskiwanie stanu widżetu
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -30252,7 +30329,7 @@ Ta usługa usuwa określone flagi stanu z wewnętrznej zmiennej stanu widżetów
 
 - **GX_SUCCESS** (0x00) Pomyślne usunięcie stanu widżetu
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -30422,13 +30499,13 @@ UINT gx_widget_string_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwraca wpis tabeli ciągów dla danej wartości identyfikatora ciągu. Ta usługa jest podobna do gx_display_string_get, z tą różnicą, że aktywny ekran jest określany automatycznie, a nie przekazywany przez wywołujący. Tej usługi można używać tylko w przypadku widocznych widżetów, czyli wyświetlania skojarzonego z tym widżetem.
+Ta usługa zwraca wpis tabeli ciągów dla danej wartości identyfikatora ciągu. Ta usługa jest podobna do gx_display_string_get, z tą różnicą, że aktywny ekran jest określany automatycznie, a nie przekazywany przez wywołujący. Tej usługi można używać tylko w przypadku widocznych widżetów, tj. jest znany ekran skojarzony z tym widżetem.
 
 ### <a name="parameters"></a>Parametry
 
 - **widżet** Wskaźnik do widżetu
 - **string_id** Wartość identyfikatora ciągu z nagłówka zasobów
-- **ciąg** Adres zmiennej, która ma zwrócić ciąg
+- **ciąg** Adres zmiennej zwracania ciągu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -30486,10 +30563,10 @@ Jeśli widżet jest widoczny, jest automatycznie unieważniany i do kolejki w ce
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne dodanie stylu widżetu
+- **GX_SUCCESS** (0x00) Dodanie stylu widżetu Powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -30567,7 +30644,7 @@ Ta usługa pobiera flagę stylu z widżetu.
 - **GX_SUCCESS** (0x00) Pomyślnie pobrano styl widżetu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -30636,11 +30713,11 @@ UINT gx_widget_style_remove(
 
 Ta usługa usuwa styl z widżetu. Ponadto są podejmowane następujące akcje.
 
-Jeśli usunięty styl zostanie GX_STYLE_TRANSPARENT, stan GX_STATUS_TRANSPARENT zostanie usunięty.
+Jeśli usunięty styl jest GX_STYLE_TRANSPARENT, GX_STATUS_TRANSPARENT zostanie usunięty.
 
-Jeśli usunięty styl zostanie GX_STYLE_ENABLED, stan GX_STATUS_SELECTABLE zostanie usunięty.
+Jeśli usunięty styl jest GX_STYLE_ENABLED, GX_STATUS_SELECTABLE zostanie usunięty.
 
-Jeśli widżet jest widoczny, jest automatycznie unieważniany i do kolejki w celu ponownego narysowania.
+Jeśli widżet jest widoczny, zostanie automatycznie unieważniony i w kolejce do ponownego narysowania.
 
 ### <a name="parameters"></a>Parametry
 
@@ -30649,7 +30726,7 @@ Jeśli widżet jest widoczny, jest automatycznie unieważniany i do kolejki w ce
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne usunięcie stylu widżetu
+- **GX_SUCCESS** (0x00) Usunięcie stylu widżetu Powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
 - **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
@@ -30737,7 +30814,7 @@ Jeśli widżet jest widoczny, jest automatycznie unieważniany i do kolejki w ce
 - **GX_SUCCESS** (0x00) Zestaw stylów widżetu Powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -30810,7 +30887,7 @@ UINT gx_widget_text_blend(
 
 Ta usługa jest przestarzała na rzecz gx_widget_text_blend_ext().
 
-Ta usługa łączy określony tekst z widżetem przy użyciu bieżącego pędzla i wyrównania tekstu.
+Ta usługa łączy określony tekst w widżecie przy użyciu bieżącego pędzla i wyrównania tekstu.
 
 ### <a name="parameters"></a>Parametry
 
@@ -30868,7 +30945,7 @@ UINT gx_widget_text_blend(
 
 Ta usługa jest przestarzała na rzecz gx_widget_text_blend_ext().
 
-Ta usługa renderuje ciąg w określonym widżecie przy użyciu bieżącego pędzla i wyrównania tekstu oraz określonego koloru, czcionki i przesunięcia x,y.
+Ta usługa renderuje ciąg na określonym widżecie przy użyciu bieżącego pędzla i wyrównania tekstu oraz określonego koloru, czcionki i przesunięcia x,y.
 
 ### <a name="parameters"></a>Parametry
 
@@ -31048,7 +31125,7 @@ VOID gx_widget_text_id_draw(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rysuje tekst na widżecie na podstawie identyfikatora tekstu.
+Ta usługa rysuje tekst w widżecie na podstawie identyfikatora tekstu.
 
 ### <a name="parameters"></a>Parametry
 
@@ -31088,7 +31165,7 @@ VOID my_custom_widget_draw(GX_WIDGET *widget)
 - gx_widget_text_draw
 
 ## <a name="gx_widget_top_visible_child_find"></a>gx_widget_top_visible_child_find
-### <a name="return-pointer-to-visible-child-that-is-top-of-z-order"></a>Zwracanie wskaźnika do widocznego dziecka, które znajduje się na początku kolejności Z
+### <a name="return-pointer-to-visible-child-that-is-top-of-z-order"></a>Zwracanie wskaźnika do widocznego podrzędnego, który znajduje się na początku kolejności Z
 
 ### <a name="prototype"></a>Prototype
 
@@ -31170,7 +31247,7 @@ Ta usługa wyszukuje widżet żądanego typu.
 
 - **GX_SUCCESS** (0x00) Pomyślne uzyskiwanie szerokości widżetu
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -31251,7 +31328,7 @@ Ta usługa pobiera szerokość widżetu.
 - **GX_SUCCESS** (0x00) Pomyślne uzyskiwanie szerokości widżetu
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -31328,9 +31405,9 @@ Ta usługa pobiera wysokość klienta okna.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Pomyślne uzyskiwanie wysokości klienta okna
+- **GX_SUCCESS** (0x00) Uzyskiwanie pomyślnej wysokości klienta okna
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -31384,7 +31461,7 @@ Ta usługa przewija klientów okna o określoną kwotę.
 ### <a name="parameters"></a>Parametry
 
 - **okno** Wskaźnik do okna
-- **x_scroll** Kwota do przewinięcia na osi X
+- **x_scroll** Ilość do przewinięcia na osi X
 - **y_scroll** Kwota do przewinięcia na osi Y
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -31446,10 +31523,10 @@ Ta usługa pobiera szerokość klienta w określonym oknie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Uzyskiwanie szerokości klienta okna pomyślnego
+- **GX_SUCCESS** (0x00) Pomyślne uzyskiwanie szerokości klienta okna
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -31571,7 +31648,7 @@ GX_WINDOW pochodzi od usługi GX_WIDGET obsługuje wszystkie usługi gx_widget A
 - **GX_SUCCESS** (0x00) Pomyślne utworzenie okna
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_ALREADY_CREATED** (0x13) widget
+- **GX_ALREADY_CREATED** (0x13) Widget już utworzony
 - **GX_INVALID_SIZE** (0x19) Nieprawidłowy rozmiar bloku kontrolki widżetu
 - **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
@@ -31666,7 +31743,7 @@ VOID my_custom_window_draw(GX_WINDOW *window)
 - gx_window_wallpaper_set
 
 ## <a name="gx_window_event_process"></a>gx_window_event_process
-### <a name="process-window-event"></a>Zdarzenie okna procesu
+### <a name="process-window-event"></a>Zdarzenie okna przetwarzania
 
 ### <a name="prototype"></a>Prototype
 
@@ -31766,7 +31843,7 @@ Wykonywanie modalne kończy się, gdy przetwarzanie zdarzeń dla dowolnego odebr
 - **GX_SYSTEM_EVENT_RECEIVE_ERROR(0x05)** Zdarzenie odbioru z kolejki zdarzeń nie powiodło się
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -31982,7 +32059,7 @@ UINT custom_root_window_event_process(GX_ROOT_WINDOW *root,
 - gx_window_wallpaper_set
 
 ## <a name="gx_window_root_find"></a>gx_window_root_find
-### <a name="find-root-window"></a>Okno znajdowanie katalogu głównego
+### <a name="find-root-window"></a>Okno znajdź katalog główny
 
 ### <a name="prototype"></a>Prototype
 
@@ -32004,9 +32081,9 @@ Ta usługa znajduje okno główne dla określonego widżetu.
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **GX_SUCCESS** (0x00) Pomyślne wyszukiwanie okna głównego
-- **GX_FAILURE** (0x00) Główne okno nie istnieje
+- **GX_FAILURE** (0x00) Okno główne nie istnieje
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -32058,13 +32135,13 @@ Ta usługa pobiera informacje o przewijaniu okna.
 
 - **okno** Wskaźnik do okna
 - **style (styl)** GX_SCROLLBAR_HORIZONTAL lub GX_SCROLLBAR_VERTICAL
-- **return_scroll_info** Wskaźnik do miejsca docelowego dla informacji o przewijaniu. Okno nadrzędne inicjuje tę strukturę w celu poinformowania paska przewijania o łącznym rozmiarze okna nadrzędnego, obszarze do wyświetlania oraz o inkrementacjach i limitach przewijania. Domyślna implementacja używa obszaru klienta systemu Windows jako obszaru do wyświetlania i przewijania w pikselach, ale niestandardowa implementacja okna może korzystać z parametrów przewijania. **Dodatek I** zawiera definicję struktury GX_SCROLL_INFO danych
+- **return_scroll_info** Wskaźnik do miejsca docelowego dla informacji o przewijaniu. Okno nadrzędne inicjuje tę strukturę, aby poinformować pasek przewijania o łącznym rozmiarze okna nadrzędnego, obszarze do wyświetlania oraz o inkrementacjach i limitach przewijania. Domyślna implementacja używa obszaru klienta systemu Windows jako obszaru wyświetlania i przewijania w pikselach, ale niestandardowa implementacja okna może korzystać z parametrów przewijania. **Dodatek I** zawiera definicję struktury GX_SCROLL_INFO danych
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Informacje o przewijaniu okna pomyślnych
+- **GX_SUCCESS** (0x00) Informacje o przewijaniu okna po pomyślnym przewinięciu
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 - **GX_INVALID_TYPE** (0x1B) Nieprawidłowy typ
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -32182,9 +32259,9 @@ Ta usługa pobiera tapetę dla określonego okna.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **GX_SUCCESS** (0x00) Tapeta okna powiodła się
+- **GX_SUCCESS** (0x00) Pobierz tapetę okna Pomyślne
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -32238,14 +32315,14 @@ Ta usługa ustawia tapetę dla określonego okna.
 
 - **okno** Wskaźnik do okna
 - **wallpaper_id** Identyfikator zasobu tapety do użycia
-- **kafelek** Tapeta jest kafelkowana, jeśli GX_TRUE, w przeciwnym razie tapeta nie jest kafelkiem
+- **kafelek** Tapeta jest kafelkowana, jeśli GX_TRUE, w przeciwnym razie tapeta nie jest kafelkowana
 
 ### <a name="return-values"></a>Wartości zwrócone
 
 - **GX_SUCCESS** (0x00) Zestaw tapety okna Powodzenie
 - **GX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę funkcję
 - **GX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik
-- **GX_INVALID_WIDGET** (0x12) Widżet jest nieprawidłowy
+- **GX_INVALID_WIDGET** (0x12) Widget jest nieprawidłowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
