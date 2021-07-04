@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: overview
-ms.openlocfilehash: e3fe3bcc602f409cc76f3be47aca865bf8116697
-ms.sourcegitcommit: 19d50693d8f5287ba6938ae1d23eef88435ed7b1
+ms.openlocfilehash: 6112ab5cb711ca1a5c83fd5cd4b43abc0302c6c5
+ms.sourcegitcommit: f9d8cf23becf96d5bd6d31dd54f89c48962fd09b
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 04/28/2021
-ms.locfileid: "108171339"
+ms.lasthandoff: 06/06/2021
+ms.locfileid: "111549338"
 ---
 # <a name="overview-of-azure-rtos-netx-duo"></a>Omówienie Azure RTOS NetX Duo
 
@@ -40,7 +40,7 @@ Azure RTOS NetX Duo osadzony stos sieciowy TCP/IP to zaawansowany stos sieciowy 
 #### <a name="httphttps-11"></a>HTTP/HTTPS 1.1
 
 * Protokół HTTP (Hypertext Transfer Protocol)
-* Minimalna ilość pamięci FLASH od 3,0 KB do 9,5 KB / od 0,5 KB do 2 KB pamięci RAM
+* Minimalna 3,0 KB do 9,5 KB pamięci FLASH / od 0,5 KB do 2 KB pamięci RAM
 * Obsługa klientów i serwerów
 * Wiele przychodzących sesji klientów
 * Zwykły tekst i zaszyfrowany protokół HTTPS
@@ -52,12 +52,12 @@ Azure RTOS NetX Duo osadzony stos sieciowy TCP/IP to zaawansowany stos sieciowy 
 
 * Simple Transfer Protocol (SMTP)
 * Minimalnie 4,1 KB i 0,6 KB pamięci RAM
-* Obsługa klienta
+* Obsługa klientów
 
 ### <a name="dhcp"></a>DHCP
 
 * Protokół DHCP
-* Minimalna ilość pamięci FLASH od 3,6 KB do 4,6 KB, 2,7 KB pamięci RAM
+* Minimalnie od 3,6 KB do 4,6 KB pamięci FLASH, 2,7 KB pamięci RAM
 * Obsługa klientów i serwerów
 * Obsługa protokołu IPv4 i IPv6
 
@@ -71,7 +71,7 @@ Azure RTOS NetX Duo osadzony stos sieciowy TCP/IP to zaawansowany stos sieciowy 
 ### <a name="snmp"></a>SNMP
 
 * Protokół SNMP (Simple Network Management Protocol)
-* Minimalna 10,9 KB i 2,6 KB pamięci RAM
+* Minimalnie 10,9 KB i 2,6 KB pamięci RAM
 * Obsługa agentów dla wersji VI, V2 i V3
 
 ### <a name="dns-mdns-dns-sd"></a>DNS, mDNS, DNS-SD
@@ -83,9 +83,9 @@ Azure RTOS NetX Duo osadzony stos sieciowy TCP/IP to zaawansowany stos sieciowy 
 * Obsługa klientów
 * Serwery mDNS i DNS-SD są dostępne tylko w Azure RTOS NetX Duo
 
-### <a name="p0p3"></a>P0P3
+### <a name="pop3"></a>POP3
 
-* Protokół POST Office w wersji 3 (POP3)
+* Post Office Protocol w wersji 3 (POP3)
 * Minimalnie 8,1 KB i 1,4 KB pamięci RAM
 * Obsługa klientów
 
@@ -109,33 +109,33 @@ Azure RTOS NetX Duo osadzony stos sieciowy TCP/IP to zaawansowany stos sieciowy 
 * Polnt-to-PoInt Protocol (PPP)
 * Point-to-Point Protocol przez Ethernet (PPPoE)
 * Minimalnie 7,1 KB i 3,8 KB pamięci RAM
-* Intuicyjne interfejsy API PPP: *nx_ppp_ \**
+* Intuicyjne interfejsy API PROTOKOŁU PPP: *nx_ppp_ \**
 
-* PpPoE jest dostępne tylko w Azure RTOS NetX Duo
+* Tryb PPPoE jest dostępny tylko w Azure RTOS NetX Duo
 
 ### <a name="sntp"></a>SNTP
 
 * Simple Network Time Protocol (SNTP)
 * Minimalna 4 KB i 0,5 KB pamięci RAM
-* Obsługa klienta
+* Obsługa klientów
 * Intuicyjne interfejsy API SNTP: *nx_sntp_ \**
 
 ### <a name="azure-rtos-netx-duo-api"></a>Azure RTOS NetX Duo API
 
 * Intuicyjny i spójny interfejs API
-* Konwencja nazewnictwa rzeczowników
+* Konwencja nazewnictwa czasownik-rzeczownik
 * Szybka implementacja interfejsu API bez kopiowania
 * Wszystkie interfejsy API mają wiodące <i>nx_*</i> do łatwego identyfikowania jako Azure RTOS NetX
 * Interfejsy API blokowania mają opcjonalny limit czasu wątku
-* Aby [uzyskać więcej Azure RTOS, zobacz podręcznik użytkownika](about-this-guide.md) aplikacji NetX Duo
+* Zobacz [Azure RTOS użytkownika netx duo,](about-this-guide.md) aby uzyskać więcej informacji
 * Opcjonalna warstwa BSD do przenoszenia starszego kodu gniazda
 
 ### <a name="igmp"></a>Igmp
 
 * Protokół IGMP (Internet Group Management Protocol)
-* Minimalna pamięć FLASH 2,5 KB
-* Obsługa grup multiemisji IPv4
-* Zweryfikowane przez IxANVL IXANVL
+* Minimalna 2,5 KB pamięci FLASH
+* Obsługa grup multiemisji protokołu IPv4
+* Zweryfikowane przez IxANVL IxANVL
 * Opcjonalne statystyki IGMP
 * Śledzenie na poziomie systemu za pośrednictwem Azure RTOS ThreadX
 * Intuicyjne interfejsy API IGMP: *nx_igmp_ \**
@@ -167,11 +167,11 @@ Azure RTOS NetX Duo osadzony stos sieciowy TCP/IP to zaawansowany stos sieciowy 
 ### <a name="icmp"></a>ICMP
 
 * Protokół ICMP (Internet Control Message Protocol)
-* Minimalna pamięć FLASH 2,5 KB
+* Minimalna 2,5 KB pamięci FLASH
 * Obsługa protokołu IPv4 i IPv6
-* Zweryfikowane przez IxANVL IXANVL
+* Zweryfikowane przez IxANVL IxANVL
 * Żądanie ping i odpowiedź ping
-* Opcjonalne zawieszenie wątku na żądaniach ping
+* Opcjonalne wstrzymanie wątku dla żądań ping
 * Opcjonalny limit czasu dla całego zawieszenia
 * Opcjonalne statystyki ICMP
 * Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
@@ -180,11 +180,11 @@ Azure RTOS NetX Duo osadzony stos sieciowy TCP/IP to zaawansowany stos sieciowy 
 ### <a name="udp"></a>UDP
 
 * Protokół UDP (User Datagram Protocol)
-* Minimalna pamięć FLASH 2,5 KB, 124 gniazda w bajtach pamięci RAM na gniazdo
-* Szybkie przetwarzanie pakietów TCP w pobliżu wire speed:
+* Minimalna pamięć FLASH 2,5 KB, 124 bajty pamięci RAM na gniazdo
+* Szybkie przetwarzanie pakietów TCP przy użyciu ruchu najbliższego wire speed:
     * RX 95 Mb/s w sieci Ethernet 100 Mb/s, @100MHz MIKROU, 14% wykorzystanie MIKROU
-    * TX 94 Mb/s w sieci Ethernet 100 Mb/s, @100MHz MIKROU, 10% wykorzystanie MIKROU
-* Szybka ścieżka UDP™ technologia
+    * TX 94 Mb/s na 100 Mb/s Ethernet, @100MHz MIKROU, 10% wykorzystanie mikrojądek
+* Technologia Szybka ścieżka UDP™ technologii
 * Brak limitów liczby protokołu UDP
 * Zweryfikowane przez IxANVL IxANVL
 * Opcjonalne zawieszenie podczas odbierania gniazda
@@ -211,27 +211,27 @@ Azure RTOS NetX Duo osadzony stos sieciowy TCP/IP to zaawansowany stos sieciowy 
 
 ### <a name="arprarp"></a>ARP/RARP
 
-* Protokół rozpoznawania adresów (ARP)
+* Protokół ARP (Address Resolution Protocol)
 * Protokół RARP (Reverse Address Resolution Protocol)
 * Minimalna pamięć FLASH 1,7 KB, rozmiar pamięci RAM
-* Dynamiczna rozdzielczość 32-blt adresów IPv4 i 48 blt adresów MAC
-* Zweryfikowane przez IxANVL IXANVL
+* Dynamiczna rozdzielczość 32-blt adresów MAC IPv4 i 48-blt
+* Zweryfikowane przez IxANVL IxANVL
 * Elastyczna, zdefiniowana przez użytkownika pamięć podręczna ARP
-* Obsługa dużych ARP
+* Obsługa szosowego ARP
 * Opcjonalne statystyki ARP/RARP określone przez aplikację
 * Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
 * Intuicyjne interfejsy API ARP/RARP: *nx_arp_ \**, *\* nx_rarp_*
 
-### <a name="ipv4-amp-ipv6"></a>Protokół &amp; IPv6 protokołu IPv4
+### <a name="ipv4-amp-ipv6"></a>Protokół IPv4 &amp; IPv6
 
 * Protokół internetowy (IP)
-* Minimalna ilość pamięci FLASH od 3,5 KB do 8,5 KB, od 2 KB do 3 KB pamięci RAM
+* Minimalnie od 3,5 KB do 8,5 KB pamięci FLASH, od 2 KB do 3 KB pamięci RAM
 * Piconet™ architektura
-* Szybka wydajność prawie z wire speed
+* Szybka wydajność prawie podejściowa
 * Obsługa wielu interfejsów
-* Obsługa wielunadresowych
+* Obsługa wieloadresowa
 * Obsługa routingu statycznego
-* Obsługa fragmentacji/ponownego zsadu ADRESÓW IP
+* Obsługa fragmentacji/ponownegoassembly adresu IP
 * Obsługa adresów IPv4 i IPv6
 * Zweryfikowane przez IxANVL IxANVL
 * Certyfikacja gotowego logo IPv6 fazy II
@@ -251,24 +251,24 @@ Azure RTOS NetX Duo osadzony stos sieciowy TCP/IP to zaawansowany stos sieciowy 
     * AES
     * HMAC-MD5
     * HMAC-SHA1
-* Internet Key Exchange (IKE) w wersji 2
+* Obsługa usługi Internet Key Exchange (IKE) w wersji 2
 * Intuicyjne interfejsy API protokołu IPsec: *nx_ipsec_ \**
 * IPsec jest dostępne tylko w Azure RTOS NetX Duo
 
-## <a name="safe-and-secure"></a>Bezpieczne i bezpieczne
+## <a name="safe-and-secure"></a>Sejf i zabezpieczanie
 
-Azure RTOS NetX Duo jest bezpieczne. Zabezpieczenia te są udostępniane za pośrednictwem produktów zabezpieczeń dodatków, w tym protokołu IPsec, protokołu SSL, protokołu TLS i protokołu DTLS. Ponadto aplikacja ma pełną kontrolę nad całym dostępem zewnętrznym do aplikacji Azure RTOS NetX Duo, co znacznie ułatwia określanie ryzyka bezpieczeństwa.
+Azure RTOS NetX Duo jest bezpieczne. Zabezpieczenia te są udostępniane za pośrednictwem produktów zabezpieczeń dodatków, w tym protokołu IPsec, protokołu SSL, protokołu TLS i protokołu DTLS. Ponadto aplikacja ma pełną kontrolę nad całym dostępem zewnętrznym do usługi Azure RTOS NetX Duo, co znacznie ułatwia określanie ryzyka bezpieczeństwa.
 
-Microsoft Azure RTOS zapewnia producentom OEM składniki do zabezpieczania komunikacji oraz tworzenia izolacji kodu i danych przy użyciu podstawowych mechanizmów ochrony sprzętowej MCU/MPU. Konstruktor urządzenia ostatecznie odpowiada za zapewnienie, że urządzenie w pełni spełnia zmieniające się wymagania dotyczące zabezpieczeń związane z konkretnym przypadekem użycia.
+Microsoft Azure System RTOS udostępnia producentom OEM składniki służące do zabezpieczania komunikacji oraz tworzenia izolacji kodu i danych przy użyciu podstawowych mechanizmów ochrony sprzętowej MIKROU/MPU. Konstruktor urządzenia ostatecznie odpowiada za zapewnienie, że urządzenie w pełni spełnia zmieniające się wymagania dotyczące zabezpieczeń związane z konkretnym przypadekem użycia.
 
 
 ## <a name="interoperability-verification"></a>Weryfikacja współdziałania
 
 NetX Duo jest zgodny ze standardami RFC i oferuje pełne współdziałanie z urządzeniami dla większości dostawców.
 
-![Logo gotowe do użycia IPv6](./media/overview-netx-duo/ipv6-ready-logo.png)
+![Gotowe logo IPv6](./media/overview-netx-duo/ipv6-ready-logo.png)
 
-Azure RTOS NetX Duo jest jednym z jedynych osadzonych stosów TCP/IP do osiągnięcia rygorystycznego certyfikatu IPv6-Ready Logo, dowodu na to, że przeszedł testy zgodności i współdziałania, administrowane i weryfikowane przez forum IPv6. NetX Duo korzysta również ze standardu branżowego IxANVL (Automated Network Validation Library) do implementacji podstawowego protokołu TCP/IP NetX Duo.
+Azure RTOS NetX Duo jest jednym z jedynych osadzonych stosów TCP/IP w celu osiągnięcia rygorystycznego certyfikatu logo IPv6-Ready Logo, co oznacza, że przeszedł testy zgodności i współdziałania, administrowane i weryfikowane przez forum IPv6. NetX Duo korzysta również ze standardu branżowego IxANVL (Automated Network Validation Library) do implementacji podstawowego protokołu TCP/IP NetX Duo.
 
 ## <a name="comprehensive-iot-solution"></a>Kompleksowe rozwiązanie IoT
 
@@ -294,8 +294,31 @@ Azure RTOS NetX Duo to zaawansowana technologia, która obejmuje:
 
 ## <a name="related-services"></a>Powiązane usługi
 
-Moduł Azure Security Center zabezpieczeń IoT RTOS zapewnia kompleksowe rozwiązanie zabezpieczeń dla Azure RTOS mobilnych. Moduł zabezpieczeń dla usługi Azure RTOS oferuje wykrywanie złośliwych działań sieciowych, dostosowywanie niestandardowego zachowania urządzenia opartego na alertach i pomaga zwiększyć higienę zabezpieczeń urządzeń. Dowiedz się więcej na temat [modułu zabezpieczeń](https://docs.microsoft.com/azure/asc-for-iot/iot-security-azure-rtos) dla Azure RTOS lub rozpoczynanie pracy z konfigurowaniem modułu zabezpieczeń na Azure RTOS [Szybki](https://docs.microsoft.com/azure/asc-for-iot/quickstart-azure-rtos-security-module) start.
+### <a name="azure-iot"></a>Azure IoT
+
+NetX Duo zawiera oprogramowanie pośredniczące [Azure IoT](https://github.com/azure-rtos/netxduo/blob/master/addons/azure_iot/docs/README.md)dla usługi Azure RTOS , bibliotekę specyficzną dla platformy, która działa jako warstwa powiązania między usługą Azure RTOS i zestawem Azure SDK dla osadzonego języka C w celu ułatwienia łączności z usługami Azure IoT. Poniżej przedstawiono cele oprogramowania pośredniczącego usługi Azure IoT.
+* Udostępnij inteligentne interfejsy klienckie (IoTHub_Client, DeviceProvisioning_Client), których deweloperzy potrzebują dla swoich aplikacji.
+* Organizowanie interakcji między osadzonym zestawem SDK języka C a platformą.
+* Podaj Azure RTOS inicjowania platformy.
+* IoT Plug and Play pomocy technicznej.
+* Możliwości zabezpieczeń.
+* Należy pamiętać o ograniczeniach zasobów.
+* Obsługa protokołów.
+
+![Azure RTOS związane z netx duo](./media/overview-netx-duo/related-services.png)
+
+### <a name="azure-defender"></a>Azure Defender
+
+Moduł Azure Defender dla IoT zabezpieczeń zapewnia kompleksowe rozwiązanie zabezpieczeń dla Azure RTOS urządzeń. Moduł zabezpieczeń usługi Azure RTOS oferuje wykrywanie złośliwych działań sieciowych, niestandardowe oparte na alertach podstawy zachowania urządzenia i pomaga poprawić higienę zabezpieczeń urządzenia. Dowiedz się więcej o module [zabezpieczeń dla Azure RTOS](https://docs.microsoft.com/azure/asc-for-iot/iot-security-azure-rtos) lub rozpoczynanie pracy z konfigurowaniem modułu zabezpieczeń dla usługi [Azure RTOS](https://docs.microsoft.com/azure/asc-for-iot/quickstart-azure-rtos-security-module) Szybki start.
+
+### <a name="device-update-for-iot-hub"></a>Aktualizacja urządzenia dla IoT Hub
+
+Azure [Device Update for IoT Hub](https://docs.microsoft.com/azure/iot-hub-device-update/understand-device-update) to usługa, która umożliwia wdrażanie aktualizacji w powietrzu (OTA) dla urządzeń IoT. Moduł Device Update for IoT Hub to implementacja aktualizacji urządzenia dla agenta IoT Hub w programie Azure RTOS NetX Duo. Udostępnia on proste interfejsy API dla konstruktorów urządzeń, które integrują możliwość aktualizacji urządzeń w swoich aplikacjach.
+
+Zapoznaj się z przykładami tablic ewaluacyjnych kluczy, które zawierają przewodniki z wprowadzeniem, aby dowiedzieć się, jak konfigurować, kompilować i wdrażać aktualizacje w powietrzu (OTA) na urządzeniach.
+
+Możesz też dowiedzieć się więcej na temat używania [aktualizacji urządzenia na IoT Hub z Azure RTOS](https://docs.microsoft.com/azure/iot-hub-device-update/device-update-azure-real-time-operating-system).
 
 ## <a name="next-steps"></a>Następne kroki
 
-Aby dowiedzieć się więcej na temat netx duo, zacznij od [podręcznika użytkownika Azure RTOS NetX Duo.](about-this-guide.md)
+Aby dowiedzieć się więcej o netx duo, zacznij od Azure RTOS NetX Duo User Guide (Podręcznik użytkownika aplikacji [NetX Duo).](about-this-guide.md)
