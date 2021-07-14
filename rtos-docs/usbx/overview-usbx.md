@@ -1,226 +1,178 @@
 ---
-title: Opis usługi Azure RTO USBX
-description: Azure RTO USBX to osadzony stos hosta USB o wysokiej wydajności, urządzenia i (OTG), usługa Azure RTO USBX jest w pełni zintegrowana z platformą Azure RTO ThreadX i jest dostępna dla wszystkich obsługiwanych procesorów platformy Azure RTO ThreadX.
+title: Opis Azure RTOS USBX
+description: Azure RTOS USBX jest wysokiej wydajności hosta USB, urządzenia i na-go (OTG) osadzony stos, Azure RTOS USBX jest w pełni zintegrowany z systemem Azure RTOS ThreadX i dostępne dla wszystkich procesorów obsługiwanych przez Azure RTOS ThreadX.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: overview
-ms.openlocfilehash: 87eb6ee9f8733db3201280d377aa832b87131871
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 3c214a49f7dd1af20c20f07412fb072dd785b16f
+ms.sourcegitcommit: dbbec3ba6a7eb6097c7888b235c433a2efd6e5b9
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104824373"
+ms.lasthandoff: 07/14/2021
+ms.locfileid: "113754832"
 ---
-# <a name="overview-of-azure-rtos-usbx"></a>Omówienie usługi Azure RTO USBX
+# <a name="overview-of-azure-rtos-usbx"></a>Omówienie Azure RTOS USBX
 
-Azure RTO USBX to osadzony stos hosta USB o wysokiej wydajności, urządzenia i na platformie (OTG). Usługa Azure RTO USBX jest w pełni zintegrowana z platformą Azure RTO ThreadX i jest dostępna dla wszystkich obsługiwanych procesorów. Podobnie jak w przypadku ThreadX, usługa Azure RTO USBX została zaprojektowana tak, aby miała niewielki rozmiar i wysoką wydajność, dzięki czemu idealnie sprawdza się w przypadku aplikacji, które wymagają interfejsu z urządzeniami USB.
+Azure RTOS USBX to wysokiej wydajności host USB, urządzenie i wbudowany stos na urządzeniu (OTG). Azure RTOS USBX jest w pełni zintegrowany z Azure RTOS ThreadX i jest dostępny dla wszystkich procesorów obsługiwanych przez ThreadX. Podobnie jak ThreadX, Azure RTOS USBX zaprojektowano tak, aby mieć niewielki rozmiar i wysoką wydajność, dzięki czemu idealnie nadaje się do aplikacji z głębokiej osadzoną pamięcią, które wymagają interfejsu z urządzeniami USB.
 
-## <a name="host-device-otg--extensive-class-support"></a>Obsługa usług host, Device i OTG & rozbudowanej klasy
+## <a name="host-device-otg--extensive-class-support"></a>Host, urządzenie, OTG & rozbudowana obsługa klas
 
-Azure RTO USBX Host/Embedded USB Device Stack to rozwiązanie klasy przemysłowej Embedded USB zaprojektowane specjalnie dla aplikacji głęboko osadzonych, w czasie rzeczywistym i IoT. Usługa Azure RTO USBX zapewnia obsługę hostów, urządzeń i OTG, a także rozbudowaną obsługę klas. Usługa Azure RTO USBX jest w pełni zintegrowana z systemami operacyjnymi ThreadX Real-Time, Azure RTO FileX Embedded, zgodnym z systemem plików, Azure RTO NetX i Azure RTO NetX Duo. Wszystko to, w połączeniu z bardzo małym zasięgiem, szybkim przeprowadzeniem i najbardziej łatwym w użyciu, dzięki czemu usługa Azure RTO USBX idealny wybór dla najbardziej wymagających aplikacji IoT, które wymagają połączenia USB.
+Azure RTOS usbx hosta/urządzenia osadzony stos protokołu USB to rozwiązanie USB klasy przemysłowej przeznaczone specjalnie dla aplikacji z głębokiego osadzoną, w czasie rzeczywistym i IoT. Azure RTOS USBX zapewnia obsługę hosta, urządzenia i OTG, a także rozbudowane wsparcie klasy. Azure RTOS USBX jest w pełni zintegrowany z systemem operacyjnym ThreadX Real-Time, osadzonym systemem plików FAT systemu plików Azure RTOS FileX, osadzonymi stosami TCP/IP Azure RTOS NetX i Azure RTOS NetX Duo. Wszystko to, w połączeniu z bardzo małym zużyciem pamięci, szybkim wykonywaniem i doskonałą łatwością użycia, sprawiają, że Azure RTOS USBX jest idealnym wyborem dla najbardziej wymagających osadzonych aplikacji IoT wymagających łączności USB.
 
-### <a name="small-footprint"></a>Niewielkie rozmiary
+### <a name="usbx-memory-footprint"></a>Zużycie pamięci USBX
 
-Usługa Azure RTO USBX oferuje niezwykleą minimalną ilość pamięci (10,5 KB) na platformie FLASH i 5,1 KB w przypadku urządzeń z systemem Azure RTO USBX. Host usługi Azure RTO USBX wymaga co najmniej 18 KB rozmiaru FLASH i 25 KB pamięci RAM na potrzeby obsługi funkcji przechwytywania danych/ACM.
+Azure RTOS USBX ma bardzo małe minimalne zużycie 10,5 KB pamięci FLASH i 5,1 KB pamięci RAM dla Azure RTOS USBX urządzenia CDC/ACM obsługi. Azure RTOS usbx wymaga co najmniej 18 KB pamięci FLASH i 25 KB pamięci RAM do obsługi CDC/ACM.
 
-Do obsługi funkcji TCP jest wymagana dodatkowa ilość pamięci o wartości 10 KB do 13 KB. Użycie pamięci RAM usługi Azure RTO USBX zazwyczaj mieści się w zakresie od 2,6 KB do 3,6 KB oraz pamięci puli pakietów zdefiniowanej przez aplikację.
+Dodatkowa pamięć obszaru instrukcji o rozmiarze od 10 KB do 13 KB jest potrzebna na potrzeby funkcji protokołu TCP. Azure RTOS pamięci RAM USBX zwykle obejmuje zakres od 2,6 KB do 3,6 KB oraz pamięć puli pakietów, która jest definiowana przez aplikację.
 
-Podobnie jak w przypadku ThreadX, rozmiar usługi Azure RTO USBX automatycznie skaluje się w oparciu o usługi faktycznie używane przez aplikację. To praktycznie eliminuje konieczność tworzenia skomplikowanych parametrów konfiguracji i kompilacji, co ułatwia deweloperom.
-
-### <a name="fast-execution"></a>Szybkie wykonywanie
-
-Usługa Azure RTO USBX została zaprojektowana z założeniami, aby zapewnić szybkość i minimalną międzyplatformową wywołań funkcji oraz obsługę pamięci podręcznej i użycia DMA. Wszystkie te i ogólne zasady projektowania zorientowane na wydajność ułatwiają platformie Azure RTO USBX osiąganie najszybszej możliwej wydajności.
-
-### <a name="simple-easy-to-use"></a>Proste i łatwe w użyciu
-
-Korzystanie z usługi Azure RTO USBX jest proste. Interfejs API usługi Azure RTO USBX jest intuicyjny i wysoce funkcjonalny. Nazwy interfejsów API są prawdziwe mówiące i nie są nazwami "zup alfabetu" ani o dużej liczbie skróconych, które są często używane w innych produktach systemu plików. Wszystkie interfejsy API usługi Azure RTO USBX mają wiodące "ux_" i są zgodne z konwencją nazewnictwa czasowników. Ponadto istnieje spójność funkcjonalna w całym interfejsie API. Na przykład wszystkie interfejsy API, które zawieszają się, mają opcjonalny limit czasu, który działa w taki sam sposób w przypadku interfejsów API.
+Podobnie jak ThreadX, rozmiar Azure RTOS USBX jest automatycznie skalowany na podstawie usług faktycznie używanych przez aplikację. W ten sposób praktycznie nie ma potrzeby skomplikowanej konfiguracji i parametrów kompilacji, co ułatwia deweloperom pracę.
 
 ### <a name="usb-interoperability-verification"></a>Weryfikacja współdziałania USB
 
-Stos urządzeń usługi Azure RTO USBX został rygorystycznie przetestowany przy użyciu USB, jeśli standardowe narzędzie testowania USBCV zapewnia pełną zgodność z specyfikacjami USB i współdziałaniem z różnymi systemami hosta.
-Ponadto usługa Azure RTO USBX OTG Stack została zweryfikowana i certyfikowana przez niezależne laboratorium testowe Allion w Tajwanie.
+Azure RTOS stos urządzeń USBX został rygorystycznie przetestowany za pomocą standardowego narzędzia do testowania USB IF USBCV w celu zapewnienia pełnej zgodności ze specyfikacjami USB i współdziałania z różnymi systemami hosta.
+Ponadto stos Azure RTOS USBX OTG został zweryfikowany i certyfikowany przez niezależne laboratorium testowe Allion w Chinach.
 
 ### <a name="usb-host-controller-support"></a>Obsługa kontrolera hosta USB
 
-Usługa Azure RTO USBX obsługuje główne standardy USB, takie jak OHCI i EHCI. Ponadto usługa Azure RTO USBX obsługuje zastrzeżone odrębne kontrolery hosta USB z Atmel, mikrochipu, Philips, Renesas, ST, TI i innych dostawców. Usługa Azure RTO USBX obsługuje również wiele kontrolerów hosta w tej samej aplikacji.
-Kontroler urządzenia USB obsługujący usługę Azure RTO USBX obsługuje popularne kontrolery urządzeń USB z urządzeń analogowych, Atmel, chip, NXP, Philips, Renesas, ST, TI i innych dostawców.
+Azure RTOS USBX obsługuje główne standardy USB, takie jak OHCI i EHCI. Ponadto system Azure RTOS USBX obsługuje zastrzeżone dyskretne kontrolery hosta USB firm Atmel, Microchip, Marks, Renesas, ST, TI i innych dostawców. Azure RTOS USBX obsługuje również wiele kontrolerów hostów w tej samej aplikacji.
+Obsługa kontrolerów urządzeń USB Azure RTOS USBX obsługuje popularne kontrolery urządzeń USB z urządzeń analogowych, Atmel, Microchip, NXP,Zeni, Renesas, ST, TI i innych dostawców.
 
-### <a name="extensive-host-class-support"></a>Obsługa rozbudowanej klasy hosta
+### <a name="extensive-host-class-support"></a>Rozbudowana obsługa klas hostów
 
-Host usługi Azure RTO USBX zapewnia obsługę większości popularnych klas, w tym ASIX, AUDIO, przełączeń/ACM, przełączenia/ECM, GSER, HID (klawiatura, mysz i zdalne sterowanie), HUB, PIMA (PTP/MTP), drukarka, mnóstwo i magazyn.
+Azure RTOS HOST USBX zapewnia obsługę najbardziej popularnych klas, w tym ASIX, AUDIO, CDC/ACM, CDC/ECM, GSER, HID (klawiatura, mysz i zdalne sterowanie), HUB, PIMA (PTP/MTP), PRINTER, PROLIFIC i STORAGE.
 
-### <a name="extensive-usb-device-class-support"></a>Obsługa rozbudowanej klasy urządzeń USB
+### <a name="extensive-usb-device-class-support"></a>Rozbudowana obsługa klas urządzeń USB
 
-Usługa Azure RTO USBX zapewnia obsługę większości popularnych klas, w tym przechwytywania zmian/ACM, przechwytywania/ECM, DFU, HID, PIMA (PTP/MTP) (z/MTP), RNDIS i STORAGE. Dostępna jest również obsługa klas niestandardowych.
+Azure RTOS USBX zapewnia obsługę najpopularniejszych klas, w tym CDC/ACM, CDC/ECM, DFU, HID, PIMA (PTP/MTP) (w/MTP), RNDIS i STORAGE. Dostępna jest również obsługa klas niestandardowych.
 
-### <a name="pictbridge-support"></a>Obsługa technologii PictBridge
+### <a name="pictbridge-support"></a>Obsługa aplikacji Pictbridge
 
-Usługa Azure RTO USBX obsługuje pełną implementację technologii PictBridge zarówno na hoście, jak i na urządzeniu. Usługa PictBridge znajduje się na szczycie klasy RTO USBX PIMA (PTP/MTP) na obu stronach. Standard PictBridge umożliwia połączenie cyfrowego aparatu fotograficznego lub inteligentnego telefonu bezpośrednio z drukarką bez komputera, co umożliwia bezpośrednie drukowanie na określonych drukarkach z obsługą technologii PictBridge. Gdy do drukarki jest podłączony aparat lub telefon, drukarka jest hostem USB, a aparat jest urządzeniem USB. Jednak w przypadku technologii PictBridge aparat będzie wyświetlany jako host, a polecenia są sterowane przez aparat. Aparat jest serwerem magazynu, drukarką klienta magazynu. Aparat jest klientem drukowania, a drukarka jest oczywiście serwerem wydruku. PictBridge korzysta z portów USB jako warstwy transportowej, ale korzysta z protokołu PTP (Picture Transfering Protocol) dla protokołu komunikacyjnego.
+Azure RTOS USBX obsługuje pełną implementację pictbridge zarówno na hoście, jak i na urządzeniu. Pictbridge znajduje się na Azure RTOS USBX PIMA (PTP/MTP) po obu stronach. Standard PictBridge umożliwia połączenie cyfrowego aparatu fotograficznego lub inteligentnego telefonu bezpośrednio z drukarką bez komputera, umożliwiając bezpośrednie drukowanie do niektórych drukarek z systemem Pictbridge. Gdy aparat lub telefon jest podłączony do drukarki, drukarka jest hostem USB, a aparat jest urządzeniem USB. Jednak dzięki aplikacji Pictbridge aparat będzie wyświetlany jako host, a polecenia są sterowane z aparatu. Aparat jest serwerem magazynu, czyli drukarką klienta magazynu. Aparat jest klientem drukowania, a drukarką jest oczywiście serwer wydruku. Pictbridge używa USB jako warstwy transportu, ale opiera się na PTP (Picture Transfer Protocol) dla protokołu komunikacyjnego.
 
-### <a name="custom-class-support"></a>Obsługa klasy niestandardowej
+### <a name="custom-class-support"></a>Obsługa klas niestandardowych
 
-Hosty i urządzenia usługi Azure RTO USBX obsługują klasy niestandardowe. Przykładowa Klasa niestandardowa jest udostępniana w dystrybucji USBX usługi Azure RTO. Ta prosta Klasa pompy danych jest nazywana DPUMP i może być używana jako model niestandardowych klas aplikacji.
-Zaawansowane technologie Azure RTO USBX Host i Device obsługują klasy niestandardowe. Przykładowa Klasa niestandardowa jest udostępniana w dystrybucji USBX usługi Azure RTO. Usługa Azure RTO USBX jest zaawansowaną technologią obejmującą następujące możliwości:
+Azure RTOS hostÓW USBX i urządzenia obsługują klasy niestandardowe. Przykładowa klasa niestandardowa jest dostarczana w Azure RTOS dystrybucji USBX. Ta prosta klasa pompy danych nosi nazwę DPUMP i może służyć jako model dla niestandardowych klas aplikacji.
+Zaawansowana technologia Azure RTOS hostów USBX i urządzeń obsługuje klasy niestandardowe. Przykładowa klasa niestandardowa jest dostarczana w Azure RTOS dystrybucji USBX. Azure RTOS USBX to zaawansowana technologia, która obejmuje:
 
-* Obsługa hostów, urządzeń i OTG
-* Obsługa niskich, pełnych i szybkich szybkości USB
+* Obsługa hosta, urządzenia i usługi OTG
+* Obsługa usb o niskiej, pełnej i dużej szybkości
 * Automatyczne skalowanie
-* W pełni zintegrowane z ThreadX, Azure RTO FileX i Azure RTO NetX
+* W pełni zintegrowane z ThreadX, Azure RTOS FileX i Azure RTOS NetX
 * Opcjonalne metryki wydajności
-* Obsługa analizy systemu Azure RTO TraceX
+* Azure RTOS analizy systemu TraceX
 
-### <a name="fastest-time-to-market"></a>Najszybszy czas wprowadzenia na rynek
+## <a name="azure-rtos-usbx-apis"></a>Azure RTOS INTERFEJSÓW API USBX
 
-Usługa Azure RTO USBX ma niewielki zasięg z 9 KB do 15 KB w przypadku podstawowej obsługi protokołów IP i UDP. Usługa Azure RTO USBX umożliwia łatwe instalowanie, uczenie się, używanie, debugowanie, weryfikowanie, certyfikowanie i konserwowanie. W związku z tym usługa Azure RTO USBX jest jednym z najpopularniejszych rozwiązań USB dla osadzonych urządzeń IoT. Nasza spójna przedział czasu na rynek jest oparta na:
+### <a name="azure-rtos-usbx-host-api"></a>Azure RTOS interfejsu API hosta USBX
 
-* Dokumentacja dotycząca jakości — zapoznaj się z naszymi przewodnikami użytkownika i hosta usługi Azure RTO USBX
-* Ukończ dostępność kodu źródłowego
-* Łatwy w użyciu interfejs API
-* Kompleksowy i zaawansowany zestaw funkcji
-
-## <a name="one-simple-license"></a>Jedna prosta licencja
-
-Nie ma kosztu użycia i przetestowania kodu źródłowego bez ponoszenia kosztów dla licencji produkcyjnych po wdrożeniu na wstępnie licencjonowanych urządzeniach. wszystkie inne urządzenia wymagają prostej licencji rocznej.
-
-## <a name="full-highest-quality-source-code"></a>Pełny kod źródłowy o najwyższej jakości
-
-W ciągu lat kod źródłowy usługi Azure RTO NetX ustawił na pasku jakość i łatwość interpretacji. Ponadto Konwencja o jednej funkcji na plik umożliwia łatwe nawigowanie po źródle.
-
-### <a name="supports-most-popular-architectures"></a>Obsługuje najpopularniejsze architektury
-
-Usługa Azure RTO USBX działa na najpopularniejszych mikroprocesorach 32-bitowych, w pełni przetestowanych i w pełni obsługiwanych, w tym:
-
-* **Urządzenia analogowe**: SHARC, Blackfin, CM4xx
-* **Andes rdzeń**: RISC-V
-* **Ambiqmicro**: Apollo MCUs
-* **ARM**: ARM7, ARM9, ARM11, Cortex-M0/M3/M4/M7/A15/A5/wy/A8/A9/A5x 64-BI/A7x 64-bit/R4/R5, TrustZone ARMv8-M
-* **Erze**: Xtensa, romb
-* **Ceva**: PSoC, PSoC 4, PSoC 5, PSoC 6, FM0 +, FM3, MF4, wiced Wi-Fi
-* **Cypress**: RISC-V
-* **EnSilica**: ESI-RISC
-* **Infineon**: XMC1000, XMC4000, TriCore
-* **Intel & Intel FPGA**: X36/Pentium, XScale, Nios II, Cyclone, Arria 10
-* **Chip**: AVR32, ARM7, ARM9, Cortex-M3/M4/M7, SAM3/4/7/9/A/C/D/E/g/L/SV, PIC24/PIC32
-* **Mikrośrednik**: RISC-V
-* **NXP**: LPC, ARM7, ARM9, PowerPC, 68 K, I.MX, ColdFire, Kinetis Cortex-M3/M4
-* **Renesas**: sh, HS, V850, RX, rz, synergia Silicon Labs: EFM32
-* **SynopSYS**: Arc 600, 700, łuk em, łuk HS
-* **St**: STM32, ARM7, ARM9, Cortex-M3/M4/M7
-* **: C5xxx**, C6xxx, Stellaris, Sitara, Tiva-C
-* **Przetwarzanie Wave**: MIPS32 4K, 24 k, 34 k, 1004 k, MIPS64 5 K, MicroAptiv, InterAptiv, ProAptiv, M-Class **Xilinx**: MicroBlaze, PowerPC 405, ZYNQ, ZYNQ UltraSCALE
-
-## <a name="azure-rtos-usbx-apis"></a>Interfejsy API usługi Azure RTO USBX
-
-### <a name="azure-rtos-usbx-host-api"></a>Interfejs API hosta usługi Azure RTO USBX
-
-Interfejs API hosta usługi Azure RTO USBX to intuicyjny i spójny interfejs API, zgodnie z konwencją nazewnictwa czasowników. Wszystkie interfejsy API mają wiodące ux_host_ *, aby łatwo identyfikować jako USBX. Wszystkie blokowane interfejsy API mają opcjonalny limit czasu wątku.
+Interfejs API Azure RTOS USBX jest intuicyjnym i spójnym interfejsem API zgodnym z konwencją nazewnictwa rzeczowników. Wszystkie interfejsy API mają wiodące ux_host_* do łatwego identyfikowania jako USBX. Wszystkie blokujące interfejsy API mają opcjonalny limit czasu wątku.
 
 * ASIX
-    - Minimum 0,3 KB, 4 KB pamięci RAM
-    - Automatyczne śledzenie na poziomie scalingSystem za pomocą usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API hosta usługi Azure RTO USBX w tej formie: *ux_host_class_asix_**
-* DŹWIĘKU
-    - Minimum 1,2 KB, 4 KB pamięci RAM
+    - Minimalna 0,3 KB pamięci FLASH, 4 KB pamięci RAM
+    - Automatyczne skalowanieŚledzenia na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API hosta USBX w tej postaci: *ux_host_class_asix_**
+* Audio
+    - Minimalna pamięć FLASH 1,2 KB, 4 KB pamięci RAM
     - Automatyczne skalowanie
-    - Intuicyjne interfejsy API hosta usługi Azure RTO USBX w tej formie: *ux_host_class_audio_**
-* PRZECHWYTYWANIE ZMIAN/ACM
-    - Minimum 1,4 KB, 4 KB pamięci RAM
+    - Intuicyjne Azure RTOS interfejsów API hosta USBX w tej postaci: *ux_host_class_audio_**
+* CDC/ACM
+    - Minimalna pamięć FLASH 1,4 KB, 4 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API hosta usługi Azure RTO USBX w tej formie: *ux_host_class_cdc_acm_**
-* INTERFEJSU
-    - Minimum 0,3 KB, 4 KB pamięci RAM
-    - Klawiatura, mysz i pomoc zdalna
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API hosta USBX w tej postaci: *ux_host_class_cdc_acm_**
+* Hid
+    - Minimalna 0,3 KB pamięci FLASH, 4 KB pamięci RAM
+    - Klawiatura, mysz i zdalna obsługa
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API hosta usługi Azure RTO USBX w tej formie: *ux_host_class_hid_** 
-* Centralny
-    - Minimum 1,7 KB, 2 KB pamięci RAM
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API hosta USBX w tej postaci: *ux_host_class_hid_** 
+* Koncentratora
+    - Minimalna pamięć FLASH 1,7 KB, 2 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API hosta usługi Azure RTO USBX w tej formie: *ux_host_class_hub_**
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API hosta USBX w tej postaci: *ux_host_class_hub_**
 * PIMA (PTP/MTP)
-    - Minimum 0,9 KB, 8 KB pamięci RAM
+    - Minimalna 0,9 KB pamięci FLASH, 8 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API hosta usługi Azure RTO USBX w tej formie: *ux_host_class_pima_**
-* URZĄDZENIE
-    - Minimum 0,8 KB, 8 KB pamięci RAM
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API hosta USBX w tej postaci: *ux_host_class_pima_**
+* Drukarki
+    - Minimalna 0,8 KB pamięci FLASH, 8 KB pamięci RAM
     - Automatyczne skalowanie
-    -  Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    -  Intuicyjne interfejsy API hosta usługi Azure RTO USBX w tej formie: *ux_host_class_printer_**
-* MNÓSTWO
-    - Minimum 1,5 KB, 4 KB pamięci RAM
+    -  Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    -  Intuicyjne Azure RTOS interfejsów API hosta USBX w tej postaci: *ux_host_class_printer_**
+* Płodny
+    - Minimalna 1,5 KB pamięci FLASH, 4 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API hosta usługi Azure RTO USBX w tej formie: *ux_host_class_prolific_**
-* Fold
-    - Minimum 5,6 KB, 4 KB pamięci RAM
-    - Automatyczne skalowanie<br> Integracja z usługą Azure RTO FileX
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API hosta usługi Azure RTO USBX w tej formie: *ux_host_class_storage_**
-* STOS hosta USB
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API hosta USBX w tej postaci: *ux_host_class_prolific_**
+* STORAG
+    - Minimalna 5,6 KB pamięci FLASH, 4 KB pamięci RAM
+    - Automatyczne skalowanie<br> Integracja z Azure RTOS FileX
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API hosta USBX w tej postaci: *ux_host_class_storage_**
+* STOS HOSTA USB
     - Obsługuje wiele kontrolerów hosta
-    - Minimum 18 KB, 25 KB pamięci RAM
+    - Minimalna 18 KB pamięci FLASH, 25 KB pamięci RAM
     - Automatyczne skalowanie
-    - Obsługa wielu kontrolerów hosta na tej samej platformie
-    -  Obsługa niskich, pełnych i szybkich szybkości USB
-    -  Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    -  Intuicyjne interfejsy API hosta usługi Azure RTO USBX w tej formie: *ux_host_stack_* * 
-* KONTROLERY hosta OHCI, EHCI, własności 
+    - Obsługa wielu kontrolerów hostów na tej samej platformie
+    -  Obsługa usb o niskiej, pełnej i dużej szybkości
+    -  Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    -  Intuicyjne Azure RTOS interfejsów API hosta USBX w tej postaci: *ux_host_stack_* * 
+* OHCI, EHCI, ZASTRZEŻONE KONTROLERY hostÓW 
 
-### <a name="azure-rtos-usbx-device-api"></a>Interfejs API urządzenia usługi Azure RTO USBX
+### <a name="azure-rtos-usbx-device-api"></a>Azure RTOS interfejsu API urządzenia USBX
 
-Interfejs API urządzenia usługi Azure RTO USBX jest intuicyjnym i spójnym interfejsem API po konwencji nazewnictwa czasowników. Wszystkie interfejsy API mają wiodące ux_device_ *, aby łatwo identyfikować jako USBX. Blokowanie interfejsów API ma opcjonalny limit czasu wątku. Więcej informacji można znaleźć w [podręczniku użytkownika hosta usługi Azure RTO USBX](usbx-host-stack-about.md) .
+Interfejs API Azure RTOS USBX jest intuicyjnym i spójnym interfejsem API zgodnym z konwencją nazewnictwa rzeczownikowego. Wszystkie interfejsy API mają wiodące ux_device_* do łatwego identyfikowania jako USBX. Blokujące interfejsy API mają opcjonalny limit czasu wątku. Zobacz Azure RTOS [użytkownika hosta USBX,](usbx-host-stack-about.md) aby uzyskać więcej informacji.
 
-* PRZECHWYTYWANIE ZMIAN/ACM
-    - Minimum 0,8 KB, 2 KB pamięci RAM
+* CDC/ACM
+    - Minimalna 0,8 KB pamięci FLASH, 2 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API urządzeń z usługą Azure RTO USBX w tej formie: * ux_device_class_cdc_acm_ * *.
-* PRZECHWYTYWANIE ZMIAN/ECM
-    - Minimum 1,5 KB, 4 KB do 8 KB pamięci RAM
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API urządzenia USBX w tej postaci: *ux_device_class_cdc_acm_**.
+* CDC/ECM
+    - Minimalna pamięć FLASH 1,5 KB, od 4 KB do 8 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX<br> Intuicyjne interfejsy API urządzeń z usługą Azure RTO USBX w tej formie: * ux_device_class_cdc_ecm_ * *.
-* DFU
-    - Minimum 1,1 KB, 2 KB pamięci RAM
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX<br> Intuicyjne Azure RTOS interfejsów API urządzenia USBX w tej postaci: *ux_device_class_cdc_ecm_**.
+* Dfu
+    - Minimalna 1,1 KB pamięci FLASH, 2 KB pamięci RAM
     -  Automatyczne skalowanie
-    -  Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API urządzeń z usługą Azure RTO USBX w tej formie: *ux_device_class_dfu_** 
+    -  Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API urządzenia USBX w tej postaci: *ux_device_class_dfu_** 
 * GSER
-    - Minimum 0,6 KB, 4 KB pamięci RAM
+    - Minimalna pamięć FLASH 0,6 KB, 4 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API urządzeń z usługą Azure RTO USBX w tej formie: *ux_device_class_gser_**
-* INTERFEJSU
-    - Minimum 0,9 KB, 2 KB pamięci RAM
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS INTERFEJSY API urządzenia USBX w tej postaci: *ux_device_class_gser_**
+* Hid
+    - Minimalna 0,9 KB pamięci FLASH, 2 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API urządzeń z usługą Azure RTO USBX w tej formie: *ux_device_class_hid_** Pima (PTP/MTP)
-    - Minimum 5,2 KB, 8 KB pamięci RAM
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API urządzenia USBX w tej postaci: *ux_device_class_hid_** PIMA (PTP/MTP)
+    - Minimalna 5,2 KB pamięci FLASH, 8 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API urządzeń z usługą Azure RTO USBX w tej formie: *ux_device_class_pima_** 
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API urządzenia USBX w tej postaci: *ux_device_class_pima_** 
 * MAGAZYN
-    - Minimum 2,3 KB, 4 KB pamięci RAM
+    - Minimalna 2,3 KB pamięci FLASH, 4 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API urządzeń z usługą Azure RTO USBX w tej formie: *ux_device_class_storage_**
-* RNDIS
-    - Minimum 2,3 KB, 4 KB do 8 KB pamięci RAM
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API urządzenia USBX w tej postaci: *ux_device_class_storage_**
+* Rndis
+    - Minimalna pamięć FLASH 2,3 KB, od 4 KB do 8 KB pamięci RAM
     - Automatyczne skalowanie
-    - Integracja z usługami Azure RTO NetX i Azure RTO NetX DUO
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API urządzeń z usługą Azure RTO USBX w tej formie: *ux_device_class_rndls_**
-* STOS urządzeń usługi Azure RTO USBX
-    - Minimum 2,3 KB, 4 KB pamięci RAM
+    - Integracja z Azure RTOS NetX i Azure RTOS NetX DUO
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API urządzenia USBX w tej postaci: *ux_device_class_rndls_**
+* Azure RTOS stosu urządzenia USBX
+    - Minimalna 2,3 KB pamięci FLASH, 4 KB pamięci RAM
     - Automatyczne skalowanie
-    - Śledzenie na poziomie systemu za pośrednictwem usługi Azure RTO TraceX
-    - Intuicyjne interfejsy API urządzeń z usługą Azure RTO USBX w tej formie: *ux_device_class_storage_**
-* WŁASNOŚCIowe kontrolery hosta
+    - Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
+    - Intuicyjne Azure RTOS interfejsów API urządzenia USBX w tej postaci: *ux_device_class_storage_**
+* ZASTRZEŻONE KONTROLERY HOSTÓW
 
 ## <a name="next-steps"></a>Następne kroki
 
-Rozpocznij pracę z hostem USBX i stosem urządzeń na platformie Azure RTO, postępując zgodnie z [przewodnikiem użytkownika stosu hosta](usbx-host-stack-about.md) lub [przewodnikiem użytkownika stosu urządzeń](usbx-device-stack-about.md).
+Rozpocznij pracę z hostem Azure RTOS USBX i [](usbx-host-stack-about.md) stosem urządzeń, korzystając z podręcznika użytkownika stosu hosta lub podręcznika [użytkownika stosu urządzeń.](usbx-device-stack-about.md)

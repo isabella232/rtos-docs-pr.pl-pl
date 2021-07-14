@@ -6,18 +6,19 @@ ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: overview
-ms.openlocfilehash: 7c864c23f019e4841ddb3096fde663c8039baf44
-ms.sourcegitcommit: 19d50693d8f5287ba6938ae1d23eef88435ed7b1
+ms.openlocfilehash: 63fd212249da6154926684f9bc844d2c2a78e84e
+ms.sourcegitcommit: dbbec3ba6a7eb6097c7888b235c433a2efd6e5b9
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 04/28/2021
-ms.locfileid: "108171322"
+ms.lasthandoff: 07/14/2021
+ms.locfileid: "113754849"
 ---
 # <a name="overview-of-azure-rtos-netx"></a>Omówienie Azure RTOS NetX
 
 Azure RTOS NetX to osadzony stos sieciowy TCP/IP IPv4 klasy przemysłowej zaprojektowany specjalnie z myślą o aplikacjach osadzonych, osadzonych w czasie rzeczywistym i aplikacjach IoT. Azure RTOS NetX jest oryginalnym stosem sieciowym protokołu IPv4 firmy Microsoft i zasadniczo jest podzbiorem Azure RTOS. NetX udostępnia osadzone aplikacje z podstawowymi protokołami sieci, takimi jak IPv4, TCP i UDP, a także kompletny zestaw dodatkowych protokołów dodatków wyższego poziomu. Niewielkie zużycie pamięci, szybkie wykonywanie i najwyższa łatwość użycia sprawiają, że Azure RTOS NetX jest idealnym wyborem dla najbardziej wymagających osadzonych aplikacji IoT.
 
 ## <a name="api-protocols"></a>Protokoły interfejsu API
+Azure RTOS NetX zapewnia obsługę następujących czynności.
 
 ### <a name="telnet"></a>Telnet
 
@@ -41,14 +42,14 @@ Azure RTOS NetX to osadzony stos sieciowy TCP/IP IPv4 klasy przemysłowej zaproj
 
 ### <a name="dhcp---dynamic-host-configuration-protocol-dhcp"></a>DHCP — Dynamic Host Configuration Protocol (DHCP)
 
-* Minimalna ilość pamięci FLASH od 3,6 KB do 4,6 KB, 2,7 KB pamięci RAM
+* Minimalnie od 3,6 KB do 4,6 KB pamięci FLASH, 2,7 KB pamięci RAM
 * Obsługa klientów i serwerów
 * Obsługa protokołu IPv4
 
-### <a name="p0p3---post-office-protocol-version-3-pop3"></a>P0P3 — protokół Post Office Protocol w wersji 3 (POP3)
+### <a name="p0p3---post-office-protocol-version-3-pop3"></a>P0P3 — protokół post Office w wersji 3 (POP3)
 
 * Minimalnie 8,1 KB i 1,4 KB pamięci RAM
-* Obsługa klienta
+* Obsługa klientów
 
 ### <a name="snmp---simple-network-management-protocol-snmp"></a>SNMP — Simple Network Management Protocol (SNMP)
 
@@ -57,11 +58,11 @@ Azure RTOS NetX to osadzony stos sieciowy TCP/IP IPv4 klasy przemysłowej zaproj
 
 ### <a name="ftp-tftp---file-transfer-protocol-ftp-trivial-file-transfer-protocol-tftp"></a>FTP, TFTP — protokół transferu plików (FTP), Trivial File Transfer Protocol (TFTP)
 
-* FTP minimalnie od 1,8 KB do 7,2 KBFLASH, od 0,6 KB do 2,1 KB pamięci RAM
-* TFTP Minimal 1.7 KB to 2.4KBFLASH, 0,3 KB do 1,8 KB pamięci RAM
+* FTP Minimalnie od 1,8 KB do 7,2 KB UKOŚNIKA, od 0,6 KB do 2,1 KB pamięci RAM
+* TFTP minimalnie od 1,7 KB do 2,4 KB UKOŚNIKA, od 0,3 KB do 1,8 KB pamięci RAM
 * Obsługa klientów i serwerów
 
-### <a name="ppp---polnt-to-point-protocol-ppp"></a>PPP — Protokół Polnt-to-PoInt (PPP)
+### <a name="ppp---polnt-to-point-protocol-ppp"></a>PPP — protokół Polnt-to-PoInt (PPP)
 
 * Minimalnie 7,1 KB i 3,8 KB pamięci RAM
 * Niezawodna i niezawodna.
@@ -69,7 +70,7 @@ Azure RTOS NetX to osadzony stos sieciowy TCP/IP IPv4 klasy przemysłowej zaproj
 ### <a name="sntp---simple-network-time-protocol-sntp"></a>SNTP — prosty protokół czasu sieciowego (SNTP)
 
 * Minimalna 4 KB i 0,5 KB pamięci RAM
-* Obsługa klienta
+* Obsługa klientów
 
 ### <a name="azure-rtos-netx-api"></a>Azure RTOS NetX API
 
@@ -87,8 +88,8 @@ Azure RTOS NetX to osadzony stos sieciowy TCP/IP IPv4 klasy przemysłowej zaproj
 ### <a name="udp---user-datagram-protocol-udp"></a>UDP — protokół UDP (User Datagram Protocol)
 
 * Minimalna pamięć FLASH 2,5 KB, 124 bajty pamięci RAM na gniazdo
-* Szybkie przetwarzanie pakietów TCP przy użyciu ruchu najbliższego wire speed:
-* RX 95 Mb/s na Ethernet 100 Mb/s, @100MHz MIKROU, 14% wykorzystanie MIKROU
+* Szybkie przetwarzanie pakietów TCP prawie z wire speed:
+* RX 95 Mb/s na 100 Mb/s Ethernet, @100MHz MCU, 14% wykorzystanie mikrojądek
 * TX 94 Mb/s w sieci Ethernet 100 Mb/s, @100MHz MIKROU, 10% wykorzystanie mikrojądek
 * Technologia Szybka ścieżka UDP™ technologii
 * Brak limitów liczby protokołu UDP
@@ -100,13 +101,13 @@ Azure RTOS NetX to osadzony stos sieciowy TCP/IP IPv4 klasy przemysłowej zaproj
 
 ### <a name="tcp---transmission-control-protocol-tcp"></a>TCP — Transmission Control Protocol (TCP)
 
-* Minimalna ilość pamięci RAM od 10,5 K8 do 12,5 KB pamięci FLASH, 280 bajtów pamięci RAM na gniazdo
-* Szybkie przetwarzanie pakietów TCP w pobliżu wlre speed:
-* RX 93 Mb/s w sieci Ethernet 100 Mb/s, @100MHz MIKROU, wykorzystanie 20% MIKROU
+* Minimalnie od 10,5 KB do 12,5 KB pamięci FLASH, 280 bajtów pamięci RAM na gniazdo
+* Szybkie, prawie wlre speed przetwarzanie pakietów TCP:
+* RX 93 Mb/s na 100 Mb/s Ethernet, @100MHz MCU, 20% wykorzystanie mikrojądek
 * TX 94 Mb/s w sieci Ethernet 100 Mb/s, @100MHz MIKROU, 27% wykorzystanie mikrojądek
 * Niezawodne połączenie
 * Brak limitów liczby gniazd TCP
-* Zweryfikowane przez IxANVL IXANVL
+* Zweryfikowane przez IxANVL IxANVL
 * Opcjonalne zawieszenie podczas odbierania/przesyłania gniazda
 * Opcjonalny limit czasu dla całego zawieszenia
 * Opcjonalne statystyki TCP
@@ -114,11 +115,11 @@ Azure RTOS NetX to osadzony stos sieciowy TCP/IP IPv4 klasy przemysłowej zaproj
 
 ### <a name="icmp---internet-control-message-protocol-icmp"></a>ICMP — protokół ICMP (Internet Control Message Protocol)
 
-* Minimalna pamięć FLASH 2,5 KB
+* Minimalna 2,5 KB pamięci FLASH
 * Obsługa protokołu IPv4
-* Zweryfikowane przez IxANVL IXANVL
+* Zweryfikowane przez IxANVL IxANVL
 * Żądanie ping i odpowiedź ping
-* Opcjonalne zawieszenie wątku na żądaniach ping
+* Opcjonalne wstrzymanie wątku dla żądań ping
 * Opcjonalny limit czasu dla całego zawieszenia
 * Opcjonalne statystyki ICMP
 * Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX
@@ -145,25 +146,25 @@ Azure RTOS NetX to osadzony stos sieciowy TCP/IP IPv4 klasy przemysłowej zaproj
 * Dynamiczna rozdzielczość 32-blt adresów IPv4 i 48-blt adresów MAC.
 * Zweryfikowane przez IxANVL IxANVL.
 * Elastyczna, zdefiniowana przez użytkownika pamięć podręczna ARP.
-* Obsługa dużych ARP.
+* Obsługa szosowego ARP.
 * Opcjonalne statystyki ARP/RARP określone przez aplikację.
 * Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX.
 
-### <a name="ethernet-wifi-bluetooth-le-154-etc"></a>ETHERNET, WiFi, BLUETOOTH LE, 15.4 itp.
+### <a name="ethernet-wifi-bluetooth-le-154-etc"></a>Ethernet, Wi-Fi, BLUETOOTH LE, 15.4 itp.
 
 ## <a name="interoperability-verification"></a>Weryfikacja współdziałania
 
-Azure RTOS NetX jest zgodna ze standardami RFC i oferuje pełne współdziałanie z urządzeniami dla większości dostawców. Azure RTOS NetX korzysta również ze standardowej w branży biblioteki IxANVL (Automated Network Validation Library) na Azure RTOS implementacji podstawowego protokołu TCP/IP NetX Core.
+Azure RTOS NetX jest zgodna ze standardami RFC i oferuje pełne współdziałanie z urządzeniami większości dostawców. Azure RTOS NetX korzysta również ze standardowej w branży biblioteki IxANVL (Automated Network Validation Library) do implementacji podstawowego protokołu TCP/IP Azure RTOS NetX NetX Core.
 
 ## <a name="advanced-technology"></a>Zaawansowana technologia
 
 Azure RTOS NetX to zaawansowana technologia, która obejmuje następujące elementy.
-* Piconet™ architektury.
+* Piconet™ architektura.
 * Automatyczne skalowanie.
 * Technologia Fast-Path UDP™.
 * Elastyczne zarządzanie pakietami.
 * Interfejs API bez kopiowania i implementacja.
-* Obsługa wielu domu.
+* Obsługa wielu domów.
 * Opcjonalny limit czasu dla całego zawieszenia.
 * Obsługa routingu statycznego.
 * Azure RTOS analizy systemu TraceX.
