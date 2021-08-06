@@ -6,20 +6,20 @@ ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: bf5876042e08a59979adcd429917bfc3fbfdbc20
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 2e9e2e0286300b3f79f7f9e6ad2d7fab96ba7337
+ms.sourcegitcommit: 62cfdf02628530807f4d9c390d6ab623e2973fee
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104824523"
+ms.lasthandoff: 08/05/2021
+ms.locfileid: "115177749"
 ---
 # <a name="chapter-5---usbx-host-classes-api"></a>Rozdział 5 — interfejs API klas hostów USBX
 
-W tym rozdziale opisano wszystkie uwidocznione interfejsy API klas hosta USBX. Poniższe interfejsy API dla każdej klasy są szczegółowo opisane.
+Ten rozdział obejmuje wszystkie widoczne interfejsy API klas hostów USBX. Poniższe interfejsy API dla każdej klasy zostały szczegółowo opisane.
 
-- Klasa HID
-- Przechwytywanie zmian — Klasa ACM
-- Reprzechwytywania — Klasa ECM
+- HID, klasa
+- CDC-ACM, klasa
+- CDC-ECM, klasa
 - Klasa magazynu
 
 ## <a name="ux_host_class_hid_client_register"></a>ux_host_class_hid_client_register
@@ -37,22 +37,22 @@ UINT ux_host_class_hid_client_register(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do rejestrowania klienta HID w klasie HID. Przed zażądaniem danych z tego urządzenia Klasa HID musi znaleźć dopasowanie między urządzeniem HID a klientem HID.
+Ta funkcja służy do rejestrowania klienta HID w klasie HID. Klasa HID musi znaleźć dopasowanie między urządzeniem HID i klientem HID przed zażądaniem danych z tego urządzenia.
 
 > [!NOTE]
-> Ciąg C hid_client_name musi być zakończony zerem i długością (bez samego terminatora NULL) nie może być większy niż **UX_HOST_CLASS_HID_MAX_CLIENT_NAME_LENGTH**.
+> Ciąg języka C hid_client_name musi mieć wartość NULL, a długość tego ciągu (bez samego terminatora NULL) nie może być większa **niż UX_HOST_CLASS_HID_MAX_CLIENT_NAME_LENGTH**.
 
 ### <a name="parameters"></a>Parametry
 
-- **hid_client_name** Wskaźnik na nazwę klienta HID.
+- **hid_client_name** Wskaźnik do nazwy klienta HID.
 - **hid_client_handler** Wskaźnik do programu obsługi klienta HID.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) transfer danych został ukończony
-- Alokacja pamięci dla **UX_MEMORY_INSUFFICIENT** (0x12) dla klienta nie powiodła się.
-- **UX_MEMORY_ARRAY_FULL** (0x1A) jest już zarejestrowana Maksymalna liczba klientów.
-- **UX_HOST_CLASS_ALREADY_INSTALLED** (0X58) Ta klasa już istnieje
+- **UX_SUCCESS** (0x00) Zakończono transfer danych
+- **UX_MEMORY_INSUFFICIENT** (0x12) Alokacja pamięci dla klienta nie powiodła się.
+- **UX_MEMORY_ARRAY_FULL** (0x1a) Maksymalna liczba już zarejestrowanych klientów.
+- **UX_HOST_CLASS_ALREADY_INSTALLED** (0x58) Ta klasa już istnieje
 
 ### <a name="example"></a>Przykład
 
@@ -70,7 +70,7 @@ status = ux_host_class_hid_client_register("ux_host_class_hid_client_mouse",
 
 ## <a name="ux_host_class_hid_report_callback_register"></a>ux_host_class_hid_report_callback_register
 
-Zarejestruj wywołanie zwrotne z klasy HID.
+Rejestrowanie wywołania zwrotnego z klasy HID.
 
 ### <a name="prototype"></a>Prototype
 
@@ -82,18 +82,18 @@ UINT ux_host_class_hid_report_callback_register(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do rejestrowania wywołania zwrotnego z klasy HID do klienta HID po odebraniu raportu.
+Ta funkcja służy do rejestrowania wywołania zwrotnego z klasy HID do klienta HID po otrzymaniu raportu.
 
 ### <a name="parameters"></a>Parametry
 
-- **HID** Wskaźnik do wystąpienia klasy HID
-- **call_back** Wskaźnik do struktury call_back
+- **Hid** Wskaźnik do wystąpienia klasy HID
+- **call_back** Wskaźnik do struktury call_back danych
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- **UX_SUCCESS** (0x00) transfer danych został ukończony
-- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0X5b) nieprawidłowe wystąpienie HID.
-- Wystąpił błąd **UX_HOST_CLASS_HID_REPORT_ERROR** (0x79) podczas rejestracji wywołania zwrotnego.
+- **UX_SUCCESS** (0x00) Zakończono transfer danych
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) Nieprawidłowe wystąpienie HID.
+- **UX_HOST_CLASS_HID_REPORT_ERROR** (0x79) w rejestracji wywołania zwrotnego raportu.
 
 ### <a name="example"></a>Przykład
 
@@ -127,17 +127,17 @@ UINT ux_host_class_hid_periodic_report_start(UX_HOST_CLASS_HID *hid);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do uruchamiania okresowego (przerwania) punktu końcowego dla wystąpienia klasy HID, która jest powiązana z tym klientem HID. Klasa HID nie może uruchomić okresowego punktu końcowego, dopóki klient HID nie zostanie aktywowany i w związku z tym zostanie pozostawiony do klienta HID, aby uruchomić ten punkt końcowy w celu otrzymywania raportów.
+Ta funkcja służy do uruchamiania okresowego (przerwania) punktu końcowego dla wystąpienia klasy HID powiązanej z tym klientem HID. Klasa HID nie może uruchomić okresowego punktu końcowego, dopóki klient HID nie zostanie aktywowany i w związku z tym zostanie pozostawiony klientowi HID w celu uruchomienia tego punktu końcowego w celu odbierania raportów.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **HID** Wskaźnik do wystąpienia klasy HID.
+- **hid** Wskaźnik do wystąpienia klasy HID.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Raportowanie okresowe **UX_SUCCESS** (0x00) zostało pomyślnie uruchomione.
-- Błąd **ux_host_class_hid_PERIODIC_REPORT_ERROR** (0x7a) w raporcie okresowym.
-- Wystąpienie klasy HID **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) nie istnieje.
+- **UX_SUCCESS** (0x00) Okresowe raportowanie zostało pomyślnie uruchomione.
+- **ux_host_class_hid_PERIODIC_REPORT_ERROR** (0x7A) w raporcie okresowym.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) klasy HID nie istnieje.
 
 ### <a name="example"></a>Przykład
 
@@ -164,17 +164,17 @@ UINT ux_host_class_hid_periodic_report_stop(UX_HOST_CLASS_HID *hid);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do zatrzymania okresowego (przerwania) punktu końcowego dla wystąpienia klasy HID, która jest powiązana z tym klientem HID. Klasa HID nie może zatrzymać okresowego punktu końcowego, dopóki klient HID nie zostanie zdezaktywowany, wszystkie jego zasoby zostaną zwolnione i w związku z tym zostanie pozostawiony klientowi HID, aby zatrzymać ten punkt końcowy.
+Ta funkcja służy do zatrzymania okresowego (przerwania) punktu końcowego dla wystąpienia klasy HID powiązanej z tym klientem HID. Klasa HID nie może zatrzymać okresowego punktu końcowego, dopóki klient HID nie zostanie zdezaktywowany, wszystkie jego zasoby zostaną wyłączone, a tym samym pozostawione klientowi HID w celu zatrzymania tego punktu końcowego.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **HID** Wskaźnik do wystąpienia klasy HID.
+- **hid** Wskaźnik do wystąpienia klasy HID.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Raportowanie okresowe **UX_SUCCESS** (0x00) zostało pomyślnie zatrzymane.
-- Błąd **ux_host_class_hid_PERIODIC_REPORT_ERROR** (0x7a) w raporcie okresowym.
-- Wystąpienie klasy HID **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) nie istnieje
+- **UX_SUCCESS** (0x00) Okresowe raportowanie zostało pomyślnie zatrzymane.
+- **ux_host_class_hid_PERIODIC_REPORT_ERROR** (0x7A) w raporcie okresowym.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) HID nie istnieje
 
 ### <a name="example"></a>Przykład
 
@@ -190,7 +190,7 @@ status = ux_host_class_hid_periodic_report_stop(hid);
 
 ## <a name="ux_host_class_hid_report_get"></a>ux_host_class_hid_report_get
 
-Pobierz Raport z wystąpienia klasy HID.
+Pobierz raport z wystąpienia klasy HID.
 
 ### <a name="prototype"></a>Prototype
 
@@ -202,19 +202,19 @@ UINT ux_host_class_hid_report_get(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do otrzymywania raportu bezpośrednio z urządzenia bez polegania na okresowym punkcie końcowym. Ten raport pochodzi z punktu końcowego kontroli, ale jego przetwarzanie jest takie samo, jak gdyby było ono wykonywane w okresowym punkcie końcowym.
+Ta funkcja służy do odbierania raportu bezpośrednio z urządzenia bez konieczności polegania na okresowym punkcie końcowym. Ten raport pochodzi z punktu końcowego kontroli, ale jego leczenie jest takie samo, jak w przypadku okresowego punktu końcowego.
 
 ### <a name="parameters"></a>Parametry
 
-- **HID** Wskaźnik do wystąpienia klasy HID.
+- **hid** Wskaźnik do wystąpienia klasy HID.
 - **client_report** Wskaźnik do raportu klienta HID.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) raport został pomyślnie odebrany.
-- **UX_HOST_CLASS_HID_REPORT_ERROR** (0x70) raport klienta był nieprawidłowy lub wystąpił błąd podczas przesyłania.
-- Wystąpienie klasy HID **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) nie istnieje.
-- **UX_BUFFER_OVERFLOW** (0x5D) podany bufor nie jest wystarczająco duży, aby pomieścić nieskompresowany raport.
+- **UX_SUCCESS** (0x00) Raport został pomyślnie odebrany.
+- **UX_HOST_CLASS_HID_REPORT_ERROR** (0x70) Raport klienta był nieprawidłowy lub wystąpił błąd podczas transferu.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) klasy HID nie istnieje.
+- **UX_BUFFER_OVERFLOW** (0x5d) Dostarczony bufor nie jest wystarczająco duży, aby pomieścić nieskompresowany raport.
 
 ### <a name="example"></a>Przykład
 
@@ -237,7 +237,7 @@ status = ux_host_class_hid_report_get(hid, &input_report);
 
 ## <a name="ux_host_class_hid_report_set"></a>ux_host_class_hid_report_set
 
-Wyślij raport
+Wysyłanie raportu
 
 ### <a name="prototype"></a>Prototype
 
@@ -253,15 +253,15 @@ Ta funkcja służy do wysyłania raportu bezpośrednio do urządzenia.
 
 ### <a name="parameters"></a>Parametry
 
-- **HID** Wskaźnik do wystąpienia klasy HID.
+- **hid** Wskaźnik do wystąpienia klasy HID.
 - **client_report** Wskaźnik do raportu klienta HID.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) raport został pomyślnie wysłany.
-- **UX_HOST_CLASS_HID_REPORT_ERROR** (0x70) raport klienta był nieprawidłowy lub wystąpił błąd podczas przesyłania.
-- Wystąpienie klasy HID **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) nie istnieje.
-- **UX_HOST_CLASS_HID_REPORT_OVERFLOW** (0x5D) podany bufor nie jest wystarczająco duży, aby pomieścić nieskompresowany raport.
+- **UX_SUCCESS** (0x00) Raport został pomyślnie wysłany.
+- **UX_HOST_CLASS_HID_REPORT_ERROR** (0x70) Raport klienta był nieprawidłowy lub wystąpił błąd podczas transferu.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) klasy HID nie istnieje.
+- **UX_HOST_CLASS_HID_REPORT_OVERFLOW** (0x5d) Dostarczony bufor nie jest wystarczająco duży, aby pomieścić nieskompresowany raport.
 
 ### <a name="example"></a>Przykład
 
@@ -294,17 +294,17 @@ UINT ux_host_class_hid_mouse_buttons_get(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do pobierania przycisków myszy
+Ta funkcja służy do uzyskania przycisków myszy
 
 ### <a name="parameters"></a>Parametry
 
 - **mouse_instance** Wskaźnik do wystąpienia myszy HID.
-- **mouse_buttons** Wskaźnik na przyciski powrotu.
+- **mouse_buttons** Wskaźnik do przycisków powrotnych.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie pobrano przycisk myszy **UX_SUCCESS** (0x00).
-- Wystąpienie klasy HID **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) nie istnieje.
+- **UX_SUCCESS** (0x00) Myszy został pomyślnie pobrany.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) klasy HID nie istnieje.
 
 ### <a name="example"></a>Przykład
 
@@ -322,7 +322,7 @@ status = ux_host_class_hid_mouse_button_get(mouse_instance, &mouse_buttons);
 
 ## <a name="ux_host_class_hid_mouse_position_get"></a>ux_host_class_hid_mouse_position_get
 
-Pobierz pozycję myszy.
+Pobierz położenie myszy.
 
 ### <a name="prototype"></a>Prototype
 
@@ -335,18 +335,18 @@ UINT ux_host_class_hid_mouse_position_get(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do pobierania położenia myszy w współrzędnej x & y.
+Ta funkcja służy do uzyskania położenia myszy w x & współrzędnych y.
 
 ### <a name="parameters"></a>Parametry
 
 - **mouse_instance** Wskaźnik do wystąpienia myszy HID.
-- **mouse_x_position** Wskaźnik na współrzędną x.
-- **mouse_y_position** Wskaźnik na współrzędną y.
+- **mouse_x_position** Wskaźnik do współrzędnej x.
+- **mouse_y_position** Wskaźnik do współrzędnej y.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie pobrano współrzędne dotyczące **UX_SUCCESS** (0X00) X &amp; Y.
-- Wystąpienie klasy HID **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) nie istnieje.
+- **UX_SUCCESS** (0x00) współrzędne X &amp; Y zostały pomyślnie pobrane.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) klasy HID nie istnieje.
 
 ### <a name="example"></a>Przykład
 
@@ -366,7 +366,7 @@ status = ux_host_class_hid_mouse_position_get(mouse_instance,
 
 ## <a name="ux_host_class_hid_keyboard_key_get"></a>ux_host_class_hid_keyboard_key_get
 
-Pobierz klucz i stan klawiatury.
+Pobierz klucz klawiatury i stan.
 
 ### <a name="prototype"></a>Prototype
 
@@ -379,19 +379,19 @@ UINT ux_host_class_hid_keyboard_key_get(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do uzyskiwania klucza i stanu klawiatury.
+Ta funkcja służy do uzyskania klucza klawiatury i stanu.
 
 ### <a name="parameters"></a>Parametry
 
 - **keyboard_instance** Wskaźnik do wystąpienia klawiatury HID.
-- **keyboard_key** Wskaźnik do kontenera kluczy klawiatury.
+- **keyboard_key** Wskaźnik do kontenera klawiszy klawiatury.
 - **keyboard_state** Wskaźnik do kontenera stanu klawiatury.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie pobrano klucz **UX_SUCCESS** (0x00) i stan.
-- Brak wartości **UX_ERROR** (0xFF) do zgłoszenia.
-- Wystąpienie klasy HID **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) nie istnieje.
+- **UX_SUCCESS** (0x00) klucz i stan zostały pomyślnie pobrane.
+- **UX_ERROR** (0xff) Nic do zgłoszenia.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) klasy HID nie istnieje.
 
 Stan klawiatury może mieć następujące wartości.
 
@@ -464,18 +464,18 @@ UINT ux_host_class_hid_keyboard_ioctl(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje określoną funkcję IOCTL na klawiaturze HID. Wywołanie jest blokowane i zwraca tylko wtedy, gdy występuje błąd lub po zakończeniu polecenia.
+Ta funkcja wykonuje określoną funkcję ioctl na klawiaturze HID. Wywołanie jest blokujące i zwracane tylko wtedy, gdy wystąpi błąd lub gdy polecenie zostanie zakończone.
 
 ### <a name="parameters"></a>Parametry
 
 - **keyboard_instance** Wskaźnik do wystąpienia klawiatury HID.
-- **ioctl_function** funkcję IOCTL do wykonania. W poniższej tabeli znajduje się jedna z dozwolonych funkcji IOCTL.
-- **parametr** Wskaźnik na parametr specyficzny dla elementu IOCTL.
+- **ioctl_function** funkcję ioctl do wykonania. W poniższej tabeli przedstawiono jedną z dozwolonych funkcji ioctl.
+- **parametr** Wskaźnik do parametru specyficznego dla ioctl.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) funkcja IOCTL została ukończona pomyślnie.
-- **UX_FUNCTION_NOT_SUPPORTED** (0x54) nieznana funkcja IOCTL
+- **UX_SUCCESS** (0x00) Funkcja ioctl została ukończona pomyślnie.
+- **UX_FUNCTION_NOT_SUPPORTED** (0x54) Unknown IOCTL, funkcja
 
 ### <a name="ioctl-functions"></a>Funkcje IOCTL
 
@@ -483,7 +483,7 @@ Ta funkcja wykonuje określoną funkcję IOCTL na klawiaturze HID. Wywołanie je
 - UX_HID_KEYBOARD_IOCTL_KEY_DECODING_ENABLE
 - UX_HID_KEYBOARD_IOCTL_KEY_DECODING_DISABLE
 
-### <a name="example--change-keyboard-layout"></a>Przykład — Zmień układ klawiatury
+### <a name="example--change-keyboard-layout"></a>Przykład — zmienianie układu klawiatury
 
 ```c
 UINT status;
@@ -580,7 +580,7 @@ status = ux_host_class_hid_keyboard_ioctl(keyboard,
 /* If status equals UX_SUCCESS, the operation was successful. */
 ```
 
-### <a name="example--disable-keyboard-key-decode"></a>Przykład — wyłączenie dekodowania klucza klawiatury
+### <a name="example--disable-keyboard-key-decode"></a>Przykład — wyłączanie dekodowania klawisza klawiatury
 
 ```c
 UINT status;
@@ -594,7 +594,7 @@ status = ux_host_class_hid_keyboard_ioctl(keyboard,
 
 ## <a name="ux_host_class_hid_remote_control_usage_get"></a>ux_host_class_hid_remote_control_usage_get
 
-Pobierz Użycie zdalnego sterowania
+Uzyskiwanie użycia zdalnego sterowania
 
 ### <a name="prototype"></a>Prototype
 
@@ -607,21 +607,21 @@ UINT ux_host_class_hid_remote_control_usage_get(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do uzyskiwania użycia zdalnego sterowania.
+Ta funkcja służy do uzyskania użycia zdalnego sterowania.
 
 ### <a name="parameters"></a>Parametry
 
 - **remote_control_instance** Wskaźnik do wystąpienia zdalnego sterowania HID.
 - **użycie** Wskaźnik do użycia.
-- **wartość** Wskaźnik na wartość użycia.
+- **wartość** Wskaźnik do wartości użycia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) transfer danych został ukończony.
-- Brak wartości **UX_ERROR** (0xFF) do zgłoszenia.
-- Wystąpienie klasy HID **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) nie istnieje.
+- **UX_SUCCESS** (0x00) Zakończono transfer danych.
+- **UX_ERROR** (0xff) Nic do zgłoszenia.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) klasy HID nie istnieje.
 
-Lista wszystkich możliwych użycia jest zbyt długa, aby można ją było dopasować do tego podręcznika użytkownika. Aby uzyskać pełny opis, ux_host_class_hid. h ma cały zestaw możliwych wartości.
+Lista wszystkich możliwych zastosowań jest zbyt długa, aby zmieściła się w tym podręczniku użytkownika. Aby uzyskać pełny opis, ux_host_class_hid.h zawiera cały zestaw możliwych wartości.
 
 ### <a name="example"></a>Przykład
 
@@ -670,7 +670,7 @@ while (remote_control != UX_NULL)
 
 ### <a name="ux_host_class_cdc_acm_read"></a>ux_host_class_cdc_acm_read
 
-Odczytaj z interfejsu cdc_acm.
+Odczyt z interfejsu cdc_acm interfejsu.
 
 ### <a name="prototype"></a>Prototype
 
@@ -684,20 +684,23 @@ UINT ux_host_class_cdc_acm_read(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja odczytuje z interfejsu cdc_acm. Wywołanie jest blokowane i zwraca tylko wtedy, gdy wystąpi błąd lub po zakończeniu transferu.
+Ta funkcja odczytuje z interfejsu cdc_acm interfejsu. Wywołanie jest blokujące i zwracane tylko wtedy, gdy wystąpi błąd lub gdy transfer zostanie ukończony.
+
+> [!Note]
+> Ta funkcja odczytuje nieprzetworzone dane zbiorcze z urządzenia, więc pozostaje w stanie oczekiwania do momentu zapełnienia buforu lub zakończenia transferu przez krótki pakiet (w tym pakiet o zerowej długości). Aby uzyskać więcej informacji, zapoznaj się z [**tematem Ogólne zagadnienia dotyczące transferu zbiorczego.**](usbx-device-stack-5.md#general-considerations-for-bulk-transfer)
 
 ### <a name="parameters"></a>Parametry
 
-- **cdc_acm** Wskaźnik do wystąpienia klasy cdc_acm.
-- **data_pointer** Wskaźnik na adres buforu ładunku danych.
+- **cdc_acm** Wskaźnik do cdc_acm klasy.
+- **data_pointer** Wskaźnik do adresu buforu ładunku danych.
 - **requested_length** Długość do odebrania.
-- **actual_length** Rzeczywista długość odebrana.
+- **actual_length** Rzeczywiście odebrana długość.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) transfer danych został ukończony.
-- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) wystąpienie cdc_acm jest nieprawidłowe.
-- Limit czasu transferu **UX_TRANSFER_TIMEOUT** (0x5c), odczytywanie niekompletne.
+- **UX_SUCCESS** (0x00) Zakończono transfer danych.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) Wystąpienie cdc_acm jest nieprawidłowe.
+- **UX_TRANSFER_TIMEOUT** (0x5c) Limit czasu transferu, odczyt jest niekompletny.
 
 ### <a name="example"></a>Przykład
 
@@ -714,7 +717,7 @@ status = ux_host_class_cdc_acm_read(cdc_acm, data_pointer,
 
 ## <a name="ux_host_class_cdc_acm_write"></a>ux_host_class_cdc_acm_write
 
-Zapisz w interfejsie cdc_acm
+Zapis w interfejsie cdc_acm interfejsu
 
 ### <a name="prototype"></a>Prototype
 
@@ -728,20 +731,20 @@ UINT ux_host_class_cdc_acm_write(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja zapisuje w interfejsie cdc_acm. Wywołanie jest blokowane i zwraca tylko wtedy, gdy wystąpi błąd lub po zakończeniu transferu.
+Ta funkcja zapisuje w interfejsie cdc_acm. Wywołanie jest blokujące i zwracane tylko wtedy, gdy wystąpi błąd lub gdy transfer zostanie ukończony.
 
 ### <a name="parameters"></a>Parametry
 
-- **cdc_acm** Wskaźnik do wystąpienia klasy cdc_acm.
-- **data_pointer** Wskaźnik na adres buforu ładunku danych.
+- **cdc_acm** Wskaźnik do cdc_acm klasy.
+- **data_pointer** Wskaźnik do adresu buforu ładunku danych.
 - **requested_length** Długość do wysłania.
-- **actual_length** Rzeczywista długość wysłana.
+- **actual_length** Długość rzeczywiście wysłana.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) transfer danych został ukończony.
-- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) wystąpienie cdc_acm jest nieprawidłowe.
-- Limit czasu transferu **UX_TRANSFER_TIMEOUT** (0x5c), zapisywanie niekompletne.
+- **UX_SUCCESS** (0x00) Zakończono transfer danych.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) Wystąpienie cdc_acm jest nieprawidłowe.
+- **UX_TRANSFER_TIMEOUT** (0x5c) Limit czasu transferu, zapis jest niekompletny.
 
 ### <a name="example"></a>Przykład
 
@@ -758,7 +761,7 @@ status = ux_host_class_cdc_acm_write(cdc_acm, data_pointer,
 
 ## <a name="ux_host_class_cdc_acm_ioctl"></a>ux_host_class_cdc_acm_ioctl
 
-Wykonaj funkcję IOCTL w interfejsie cdc_acm.
+Wykonaj funkcję IOCTL w interfejsie cdc_acm interfejsu.
 
 ### <a name="prototype"></a>Prototype
 
@@ -771,20 +774,20 @@ UINT ux_host_class_cdc_acm_ioctl(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje konkretną funkcję IOCTL do interfejsu cdc_acm. Wywołanie jest blokowane i zwraca tylko wtedy, gdy występuje błąd lub po zakończeniu polecenia.
+Ta funkcja wykonuje określoną funkcję ioctl dla interfejsu cdc_acm interfejsu. Wywołanie jest blokujące i zwracane tylko wtedy, gdy wystąpi błąd lub gdy polecenie zostanie zakończone.
 
 ### <a name="parameters"></a>Parametry
 
-- **cdc_acm** Wskaźnik do wystąpienia klasy cdc_acm.
-- **ioctl_function** funkcję IOCTL do wykonania. W poniższej tabeli znajduje się jedna z dozwolonych funkcji IOCTL.
-- **parametr** Wskaźnik do parametru specyficznego dla elementu IOCTL
+- **cdc_acm** Wskaźnik do cdc_acm klasy.
+- **ioctl_function** funkcję ioctl do wykonania. W poniższej tabeli przedstawiono jedną z dozwolonych funkcji ioctl.
+- **parametr** Wskaźnik do parametru specyficznego dla ioctl
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- **UX_SUCCESS** (0x00) transfer danych został ukończony.
-- **UX_MEMORY_INSUFFICIENT** (0x12) za mało pamięci.
-- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) — wystąpienie metody przechwytywania jest w nieprawidłowym stanie.
-- **UX_FUNCTION_NOT_SUPPORTED** (0x54) nieznana funkcja IOCTL.
+- **UX_SUCCESS** (0x00) Zakończono transfer danych.
+- **UX_MEMORY_INSUFFICIENT** (0x12) Za mało pamięci.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) CDC-ACM jest w nieprawidłowym stanie.
+- **UX_FUNCTION_NOT_SUPPORTED** (0x54) Unknown IOCTL, funkcja.
 
 ### <a name="ioctl-functions"></a>Funkcje IOCTL:
 
@@ -810,7 +813,7 @@ status = ux_host_class_cdc_acm_ioctl(cdc_acm,
 
 ## <a name="ux_host_class_cdc_acm_reception_start"></a>ux_host_class_cdc_acm_reception_start
 
-Rozpoczyna odbieranie danych z urządzenia w tle.
+Rozpoczyna odbierania danych z urządzenia w tle.
 
 ### <a name="prototype"></a>Prototype
 
@@ -822,14 +825,14 @@ UINT ux_host_class_cdc_acm_reception_start(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja powoduje, że USBX stale odczytywać dane z urządzenia w tle. Po zakończeniu każdej transakcji wywołania zwrotne określone w **cdc_acm_reception** są wywoływane, aby aplikacja mogła wykonać dalsze przetwarzanie danych transakcji.
+Ta funkcja powoduje, że usbx stale odczytuje dane z urządzenia w tle. Po zakończeniu każdej transakcji wywoływane  jest wywołanie zwrotne określone w cdc_acm_reception, aby aplikacja może wykonywać dalsze przetwarzanie danych transakcji.
 
 > [!NOTE]
-> nie można użyć **ux_host_class_cdc_acm_read** , gdy odbieranie w tle jest w użyciu.
+> **ux_host_class_cdc_acm_read** nie można używać w trakcie korzystania z odbioru w tle.
 
 ### <a name="parameters"></a>Parametry
 
-- **cdc_acm** Wskaźnik do wystąpienia klasy cdc_acm.
+- **cdc_acm** Wskaźnik do cdc_acm klasy.
 - **cdc_acm_reception** Wskaźnik do parametru, który zawiera wartości definiujące zachowanie odbioru w tle. Układ tego parametru jest następujący:
 
 ```c
@@ -848,8 +851,8 @@ typedef struct UX_HOST_CLASS_CDC_ACM_RECEPTION_STRUCT
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- Odbieranie w tle **UX_SUCCESS** (0x00) zostało pomyślnie rozpoczęte.
-- **UX_HOST_CLASS_INSTANCE _UNKNOWN** (0X5b) złe wystąpienie klasy.
+- **UX_SUCCESS** (0x00) Odbiór w tle został pomyślnie uruchomiony.
+- **UX_HOST_CLASS_INSTANCE _UNKNOWN** (0x5b) Nieprawidłowe wystąpienie klasy.
 
 ```c
 UINT status;
@@ -882,7 +885,7 @@ status = ux_host_class_cdc_acm_reception_start(cdc_acm_host_data, &cdc_acm_recep
 
 ## <a name="ux_host_class_cdc_acm_reception_stop"></a>ux_host_class_cdc_acm_reception_stop
 
-Wyłącza odbieranie pakietów w tle.
+Zatrzymuje odbiór pakietów w tle.
 
 ### <a name="prototype"></a>Prototype
 
@@ -894,12 +897,12 @@ UINT ux_host_class_cdc_acm_reception_stop(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja powoduje, że program USBX ma zatrzymywać odbieranie w tle wcześniej uruchomione przez **ux_host_class_cdc_acm_reception_start**.
+Ta funkcja powoduje, że usbx zatrzymać odbiór w tle wcześniej uruchomiony przez **ux_host_class_cdc_acm_reception_start**.
 
 ### <a name="parameters"></a>Parametry
 
-- **cdc_acm** Wskaźnik do wystąpienia klasy cdc_acm.
-- **cdc_acm_reception** Wskaźnik na ten sam parametr, który został użyty do rozpoczęcia odbierania w tle. Układ tego parametru jest następujący:
+- **cdc_acm** Wskaźnik do cdc_acm klasy.
+- **cdc_acm_reception** Wskaźnik do tego samego parametru, który został użyty do rozpoczęcia odbioru w tle. Układ tego parametru jest następujący:
 
 ```c
 typedef struct UX_HOST_CLASS_CDC_ACM_RECEPTION_STRUCT
@@ -918,8 +921,8 @@ typedef struct UX_HOST_CLASS_CDC_ACM_RECEPTION_STRUCT
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- Odbieranie w tle **UX_SUCCESS** (0x00) zostało pomyślnie zatrzymane.
-- **UX_HOST_CLASS_INSTANCE _UNKNOWN** (0X5b) złe wystąpienie klasy.
+- **UX_SUCCESS** (0x00) Odbiór w tle został pomyślnie zatrzymany.
+- **UX_HOST_CLASS_INSTANCE _UNKNOWN** (0x5b) Nieprawidłowe wystąpienie klasy.
 
 ```c
 UINT status;

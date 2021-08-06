@@ -1,73 +1,73 @@
 ---
-title: Projektant ekranu programu GUIX Studio
+title: GUIX Studio Screen Designer
 description: Projektowanie ekranów aplikacji jest głównym celem programu GUIX Studio.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: 318e68ab5ab7d841057d65565dfda263597d03e4
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 91377a663dfb605caa33ab019f437f2c3ed1adc7
+ms.sourcegitcommit: 62cfdf02628530807f4d9c390d6ab623e2973fee
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822236"
+ms.lasthandoff: 08/05/2021
+ms.locfileid: "115178310"
 ---
-# <a name="chapter-5-guix-studio-screen-designer"></a>Rozdział 5: Projektant ekranu programu GUIX Studio
+# <a name="chapter-5-guix-studio-screen-designer"></a>Rozdział 5: GUIX Studio Screen Designer
 
-Projektowanie ekranów aplikacji jest głównym celem programu GUIX Studio. Projekt ekranu jest realizowany przez wszystkie różne widoki opisane wcześniej w rozdziale 3. Jednak głównym elementem projektu ekranu w programie GUIX Studio jest ***Widok docelowy***, w którym wszystkie elementy ekranu są wyświetlane wizualnie i w taki sam sposób, jak w przypadku wyświetlania osadzonego elementu docelowego. Te elementy ekranu można zaznaczać, przenosić, zmieniać rozmiar itp. za pomocą prostych operacji myszy i przycisków. Ponadto w wybranych obiektach są dostępne operacje wyrównania i kolejności przycisków. Poniższe podsekcje opisują różne funkcje projektu ekranu programu GUIX Studio. 
+Projektowanie ekranów aplikacji jest głównym celem programu GUIX Studio. Projektowanie ekranu jest realizowane za pośrednictwem wszystkich różnych widoków opisanych wcześniej w rozdziale 3. Jednak głównym elementem projektu ekranu w programie GUIX Studio jest widok docelowy ***,*** w którym wszystkie elementy ekranu są wyświetlane wizualnie i w dokładnie taki sam sposób, w jaki będą wyświetlane na osadzonym ekranie docelowym. Te elementy ekranu można wybierać, przenosić, zmieniać rozmiar itp. za pomocą prostych operacji myszy i przycisków. Ponadto operacje wyrównania i przycisku porządek osi Z są dostępne dla wybranych obiektów. W poniższych sekcjach podrzędnych opisano różne funkcje projektowania ekranu w programie GUIX Studio. 
 
-## <a name="creatingconfiguring-projects"></a>Tworzenie/Konfigurowanie projektów
+## <a name="creatingconfiguring-projects"></a>Tworzenie/konfigurowanie projektów
 
-Tworzenie projektów w programie GUIX Studio jest proste — wystarczy wybrać przycisk ***Nowy projekt** _ lub menu wyboru _*_projektu, nowy projekt_*_. Następnie GUIX Studio Wyświetla okno dialogowe _ *_Configure Project_**. Z tego okna dialogowego są wyświetlane podstawowe ustawienia wyświetlania, a także informacje o ścieżce lokalizacji, w których określono kod generowany przez program GUIX Studio.
+Tworzenie projektów w programie GUIX Studio jest proste — po **prostu** wybierz przycisk * Nowy Project _ lub wybierz menu _*_Project, Nowy Project_*_. Następnie w programie GUIX Studio zostanie wyświetlone okno dialogowe _ *_Project_** . W tym oknie dialogowym określono podstawowe ustawienia wyświetlania, a także informacje o ścieżce lokalizacji kodu wygenerowanego przez program GUIX Studio.
 
-Po utworzeniu nowego projektu zostanie wyświetlone okno dialogowe Konfigurowanie projektu. Jest to miejsce, w którym deweloper określa liczbę wyświetlanych sprzętu w miejscu docelowym i właściwości, które są wyświetlane. Właściwości obejmują nazwę logiczną wyświetlania, rozdzielczość x/y, głębię i format kolorów oraz inne właściwości wyświetlania. Program GUIX Studio obsługuje wiele ekranów w tym samym projekcie. Jeśli są wymagane dodatkowe ekrany, należy zmienić ***liczbę wyświetlanych** _ pola, aby dopasować liczbę wyświetlanych na urządzeniu osadzonym. Maksymalna liczba wyświetleń w projekcie wynosi 4. _ *_Rysunek 21_** wyświetla okno dialogowe Konfigurowanie projektu.
+Po utworzeniu nowego projektu zostanie wyświetlone okno dialogowe konfigurowania projektu. W tym miejscu deweloper określa liczbę ekranów sprzętowych dostępnych dla obiektu docelowego oraz właściwości poszczególnych ekranów. Właściwości obejmują nazwę logiczną ekranu, rozdzielczość x/y, głębokość i format koloru oraz inne właściwości wyświetlania. Program GUIX Studio obsługuje wiele ekranów w tym samym projekcie. Jeśli wymagane są dodatkowe ekrany, należy zmienić * wartość pola **Liczba** ekranów _ w celu dopasowania do liczby ekranów na urządzeniu osadzonym. Maksymalna liczba ekranów w projekcie wynosi 4. _ *_Rysunek 21_** pokazuje okno dialogowe Project konfiguracji.
 
-Modyfikowanie ustawień projektu i/lub wyświetlania odbywa się za pomocą opcji menu ***Konfiguruj, projekt/Display** _ lub wybierając projekt lub ekran, klikając prawym przyciskiem myszy i wybierając pozycję _*_Konfiguruj, projekt/Display_*_. W obu przypadkach wyświetlane jest okno dialogowe _ *_Configure Project_**, które ułatwia wprowadzanie zmian w ustawieniach projektu i/lub wyświetlaczach.
+Modyfikowanie ustawień projektu i/lub wyświetlania jest realizowane za pomocą opcji menu ***Konfiguruj, Project/Display** _ lub wybierając projekt lub ekran, klikając prawym przyciskiem myszy i wybierając polecenie _*_Konfiguruj, Project/Wyświetl._*_ W obu przypadkach zostanie wyświetlone *_okno dialogowe_* _ Project * w celu ułatwienia zmian ustawień projektu i/lub wyświetlania.
 
-![Zrzut ekranu przedstawiający okno dialogowe Konfigurowanie projektu.](./media/guix-studio/config_project.png)
+![Zrzut ekranu przedstawiający okno dialogowe Project konfiguracji.](./media/guix-studio/config_project.png)
 
 **Rysunek 21**
 
-Grupa katalogi służy do określania domyślnych katalogów wyjściowych dla plików źródłowych i nagłówków języka C utworzonych przez program Studio. Te katalogi są zwykle zapisywane względem lokalizacji projektu, dzięki czemu można łatwo przenosić projekty z jednego komputera do drugiego lub z jednego systemu plików do drugiego.
+Grupa Katalogi umożliwia określenie domyślnych katalogów wyjściowych dla plików źródłowych i nagłówkowych języka C wytwarzanych przez program Studio. Te katalogi są zwykle zapisywane względem lokalizacji projektu, aby ułatwić przenoszenie projektów z jednego komputera na inny lub z jednego systemu plików na inny.
 
-Pole dodatkowe nagłówki umożliwia określenie niestandardowych plików nagłówkowych. Jeśli jest wymagany więcej niż jeden plik nagłówkowy, użyj średników, aby rozdzielić listę.
+Pole Dodatkowe nagłówki umożliwia określenie niestandardowych plików nagłówków. Jeśli jest potrzebny więcej niż jeden plik nagłówkowy, użyj średników do rozdzielania listy.
 
-Po wywołaniu poleceń Studio "Generuj aplikację" lub "Generuj zasoby" są to domyślne katalogi, w których będą zapisywane te pliki źródłowe. Oczywiście można zastąpić te lokalizacje katalogów w dowolnym momencie, wprowadzając nowe lokalizacje w oknie dialogowym katalog wyjściowy.
+Po wywołaniu poleceń "Generuj aplikację" lub "Generuj zasoby" w programie Studio są to domyślne katalogi, w których będą zapisywane te pliki źródłowe. Oczywiście możesz zastąpić te lokalizacje katalogów w dowolnym momencie, wprowadzając nowe lokalizacje w oknie dialogowym Katalog wyjściowy.
 
-## <a name="selecting-widgets"></a>Wybieranie elementów widget
+## <a name="selecting-widgets"></a>Wybieranie widżetów
 
-Wybór widżetów odbywa się przez kliknięcie widżetu w drzewie ***Widok projektu** _ widget lub kliknięcie widżetu widocznego w _*_docelowym obszarze widoku_*_ . Po wybraniu pojedynczego elementu widget jego właściwości są wyświetlane w obszarze _*_widoku właściwości_*_ . Na _*_rysunku 22_*_ przedstawiono element widget "_ *_przycisk_* *" wybrany.
+Wybieranie widżetów odbywa się przez kliknięcie widżetu w drzewie widżetu ***Project View** _ lub kliknięcie widżetu widocznego w obszarze _*_Widok_*_ docelowy. Po wybraniu pojedynczego widżetu jego właściwości są wyświetlane w obszarze _*_Widok_*_ właściwości. _*_Rysunek 22 przedstawia_*_ wybrany widżet "_*_przycisk_**".
 
-![Zrzut ekranu wybranego widżetu.](./media/guix-studio/select_button.png)
+![Zrzut ekranu przedstawiający wybrany widżet.](./media/guix-studio/select_button.png)
 
 **Rysunek 22**
 
 ## <a name="using-properties"></a>Używanie właściwości
 
-Jak wspomniano wcześniej, właściwości wybranego widżetu są prezentowane w widoku ***Właściwości** _. Wszystkie widżety mają wspólny zestaw właściwości, a także niektóre właściwości, które są specyficzne dla określonego typu widżetu. Na przykład widżet przycisku ma właściwość _ *_pushd_**, gdy widżet okna nie. Poniżej przedstawiono wspólny zestaw właściwości widżetu:
+Jak wspomniano wcześniej, właściwości wybranego widżetu są prezentowane w widoku ***właściwości** _. Wszystkie widżety mają wspólny zestaw właściwości, a także niektóre właściwości specyficzne dla określonego typu widżetu. Na przykład widżet przycisku ma właściwość _ *_Pushed_**, a widżet okna nie. Poniżej przedstawiono wspólny zestaw właściwości widżetu:
 
 | Właściwość         | Znaczenie                                                                               |
 | ---------------- | ------------------------------------------------------------------------------------- |
-| Typ widgetu    | Typ widżetu, dla odwołania                                                                               |
-| Nazwa widżetu      | Nazwa widżetu, przeniesiona do funkcji widget Create i używana do nazewnictwa zmiennych w wygenerowanych plikach źródłowych.               |
-| Identyfikator elementu widget        | Identyfikator elementu widget. Ta wartość identyfikatora jest używana do generowania sygnałów z elementów widget podrzędnych do ich ekranów nadrzędnych.                            |
-| Lewe             | Największa z lewej strony widżetu                                                                                                 |
-| Pierwsze              | Górna część elementu widget                                                                                                  |
+| Typ widżetu    | Typ widżetu do odwołania                                                                               |
+| Nazwa widżetu      | Nazwa widżetu, przekazana do funkcji create widżetu i używana do nazewnictwa zmiennych w wygenerowanych plikach źródłowych.               |
+| Identyfikator widżetu        | Identyfikator widżetu. Ta wartość identyfikatora służy do generowania sygnałów z widżetów nadrzędnych na ich ekranach nadrzędnych.                            |
+| Lewe             | Współrzędna widżetu z lewej strony                                                                                                 |
+| Pierwsze              | Najwyższa współrzędna widżetu                                                                                                  |
 | Width            | Szerokość widżetu w pikselach                                                                                                      |
 | Height           | Wysokość widżetu w pikselach                                                                                                     |
 | Obramowanie           | Typ obramowania widżetu                                                                                                          |
-| Przezroczyste      | Należy sprawdzić, czy element widget jest częściowo przezroczysty                                                                       |
-| Rysuj wybrane    | Należy sprawdzić, czy element widget powinien początkowo być rysowany w wybranym stanie.                                            |
-| Włącz           | Należy sprawdzić, czy element widget może zostać wybrany lub kliknięty przez użytkownika końcowego.                                                    |
-| Akceptuje fokus    | Należy sprawdzić, czy element widget akceptuje fokus.                                                                                 |
-| Przydział środowiska uruchomieniowego | Należy sprawdzić, czy blok kontrolki widget powinien być przydzielany dynamicznie.                                                 |
-| Wypełnienie normalne      | Identyfikator zasobu koloru normalnego wypełnienia                                                                                                  |
+| Przezroczyste      | Należy sprawdzić, czy widżet jest częściowo przezroczysty                                                                       |
+| Rysowanie wybrane    | Należy sprawdzić, czy widżet powinien początkowo być rysowany w wybranym stanie.                                            |
+| Włącz           | Należy sprawdzić, czy widżet może zostać wybrany lub klikowany przez użytkownika końcowego.                                                    |
+| Akceptuje fokus    | Należy sprawdzić, czy widżet akceptuje fokus.                                                                                 |
+| Przydzielanie środowiska uruchomieniowego | Należy sprawdzić, czy blok sterowania widżetu powinien być przydzielany dynamicznie.                                                 |
+| Wypełnienie normalne      | Identyfikator zasobu koloru wypełnienia normalnego                                                                                                  |
 | Wybrane wypełnienie    | Wybrany identyfikator zasobu koloru wypełnienia                                                                                                |
-| Funkcja rysowania    | Nazwa niestandardowej funkcji rysowania zdefiniowanej przez użytkownika. Jeśli to pole jest puste, używana jest standardowa funkcja rysowania dla tego typu widżetu. |
-| Funkcja zdarzenia   | Nazwa funkcji niestandardowego obsługi zdarzeń zdefiniowanej przez użytkownika. Jeśli pole pozostanie puste, zostanie użyta Standardowa obsługa zdarzeń dla tego typu widżetu.          |
+| Draw, funkcja    | Zdefiniowana przez użytkownika niestandardowa funkcja rysowania Name. Jeśli to pole jest puste, zostanie użyta standardowa funkcja rysowania dla tego typu widżetu. |
+| Event, funkcja   | Zdefiniowana przez użytkownika niestandardowa nazwa funkcji obsługi zdarzeń. Jeśli ta wartość jest pusta, używana jest standardowa obsługa zdarzeń dla tego typu widżetu.          |
 
-***Rysunek 23*** pokazuje właściwości prostego widżetu okna.
+***Rysunek 23*** przedstawia właściwości prostego widżetu okna.
 
 ![Zrzut ekranu przedstawiający właściwości prostego widżetu okna.](./media/guix-studio/image57.jpg)
 
@@ -75,110 +75,110 @@ Jak wspomniano wcześniej, właściwości wybranego widżetu są prezentowane w 
 
 Wiele typów widżetów ma dodatkowe właściwości specyficzne dla każdego typu widżetu.
 
-Na przykład, na rysunku 23 powyżej, typ widżetu okna obsługuje tapetę identyfikatora Pixelmap oraz ustawienie stylu wskazujące, czy tapeta powinna być wyśrodkowana lub rozdzielna.
+Na przykład na rysunku 23 powyżej typ widżetu Okno obsługuje identyfikator mapy pikseli tapety oraz ustawienie stylu wskazujące, czy tapeta ma być wyśrodkowana, czy kafelkowana.
 
-Widżety tekstowe obsługują pole identyfikatora ciągu, a także style wyrównania tekstu i Specyfikacja czcionki. Dodatkowe właściwości widżetu są zwykle bardzo intuicyjne po przeczytaniu opisu każdego typu widżetu i dostępnych stylów oraz tworzeniu parametrów funkcji dla tego typu widżetu.
+Widżety tekstu obsługują pole identyfikatora ciągu, a także style wyrównania tekstu i specyfikację czcionki. Dodatkowe właściwości widżetu są zwykle bardzo intuicyjne po przeczytaniu opisu każdego typu widżetu oraz dostępnych stylów i parametrów funkcji Utwórz dla tego typu widżetu.
 
 ## <a name="manipulating-widgets"></a>Manipulowanie widżetami
 
-Aby manipulować widżetem, najpierw należy wybrać opcję. W tym celu należy kliknąć pozycję bezpośrednio na widżecie w **widoku * obiekt docelowy** _ lub przez wybranie go w drzewie _ *_widoku projektu_**. Po wybraniu element widget będzie miał kreskowany kontur. W tym stanie można przenieść przez kliknięcie widżetu i przeciągnięcie go do odpowiedniej lokalizacji w jego obiekcie nadrzędnym. Jeśli widżet jest widżetem najwyższego poziomu, przeciąganie widżetu efektywnie ustawia początkową pozycję widżetu na ekranie docelowym. Oczywiście można w dowolnym momencie przenieść lub zmienić rozmiar dowolnego widżetu przy użyciu interfejsu API GUIX.
+Aby manipulować widżetem, najpierw należy wybrać element . W tym celu należy kliknąć widżet bezpośrednio w widoku ***Widok** docelowy _ lub wybrać go w drzewie widżetu _ *_Project View_**. Po wybraniu widżet będzie miał konspekt przerywany. W tym stanie można go przenieść, klikając widżet i przeciągając go do żądanej lokalizacji na jego elementach nadrzędnych. Jeśli widżet jest widżetem najwyższego poziomu, przeciągnięcie widżetu efektywnie ustawia jego początkową pozycję na ekranie docelowym. Oczywiście zawsze można przenieść lub zmienić rozmiar dowolnego widżetu w dowolnym momencie przy użyciu interfejsu API GUIX.
 
-Aby zmienić wysokość elementu widget, umieść wskaźnik myszy na górnej krawędzi widżetu i poczekaj, aż wskaźnik myszy zmieni się na strzałkę w dół. W tym momencie wysokość widżetu można zmienić, naciskając myszą po naciśnięciu prawego przycisku myszy. Szerokość myszy można zmienić w podobny sposób, umieszczając wskaźnik myszy na lewej krawędzi widżetu. ***Rysunek 24** _ pokazuje, że w lewym/górnym rogu okna nadrzędnego Zmieniono rozmiar i przeniesiono widżet "_ *_przycisk_* *".
+Aby zmienić rozmiar wysokości widżetu, umieść wskaźnik myszy na górnej krawędzi widżetu i poczekaj, aż wskaźnik myszy zmieni się na strzałkę w górę w dół. W tym momencie wysokość widżetu można zmienić, po prostu przesuwając mysz, gdy prawy przycisk myszy jest zaciśony. Rozmiar szerokości myszy można zmienić w podobny sposób, pozycjonowanie wskaźnika myszy na lewej krawędzi widżetu. ***Rysunek 24** _ przedstawiawidżet "_* przycisk **", który został zmieniony i przeniesiony do lewego/górnego obszaru okna nadrzędnego.
 
-![Zrzut ekranu widżetu przycisku.](./media/guix-studio/resize_button.png)
+![Zrzut ekranu przedstawiający widżet przycisku.](./media/guix-studio/resize_button.png)
 
 **Rysunek 24**
 
 ## <a name="manipulating-multiple-widgets"></a>Manipulowanie wieloma widżetami
 
-Wybranie wielu elementów widget jest realizowane przez kliknięcie wielu widżetów w widoku docelowym, trzymając wciśnięty klawisz ***Ctrl*** . Spowoduje to wyświetlenie wszystkich elementów widget wybranych z kreskowanym obramowaniem. Należy pamiętać, że podczas wybierania wielu elementów widget każdy widżet w grupie wyboru musi być elementem podrzędnym tego samego elementu nadrzędnego.
+Wybranie wielu widżetów jest realizowane przez kliknięcie wielu widżetów w widoku docelowym przy przytrzymaniu ***klawisza Ctrl*** w dół. Spowoduje to pokazanie każdego z wybranych widżetów z konturem kreskowany wokół niego. Należy pamiętać, że w przypadku wybrania wielu widżetów każdy widżet w grupie wyboru musi być elementem podrzędnym tego samego elementu nadrzędnego.
 
-Po wybraniu wielu elementów widget, mogą one być jednocześnie przenoszone przez kliknięcie wewnątrz jednego na zaznaczonych widżetów i przeniesienie myszą po naciśnięciu prawego przycisku myszy. Dodatkowo przyciski wyrównania na **pasku narzędzi*** _ mogą być używane do wyrównywania grupy wybranych elementów widget. _*_Ilustracja 25_*_ pokazuje, że wybrane elementy widget "_*_Button_*_" i "_*_New Button_*_" i _*_rysunek 26_*_ przedstawiają wynik zaznaczenia przycisku _ *_Wyrównaj do lewej_** podczas zaznaczania tych elementów widget.
+Po wybraniu wielu widżetów można je jednocześnie przenosić, klikając jeden na wybranych widżetach i przesuwając myszą prawym przyciskiem myszy wypchniętą w dół. Ponadto przyciski wyrównania na pasku narzędzi ***Tool Bar** _ mogą służyć do wyrównywania grupy wybranych widżetów. _*_Rysunek 25_*_ przedstawia wybrane widżety _*_"_*_ przycisk " i _*_"_*_ nowy przycisk ", a na rysunku _*_26_*_ — wynik wyboru przycisku *___* Wyrównaj do lewej * podczas wyboru tych widżetów.
 
-![Zrzut ekranu przedstawiający przycisk i nowe widżety przycisku](./media/guix-studio/multiple_select.png)
+![Zrzut ekranu przedstawiający wybrany przycisk i nowe widżety przycisków](./media/guix-studio/multiple_select.png)
 
 **Rysunek 25**
 
-![Zrzut ekranu przedstawiający wynik zaznaczenia przycisku Align-Left.](./media/guix-studio/align_left.png)
+![Zrzut ekranu przedstawiający wynik wyboru Align-Left przycisku.](./media/guix-studio/align_left.png)
 
 **Rysunek 26**
 
 ## <a name="cutcopypaste-operations"></a>Operacje wycinania/kopiowania/wklejania
 
-Wybrany widżet w **docelowym widoku*** _ może być wycięty, skopiowany i wklejony w standardowy sposób. Widżety i ekrany mogą być kopiowane w ramach jednego projektu lub kopiowane z jednego projektu i wklejane do innego. _*_Pasek narzędzi_*_ ma przyciski do wycinania, kopiowania i wklejania. Dostępne są również te same opcje w menu Edycja. Należy pamiętać, że podczas wklejania widżetu element widget powinien zostać wybrany przed wklejeniem nowego widżetu. _*_Ilustracja 27_*_ przedstawia wynik wyboru widżetu "__ * * *"_, skopiowanie go i wklejenie kopii w tym samym oknie.
+Wybrany widżet w widoku ***Widok docelowy** _ może być wycinany, kopiowany i wklejony w standardowy sposób. Widżety i ekrany można kopiować w ramach jednego projektu lub kopiować z jednego projektu i wklejać do innego. Pasek _*_narzędzi ma_*_ przyciski do wycinania, kopiowania i wklejania. W menu Edycja są również dostępne te same opcje. Pamiętaj, że podczas wklejania widżetu należy wybrać widżet nadrzędny przed wklejonym nowym widżetem. _*_Rysunek 27_*_ przedstawia wynik wyboruwidżetu "_* przycisku **", skopiowania go i wklejania kopii w tym samym oknie.
 
-![Zrzut ekranu operacji wycinania/kopiowania/wklejania.](./media/guix-studio/copy_paste_button.png)
+![Zrzut ekranu przedstawiający operacje wycinania/kopiowania/wklejania.](./media/guix-studio/copy_paste_button.png)
 
 **Rysunek 27**
 
-Kopiowanie/wklejanie w obrębie jednego projektu jest ogólnie proste, ponieważ zasoby, które mogą być wymagane przez skopiowane widżety, są zawsze obecne podczas pracy w jednym projekcie. Jeśli jednak skopiujesz widżet z projektu A i wkleisz ten widżet do projektu B, mogą wystąpić pewne problemy związane z zależnościami zasobów.
+Kopiowanie/wklejanie w ramach jednego projektu jest zwykle proste, ponieważ zasoby, które mogą być wymagane przez skopiowane widżety, są zawsze obecne podczas pracy w jednym projekcie. Jeśli jednak skopiujemy widżet z projektu A i wkleimy go do projektu B, mogą wystąpić problemy z zależnościami zasobów.
 
-Po skopiowaniu widżetów w programie Studio Aplikacja Studio tworzy listę zasobów wymaganych przez skopiowane widżety i generuje tabelę zależności zasobów przenośnych w postaci kodu XML, która jest kopiowana do Schowka systemu Windows wraz z rzeczywistymi informacjami o widżecie. Gdy wkleisz widżety do innego projektu, Studio najpierw analizuje listę zależności zasobów i dodaje potrzebne zasoby do otwartego projektu, jeśli jeszcze nie istnieją. Program Studio zidentyfikuje pasujące zasoby według nazw identyfikatorów zasobów, a dla programu String Resources Studio porównuje również zawartość ciągu. W przypadku znalezienia pasujących zasobów program Studio aktualizuje identyfikatory zasobów wklejonych widżetów, aby prawidłowo używać zasobów w nowym projekcie. Jeśli zasoby nie zostaną znalezione, zostaną dodane.
+Podczas kopiowania widżetów w programie Studio aplikacja Studio tworzy listę zasobów wymaganych przez skopiowane widżety i generuje tabelę zależności zasobów przenośnych w postaci kodu XML, która jest kopiowana do schowka systemu Windows, wraz z rzeczywistymi informacjami o skopiowanym widżecie. Po wklejeniu widżetów do innego projektu program Studio najpierw sprawdza listę zależności zasobów i dodaje wymagane zasoby do otwartego projektu, jeśli jeszcze nie istnieją. Program Studio identyfikuje pasujące zasoby według nazw identyfikatorów zasobów, a w przypadku zasobów ciągów program Studio porównuje również zawartość ciągu. Jeśli pasujące zasoby zostaną znalezione, program Studio aktualizuje identyfikatory zasobów wklejonych widżetów, aby prawidłowo używać zasobów w nowym projekcie. Jeśli zasoby nie zostaną znalezione, zostaną dodane.
 
-Gdy Studio dodaje zasób do projektu w ramach operacji wklejania widżetu, program Studio naprawdę dodaje link do zasobu w przypadku czcionek i Pixelmap zasobów. Ten link jest generowany na podstawie projektu źródłowego i pojawia się komunikat ostrzegawczy, jeśli nie można znaleźć tych zasobów względem lokalizacji projektu projektu, w którym są wklejane. Linki do zasobów zostaną dodane do projektu bez względu na to, ale może być konieczne ręczne skopiowanie czcionek i plików obrazów do odpowiednich lokalizacji w nowym drzewie projektu, aby wyeliminować błędy ładowania zasobów. Program Studio nie kopiuje plików TTF, png ani jpg z jednej lokalizacji do innej.
+Gdy program Studio dodaje zasób do projektu w ramach operacji wklejania widżetu, program Studio naprawdę dodaje link do zasobu w przypadku zasobów czcionek i pikselimapy. Ten link jest generowany z projektu źródłowego i otrzymasz komunikaty ostrzegawcze, jeśli nie można znaleźć tych zasobów względem lokalizacji projektu projektu, do którego jest wklejanie. Linki zasobów zostaną dodane do projektu niezależnie od tego, ale może być konieczne ręczne skopiowanie czcionek i plików obrazów do odpowiednich lokalizacji w nowym drzewie projektu, aby wyeliminować błędy ładowania zasobów. Program Studio nie kopiuje plików ttf, .png ani .jpg plików z jednej lokalizacji do innej.
 
-W łatwy sposób można uniknąć wszelkich problemów w tym zakresie, aby zachować spójną strukturę katalogów między projektami, które chcesz udostępnić. Jeśli chcesz łatwo przenieść elementy z projektu A do projektu B, Zachowaj obrazy graficzne i czcionki używane przez oba projekty w spójnym podkatalogu każdego folderu projektu.
+Łatwym sposobem uniknięcia problemów w tym zakresie jest zachowanie spójnej struktury katalogów między projektami, które chcesz udostępnić. Jeśli chcesz łatwo przenieść elementy z usługi Project A do usługi Project B, zachowaj obrazy graficzne i czcionki używane przez oba projekty w spójnym podkatasie każdego folderu projektu.
 
 ## <a name="changing-z-order"></a>Zmiana kolejności Z
 
-Widżety można łatwo przenieść przed innymi widżetami lub za nie. W tym celu należy zaznaczyć widżet i wybrać przyciski ***Przenieś do przodu** _ lub _*_Przenieś do tyłu_*_ na _*_pasku narzędzi_*_. _ *_Ilustracja 28_** pokazuje przeniesienie drugiego przycisku do tyłu.
+Widżety można łatwo przenosić przed innymi widżetami lub za nimi. W tym celu należy wybrać widżet i wybrać przyciski ***Przejdź** do przodu _ lub Przenieś do _*_tyłu_*_ na pasku _*_narzędzi_*_. _ *_Rysunek 28_** pokazuje przeniesienie drugiego przycisku do tyłu.
 
-![Zrzut ekranu przedstawiający przycisk z kolejnością z.](./media/guix-studio/change_z_order.png)
+![Zrzut ekranu przedstawiający przycisk Z-order.](./media/guix-studio/change_z_order.png)
 
 **Rysunek 28**
 
-## <a name="assigning-colors-fonts-and-pixelmaps"></a>Przypisywanie kolorów, czcionek i Pixelmaps
+## <a name="assigning-colors-fonts-and-pixelmaps"></a>Przypisywanie kolorów, czcionek i map pikseli
 
-Oprócz wyboru kolorów, czcionek i pixelmaps w widoku właściwości dla wybranego widżetu jest również obsługiwana skrócona Metoda przeciągania i upuszczania przypisywania zasobów do widżetów. Aby użyć tej funkcji, po lewej stronie kliknij zasób, taki jak kolor czcionki w widoku zasobów, a następnie przeciągnij zasób nad odpowiednim widżetem w widoku cel. Usuń zasób, zwalniając lewy przycisk myszy nad widżetem.
+Oprócz wybierania kolorów, czcionek i map pikseli w widoku właściwości dla wybranego widżetu obsługiwana jest również skrócona metoda przeciągania i upuszczania w celu przypisywania zasobów do widżetów. Aby użyć tej funkcji, po prostu kliknij lewym przyciskiem myszy zasób, taki jak kolor czcionki w widoku zasobów, i przeciągnij zasób na żądany widżet w widoku docelowym. Upuść zasób, zwalniając lewy przycisk myszy nad widżetem.
 
-Zasoby koloru są zawsze przypisywane do normalnego koloru tła widżetu przy użyciu metody przeciągania i upuszczania. Inne kolory, takie jak wybrany kolor lub wybrany kolor tekstu, muszą być przypisane przy użyciu widoku właściwości.
+Zasoby kolorów są zawsze przypisywane do normalnego koloru tła widżetu podczas korzystania z metody przeciągania i upuszczania. Inne kolory, takie jak wybrany kolor lub wybrany kolor tekstu, muszą być przypisane przy użyciu widoku właściwości.
 
-Podobnie zasoby Pixelmap są przypisywane do pola "normal" lub "Fill" Pixelmap elementu widget, który obsługuje wyświetlanie Pixelmap. Aby przypisać inne pola do widżetu, który obsługuje wiele pixelmaps, należy użyć widoku właściwości.
+Podobnie zasoby mapy pikseli są przypisywane do pola mapy pikseli "normalny" lub "wypełnienie" widżetu obsługującego wyświetlanie mapy pikseli. Aby przypisać inne pola do widżetu obsługującego wiele map pikseli, należy użyć widoku właściwości.
 
 ## <a name="using-templates"></a>Korzystanie z szablonów
 
-Dowolny ekran lub kolekcja elementów widget, które można zaprojektować w programie Studio, może być używana jako szablon dla nowych ekranów i nowych formantów podrzędnych. Użycie szablonu jest podobne do kopiowania i wklejania widżetu, z tą różnicą, że wszystkie elementy pochodne z szablonu są automatycznie modyfikowane, gdy szablon, na którym jest oparty, jest modyfikowany. Nie można modyfikować właściwości widżetu szablonu podczas pracy z ekranem pochodnym lub dziedziczonym wystąpieniem szablonu. Jednak po zmodyfikowaniu właściwości szablonu wszystkie wystąpienia odwołujące się do tego szablonu są automatycznie aktualizowane, ponieważ pochodzą z tego szablonu.
+Dowolny ekran lub kolekcja widżetów podrzędnych, które projektujesz w programie Studio, może służyć jako szablon dla nowych ekranów i nowych kontrolek podrzędnych. Szablon można utworzyć na podstawie widżetu Typu okna, czyli normalnego przypadku użycia, lub dowolnego innego typu widżetu. Użycie szablonu jest podobne do kopiowania i wklejania widżetu, z tą różnicą, że wszystkie elementy pochodzące z szablonu są automatycznie modyfikowane, gdy szablon, na którym się opiera, jest modyfikowany. Nie można modyfikować właściwości widżetu szablonu podczas pracy z ekranem pochodnym lub dziedziczonym wystąpieniem szablonu. Jednak podczas modyfikowania właściwości szablonu w jakikolwiek sposób wszystkie wystąpienia odwołujące się do tego szablonu są automatycznie aktualizowane, ponieważ pochodzą z tego szablonu.
 
-Inną zaletą korzystania z szablonów dla powtarzających się elementów jest to, że plik specyfikacji generowanych przez Studio zwykle będzie mniejszy niż w przypadku ponownego tworzenia powtarzających się elementów za każdym razem, gdy są one używane.
+Kolejną zaletą używania szablonów dla powtarzanych elementów jest to, że plik specyfikacji wygenerowany przez program Studio będzie zazwyczaj mieć mniejszy rozmiar niż w przypadku ponownego tworzenia powtarzających się elementów za każdym razem, gdy są używane.
 
-Aby wyznaczyć, że ekran lub kolekcja elementów widget elementu podrzędnego ma być używana jako szablon, należy włączyć pole wyboru "szablon" w widoku właściwości widżetu. Po włączeniu pola wyboru "szablon" widżet szablon zostanie wyświetlony w obszarze ***Wstaw |*** Menu ściągania szablonu.
+Aby wyznaczyć, że ekran lub kolekcja widżetów podrzędnych ma być używana jako szablon, należy włączyć pole wyboru "Szablon" w widoku właściwości widżetu. Po włączeniu pola wyboru "Szablon" widżet szablonu zostanie wyświetlony w oknie ***Wstaw| Menu*** rozwijane szablonów.
 
-Przykładem użycia szablonu może być zdefiniowanie okna, które jest używane jako pasek przycisku. To okno może zawierać kilka przycisków podrzędnych, a ten pasek przycisków jest często używany na różnych ekranach. Można zdefiniować małe autonomiczne okno w projekcie Studio, który zawiera wymagane przyciski podrzędne i nadać temu oknie nazwę "button_bar". Następnie zaznacz to okno i Włącz Właściwość "template". Następnie wybierz ekran, na którym chcesz dodać ten pasek przycisku. Użyj Wstaw | Szablon | button_bar polecenie menu, aby wstawić wystąpienie okna button_bar na ekranie. Należy zauważyć, że można zmienić położenie paska przycisku, ale nie można zmieniać większości właściwości. Można jednak użyć widżetu button_bar (i wszelkich elementów podrzędnych) tak samo jak w przypadku wszystkich innych wstępnie zdefiniowanych typów widżetów GUIX. Aby zmodyfikować button_bar, musisz wybrać szablon button_bar, aby wprowadzić zmiany.
+Na przykład przy użyciu szablonu można zdefiniować okno, które będzie używane jako pasek przycisku. To okno może zawierać kilka przycisków podrzędnych, a ten pasek przycisku jest często używany na różnych ekranach. W projekcie programu Studio możesz zdefiniować małe okno autonomiczne, które zawiera wymagane przyciski podrzędne, i nadać temu oknie nazwę "button_bar". Następnie wybierz to okno i włącz właściwość "Szablon". Następnie wybierz ekran, na którym chcesz dodać ten pasek przycisku. Użyj przycisku Wstaw| Szablon|button_bar polecenia menu, aby wstawić wystąpienie button_bar okna na ekranie. Pamiętaj, że możesz zmienić położenie paska przycisku, ale nie możesz zmieniać większości właściwości. Możesz jednak używać widżetu button_bar (i wszystkich elementów children) tak samo jak innych wstępnie zdefiniowanych typów widżetów GUIX. Aby zmodyfikować button_bar, należy wybrać szablon button_bar, aby wprowadzić zmiany.
 
-Innym przykładem typowego użycia szablonu jest aplikacja, która zawiera wiele podobnych ekranów. Na przykład aplikacja może mieć 10 różnych ekranów, które współdzielą wspólny pasek tytułu, kolor wypełnienia, rozmiar itd. W takim przypadku można zdefiniować ekran szablonu, który zawiera widżety potomne paska tytułu i konfiguruje rozmiar ekranu, kolor wypełnienia i inne właściwości. Po zdefiniowaniu tego ekranu szablonu można następnie utworzyć 10 różnych ekranów z tego szablonu. Przy użyciu Wstaw | Szablon | \<base_screen> polecenie menu, ekran zostanie uruchomiony ze wszystkimi elementami widget i ustawieniami ekranu szablonu. Należy zauważyć, że każdy ekran pochodzący z ekranu szablonu nie jest kopią szablonu, ale jest naprawdę wystąpieniem pochodnym ekranu szablonu. Następnie można dostosować każdy ekran pochodny do przechowywania dowolnej dodatkowej zawartości.
+Innym przykładem typowego użycia szablonu jest aplikacja, która zawiera wiele podobnych ekranów. Na przykład aplikacja może mieć 10 różnych ekranów, które mają wspólny pasek tytułu, kolor wypełnienia, rozmiar itp. W takim przypadku można zdefiniować ekran szablonu, który zawiera widżety podrzędne paska tytułu i konfiguruje rozmiar ekranu, kolor wypełnienia i inne właściwości. Po zdefiniowanym ekranie szablonu możesz utworzyć 10 różnych ekranów na podstawie tego szablonu. W przypadku korzystania z funkcji Wstaw| Szablon| \<base_screen> menu , ekran zacznie się od wszystkich widżetów i ustawień podrzędnego ekranu szablonu. Należy pamiętać, że każdy ekran pochodzący z ekranu szablonu nie jest kopią szablonu, ale naprawdę jest pochodnym wystąpieniem ekranu szablonu. Następnie można dostosować każdy ekran pochodny tak, aby pomieścić wymaganą dodatkową zawartość.
 
-Należy pamiętać, że oprócz zapisywania rozmiaru wygenerowanego pliku specyfikacji używanie szablonów może ułatwić zarządzanie zmianami w wyglądzie aplikacji. W powyższym przykładzie Załóżmy, że konieczna jest zmiana koloru tła 10 podobnych ekranów. Nie jest wymagane, aby zaznaczyć każdy ekran i zmienić ustawienia koloru wypełnienia, wystarczy wybrać podstawowy szablon i zmienić jego kolor wypełnienia, a ta zmiana zostanie natychmiast odzwierciedlona we wszystkich ekranach pochodnych.
+Należy pamiętać, że oprócz zapisywania rozmiaru wygenerowanego pliku specyfikacji użycie szablonów może ułatwić zarządzanie zmianami w wyglądzie aplikacji. W powyższym przykładzie załóżmy, że musisz zmienić kolor tła 10 podobnych ekranów. Zamiast wybierać poszczególne ekrany i zmieniać ustawienia koloru wypełnienia, wystarczy wybrać szablon podstawowy i zmienić jego kolor wypełnienia, a ta zmiana zostanie natychmiast odzwierciedlona na wszystkich ekranach pochodnych.
 
-Dodatkowy komentarz dotyczący szablonów: należy upewnić się, że przepływ przetwarzania zdarzeń jest obsługiwany, co oznacza, że jeśli podajesz program obsługi zdarzeń dla ekranu podstawowego (na potrzeby obsługi wspólnych zdarzeń widżetu) i dla ekranu pochodnego, program obsługi zdarzeń ekranu pochodnego powinien wywoływać base_screen obsługi zdarzeń w domyślnym przypadku. Pozwoli to programowi obsługi zdarzeń ekranu podstawowego na przetwarzanie zdarzeń generowanych przez widżety wspólne dla wszystkich ekranów pochodnych z tego szablonu.
+Kolejny komentarz dotyczący szablonów: należy zadbać o utrzymanie przepływu przetwarzania zdarzeń, co oznacza, że jeśli udostępnisz program obsługi zdarzeń zarówno dla ekranu podstawowego (do obsługi typowych zdarzeń widżetu), jak i dla ekranu pochodnego, program obsługi zdarzeń pochodnego ekranu powinien w domyślnym przypadku wywołać program obsługi zdarzeń programu base_screen. Umożliwi to programowi obsługi zdarzeń ekranu podstawowego przetwarzanie zdarzeń generowanych przez widżety wspólne dla wszystkich ekranów pochodzących z tej bazy szablonów.
 
-## <a name="record-and-playback-macro"></a>Rejestruj i Odtwarzaj makro
+## <a name="record-and-playback-macro"></a>Makro rekordu i odtwarzania
 
-Funkcja rejestrowania i zapisywania oraz odtwarzania i wyświetlania zdarzeń myszy ułatwia nagrywanie i odtwarzanie klawiszy.
+Funkcje rekordu i odtwarzania makra ułatwiają rejestrowanie i odtwarzanie naciśnięć klawiszy i zdarzeń myszy.
 
-Nagrywanie do pliku makr jest realizowane przez wybranie przycisku ***zarejestruj makro** _ paska narzędzi lub menu wybierz polecenie _*_Edytuj, rejestruj makro_*_. Program GUIX Studio wyświetli okno dialogowe _*_rejestrowania makr_*_ , które pozwala określić nazwę ścieżki pliku makra. Po wybraniu tej opcji kliknij przycisk _*_Rejestruj_*_ , aby rozpocząć nagrywanie. Po zakończeniu nagrywania należy ponownie wybrać przycisk paska narzędzi _*_rejestrowanie makra_*_ lub użyć menu rozwijanego z poleceniem *_Edytuj i Zakończ makro *,_* aby zakończyć nagrywanie makra.
+Rejestrowanie w pliku makra jest realizowane przez wybranie przycisku ***** Rejestruj makro _ na pasku narzędzi lub menu, wybierając pozycję _*_Edytuj, Zapisz makro._*_ W programie GUIX Studio zostanie wyświetlone _*_okno dialogowe Makro_*_ rekordu, w którym można określić nazwę ścieżki pliku makra. Po dokonaniu tego wyboru kliknij przycisk _*_Nagraj,_*_ aby rozpocząć nagrywanie. Po zakończeniu rejestrowania ponownie _**_ wybierz przycisk na pasku narzędzi Makra rekordu lub użyj menu rozwijanego, wybierając pozycję *__Edytuj,_* Zakończ makro *, aby zakończyć nagrywanie makra.
 
-Odtwarzanie pliku makra jest realizowane przez wybranie przycisku paska narzędzi ***odtwarzanie makra** _ przy użyciu głównego menu rozwijanego, aby wybrać polecenie _*_Edytuj, Odtwórz makro_*_ . GUIX Studio przedstawia okno dialogowe _ *_odtwarzania makro_**, które pozwala na określenie wcześniej zapisanego pliku makra do uruchomienia.
+Odtwarzanie pliku makra jest realizowane przez wybranie przycisku ***** Odtwarzanie makra _ paska narzędzi przy użyciu głównego menu rozwijanego, aby wybrać polecenie _*_Edytuj, Odtwarzaj makro._*_ W programie GUIX Studio jest wyświetlane okno dialogowe _ *_Makro_* odtwarzania *, które umożliwia określenie wcześniej zarejestrowanego pliku makra do uruchomienia.
 
-Podczas rejestrowania makr, które wybierają pliki wejściowe lub wyjściowe, takie jak dodanie czcionki lub obrazu, ważne jest, aby użyć klawiatury do wpisywania nazwy pliku, a nie przy użyciu myszy do wybrania z przeglądarki plików. Ponieważ Rejestrator makr rejestruje zdarzenia myszy i klawiatury, a ponieważ przeglądarka plików może ulec zmianie z upływem czasu, bardziej niezawodne jest wpisywanie nazwy pliku, niż w celu wybrania pliku graficznie.
+Podczas rejestrowania makr, które wybierają pliki wejściowe lub wyjściowe, takie jak dodanie czcionki lub obrazu, ważne jest, aby użyć klawiatury do wpisania nazwy pliku, zamiast wybierać z przeglądarki plików za pomocą myszy. Ponieważ rejestrator makr rejestruje zdarzenia myszy i klawiatury, a przeglądarka plików może zmieniać się z czasem, bardziej niezawodne jest wpisywanie nazwy pliku niż graficzne wybieranie pliku.
 
-## <a name="zooming-target-view"></a>Widok docelowy powiększenia
+## <a name="zooming-target-view"></a>Powiększanie widoku docelowego
 
-Powiększ funkcję pomaga uzyskać widok do końca ekranu docelowego.
+Funkcja Zoom In pomaga w zbliżeniu ekranu docelowego.
 
-Możesz wybrać ustawienie procentu powiększenia, które ma być używane w programie ***Configure | Widok docelowy |** Opcja menu Zoom _. _ *_Pasek narzędzi_** ma także przyciski do powiększania/wypełniania.
+Możesz wybrać ustawienie powiększenia procentowego, które ma być dostępne w ***Konfiguracji| Widok docelowy| Opcja** menu Zoom _ . Pasek *_narzędzi_* _ * zawiera również przyciski powiększania/pomniejszanie.
 
-## <a name="gridsnap-settings"></a>Ustawienia siatki/przyciągania
+## <a name="gridsnap-settings"></a>Siatka/przyciąganie Ustawienia
 
-Okno dialogowe ***Ustawienia siatki i przyciągania** _ zawiera kilka ustawień i opcji siatki i przyciągania. _*_Rysunek 29_*_ pokazuje okno dialogowe _*_Siatka i ustawienia przyciągania_*_ , gdy menu _ *_Congigure | Widok docelowy | Wybrano siatkę/Snap_**.
+***Siatka i przyciąganie Ustawienia** _ zawierają niektóre ustawienia i opcje siatki i przyciągania. _*_Rysunek 29_*_ przedstawia okno _*_dialogowe Siatka i ustawienie przyciągania,_*_ gdy menu _ *_Sprzęgamie| Widok docelowy| Wybrana jest opcja Siatka/Przyciągaj_**.
 
-![Zrzut ekranu przedstawiający ustawienia siatki i przyciągania.](./media/guix-studio/image63.jpg)
+![Zrzut ekranu przedstawiający ekran siatki i Ustawienia.](./media/guix-studio/image63.jpg)
 
 **Rysunek 29**
 
-Włącz opcję ***Pokaż siatkę**, aby wyświetlić siatkę na ekranie docelowym, możesz określić przyrost siatki (w pikselach) w polu _*_odstępy siatki_*_ . Opcja _ *_Przyciągaj do siatki_** ułatwia uzyskanie właściwego elementu widgetu. Ta opcja zostanie uaktywniona.
+Włącz opcję ***Pokaż siatkę** _ spowoduje wyświetlenie siatki na ekranie docelowym. Możesz określić przyrost siatki (w pikselach) w polu _*_Odstępy siatki._*_ Opcja *__Przyciągaj_* do siatki * pomaga uzyskać odpowiednie położenie widżetu. Włączenie tej opcji spowoduje aktywne przyciąganie.
 
-Gdy jest włączona opcja ***siatki i przyciągania*** :
+Gdy ***opcja Siatki i przyciągania*** jest włączona:
 
-- Jeśli przeciągniesz obiekt za pomocą myszy w widoku docelowym, obiekt zostałby przeniesiony przez przyrost siatki.
-- Jeśli przeciągniesz krawędź obiektu do rozmiaru, krawędź, którą przeciągasz, zostanie przyciągnięta do pozycji siatki.
-- W przypadku wybrania obiektu i użycia klawiszy w górę/w lewo/w dół/w prawo wybrany widżet zostałby przesunięty o przyrost przyciągania, można określić przyrostek (w pikselach) w polu ***odstępy przyciągania*** .
+- Jeśli przeciągniesz obiekt za pomocą myszy w widoku docelowym, obiekt będzie przesuwany o przyrost siatki.
+- Przeciągnięcie krawędzi obiektu w celu zmiany rozmiaru będzie przyciągane do pozycji siatki.
+- Jeśli wybierzesz obiekt i użyjesz klawiszy w górę/w lewo/w dół/w prawo, wybrany widżet będzie przesuwany według przyrostu przyciągania, będzie można określić przyrost przyciągania (w pikselach) w polu Odstępy w ***przyciąganiu.***
