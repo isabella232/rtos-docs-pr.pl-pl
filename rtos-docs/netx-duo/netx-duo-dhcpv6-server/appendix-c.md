@@ -1,22 +1,22 @@
 ---
-title: Dodatek C-Azure RTO NetX Duo — unikatowe identyfikatory protokołu DHCPv6 (DUIDs)
-description: Ten rozdział zawiera opis wszystkich unikatowych identyfikatorów DHCPv6 NetX Duo (DUIDs)
+title: Dodatek C — Azure RTOS identyfikatorów UNIKATOWYCH (DUID) NetX Duo DHCPv6
+description: Ten rozdział zawiera opis wszystkich unikatowych identyfikatorów (DUID) NetX Duo DHCPv6
 author: philmea
 ms.author: philmea
 ms.date: 06/08/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: dc9dadcabb3f87d217a4560457614a55a3be03aa
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: baa06faa0a4942d472783a11f89409254064e3204d5ae8d9759977cf3b14ef53
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821960"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116783700"
 ---
-# <a name="appendix-c---azure-rtos-netx-duo-dhcpv6-unique-identifiers-duids"></a>Dodatek C-Azure RTO NetX Duo — unikatowe identyfikatory protokołu DHCPv6 (DUIDs)
+# <a name="appendix-c---azure-rtos-netx-duo-dhcpv6-unique-identifiers-duids"></a>Dodatek C — Azure RTOS identyfikatorów UNIKATOWYCH (DUID) NetX Duo DHCPv6
 
-| Typ identyfikatora DUID              | Kod            | Opis |
+| Typ DUID              | Kod            | Opis |
 | ------------------- | ------------------- | --------------- |
-| IDENTYFIKATOR DUID-LLT | 1 | Połącz warstwę wraz z czasem; Identyfikator oparty na adresie i czasie warstwy linku |
-| IDENTYFIKATOR DUID-PL | 2 | Przedsiębiorstwo Przypisane przez dostawcę na podstawie numeru przedsiębiorstwa |
-| IDENTYFIKATOR DUID-LL | 3 | Warstwa linku; Wyłącznie na podstawie adresu warstwy łącza| 
+| DUID-LLT | 1 | Warstwa połączenia i czas; identyfikator na podstawie adresu i czasu warstwy łącza |
+| DUID-EN | 2 | Enterprise; Przypisane przez dostawcę na podstawie Enterprise danych |
+| DUID-LL | 3 | Warstwa łącza; Tylko na podstawie adresu warstwy łącza| 

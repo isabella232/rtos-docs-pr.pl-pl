@@ -1,146 +1,146 @@
 ---
-title: Rozdział 1 — wprowadzenie do usługi Azure RTO FileX
-description: Usługa Azure RTO FileX to kompletny system zarządzania plikami w formacie FAT i w przypadku aplikacji głęboko osadzonych.
+title: Rozdział 1 — Wprowadzenie do Azure RTOS FileX
+description: Azure RTOS FileX to kompletny nośnik w formacie FAT i system zarządzania plikami dla aplikacji głęboko osadzonych.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: be7e6f9cd9fbc69ac0908d1de733dac1c4f73bf6
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 48fab21d78ede88e84db11a4f30574ce2061d145820b819ec7846203e297f42a
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821421"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116782978"
 ---
-# <a name="chapter-1---introduction-to-azure-rtos-filex"></a>Rozdział 1 — wprowadzenie do usługi Azure RTO FileX
+# <a name="chapter-1---introduction-to-azure-rtos-filex"></a>Rozdział 1 — Wprowadzenie do Azure RTOS FileX
 
-Usługa Azure RTO FileX to kompletny system zarządzania plikami w formacie FAT i w przypadku aplikacji głęboko osadzonych. W tym rozdziale wprowadzono FileX opisujące swoje aplikacje i korzyści.
+Azure RTOS FileX to kompletny nośnik w formacie FAT i system zarządzania plikami dla aplikacji głęboko osadzonych. W tym rozdziale oprowadzono plik FileX, opisujący jego aplikacje i korzyści.
 
-## <a name="filex-unique-features"></a>FileX unikatowe funkcje
+## <a name="filex-unique-features"></a>Unikatowe funkcje pliku FileX
 
-Usługa Azure RTO FileX obsługuje nieograniczoną liczbę urządzeń multimedialnych, w tym dysków RAM, menedżerów i urządzeń fizycznych. Obsługuje 12-, 16-i 32-bitowe formaty tabeli alokacji plików (FAT), a także obsługuje rozszerzone tabele alokacji plików (exFAT), ciągłą alokację plików i są wysoce zoptymalizowane pod kątem rozmiaru i wydajności. FileX obejmuje również obsługę odporną na uszkodzenia, otwarcie/zamknięcie nośnika i funkcje wywołania zwrotnego.
+Azure RTOS FileX obsługuje nieograniczoną liczbę urządzeń multimedialnych jednocześnie, w tym dyski RAM, menedżery FLASH i rzeczywiste urządzenia fizyczne. Obsługuje 12-, 16- i 32-bitowe formaty tabeli alokacji plików (FAT), a także obsługuje rozszerzoną tabelę alokacji plików (exFAT), ciągłą alokację plików i jest wysoce zoptymalizowana pod kątem rozmiaru i wydajności. FileX obejmuje również obsługę odporności na uszkodzenia, otwieranie/zamykanie nośnika oraz funkcje wywołania zwrotnego zapisu plików.
 
-Zaprojektowana w celu spełnienia rosnącej potrzeby dla urządzeń z programem FLASH FileX korzysta z tych samych metod projektowania i kodowania jak ThreadX. Podobnie jak w przypadku wszystkich produktów firmy Microsoft, FileX jest dystrybuowany z pełnym kodem źródłowym ANSI C i nie ma opłat za czas wykonywania.
+Zaprojektowany z myślą o zaspokajania rosnącej potrzeby urządzeń FLASH, plik FileX używa tych samych metod projektowania i kodowania co ThreadX. Podobnie jak wszystkie produkty firmy Microsoft, plik FileX jest dystrybuowany z pełnym kodem źródłowym ANSI C i nie ma żadnych opłat licencyjnych w czasie rzeczywistym.
 
 ### <a name="product-highlights"></a>Najważniejsze informacje o produkcie
 
-- Ukończ obsługę procesora ThreadX
-- Bez opłat
-- Pełny kod źródłowy ANSI C
+- Pełna obsługa procesora ThreadX
+- Bez opłat licencyjnych
+- Uzupełnij kod źródłowy ANSI C
 - Wydajność w czasie rzeczywistym
-- Reagowanie na pomoc techniczną
-- Nieograniczone obiekty FileX (nośniki, katalogi i pliki)
+- Elastyczna pomoc techniczna
+- Nieograniczona liczba obiektów FileX (nośników, katalogów i plików)
 - Dynamiczne tworzenie/usuwanie obiektów FileX
 - Elastyczne użycie pamięci
-- Automatyczne skalowanie rozmiaru
-- Niewielkie rozmiary obszaru instrukcji (o niskim rozmiarze 6 kilobajtów): 6-30K
-- Pełna integracja z usługą ThreadX
-- Neutralne
-- Łatwe w obsłudze sterowniki we/wy FileX
-- Obsługa 12-, 16-i 32-bitowego systemu plików FAT
+- Rozmiar jest skalowany automatycznie
+- Mały rozmiar obszaru instrukcji (do 6 KB): 6–30 000
+- Pełna integracja z threadX
+- Neutralność endianowa
+- Łatwe do zaimplementowania sterowniki We/Wy FileX
+- Obsługa 12-, 16-i 32-bitowego fat
 - Obsługa exFAT
 - Obsługa długich nazw plików
-- Wewnętrzna pamięć podręczna wpisów systemu FAT
+- Wewnętrzna pamięć podręczna wpisów FAT
 - Obsługa nazw Unicode
 - Ciągła alokacja plików
-- Kolejny sektor i odczyt/zapis w klastrze
-- Pamięć podręczna wewnętrznego sektora logicznego
-- Prezentacja na dysku pamięci RAM jest uruchamiana jako wbudowana
+- Odczyt/zapis kolejnych sektorów i klastra
+- Wewnętrzna pamięć podręczna sektora logicznego
+- Pokaz dysków PAMIĘCI RAM jest już wytłaniany
 - Możliwość formatowania multimediów
 - Wykrywanie i odzyskiwanie błędów
-- Opcje odporne na uszkodzenia
+- Opcje odporności na uszkodzenia
 - Wbudowane statystyki wydajności
-- Obsługa autonomiczna (bez usługi Azure RTO)
+- Obsługa autonomiczna (brak Azure RTOS)
 
 ## <a name="safety-certifications"></a>Certyfikaty bezpieczeństwa
 
-### <a name="tv-certification"></a>Certyfikat TÜV
+### <a name="tv-certification"></a>Certyfikacja TÜV
 
-FileX został certyfikowany przez moimi-TÜV Saar do użytku w systemach krytycznych dla bezpieczeństwa, zgodnie z IEC-61508 i IEC-62304. Certyfikat potwierdza, że FileX może być używany w rozwoju oprogramowania związanego z bezpieczeństwem dla najwyższych poziomów integralności bezpieczeństwa Międzynarodowa Komisja Elektrotechniczna (IEC) 61508 i IEC 62304 dla "bezpieczeństwa funkcjonalnego, elektronicznego i programowalnego elektronicznego systemów związanych z bezpieczeństwem". MOIMI-TÜV Saar, utworzone za pomocą wspólnego przedsiębiorstwa z Niemiec SGS-Group i TÜV Saarland, stał się wiodącą, niezależną firmą do testowania, przeprowadzania inspekcji, weryfikowania i certyfikowania oprogramowania osadzonego dla systemów związanych z bezpieczeństwem na całym świecie. Standard bezpieczeństwa przemysłowego IEC 61508 i wszystkie standardy, które są od niego pochodzące, w tym IEC 62304, są używane do zapewnienia bezpieczeństwa funkcjonalnego, elektronicznego i programowalnego elektronicznego sprzętu medycznego, systemów kontroli procesów, maszyn przemysłowych i systemów kontroli szynowej.
+System FileX ma certyfikat SGS-TÜV Saar do użycia w systemach o krytycznym znaczeniu dla bezpieczeństwa, zgodnie z normami IEC-61508 i IEC-62304. Certyfikat potwierdza, że plik FileX może być używany do opracowywania oprogramowania związanego z bezpieczeństwem dla najwyższych poziomów integralności bezpieczeństwa systemów Międzynarodowa Komisja Elektrotechniczna (IEC) 61508 i IEC 62304 dla "bezpieczeństwa funkcjonalnego systemów elektronicznych, elektronicznych i programowalnych systemów związanych z bezpieczeństwem elektronicznym". SGS-TÜV Saar, utworzone za pośrednictwem wspólnej osady niemieckich firm SGS-Group i TÜV Saarland, stała się wiodącą akredytowaną, niezależną firmą do testowania, inspekcji, weryfikowania i certyfikowania osadzonego oprogramowania dla systemów powiązanych z bezpieczeństwem na całym świecie. Standard bezpieczeństwa przemysłowego IEC 61508 i wszystkie standardy, które z niego pochodzą, w tym IEC 62304, są używane w celu zapewnienia bezpieczeństwa funkcjonalnego urządzeń elektronicznych, elektronicznych i programowalnych urządzeń medycznych związanych z bezpieczeństwem, systemów sterowania procesami, maszyn przemysłowych i systemów sterowania węzłem.
 
-MOIMI-TÜV Saar ma certyfikowane FileX do użycia w systemach samochodowych o krytycznym znaczeniu dla bezpieczeństwa, zgodnie ze standardem ISO 26262. Ponadto FileX jest certyfikowany na poziomie integralności infrastruktury bezpieczeństwa motoryzacyjnego (ASIL), który reprezentuje najwyższy poziom certyfikacji ISO 26262.
+SGS-TÜV Saar ma certyfikat FileX, który może być używany w krytycznych dla bezpieczeństwa systemach samochodowych zgodnie ze standardem ISO 26262. Ponadto plik FileX ma certyfikat ASIL D (Safety Integrity Level) dla branży samochodowych, który reprezentuje najwyższy poziom certyfikacji ISO 26262.
 
-Dodatkowo moimi-TÜV Saar ma certyfikowane FileX, które mają być używane w kluczowych dla bezpieczeństwa aplikacjach szynowych, ze względu na Standard 50128 do SW-SIL 4.
+Ponadto firma SGS-TÜV Saar ma certyfikat FileX, który może być używany w aplikacjach do transportu o krytycznym znaczeniu dla bezpieczeństwa, zgodnie ze standardem EN 50128 i zgodnie ze standardem SW-SIL 4.
 
-![Logo moimi TUV Saar](./media/user-guide/sgs-tuv-saar-logo.png)
+![Logo SGS TUV Saar](./media/user-guide/sgs-tuv-saar-logo.png)
 
 - IEC 61508 do SIL 4
-- IEC 62304 do klasy bezpieczeństwa oprogramowania SW (C)
+- IEC 62304 do bezpieczeństwa SW, klasa C
 - ISO 26262 ASIL D
-- EN 50128 SW — SIL 4
+- EN 50128 SW-SIL 4
 
 > [!IMPORTANT]
-> Skontaktuj się z nami, aby uzyskać więcej informacji na temat wersji FileX certyfikowanych przez TÜV lub do dostępności raportów testowych, certyfikatów i powiązanej dokumentacji. *
+> Skontaktuj się z nami, aby uzyskać więcej informacji na temat wersji plików FileX certyfikowanych przez firmę TÜV lub dostępności raportów testowych, certyfikatów i skojarzonej dokumentacji.*
 
-### <a name="ul-certification"></a>Certyfikat UL
+### <a name="ul-certification"></a>Certyfikacja UL
 
-FileX został certyfikowany przez UL w celu zapewnienia zgodności z metodą UL 60730-1 w załączniku H, CSA E60730-1 załącznik H, IEC 60730-1 w załączniku H, UL 60335-1 Załącznik R, IEC 603351 w załączniku R, 1998 a w przypadku oprogramowania w składnikach programowalnych. Wraz z IEC/UL 60730-1, które mają wymagania dotyczące "kontrolek wykorzystujących oprogramowanie" w załączniku H, standard IEC 60335-1 opisuje wymagania dotyczące "programowalnych obwodów elektronicznych" w załączniku R. IEC 60730 załącznik H i IEC 60335-1 Załącznik R dotyczy bezpieczeństwa sprzętu i oprogramowania używanego w urządzeniach, takich jak pralki, zmywarki, Dryers, chłodziarks, zamrażarki i Piece.
+FileX został certyfikowany przez firmę UL do zgodności z normami UL 60730-1, CsA E60730-1, H, IEC 60730-1, H, UL 60335-1 Wdowy R, IEC 603351 I UL 1998, standardy bezpieczeństwa oprogramowania w programowalnych elementach. Wraz z IEC/UL 60730-1 który ma wymagania dotyczące "kontrolek korzystających z oprogramowania" w załączniku H, standard IEC 60335-1 opisuje wymagania dotyczące "programowalnych obwodów elektronicznych" w załączniku R. IEC 60730, załącznik H i IEC 60335-1 Dokument R dotyczy bezpieczeństwa sprzętu i oprogramowania MCU używanego w urządzeniach, takich jak maszyny nagie, nagie, lodówki, chłodziarki i pąki.
 
 ![C RU US 2](./media/user-guide/c-ru-us-logo.png)
 
 *UL/IEC 60730, UL/IEC 60335, UL 1998*
 
 > [!IMPORTANT]
->*Skontaktuj się z nami, aby uzyskać więcej informacji na temat wersji FileX zakwalifikowanych przez UL lub do dostępności raportów testowych, certyfikatów i powiązanej dokumentacji.*
+>*Skontaktuj się z nami, aby uzyskać więcej informacji na temat wersji plików FileX, które zostały certyfikowane przez firmę UL, lub w celu dostępności raportów testowych, certyfikatów i skojarzonej dokumentacji.*
 
 ## <a name="powerful-services-of-filex"></a>Zaawansowane usługi FileX
 
 ### <a name="multiple-media-management"></a>Zarządzanie wieloma nośnikami
 
-FileX może obsługiwać nieograniczoną liczbę nośników fizycznych. Każde wystąpienie nośnika ma własny odrębny obszar pamięci i skojarzony sterownik określony w wywołaniu ***fx_media_open*** . Domyślna dystrybucja FileX odbywa się przy użyciu prostego sterownika nośnika pamięci RAM i systemu demonstracyjnego, który używa tego dysku pamięci RAM.
+Plik FileX może obsługiwać nieograniczoną liczbę nośników fizycznych. Każde wystąpienie nośnika ma własny odrębny obszar pamięci i skojarzony sterownik określony w ***wywołaniu fx_media_open*** pamięci. Domyślna dystrybucja pliku FileX jest dostarczany z prostym sterownikem multimediów RAM i systemem pokazowym, który używa tego dysku RAM.
 
 ### <a name="logical-sector-cache"></a>Pamięć podręczna sektora logicznego
 
-Zmniejszając liczbę transferów całego sektora, zarówno do, jak i z nośnika, pamięć podręczna sektora logicznego FileX znacznie zwiększa wydajność. FileX przechowuje pamięć podręczną sektora logicznego dla każdego otwartego nośnika. Głębokość pamięci podręcznej sektora logicznego jest określana na podstawie ilości pamięci dostarczonej do FileX z wywołaniem interfejsu API ***fx_media_open*** .
+Dzięki zmniejszeniu liczby transferów całych sektorów, zarówno do nośnika, jak i z nośnika, pamięć podręczna sektora logicznego FileX znacznie zwiększa wydajność. Plik FileX utrzymuje pamięć podręczną sektora logicznego dla każdego otwartego nośnika. Głębokość pamięci podręcznej sektora logicznego zależy od ilości pamięci dostarczonej do pliku FileX za pomocą wywołania ***fx_media_open*** API.
 
-### <a name="contiguous-file-support"></a>Ciągła obsługa plików
+### <a name="contiguous-file-support"></a>Obsługa ciągłych plików
 
-FileX oferuje ciągłą obsługę plików za pomocą usługi interfejsu API ***fx_file_allocate*** w celu usprawnienia i naprawienia czasu dostępu do pliku. Ta procedura pobiera żądaną ilość pamięci i wyszukuje serię sąsiednich klastrów w celu spełnienia żądania. Jeśli takie klastry zostaną znalezione, są wstępnie przydzielone przez nadanie im części łańcucha przyznanych klastrów. Po przeniesieniu nośnika fizycznego FileX obsłudze plików ciągłych skutkuje znaczącym ulepszeniem wydajności i sprawia, że czas dostępu jest deterministyczny.
+Plik FileX oferuje ciągłą obsługę plików za pośrednictwem interfejsu API ***fx_file_allocate,*** aby poprawić i sprawić, że czas dostępu do plików będzie deterministyczny. Ta procedura pobiera żądaną ilość pamięci i wyszukuje serię sąsiednich klastrów w celu spełnienia żądania. Jeśli takie klastry zostaną znalezione, są one wstępnie przydzielane przez ich część łańcucha przydzielonych klastrów w pliku. W przypadku przenoszenia nośnika fizycznego obsługa plików ciągłych FileX znacznie poprawia wydajność i sprawia, że czas dostępu jest deterministyczny.
 
 ### <a name="dynamic-creation"></a>Tworzenie dynamiczne
 
-FileX umożliwia dynamiczne tworzenie zasobów systemowych. Jest to szczególnie ważne, jeśli aplikacja ma liczne lub dynamiczne wymagania konfiguracyjne. Ponadto nie ma żadnych ustalonych limitów liczby zasobów FileX, których można użyć (multimediów lub plików). Ponadto liczba obiektów systemu nie ma żadnego wpływu na wydajność.
+FileX umożliwia dynamiczne tworzenie zasobów systemowych. Jest to szczególnie ważne, jeśli aplikacja ma wiele wymagań dotyczących konfiguracji dynamicznej. Ponadto nie ma wstępnie określonych limitów liczby zasobów FileX, których można użyć (multimediów lub plików). Ponadto liczba obiektów systemowych nie ma żadnego wpływu na wydajność.
 
 ## <a name="easy-to-use-api"></a>Łatwy w użyciu interfejs API
 
-FileX zapewnia bardzo najlepszą technologię głębokiego systemu plików w sposób łatwy do zrozumienia i łatwego w użyciu. Interfejs programowania aplikacji (API) FileX zapewnia intuicyjną i spójność usług. Nie trzeba odszyfrować usług "zup alfabetów", które są zbyt popularne w przypadku innych systemów plików.
+FileX zapewnia najlepszą technologię głęboko osadzonego systemu plików w sposób, który jest łatwy do zrozumienia i użycia. Interfejs programowania aplikacji FileX (API) sprawia, że usługi są intuicyjne i spójne. Nie trzeba odszyfrowyć usług "alfabetu", które są zbyt popularne w innych systemach plików.
 
-Aby uzyskać pełną listę usług FileX w wersji 5, zobacz [dodatek a](appendix-a.md).
+Aby uzyskać pełną listę usług FileX w wersji 5, zobacz [dodatek A](appendix-a.md).
 
 ## <a name="exfat-support"></a>Obsługa exFAT
 
-exFAT (rozszerzona tabela alokacji plików) to system plików zaprojektowany przez firmę Microsoft w celu zezwalania na rozmiar pliku na przekroczenie 2 GB, limitu narzuconego przez systemy plików FAT32. Jest to domyślny system plików dla kart SD o pojemności ponad 32 GB. Karty SD lub dyski flash sformatowane przy użyciu formatu FileX exFAT są zgodne z systemem Windows. exFAT obsługuje rozmiar pliku do jednego rozmiaru Exabyte (EB), czyli około 1 000 000 000 GB.
+ExFAT (rozszerzona tabela alokacji plików) to system plików zaprojektowany przez firmę Microsoft w celu umożliwienia przekroczenia 2 GB rozmiaru pliku, czyli limitu narzuconego przez systemy plików FAT32. Jest to domyślny system plików dla kart SD o pojemności ponad 32 GB. Karty SD lub dyski flash sformatowane w formacie FileX exFAT są zgodne z Windows. ExFAT obsługuje rozmiar pliku do jednego eksabajta (EB), czyli około miliarda GB.
 
-Użytkownicy chcący korzystać z exFAT muszą ponownie skompilować bibliotekę FileX z symbolem ***FX_ENABLE_EXFAT** _ zdefiniowanym. Podczas otwierania nośnika FileX wykrywa typ nośnika. Jeśli nośnik jest sformatowany przy użyciu exFAT, FileX odczytuje i zapisuje system plików zgodnie z normą exFAT. Aby sformatować nowy nośnik przy użyciu exFAT, Użyj usługi _ *_fx_media_exFAT_format_* *. Domyślnie exFAT nie jest włączona.
+Użytkownicy, którzy chcą korzystać z usługi exFAT, muszą ponownie skompilować bibliotekę FileX z symbolem ***FX_ENABLE_EXFAT** _defined. Podczas otwierania nośnika plik FileX wykrywa typ nośnika. Jeśli nośnik jest sformatowany za pomocą exFAT, plik FileX odczytuje i zapisuje system plików zgodnie ze standardem exFAT. Aby sformatować nowy nośnik za pomocą funkcji exFAT, użyj usługi _*_fx_media_exFAT_format_**. Domyślnie funkcja exFAT nie jest włączona.
 
-## <a name="fault-tolerant-support"></a>Obsługa odporna na uszkodzenia
+## <a name="fault-tolerant-support"></a>Obsługa odporności na uszkodzenia
 
-Moduł odporny na uszkodzenia FileX został zaprojektowany, aby zapobiec uszkodzeniu systemu plików spowodowanym przerwami podczas aktualizacji pliku lub katalogu. Na przykład podczas dołączania danych do pliku FileX musi zaktualizować zawartość pliku, wpisu katalogu i prawdopodobnie wpisów FAT. Jeśli ta sekwencja aktualizacji zostanie przerwana (na przykład błąd lub nośnik zostanie wysunięty w trakcie aktualizacji), system plików jest w stanie niespójnym, co może mieć wpływ na integralność całego systemu plików, co prowadzi do uszkodzenia innych plików.
+Moduł odporności na błędy FileX zaprojektowano tak, aby zapobiegać uszkodzeniem systemu plików spowodowanym przerwami w działaniu podczas aktualizacji pliku lub katalogu. Na przykład podczas dołączania danych do pliku plik FileX musi zaktualizować zawartość pliku, wpis katalogu i prawdopodobnie wpisy FAT. Jeśli ta sekwencja aktualizacji zostanie przerwana (na przykład przerwy w zasilaniu lub nośnik zostanie wysucony w trakcie aktualizacji), system plików jest w niespójnym stanie, co może mieć wpływ na integralność całego systemu plików, co prowadzi do uszkodzenia innych plików.
 
-Moduł odporny na uszkodzenia FileX działa przez zapisanie wszystkich kroków wymaganych do zaktualizowania pliku lub katalogu w sposób. Ten wpis dziennika jest przechowywany na nośniku w dedykowanych sektorach (blokach), które FileX mogą znajdować i uzyskiwać dostęp do nich. Dostęp do lokalizacji danych dziennika można uzyskać nawet bez prawidłowego systemu plików. W związku z tym, w przypadku uszkodzenia systemu plików, FileX nadal może znaleźć wpis dziennika i przywrócić system plików z powrotem do dobrego stanu.
+Moduł odporności na błędy FileX działa przez rejestrowanie wszystkich kroków wymaganych do zaktualizowania pliku lub katalogu po drodze. Ten wpis dziennika jest przechowywany na nośniku w dedykowanych sektorach (blokach), do których plik FileX może znaleźć plik i uzyskać do niego dostęp. Dostęp do lokalizacji danych dziennika można uzyskać nawet bez odpowiedniego systemu plików. W związku z tym w przypadku uszkodzenia systemu plików fileX nadal może znaleźć wpis dziennika i przywrócić system plików do dobrego stanu.
 
-Jako plik lub katalog aktualizacji FileX są tworzone wpisy dziennika. Po pomyślnym zakończeniu operacji aktualizacji wpisy dziennika zostaną usunięte. Jeśli wpisy dziennika nie zostały prawidłowo usunięte po pomyślnym zaktualizowaniu pliku, jeśli proces odzyskiwania ustali, że zawartość wpisu dziennika jest zgodna z systemem plików, nic nie musi być gotowe i można oczyścić wpisy dziennika.
+Podczas aktualizacji pliku lub katalogu FileX tworzone są wpisy dziennika. Po pomyślnym zakończeniu operacji aktualizacji wpisy dziennika są usuwane. Jeśli wpisy dziennika nie zostały prawidłowo usunięte po pomyślnej aktualizacji pliku, jeśli proces odzyskiwania ustali, że zawartość we wpisie dziennika pasuje do systemu plików, nie trzeba nic robić, a wpisy dziennika można wyczyścić.
 
-W przypadku przerwania operacji aktualizacji systemu plików po następnym zainstalowaniu nośnika przez FileX moduł odporny na błędy analizuje wpisy dziennika. Informacje w wpisach dziennika umożliwiają FileX do wycofania częściowych zmian, które zostały już zastosowane do systemu plików (w przypadku awarii na wczesnym etapie operacji aktualizacji plików) lub jeśli wpisy dziennika zawierają informacje dotyczące ponownego wykonywania, FileX może zastosować zmiany wymagane do ukończenia poprzedniej operacji.
+Jeśli operacja aktualizacji systemu plików została przerwana, przy następnym instalacji nośnika przez plik FileX moduł odporności na uszkodzenia analizuje wpisy dziennika. Informacje we wpisach dziennika umożliwiają plikowi FileX tworzenie kopii zapasowej częściowych zmian już zastosowanych do systemu plików (na wypadek awarii na wczesnym etapie operacji aktualizacji pliku) lub jeśli wpisy dziennika zawierają informacje dotyczące ponownego działania, system FileX może zastosować zmiany wymagane do zakończenia poprzedniej operacji.
 
-Ta funkcja odporna na błędy jest dostępna dla wszystkich systemów plików FAT obsługiwanych przez FileX, w tym FAT12, FAT16, FAT32 i exFAT. Domyślnie odporny na uszkodzenia nie są włączone w FileX. Aby włączyć funkcję odporną na uszkodzenia, FileX musi być skompilowany przy użyciu symbolu  **FX_ENABLE_FAULT_TOLERANT** i **FX_FAULT_TOLERANT** zdefiniowane. W czasie wykonywania aplikacja uruchamia usługę odporną na uszkodzenia, wywołując **_fx_fault_tolerant_enable_**.
-Po uruchomieniu usługi wszystkie operacje zapisu plików i katalogów przechodzą przez moduł odporny na błędy.
+Ta funkcja odporności na uszkodzenia jest dostępna dla wszystkich systemów plików FAT obsługiwanych przez system FileX, w tym FAT12, FAT16, FAT32 i exFAT. Domyślnie funkcja odporności na uszkodzenia nie jest włączona w pliku FileX. Aby włączyć funkcję tolerancji błędów, plik FileX musi być sbudowaną z  **FX_ENABLE_FAULT_TOLERANT** i **FX_FAULT_TOLERANT** zdefiniowany. W czasie uruchamiania aplikacja uruchamia usługę tolerancji błędów, wywołując **_fx_fault_tolerant_enable_**.
+Po uruchamianiu usługi wszystkie operacje zapisu plików i katalogów są wykonywane w module z tolerancją błędów.
 
-Gdy usługa jest odporna na uszkodzenia, najpierw wykrywa, czy nośnik jest chroniony za pomocą modułu odpornego na błędy. Jeśli tak nie jest, FileX zakłada integralność systemu plików i uruchamia ochronę przez przydzielenie bezpłatnych bloków z systemu plików, który ma być używany do rejestrowania i buforowania. W przypadku znalezienia dzienników modułu odpornego na błędy w systemie plików analizowane są wpisy dziennika. FileX przywraca poprzednią operację lub ponownie wykonuje poprzednią operację, w zależności od zawartości wpisów dziennika. System plików jest dostępny po przetworzeniu wszystkich poprzednich wpisów dziennika. Dzięki temu FIleX się od znanego dobrego stanu.
+W trakcie uruchamiania usługi z tolerancją błędów najpierw wykrywa, czy nośnik jest chroniony w ramach modułu odporności na uszkodzenia. Jeśli tak nie jest, system FileX zakłada integralność systemu plików i rozpoczyna ochronę przez przydzielenie wolnych bloków z systemu plików do rejestrowania i buforowania. Jeśli dzienniki modułu odporności na błędy zostaną znalezione w systemie plików, przeanalizuje wpisy dziennika. PlikX przywraca poprzednią operację lub przywraca poprzednią operację w zależności od zawartości wpisów dziennika. System plików staje się dostępny po przetworzeniu wszystkich poprzednich wpisów dziennika. Gwarantuje to, że FIleX zaczyna od znanego dobrego stanu.
 
-Gdy nośnik jest chroniony za pomocą modułu odpornego na błędy FileX, nośnik nie zostanie zaktualizowany w innym systemie plików. Wykonanie tej operacji spowodowałoby pozostawienie wpisów dziennika w systemie plików, które są niespójne z zawartością w tabeli FAT, wpisu katalogu. Jeśli nośnik został zaktualizowany przez inny system plików przed przeniesieniem go z powrotem do FileX przy użyciu modułu odpornego na błędy, wynik jest niezdefiniowany.
+Gdy nośnik jest chroniony w module odporności na błędy FileX, nośnik nie zostanie zaktualizowany przy użyciu innego systemu plików. Takie zachowanie pozostawi wpisy dziennika w systemie plików niespójne z zawartością w tabeli FAT, wpis katalogu. Jeśli nośnik zostanie zaktualizowany przez inny system plików przed przeniesieniem go z powrotem do pliku FileX z modułem odporności na uszkodzenia, wynik będzie niezdefiniowany.
 
 ## <a name="callback-functions"></a>Funkcje wywołania zwrotnego
 
-Następujące trzy funkcje wywołania zwrotnego są dodawane do FileX:
+Następujące trzy funkcje wywołania zwrotnego są dodawane do pliku FileX:
 
-- Otwarte wywołanie zwrotne nośnika
+- Wywołanie zwrotne otwierania multimediów
 - Wywołanie zwrotne zamknięcia nośnika
 - Wywołanie zwrotne zapisu pliku
 
-Po zarejestrowaniu funkcje te będą powiadamiać aplikację o wystąpieniu takich zdarzeń.
+Po zarejestrowaniu te funkcje powiadomią aplikację, gdy wystąpią takie zdarzenia.
 
 ## <a name="easy-integration"></a>Łatwa integracja
 
-FileX można łatwo zintegrować z praktycznie dowolnym urządzeniem FLASH lub Media. Przenoszenie FileX jest proste. Ten przewodnik zawiera szczegółowy opis procesu, a sterownik pamięci RAM systemu demonstracyjnego sprawia, że jest to bardzo dobre miejsce do uruchomienia.
+Plik FileX można łatwo zintegrować z praktycznie dowolnym urządzeniem FLASH lub urządzeniem multimedialnym. Przenoszenie pliku FileX jest proste. W tym przewodniku szczegółowo opisano proces, a sterownik pamięci RAM systemu demonstracyjnego sprawia, że jest to bardzo dobre miejsce do rozpoczęcia!

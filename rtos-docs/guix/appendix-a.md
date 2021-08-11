@@ -1,19 +1,19 @@
 ---
-title: Dodatek A — definicje koloru GUIX
-description: Dowiedz się więcej na temat definicji koloru GUIX.
+title: Dodatek A — Definicje kolorów GUIX
+description: Dowiedz się więcej o definicjach kolorów GUIX.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: fbcddd4e807a76cb4980724c0fb7dad84a9229c0
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: b0cdc3c1843feaed6e84f738340de85b5685f97b17b07d8003355a4419b26ea9
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823190"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116784686"
 ---
-# <a name="appendix-a---guix-color-definitions"></a>Dodatek A — definicje koloru GUIX 
+# <a name="appendix-a---guix-color-definitions"></a>Dodatek A — Definicje kolorów GUIX 
 
 __**Wstępnie zdefiniowane wartości kolorów**__
 
@@ -34,7 +34,7 @@ __**Wstępnie zdefiniowane wartości kolorów**__
 | GX_COLOR_LIGHTBLUE               | 0xff0000ff      |
 | GX_COLOR_LIGHTMAGENTA            | 0xffff00ff      |
 | GX_COLOR_LIGHTCYAN               | 0xff00ffff      |
-| GX_COLOR_WHITE                   | 0xFFFFFFFF      |
+| GX_COLOR_WHITE                   | 0xffffffff      |
 
 __**Wstępnie zdefiniowane identyfikatory kolorów**__
 

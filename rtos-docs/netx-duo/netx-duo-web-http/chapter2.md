@@ -1,69 +1,69 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z protokołów HTTP i HTTPS
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika HTTP sieci Web NetX.
+title: Rozdział 2 — Instalowanie i używanie protokołów HTTP i HTTPS
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika HTTP sieci Web NetX.
 author: philmea
 ms.author: philmea
 ms.date: 07/24/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 99e649781588b56e72b509c2aa077c38423379d1
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: fd8ab093d15c5413b0d5dac6d35b080674c3a332ec7a028fc462237135880d34
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821607"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116783428"
 ---
-# <a name="chapter-2---installation-and-use-of-http-and-https"></a>Rozdział 2 — Instalowanie i korzystanie z protokołów HTTP i HTTPS
+# <a name="chapter-2---installation-and-use-of-http-and-https"></a>Rozdział 2 — Instalowanie i używanie protokołów HTTP i HTTPS
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika HTTP sieci Web NetX.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika HTTP sieci Web NetX.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Protokół HTTP for NetX jest dostępny pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera trzy pliki źródłowe, dwa pliki dołączane i plik, który zawiera ten dokument, w następujący sposób:
+Protokół HTTP dla NetX jest dostępny pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera trzy pliki źródłowe, dwa pliki dołączane i plik zawierający ten dokument w następujący sposób:
 
-- **nx_web_http_common. h** Wspólny plik nagłówka dla sieci Web HTTP NetX
-- **nx_web_http_client. h** Plik nagłówka dla klienta HTTP dla sieci Web NetX
-- **nx_web_http_server. h** Plik nagłówka dla serwera HTTP dla sieci Web NetX
-- **nx_web_http_client. c** Plik źródłowy języka C dla klienta HTTP dla sieci Web NetX
-- **nx_web_http_server. c** Plik źródłowy języka C dla serwera HTTP dla sieci Web NetX
-- **nx_tcpserver. c** Plik źródłowy języka C dla wielu gniazd TCP
-- **nx_tcpserver. h** Plik nagłówka do definiowania symboli serwera HTTPS
-- **nx_md5. c** Algorytmy Digest MD5
-- **filex_stub. h** Plik zastępczy, jeśli nie istnieje FileX
+- **nx_web_http_common.h** Wspólny plik nagłówkowy dla internetowego protokołu HTTP NetX
+- **nx_web_http_client.h** Plik nagłówkowy klienta HTTP dla sieci Web NetX
+- **nx_web_http_server.h** Plik nagłówkowy serwera HTTP dla sieci Web NetX
+- **nx_web_http_client.c** Plik źródłowy języka C dla klienta HTTP dla sieci Web NetX
+- **nx_web_http_server.c** Plik źródłowy języka C dla serwera HTTP dla sieci Web NetX
+- **nx_tcpserver.c** Plik źródłowy języka C dla wielu gniazd TCP
+- **nx_tcpserver.h** Plik nagłówkowy do definiowania symboli serwera HTTPS
+- **nx_md5.c** Algorytmy skrótu MD5
+- **filex_stub.h** Plik wycinki, jeśli plik FileX nie istnieje
 - **nx_web_http.pdf** Opis protokołu HTTP dla sieci Web NetX
-- **demo_netx_web_http. c** Demonstracja HTTP NetX w sieci Web
+- **demo_netx_web_http.c** Pokaz protokołu HTTP sieci Web netx
 
 ## <a name="http-installation"></a>Instalacja HTTP
 
-Aby można było korzystać z sieci Web HTTP NetX, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowany w katalogu "*\threadx\arm7\green*", a następnie *nx_web_http_client. h* i *Nx_web_http_client. c dla aplikacji klienckich http w sieci Web, a nx_web_http_server. h*, *nx_web_http_server. c, nx_tcpserver. c i Nx_tcpserver. h dla NetX sieci Web serwera http. W przypadku aplikacji klienckich i serwerowych nx_web_http_common. h musi znajdować się również w tym katalogu.* jeśli jest używane uwierzytelnianie szyfrowane, nx_md5. c należy również skopiować do tego katalogu. W przypadku demonstracyjnego "sterownika pamięci RAM aplikacji klienta HTTP i plików serwera należy skopiować do tego samego katalogu.
+Aby można było korzystać z protokołu HTTP sieci Web NetX, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano netX Duo. Jeśli na przykład netx Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* to wartości nx_web_http_client.h i nx_web_http_client.c dla aplikacji klienckich HTTP sieci Web NetX oraz *nx_web_http_server.h*, nx_web_http_server.c, *nx_tcpserver.c* i nx_tcpserver.h dla aplikacji serwera HTTP sieci *Web NetX. W przypadku aplikacji klienckich i serwerowych nx_web_http_common.h również musi znajdować się w tym katalogu. nx_md5.c* należy również skopiować do tego katalogu, jeśli jest używane uwierzytelnianie szyfrowane. W przypadku aplikacji demonstracyjnej "sterownik pamięci RAM" pliki klienta i serwera HTTP powinny zostać skopiowane do tego samego katalogu.
 
-W przypadku korzystania z protokołu TLS należy mieć oddzielny NetX bezpieczny katalog zawierający pliki źródłowe protokołu TLS.
+W przypadku korzystania z usługi TLS należy mieć oddzielny katalog NetX Secure zawierający pliki źródłowe TLS.
 
 ## <a name="using-http"></a>Korzystanie z protokołu HTTP
 
-Używanie protokołu HTTP w sieci Web NetX jest proste. W zasadzie kod aplikacji musi zawierać *nx_web_http_client. h* i/lub *nx_web_http_server. h* po uwzględnieniu *tx_api. h, fx_api. h* i *nx_api. h* (*nx_web_http_common. h* jest automatycznie dołączany). Te nagłówki umożliwiają aplikacji użycie odpowiednio ThreadX, FileX i NetX Duo. W przypadku obsługi protokołu HTTPS nagłówki muszą być zawarte po dołączeniu pliku *nx_secure_tls. h* , aby zapewnić obsługę protokołu TLS.
+Korzystanie z internetowego protokołu HTTP NetX jest łatwe. Zasadniczo kod aplikacji musi zawierać elementy *nx_web_http_client.h* i/lub *nx_web_http_server.h* po dołączyć do niego automatycznie elementy *tx_api.h, fx_api.h* i *nx_api.h* (*nx_web_http_common.h).* Te nagłówki umożliwiają aplikacji użycie odpowiednio ThreadX, FileX i NetX Duo. W celu obsługi protokołu HTTPS nagłówki muszą być dołączone po dojechieniu *pliku nx_secure_tls.h* w celu obsługi protokołu TLS.
 
-Po uwzględnieniu plików nagłówkowych HTTP, kod aplikacji może być w stanie wprowadzić wywołania funkcji HTTP określone w dalszej części tego przewodnika. Aplikacja musi również łączyć się z *nx_web_http_client. c dla klientów http (s)*, *nx_web_http_server. c i nx_tcpserver. c dla serwerów HTTP (s)* i *nx_md5. c (na potrzeby uwierzytelniania szyfrowanego)* w procesie kompilacji. Te pliki muszą być kompilowane w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do używania protokołu HTTP w sieci Web NetX.
+Gdy pliki nagłówkowe HTTP zostaną dołączone, kod aplikacji będzie mógł wykonać wywołania funkcji HTTP określone w dalszej części tego przewodnika. Aplikacja musi również połączyć się z programem nx_web_http_client.c dla klientów *HTTP(S),* nx_web_http_server.c i nx_tcpserver.c dla serwerów *HTTP(S)* i *nx_md5.c (na* potrzeby uwierzytelniania szyfrowanego) w procesie kompilacji. Te pliki muszą zostać skompilowane w taki sam sposób, jak inne pliki aplikacji, a ich formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z internetowego protokołu HTTP NetX.
 
 > [!NOTE]
-> Jeśli nie określono NX_WEB_HTTP_DIGEST_ENABLE w procesie kompilacji, plik *MD5. c* nie musi być dodany do aplikacji. Analogicznie, jeśli nie są wymagane możliwości klienta HTTP, plik *nx_web_http_client. c* może zostać pominięty i jeśli nie są wymagane żadne możliwości serwera HTTP, *nx_web_http_server. c* może zostać pominięty.
+> Jeśli NX_WEB_HTTP_DIGEST_ENABLE nie zostanie określony w procesie kompilacji, nie trzeba dodawać pliku *md5.c* do aplikacji. Podobnie, jeśli nie są wymagane możliwości klienta HTTP, *plik nx_web_http_client.c* może zostać pominięty i jeśli nie są wymagane możliwości serwera HTTP, *nx_web_http_server.c* może zostać pominięty.
 >
-> Chyba że NX_WEB_HTTPS_ENABLE jest zdefiniowany w celu włączenia protokołu HTTPS (zamiast używania tylko zwykłego tekstu HTTP), NetX Secure TLS nie musi być w kompilacji.
+> Jeśli NX_WEB_HTTPS_ENABLE jest zdefiniowany w celu włączenia protokołu HTTPS (zamiast używania tylko protokołu HTTP w postaci zwykłego tekstu), protokół NetX Secure TLS nie musi być w kompilacji.
 >
-> Ponieważ protokół HTTP wykorzystuje usługi NetX TCP, należy włączyć TCP przy użyciu wywołania *nx_tcp_enable ()* przed użyciem protokołu HTTP.
+> Ponieważ protokół HTTP korzysta z usług TCP NetX, protokół TCP musi zostać włączony przy *użyciu wywołania nx_tcp_enable()* przed użyciem protokołu HTTP.
 >
-> W przypadku korzystania z protokołu HTTPS z NetX Secure TLS należy zainicjować protokół TLS przy użyciu *nx_secure_tls_initialize ()* przed wywołaniem procedur https.
+> W przypadku korzystania z protokołu HTTPS z protokołem NetX Secure TLS należy zainicjować protokół TLS *nx_secure_tls_initialize()* przed wywołaniem procedur PROTOKOŁU HTTPS.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykład użycia protokołu HTTP w sieci Web NetX został opisany na rysunku 1,1 poniżej.
+Przykład sposobu korzystania z internetowego protokołu HTTP NetX opisano na rysunku 1.1 poniżej.
 
 > [!CAUTION]
-> Jest to możliwe tylko w celach demonstracyjnych i nie jest gwarantowane Kompilowanie i uruchamianie jako.
+> Jest on dostarczany tylko w celach demonstracyjnych i nie ma gwarancji, że zostanie skompilowany i uruchomiony w takim stanie, w jakim jest.
 >
-> Zapoznaj się z dystrybucją kodu HTTPS NetX Duo dla demonstracyjnych plików kodu źródłowego, które będą prawidłowo skompilowane w natywnym środowisku logiki Express.  Należy również pamiętać, że te pokazy są celowo bardzo proste, ponieważ mają one wprowadzić aplikacje HTTPS i/lub NetX Duo dla nowych użytkowników.
+> Zapoznaj się z dystrybucją kodu wydania NetX Duo HTTPS dla plików demonstracyjnego kodu źródłowego, które będą poprawnie kompilowane w natywnym środowisku logiki Express.  Należy również pamiętać, że te pokazy są celowo bardzo proste, ponieważ mają na celu wprowadzenie do nowych użytkowników aplikacji HTTPS i/lub NetX Duo HTTPS.
 
-W tym przykładzie plik dołączany HTTP *nx_web_http_client. h i nx_web_http_server. h są* włączone (*netx_web_http_common. h* jest dołączany automatycznie). Następnie serwer HTTP jest tworzony w "*tx_application_define*". Należy zauważyć, że blok kontroli serwera HTTP "*serwer*" został wcześniej zdefiniowany jako zmienna globalna. Po pomyślnym utworzeniu serwer HTTPS zostanie uruchomiony. Następnie klient HTTPS jest tworzony. Zapisuje plik i odczytuje go z powrotem.
+W tym przykładzie pliki dołączane HTTP *nx_web_http_client.h i nx_web_http_server.h* są włączane (plik *netx_web_http_common.h* jest dołączany automatycznie). Następnie serwer HTTP jest tworzony w "*tx_application_define*". Zwróć uwagę, że blok sterowania serwera HTTP *"Serwer"* został wcześniej zdefiniowany jako zmienna globalna. Po pomyślnym utworzeniu zostanie uruchomiony serwer HTTPS. Następnie jest tworzony klient HTTPS. Zapisuje plik i odczytuje go z powrotem.
 
 > [!NOTE]
 > NX_WEB_HTTPS_ENABLE jest zdefiniowany w tym systemie.
@@ -376,38 +376,38 @@ void    thread_0_entry(ULONG thread_input)
 }
 ```
 
-**Rysunek 1,1 przykład użycia protokołu HTTPS z NetX i NetX Secure TLS**
+**Rysunek 1.1 Przykład użycia protokołu HTTPS z protokołem NetX i NetX Secure TLS**
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Istnieje kilka opcji konfiguracji do kompilowania protokołu HTTP dla NetX. Poniżej znajduje się lista wszystkich opcji, w których poszczególne są szczegółowo opisane. Wartości domyślne są wyświetlane, ale można je zdefiniować ponownie przed włączeniem *nx_web_http_client. h i nx_web_http_server. h*:
+Istnieje kilka opcji konfiguracji do tworzenia protokołu HTTP dla NetX. Poniżej znajduje się lista wszystkich opcji, gdzie każda z nich jest szczegółowo opisana. Wartości domyślne są wyświetlane na liście, ale można je ponownie zdefiniować przed dodaniem parametrów *nx_web_http_client.h i nx_web_http_server.h:*
 
-- **NX_DISABLE_ERROR_CHECKING** Zdefiniowane, ta opcja usuwa podstawowe sprawdzanie błędów HTTP. Jest on zazwyczaj używany po debugowaniu aplikacji.
-- **NX_WEB_HTTP_DIGEST_ENABLE** W przypadku zdefiniowania uwierzytelniania przy użyciu skrótu MD5 jest włączony na serwerze HTTPS. Domyślnie nie jest on zdefiniowany.
-- **NX_WEB_HTTP_SERVER_PRIORITY** Priorytet wątku serwera HTTPS. Domyślnie ta wartość jest definiowana jako 16, aby określić priorytet 16.
-- **NX_WEB_HTTP_NO_FILEX** Zdefiniowana, ta opcja udostępnia element zastępczy dla zależności FileX. Klient HTTPS będzie działać bez żadnej zmiany, jeśli ta opcja jest zdefiniowana. Należy zmodyfikować serwer HTTPS lub użytkownik będzie musiał utworzyć kilku usługi FileX, aby działać prawidłowo.
-- **NX_WEB_HTTP_TYPE_OF_SERVICE** Typ usługi wymaganej przez żądania protokołu HTTPS TCP. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL w celu wskazania normalnej usługi pakietów IP.
-- **NX_WEB_HTTP_SERVER_THREAD_TIME_SLICE** Liczba cykli czasomierza, które mogą być uruchamiane przez wątek serwera przed zwróceniem do wątków o takim samym priorytecie. Wartość domyślna to 2. Należy pamiętać, że ta opcja jest przestarzała.
-- **NX_WEB_HTTP_FRAGMENT_OPTION** Włączenie fragmentu dla żądań HTTP TCP. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć fragmentację TCP protokołu HTTP.
-- **NX_WEB_HTTP_SERVER_WINDOW_SIZE** Rozmiar okna gniazda serwera. Wartość domyślna to 2048 bajtów.
-- **NX_WEB_HTTP_TIME_TO_LIVE** Określa liczbę routerów, które ten pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
-- **NX_WEB_HTTP_SERVER_TIMEOUT** Określa liczbę ThreadXych taktów, dla których będą zawieszane usługi wewnętrzne. Wartość domyślna to 10 sekund (10 \* *NX_IP_PERIODIC_RATE*).
-- **NX_WEB_HTTP_SERVER_TIMEOUT_ACCEPT** Określa liczbę ThreadXych taktów, które zostaną zawieszone przez usługi wewnętrzne w ramach wywołań wewnętrznych *nx_tcp_server_socket_accept ()* . Wartość domyślna to (10 \* *NX_IP_PERIODIC_RATE*).
-- **NX_WEB_HTTP_SERVER_TIMEOUT_DISCONNECT** Określa liczbę ThreadXych taktów, które zostaną zawieszone przez usługi wewnętrzne w ramach wywołań wewnętrznych *nx_tcp_socket_disconnect ()* . Wartość domyślna to 10 sekund (10 \* *NX_IP_PERIODIC_RATE*).
-- **NX_WEB_HTTP_SERVER_TIMEOUT_RECEIVE** Określa liczbę ThreadXych taktów, które zostaną zawieszone przez usługi wewnętrzne w ramach wywołań wewnętrznych *nx_tcp_socket_receive ()* . Wartość domyślna to 10 sekund (10 \* *NX_IP_PERIODIC_RATE*).
-- **NX_WEB_HTTP_SERVER_TIMEOUT_SEND** Określa liczbę ThreadXych taktów, które zostaną zawieszone przez usługi wewnętrzne w ramach wywołań wewnętrznych *nx_tcp_socket_send ()* . Wartość domyślna to 10 sekund (10 \* *NX_IP_PERIODIC_RATE*).
+- **NX_DISABLE_ERROR_CHECKING** Zdefiniowano— ta opcja usuwa podstawowe sprawdzanie błędów HTTP. Jest on zwykle używany po debugowaniu aplikacji.
+- **NX_WEB_HTTP_DIGEST_ENABLE** Jeśli ta opcja jest zdefiniowana, uwierzytelnianie przy użyciu skrótu MD5 jest włączone na serwerze HTTPS. Domyślnie nie jest zdefiniowany.
+- **NX_WEB_HTTP_SERVER_PRIORITY** Priorytet wątku serwera HTTPS. Domyślnie ta wartość jest zdefiniowana jako 16, aby określić priorytet 16.
+- **NX_WEB_HTTP_NO_FILEX** Zdefiniowano, ta opcja zapewnia wycinki dla zależności FileX. Klient HTTPS będzie działać bez żadnych zmian, jeśli ta opcja jest zdefiniowana. Serwer HTTPS musi zostać zmodyfikowany lub użytkownik będzie musiał utworzyć kilka usług FileX, aby działać prawidłowo.
+- **NX_WEB_HTTP_TYPE_OF_SERVICE** Typ usługi wymagany dla żądań TCP protokołu HTTPS. Domyślnie ta wartość jest zdefiniowana jako wartość NX_IP_NORMAL, aby wskazać normalną usługę pakietów IP.
+- **NX_WEB_HTTP_SERVER_THREAD_TIME_SLICE** Liczba znaczników czasomierza, które wątek serwera może uruchomić przed uzyskaniem wątków o tym samym priorytecie. Wartość domyślna to 2. Pamiętaj, że ta opcja jest przestarzała.
+- **NX_WEB_HTTP_FRAGMENT_OPTION** Włącz fragment dla żądań HTTP TCP. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć fragmentowanie TCP protokołu HTTP.
+- **NX_WEB_HTTP_SERVER_WINDOW_SIZE** Rozmiar okna gniazda serwera. Domyślnie ta wartość to 2048 bajtów.
+- **NX_WEB_HTTP_TIME_TO_LIVE** Określa liczbę routerów, które pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
+- **NX_WEB_HTTP_SERVER_TIMEOUT** Określa liczbę znaczników ThreadX, dla których usługi wewnętrzne będą wstrzymywane. Wartość domyślna to 10 sekund (10 \* *NX_IP_PERIODIC_RATE*).
+- **NX_WEB_HTTP_SERVER_TIMEOUT_ACCEPT** Określa liczbę znaczników ThreadX, które usługi wewnętrzne będą wstrzymywać w wewnętrznych *wywołaniach nx_tcp_server_socket_accept().* Wartość domyślna to (10 \* *NX_IP_PERIODIC_RATE*).
+- **NX_WEB_HTTP_SERVER_TIMEOUT_DISCONNECT** Określa liczbę znaczników ThreadX, które usługi wewnętrzne będą wstrzymywać w wewnętrznych *wywołaniach nx_tcp_socket_disconnect().* Wartość domyślna to 10 sekund (10 \* *NX_IP_PERIODIC_RATE*).
+- **NX_WEB_HTTP_SERVER_TIMEOUT_RECEIVE** Określa liczbę znaczników ThreadX, które usługi wewnętrzne będą wstrzymywać w wewnętrznych *wywołaniach nx_tcp_socket_receive().* Wartość domyślna to 10 sekund (10 \* *NX_IP_PERIODIC_RATE*).
+- **NX_WEB_HTTP_SERVER_TIMEOUT_SEND** Określa liczbę znaczników ThreadX, które usługi wewnętrzne będą wstrzymywać w wewnętrznych *wywołaniach nx_tcp_socket_send().* Wartość domyślna to 10 sekund (10 \* *NX_IP_PERIODIC_RATE*).
 - **NX_WEB_HTTP_MAX_HEADER_FIELD** **określa maksymalny rozmiar pola nagłówka HTTP. Wartość domyślna to 256.**
-- * * NX_WEB_HTTP_MULTIPART_ENABLE * * * * * *, jeśli jest zdefiniowany, włącza serwer HTTPS do obsługi wieloczęściowych żądań HTTP. **
-- **NX_WEB_HTTP_SERVER_MAX_PENDING** Określa liczbę połączeń, które mogą być umieszczone w kolejce dla serwera HTTPS. Wartość domyślna to dwukrotnie większa liczba sesji serwera.
-- **NX_WEB_HTTP_MAX_RESOURCE** Określa liczbę bajtów dozwolonych w *nazwie zasobu* dostarczonej przez klienta. Wartość domyślna to 40.
-- **NX_WEB_HTTP_MAX_NAME** Określa liczbę bajtów dozwolonych w *nazwie użytkownika* dostarczonej przez klienta. Wartość domyślna to 20.
-- **NX_WEB_HTTP_MAX_PASSWORD** Określa liczbę bajtów dozwolonych w *haśle* dostarczonym przez klienta. Wartość domyślna to 20.
-- **NX_WEB_HTTP_SERVER_SESSION_MAX** Określa liczbę równoczesnych sesji dla serwera HTTP lub HTTPS. Gniazdo TCP i sesja TLS (jeśli jest włączona obsługa protokołu HTTPS) są przydzieleni dla każdej sesji. Wartość domyślna to 2.
-- **NX_WEB_HTTPS_ENABLE** W przypadku zdefiniowania tego makra włącza protokoły TLS i HTTPS. Pozostaw niezdefiniowane, aby zwolnić zasoby, jeśli jest wymagany tylko zwykły tekst HTTP. Domyślnie to makro nie jest zdefiniowane.
-- **NX_WEB_HTTPS_KEEPALIVE_DISABLE** Jeśli ta opcja jest zdefiniowana, to makro wyłącza funkcję Keep-Alive protokołu HTTP. Domyślnie to makro nie jest zdefiniowane.
-- **NX_WEB_HTTP_SERVER_MIN_PACKET_SIZE** Określa minimalny rozmiar pakietów w puli określonej podczas tworzenia serwera. Minimalny rozmiar jest wymagany w celu zapewnienia, że kompletny nagłówek HTTP może być zawarty w jednym pakiecie. Wartość domyślna to 600.
-- **NX_WEB_HTTP_CLIENT_MIN_PACKET_SIZE** Określa minimalny rozmiar pakietów w puli określonej podczas tworzenia klienta. Minimalny rozmiar jest wymagany w celu zapewnienia, że kompletny nagłówek HTTP może być zawarty w jednym pakiecie. Wartość domyślna to 600.
-- **NX_WEB_HTTP_SERVER_RETRY_SECONDS** Ustaw limit czasu ponownej transmisji gniazda serwera (w sekundach). Wartość domyślna to 2.
-- **NX_WEB_HTTP_ SERVER_RETRY_MAX** Ustawia maksymalną liczbę ponownych transmisji w gnieździe serwera. Wartość domyślna to 10.
-- **NX_WEB_HTTP_ SERVER_RETRY_SHIFT** Ta wartość jest używana do ustawiania następnego limitu czasu ponownej transmisji. Bieżący limit czasu jest mnożony przez liczbę ponownych transmisji do tej pory, przesuniętych przez wartość przedziału czasu gniazda. Wartość domyślna to 1 w przypadku podwajania limitu czasu.
-- **NX_WEB_HTTP_SERVER_RETRY_TRANSMIT_QUEUE_DEPTH** Określa maksymalną liczbę pakietów, które można umieścić w kolejce kolejki retransmisji w gnieździe serwera. Jeśli liczba pakietów w kolejce osiągnie tę liczbę, nie można wysyłać kolejnych pakietów, dopóki nie zostaną wydane co najmniej jeden pakiet z kolejki. Wartość domyślna to 20.
+- **NX_WEB_HTTP_MULTIPART_ENABLE ** ** Jeśli jest zdefiniowana, umożliwia serwerowi HTTPS obsługę wieloczęściowych żądań HTTP. **
+- **NX_WEB_HTTP_SERVER_MAX_PENDING** Określa liczbę połączeń, które mogą być w kolejce dla serwera HTTPS. Wartość domyślna jest ustawiana na dwa razy maksymalną liczbę sesji serwera.
+- **NX_WEB_HTTP_MAX_RESOURCE** Określa liczbę bajtów dozwolonych w nazwie zasobu *podanego przez klienta.* Wartość domyślna to 40.
+- **NX_WEB_HTTP_MAX_NAME** Określa liczbę bajtów dozwolonych w podanej przez klienta nazwie *użytkownika*. Wartość domyślna to 20.
+- **NX_WEB_HTTP_MAX_PASSWORD** Określa liczbę bajtów dozwolonych w hasłach podanych przez *klienta.* Wartość domyślna to 20.
+- **NX_WEB_HTTP_SERVER_SESSION_MAX** Określa liczbę równoczesnych sesji dla serwera HTTP lub HTTPS. Gniazda TCP i sesja protokołu TLS (jeśli protokół HTTPS jest włączony) są przydzielane dla każdej sesji. Wartość domyślna to 2.
+- **NX_WEB_HTTPS_ENABLE** Jeśli to makro jest zdefiniowane, włącza protokoły TLS i HTTPS. Pozostaw niezdefiniowane, aby uwolnić zasoby, jeśli wymagany jest tylko zwykły tekst HTTP. Domyślnie to makro nie jest zdefiniowane.
+- **NX_WEB_HTTPS_KEEPALIVE_DISABLE** Jeśli to makro jest zdefiniowane, wyłącza funkcję utrzymania aktywności protokołu HTTP. Domyślnie to makro nie jest zdefiniowane.
+- **NX_WEB_HTTP_SERVER_MIN_PACKET_SIZE** Określa minimalny rozmiar pakietów w puli określonej podczas tworzenia serwera. Minimalny rozmiar jest wymagany do zapewnienia, że pełny nagłówek HTTP może być zawarty w jednym pakiecie. Wartość domyślna to 600.
+- **NX_WEB_HTTP_CLIENT_MIN_PACKET_SIZE** Określa minimalny rozmiar pakietów w puli określonej podczas tworzenia klienta. Minimalny rozmiar jest wymagany do zapewnienia, że pełny nagłówek HTTP może być zawarty w jednym pakiecie. Wartość domyślna to 600.
+- **NX_WEB_HTTP_SERVER_RETRY_SECONDS** Ustaw limit czasu retransmisji gniazda serwera w sekundach. Wartość domyślna to 2.
+- **NX_WEB_HTTP_ SERVER_RETRY_MAX** Określa maksymalną liczbę retransmisji na gniazda serwera. Wartość domyślna to 10.
+- **NX_WEB_HTTP_ SERVER_RETRY_SHIFT** Ta wartość jest używana do ustawienia następnego limitu czasu ponownej transmisji. Bieżący limit czasu jest mnożony przez liczbę do tej pory retransmisji, przesunięte przez wartość przesunięcia limitu czasu gniazda. Wartość domyślna jest ustawiona na 1 dla podwojenia limitu czasu.
+- **NX_WEB_HTTP_SERVER_RETRY_TRANSMIT_QUEUE_DEPTH** Określa maksymalną liczbę pakietów, które mogą być w kolejce w kolejce retransmisji gniazda serwera. Jeśli liczba pakietów w kolejkach osiągnie tę liczbę, nie będzie można wysłać więcej pakietów, dopóki co najmniej jeden pakiet w kolejkach nie zostanie zwolniony. Wartość domyślna to 20.

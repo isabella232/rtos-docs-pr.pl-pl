@@ -1,30 +1,30 @@
-- name: Dokumentacja usługi Azure RTO USBX
+- name: Azure RTOS dokumentacji USBX
   href: index.yml
-- name: Przegląd USBX
+- name: Omówienie usbx
   href: overview-usbx.md
 - name: Podręcznik użytkownika stosu urządzeń USBX
   items:
     - name: O tym przewodniku
       href: usbx-device-stack-about.md
-    - name: Ch. 1 — wprowadzenie do USBX
+    - name: Ch. 1 — Wprowadzenie do USBX
       href: usbx-device-stack-1.md
-    - name: Ch. 2 — Instalacja USBX
+    - name: Ch. 2 — Instalacja usbx
       href: usbx-device-stack-2.md
-    - name: Ch. 3-funkcjonalne składniki stosu urządzeń USBX
+    - name: Ch. 3 — Składniki funkcjonalne stosu urządzenia USBX
       href: usbx-device-stack-3.md
-    - name: Ch. 4 — Opis usług urządzenia USBX
+    - name: Ch. 4 — Opis usług urządzeń USBX
       href: usbx-device-stack-4.md
-    - name: Ch. 5 — zagadnienia dotyczące klas urządzeń USBX
+    - name: Ch. 5 — Zagadnienia dotyczące klas urządzeń USBX
       href: usbx-device-stack-5.md
-- name: Uzupełnienie stosu urządzeń USBX
+- name: Uzupełnienie stosu urządzenia USBX
   items:
-    - name: Ch. 1 — wprowadzenie do podręcznika użytkownika stosu urządzeń USBX
+    - name: Ch. 1 — Wprowadzenie do uzupełnienie podręcznika użytkownika stosu urządzeń USBX
       href: usbx-device-stack-supplemental-1.md
-    - name: Ch. 2 — zagadnienia dotyczące klas urządzeń USBX
+    - name: Ch. 2 — Zagadnienia dotyczące klas urządzeń USBX
       href: usbx-device-stack-supplemental-2.md
-    - name: Ch. 3 — USBX DPUMP — zagadnienia dotyczące klas
+    - name: Ch. 3 — Zagadnienia dotyczące klas USBX DPUMP
       href: usbx-device-stack-supplemental-3.md
-    - name: Ch. 4 — implementacja technologii PictBridge w USBX
+    - name: Ch. 4 — Implementacja USBX Pictbridge
       href: usbx-device-stack-supplemental-4.md
     - name: Ch. 5 — USBX OTG
       href: usbx-device-stack-supplemental-5.md
@@ -32,27 +32,27 @@
   items:
     - name: O tym przewodniku
       href: usbx-host-stack-about.md
-    - name: Ch. 1 — wprowadzenie do USBX
+    - name: Ch. 1 — Wprowadzenie do USBX
       href: usbx-host-stack-1.md
-    - name: Ch. 2 — Instalacja USBX
+    - name: Ch. 2 — Instalacja usbx
       href: usbx-host-stack-2.md
-    - name: Ch. 3-funkcjonalne składniki stosu hosta USBX
+    - name: Ch. 3 — Składniki funkcjonalne stosu hosta USBX
       href: usbx-host-stack-3.md
     - name: Ch. 4 — Opis usług hosta USBX
       href: usbx-host-stack-4.md
-    - name: Ch. 5 — interfejs API klas hosta USBX
+    - name: Ch. 5 — Interfejs API klas hostów USBX
       href: usbx-host-stack-5.md
-    - name: Ch. 6 — USBX przechwytywania zmian — ECM klasy
+    - name: Ch. 6 — Użycie klasy USBX CDC-ECM
       href: usbx-host-stack-6.md
 - name: Uzupełnienie stosu hosta USBX
   items:
-    - name: Ch. 1 — wprowadzenie do podręcznika użytkownika stosu hosta USBX
+    - name: Ch. 1 — Wprowadzenie do uzupełnienie podręcznika użytkownika stosu hosta USBX
       href: usbx-host-stack-supplemental-1.md
-    - name: Ch. USBX interfejs API klas hosta
+    - name: Ch. 2 — Interfejs API klas hostów USBX
       href: usbx-host-stack-supplemental-2.md
-    - name: Ch. 3 — USBX DPUMP — zagadnienia dotyczące klas
+    - name: Ch. 3 — Zagadnienia dotyczące klas USBX DPUMP
       href: usbx-host-stack-supplemental-3.md
-    - name: Ch. 4 — implementacja technologii PictBridge w USBX
+    - name: Ch. 4 — Implementacja USBX Pictbridge
       href: usbx-host-stack-supplemental-4.md
     - name: Ch. 5 — USBX OTG
       href: usbx-host-stack-supplemental-5.md
@@ -60,11 +60,11 @@
   href: 'https://github.com/azure-rtos/usbx/'
 - name: Powiązane usługi
   items:
-    - name: Defender for IoT — RTO (wersja zapoznawcza)
+    - name: Defender dla IoT — RTOS (wersja zapoznawcza)
       href: 'https://docs.microsoft.com/azure/defender-for-iot/iot-security-azure-rtos'
-- name: Microsoft Azure składniki RTO
+- name: Microsoft Azure Składniki RTOS
   items:
-    - name: Microsoft Azure RTO
+    - name: Microsoft Azure Rtos
       href: ../index.yml
     - name: ThreadX
       href: ../threadx/index.yml
@@ -74,9 +74,9 @@
       href: ../netx-duo/index.yml
     - name: NetX
       href: ../netx/index.yml
-    - name: GUIX
+    - name: Graficzny interfejs użytkownika
       href: ../guix/index.yml
-    - name: FileX
+    - name: PlikX
       href: ../filex/index.yml
     - name: LevelX
       href: ../levelx/index.yml

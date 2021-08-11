@@ -1,19 +1,19 @@
 ---
-title: Dodatek B — formaty koloru GUIX
-description: Dowiedz się więcej na temat formatów kolorów GUIX.
+title: Dodatek B — formaty kolorów GUIX
+description: Dowiedz się więcej o formatach kolorów GUIX.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: e99e40dd334b28e74a0b7570a09d0deb4e0a6436
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 21fa35db7b04f9249da0948bb8b6b5b18f7ab96079c927fa0878c7ab87adeee8
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823185"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116784669"
 ---
-# <a name="appendix-b---guix-color-formats"></a>Dodatek B — formaty koloru GUIX
+# <a name="appendix-b---guix-color-formats"></a>Dodatek B — formaty kolorów GUIX
 
 | Kolor                               | Wartość |
 |------------------------------------ | ----- |

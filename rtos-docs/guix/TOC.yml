@@ -1,77 +1,77 @@
-- name: Dokumentacja usługi Azure RTO GUIX
+- name: Azure RTOS dokumentacji guix
   href: index.yml
-- name: Przegląd GUIX
+- name: Omówienie graficznego interfejsu użytkownika (GUIX)
   href: overview-guix.md
-- name: GUIX Studio Przewodnik Szybki start
+- name: GuiX Studio Przewodnik Szybki start
   href: guix-studio-quick-start.md
-- name: Podręcznik użytkownika GUIX
+- name: Podręcznik użytkownika guix
   expanded: true
   items:
     - name: O tym przewodniku
       href: about-guix.md
-    - name: Ch. 1 — wprowadzenie do GUIX
+    - name: Ch. 1 — Wprowadzenie do graficznego interfejsu użytkownika
       href: chapter-1.md
-    - name: Ch. 2 — Instalowanie i korzystanie z GUIX
+    - name: Ch. 2 — Instalowanie i używanie graficznego interfejsu użytkownika
       href: chapter-2.md
-    - name: Ch. 3 — Przegląd funkcjonalny GUIX
+    - name: Ch. 3 — Omówienie funkcjonalne graficznego interfejsu użytkownika
       href: chapter-3.md
-    - name: Ch. 4 — Opis usług GUIX Services
+    - name: Ch. 4 — Opis usług GUIX
       href: chapter-4.md
-    - name: Ch. 5 — sterowniki wyświetlania GUIX
+    - name: Ch. 5 — Sterowniki wyświetlania GUIX
       href: chapter-5.md
-    - name: Przykład GUIX
+    - name: Przykład graficznego interfejsu użytkownika
       href: guix-example.md
-    - name: Aplikacje. Definicje koloru A-GUIX
+    - name: App. A — definicje kolorów GUIX
       href: appendix-a.md
-    - name: Aplikacje. Formaty kolorów B-GUIX
+    - name: App. B — formaty kolorów GUIX
       href: appendix-b.md
-    - name: Aplikacje. Style widżetu C-GUIX
+    - name: App. C — style widżetu GUIX
       href: appendix-c.md
-    - name: 'Aplikacje. GUIX pędzla, kanwy i atrybuty gradientu'
+    - name: 'App. D — atrybuty pędzla GUIX, kanwy i gradientu'
       href: appendix-d.md
-    - name: Aplikacje. Opis zdarzenia E-GUIX
+    - name: App. E — opis zdarzenia GUIX
       href: appendix-e.md
-    - name: Aplikacje. Usługi powiązań F-GUIX RTO
+    - name: App. F — usługi powiązania GUIX RTOS
       href: appendix-f.md
-    - name: Aplikacje. Struktura czcionek G-GUIX
+    - name: App. G — struktura czcionek GUIX
       href: appendix-g.md
-    - name: Aplikacje. Flagi konfiguracji czasu kompilacji GUIX H
+    - name: App. H — flagi konfiguracji czasu kompilacji GUIX
       href: appendix-h.md
-    - name: Aplikacje. Struktury informacji I-GUIX
+    - name: App. I — struktury informacyjne GUIX
       href: appendix-i.md
 - name: Podręcznik użytkownika programu GUIX Studio
   items:
     - name: Informacje o programie GUIX Studio
       href: about-guix-studio.md
-    - name: Ch. 1 — wprowadzenie do programu GUIX Studio
+    - name: Ch. 1 — Wprowadzenie do programu GUIX Studio
       href: guix-studio-1.md
-    - name: Ch. 2 — Instalowanie i korzystanie z programu GUIX Studio
+    - name: Ch. 2 — Instalacja i korzystanie z programu GUIX Studio
       href: guix-studio-2.md
-    - name: Ch. 3 — Opis GUIX Studio
+    - name: Ch. 3 — Opis programu GUIX Studio
       href: guix-studio-3.md
-    - name: Ch. 4 — zasoby GUIX Studio
+    - name: Ch. 4 — Zasoby programu GUIX Studio
       href: guix-studio-4.md
-    - name: Ch. 5 — Projektant ekranu programu GUIX Studio
+    - name: Ch. 5 — GuiX Studio Screen Designer
       href: guix-studio-5.md
-    - name: Ch. 6 — wygenerowany kod w programie GUIX Studio
+    - name: Ch. 6 — Kod generowany w programie GUIX Studio
       href: guix-studio-6.md
-    - name: Ch. 7 — Definiowanie przepływu ekranu
+    - name: Ch. 7 — Definiowanie Flow
       href: guix-studio-7.md
-    - name: Ch. 8 — uwagi dotyczące edytowania określonych typów widżetu
+    - name: Ch. 8 — Uwagi dotyczące edytowania określonych typów widżetów
       href: guix-studio-8.md
-    - name: Ch. 9 — GUIX Studio — wiersz polecenia
+    - name: Ch. 9 — Wiersz polecenia programu GUIX Studio
       href: guix-studio-9.md
-    - name: Ch. 10 — prosty przykładowy projekt
+    - name: Ch. 10 — Prosty przykładowy Project
       href: guix-studio-10.md
 - name: Repozytorium GUIX
   href: 'https://github.com/azure-rtos/guix'
 - name: Powiązane usługi
   items:
-    - name: Defender for IoT — RTO (wersja zapoznawcza)
+    - name: Defender dla IoT — RTOS (wersja zapoznawcza)
       href: 'https://docs.microsoft.com/azure/defender-for-iot/iot-security-azure-rtos'
-- name: Microsoft Azure składniki RTO
+- name: Microsoft Azure Składniki RTOS
   items:
-    - name: Microsoft Azure RTO
+    - name: Microsoft Azure Rtos
       href: ../index.yml
     - name: ThreadX
       href: ../threadx/index.yml
@@ -81,9 +81,9 @@
       href: ../netx-duo/index.yml
     - name: NetX
       href: ../netx/index.yml
-    - name: GUIX
+    - name: Graficzny interfejs użytkownika
       href: ../guix/index.yml
-    - name: FileX
+    - name: PlikX
       href: ../filex/index.yml
     - name: LevelX
       href: ../levelx/index.yml

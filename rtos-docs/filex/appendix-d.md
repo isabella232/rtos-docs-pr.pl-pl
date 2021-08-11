@@ -1,20 +1,20 @@
 ---
-title: Dodatek D — kody znaków ASCII usługi Azure RTO FileX
-description: Więcej informacji na temat kodów znaków FileX usługi Azure RTO w postaci SZESNASTKOWej przez przejrzenie tego wykresu kodu ASCII.
+title: Dodatek D — Azure RTOS znaków ASCII pliku FileX
+description: Zapoznaj się z tym wykresem kodu znaków ASCII, aby dowiedzieć się więcej Azure RTOS kodów znaków FileX w językach HEX.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 1c4ea55d1668d12dc8bf9e0e908899f9b76a164c
-ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
+ms.openlocfilehash: 0db1a176c54a83805b9d737b2b0345c215b7fd5e6de7d26b74e1c838094a8723
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 04/07/2021
-ms.locfileid: "106550120"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116783133"
 ---
-# <a name="appendix-d---azure-rtos-filex-ascii-character-codes"></a>Dodatek D — kody znaków ASCII usługi Azure RTO FileX
+# <a name="appendix-d---azure-rtos-filex-ascii-character-codes"></a>Dodatek D — Azure RTOS znaków ASCII pliku FileX
 
-## <a name="ascii-character-codes-in-hex"></a>**Kody znaków ASCII w formacie SZESNASTKOWym**
+## <a name="ascii-character-codes-in-hex"></a>**Kody znaków ASCII w hex**
 
-![Kody znaków ASCII w formacie SZESNASTKOWym](./media/user-guide/ascii-character-codes-hex.png)
+![Kody znaków ASCII w hex](./media/user-guide/ascii-character-codes-hex.png)

@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: overview
-ms.openlocfilehash: 63fd212249da6154926684f9bc844d2c2a78e84e
-ms.sourcegitcommit: dbbec3ba6a7eb6097c7888b235c433a2efd6e5b9
+ms.openlocfilehash: a5dd020daeb336f264bf611fc3a515e55dbc5dab6f9afbcfdbf3733baa66de26
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 07/14/2021
-ms.locfileid: "113754849"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116782782"
 ---
 # <a name="overview-of-azure-rtos-netx"></a>Omówienie Azure RTOS NetX
 
@@ -53,7 +53,7 @@ Azure RTOS NetX zapewnia obsługę następujących czynności.
 
 ### <a name="snmp---simple-network-management-protocol-snmp"></a>SNMP — Simple Network Management Protocol (SNMP)
 
-* Minimalna 10,9 KB i 2,6 KB pamięci RAM
+* Minimalnie 10,9 KB i 2,6 KB pamięci RAM
 * Obsługa agentów dla wersji VI, V2 i V3
 
 ### <a name="ftp-tftp---file-transfer-protocol-ftp-trivial-file-transfer-protocol-tftp"></a>FTP, TFTP — protokół transferu plików (FTP), Trivial File Transfer Protocol (TFTP)
@@ -89,7 +89,7 @@ Azure RTOS NetX zapewnia obsługę następujących czynności.
 
 * Minimalna pamięć FLASH 2,5 KB, 124 bajty pamięci RAM na gniazdo
 * Szybkie przetwarzanie pakietów TCP prawie z wire speed:
-* RX 95 Mb/s na 100 Mb/s Ethernet, @100MHz MCU, 14% wykorzystanie mikrojądek
+* RX 95 Mb/s na Ethernet 100 Mb/s, @100MHz MIKROU, 14% wykorzystanie MIKROU
 * TX 94 Mb/s w sieci Ethernet 100 Mb/s, @100MHz MIKROU, 10% wykorzystanie mikrojądek
 * Technologia Szybka ścieżka UDP™ technologii
 * Brak limitów liczby protokołu UDP
@@ -103,7 +103,7 @@ Azure RTOS NetX zapewnia obsługę następujących czynności.
 
 * Minimalnie od 10,5 KB do 12,5 KB pamięci FLASH, 280 bajtów pamięci RAM na gniazdo
 * Szybkie, prawie wlre speed przetwarzanie pakietów TCP:
-* RX 93 Mb/s na 100 Mb/s Ethernet, @100MHz MCU, 20% wykorzystanie mikrojądek
+* RX 93 Mb/s na Ethernet 100 Mb/s, @100MHz MCU, 20% wykorzystanie MIKROU
 * TX 94 Mb/s w sieci Ethernet 100 Mb/s, @100MHz MIKROU, 27% wykorzystanie mikrojądek
 * Niezawodne połączenie
 * Brak limitów liczby gniazd TCP
@@ -132,7 +132,7 @@ Azure RTOS NetX zapewnia obsługę następujących czynności.
 * Obsługa wielu interfejsów.
 * Obsługa wielu domów.
 * Obsługa routingu statycznego.
-* Obsługa fragmentacji/ponownego zsembmbowania adresów IP.
+* Obsługa fragmentacji/ponownegoassembly adresu IP.
 * Obsługa protokołu IPv4.
 * Zweryfikowane przez IxANVL IxANVL.
 * Certyfikacja gotowego logo fazy II.
@@ -144,27 +144,27 @@ Azure RTOS NetX zapewnia obsługę następujących czynności.
 
 * Minimalna pamięć FLASH 1,7 KB, rozmiar pamięci RAM.
 * Dynamiczna rozdzielczość 32-blt adresów IPv4 i 48-blt adresów MAC.
-* Zweryfikowane przez IxANVL IxANVL.
+* Zweryfikowane przez IxANVL IXANVL.
 * Elastyczna, zdefiniowana przez użytkownika pamięć podręczna ARP.
-* Obsługa szosowego ARP.
+* Niesłabnące wsparcie dla ARP.
 * Opcjonalne statystyki ARP/RARP określone przez aplikację.
 * Śledzenie na poziomie systemu za pośrednictwem Azure RTOS TraceX.
 
-### <a name="ethernet-wifi-bluetooth-le-154-etc"></a>Ethernet, Wi-Fi, BLUETOOTH LE, 15.4 itp.
+### <a name="ethernet-wifi-bluetooth-le-154-etc"></a>ETHERNET, WiFi, BLUETOOTH LE, 15.4 itp.
 
 ## <a name="interoperability-verification"></a>Weryfikacja współdziałania
 
-Azure RTOS NetX jest zgodna ze standardami RFC i oferuje pełne współdziałanie z urządzeniami większości dostawców. Azure RTOS NetX korzysta również ze standardowej w branży biblioteki IxANVL (Automated Network Validation Library) do implementacji podstawowego protokołu TCP/IP Azure RTOS NetX NetX Core.
+Azure RTOS NetX jest zgodna ze standardami RFC i oferuje pełne współdziałanie z urządzeniami większości dostawców. Azure RTOS NetX korzysta również ze standardowej w branży biblioteki IxANVL (Automated Network Validation Library) na Azure RTOS implementacji podstawowego protokołu TCP/IP netx core.
 
 ## <a name="advanced-technology"></a>Zaawansowana technologia
 
 Azure RTOS NetX to zaawansowana technologia, która obejmuje następujące elementy.
-* Piconet™ architektura.
+* Piconet™ architektury.
 * Automatyczne skalowanie.
 * Technologia Fast-Path UDP™.
 * Elastyczne zarządzanie pakietami.
 * Interfejs API bez kopiowania i implementacja.
-* Obsługa wielu domów.
+* Obsługa wielu domu.
 * Opcjonalny limit czasu dla całego zawieszenia.
 * Obsługa routingu statycznego.
 * Azure RTOS analizy systemu TraceX.

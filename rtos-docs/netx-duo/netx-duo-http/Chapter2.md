@@ -1,68 +1,68 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX Duo HTTP
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika HTTP usługi Azure RTO NetX Duo.
+title: Rozdział 2 . Instalowanie i używanie Azure RTOS NetX Duo HTTP
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika HTTP Azure RTOS NetX Duo.
 author: philmea
 ms.author: philmea
 ms.date: 07/15/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 9a3ea37b180ab57a8dcd269092638fa74589836a
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 8739603d4a387ff3f3f42c979bd00fcebe4f08efaab42ecade462adf1fb4906a
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821870"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116783496"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-http"></a>Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX Duo HTTP
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-http"></a>Rozdział 2 . Instalowanie i używanie Azure RTOS NetX Duo HTTP
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika HTTP usługi Azure RTO NetX Duo.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika HTTP Azure RTOS NetX Duo.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Usługę Azure RTO NetX Duo można uzyskać z naszego publicznego repozytorium kodu źródłowego w lokalizacji [https://github.com/azure-rtos/netxduo/](https://github.com/azure-rtos/netxduo/) .
+Azure RTOS NetX Duo można uzyskać z naszego publicznego repozytorium kodu źródłowego na stronie [https://github.com/azure-rtos/netxduo/](https://github.com/azure-rtos/netxduo/) .
 
- - **nxd_http_client. h** Plik nagłówkowy dla klienta HTTP dla NetX Duo
- - **nxd_http_server. h** Plik nagłówka dla serwera HTTP dla programu NetX Duo
- - **nxd_http_client. c** Plik źródłowy języka C dla klienta HTTP dla NetX Duo
- - **nxd_http_server. c** Plik źródłowy języka C dla serwera HTTP dla NetX Duo
- - **nx_md5. c** Algorytmy Digest MD5
- - **filex_stub. h** Plik zastępczy, jeśli nie istnieje FileX
- - **nxd_http.pdf** Opis protokołu HTTP dla NetX Duo
- - **demo_netxduo_http. c** Demonstracja HTTP NetX Duo
+ - **nxd_http_client.h** Plik nagłówkowy klienta HTTP dla NetX Duo
+ - **nxd_http_server.h** Plik nagłówkowy serwera HTTP dla NetX Duo
+ - **nxd_http_client.c** Plik źródłowy języka C dla klienta HTTP dla NetX Duo
+ - **nxd_http_server.c** Plik źródłowy języka C dla serwera HTTP Server for NetX Duo
+ - **nx_md5.c** Algorytmy skrótu MD5
+ - **filex_stub.h** Plik wycinki, jeśli plik FileX nie istnieje
+ - **nxd_http.pdf** Opis protokołu HTTP dla netx duo
+ - **demo_netxduo_http.c** Pokaz protokołu HTTP NetX Duo
 
 ## <a name="http-installation"></a>Instalacja HTTP
 
-Aby można było używać protokołu HTTP dla NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowany w katalogu *"\threadx\arm7\green"* , następnie *nxd_http_client. h*  i *Nxd_http_client. c* dla aplikacji klienckich http NetX Duo, a *nxd_http_server. h* i *Nxd_http_server. c* dla aplikacji serwera HTTP w NetX Duo. *nx_md5. c* należy skopiować do tego katalogu. W przypadku wersji demonstracyjnej "sterownik ram" NetX Duo HTTP klienta i plików serwera należy skopiować do tego samego katalogu.
+Aby można było używać protokołu HTTP dla netX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano netX Duo. Jeśli na przykład netx Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* to *nxd_http_client.h*  i *nxd_http_client.c* dla aplikacji klienckich HTTP NetX Duo oraz *nxd_http_server.h* i *nxd_http_server.c* dla aplikacji serwera HTTP NetX Duo. *nx_md5.c* należy skopiować do tego katalogu. W przypadku demonstracyjnej aplikacji "sterownik pamięci RAM" pliki klienta HTTP i serwera NetX Duo powinny zostać skopiowane do tego samego katalogu.
 
 ## <a name="using-http"></a>Korzystanie z protokołu HTTP
 
-Korzystanie z protokołu HTTP for NetX Duo jest proste. W zasadzie kod aplikacji musi zawierać *nxd_http_client. h* i/lub *nxd_http_server. h* , gdy zawiera *tx_api. h*, *fx_api. h* i *nx_api. h*, w celu użycia odpowiednio ThreadX, FileX i NetX Duo. Po uwzględnieniu plików nagłówkowych HTTP, kod aplikacji może być w stanie wprowadzić wywołania funkcji HTTP określone w dalszej części tego przewodnika. Aplikacja musi również zawierać *nxd_http_client. c*, *nxd_http_server. c* i *MD5. c* w procesie kompilacji. Te pliki muszą być kompilowane w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do korzystania z protokołu HTTP NetX Duo.
+Korzystanie z protokołu HTTP na platformie NetX Duo jest łatwe. Zasadniczo kod aplikacji musi zawierać pliki *nxd_http_client.h* i/lub *nxd_http_server.h* po dołączyć pliki *tx_api.h*, *fx_api.h* i *nx_api.h,* aby można było używać odpowiednio threadX, FileX i NetX Duo. Gdy pliki nagłówkowe HTTP zostaną dołączone, kod aplikacji będzie mógł wykonać wywołania funkcji HTTP określone w dalszej części tego przewodnika. Aplikacja musi również uwzględniać *pliki nxd_http_client.c*, *nxd_http_server.c* i *md5.c* w procesie kompilacji. Te pliki muszą zostać skompilowane w taki sam sposób, jak inne pliki aplikacji, a ich formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z protokołu HTTP NetX Duo.
 
 > [!NOTE]
-> Jeśli nie określono NX_HTTP_DIGEST_ENABLE w procesie kompilacji, plik MD5. c nie musi być dodany do aplikacji. Analogicznie, jeśli nie są wymagane możliwości klienta HTTP, plik *nxd_http_client. c* może zostać pominięty.
+> Jeśli NX_HTTP_DIGEST_ENABLE nie zostanie określony w procesie kompilacji, nie trzeba dodawać pliku md5.c do aplikacji. Podobnie, jeśli nie są wymagane możliwości klienta HTTP, *nxd_http_client.c* plik może zostać pominięty.
 
 > [!NOTE]
-> Ponieważ protokół HTTP wykorzystuje usługi TCP NetX Duo, należy włączyć protokół TCP przy użyciu wywołania *nx_tcp_enable* przed użyciem protokołu HTTP.
+> Ponieważ protokół HTTP korzysta z usług TCP NetX Duo, protokół TCP musi być włączony przy *użyciu nx_tcp_enable* przed użyciem protokołu HTTP.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykładem łatwego użycia protokołu HTTP NetX Duo jest opisany poniżej rysunek 1,1. Ten przykład współdziała z usługami "Duo" dostępnymi w rozmieszczeniu HTTP NetX Duo #define USE_DUO w wierszu 23. W przeciwnym razie korzysta ze starszej wersji protokołu HTTP NetX (ograniczone tylko do protokołu IPv4). Deweloperzy są zachęcani do migrowania istniejących aplikacji do korzystania z usług HTTP NetX Duo.
+Przykład łatwego korzystania z protokołu HTTP NetX Duo opisano na rysunku 1.1, który znajduje się poniżej. Ten przykład współpracuje z usługami "duo" dostępnymi w rozmieszczeniu protokołu HTTP NetX Duo #define USE_DUO wierszu 23. W przeciwnym razie jest używany starszy odpowiednik PROTOKOŁU HTTP NetX (ograniczony tylko do protokołu IPv4). Zachęcamy deweloperów do migrowania istniejących aplikacji do korzystania z usług HTTP NetX Duo.
 
-Aby określić komunikację IPv6, aplikacja definiuje IPTYPE do IPv6 w wierszu 24.
+Aby określić komunikację protokołu IPv6, aplikacja definiuje protokół IPTYPE na IPv6 w wierszu 24.
 
-W tym przykładzie pliki dołączane do protokołu HTTP *nxd_http_client. h* i *nxd_http_server. h* są wprowadzane w wierszu 8 i 9. Następnie pomocniczy wątek serwera HTTP, puli pakietów i wystąpienia protokołu IP są tworzone w wierszach 89 – 112. Wystąpienie protokołu IP serwera HTTP musi być włączone TCP, jak pokazano w wierszu 137. Serwer HTTP jest następnie tworzony w wierszu 159.
+W tym przykładzie pliki dołączane http *nxd_http_client.h* i *nxd_http_server.h* są dostępne w wierszach 8 i 9. Następnie wątek serwera HTTP pomocnika, pula pakietów i wystąpienie adresu IP są tworzone w wierszach 89–112. Wystąpienie adresu IP serwera HTTP musi mieć włączoną obsługę protokołu TCP, jak po widać w wierszu 137. Serwer HTTP jest następnie tworzony w wierszu 159.
 
-Następnie zostanie utworzony klient HTTP. Pierwszy wątek klienta jest tworzony w wierszu 172, a następnie puli pakietów i wystąpienia IP, podobnie jak w przypadku serwera HTTP, w wierszach 186 – 200. Ponownie wystąpienie protokołu IP klienta HTTP musi mieć włączoną wartość TCP (wiersz 217).
+Następnie zostanie utworzony klient HTTP. Najpierw wątek klienta jest tworzony w wierszu 172, po którym następuje pula pakietów i wystąpienie adresu IP, podobnie jak w przypadku serwera HTTP, w wierszach 186–200. Ponownie wystąpienie adresu IP klienta HTTP musi mieć włączony protokół TCP (wiersz 217).
 
-Wątek serwera HTTP działa i jego pierwsze zadanie sprawdza poprawność swojego adresu IP za pomocą NetX Duo, który działa w wierszach 423-450. Teraz serwer HTTP jest gotowy do wykonania żądań.
+Wątek serwera HTTP jest uruchamiany, a jego pierwszym zadaniem jest zweryfikowanie adresu IP za pomocą rozwiązania NetX Duo, które jest uruchamiane w wierszach 423–450. Teraz serwer HTTP jest gotowy do odbierz żądania.
 
-Pierwsze zadanie wątku klienta HTTP to tworzenie i formatowanie nośnika FileX (wiersze 236 i 260. Po zainicjowaniu nośnika klient HTTP zostanie utworzony w wierszu 271. Należy to zrobić, aby serwer HTTP mógł obsłużyć żądania HTTP. Następnie należy sprawdzić poprawność jego adresu IP za pomocą NetX Duo, który wykonuje w wierszach 282 – 316. Klient HTTP następnie tworzy i wysyła plik client_test.html do serwera HTTP, czeka na chwilę, a następnie próbuje odczytać plik z powrotem z serwera HTTP.
-
-> [!NOTE]
-> Interfejs API klienta HTTP używa innej usługi, jeśli protokół IPv6 nie jest włączony (*nx_http_client_put_start* w wierszu 343 i *nx_http_client_get_start* w wierszu 399). Dzięki temu NetX Duo może obsługiwać istniejące aplikacje klienckie HTTP NetX.
+Pierwszym zadaniem wątku klienta HTTP jest utworzenie i sformatowanie nośnika FileX (wiersze 236 i 260). Po zainicjowaniu nośnika klient HTTP jest tworzony w wierszu 271. Należy to zrobić, aby serwer HTTP może obsługić żądania HTTP. Następnie musi zweryfikować swój adres IP za pomocą netx duo, co robi w wierszach 282–316. Klient HTTP następnie tworzy i wysyła plik client_test.html do serwera HTTP, czeka przez krótki czas, a następnie próbuje odczytać plik z powrotem z serwera HTTP.
 
 > [!NOTE]
-> Wywołania interfejsu API klienta HTTP są wykonywane z stosunkowo krótkim limitem czasu. Może być konieczne rozszerzenie tych limitów czasu, jeśli klient HTTP komunikuje się z zajętym serwerem lub serwerem zdalnym na wolniejszym procesorze.
+> Interfejs API klienta HTTP używa innej usługi, jeśli protokół IPv6 nie jest włączony (*nx_http_client_put_start* wierszu 343 i *nx_http_client_get_start* wierszu 399). Dzięki temu netX Duo może obsługiwać istniejące aplikacje klienckie HTTP NetX.
+
+> [!NOTE]
+> Wywołania interfejsu API klienta HTTP mają stosunkowo krótkie limity czasu. Może być konieczne rozszerzenie tych limitów czasu, jeśli klient HTTP komunikuje się z zajętym serwerem lub serwerem zdalnym na wolniejszym procesorze.
 
 ```c
 1    /* This is a small demo of the NetX Duo HTTP Client Server API running on a
@@ -531,34 +531,34 @@ Pierwsze zadanie wątku klienta HTTP to tworzenie i formatowanie nośnika FileX 
 467  }
 ```
 
-**Rysunek 1,1 przykład użycia protokołu HTTP z NetX Duo**
+**Rysunek 1.1 Przykład użycia protokołu HTTP z netx duo**
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Istnieje kilka opcji konfiguracji do kompilowania protokołu HTTP dla NetX Duo. Poniżej znajduje się lista wszystkich opcji, w których poszczególne są szczegółowo opisane. Wartości domyślne są wyświetlane, ale można je zdefiniować ponownie przed włączeniem *nxd_http_client. h* i *nxd_http_server. h*:
+Istnieje kilka opcji konfiguracji tworzenia protokołu HTTP dla netx duo. Poniżej znajduje się lista wszystkich opcji, gdzie każda z nich jest szczegółowo opisana. Zostaną wyświetlone wartości domyślne, ale można je ponownie zdefiniować przed dodaniem parametrów *nxd_http_client.h* *i nxd_http_server.h:*
 
- - **NX_DISABLE_ERROR_CHECKING** Zdefiniowane, ta opcja usuwa podstawowe sprawdzanie błędów HTTP. Jest on zwykle używany po debugowaniu aplikacji
- - **NX_HTTP_SERVER_PRIORITY** Priorytet wątku serwera HTTP. Domyślnie ta wartość jest definiowana jako 16, aby określić priorytet 16.
- - **NX_HTTP_NO_FILEX** Zdefiniowana, ta opcja udostępnia element zastępczy dla zależności FileX. Klient HTTP będzie działać bez żadnej zmiany, jeśli ta opcja jest zdefiniowana. Należy zmodyfikować serwer HTTP lub użytkownik będzie musiał utworzyć kilku usługi FileX, aby działać prawidłowo.
- - **NX_HTTP_TYPE_OF_SERVICE** Typ usługi wymaganej przez żądania HTTP TCP. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL w celu wskazania normalnej usługi pakietów IP.
-  - **NX_HTTP_SERVER_THREAD_TIME_SLICE** Liczba cykli czasomierza, które mogą być uruchamiane przez wątek serwera przed zwróceniem do wątków o takim samym priorytecie. Wartość domyślna to 2.
- - **NX_HTTP_FRAGMENT_OPTION** Włączenie fragmentu dla żądań HTTP TCP. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć fragmentację TCP protokołu HTTP.
- - **NX_HTTP_SERVER_WINDOW_SIZE**   Rozmiar okna gniazda serwera. Wartość domyślna to 2048 bajtów.
- - **NX_HTTP_TIME_TO_LIVE** Określa liczbę routerów, które ten pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
- - **NX_HTTP_SERVER_TIMEOUT**   Określa liczbę ThreadXych taktów, dla których będą zawieszane usługi wewnętrzne. Wartość domyślna to 10 sekund (10 * NX_IP_PERIODIC_RATE).
- - **NX_HTTP_SERVER_TIMEOUT_ACCEPT** Określa liczbę ThreadXych taktów, które zostaną zawieszone przez usługi wewnętrzne w ramach wywołań wewnętrznych *nx_tcp_server_socket_accept* . Wartość domyślna to (10 * NX_IP_PERIODIC_RATE).
- - **NX_HTTP_SERVER_TIMEOUT_DISCONNECT** Określa liczbę ThreadXych taktów, które zostaną zawieszone przez usługi wewnętrzne w ramach wywołań wewnętrznych *nx_tcp_socket_disconnect* . Wartość domyślna to 10 sekund (10 * NX_IP_PERIODIC_RATE).
- - **NX_HTTP_SERVER_TIMEOUT_RECEIVE** Określa liczbę ThreadXych taktów, które zostaną zawieszone przez usługi wewnętrzne w ramach wywołań wewnętrznych *nx_tcp_socket_receive* . Wartość domyślna to 10 sekund (10 * NX_IP_PERIODIC_RATE).
- - **NX_HTTP_SERVER_TIMEOUT_SEND** Określa liczbę ThreadXych taktów, które zostaną zawieszone przez usługi wewnętrzne w ramach wywołań wewnętrznych *nx_tcp_socket_send* . Wartość domyślna to 10 sekund (10 * NX_IP_PERIODIC_RATE).
+ - **NX_DISABLE_ERROR_CHECKING** Zdefiniowano— ta opcja usuwa podstawowe sprawdzanie błędów HTTP. Jest on zwykle używany po debugowaniu aplikacji
+ - **NX_HTTP_SERVER_PRIORITY** Priorytet wątku serwera HTTP. Domyślnie ta wartość jest zdefiniowana jako 16, aby określić priorytet 16.
+ - **NX_HTTP_NO_FILEX** Zdefiniowano, ta opcja udostępnia wycinki dla zależności FileX. Klient HTTP będzie działać bez żadnych zmian, jeśli ta opcja jest zdefiniowana. Serwer HTTP musi zostać zmodyfikowany lub użytkownik będzie musiał utworzyć kilka usług FileX, aby działać prawidłowo.
+ - **NX_HTTP_TYPE_OF_SERVICE** Typ usługi wymagany dla żądań HTTP TCP. Domyślnie ta wartość jest zdefiniowana jako wartość NX_IP_NORMAL, aby wskazać normalną usługę pakietów IP.
+  - **NX_HTTP_SERVER_THREAD_TIME_SLICE** Liczba znaczników czasomierza, które wątek serwera może uruchomić przed uzyskaniem wątków o tym samym priorytecie. Wartość domyślna to 2.
+ - **NX_HTTP_FRAGMENT_OPTION** Włącz fragment dla żądań HTTP TCP. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć fragmentowanie TCP protokołu HTTP.
+ - **NX_HTTP_SERVER_WINDOW_SIZE**   Rozmiar okna gniazda serwera. Domyślnie ta wartość to 2048 bajtów
+ - **NX_HTTP_TIME_TO_LIVE** Określa liczbę routerów, które pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
+ - **NX_HTTP_SERVER_TIMEOUT**   Określa liczbę znaczników ThreadX, dla których usługi wewnętrzne będą wstrzymywane. Wartość domyślna to 10 sekund (10 * NX_IP_PERIODIC_RATE).
+ - **NX_HTTP_SERVER_TIMEOUT_ACCEPT** Określa liczbę znaczników ThreadX, które usługi wewnętrzne będą wstrzymywać dla w wewnętrznych *nx_tcp_server_socket_accept* wywołań. Wartość domyślna to (10 * NX_IP_PERIODIC_RATE).
+ - **NX_HTTP_SERVER_TIMEOUT_DISCONNECT** Określa liczbę znaczników ThreadX, które usługi wewnętrzne będą wstrzymywać dla w wewnętrznych *nx_tcp_socket_disconnect* wywołań. Wartość domyślna to 10 sekund (10 * NX_IP_PERIODIC_RATE).
+ - **NX_HTTP_SERVER_TIMEOUT_RECEIVE** Określa liczbę znaczników ThreadX, które usługi wewnętrzne będą wstrzymywać dla w wewnętrznych *nx_tcp_socket_receive* wywołań. Wartość domyślna to 10 sekund (10 * NX_IP_PERIODIC_RATE).
+ - **NX_HTTP_SERVER_TIMEOUT_SEND** Określa liczbę znaczników ThreadX, które usługi wewnętrzne będą wstrzymywać dla w wewnętrznych *nx_tcp_socket_send* wywołań. Wartość domyślna to 10 sekund (10 * NX_IP_PERIODIC_RATE).
  - **NX_HTTP_MAX_HEADER_FIELD** Określa maksymalny rozmiar pola nagłówka HTTP. Wartość domyślna to 256.
- - **NX_HTTP_MULTIPART_ENABLE** Jeśli jest zdefiniowany, umożliwia serwerowi HTTP obsługę wieloczęściowych żądań HTTP.
- - **NX_HTTP_SERVER_MAX_PENDING**   Określa liczbę połączeń, które mogą być umieszczone w kolejce dla serwera HTTP. Wartość domyślna to 5.
- - **NX_HTTP_MAX_RESOURCE** Określa liczbę bajtów dozwolonych w *nazwie zasobu* dostarczonej przez klienta. Wartość domyślna to 40.
- - **NX_HTTP_MAX_NAME** Określa liczbę bajtów dozwolonych w *nazwie użytkownika* dostarczonej przez klienta. Wartość domyślna to 20.
- - **NX_HTTP_MAX_PASSWORD** Określa liczbę bajtów dozwolonych w *haśle* dostarczonym przez klienta. Wartość domyślna to 20.
- - **NX_HTTP_SERVER_MIN_PACKET_SIZE** Określa minimalny rozmiar pakietów w puli określonej podczas tworzenia serwera. Minimalny rozmiar jest wymagany w celu zapewnienia, że kompletny nagłówek HTTP może być zawarty w jednym pakiecie. Wartość domyślna to 600.
- - **NX_HTTP_CLIENT_MIN_PACKET_SIZE** Określa minimalny rozmiar pakietów w puli określonej podczas tworzenia klienta. Minimalny rozmiar jest wymagany w celu zapewnienia, że kompletny nagłówek HTTP może być zawarty w jednym pakiecie. Wartość domyślna to 300.
- - **NX_HTTP_SERVER_RETRY_SECONDS** Ustaw limit czasu ponownej transmisji gniazda serwera (w sekundach). Wartość domyślna to 2.
- - **NX_HTTP_SERVER_ RETRY_MAX** Ustawia maksymalną liczbę ponownych transmisji w gnieździe serwera. Wartość domyślna to 10.
- - **NX_HTTP_SERVER_ RETRY_SHIFT** Ta wartość jest używana do ustawiania następnego limitu czasu ponownej transmisji. Bieżący limit czasu jest mnożony przez liczbę ponownych transmisji do tej pory, przesuniętych przez wartość przedziału czasu gniazda. Wartość domyślna to 1 w przypadku podwajania limitu czasu.
- - **NX_HTTP_SERVER_TRANSMIT_QUEUE_DEPTH** Określa maksymalną liczbę pakietów, które można umieścić w kolejce kolejki retransmisji w gnieździe serwera. Jeśli liczba pakietów w kolejce osiągnie tę liczbę, nie można wysyłać kolejnych pakietów, dopóki nie zostaną wydane co najmniej jeden pakiet z kolejki. Wartość domyślna to 20.
+ - **NX_HTTP_MULTIPART_ENABLE** Umożliwia serwerowi HTTP obsługę wieloczęściowych żądań HTTP.
+ - **NX_HTTP_SERVER_MAX_PENDING**   Określa liczbę połączeń, które można dodać do kolejki dla serwera HTTP. Wartość domyślna to 5.
+ - **NX_HTTP_MAX_RESOURCE** Określa liczbę bajtów dozwolonych w nazwie zasobu *podanej przez klienta.* Wartość domyślna to 40.
+ - **NX_HTTP_MAX_NAME** Określa liczbę bajtów dozwolonych w podanej przez klienta nazwie *użytkownika*. Wartość domyślna to 20.
+ - **NX_HTTP_MAX_PASSWORD** Określa liczbę bajtów dozwolonych w hasłach podanych przez *klienta.* Wartość domyślna to 20.
+ - **NX_HTTP_SERVER_MIN_PACKET_SIZE** Określa minimalny rozmiar pakietów w puli określonej podczas tworzenia serwera. Minimalny rozmiar jest wymagany do zapewnienia, że pełny nagłówek HTTP może być zawarty w jednym pakiecie. Wartość domyślna to 600.
+ - **NX_HTTP_CLIENT_MIN_PACKET_SIZE** Określa minimalny rozmiar pakietów w puli określonej podczas tworzenia klienta. Minimalny rozmiar jest wymagany do zapewnienia, że pełny nagłówek HTTP może być zawarty w jednym pakiecie. Wartość domyślna to 300.
+ - **NX_HTTP_SERVER_RETRY_SECONDS** Ustaw limit czasu retransmisji gniazda serwera w sekundach. Wartość domyślna to 2.
+ - **NX_HTTP_SERVER_ RETRY_MAX** Określa maksymalną liczbę retransmisji na gnieździe serwera. Wartość domyślna to 10.
+ - **NX_HTTP_SERVER_ RETRY_SHIFT** Ta wartość jest używana do ustawienia następnego limitu czasu retransmisji. Bieżący limit czasu jest mnożony przez liczbę retransmisji do tej pory przesunięte przez wartość przesunięcia limitu czasu gniazda. Wartość domyślna jest ustawiona na 1 dla podwojenia limitu czasu.
+ - **NX_HTTP_SERVER_TRANSMIT_QUEUE_DEPTH** Określa maksymalną liczbę pakietów, które mogą być w kolejce retransmisji gniazda serwera. Jeśli liczba pakietów w kolejkach osiągnie tę liczbę, żadne pakiety nie mogą być wysyłane, dopóki co najmniej jeden pakiet w kolejkach nie zostanie zwolniony. Wartość domyślna to 20.

@@ -1,133 +1,133 @@
 ---
-title: Prosty przykładowy projekt
-description: W tym rozdziale opisano sposób tworzenia przykładowego projektu w programie GUIX Studio i wykonywania przykładu na GUIX.
+title: Prosty przykładowy Project
+description: W tym rozdziale opisano sposób tworzenia przykładowego projektu w programie GUIX Studio i wykonywania przykładu w graficznym interfejsie użytkownika.
 author: jdeere5220
 ms.author: kemaxwel
 ms.date: 9/30/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: 3661396f097e0ed7bd872fae01a7bec9212001b9
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 8981bed62d2929703e4233d6a3ee31b692226c26d046875a235bf3aca32a7573
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822332"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116786655"
 ---
-# <a name="chapter-10-example-project"></a>Rozdział 10: przykładowy projekt
+# <a name="chapter-10-example-project"></a>Rozdział 10. Przykładowa Project
 
-W tym rozdziale opisano sposób tworzenia przykładowego projektu w programie GUIX Studio i wykonywania przykładu na GUIX.
+W tym rozdziale opisano sposób tworzenia przykładowego projektu w programie GUIX Studio i wykonywania przykładu w graficznym interfejsie użytkownika.
 
 ## <a name="create-new-project"></a>Tworzenie nowego projektu
 
-Pierwszym krokiem jest utworzenie nowego projektu i skonfigurowanie ekranów i języków, które będą obsługiwane przez projekt. Po pierwszym uruchomieniu GUIX Studio zobaczysz ekran ***ostatnie projekty*** :
+Pierwszym krokiem jest utworzenie nowego projektu i skonfigurowanie języków i wyświetlanych w projekcie. Po pierwszym uruchomieniu programu GUIX Studio zostanie wyświetlony ekran ***Ostatnie projekty:***
 
-![Zrzut ekranu przedstawiający okno dialogowe GUIX Studio ostatnich projektów.](./media/guix-studio/recent_projects.png)
+![Zrzut ekranu przedstawiający okno dialogowe GuiX Studio Recent Projects (Ostatnie projekty w programie GUIX Studio).](./media/guix-studio/recent_projects.png)
 
-**Rysunek 10,1**
+**Rysunek 10.1**
 
-Kliknij pozycję ***Utwórz nowy projekt** _... , aby rozpocząć nowy projekt. Zostanie wyświetlone okno dialogowe _ *_New GUIX Project_**, pokazane tutaj:
+Kliknij pozycję ***Utwórz nowy Project** _... , aby rozpocząć nowy projekt. Zostanie wyświetlone okno dialogowe *__New GUIX Project_** (Nowy interfejs GUIX), które pokazano poniżej:
 
-![Zrzut ekranu przedstawiający okno dialogowe Tworzenie nowego projektu w programie GUIX Studio.](./media/guix-studio/create_new_project.png)
+![Zrzut ekranu przedstawiający okno dialogowe Tworzenie nowego Project GUIX Studio.](./media/guix-studio/create_new_project.png)
 
-**Rysunek 10,2**
+**Rysunek 10.2**
 
-Wpisz nazwę "***new_example***" jako nazwę projektu. Nazwy projektów powinny zawierać standardowe reguły nazewnictwa języka C, czyli nie znaki specjalne ani zastrzeżone. Wpisz ścieżkę do lokalizacji, w której ma być zapisany projekt. Ścieżka musi być prawidłowym katalogiem systemu plików, czyli GUIX Studio nie utworzy katalogu, jeśli nie istnieje. Kliknij przycisk OK, aby utworzyć projekt.
+Wpisz nazwę "***new_example***" jako nazwę projektu. Project nazwy powinny używać standardowych reguł nazewnictwa zmiennych języka C, czyli znaków specjalnych ani zastrzeżonych. Wpisz ścieżkę do lokalizacji, w której ma zostać zapisany projekt. Ścieżka musi być prawidłowym katalogiem systemu plików, co oznacza, że program GUIX Studio nie utworzy katalogu, jeśli nie istnieje. Kliknij przycisk "OK", aby utworzyć projekt.
 
-Następnym wyświetlonym ekranem jest ekran Konfiguracja projektu, przedstawiony tutaj:
+Następny wyświetlany ekran to ekran konfiguracji Project, pokazany poniżej:
 
-![Zrzut ekranu przedstawiający okno dialogowe Konfigurowanie projektu programu GUIX Studio.](./media/guix-studio/config_new_project.png)
+![Zrzut ekranu przedstawiający okno dialogowe konfigurowanie Project GUIX Studio.](./media/guix-studio/config_new_project.png)
 
-**Rysunek 10,3**
+**Rysunek 10.3**
 
-To okno dialogowe pozwala określić, ile wyświetla projekt będzie obsługiwał, i nadaj nazwę każdemu wyświetlaczowi. Należy określić format koloru obsługiwany przez każdy ekran i opcjonalnie wpisać nazwę ścieżki dla plików wyjściowych generowanych przez Studio dla każdego ekranu. Domyślnym katalogiem plików wyjściowych jest "***. \\***", co oznacza, że pliki wyjściowe C są zapisywane w tym samym katalogu co projekt.
+To okno dialogowe umożliwia określenie, ile ekranów będzie obsługinych przez projekt, i nadaj nazwę każdemu wyświetlanemu ekranowi. Należy określić format kolorów obsługiwany przez każdy ekran i opcjonalnie wpisać nazwę ścieżki dla plików wyjściowych generowanych przez program Studio dla każdego ekranu. Domyślny katalog plików wyjściowych to "***. \\***", co oznacza, że pliki wyjściowe języka C są zapisywane w tym samym katalogu co sam projekt.
 
-Na potrzeby tego przykładu pozostaw ***liczba wyświetleń** _ o wartości "1", wpisz nazwę "_*_main_display_*_" w polu Nazwa wyświetlana i zaznacz opcję "_*_Przydziel pamięć kanwy_*_". Pozostaw wartości domyślne w polach rozdzielczość, format koloru i katalog, a następnie kliknij _ *_OK_* *.
+W tym przykładzie pozostaw wartość ***Liczba** ekranów _ ustawioną na "1", wpisz nazwę "_*_main_display_*_" w polu nazwy wyświetlanej i zaznacz pole "_*_przydziel_*_ pamięć kanwy ". Pozostaw wartości domyślne w polach rozpoznawania, formatu kolorów i katalogu, a następnie kliknij przycisk _*_OK_**.
 
-Zobaczysz teraz projekt otwarty za pomocą środowiska IDE programu Studio, jak pokazano na rysunku 10,4:
+Projekt powinien być teraz otwarty w środowiskach IDE programu Studio, jak pokazano na rysunku 10.4:
 
-![Zrzut ekranu projektu otwarty za pomocą programu Studio IDE.](./media/guix-studio/initial_screen.png)
+![Zrzut ekranu przedstawiający projekt otwarty za pomocą środowiska IDE programu Studio.](./media/guix-studio/initial_screen.png)
 
-**Rysunek 10,4**
+**Rysunek 10.4**
 
-Podczas tworzenia nowego projektu GUIX Studio automatycznie tworzy domyślne okno jako punkt początkowy dla projektu. To szare pole jest domyślnym oknem utworzonym dla Ciebie, wyśrodkowanym w *widoku docelowym*.
+Podczas tworzenia nowego projektu program GUIX Studio automatycznie tworzy okno domyślne jako punkt początkowy projektu. To szare pole jest domyślnym oknem utworzonym dla Ciebie, wyśrodkowane w *widoku docelowym*.
 
-Jeśli to okno nie jest zaznaczone, kliknij okno, aby narysować kreskowane pole zaznaczenia wokół okna. Teraz w widoku ***Właściwości** _ Zmień _*_nazwę widżetu_*_, _*_identyfikator widżetu_*_, _*_lewy_*_, _*_górny_*_, _*_Szerokość_*_, _*_wysokość_*_ i _ *_obramowanie_**, aby dopasować te ustawienia poniżej. Po wprowadzeniu tych zmian w widoku docelowym powinny zostać wyświetlone zmiany od razu.
+Jeśli to okno nie jest zaznaczone, kliknij je, aby wokół okna narysowane było pole wyboru kreskowane. Teraz w widoku ***właściwości** _zmień nazwę widżetu _*_,_*_ identyfikator _*_widżetu_*_ _*_,_*_ lewy , _*_górny,_*_ _*_górny,_*_ szerokość, _*_wysokość_*_ i *___* obramowanie *, aby dopasować te ustawienia, które przedstawiono poniżej. Gdy wprowadzasz te zmiany, zmiany powinny zostać natychmiast wprowadzone w widoku docelowym.
 
 ![Zrzut ekranu przedstawiający okno dialogowe Widok właściwości.](./media/guix-studio/initial_window_properties.png)
 
-**Rysunek 10,5**
+**Rysunek 10.5**
 
-Następnie dodamy zasób Pixelmap, który będzie używany w elemencie widget ***GX_ICON** _. Dla tego przykładu udostępniono kilka ikon z dystrybucją programu GUIX Studio. Rozwiń _*_Pixelmaps_*_ widok zasobów i kliknij przycisk _ *_Dodaj nowy Pixelmap_**:
+Następnie dodamy zasób pixelmap, który będzie używany w **widżecie*** GX_ICON _. Z dystrybucją programu GUIX Studio jest dostarczanych kilka ikon, które będą działać prawidłowo w tym przykładzie. Rozwiń _*_kartę Pixelmaps_*_ Widok zasobów kliknij przycisk _ *_Dodaj nową_* mapę pikseli *:
 
-![Zrzut ekranu przedstawiający przycisk Dodaj nowy Pixelmap.](./media/guix-studio/image74.jpg)
+![Zrzut ekranu przedstawiający przycisk Dodaj nową mapę pikseli.](./media/guix-studio/image74.jpg)
 
-Przejdź do folderu instalacji programu GUIX Studio i w folderze ***./Graphics/Icons** _ wybierz plik o nazwie _*_i_history_lg.png_*_. Kliknij przycisk _*_Otwórz_*_ , aby dodać ten zasób do projektu. Element _ *_Pixelmaps_** widok zasobów powinien teraz zawierać Podgląd nowo dodanego obrazu ikony:
+Przejdź do folderu instalacyjnego programu GUIX Studio, a następnie w folderze ***./graphics/icons** _ wybierz plik o _*_nazwiei_history_lg.png_*_. Kliknij _*_przycisk Otwórz,_*_ aby dodać ten zasób do projektu. W twoim pliku _ *_Pixelmaps_** Widok zasobów powinien teraz zostać wyświetlony podgląd nowo dodanego obrazu ikony:
 
-![Zrzut ekranu przedstawiający Widok zasobów Pixelmaps.](./media/guix-studio/example_add_pixelmap.png)
+![Zrzut ekranu przedstawiający mapę pikseli Widok zasobów.](./media/guix-studio/example_add_pixelmap.png)
 
-**Rysunek 10,6**
+**Rysunek 10.6**
 
-Nowy zasób obrazu zostanie użyty później w ramach naszego projektu interfejsu użytkownika.
+Użyjemy tego nowego zasobu obrazu później w ramach naszego projektu interfejsu użytkownika.
 
-Podobnie jak w przypadku dodawania zasobów Pixelmap, dodamy nowy zasób czcionki do naszego przybornika, aby można było użyć tej czcionki w dalszej części tego projektu. Rozwiń pozycję ***Fonts** _ widok zasobów i kliknij przycisk _*_Dodaj nową czcionkę_*_ . Ta akcja spowoduje wywołanie okna dialogowego _*_Dodawanie/edytowanie_*_ czcionki. Następnie przejdź do dostarczonych czcionek GUIX w folderze instalacyjnym programu GUIX Studio _*_ . \\ czcionki \\ verasans_ *_ i wybierz plik czcionek TrueType o nazwie _*_VeraIt. ttf_*_. Wpisz Font nazwa czcionki "_*_MEDIUM_ITALIC_*_" w polu Nazwa czcionki i wpisz "_*_30_* *" w polu height. Okno dialogowe powinno teraz wyglądać następująco:
+Podobnie jak w przypadku dodawania zasobu pixelmap, dodamy nowy zasób czcionki do naszego przybornika, aby można było użyć tej czcionki w dalszej części naszego projektu. Rozwiń **ikonę*** Czcionki _ Widok zasobów i kliknij przycisk _*_Dodaj nową czcionkę._*_ Ta akcja spowoduje wywołanie okna _*_dialogowego Dodaj/Edytuj_*_ czcionkę. Następnie przejdź do podanych czcionek GUIX w folderze instalacyjnym programu GUIX _*_ Studio. \\ czcionki \\ verasans_ *_, a następnie wybierz plik czcionki TrueType o nazwie _*_VeraIt.ttf._*_Wpisz czcionkę nazwa czcionki "_*_MEDIUM_ITALIC_" w polu nazwy czcionki, a następnie wpisz _"30_**" w polu height.** Okno dialogowe powinno teraz wyglądać tak:
 
-![Zrzut ekranu przedstawiający okno dialogowe Edycja czcionki.](./media/guix-studio/example_add_font.png)
+![Zrzut ekranu przedstawiający okno dialogowe Edytowanie czcionki.](./media/guix-studio/example_add_font.png)
 
-**Rysunek 10,7**
+**Rysunek 10.7**
 
-Kliknij przycisk ***OK*** , aby dodać tę czcionkę do projektu. Teraz powinna zostać wyświetlona Czcionka w Widok zasobów:
+Kliknij ***przycisk OK,*** aby dodać tę czcionkę do projektu. Powinna być teraz widać czcionkę w Widok zasobów:
 
 ![Zrzut ekranu przedstawiający czcionki w Widok zasobów.](./media/guix-studio/example_font_added.png)
 
-**Rysunek 10,8**
+**Rysunek 10.8**
 
-Będziemy używać nowej czcionki później w naszym projekcie interfejsu użytkownika.
+Użyjemy tej nowej czcionki w dalszej części naszego projektu interfejsu użytkownika.
 
-Teraz, gdy dostępne są nowe zasoby, musimy dodać do naszego ekranu elementy widgetowe, które mogą korzystać z tych zasobów. Wybierz wcześniej utworzone okno o nazwie "***hello_world** _", klikając prawym przyciskiem myszy okno w widoku docelowym. W wyświetlonym menu podręcznym wybierz polecenie menu _*_Wstaw, tekst, Monituj,_*_ aby wstawić nowy _ *_GX_PROMPT_** widżet i dołączyć widżet do okna tła. Okno powinno teraz wyglądać następująco:
+Teraz, gdy mamy już dostępne nowe zasoby, musimy dodać do ekranu niektóre podrzędne widżety, które mogą korzystać z tych zasobów. Wybierz utworzone wcześniej okno o nazwie "***hello_world** _", klikając prawym przyciskiem myszy okno w widoku docelowym. W wyświetlonym menu podręcznym wybierz polecenie menu _*_Wstaw, Tekst,_*_ Monituj, aby wstawić nowy widżet _ *_GX_PROMPT_** i dołączyć widżet do okna tła. Okno powinno teraz wyglądać tak:
 
-![Zrzut ekranu przedstawiający menu podręczne z wybranym monitem](./media/guix-studio/image78.jpg)
+![Zrzut ekranu przedstawiający menu podręczne z wyborem Monituj](./media/guix-studio/image78.jpg)
 
-**Rysunek 10,9**
+**Rysunek 10.9**
 
-Kliknij czcionkę o nazwie "***MEDIUM_ITALIC** _" w polu _ *_fonts_** widok zasobów i przeciągnij czcionkę i upuść ją w widżecie monit. Następnie Edytuj właściwości monitu, jak pokazano na rysunku 10,10 Aby zmienić rozmiar monitu, ustaw przezroczystość monitu i Zmień tekst i styl monitu:
+Kliknij czcionkę o nazwie "***MEDIUM_ITALIC** _" w obszarze _ *_Czcionki_** Widok zasobów, a następnie przeciągnij i upuść czcionkę w widżecie monitu. Następnie edytuj właściwości monitu, jak pokazano na rysunku 10.10, aby zmienić rozmiar monitu, ustawić przezroczystość monitu oraz zmienić tekst i styl monitu:
 
-![Zrzut ekranu przedstawiający widok właściwości dla monitu.](./media/guix-studio/image79.jpg)
+![Zrzut ekranu przedstawiający widok właściwości monitu.](./media/guix-studio/image79.jpg)
 
-**Rysunek 10,10**
+**Rysunek 10.10**
 
-Może być konieczne przewinięcie w pionie w widoku właściwości, aby zobaczyć wszystkie te ustawienia w zależności od rozdzielczości ekranu. Po wprowadzeniu tych zmian widok docelowy powinien teraz wyglądać następująco:
+Może być konieczne przewinięcie w pionie w widoku właściwości, aby wyświetlić każde z tych ustawień w zależności od rozdzielczości ekranu. Po w związku z wprowadzeniem tych zmian widok docelowy powinien teraz wyglądać tak:
 
-![Zrzut ekranu przedstawiający menu podręczne z zaznaczonym Hello world.](./media/guix-studio/image80.jpg)
+![Zrzut ekranu przedstawiający menu podręczne z Hello world menu podręcznego.](./media/guix-studio/image80.jpg)
 
-**Rysunek 10,11**
+**Rysunek 10.11**
 
-Następnie umieścimy widżet styl przycisku ikony na ekranie. Zaznacz okno tła, klikając je, a następnie użyj menu najwyższego poziomu lub menu podręcznego kliknij prawym przyciskiem myszy, aby wybrać pozycję ***Wstaw, przycisk, przycisk ikony** _, aby dodać nową _*_GX_ICON_BUTTON_*_ do okna. Kliknij ikonę o nazwie _ *_I_HISTORY_LG_**, która została dodana wcześniej i przeciągnij ją na przycisk ikony. Korzystając z widoku właściwości, Dostosuj położenie i rozmiar ikony, tak jak pokazano poniżej:
+Następnie na ekranie zostanie umieść widżet stylu przycisku ikony. Wybierz okno tła, klikając je, a następnie użyj menu najwyższego poziomu lub menu podręcznego dostępnego po kliknięciu prawym _**_ przyciskiem myszy, aby wybrać pozycję ***Wstaw, Przycisk,** Przycisk ikony _, aby dodać nową GX_ICON_BUTTON do okna. Kliknij ikonę o nazwie _ *_I_HISTORY_LG_** dodaną wcześniej i przeciągnij ją do przycisku ikony. Korzystając z widoku właściwości, dostosuj położenie i rozmiar ikony, jak podano poniżej:
 
-![Zrzut ekranu przedstawiający widok Właściwości widżet stylu przycisku ikony.](./media/guix-studio/image81.jpg)
+![Zrzut ekranu przedstawiający widok właściwości widżetu stylu przycisku ikony.](./media/guix-studio/image81.jpg)
 
-**Rysunek 10,12**
+**Rysunek 10.12**
 
-Ekran powinien teraz wyglądać następująco:
+Ekran powinien teraz wyglądać tak:
 
-![Zrzut ekranu przedstawiający menu podręczne z ikoną Hello world i Schowka.](./media/guix-studio/image82.jpg)
+![Zrzut ekranu przedstawiający menu podręczne z ikoną Hello world i schowka.](./media/guix-studio/image82.jpg)
 
-**Rysunek 10,13**
+**Rysunek 10.13**
 
-Zostanie to wykonane dla prostego przykładowego projektu ekranu. Rzeczywiste ekrany aplikacji prawdopodobnie będą znacznie bardziej zaawansowane, ale wystarczy, aby zobaczyć, jak używać programu GUIX Studio do tworzenia własnych ekranów aplikacji.
+Ta kompletna nazwa zostanie nazwana dla prostego przykładowego projektu ekranu. Rzeczywiste ekrany aplikacji będą prawdopodobnie znacznie bardziej zaawansowane, ale to wystarczy, aby pokazać, jak używać programu GUIX Studio do tworzenia własnych ekranów aplikacji.
 
 ## <a name="generate-resource-and-application-code"></a>Generowanie kodu zasobu i aplikacji
 
-Następnym krokiem jest utworzenie pliku zasobów i pliku specyfikacji, który definiuje osadzony interfejs użytkownika czasu wykonywania GUIX. Aby wygenerować pliki wyjściowe, należy kliknąć prawym przyciskiem myszy węzeł ***main_display** _ w widoku projektu i wybrać polecenie _ *_Generuj pliki zasobów_**. Zobaczysz okno informacji wskazujące pliki zasobów, które zostały wygenerowane, jak pokazano na rysunku 10,14:
+Następnym krokiem jest wygenerowanie pliku zasobów i pliku specyfikacji definiującego osadzony interfejs użytkownika w czasie uruchamiania GUIX. Aby wygenerować pliki wyjściowe, kliknij prawym przyciskiem myszy węzeł ***main_display** _ w widoku Project, a następnie wybierz polecenie *___* Generuj pliki zasobów *. Zostanie wyświetlone okno informacji, które wskazuje, że pliki zasobów zostały wygenerowane, jak pokazano na rysunku 10.14:
 
-![Zrzut ekranu okna dialogowego powiadomienia.](./media/guix-studio/image83.jpg)
+![Zrzut ekranu przedstawiający okno dialogowe powiadomienia.](./media/guix-studio/image83.jpg)
 
-**Rysunek 10,14**
+**Rysunek 10.14**
 
-Kliknij przycisk ***OK**, aby odrzucić to powiadomienie, i Użyj tej samej procedury, aby kliknąć prawym przyciskiem myszy węzeł _*_main_display_*_ i wybierz polecenie _ *_Generuj pliki specyfikacji_**. Należy obserwować podobne okno powiadomień. Pliki prostej aplikacji interfejsu użytkownika zostały już wygenerowane.
+Kliknij przycisk *** OK** _, aby odrzucić to powiadomienie, i użyj tej samej procedury, aby kliknąć prawym przyciskiem _*_myszy_*_ węzeł main_display i wybrać polecenie _ Generuj *_pliki specyfikacji_**. Powinno zostać zaobserwowane podobne okno powiadomień. Masz teraz wygenerowane proste pliki aplikacji interfejsu użytkownika.
 
-## <a name="create-user-supplied-code"></a>Utwórz kod dostarczony przez użytkownika
+## <a name="create-user-supplied-code"></a>Tworzenie kodu dostarczonego przez użytkownika
 
-Następnym krokiem jest utworzenie własnego pliku aplikacji, który wywoła projekt ekranu wygenerowany przez program GUIX Studio. Korzystając z preferowanego edytora, Utwórz plik źródłowy o nazwie ***new_example. c*** i wprowadź następujący kod źródłowy do tego pliku:
+Następnym krokiem jest utworzenie własnego pliku aplikacji, który będzie wywoływać projekt ekranu wygenerowany przez program GUIX Studio. Za pomocą preferowanego edytora utwórz plik źródłowy o ***nazwie new_example.c*** i wprowadź w tym pliku następujący kod źródłowy:
 
 ```C
 
@@ -199,32 +199,32 @@ VOID new_example_thread_entry(ULONG thread_input)
 }
 ```
 
-Powyższy kod źródłowy tworzy typowy wątek ThreadX o nazwie `GUIX New Example Thread` o rozmiarze 4 KB. Interesujące zadania zaczynają się w funkcji o nazwie ***new_example_thread_entry***. Ta funkcja to miejsce, w którym rozpoczyna się GUIX określony wątek.
+Powyższy kod źródłowy tworzy typowy wątek ThreadX o nazwie `GUIX New Example Thread` o rozmiarze stosu 4K bajtów. Interesująca praca rozpoczyna się w funkcji o ***nazwie new_example_thread_entry***. W tej funkcji rozpoczyna się uruchamianie wątku specyficznego dla graficznego interfejsu użytkownika.
 
-Pierwsze wywołanie jest funkcją o nazwie ***gx_system_initialize***. To wywołanie jest zawsze wymagane, zanim inne interfejsy API GUIX są wywoływane w celu przygotowania biblioteki GUIX do pierwszego użycia.
+Pierwsze wywołanie jest wywołaniem funkcji o ***nazwie gx_system_initialize***. To wywołanie jest zawsze wymagane przed wywołaniem jakichkolwiek innych interfejsów API GUIX w celu przygotowania biblioteki GUIX do pierwszego użycia.
 
-Następnie przykład wywołuje funkcję ***gx_studio_display_configure***. Ta funkcja tworzy wystąpienie wyświetlania GUIX, instaluje żądany język tabeli ciągów aplikacji, instaluje żądany motyw z zasobów wyświetlanych i zwraca wskaźnik do głównego okna, które zostało utworzone dla tego ekranu. Główne okno służy jako element nadrzędny wszystkich ekranów najwyższego poziomu, które będą wyświetlane w aplikacji.
+Następnie przykład wywołuje funkcję ***gx_studio_display_configure***. Ta funkcja tworzy wystąpienie wyświetlania GUIX, instaluje żądany język tabeli ciągów aplikacji, instaluje żądany motyw z zasobów wyświetlania i zwraca wskaźnik do głównego okna, które zostało utworzone dla tego wyświetlenia. Okno główne jest używane jako element nadrzędny wszystkich ekranów najwyższego poziomu, które będą wyświetlane w naszej aplikacji.
 
-Kolejne przykładowe wywołania ***gx_studio_named_widget_create** _ w celu utworzenia wystąpienia naszego ekranu _ *_hello_world_**. Ta funkcja korzysta ze struktur danych i zasobów wytwarzanych przez program GUIX Studio, aby utworzyć wystąpienie ekranu, zgodnie z definicją. Przekazujemy wskaźnik głównego okna jako drugi parametr do tego wywołania funkcji, co oznacza, że ekran ma być natychmiast dołączony do okna głównego. Ostatni parametr jest opcjonalnym wskaźnikiem powrotu, którego można użyć, jeśli chcemy zachować wskaźnik do tworzonego ekranu.
+Następnie przykład wywołuje element ***gx_studio_named_widget_create** _, aby utworzyć wystąpienie naszego ekranu _ *_hello_world_**. Ta funkcja używa struktur danych i zasobów tworzymy przez program GUIX Studio, aby utworzyć wystąpienie ekranu zgodnie z jego definicją. Przekażemy wskaźnik okna głównego jako drugi parametr do wywołania tej funkcji, co oznacza, że chcemy, aby ekran był natychmiast dołączony do okna głównego. Ostatni parametr jest opcjonalnym wskaźnikiem powrotu, którego można użyć, jeśli chcemy zachować wskaźnik do utworzonego ekranu.
 
-Następny ***gx_widget_show** _ jest wywoływany, co sprawia, że główne okno i wszystkie jego elementy podrzędne, w tym ekran _ *_hello_world_**, widoczne.
+Następny ***gx_widget_show** _ jest wywoływany, co sprawia, że okno główne i wszystkie jego dzieci, w tym ekran _ *_hello_world_** , jest widoczny.
 
 Na koniec przykład wywołuje ***gx_system_start***. Ta funkcja rozpoczyna wykonywanie pętli przetwarzania zdarzeń systemu GUIX.
 
-## <a name="build-and-run-the-example"></a>Kompiluj i uruchamiaj przykład
+## <a name="build-and-run-the-example"></a>Kompilowanie i uruchamianie przykładu
 
-Kompilowanie i uruchamianie przykładu jest specyficzne dla narzędzi i środowiska kompilacji. Można jednak zdefiniować ogólny proces:
+Kompilowanie i uruchamianie przykładu jest specyficzne dla narzędzi i środowiska kompilacji. Możemy jednak zdefiniować ogólny proces:
 
-1. Tworzenie nowego katalogu i projektu aplikacji
-1. Dodaj te pliki do projektu:
+1. Tworzenie nowego projektu katalogu i aplikacji
+1. Dodaj następujące pliki do projektu:
 
-    **new_example_resources. c**
+    **new_example_resources.c**
 
-    **new_example_specification. c**
+    **new_example_specification.c**
 
-    **new_example. c**
+    **new_example.c**
 
-1. Dodaj pliki obsługi środowiska uruchomieniowego Win32 ze ścieżki instalacji programu GUIX Studio ***./win32_runtime***. Obejmuje to nagłówek Win32 i pliki bibliotek uruchomieniowych ThreadX i GUIX.
-1. Dodawanie biblioteki Win32 GUIX (***GX. lib***) do projektu
-1. Dodawanie biblioteki Win32 ThreadX (***TX. lib***) do projektu
-1. Kompiluj, łącz i uruchamiaj aplikację.
+1. Dodaj pliki obsługi systemu Win32 w czasie uruchamiania ze ścieżki instalacji programu GUIX Studio ***./win32_runtime***. Dotyczy to nagłówków ThreadX i GUIX Win32 oraz plików bibliotek uruchomieniowych.
+1. Dodawanie biblioteki GUIX Win32 ***(gx.lib***) do projektu
+1. Dodawanie biblioteki ThreadX Win32 ***(tx.lib***) do projektu
+1. Skompiluj, połącz i uruchom aplikację!

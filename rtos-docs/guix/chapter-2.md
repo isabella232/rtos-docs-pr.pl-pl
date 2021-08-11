@@ -1,115 +1,115 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z GUIX
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem HighPerformance produktu interfejsu użytkownika GUIX.
+title: Rozdział 2 — Instalacja i korzystanie z graficznego interfejsu użytkownika
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem graficznego interfejsu użytkownika produktu o wysokiej wydajności.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 6527227062fc667b3f527a798d6621914c374c5c
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: a4572dbf4691869d9a1c32d68fbf9cc1c7dbfbee7e58ad69dd944e668e382b76
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822296"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116784119"
 ---
-# <a name="chapter-2---installation-and-use-of-guix"></a>Rozdział 2 — Instalowanie i korzystanie z GUIX
+# <a name="chapter-2---installation-and-use-of-guix"></a>Rozdział 2 — Instalacja i korzystanie z graficznego interfejsu użytkownika
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem HighPerformance produktu interfejsu użytkownika GUIX.  
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem graficznego interfejsu użytkownika produktu o wysokiej wydajności.  
 
 ## <a name="host-considerations"></a>Zagadnienia dotyczące hosta
 
-Projektowanie osadzone jest zwykle wykonywane na komputerach hostów z systemem Windows lub Linux (UNIX). Gdy aplikacja zostanie skompilowana, połączona, a plik wykonywalny jest generowany na hoście, zostanie pobrany na docelowy sprzęt do wykonania.
+Opracowywanie osadzone jest zwykle wykonywane na komputerach Windows komputerach hostów z systemem Linux (Unix). Gdy aplikacja zostanie skompilowana, połączona i plik wykonywalny zostanie wygenerowany na hoście, zostanie on pobrany na docelowy sprzęt w celu wykonania.
 
-Zazwyczaj pobieranie docelowe odbywa się z poziomu debugera narzędzia deweloperskiego. Po pobraniu debuger jest odpowiedzialny za zapewnienie docelowej kontroli wykonania (go, zatrzymania, punktu przerwania itp.) oraz dostęp do rejestrów pamięci i procesora.
+Zazwyczaj pobieranie docelowe odbywa się z poziomu debugera narzędzia dewelopera. Po pobraniu debuger jest odpowiedzialny za zapewnienie docelowej kontroli wykonywania (go, halt, breakpoint itp.), a także dostęp do rejestrów pamięci i procesora.
 
-Większość debugerów narzędzi programistycznych komunikuje się z sprzętem docelowym za pośrednictwem połączeń OCD (on-Chip Debug), takich jak JTAG (IEEE 1149,1) i tryb debugowania w tle (BDM). Debugery komunikują się również z sprzętem docelowym za pomocą połączeń In-Circuit Emulation (lodem). Połączenia OCD i lód zapewniają niezawodne rozwiązania z minimalnym dostępem do docelowego oprogramowania rezydentnego.
+Większość debugerów narzędzi deweloperskie komunikuje się ze sprzętem docelowym za pośrednictwem połączeń debugowania na mikroukładach (OCD), takich jak JTAG (IEEE 1149.1) i tryb debugowania w tle (BDM). Debugerzy komunikują się również ze sprzętem docelowym za pośrednictwem In-Circuit emulacji (ICE). Zarówno połączenia OCD, jak i ICE zapewniają niezawodne rozwiązania z minimalnym wtargnięciem do docelowego oprogramowania rezydatora.
 
-Podobnie jak w przypadku zasobów używanych na hoście, kod źródłowy dla GUXI jest dostarczany w formacie ASCII i wymaga około 30 MB miejsca na dysku twardym komputera hosta.
+Podobnie jak w przypadku zasobów używanych na hoście, kod źródłowy interfejsu GUXI jest dostarczany w formacie ASCII i wymaga około 30 MB miejsca na dysku twardym komputera hosta.
 
-## <a name="target-considerations"></a>Zagadnienia dotyczące obiektów docelowych
+## <a name="target-considerations"></a>Zagadnienia dotyczące celu
 
-GUIX wymaga od 5 kilobajtów do 80 Read-Only KB pamięci (ROM) w miejscu docelowym. Kolejną 10KBytes pamięci (RAM) obiektu docelowego są wymagane dla stosu wątku GUIX i innych struktur danych globalnych.
+Graficzny interfejs użytkownika wymaga od 5 KB do 80 kb pamięci Read-Only (ROM) na komputerze docelowym. Kolejne 5–10 KB pamięci RAM (Random Access Memory) obiektu docelowego są wymagane dla stosu wątków GUIX i innych globalnych struktur danych.
 
-Ponadto GUIX wymaga użycia czasomierza ThreadX i obiektu mutex ThreadX. Te urządzenia są używane do okresowego przetwarzania i ochrony wątków wewnątrz GUIX.
+Ponadto guix wymaga użycia czasomierza ThreadX i obiektu mutex ThreadX. Te obiekty są używane na potrzeby okresowego przetwarzania i ochrony wątków w graficznym interfejsie użytkownika.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Usługę Azure RTO GUIX można uzyskać z naszego publicznego repozytorium kodu źródłowego w lokalizacji <https://github.com/azure-rtos/guix/> .
+Azure RTOS GUIX można uzyskać z naszego publicznego repozytorium kodu źródłowego na stronie <https://github.com/azure-rtos/guix/> .
 
 Poniżej znajduje się lista ważnych plików wspólnych dla większości dystrybucji produktów:
 
-| Nazwa pliku&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Opis   |
+| Pod nazwą&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Opis   |
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| gx_api. h        | Ten plik nagłówkowy C zawiera wszystkie równe systemowe, struktury danych i prototypy usługi. |
-| gx_port. h       | Ten plik nagłówkowy C zawiera wszystkie definicje i struktury danych specyficzne dla określonego narzędzia.                                                                                                                                         |
-| GX. a (lub GX. lib) | Jest to wersja binarna biblioteki GUIX C. Jest to zwykle kompilowane przez kompilowanie i archiwizowanie dostarczonych plików źródłowych biblioteki GUIX, jednak ta biblioteka może być dostępna w wstępnie skompilowanym formularzu, w zależności od docelowego sprzętu i typu licencji. |
+| gx_api.h        | Ten plik nagłówkowy języka C zawiera wszystkie elementy systemowe, struktury danych i prototypy usług. |
+| gx_port.h       | Ten plik nagłówkowy języka C zawiera wszystkie struktury i definicje danych specyficzne dla określonego celu oraz narzędzia deweloperskich.                                                                                                                                         |
+| gx.a (lub gx.lib) | Jest to wersja binarna biblioteki GUIX C. Zwykle jest to kompilowanie i archiwizowanie dostarczonych plików źródłowych biblioteki GUIX, jednak ta biblioteka może być dostarczana we wstępnie skompilowanej postaci w zależności od używanego sprzętu docelowego i typu licencji. |
 |
 
 > [!IMPORTANT]
-> *Wszystkie pliki są w małych przypadkach, co ułatwia konwertowanie poleceń na platformy deweloperskie systemu Linux (UNIX).*
+> *Wszystkie pliki są małe, co ułatwia konwertowanie poleceń na platformy programowe Linux (Unix).*
 
-## <a name="guix-installation"></a>Instalacja GUIX
+## <a name="guix-installation"></a>Instalacja graficznego interfejsu użytkownika
 
-GUIX jest instalowany przez klonowanie repozytorium GitHub na komputerze lokalnym. Poniżej przedstawiono typową składnię tworzenia klonu repozytorium GUIX na komputerze:
+Interfejs GUIX jest instalowany przez GitHub repozytorium na komputer lokalny. Poniżej przedstawiono typową składnię tworzenia klonu repozytorium GUIX na komputerze:
 
 ```c
     git clone https://github.com/azure-rtos/guix
 ```
 
-Alternatywnie możesz pobrać kopię repozytorium za pomocą przycisku Pobierz na stronie głównej usługi GitHub.
+Możesz też pobrać kopię repozytorium przy użyciu przycisku pobierania na stronie GitHub głównej.
 
-Znajdziesz również instrukcje dotyczące tworzenia biblioteki GUIX na stronie frontonu repozytorium online.
+Instrukcje dotyczące tworzenia biblioteki GUIX można również znaleźć na pierwszej stronie repozytorium online.
 
 >[!NOTE]  
-> *Oprogramowanie aplikacji musi mieć dostęp do pliku biblioteki GUIX, zazwyczaj o nazwie **GX. a** (lub **GX. lib**) i plików dołączanych C **gx_api. h** i **gx_port. h**. W tym celu należy ustawić odpowiednią ścieżkę dla narzędzi programistycznych lub skopiować te pliki do obszaru projektowania aplikacji.*
+> *Oprogramowanie aplikacji wymaga dostępu do pliku biblioteki GUIX, zwykle nazywanego **gx.a** (lub **gx.lib**), a pliki dołączane w języku C **gx_api.h** **i gx_port.h.** W tym celu należy wybrać odpowiednią ścieżkę dla narzędzi programistyki lub skopiować te pliki do obszaru tworzenia aplikacji.*
 
-## <a name="using-guix"></a>Korzystanie z GUIX
+## <a name="using-guix"></a>Korzystanie z graficznego interfejsu użytkownika
 
-Korzystanie z GUIX jest łatwe. Zasadniczo kod aplikacji musi zawierać ***gx_api. h** _ podczas kompilacji i link z biblioteką GUIX _*_GX. a_*_ (lub _ *_GX. lib_*) *.
+Korzystanie z graficznego interfejsu użytkownika jest łatwe. Zasadniczo kod aplikacji musi zawierać plik ***gx_api.h** _ podczas kompilacji i połączyć go z biblioteką GUIX _*_gx.a_*_ (lub _ *_gx.lib_*)*.
 
-Do kompilowania aplikacji GUIX są wymagane cztery proste kroki:
+Istnieją cztery proste kroki wymagane do skompilowania aplikacji GUIX:
 
 | Kroki   | Opis    |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Krok &nbsp; 1: | Uwzględnij plik ***gx_api. h*** we wszystkich plikach aplikacji, które korzystają z usług GUIX Services lub struktur danych.                                                               |
-| Krok &nbsp; 2: | Zainicjuj system GUIX przez wywołanie ***gx_system_initialize** _ z funkcji _ *_tx_application_define_** lub wątku aplikacji.                       |
-| Krok &nbsp; 3. | Utwórz wystąpienie ekranu, utwórz kanwę do wyświetlania i Utwórz okno główne oraz wszystkie inne wymagane okna lub elementy widget.                                 |
-| Krok &nbsp; 4. | Skompiluj Źródło aplikacji i połącz je z biblioteką uruchomieniową GUIX ***GX. a** _ (lub _ *_GX. lib_* *). Obraz wyników można pobrać do elementu docelowego i wykonać! |
+| Krok &nbsp; 1. | Dołącz plik ***gx_api.h*** do wszystkich plików aplikacji, które używają usług GUIX lub struktur danych.                                                               |
+| Krok &nbsp; 2. | Zaimicjuj system GUIX, wywołując funkcję ***gx_system_initialize** _ z funkcji _ *_tx_application_define_** lub wątku aplikacji.                       |
+| Krok &nbsp; 3. | Utwórz wystąpienie wyświetlania, utwórz kanwę do wyświetlania i utwórz okno główne oraz inne wymagane okna lub widżety.                                 |
+| Krok &nbsp; 4. | Kompilowanie źródła aplikacji i łączenie za pomocą biblioteki środowiska uruchomieniowego GUIX ***gx.a** _ (lub _*_gx.lib_**). Wynikowy obraz można pobrać do obiektu docelowego i wykonać! |
 
 ## <a name="troubleshooting"></a>Rozwiązywanie problemów
 
-Każdy port GUIX jest dostarczany z aplikacją demonstracyjną, która jest wykonywana na określonym sprzęcie ekranu. Ta sama Demonstracja podstawowa jest dostarczana ze wszystkimi wersjami programu GUIX. Zawsze dobrym pomysłem jest rozpoczęcie pierwszego uruchomienia systemu demonstracyjnego.
+Każdy port GUIX jest dostarczany z demonstracyjną aplikacją, która jest wykonywana na określonym sprzęcie wyświetlania. Ta sama podstawowa demonstracja jest dostarczana ze wszystkimi wersjami interfejsu GUIX. Zawsze dobrym pomysłem jest uruchomienie najpierw systemu pokazowego.
 
-Jeśli system demonstracyjny nie działa prawidłowo, wykonaj następujące operacje, aby zawęzić ten problem:
+Jeśli system pokazowy nie działa prawidłowo, wykonaj następujące operacje, aby zawęzić problem:
 
-1. Określ, jaka część demonstracji jest uruchomiona.
+1. Określ, jaka część pokazu jest uruchomiona.
 
-2. Zwiększenie rozmiaru stosu wątku GUIX przez zmianę stałej czasu kompilacji **GX_THREAD_STACK_SIZE** i ponowne skompilowanie biblioteki GUIX
+2. Zwiększ rozmiar stosu wątku GUIX, zmieniając stałą w czasie kompilacji **GX_THREAD_STACK_SIZE** i ponownie skompiluj bibliotekę GUIX
 
 3. Ponownie skompiluj bibliotekę GUIX z odpowiednimi opcjami debugowania wymienionymi w sekcji opcji konfiguracji.
 
-4. Sprawdzanie stanu powrotu ze wszystkich wywołań interfejsu API.
+4. Sprawdź stan zwracany ze wszystkich wywołań interfejsu API.
 
-5. Ustal, czy występuje wewnętrzny błąd systemu przez ustawienie punktu przerwania w funkcji ***_gx_system_error_process***. Kod błędu i obiekt wywołujący powinny dać wskazówki co do tego, co może być błędne.
+5. Ustal, czy wystąpił wewnętrzny błąd systemu, ustawiając punkt przerwania w funkcji ***_gx_system_error_process***. Kod błędu i wywołujący powinien dać wskazówki co do tego, co może dzieje się źle.
 
-6. Tymczasowo Pomiń wszystkie ostatnie zmiany, aby sprawdzić, czy problem znika lub nie ulegnie zmianie. Takie informacje powinny być przydatne dla inżynierów pomocy technicznej firmy Microsoft.
+6. Tymczasowo pomiń wszystkie ostatnie zmiany, aby sprawdzić, czy problem zniknie lub zmieni się. Takie informacje powinny okazać się przydatne dla inżynierów pomocy technicznej firmy Microsoft.
 
-Postępuj zgodnie z procedurami opisanymi w sekcji "czego potrzebujemy", aby wysłać informacje zebrane z kroków rozwiązywania problemów.
+Postępuj zgodnie z procedurami opisanymi w sekcji "Czego potrzebujemy od Ciebie", aby wysłać informacje zebrane z kroków rozwiązywania problemów.
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Podczas kompilowania biblioteki GUIX i aplikacji przy użyciu GUIX istnieje kilka opcji konfiguracji. Te opcje służą do dostrajania rozmiaru biblioteki i zestawu funkcji najlepiej dopasowanego do wymagań aplikacji. Na przykład, jeśli aplikacja będzie mieć tylko jeden wątek korzystający z usług interfejsu API GUIX, należy zdefiniować **GX_DISABLE_MULTITHREAD_SUPPORT** flagę konfiguracji, aby wyeliminować obciążenie związane z ochroną krytycznych sekcji kodu z wywłaszczania przez wiele wątków. Różne flagi konfiguracji można definiować w źródle aplikacji, w wierszu polecenia lub w pliku **_gx_user. h_** .
+Istnieje kilka opcji konfiguracji podczas budowania biblioteki GUIX i aplikacji przy użyciu interfejsu GUIX. Te opcje służą do dostrajania rozmiaru biblioteki i zestawu funkcji w celu najlepszego dopasowania do wymagań aplikacji. Jeśli na przykład aplikacja będzie mieć tylko jeden wątek korzystający z usług interfejsu API GUIX, należy zdefiniować flagę **konfiguracji GX_DISABLE_MULTITHREAD_SUPPORT** w celu wyeliminowania narzutu związanego z ochroną krytycznych sekcji kodu przed wstępnego opróżnienia przez wiele wątków. Różne flagi konfiguracji można zdefiniować w źródle aplikacji, w wierszu polecenia lub **_w pliku dołączania gx_user.h._**
 
-Za każdym razem, gdy flagi konfiguracji biblioteki GUIX są modyfikowane, należy ponownie skompilować bibliotekę GUIX i moduły aplikacji, aby zmiany konfiguracji zaczęły obowiązywać.
+Za każdym razem, gdy flagi konfiguracji biblioteki GUIX są modyfikowane, wymagane jest ponowne skompilowanie biblioteki GUIX i modułów aplikacji, aby zmiany konfiguracji zostały wprowadzone.
 
-Pełna lista flag konfiguracji została udokumentowana w dodatku H: GUIX Build-Time flagi konfiguracji.
+Pełna lista flag konfiguracji jest udokumentowana w dodatek H: GUIX Build-Time flagi konfiguracji.
 
 ## <a name="guix-version-id"></a>Identyfikator wersji GUIX
 
-Bieżąca wersja programu GUIX jest dostępna zarówno dla użytkownika, jak i oprogramowania aplikacji podczas wykonywania. Programista może uzyskać wersję GUIX z badania pliku ***gx_port. h** _. Ponadto ten plik zawiera również historię wersji odpowiedniego oprogramowania aplikacji portowej może uzyskać wersję GUIX, badając ciąg globalny _ _ *_gx_version_id_* _ w _ *_gx_port. h_* *.
+Bieżąca wersja graficznego interfejsu użytkownika (GUIX) jest dostępna zarówno dla użytkownika, jak i oprogramowania aplikacji w czasie wykonywania. Programista może uzyskać wersję GUIX z badania pliku ***gx_port.h_.** Ponadto ten plik zawiera również historię wersji odpowiedniego portu Oprogramowanie aplikacji może uzyskać wersję GUIX, sprawdzając ciąg globalny _ *_ _gx_version_id_* _ w _*_gx_port.h_**.
 
-Oprogramowanie aplikacji może również uzyskać informacje o wersji ze stałych przedstawionych poniżej zdefiniowanych w ***gx_api. h**. * te stałe określają bieżącą wersję produktu według nazwy i wersję główną i pomocniczą produktu.
+Oprogramowanie aplikacji może również uzyskać informacje o wersji ze stałych pokazanych poniżej zdefiniowanych w pliku ***gx_api.h**.* Te stałe identyfikują bieżące wydanie produktu według nazwy oraz wersji wersji głównych i pomocniczej produktu.
 
 ```C
 #define __PRODUCT_GUIX__

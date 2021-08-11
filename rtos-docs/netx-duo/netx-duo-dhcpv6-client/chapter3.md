@@ -1,86 +1,86 @@
 ---
-title: Rozdział 3 — opcje konfiguracji protokołu DHCPv6 w systemie Azure RTO NetX Duo
-description: Istnieje kilka opcji konfiguracji do kompilowania protokołu DHCPv6 platformy Azure RTO NetX Duo.
+title: Rozdział 3 — Azure RTOS konfiguracji NetX Duo DHCPv6
+description: Istnieje kilka opcji konfiguracji budowania Azure RTOS NetX Duo DHCPv6.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: e5396b1c04581b5f79d337462368c4718ba9bb16
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 129d1421215452448b1de4626fdeda530a5466bd63ed0c758676c3ad60f9d6fb
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821991"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116782425"
 ---
-# <a name="chapter-3---azure-rtos-netx-duo-dhcpv6-configuration-options"></a>Rozdział 3 — opcje konfiguracji protokołu DHCPv6 w systemie Azure RTO NetX Duo
+# <a name="chapter-3---azure-rtos-netx-duo-dhcpv6-configuration-options"></a>Rozdział 3 — Azure RTOS konfiguracji NetX Duo DHCPv6
 
-Istnieje kilka opcji konfiguracji do kompilowania protokołu DHCPv6 platformy Azure RTO NetX Duo. Poniższa lista zawiera szczegółowy opis:  
+Istnieje kilka opcji konfiguracji budowania Azure RTOS NetX Duo DHCPv6. Na poniższej liście szczegółowo opisano poszczególne z nich:  
   
   
-- **NX_DHCPV6_THREAD_PRIORITY** Priorytet wątku klienta. Domyślnie ta wartość określa, że wątek klienta działa o priorytecie 2.
+- **NX_DHCPV6_THREAD_PRIORITY** Priorytet wątku klienta. Domyślnie ta wartość określa, że wątek klienta jest uruchamiany z priorytetem 2.
 
-- **NX_DHCPV6_MUTEX_WAIT** Opcja przekroczenia limitu czasu w celu uzyskania blokady na wyłączność dla klienta DHCPv6. Wartość domyślna to TX_WAIT_FOREVER.
+- **NX_DHCPV6_MUTEX_WAIT** Opcja przechyłek czasu uzyskania blokady na wyłączność na mutex klienta DHCPv6. Wartość domyślna to TX_WAIT_FOREVER.
 
-- **NX_DHCPV6_TICKS_PER_SECOND** Stosunek taktów do sekund. Jest to zależne od procesora. Wartość domyślna to 100.
+- **NX_DHCPV6_TICKS_PER_SECOND** Stosunek takt do sekund. Jest to zależne od procesora. Wartość domyślna to 100.
 
-- **NX_DHCPV6_IP_LIFETIME_TIMER_INTERVAL**  Przedział czasu (w sekundach), w którym czasomierz okresu istnienia IP aktualizuje czas, przez jaki bieżący adres IP został przypisany do klienta. Domyślnie ta wartość jest równa 1.
+- **NX_DHCPV6_IP_LIFETIME_TIMER_INTERVAL**  Interwał czasu w sekundach, w którym czasomierz okresu istnienia adresu IP aktualizuje czas przypisania bieżącego adresu IP do klienta. Domyślnie ta wartość to 1.
 
-- **NX_DHCPV6_SESSION_TIMER_INTERVAL**  Przedział czasu (w sekundach), po upływie którego czasomierz sesji aktualizuje czas sesji komunikacji klienta z serwerem. Domyślnie ta wartość jest równa 1.
+- **NX_DHCPV6_SESSION_TIMER_INTERVAL**  Interwał czasu w sekundach, w którym czasomierz sesji aktualizuje czas, przez jaki klient komunikuje się z serwerem. Domyślnie ta wartość to 1.
 
-- **NX_DHCPV6_MAX_IA_ADDRESS** Maksymalna liczba adresów (IA), które można dodać do rekordu klienta. Wartość domyślna to 1. 
+- **NX_DHCPV6_MAX_IA_ADDRESS** Maksymalna liczba adresów IA, które można dodać do rekordu Klienta. Wartość domyślna to 1. 
 
-- **NX_DHCPV6_NUM_DNS_SERVERS** Liczba serwerów DNS, które mają być przechowywane w rekordzie klienta. Wartość domyślna to 2.
+- **NX_DHCPV6_NUM_DNS_SERVERS** Liczba serwerów DNS do przechowywania w rekordzie klienta. Wartość domyślna to 2.
 
-- **NX_DHCPV6_NUM_TIME_SERVERS** Liczba serwerów czasu do zapisania w rekordzie klienta. Wartość domyślna to 1.
+- **NX_DHCPV6_NUM_TIME_SERVERS** Liczba serwerów czasu, które mają być przechowywane w rekordzie klienta. Wartość domyślna to 1.
 
-- **NX_DHCPV6_DOMAIN_NAME_BUFFER_SIZE**  Rozmiar buforu w rekordzie klienta do przechowywania nazwy domeny sieciowej klienta. Wartość domyślna to 30.
+- **NX_DHCPV6_DOMAIN_NAME_BUFFER_SIZE**  Rozmiar buforu w rekordzie Klient do przechowywania nazwy domeny sieciowej klienta. Wartość domyślna to 30.
 
-- **NX_DHCPV6_TIME_ZONE_BUFFER_SIZE**  Rozmiar buforu w rekordzie klienta, aby pomieścić strefę czasową klienta. Wartość domyślna to 10.
+- **NX_DHCPV6_TIME_ZONE_BUFFER_SIZE**  Rozmiar buforu w rekordzie Klienta do przechowywania strefy czasowej klienta. Wartość domyślna to 10.
 
-- **NX_DHCPV6_MAX_MESSAGE_SIZE** Rozmiar buforu w rekordzie klienta do przechowywania opcji komunikatu o stanie w odpowiedzi serwera. Wartość domyślna to 100 bajtów.
+- **NX_DHCPV6_MAX_MESSAGE_SIZE** Rozmiar buforu w rekordzie klienta do przechowywania komunikatu o stanie opcji w odpowiedzi serwera. Wartość domyślna to 100 bajtów.
 
-- **NX_DHCPV6_PACKET_TIME_OUT** Limit czasu w sekundach na przydzielenie pakietu z puli pakietów klienta. Wartość domyślna to 3 sekundy.
+- **NX_DHCPV6_PACKET_TIME_OUT** W sekundach utracą czas przydzielania pakietu z puli pakietów klienta. Wartość domyślna to 3 sekundy.
 
-- **NX_DHCPV6_TYPE_OF_SERVICE** Definiuje typ usługi do transmisji pakietów UDP z gniazda klienta DHCPv6. Wartość domyślna to **NX_IP_NORMAL**.
+- **NX_DHCPV6_TYPE_OF_SERVICE** Definiuje typ usługi transmisji pakietów UDP z gniazda klienta DHCPv6. Wartość domyślna to **NX_IP_NORMAL**.
 
-- **NX_DHCPV6_TIME_TO_LIVE** Liczba przypadków, gdy pakiet klienta jest przesyłany przez router sieciowy przed odrzuconym pakietem. Wartość domyślna to 0x80.
+- **NX_DHCPV6_TIME_TO_LIVE** Ile razy pakiet klienta jest przesyłany dalej przez router sieciowy, zanim pakiet zostanie odrzucony. Wartość domyślna to 0x80.
 
-- **NX_DHCPV6_QUEUE_DEPTH** Określa liczbę pakietów, które mają być przechowywane w kolejce odbierania w gnieździe UDP klienta zanim NetX Duo odrzuca pakiety. Wartość domyślna to 5.
+- **NX_DHCPV6_QUEUE_DEPTH** Określa liczbę pakietów do utrzymania w kolejce odbierania gniazda UDP klienta, zanim netX Duo odrzuci pakiety. Wartość domyślna to 5.
 
-## <a name="dhcpv6-message-transmission"></a>Transmisja komunikatów protokołu DHCPv6
+## <a name="dhcpv6-message-transmission"></a>Transmisja komunikatów DHCPv6
 
-Istnieje zestaw opcji klienta protokołu DHCPv6 do ustawiania parametrów w transmisji komunikatów DHCPv6. Są to: 
+Istnieje zestaw opcji klienta DHCPv6 do ustawiania parametrów transmisji komunikatów DHCPv6. Są to: 
 
   - początkowy limit czasu
 
-  - Maksymalne opóźnienie w pierwszej transmisji
+  - maksymalne opóźnienie przy pierwszej transmisji
 
   - maksymalny limit czasu retransmisji 
 
-  - Maksymalna liczba ponownych transmisji 
+  - maksymalna liczba retransmisji 
 
-  - Maksymalny czas oczekiwania na odpowiedź serwera
+  - maksymalny czas oczekiwania na odpowiedź serwera
 
 Te parametry mają zastosowanie do każdego z komunikatów klienta DHCPv6:
 
-- NIECHCIAN
+- Uzyskania
 
-- ŻĄDAJĄC
+- Żądanie
 
-- JĄ
+- Odnowić
 
 - REBIND
 
-- Usuwanie
+- Wydania
 
-- ZAPROSZENIE
+- Spadek
 
-- SPRAWDZENIA
+- Potwierdzić
 
-- POINFORMOWAĆ
+- O wcześniejsze poinformowanie obiektu
 
-Poniżej znajduje się pełna lista tych konfigurowalnych opcji i ich domyślnych 
+Poniżej znajduje się pełna lista tych konfigurowalnych opcji i ich domyślnych ustawień 
 
 values:
 
@@ -130,7 +130,7 @@ NX_DHCPV6_MAX_INFORM_RETRANSMISSION_COUNT       0
 NX_DHCPV6_MAX_INFORM_RETRANSMISSION_DURATION    0
 ```
 
-Aby nie ograniczyć limitu czasu ponownej transmisji, należy ustawić liczbę ponownych transmisji komunikatów na 0. W przypadku braku limitu liczby ponownych prób wysłania komunikatu klienta protokołu DHCPv6 (ponawianie), ustaw liczbę retransmisji wiadomości na 0.
+Aby nie ograniczyć limitu czasu ponownej transmisji, ustaw liczbę retransmisji komunikatu na 0. Aby nie ograniczyć liczby ponownego przesłania komunikatu klienta DHCPv6 (ponownych prób), ustaw liczbę ponownych transmisji komunikatów na 0.
 
 > [!NOTE]
-> Bez względu na długość limitu czasu lub liczbę ponownych prób w przypadku wygaśnięcia prawidłowego okresu istnienia adresu IPv6 jest on usuwany z tabeli adresów IP i nie może być już używany przez klienta. Klient DHCPv6 NetX Duo rozpocznie automatyczne wysyłanie komunikatów żądania, które żądają nowego adresu IPv6.
+> Niezależnie od limitu czasu lub liczby ponownych prób, po wygaśnięciu prawidłowego okresu istnienia adresu IPv6 jest on usuwany z tabeli adresów IP i nie może być już używany przez klienta. Klient NetX Duo DHCPv6 automatycznie rozpocznie wysyłanie komunikatów SOLICIT żądających nowego adresu IPv6.

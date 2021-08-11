@@ -1,38 +1,38 @@
 ---
-title: Rozdział 6 — system demonstracyjny dla platformy Azure RTO ThreadX SMP
-description: Ten rozdział zawiera opis systemu demonstracyjnego, który jest dostarczany ze wszystkimi pakietami obsługi platformy SMP usługi Azure RTO ThreadX.
+title: Rozdział 6 — system demonstracyjny dla Azure RTOS ThreadX SMP
+description: Ten rozdział zawiera opis systemu demonstracyjnego dostarczanego ze wszystkimi pakietami obsługi procesora SMP Azure RTOS ThreadX.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: b94dad3c5ec94befd57200049138b184461a9b55
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 5da4c12cf3c035e59dcd1abef063d5ae40a657d6fd91bbd29f51cf7d46813154
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823898"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116784057"
 ---
-# <a name="chapter-6---demonstration-system-for-azure-rtos-threadx-smp"></a>Rozdział 6 — system demonstracyjny dla platformy Azure RTO ThreadX SMP
+# <a name="chapter-6---demonstration-system-for-azure-rtos-threadx-smp"></a>Rozdział 6 — system demonstracyjny dla Azure RTOS ThreadX SMP
 
-Ten rozdział zawiera opis systemu demonstracyjnego, który jest dostarczany ze wszystkimi pakietami obsługi platformy SMP usługi Azure RTO ThreadX. 
+Ten rozdział zawiera opis systemu demonstracyjnego dostarczanego ze wszystkimi pakietami obsługi procesora SMP Azure RTOS ThreadX. 
 
 ## <a name="overview"></a>Omówienie
 
-Każda dystrybucja produktów ThreadX SMP zawiera system demonstracyjny, który działa na wszystkich obsługiwanych mikroprocesorach.
+Każda dystrybucja produktu ThreadX SMP zawiera demonstracyjny system, który działa na wszystkich obsługiwanych mikroprocesorach.
 
-Ten przykładowy system jest zdefiniowany w pliku dystrybucji ***demo_threadx. c*** i został zaprojektowany, aby zilustrować, w jaki sposób ThreadX SMP jest używany w osadzonym środowisku wielowątkowej. Demonstracja składa się z inicjowania, ośmiu wątków, jednej puli bajtów, jednej puli blokowej, jednej kolejki, jednego semafora, jednego obiektu mutex i jednej grupy flag zdarzeń.
+Ten przykładowy system jest zdefiniowany w pliku dystrybucji ***demo_threadx.c*** i został zaprojektowany w celu zilustrowania, jak threadX SMP jest używany w osadzonym środowisku wielowątkowym. Pokaz obejmuje inicjowanie, osiem wątków, jedną pulę bajtów, jedną pulę bloków, jedną kolejkę, jeden semafor, jeden mutex i jedną grupę flag zdarzeń.
 
 > [!IMPORTANT]
-> Z wyjątkiem rozmiaru stosu wątku aplikacja demonstracyjna jest taka sama we wszystkich obsługiwanych procesorach ThreadX SMP.
+> Z wyjątkiem rozmiaru stosu wątku aplikacja demonstracyjna jest identyczna na wszystkich procesorach obsługiwanych przez threadX SMP.
 
-Pełna lista ***demo_threadx. c***, w tym numery wierszy, do których odwołuje się w pozostałej części tego rozdziału, jest wyświetlana na stronie 324 i poniżej.
+Pełna lista ***demo_threadx.c,*** w tym numery wiersza przywołyne w pozostałej części tego rozdziału, jest wyświetlana na stronie 324 i poniżej.
 
-## <a name="application-define"></a>Definiowanie aplikacji
+## <a name="application-define"></a>Application Define
 
-Funkcja ***tx_application_define*** jest wykonywana po zakończeniu inicjowania podstawowej ThreadX SMP. Jest on odpowiedzialny za skonfigurowanie wszystkich początkowych zasobów systemowych, w tym wątków, kolejek, semaforów, muteksów, flag zdarzeń i pul pamięci.
+Funkcja ***tx_application_define*** jest wykonywana po zakończeniu podstawowej inicjalizacji SMP ThreadX. Jest on odpowiedzialny za konfigurowanie wszystkich początkowych zasobów systemowych, w tym wątków, kolejek, semaforów, mutex, flag zdarzeń i pul pamięci.
 
-System demonstracyjny ***tx_application_define** _ (_line liczby 60-164 *) tworzy obiekty demonstracyjne w następującej kolejności:
+Obiekt demonstracyjny ***tx_application_define** _ (_line cyfry 60–164*) tworzy obiekty demonstracyjne w następującej kolejności:
 
 ```C
 byte_pool_0
@@ -50,54 +50,54 @@ event_flags_0
 mutex_0
 block_pool_0
 ```
-System demonstracyjny nie tworzy żadnych innych dodatkowych obiektów SMP ThreadX. Jednak rzeczywista aplikacja może tworzyć obiekty systemowe podczas wykonywania wewnątrz wątków.
+System demonstracyjny nie tworzy żadnych innych dodatkowych obiektów SMP ThreadX. Jednak rzeczywista aplikacja może tworzyć obiekty systemowe podczas wykonywania wewnątrz wykonywanych wątków.
 
-### <a name="initial-execution"></a>Początkowe wykonanie 
-Wszystkie wątki są tworzone z opcją **TX_AUTO_START** . Dzięki temu są one początkowo gotowe do wykonania. Po zakończeniu **_tx_application_define_** sterowanie jest przekazywane do harmonogramu wątków i z każdego wątku.
+### <a name="initial-execution"></a>Wykonanie początkowe 
+Wszystkie wątki są tworzone za pomocą **TX_AUTO_START** opcji. Dzięki temu są wstępnie gotowe do wykonania. Po **_tx_application_define_** kontroli jest przesyłana do harmonogramu wątków i z tego do każdego pojedynczego wątku.
 
-Kolejność wykonywania wątków zależy od ich priorytetu i kolejności, w której zostały utworzone. W systemie demonstracyjnym ***thread_0** _ jest wykonywane jako pierwsze, ponieważ ma najwyższy priorytet (_został utworzony z priorytetem 1 *). Po ***thread_0**_ zawiesza się, _*_thread_5_*_ jest wykonywane, a następnie wykonywanie _*_thread_3_*_, _*_thread_4_*_, _*_thread_6_*_, _*_thread_7_*_, _*_thread_1_*_ i finally _ *_thread_2_* *.
+Kolejność wykonywania wątków zależy od ich priorytetu i kolejności ich tworzenia. W systemie pokazowym polecenie ***thread_0** _ jest wykonywane jako pierwsze, ponieważ ma najwyższy priorytet (został utworzony _z priorytetem 1*). Po **wstrzymaniu**_ thread_0 jest wykonywane thread_5, _*_a_*_ następnie wykonywane są _*_thread_3,_*_ _*_thread_4,_*_ _*_thread_6,_*_ _*_thread_7,_*_ _*_thread_1_*_ i __*_ thread_2 **.
 
 > [!IMPORTANT]
-> Mimo że **thread_3** i **thread_4** mają ten sam priorytet (utworzone z priorytetem 8), **thread_3** wykonywane jako pierwsze. Dzieje się tak, ponieważ **thread_3** została utworzona i stała się gotowa przed **thread_4**. Wątki o równym priorytecie są wykonywane w sposób "FIFO".
+> Mimo że **thread_3** i **thread_4** mają ten sam priorytet (oba utworzone z priorytetem 8), thread_3 są wykonywane jako pierwsze.  Jest to spowodowane **tym, thread_3** została utworzona i stała się gotowa przed thread_4 **.** Wątki o równym priorytecie są wykonywane w sposób FIFO.
 
 ## <a name="thread-0"></a>Wątek 0
 
-Funkcja ***thread_0_entry** _ oznacza punkt wejścia wątku _(wiersze 167-190 *). ***Thread_0**_ jest pierwszym wątkiem w systemie demonstracyjnym do wykonania. Przetwarzanie jest proste: zwiększa jego licznik, uśpienie dla 10 cykli czasomierza, ustawia flagę zdarzenia w celu wznowienia _ *_thread_5_* *, a następnie powtarza sekwencję.
+Funkcja ***thread_0_entry** _ oznacza punkt wejścia wątku _(wiersze 167–190*). ***Thread_0 jest**_ pierwszym wątkiem w systemie pokazowym do wykonania. Jego przetwarzanie jest _proste:_ zwiększa swój licznik, uśpije 10 takt czasomierza, ustawia flagę zdarzenia w celu wznowienia _* thread_5 **, a następnie powtarza sekwencję.
 
-***Thread_0*** to wątek o najwyższym priorytecie w systemie. Gdy zażądana uśpienie wygaśnie, przejdzie wszystkie inne wykonywane wątki w demonstracji.
+***Thread_0*** jest wątkiem o najwyższym priorytecie w systemie. Gdy żądany tryb uśpienia wygaśnie, wywłaszczy dowolny inny wątek wykonujący w pokazie.
 
 ## <a name="thread-1"></a>Wątek 1
 
-Funkcja ***thread_1_entry** _ oznacza punkt wejścia wątku _(linie 193-216 *). ***Thread_1**_ to ostatni wątek w systemie demonstracyjnym do wykonania. Jego przetwarzanie polega na zwiększeniu jego licznika, wysłaniu komunikatu do _*_thread_2_*_ (_przez * ***queue_0**_) i powtórzeniu sekwencji. Należy zauważyć, że _*_thread_1_*_ zawiesza się, gdy _*_queue_0_*_ zostanie zapełniony (_line 207 *).
+Funkcja ***thread_1_entry** _ oznacza punkt wejścia wątku _(wiersze 193–216*). ***Thread_1 jest drugim**_ do ostatniego wątkiem w systemie pokazowym do wykonania. Jego przetwarzanie polega na zwiększaniu licznika, wysyłaniu komunikatu do thread_2 _*_(_*_ za pośrednictwem _* ***queue_0**_) i powtarzaniu sekwencji. Zwróć _*_uwagę, thread_1_*_ zawiesza się za _*_każdym queue_0_*_ zapełnieniu (_line 207*).
 
 ## <a name="thread-2"></a>Wątek 2
 
-Funkcja ***thread_2_entry** _ oznacza punkt wejścia wątku _(linie 219-243 *). ***Thread_2**_ to ostatni wątek w systemie demonstracyjnym do wykonania. Jego przetwarzanie polega na zwiększeniu licznika, otrzymaniu komunikatu z _*_thread_1_*_ (za pośrednictwem _*_queue_0_*_) i powtarzaniu sekwencji. Należy zauważyć, że _*_thread_2_*_ zawiesza się po każdym _*_queue_0_*_ jest puste (_line 233 *).
+Funkcja ***thread_2_entry** _ oznacza punkt wejścia wątku _(wiersze 219–243*). ***Thread_2 to**_ ostatni wątek w systemie pokazowym do wykonania. Jego przetwarzanie polega na zwiększaniu licznika, uzyskiwaniu komunikatu z thread_1 _*_(za_*_ pośrednictwem queue_0 _*_)_*_ i powtarzaniu sekwencji. Zwróć _*_uwagę, thread_2_*_ zawiesza się za _*_każdym queue_0_*_ pusty (_line 233*).
 
-Chociaż ***thread_1** _ i _*_thread_2_*_ mają najniższy priorytet w systemie demonstracyjnym (_priority 16 *), są to również jedyne wątki, które są gotowe do wykonania przez większość czasu. Są to również jedyne wątki utworzone przy użyciu dzielenia czasu (* wiersze 87 i 93 *). Dla każdego wątku można wykonać maksymalnie 4 Takty czasomierza przed wykonaniem innego wątku.
+Chociaż ***thread_1** _ _*_i thread_2_*_ mają najniższy priorytet w systemie pokazowym (_priority 16), są to również jedyne wątki, które są gotowe do wykonania przez większość *czasu. Są one również jedynymi wątkami* utworzonymi z zastosowaniem licowania w czasie (wiersze 87 i 93*). Każdy wątek może wykonywać maksymalnie 4 takty czasomierza przed wykonaniem drugiego wątku.
 
 ## <a name="threads-3-and-4"></a>Wątki 3 i 4
 
-Funkcja ***thread_3_and_4_entry** _ oznacza punkt wejścia obu _*_thread_3_*_ i _*_thread_4_*_ _(wiersze 246-280 *). Oba wątki mają priorytet 8, co sprawia, że te trzecie i czwarte wątki w systemie demonstracyjnym do wykonania. Przetwarzanie dla każdego wątku jest takie samo: zwiększanie jego licznika, pobieranie ***semaphore_0**_, uśpione przez 2 Takty czasomierza, zwalnianie _*_semaphore_0_*_ i Powtarzanie sekwencji. Należy zauważyć, że każdy wątek zawiesza się za każdym razem, gdy _*_semaphore_0_*_ jest niedostępny (_line 264 *).
+Funkcja ***thread_3_and_4_entry** _ oznacza punkt wejścia _**_ obu thread_3 i _*_thread_4_*_ _(wiersze 246–280*). Oba wątki mają priorytet 8, co sprawia, że są trzecim i czwartym wątkiem w systemie pokazowym do wykonania. Przetwarzanie dla każdego_ wątku jest takie samo: zwiększanie jego licznika, pobieranie * semaphore_0, uśpienie dla 2 takt czasomierza, zwalnianie semaphore_0 _*_i_*_ powtarzanie sekwencji. Zwróć uwagę, że każdy wątek jest wstrzymywany _*_za semaphore_0_*_ jest niedostępny (_line 264*).
 
-Ponadto oba wątki używają tej samej funkcji do ich głównego przetwarzania. Nie ma to żadnych problemów, ponieważ oba mają własny unikatowy stos, a C jest naturalnie. Każdy wątek określa, który z nich sprawdza parametr wejściowy wątku (*wiersz 258*), który jest instalatorem podczas ich tworzenia (*wiersze 102 i 109*).
+Oba wątki używają również tej samej funkcji do głównego przetwarzania. Nie stanowi to żadnych problemów, ponieważ oba mają własny unikatowy stos, a język C jest naturalnie ponownie entrant. Każdy wątek określa, który z nich jest, sprawdzając parametr wejściowy wątku (wiersz *258),* który jest konfigurowany podczas ich tworzenia (wiersze *102 i 109).*
 
 > [!IMPORTANT]
-> Należy również uzyskać bieżący punkt wątku podczas wykonywania wątku i porównać go z adresem bloku sterowania, aby określić tożsamość wątku.
+> Rozsądne jest również uzyskanie bieżącego punktu wątków podczas wykonywania wątku i porównanie go z adresem bloku sterowania w celu określenia tożsamości wątku.
 
 ## <a name="thread-5"></a>Wątek 5
 
-Funkcja ***thread_5_entry** _ oznacza punkt wejścia wątku _(linie 283-305 *). ***Thread_5**_ to drugi wątek w systemie demonstracyjnym do wykonania. Jego przetwarzanie polega na zwiększeniu jego licznika, otrzymaniu flagi zdarzenia z _*_thread_0_*_ (za pośrednictwem _*_event_flags_0_*_) i powtórzeniu sekwencji. Należy zauważyć, że _*_thread_5_*_ zawiesza się za każdym razem, gdy flaga zdarzenia w _*_event_flags_0_*_ jest niedostępna (_line 298 *).
+Funkcja ***thread_5_entry** _ oznacza punkt wejścia wątku _(wiersze 283–305*). ***Thread_5 jest drugim**_ wątkiem w systemie pokazowym do wykonania. Jego przetwarzanie polega na zwiększaniu licznika, uzyskiwaniu flagi zdarzenia _*_z_*_ thread_0 (za pośrednictwem event_flags_0 _*_)_*_ i powtarzaniu sekwencji. Zwróć _*_uwagę, thread_5_*_ wstrzymuje się, gdy flaga zdarzenia w event_flags_0 _*_jest_*_ dostępna (_line 298*).
 
 ## <a name="threads-6-and-7"></a>Wątki 6 i 7
 
-Funkcja ***thread_6_and_7_entry** _ oznacza punkt wejścia obu _*_thread_6_*_ i _*_thread_7_*_ _(wiersze 307-358 *). Oba wątki mają priorytet 8, co sprawia, że w systemie demonstracyjnym są wykonywane piąte i szóste wątki. Przetwarzanie dla każdego wątku jest takie samo: zwiększanie jego licznika, pobieranie ***mutex_0**_ dwa razy, uśpione przez 2 Takty czasomierza, zwalniać _*_mutex_0_*_ dwa razy i powtarzać sekwencję. Należy zauważyć, że każdy wątek zawiesza się za każdym razem, gdy _*_mutex_0_*_ jest niedostępny (_line 325 *).
+Funkcja ***thread_6_and_7_entry** _ oznacza punkt wejścia obu _*_thread_6_*_ i _*_thread_7_*_ _(wiersze 307-358*). Oba wątki mają priorytet 8, co sprawia, że są piątym i szóstym wątkiem w systemie pokazowym do wykonania._ Przetwarzanie dla każdego wątku jest takie samo: zwiększanie jego licznika, pobieranie * mutex_0 dwa razy, uśpienie dla 2 takt czasomierza, mutex_0 dwa razy i powtarzanie sekwencji. _**_ Zwróć uwagę, że każdy wątek zawiesza się, _*_mutex_0_*_ jest niedostępny (_line 325*).
 
-Ponadto oba wątki używają tej samej funkcji do ich głównego przetwarzania. Nie ma to żadnych problemów, ponieważ oba mają własny unikatowy stos, a C jest naturalnie. Każdy wątek określa, który z nich sprawdza parametr wejściowy wątku (*wiersz 319*), który jest instalatorem podczas ich tworzenia (*wiersze 126 i 133*).
+Oba wątki używają również tej samej funkcji do głównego przetwarzania. Nie stanowi to żadnych problemów, ponieważ oba mają własny unikatowy stos, a język C jest naturalnie ponownie entrant. Każdy wątek określa, który z nich jest, sprawdzając parametr wejściowy wątku (wiersz *319),* który jest konfigurowany podczas ich tworzenia (wiersze *126 i 133).*
 
-## <a name="observing-the-demonstration"></a>Obserwowanie demonstracji
+## <a name="observing-the-demonstration"></a>Obserwowanie pokazu
 
-Każdy z wątków demonstracyjnych zwiększa swój własny unikatowy licznik. Następujące liczniki mogą zostać zbadane w celu sprawdzenia działania demonstracyjnego:
+Każdy z wątków demonstracyjnych zwiększa swój własny unikatowy licznik. Aby sprawdzić działanie pokazu, można zbadać następujące liczniki:
 
 ```C
 thread_0_counter
@@ -110,11 +110,11 @@ thread_6_counter
 thread_7_counter
 ```
 
-Każdy z tych liczników powinien nadal wzrosnąć w miarę wykonywania demonstracji, przy czym wartości ***thread_1_counter** _ i _ *_thread_2_counter_** zwiększają się z największą częstotliwością.
+Każdy z tych liczników powinien nadal rosnąć w czasie wykonywania pokazu, a ***thread_1_counter** _ i _ *_thread_2_counter_** rośnie z najszybszym szybkością.
 
-## <a name="distribution-file-demo_threadxc"></a>Plik dystrybucji: demo_threadx. c
+## <a name="distribution-file-demo_threadxc"></a>Plik dystrybucji: demo_threadx.c
 
-W tej sekcji jest wyświetlana kompletna lista ***demo_threadx. c***, w tym numery wierszy, do których odwołuje się w tym rozdziale.
+W tej sekcji jest wyświetlana pełna ***lista demo_threadx.c,*** w tym numery wiersza przywołyne w tym rozdziale.
 
 ```C
 000 /* This is a small demo of the high-performance ThreadX SMP kernel. It includes examples of eight

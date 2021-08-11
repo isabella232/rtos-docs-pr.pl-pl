@@ -1,140 +1,140 @@
 ---
-title: Rozdział 3 — Opis funkcjonalny klienta LWM2M
-description: Ten rozdział zawiera opis funkcjonalny klienta programu LWM2M.
+title: Rozdział 3 — Opis funkcjonalny klienta ZM2M
+description: Ten rozdział zawiera funkcjonalny opis klienta KOMPUTERA 2M.
 author: v-condav
 ms.author: v-condav
 ms.date: 01/22/2021
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 24b7ff66fb4d060075eb6bc81bed45b3479e18dc
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: be6d9d854ce89140ce749fbeb0364678077337bf19ddc1055d286d0f624e8bd5
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821841"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116783462"
 ---
-# <a name="chapter-3--functional-description-of-lwm2m-client"></a>Rozdział 3 funkcjonalny opis klienta LWM2M
+# <a name="chapter-3--functional-description-of-lwm2m-client"></a>Rozdział 3 Opis funkcjonalny klienta KOMPUTERAM2M
 
-> Ten rozdział zawiera opis funkcjonalny klienta programu LWM2M.
+> Ten rozdział zawiera funkcjonalny opis klienta KOMPUTERA 2M.
 
-## <a name="lwm2m-client-initialization"></a>LWM2M inicjowanie klienta
+## <a name="lwm2m-client-initialization"></a>Inicjowanie klienta PRZEZ 2018 r.
 
-Klient LWM2M jest inicjowany przez wywołanie usługi ***nx_lwm2m_client_create*** . Klient LWM2M działa we własnym wątku i może zgłosić pewne zdarzenia do aplikacji za pomocą wywołań zwrotnych lub przez wywołanie metod niestandardowych obiektów wdrożonych przez aplikację.
+Klient SIECI 2M jest inicjowany przez wywołanie ***nx_lwm2m_client_create*** service. KlientOWIEM2M działa we własnym wątku i może zgłaszać niektóre zdarzenia do aplikacji za pomocą wywołań zwrotnych lub wywołując metody obiektów niestandardowych implementowane przez aplikację.
 
-Ponadto należy utworzyć sesje klienta LWM2M przez wywołanie ***nx_lwm2m_client_session_create*** w celu włączenia komunikacji z co najmniej jednym serwerem. Sesja może komunikować się z dwoma różnymi typami serwerów: serwerem Bootstrap lub serwerem LWM2M (Zarządzanie urządzeniami).
+Ponadto należy utworzyć sesje klienta ZAM2M przez wywołanie nx_lwm2m_client_session_create w celu umożliwienia komunikacji z jednym lub większą ich liczby serwerami.  Sesja może komunikować się z dwoma różnymi typami serwerów: serwerem Bootstrap lub serwerem DHCPM2M (Zarządzanie urządzeniami).
 
-### <a name="bootstrap-server-session"></a>Sesja serwera Bootstrap
+### <a name="bootstrap-server-session"></a>Sesja serwera bootstrap
 
-Sesja komunikacji z serwerem Bootstrap służy do aprowizacji najważniejszych informacji w kliencie LWM2M, aby umożliwić klientowi LWM2M wykonywanie operacji "Register" z co najmniej jednym serwerem LWM2M. Ten typ serwera jest używany podczas inicjowania klienta i inicjowanego przez serwer trybów ładowania początkowego.
+Sesja komunikacji z serwerem Bootstrap służy do aprowizowania podstawowych informacji w kliencie ZIEM2M w celu umożliwienia klientowi THEM2M wykonania operacji "Zarejestruj" na co najmniej jednym serwerze THEM2M. Ten typ serwera jest używany w trybach bootstrap inicjowanych przez klienta i inicjowanych przez serwer.
 
-Aplikacja może uruchomić sesję ładowania początkowego przez wywołanie ***nx_lwm2m_client_session_bootstrap** _ lub _*_nx_lwm2m_client_session_bootstrap_dtls_*_, musi podać adres IP i numer portu serwera oraz opcjonalny identyfikator wystąpienia obiektu zabezpieczeń. Funkcja _*_nx_lwm2m_client_session_bootstrap_*_ używa niezabezpieczonej komunikacji, natomiast _ *_nx_lwm2m_client_session_bootstrap_dtls_** nawiązuje bezpieczne połączenie DTLS z serwerem.
+Aplikacja może uruchomić sesję bootstrap, wywołując element ***nx_lwm2m_client_session_bootstrap** _ lub _*_nx_lwm2m_client_session_bootstrap_dtls_*_, musi podać adres IP i numer portu serwera oraz opcjonalny identyfikator wystąpienia obiektu zabezpieczeń. Funkcja _*_nx_lwm2m_client_session_bootstrap_*_ używa bezpiecznej komunikacji, natomiast funkcja *__nx_lwm2m_client_session_bootstrap_dtls_** ustanawia bezpieczne połączenie DTLS z serwerem.
 
-Jeśli operacja ładowania początkowego zakończyła się powodzeniem, serwer Bootstrap powinien mieć utworzone wystąpienia obiektów zabezpieczeń dla serwerów Bootstrap i LWM2M oraz wystąpienia obiektów serwera dla serwerów LWM2M. Aplikacja może wywoływać ***nx_lwm2m_client_session_register_info_get*** , aby uzyskać informacje o serwerach lwm2m i użyć tych informacji do ustanowienia sesji z serwerem lwm2m.
+Jeśli operacja bootstrap powiedzie się, serwer bootstrap powinien utworzyć wystąpienia obiektów zabezpieczeń dla serwerów Bootstrap i ICHM2M oraz wystąpienia obiektów serwera dla serwerów THEM2M. Aplikacja może ***wywołać*** nx_lwm2m_client_session_register_info_get w celu uzyskania informacji o serwerach z programem THEM2M i użyć tych informacji do ustanowienia sesji z serwerami THEM2M.
 
-Dane ładowania początkowego powinny zostać zapisane w pamięci nieulotnej przez aplikację w celu skonfigurowania klienta LWM2M przy następnym ponownym uruchomieniu urządzenia.
+Dane ładowania początkowego powinny zostać zapisane w pamięci trwałej przez aplikację w celu skonfigurowania klienta z systemem REBOOTM2M przy następnym ponownym uruchomieniu urządzenia.
 
-### <a name="lwm2m-server-session"></a>Sesja serwera LWM2M
+### <a name="lwm2m-server-session"></a>SESJAM2M Server Session
 
-Sesja komunikacji z serwerem LWM2M jest używana do rejestracji, zarządzania urządzeniami i włączania usług.
+Sesja komunikacji z serwerem SYSTEMM2M służy do rejestracji, Zarządzanie urządzeniami i włączania usługi.
 
-Aplikacja może zarejestrować klienta LWM2M na serwerze, wywołując ***nx_lwm2m_client_session_register** _ lub _*_nx_lwm2m_client_session_register_dtls_*_, musi podać adres IP i numer portu serwera oraz krótki identyfikator serwera, który odpowiada istniejącemu wystąpieniu obiektu serwera. Funkcja _*_nx_lwm2m_client_session_register_*_ używa niezabezpieczonej komunikacji, natomiast _ *_nx_lwm2m_client_session_register_dtls_** nawiązuje bezpieczne połączenie DTLS z serwerem.
+Aplikacja może zarejestrować klienta SIECI 2M na serwerze, wywołując adres ***nx_lwm2m_client_session_register** _ lub nx_lwm2m_client_session_register_dtls , _*_musi_*_ podać adres IP i numer portu serwera oraz krótki identyfikator serwera, który odpowiada istniejącemu wystąpieniu obiektu serwera. Funkcja _*_nx_lwm2m_client_session_register_*_ używa bezpiecznej komunikacji, natomiast funkcja _ *_nx_lwm2m_client_session_register_dtls_** ustanawia bezpieczne połączenie DTLS z serwerem.
 
-Aplikacja może wyrejestrować klienta LWM2M przez wywołanie ***nx_lwm2m_client_session_deregister** _ i poproszenie klienta o wysłanie komunikatu "Update" przez wywołanie _ *_nx_lwm2m_client_session_update_* *.
+Aplikacja może wyrejestrować klienta ZM2M, wywołując element ***nx_lwm2m_client_session_deregister** _, i poprosić klienta o wysłanie komunikatu "Update", wywołując element _*_nx_lwm2m_client_session_update_**.
 
 ### <a name="session-state-callback"></a>Wywołanie zwrotne stanu sesji
 
-Aplikacja rejestruje wywołanie zwrotne podczas tworzenia sesji, która jest wywoływana w momencie aktualizacji stanu sesji, funkcja wywołania zwrotnego **NX_LWM2M_CLIENT_SESSION_STATE_CALLBACK** ma następujący prototyp.
+Aplikacja rejestruje wywołanie zwrotne podczas tworzenia sesji, która jest wywoływana po zaktualizowaniu stanu sesji, a funkcja wywołania zwrotnego **NX_LWM2M_CLIENT_SESSION_STATE_CALLBACK** ma następujący prototyp.
 
-typedef VOID ( \* NX_LWM2M_CLIENT_SESSION_STATE_CALLBACK) (NX_LWM2M_CLIENT_SESSION \* SESSION_PTR, uint State);
+typedef VOID ( \* NX_LWM2M_CLIENT_SESSION_STATE_CALLBACK)(NX_LWM2M_CLIENT_SESSION \* session_ptr,stan UINT);
 
-Zdefiniowane są następujące Stany.
+Zdefiniowane są następujące stany.
 
-| &nbsp;Stan sesji | Opis |
+| Stan &nbsp; sesji | Opis |
 | --- | --- |
-| **NX_LWM2M_CLIENT_SESSION_INIT** | Stan początkowy po utworzeniu sesji. |
-| **NX_LWM2M_CLIENT_SESSION_BOOTSTRAP_WAITING** | Klient czeka na wygaśnięcie czasomierza "wstrzymanie" lub zainicjowanie serwera Bootstrap. |
-| **NX_LWM2M_CLIENT_SESSION_BOOTSTRAP_REQUESTING** | Klient wysłał komunikat "żądanie" do serwera Bootstrap (zainicjowany przez klienta). |
-| **NX_LWM2M_CLIENT_SESSION_BOOTSTRAP_INITIATED** | Klient otrzymuje dane z serwera Bootstrap. |
-| **NX_LWM2M_CLIENT_SESSION_BOOTSTRAP_FINISHED** | Serwer ładowania początkowego wysłał komunikat "gotowe". |
-| **NX_LWM2M_CLIENT_SESSION_BOOTSTRAP_ERROR** | Sesja ładowania początkowego zakończyła się niepowodzeniem. |
-| **NX_LWM2M_CLIENT_SESSION_REGISTERING** | Klient wysłał komunikat "Register" do serwera LWM2M. |
-| **NX_LWM2M_CLIENT_SESSION_REGISTERED** | Klient jest zarejestrowany na serwerze LWM2M. |
-| **NX_LWM2M_CLIENT_SESSION_UPDATING** | Klient wysłał komunikat "Update" do serwera LWM2M. |
-| **NX_LWM2M_CLIENT_SESSION_DEREGISTERING** | Klient wysłał komunikat "de-Register" do serwera LWM2M. |
-| **NX_LWM2M_CLIENT_SESSION_DEREGISTERED** | Klient zostanie wyrejestrowany z serwera LWM2M. |
-| **NX_LWM2M_CLIENT_SESSION_DISABLED** | Serwer LWM2M jest wyłączony. Po wygaśnięciu czasomierza Wyłącz zostanie wysłany komunikat "Register". |
-| **NX_LWM2M_CLIENT_SESSION_ERROR** | Operacja rejestracji lub aktualizacji na serwerze LWM2M nie powiodła się. |
-| **NX_LWM2M_CLIENT_SESSION_DELETED** | Wystąpienie obiektu serwera odpowiadające serwerowi LWM2M zostało usunięte. |
+| **NX_LWM2M_CLIENT_SESSION_INIT** | Początkowy stan po utworzeniu sesji. |
+| **NX_LWM2M_CLIENT_SESSION_BOOTSTRAP_WAITING** | Klient oczekuje na wygaśnięcie czasomierza "Hold Off" lub zainicjowanego przez serwer ładowania początkowego. |
+| **NX_LWM2M_CLIENT_SESSION_BOOTSTRAP_REQUESTING** | Klient wysłał komunikat "Request" do serwera Bootstrap (proces bootstrap zainicjowany przez klienta). |
+| **NX_LWM2M_CLIENT_SESSION_BOOTSTRAP_INITIATED** | Klient odbiera dane z serwera Bootstrap. |
+| **NX_LWM2M_CLIENT_SESSION_BOOTSTRAP_FINISHED** | Serwer bootstrap wysłał komunikat "Finished" (Zakończono). |
+| **NX_LWM2M_CLIENT_SESSION_BOOTSTRAP_ERROR** | Sesja ładowania początkowego nie powiodła się. |
+| **NX_LWM2M_CLIENT_SESSION_REGISTERING** | Klient wysłał komunikat "Zarejestruj" do serwera THEM2M. |
+| **NX_LWM2M_CLIENT_SESSION_REGISTERED** | Klient jest zarejestrowany na serwerze THEM2M. |
+| **NX_LWM2M_CLIENT_SESSION_UPDATING** | Klient wysłał komunikat "Update" do serwera THEM2M. |
+| **NX_LWM2M_CLIENT_SESSION_DEREGISTERING** | Klient wysłał komunikat "De-register" do serwera THEM2M. |
+| **NX_LWM2M_CLIENT_SESSION_DEREGISTERED** | Klient jest rejestrowany z serwera THEM2M. |
+| **NX_LWM2M_CLIENT_SESSION_DISABLED** | Serwer THEM2M jest wyłączony. Po upływie czasu wyłączenia czasomierza zostanie wysłany znak "Zarejestruj". |
+| **NX_LWM2M_CLIENT_SESSION_ERROR** | Operacja rejestracji lub aktualizacji na serwerze THEM2M nie powiodła się. |
+| **NX_LWM2M_CLIENT_SESSION_DELETED** | Usunięto wystąpienie obiektu serwera odpowiadające serwerowi THEM2M. |
 
-W przypadku błędu aplikacja może pobrać przyczynę błędu przez wywołanie ***nx_lwm2m_client_session_error_get***.
+W przypadku wystąpienia błędu aplikacja może pobrać przyczynę błędu, wywołując ***nx_lwm2m_client_session_error_get***.
 
-## <a name="local-device-management"></a>Zarządzanie urządzeniami lokalnymi
+## <a name="local-device-management"></a>Lokalne Zarządzanie urządzeniami
 
-Aplikacja może uzyskiwać dostęp do obiektów klienta LWM2M za pomocą funkcji zarządzania urządzeniami lokalnymi. Dostępne są następujące funkcje.
+Aplikacja może uzyskać dostęp do obiektów klienta URZĄDZENIAM2M za pomocą funkcji zarządzania urządzeniami lokalnymi. Dostępne są następujące funkcje.
 
-| &nbsp;Nazwa funkcji | Opis |
+| Nazwa &nbsp; funkcji | Opis |
 | --- | --- |
-| ***nx_lwm2m_client_object_read*** | Odczytaj zasoby z wystąpienia obiektu. |
+| ***nx_lwm2m_client_object_read*** | Odczytywanie zasobów z wystąpienia obiektu. |
 | ***nx_lwm2m_client_object_discover*** | Pobierz listę zasobów wystąpienia obiektu.
-| ***nx_lwm2m_client_object_write*** | Zapisz zasoby do wystąpienia obiektu. |
-| ***nx_lwm2m_client_object_execute*** | Wykonaj operację wykonywania na zasobie wystąpienia obiektu. |
+| ***nx_lwm2m_client_object_write*** | Zapisz zasoby w wystąpieniu obiektu. |
+| ***nx_lwm2m_client_object_execute*** | Wykonaj operację Execute na zasobie wystąpienia obiektu. |
 | ***nx_lwm2m_client_object_create*** | Utwórz nowe wystąpienie obiektu. |
 | ***nx_lwm2m_client_object_delete*** | Usuń istniejące wystąpienie obiektu. |
-| ***nx_lwm2m_client_object_next_get*** | Pobierz następny identyfikator obiektu przez klienta LWM2M. |
+| ***nx_lwm2m_client_object_next_get*** | Pobierz następny identyfikator obiektu przez klienta ZMIM2M. |
 | ***nx_lwm2m_client_object_instance_next_get*** | Pobierz następne wystąpienie obiektu. |
 
-## <a name="resource-information"></a>Informacje o zasobach
+## <a name="resource-information"></a>Informacje o zasobie
 
-Podczas odczytywania i zapisywania do obiektów zasób jest reprezentowany przez strukturę NX_LWM2M_CLIENT_RESOURCE. Ta struktura zawiera identyfikator zasobu/wystąpienia i jego wartość.
+Podczas odczytywania i zapisywania w obiektach zasób jest reprezentowany przez NX_LWM2M_CLIENT_RESOURCE struktury. Ta struktura zawiera identyfikator zasobu/wystąpienia i jego wartość.
 
-Następujące funkcje są dostępne do ustawiania informacji o zasobach i wartości.
+Następujące funkcje są dostępne do ustawiania informacji o zasobie i wartości.
 
-| &nbsp;Nazwa funkcji | Opis |
+| Nazwa &nbsp; funkcji | Opis |
 | --- | --- |
-| ***nx_lwm2m_client_resource_info_set*** | Ustawianie informacji o zasobie: Identyfikator zasobu i operacja: Odczyt, zapis, plik WYKONYWALNy. |
+| ***nx_lwm2m_client_resource_info_set*** | Ustaw informacje o zasobie: identyfikator zasobu i operację: ODCZYT, ZAPIS, PLIK WYKONYWALNY. |
 | ***nx_lwm2m_client_resource_string_set*** | Ustaw wartość zasobu jako ciąg. |
-| ***nx_lwm2m_client_resource_integer32_set*** | Ustaw wartość zasobu jako 32-bitową liczbę całkowitą. |
-| ***nx_lwm2m_client_resource_integer64_set*** | Ustaw wartość zasobu jako 64-bitową liczbę całkowitą. |
-| ***nx_lwm2m_client_resource_float32_set*** | Ustaw wartość zasobu jako 32-bitową zmiennoprzecinkową. |
-| ***nx_lwm2m_client_resource_float64_set*** | Ustaw wartość zasobu jako 64-bitową zmiennoprzecinkową. |
-| ***nx_lwm2m_client_resource_boolean_set*** | Ustaw wartość zasobu jako logiczną. |
-| ***nx_lwm2m_client_resource_objlnk_set*** | Ustaw wartość zasobu jako link do obiektu. |
+| ***nx_lwm2m_client_resource_integer32_set*** | Ustaw wartość zasobu na 32-bitową liczbę całkowitą. |
+| ***nx_lwm2m_client_resource_integer64_set*** | Ustaw wartość zasobu na 64-bitową liczbę całkowitą. |
+| ***nx_lwm2m_client_resource_float32_set*** | Ustaw wartość zasobu na 32-bitową wartość zmiennoprzecinkową. |
+| ***nx_lwm2m_client_resource_float64_set*** | Ustaw wartość zasobu na 64-bitową wartość zmiennoprzecinkową. |
+| ***nx_lwm2m_client_resource_boolean_set*** | Ustaw wartość zasobu na wartość logiczną. |
+| ***nx_lwm2m_client_resource_objlnk_set*** | Ustaw wartość zasobu jako link obiektu. |
 | ***nx_lwm2m_client_resource_opaque_set*** | Ustaw wartość zasobu jako nieprzezroczystą. |
 | ***nx_lwm2m_client_resource_instance_set*** | Ustaw wartość zasobu jako wystąpienie dla wielu zasobów. |
-| ***nx_lwm2m_client_resource_dim_set*** | Ustaw wymiar zasobu dla wielu zasobów na potrzeby odnajdywania. |
+| ***nx_lwm2m_client_resource_dim_set*** | Ustaw wymiar zasobu dla wielu zasobów do odnajdywania. |
 
-Do pobierania informacji o zasobach i wartości są dostępne następujące funkcje.
+Następujące funkcje są dostępne do uzyskiwania informacji o zasobie i ich wartości.
 
-| &nbsp;Nazwa funkcji | Opis |
+| Nazwa &nbsp; funkcji | Opis |
 | --- | --- |
-| ***nx_lwm2m_client_resource_info_get*** | Pobierz informacje o zasobie: Identyfikator zasobu i operacja: Odczyt, zapis, plik WYKONYWALNy. |
+| ***nx_lwm2m_client_resource_info_get*** | Uzyskaj informacje o zasobie: identyfikator zasobu i operację: ODCZYT, ZAPIS, PLIK WYKONYWALNY. |
 | ***nx_lwm2m_client_resource_string_get*** | Pobierz wartość zasobu ciągu. |
-| ***nx_lwm2m_client_resource_integer32_get*** | Pobierz wartość 32-bitowego zasobu liczby całkowitej. |
-| ***nx_lwm2m_client_resource_integer64_get*** | Pobierz wartość dla zasobu liczby całkowitej B4-bitowej. |
-| ***nx_lwm2m_client_resource_float32_get*** | Pobierz wartość 32-bitowego zasobu zmiennoprzecinkowego. |
-| ***nx_lwm2m_client_resource_float64_get*** | Pobierz wartość 64-bitowego zasobu zmiennoprzecinkowego. |
-| ***nx_lwm2m_client_resource_boolean_get*** | Pobierz wartość zasobu logicznego. |
-| ***nx_lwm2m_client_resource_objlnk_get*** | Pobierz wartość zasobu linku do obiektu. |
+| ***nx_lwm2m_client_resource_integer32_get*** | Pobierz wartość zasobu 32-bitowej liczby całkowitej. |
+| ***nx_lwm2m_client_resource_integer64_get*** | Pobierz wartość zasobu liczby całkowitej b4-bitowej. |
+| ***nx_lwm2m_client_resource_float32_get*** | Pobierz wartość 32-bitowego zasobu zmiennoprzecinkowa. |
+| ***nx_lwm2m_client_resource_float64_get*** | Pobierz wartość 64-bitowego zasobu zmiennoprzecinkowa. |
+| ***nx_lwm2m_client_resource_boolean_get*** | Pobierz wartość zasobu logicznych. |
+| ***nx_lwm2m_client_resource_objlnk_get*** | Pobierz wartość zasobu linku obiektu. |
 | ***nx_lwm2m_client_resource_opaque_get*** | Pobierz wartość nieprzezroczystego zasobu. |
 | ***nx_lwm2m_client_resource_instance_get*** | Pobierz wystąpienie zasobu dla wielu zasobów. |
 | ***nx_lwm2m_client_resource_dim_get*** | Pobierz wymiar zasobu dla wielu zasobów. |
 
 ## <a name="object-implementation"></a>Implementacja obiektu
 
-Klient LWM2M implementuje wymagane obiekty LWM2M OMA: Security (0), Server (1), Access Control (2) i Device (3). Inne obiekty specyficzne dla urządzenia muszą być implementowane przez aplikację.
+Klient SYSTEMM2M implementuje obowiązkowe obiekty OMA POM2M: zabezpieczenia (0), serwer (1), Access Control (2) i urządzenie (3). Inne obiekty specyficzne dla urządzenia muszą być implementowane przez aplikację.
 
-Do zdefiniowania obiektu służą dwie struktury danych: Struktura NX_LWM2M_CLIENT_OBJECT definiuje implementację obiektu, łącznie z IDENTYFIKATORem obiektu i metodami obiektu, a struktura NX_LWM2M_CLIENT_OBJECT_INSTANCE zawiera dane wystąpienia obiektu.
+Do definiowania obiektu są używane dwie struktury danych: struktura NX_LWM2M_CLIENT_OBJECT definiuje implementację obiektu, w tym identyfikator obiektu i metody obiektów, NX_LWM2M_CLIENT_OBJECT_INSTANCE struktura zawiera dane wystąpienia obiektu.
 
 Dostępne są następujące funkcje.
 
-| &nbsp;Nazwa funkcji | Opis |
+| Nazwa &nbsp; funkcji | Opis |
 | --- | --- |
-| ***nx_lwm2m_client_object_add*** | Dodaj implementację obiektu do klienta LwM2M. |
-| ***nx_lwm2m_client_object_remove*** | Usuń implementację obiektu z klienta LwM2M. |
-| ***nx_lwm2m_client_object_instance_add*** | Dodaj wystąpienie obiektu do obiektu. |
-| ***nx_lwm2m_client_object_instance_remove*** | Usuń wystąpienie obiektu z obiektu. |
+| ***nx_lwm2m_client_object_add*** | Dodaj implementację obiektu do klienta Systemu Plików 2M. |
+| ***nx_lwm2m_client_object_remove*** | Usuń implementację obiektu z klienta ProjektuM2M. |
+| ***nx_lwm2m_client_object_instance_add*** | Dodaj wystąpienie obiektu do obiektu . |
+| ***nx_lwm2m_client_object_instance_remove*** | Usuń wystąpienie obiektu z obiektu . |
 
-Funkcja wywołania zwrotnego metody obiektu ma sygnaturę pokazaną poniżej.
+Funkcja wywołania zwrotnego metody obiektu ma podpis pokazany poniżej.
 
 ```c
 typedef UINT (*NX_LWM2M_CLIENT_OBJECT_OPERATION_CALLBACK)(
@@ -147,33 +147,33 @@ typedef UINT (*NX_LWM2M_CLIENT_OBJECT_OPERATION_CALLBACK)(
     UINT args_length);
 ```
 
-### <a name="the-read-method"></a>Metoda "read"
+### <a name="the-read-method"></a>Metoda "Read"
 
-Metoda "read" służy do odczytywania wartości zasobów z wystąpienia obiektu. Parametry są zdefiniowane w następujący sposób.
+Metoda "Read" służy do odczytywania wartości zasobów z wystąpienia obiektu. Parametry są zdefiniowane w następujący sposób.
 
 | Parametr | Opis |
 | --- | --- |
-| **operacje** | **NX_LWM2M_CLIENT_OBJECT_READ** |
+| **Operacji** | **NX_LWM2M_CLIENT_OBJECT_READ** |
 | **object_ptr** | Wskaźnik do implementacji obiektu. |
 | **instance_ptr** | Wskaźnik do wystąpienia obiektu. |
-| **zasoby** | Wskaźnik do tablicy **NX_LWM2M_CLIENT_RESOURCE** zawierającej identyfikatory zasobów do odczytania. Po powrocie tablica jest wypełniana odpowiednimi typami i wartościami. |
-| **resource_count** | Wskaźnik na liczbę zasobów do odczytania. |
+| **zasób** | Wskaźnik do tablicy **NX_LWM2M_CLIENT_RESOURCE** zawierającej identyfikatory zasobów do odczytania. Po zwróceniu tablica jest wypełniana odpowiednimi typami i wartościami. |
+| **resource_count** | Wskaźnik do liczby odczytywanych zasobów. |
 | **args_ptr** | Nieużywany parametr do odczytu. |
 | **args_length** | Nieużywany parametr do odczytu. |
 
-### <a name="the-discover-method"></a>Metoda "Discovery"
+### <a name="the-discover-method"></a>Metoda "Discover"
 
-Metoda "Discovery" służy do pobierania listy wszystkich zasobów implementowanych przez obiekt. Parametry są zdefiniowane w następujący sposób.
+Metoda "Discover" służy do pobierania listy wszystkich zasobów zaimplementowanych przez obiekt. Parametry są zdefiniowane w następujący sposób.
 
 | Parametr | Opis |
 | --- | --- |
-| **operacje** | **NX_LWM2M_CLIENT_OBJECT_DISCOVER** |
+| **Operacji** | **NX_LWM2M_CLIENT_OBJECT_DISCOVER** |
 | **object_ptr** | Wskaźnik do implementacji obiektu. |
 | **instance_ptr** | Wskaźnik do wystąpienia obiektu. |
-| **zasoby** | Wskaźnik do tablicy NX_LWM2M_CLIENT_RESOURCE. Po powrocie tablica jest wypełniana odpowiednimi informacjami o zasobach. |
-| **resource_count** | Wskaźnik na liczbę zasobów do odnalezienia. W przypadku zwracania ten parametr należy zaktualizować jako wartość true. |
-| **args_ptr** | Nieużywany parametr do odnajdowania. |
-| **args_length** | Nieużywany parametr do odnajdowania. |
+| **zasób** | Wskaźnik do tablicy NX_LWM2M_CLIENT_RESOURCE. Po zwróceniu tablica jest wypełniana odpowiednimi informacjami o zasobie. |
+| **resource_count** | Wskaźnik do liczby zasobów do odnajdywania. Po zwróceniu tego parametru należy zaktualizować jako wartość true. |
+| **args_ptr** | Nieużywany parametr do odnajdywania. |
+| **args_length** | Nieużywany parametr do odnajdywania. |
 
 ### <a name="the-write-method"></a>Metoda "Write"
 
@@ -181,23 +181,23 @@ Metoda "Write" służy do aktualizowania lub zastępowania zasobów wystąpienia
 
 | Parametr  | Opis |
 | --- | --- |
-| **operacje** | **NX_LWM2M_CLIENT_OBJECT_WRITE** |
+| **Operacji** | **NX_LWM2M_CLIENT_OBJECT_WRITE** |
 | **object_ptr** | Wskaźnik do implementacji obiektu. |
 | **instance_ptr** | Wskaźnik do wystąpienia obiektu. |
-| **zasoby** | Wskaźnik do tablicy **NX_LWM2M_CLIENT_RESOURCE** zawierającej identyfikatory zasobów do odczytania. Po powrocie tablica jest wypełniana odpowiednimi typami i wartościami. |
-| **resource_count** | Wskaźnik na liczbę zasobów do odnalezienia. |
-| **args_ptr** | Zapisz flagi. |
+| **zasób** | Wskaźnik do tablicy **NX_LWM2M_CLIENT_RESOURCE** zawierającej identyfikatory zasobów do odczytania. Po zwróceniu tablica jest wypełniana odpowiednimi typami i wartościami. |
+| **resource_count** | Wskaźnik do liczby zasobów do odnajdywania. |
+| **args_ptr** | Flagi zapisu. |
 | **args_length** | Długość argumentów. |
 
-Do parametru *flag* można określić następujące operacje zapisu.
+Następujące operacje zapisu można określić dla *parametru flagi.*
 
 | Operacja | Akcja | Opis |
 | --- | ---| --- |
 | 0 | Aktualizacja częściowa | Dodaje lub aktualizuje zasoby podane w nowej wartości i pozostawia inne istniejące zasoby bez zmian.
-| **NX_LWM2M_CLIENT_OBJECT_WRITE_REPLACE_INSTANCE** | Zamień wystąpienie | Zamienia wystąpienie obiektu na nowe podane wartości zasobów.
-| **NX_LWM2M_CLIENT_OBJECT_WRITE_REPLACE_RESOURCE** |  Zastąp zasób | Zamienia zasoby na nowe podane wartości zasobów (używane do zastępowania wielu zasobów). |
-| **NX_LWM2M_CLIENT_OBJECT_WRITE_CREATE** | Utwórz wystąpienie | Inicjuje nowo utworzone wystąpienie obiektu o podanych wartościach zasobów (wywołanych z metody **_nx_lwm2m_object_create_** ). |
-| **NX_LWM2M_CLIENT_OBJECT_WRITE_BOOTSTRAP** | Zapis ładowania początkowego | Wywoływana podczas sekwencji ładowania początkowego. |
+| **NX_LWM2M_CLIENT_OBJECT_WRITE_REPLACE_INSTANCE** | Zastępowanie wystąpienia | Zamienia wystąpienie obiektu na nowe podane wartości zasobów.
+| **NX_LWM2M_CLIENT_OBJECT_WRITE_REPLACE_RESOURCE** |  Zastępowanie zasobu | Zamienia zasoby na nowe podane wartości zasobów (używane do zastępowania wielu zasobów). |
+| **NX_LWM2M_CLIENT_OBJECT_WRITE_CREATE** | Tworzenie wystąpienia | Inicjuje nowo utworzone wystąpienie obiektu przy użyciu podanych wartości zasobów (wywoływanych z **_nx_lwm2m_object_create_** metody ). |
+| **NX_LWM2M_CLIENT_OBJECT_WRITE_BOOTSTRAP** | Zapis ładowania początkowego | Wywoływana podczas sekwencji bootstrap. |
 
 ### <a name="the-execute-method"></a>Metoda "Execute"
 
@@ -207,53 +207,53 @@ Parametry wejściowe są zdefiniowane w następujący sposób.
 
 | Parametr  | Opis |
 | --- | --- |
-| **operacje** | NX_LWM2M_CLIENT_OBJECT_EXECUTE |
+| **Operacji** | NX_LWM2M_CLIENT_OBJECT_EXECUTE |
 | **object_ptr** | Wskaźnik do implementacji obiektu. |
 | **instance_ptr** | Wskaźnik do wystąpienia obiektu. |
-| **zasoby** | Wskaźnik do tablicy **NX_LWM2M_CLIENT_RESOURCE** zawierającej identyfikatory zasobów do odczytania. Po powrocie tablica jest wypełniana odpowiednimi typami i wartościami. |
-| **resource_count** | Wskaźnik na liczbę zasobów do odnalezienia. |
+| **zasób** | Wskaźnik do tablicy **NX_LWM2M_CLIENT_RESOURCE** zawierającej identyfikatory zasobów do odczytania. Po zwróceniu tablica jest wypełniana odpowiednimi typami i wartościami. |
+| **resource_count** | Wskaźnik do liczby zasobów do odnajdywania. |
 | **args_ptr** | Wskaźnik do argumentów. |
 | **args_length** | Długość argumentów.  |
 
-Funkcja musi zwrócić **NX_LWM2M_CLIENT_NOT_FOUND** , jeśli identyfikator zasobu nie istnieje lub **NX_LWM2M_CLIENT_METHOD_NOT_ALLOWED** , jeśli nie obsługuje wykonywania.
+Funkcja musi zwrócić **NX_LWM2M_CLIENT_NOT_FOUND,** jeśli identyfikator zasobu nie istnieje, lub NX_LWM2M_CLIENT_METHOD_NOT_ALLOWED jeśli nie obsługuje wykonywania. 
 
 ### <a name="the-create-method"></a>Metoda "Create"
 
-Metoda "Create" implementuje Tworzenie nowego wystąpienia obiektu.
+Metoda "Create" implementuje tworzenie nowego wystąpienia obiektu.
 
 Parametry wejściowe są zdefiniowane w następujący sposób.
 
 | Parametr  | Opis |
 | --- | --- |
-| **operacje** | **NX_LWM2M_CLIENT_OBJECT_CREATE** |
+| **Operacji** | **NX_LWM2M_CLIENT_OBJECT_CREATE** |
 | **object_ptr** | Wskaźnik do implementacji obiektu. |
 | **instance_ptr** | Nieużywany parametr. |
-| **zasoby** | Wskaźnik do tablicy **NX_LWM2M_CLIENT_RESOURCE** zawierającej identyfikatory zasobów do odczytania. Po powrocie tablica jest wypełniana odpowiednimi typami i wartościami. |
-| **resource_count** | Wskaźnik na liczbę zasobów do odnalezienia. |
+| **zasób** | Wskaźnik do tablicy **NX_LWM2M_CLIENT_RESOURCE** zawierającej identyfikatory zasobów do odczytania. Po zwróceniu tablica jest wypełniana odpowiednimi typami i wartościami. |
+| **resource_count** | Wskaźnik do liczby zasobów do odnajdywania. |
 | **args_ptr** | Identyfikator wystąpienia obiektu. |
 | **args_length** | Długość argumentów. |
 
 ### <a name="the-delete-method"></a>Metoda "Delete"
 
-Metoda "Delete" implementuje usuwanie wystąpienia obiektu. parametry wejściowe są zdefiniowane w następujący sposób.
+Metoda "Delete" implementuje usuwanie wystąpienia obiektu. Parametry wejściowe są definiowane w następujący sposób.
 
 | Parametr  | Opis |
 | --- | --- |
-| **operacje** | NX_LWM2M_CLIENT_OBJECT_DELETE |
+| **Operacji** | NX_LWM2M_CLIENT_OBJECT_DELETE |
 | **object_ptr** | Wskaźnik do implementacji obiektu. |
 | **instance_ptr** | Wskaźnik do wystąpienia obiektu. |
-| **zasoby** | Nieużywany parametr. |
+| **zasób** | Nieużywany parametr. |
 | **resource_count** | Nieużywany parametr. |
 | **args_ptr** | Nieużywany parametr. |
 | **args_length** | Nieużywany parametr. |
 
-Po powodzeniu obiekt musi zwolnić dane wystąpienia obiektu i wszelkie inne zasoby przydzielone przez wystąpienie.
+W przypadku powodzenia obiekt musi zwolnić dane wystąpienia obiektu i wszelkie inne zasoby przydzielone przez wystąpienie.
 
-## <a name="example-of-lwm2m-client-application"></a>Przykład aplikacji klienckiej LWM2M
+## <a name="example-of-lwm2m-client-application"></a>Przykład aplikacji klienckiej DOM2M
 
-Poniższy kod jest przykładem prostej aplikacji klienckiej LWM2M, która implementuje urządzenie niestandardowe składające się z czujnika temperatury i przełącznika oświetlenia.
+Poniższy kod jest przykładem prostej aplikacji klienckiej PRZEŁĄCZNIKM2M, która implementuje niestandardowe urządzenie składające się z czujnika temperatury i przełącznika światła.
 
-Urządzenie umożliwia serwerowi Odczytywanie wartości czujnika temperatury i stanu logicznego przełącznika światła oraz ustawienie opcji przełączania światła na Włącz/Wyłącz.
+Urządzenie umożliwia serwerowi odczytywanie wartości czujnika temperatury i stanu logicznych przełącznika światła oraz włączanie/wyłączanie przełącznika światła.
 
 ```c
 #include "nx_lwm2m_client.h"

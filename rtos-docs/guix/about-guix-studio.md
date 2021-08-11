@@ -1,42 +1,42 @@
 ---
-title: Podręcznik użytkownika usługi Azure RTO GUIX Studio
-description: Ten przewodnik zawiera wyczerpujące informacje na temat platformy Azure RTO GUIX Studio, szybkiego środowiska programistycznego interfejsu użytkownika opartego na systemie Microsoft Windows zaprojektowanego specjalnie dla biblioteki środowiska uruchomieniowego GUIX platformy Azure RTO firmy Microsoft.
+title: Azure RTOS użytkownika programu GUIX Studio
+description: Ten przewodnik zawiera kompleksowe informacje na temat Azure RTOS GUIX Studio, opartego na platformie Microsoft Windows środowiska szybkiego tworzenia interfejsu użytkownika zaprojektowanego specjalnie dla biblioteki uruchomieniowej GUIX firmy Microsoft Azure RTOS.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: 4be5049fca40d6d57961e692661d8df6706eac28
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 63b3f17aae95cb00a338db423c94e4846c589787027401d3e33a29bbfafdd966
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823197"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116784720"
 ---
 # <a name="about-this-guix-studio-user-guide"></a>Informacje o tym podręczniku użytkownika programu GUIX Studio
 
-Ten przewodnik zawiera wyczerpujące informacje na temat platformy Azure RTO GUIX Studio, szybkiego środowiska programistycznego interfejsu użytkownika opartego na systemie Microsoft Windows zaprojektowanego specjalnie dla biblioteki środowiska uruchomieniowego GUIX platformy Azure RTO firmy Microsoft. 
+Ten przewodnik zawiera kompleksowe informacje na temat Azure RTOS GUIX Studio, opartego na platformie Microsoft Windows środowiska szybkiego tworzenia interfejsu użytkownika zaprojektowanego specjalnie dla biblioteki uruchomieniowej GUIX firmy Microsoft Azure RTOS. 
 
-Jest ona przeznaczona dla wbudowanego dewelopera oprogramowania w czasie rzeczywistym przy użyciu systemu operacyjnego ThreadX Real-Time (RTO) i biblioteki wykonawczej interfejsu użytkownika platformy Azure RTO GUIX. Deweloper powinien znać standardowe pojęcia dotyczące platformy Azure RTO ThreadX i platformy Azure RTO GUIX.
+Jest ona przeznaczona dla osadzonego dewelopera oprogramowania działającego w czasie rzeczywistym przy użyciu systemu operacyjnego ThreadX Real-Time (RTOS) i biblioteki uruchomieniowej interfejsu Azure RTOS GUIX. Deweloper powinien znać standardowe pojęcia związane z Azure RTOS ThreadX i Azure RTOS GUIX.
 
 ## <a name="organization"></a>Organizacja
 
-- [**Rozdział 1**](guix-studio-1.md) zawiera podstawowe Omówienie usługi Azure RTO GUIX Studio i jej relacji z programowaniem w czasie rzeczywistym.
-- [**Rozdział 2**](guix-studio-2.md) zawiera podstawowe kroki umożliwiające zainstalowanie i użycie usługi Azure RTO GUIX Studio w celu przeanalizowania aplikacji od razu.
-- [**Rozdział 3**](guix-studio-3.md) zawiera opis głównych funkcji usługi Azure RTO GUIX Studio.
-- [**Rozdział 4**](guix-studio-4.md) zawiera informacje dotyczące tworzenia zasobów aplikacji i zarządzania nimi za pomocą usługi Azure RTO GUIX Studio.
-- [**Rozdział 5**](guix-studio-5.md) zawiera opis korzystania z projektanta ekranu usługi Azure RTO GUIX w trybie WYSIWYG.
-- [**Rozdział 6**](guix-studio-6.md) opisuje, w jaki sposób aplikacja będzie używać plików wyjściowych i funkcji interfejsu API generowanych przez usługę Azure RTO GUIX Studio.
-- [**Rozdział 7**](guix-studio-7.md) zawiera opis sposobu konfigurowania przepływu ekranu
-- [**Rozdział 8**](guix-studio-8.md) opisuje użycie narzędzia wiersza polecenia
-- [**Rozdział 9**](guix-studio-9.md) zawiera opis prostej, ale kompletnej aplikacji interfejsu użytkownika utworzonej przez usługę Azure RTO GUIX Studio.
+- [**Rozdział 1**](guix-studio-1.md) zawiera podstawowe omówienie Azure RTOS GUIX Studio i jego relacji z opracowywaniem w czasie rzeczywistym.
+- [**Rozdział 2**](guix-studio-2.md) zawiera podstawowe kroki instalowania i używania Azure RTOS GUIX Studio do analizowania aplikacji od razu po instalacji.
+- [**W rozdziale 3**](guix-studio-3.md) opisano główne funkcje programu Azure RTOS GUIX Studio.
+- [**W rozdziale 4**](guix-studio-4.md) opisano, jak używać Azure RTOS GUIX Studio do tworzenia zasobów aplikacji i zarządzania nimi.
+- [**W rozdziale 5**](guix-studio-5.md) opisano, jak używać Azure RTOS ekranu GUIX WYSIWYG.
+- [**W rozdziale 6**](guix-studio-6.md) opisano, jak aplikacja będzie korzystać z plików wyjściowych i funkcji interfejsu API wygenerowanych przez Azure RTOS GUIX Studio.
+- [**W rozdziale 7**](guix-studio-7.md) opisano sposób konfigurowania przepływu ekranu
+- [**W rozdziale 8**](guix-studio-8.md) opisano użycie narzędzia wiersza polecenia
+- [**W rozdziale 9**](guix-studio-9.md) opisano prostą, ale kompletną aplikację interfejsu użytkownika utworzoną Azure RTOS GUIX Studio.
 
-## <a name="customer-support-center"></a>Centrum pomocy technicznej
+## <a name="customer-support-center"></a>Centrum obsługi klienta
 
-Prosimy o przesłanie biletu pomocy technicznej za pośrednictwem witryny Azure Portal w celu uzyskania pytań lub pomocy przy korzystaniu z tych kroków. Przekaż nam następujące informacje w wiadomości e-mail, aby skuteczniej rozwiązywać Twoje żądanie pomocy technicznej:
+Prześlij bilet pomocy technicznej za pośrednictwem witryny Azure Portal, aby uzyskać pytania lub pomoc, korzystając z kroków tutaj. Podaj następujące informacje w wiadomości e-mail, abyśmy w bardziej wydajny sposób rozwiązali Twój wniosek o pomoc techniczną:
 
-- Szczegółowy opis problemu, w tym częstotliwość występowania i sposób niezawodnego wygenerowania.
+- Szczegółowy opis problemu, w tym częstotliwość występowania i sposób jego niezawodnego odtworzenia.
 - Dołącz plik śledzenia, który powoduje problem.
-- Używana wersja platformy Azure RTO GUIX Studio (pokazana w lewym górnym rogu ekranu).
-- Używana wersja usługi Azure RTO GUIX, w tym zmienna **_gx_version_idstring** i **_gx_build_options** .
-- Używana wersja usługi Azure RTO ThreadX, w tym **_tx_version_idstring**.
+- Wersja programu Azure RTOS GUIX Studio, z których korzystasz (wyświetlana w lewym górnym rogu ekranu).
+- Wersja programu Azure RTOS GUIX, z uwzględnieniem _gx_version_idstring **i** **_gx_build_options** graficznego.
+- Wersja pakietu Azure RTOS ThreadX, z uwzględnieniem _tx_version_idstring **.**

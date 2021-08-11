@@ -1,19 +1,19 @@
 ---
-title: Dodatek E-GUIX opis zdarzenia
-description: Dowiedz się więcej na temat opisu zdarzenia GUIX.
+title: Dodatek E — opis zdarzenia GUIX
+description: Dowiedz się więcej o opisie zdarzenia GUIX.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 49f4d8b2c358fda96fd65005f31dd2e73ce2e0b4
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: e14faa327110702d46edf342759c255537d58648611bb87309088dc821e211c3
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823178"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116784618"
 ---
-# <a name="appendix-e---guix-event-description"></a>Dodatek E-GUIX opis zdarzenia
+# <a name="appendix-e---guix-event-description"></a>Dodatek E — opis zdarzenia GUIX
 
 ```c
 GX_EVENT_TERMINATE

@@ -1,57 +1,57 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z serwera DHCPv6 usługi Azure RTO NetX Duo
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem serwera DHCPv6 NetX Duo.
+title: Rozdział 2 — Instalowanie i używanie serwera AZURE RTOS NetX Duo DHCPv6
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem serwera NetX Duo DHCPv6.
 author: philmea
 ms.author: philmea
 ms.date: 06/08/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: dd2cf736ac7caca616f3f305c0f6f6c84625ca0d
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: d98059088c89198e3564f3b920e97c7a2491cafea628d1586594eba1aeed0a30
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821942"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116783564"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-dhcpv6-server"></a>Rozdział 2 — Instalowanie i korzystanie z serwera DHCPv6 usługi Azure RTO NetX Duo
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-dhcpv6-server"></a>Rozdział 2 — Instalowanie i używanie serwera AZURE RTOS NetX Duo DHCPv6
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem serwera DHCPv6 NetX Duo.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem serwera NetX Duo DHCPv6.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Usługę Azure RTO NetX Duo można uzyskać z naszego publicznego repozytorium kodu źródłowego w lokalizacji [https://github.com/azure-rtos/netxduo/](https://github.com/azure-rtos/netxduo/) .
+Azure RTOS NetX Duo można uzyskać z naszego publicznego repozytorium kodu źródłowego na stronie [https://github.com/azure-rtos/netxduo/](https://github.com/azure-rtos/netxduo/) .
 
-**nxd_dhcpv6_server. h** Plik nagłówkowy NetX DuoDHCPv6Server
+**nxd_dhcpv6_server.h** Plik nagłówkowy NetX DuoDTIERPv6Server
 
-**nxd_dhcpv6_server. c** Plik źródłowy NetX DuoDHCPv6Server
+**nxd_dhcpv6_server.c** Plik źródłowy NetX DuoDTIERPv6Server
 
-**demo_netxduo_dhcpv6. c** Plik demonstracyjny serwera DHCPv6 NetX Duo
+**demo_netxduo_dhcpv6.c** Plik demonstracyjny serwera NetX Duo DHCPv6
 
-**nxd_dhcpv6_server.pdf** Podręcznik użytkownika NetX Duo DHCPv6Server
+**nxd_dhcpv6_server.pdf** Podręcznik użytkownika serwera DHCPv6 NetX Duo
 
-## <a name="netx-duo-dhcpv6-server-installation"></a>Instalacja serwera DHCPv6 NetX Duo
+## <a name="netx-duo-dhcpv6-server-installation"></a>Instalacja serwera NetX Duo DHCPv6
 
-Aby można było użyć interfejsu API NetX Duo DHCPv6Server, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX Duo. Na przykład jeśli NetX Duo jest zainstalowana w katalogu "*\threadx\arm7\green*", wówczas pliki *nxd_dhcpv6_server. h* i *nx_dhpcv6_server. c* powinny zostać skopiowane do tego katalogu.
+Aby można było korzystać z interfejsu API NetX Duo DHCPv6Server, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano netX Duo. Jeśli na przykład netx Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* do tego katalogu powinny zostać skopiowane pliki *nxd_dhcpv6_server.h* i *nx_dhpcv6_server.c.*
 
-## <a name="using-netx-duo-dhcpv6-server"></a>Korzystanie z serwera DHCPv6 NetX Duo
+## <a name="using-netx-duo-dhcpv6-server"></a>Korzystanie z serwera DhCPv6 NetX Duo
 
-Korzystanie z interfejsu API NetX Duo DHCPv6Server jest proste. Zasadniczo kod aplikacji musi zawierać *nx_dhcpv6-Server. h* , gdy zawiera *tx_api. h* i *nx_api. h*, aby użyć odpowiednio ThreadX i NetX Duo. Aplikacja musi również zawierać *nxd_dhcpv6_server. c* w procesie kompilacji. Ten plik musi być skompilowany w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do korzystania z serwera DHCPv6 NetX Duo.
+Korzystanie z interfejsu API NetX Duo DHCPv6Server jest łatwe. Zasadniczo kod aplikacji musi zawierać kod *nx_dhcpv6-server.h* po dołączyć elementy *tx_api.h* i *nx_api.h*, aby można było używać odpowiednio threadX i NetX Duo. Aplikacja musi również *uwzględniać nxd_dhcpv6_server.c* w procesie kompilacji. Ten plik musi zostać skompilowany w taki sam sposób, jak inne pliki aplikacji, a jego formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z serwera NetX Duo DHCPv6.
 
-Należy pamiętać, że ponieważ protokół DHCPv6 oparty na protokole IPv6 musi być włączony w wystąpieniu IP przy użyciu *nxd_ipv6_enable*. NetX Duo są również używane usługi UDP i ICMPv6. Protokół UDP jest włączony przez wywołanie *nx_udp_enable* i ICMPv6 włączonych przez wywoływanie *nxd_icmp_enable* przed uruchomieniem zadania wątku serwera DHCPv6 NetX Duo.
+Należy pamiętać, że ze względu na to, że protokół DHCPv6is jest oparty na protokole IPv6, protokół IPv6 musi być włączony w wystąpieniu adresu IP przy *użyciu nxd_ipv6_enable*. Używane są również usługi NetX Duo UDP i ICMPv6. Protokół UDP jest  włączany przez nx_udp_enable i ICMPv6is włączone przez wywołanie nxd_icmp_enable przed uruchomieniem zadania wątku serwera DhCPv6 NetX Duo. 
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykładem łatwego użycia serwera DHCPv6 NetX Duo jest opisana w małym przykładzie poniżej przy użyciu klienta DHCPv6 i serwera działającego za pośrednictwem wirtualnego sterownika "RAM". W tej wersji demonstracyjnej założono, że pojedynczy host z systemem jest używany w środowisku NetX Duo.
+Przykład łatwość korzystania z serwera DHCPv6 NetX Duo opisano w poniższym przykładzie przy użyciu klienta DHCPv6 i serwera uruchomionego za pośrednictwem wirtualnego sterownika "RAM". W tym pokazie przyjęto założenie, że host jest hostem jednoadżytowym korzystającym ze środowiska NetX Duo.
 
-*tx_application_define* tworzy pulę pakietów do wysyłania komunikatu protokołu DHCPv6, wątku i wystąpienia IP dla klienta i serwera oraz włącza protokół UDP (DHCP działa za pośrednictwem protokołu UDP), IPv6, ICMP i ICMPv6 dla zadań klienta i serwera w wierszach 116-157.
+*tx_application_define* tworzy pulę pakietów do wysyłania komunikatów DHCPv6, wątek i wystąpienie adresu IP dla klienta i serwera oraz włącza protokół UDP (protokół DHCP działa za pośrednictwem protokołu UDP), IPv6, ICMP i ICMPv6 dla zadań adresu IP klienta i serwera w wierszach 116–157.
 
-Serwer DHCPv6 jest tworzony w wierszu 456. Nie definiuje opcjonalnego obsługi żądania odrzucania adresów lub opcji. W funkcji wprowadzania wątku serwera adres IP serwera jest ustawiany za pomocą usługi adresów lokalnych linku w wierszach 435-453.
+Serwer DHCPv6 jest tworzony w wierszu 456. Nie definiuje ono opcjonalnych programów obsługi żądań odrzucenia adresu lub opcji. W funkcji wpisu wątku serwera adres IP serwera jest ustawiany za pomocą usług adresu lokalnego linku w wierszach 435-453.
 
-Przed uruchomieniem serwera DHCPv6 aplikacja hosta tworzy identyfikator DUID serwera w wierszu 498 i ustawia serwer DNS w sieci lokalnej w wierszu 483. Następnie tworzy tabelę z przypisanymi adresami IP w wierszach 521. Zapoznaj się z **zaawansowanym przykładowym systemem** w dodatku D, aby uzyskać informacje na temat sposobu przechowywania i pobierania tabel serwera z pamięci.
+Przed uruchomieniem serwera DHCPv6 aplikacja hosta tworzy identyfikator DUID serwera w wierszu 498 i ustawia serwer DNS sieci lokalnej w wierszu 483. Następnie tworzy tabelę z przypisanymi adresami IP w wierszach 521. Zobacz Advanced **Example System w** dodatku D, aby dowiedzieć się, jak przechowywać i pobierać tabele serwera z pamięci.
 
 Następnie serwer DHCPv6 jest gotowy do uruchomienia w wierszu 530.
 
-Aby uzyskać szczegółowe informacje na temat tworzenia i uruchamiania klienta DHCPv6 NetX Duo, zobacz plik *nxd_dhcpv6_client.pdf* dystrybuowany na serwerze DHCPv6.
+Aby uzyskać szczegółowe informacje na temat tworzenia i uruchamiania klienta NetX Duo DHCPv6, zobacz *pliknxd_dhcpv6_client.pdf* dystrybuowany za pomocą serwera DHCPv6.
 
 ```
 
@@ -608,4 +608,4 @@ left at zero.
 540 #endif /* FEATURE_NX_IPV6 */
 ```
 
-**Rysunek 6. Przykład serwera DHCPv6 NetX Duo**
+**Rysunek 6. Przykład serwera NetX Duo DHCPv6**

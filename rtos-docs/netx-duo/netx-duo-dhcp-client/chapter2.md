@@ -1,66 +1,66 @@
 ---
-title: Rozdział 2 — Instalowanie i używanie klienta DHCP usługi Azure RTO NetX Duo
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta DHCP platformy Azure RTO NetX Duo.
+title: Rozdział 2 — Instalowanie i używanie klienta DHCP Azure RTOS NetX Duo
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika klienta DHCP Azure RTOS NetX Duo.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 8c3df64be337b557f492617c1ef20adc7c0f8d6e
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 08f88f4501a7b44272111cbe5c14ee09474827b72a1239b334fb9d40e8093c51
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822027"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116788494"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-dhcp-client"></a>Rozdział 2 — Instalowanie i używanie klienta DHCP usługi Azure RTO NetX Duo
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-dhcp-client"></a>Rozdział 2 — Instalowanie i używanie klienta DHCP Azure RTOS NetX Duo
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta DHCP platformy Azure RTO NetX Duo.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika klienta DHCP Azure RTOS NetX Duo.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Usługę Azure RTO NetX Duo można uzyskać z naszego publicznego repozytorium kodu źródłowego w lokalizacji <https://github.com/azure-rtos/netxduo> . Pakiet zawiera następujące pliki:
+Azure RTOS NetX Duo można uzyskać z naszego publicznego repozytorium kodu źródłowego na stronie <https://github.com/azure-rtos/netxduo> . Pakiet zawiera następujące pliki:
 
-- **nxd_dhcp_client. h**: plik nagłówkowy dla NetX Duo DHCP
-- plik źródłowy **nxd_dhcp_client. c**: c dla usługi DHCP NetX Duo
-- **nxd_dhcp_client.pdf**: Przewodnik użytkownika dotyczący protokołu DHCP NetX Duo 
-    - **demo_netxduo_dhcp. c**: pokaz klienta DHCP w programie NetX Duo
-    - **demo_netxduo_multihome_dhcp_client. c**: NetX Duo — pokaz klienta DHCP na wielu interfejsach
+- **nxd_dhcp_client.h:** plik nagłówka dla protokołu DHCP NetX Duo
+- **nxd_dhcp_client.c:** plik źródłowy C dla dhcp NetX Duo
+- **nxd_dhcp_client.pdf:** Podręcznik użytkownika protokołu DHCP NetX Duo 
+    - **demo_netxduo_dhcp.c:** pokaz klienta DHCP NetX Duo
+    - **demo_netxduo_multihome_dhcp_client.c:** Pokaz klienta DHCP NetX Duo protokołu DHCP na wielu interfejsach
 
-## <a name="dhcp-installation"></a>Instalacja DHCP
+## <a name="dhcp-installation"></a>Instalacja protokołu DHCP
 
-Aby można było korzystać z klienta DHCP z systemem NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowana w katalogu "*\threadx\arm7\green*", wówczas pliki *nxd_dhcp_client. h* i *nxd_dhcp_client. c* powinny zostać skopiowane do tego katalogu.
+Aby korzystać z klienta DHCP NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano netX Duo. Jeśli na przykład netx Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* do tego katalogu powinny zostać skopiowane pliki *nxd_dhcp_client.h* i *nxd_dhcp_client.c.*
 
 ## <a name="using-dhcp"></a>Korzystanie z protokołu DHCP
 
-Korzystanie z protokołu DHCP dla NetX Duo jest proste. Zasadniczo kod aplikacji musi zawierać *nxd_dhcp_client. h* , po uwzględnieniu *tx_api. h* i *nx_api. h*, aby użyć odpowiednio ThreadX i NetX Duo. Po dołączeniu *nxd_dhcp_client. h* kod aplikacji będzie następnie mógł określić wywołania funkcji DHCP w dalszej części tego przewodnika. Aplikacja musi również zawierać *nxd_dhcp_client. c* w procesie kompilacji. Ten plik musi być skompilowany w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do korzystania z protokołu DHCP NetX.
+Korzystanie z protokołu DHCP dla netX Duo jest łatwe. Zasadniczo kod aplikacji musi zawierać kod *nxd_dhcp_client.h* po dołączyć elementy *tx_api.h* i *nx_api.h*, aby można było używać odpowiednio threadX i NetX Duo. Po *nxd_dhcp_client.h* kod aplikacji może wykonać wywołania funkcji DHCP określone w dalszej części tego przewodnika. Aplikacja musi również uwzględniać *nxd_dhcp_client.c* w procesie kompilacji. Ten plik musi zostać skompilowany w taki sam sposób, jak inne pliki aplikacji, a jego formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z protokołu NETX DHCP.
 
-Należy pamiętać, że ponieważ protokół DHCP korzysta z usług UDP NetX Duo, należy włączyć protokół UDP przy użyciu wywołania *nx_udp_enable* przed użyciem protokołu DHCP.
+Należy pamiętać, że ponieważ protokół DHCP korzysta z usług NetX Duo UDP, należy włączyć protokół UDP przy *użyciu nx_udp_enable* przed użyciem protokołu DHCP.
 
-Aby uzyskać przypisany wcześniej adres IP, klient DHCP może zainicjować proces DHCP z komunikatem żądania i opcją 50 "żądany adres IP" na serwerze DHCP. Serwer DHCP odpowie komunikatem ACK, jeśli adres IP jest przydzielany klientowi lub NACK w przypadku odmowy. W tym drugim przypadku klient DHCP uruchamia ponownie proces DHCP w stanie init z komunikatem odnajdowania i nie ma żądanego adresu IP. Aplikacja hosta najpierw tworzy klienta DHCP, a następnie wywołuje usługę API *nx_dhcp_request_client_ip* , aby ustawić żądany adres IP przed rozpoczęciem procesu DHCP z *nx_dhcp_start*. Przykładowa aplikacja DHCP została udostępniona w innym miejscu w tym dokumencie, aby uzyskać więcej szczegółów.
+Aby uzyskać wcześniej przypisany adres IP, klient DHCP może zainicjować proces DHCP z komunikatem Żądanie i opcją 50 "Żądany adres IP" do serwera DHCP. Serwer DHCP odpowie komunikatem ACK, jeśli odmówi adresu IP klientowi, lub naCK. W drugim przypadku klient DHCP ponownie uruchamia proces DHCP w stanie Init z komunikatem Odnajdowanie i bez żądanego adresu IP. Aplikacja hosta najpierw tworzy klienta DHCP, a następnie wywołuje usługę interfejsu API usługi *nx_dhcp_request_client_ip,* aby ustawić żądany adres IP przed rozpoczęciem procesu DHCP przy *użyciu nx_dhcp_start*. Przykładowa aplikacja DHCP znajduje się w innym miejscu tego dokumentu, aby uzyskać więcej szczegółów.
 
-## <a name="in-the-bound-state"></a>W stanie związanym
+## <a name="in-the-bound-state"></a>W stanie powiązana
 
-Gdy klient DHCP jest w stanie powiązanym, wątek klienta DHCP przetwarza stan klienta raz na interwał (określony przez NX_DHCP_TIME_INTERVAL) i zmniejsza pozostały czas w dzierżawie IP przypisanym do klienta. Po upływie czasu odnowienia stan klienta DHCP zostanie zaktualizowany do stanu ODNOWIENIa, gdy klient zażąda odnowienia z serwera DHCP.
+Gdy klient DHCP jest w stanie powiązanym, wątek klienta DHCP przetwarza stan klienta raz na interwał (zgodnie z NX_DHCP_TIME_INTERVAL) i zmniejsza czas pozostały w dzierżawie IP przypisanej do klienta. Po upływie czasu odnowienia stan klienta DHCP jest aktualizowany do stanu ODNÓW, w którym klient będzie żądał odnowienia z serwera DHCP.
 
 ## <a name="sending-dhcp-messages-to-the-server"></a>Wysyłanie komunikatów DHCP do serwera
 
-Klient DHCP ma usługi interfejsu API, które umożliwiają aplikacji hosta wysyłanie komunikatów do serwera DHCP. Zwróć uwagę, że te usługi nie są przeznaczone dla aplikacji hosta do ręcznego uruchomienia protokołu klienta DHCP.
+Klient DHCP ma usługi interfejsu API, które umożliwiają aplikacji hosta wysyłanie komunikatów do serwera DHCP. Należy pamiętać, że te usługi NIE są przeznaczone dla aplikacji hosta do ręcznego uruchamiania protokołu klienta DHCP.
 
-  - *nx_dhcp_release*: wysyła komunikat o zwolnieniu do serwera, gdy aplikacja hosta opuszcza sieć lub potrzebuje jej adresu IP.
-  - *nx_dhcp_decline*: wysyła komunikat o odrzuceniu do serwera, jeśli aplikacja hosta określi niezależnie od klienta DHCP, że jego adres IP jest już używany.
-  - *nx_dhcp_forcerenew*: wysyła komunikat Forcerenew do serwera
-  - *nx_dhcp_send_request*: przyjmuje jako argument typ komunikatu DHCP określony w *nxd_dhcp_client. h* i wysyła komunikat do serwera. Jest to przeznaczone głównie do wysyłania komunikatu o błędzie protokołu DHCP.
+  - *nx_dhcp_release:* powoduje wysłanie komunikatu RELEASE (WYDANIE) do serwera, gdy aplikacja hosta opuszcza sieć lub wymaga podania adresu IP.
+  - *nx_dhcp_decline:* wysyła komunikat ODRZUĆ do serwera, jeśli aplikacja hosta ustali niezależnie od klienta DHCP, że jego adres IP jest już w użyciu.
+  - *nx_dhcp_forcerenew:* powoduje to wysłanie komunikatu FORCERENEW do serwera
+  - *nx_dhcp_send_request:* przyjmuje jako argument typ komunikatu DHCP, jak określono w pliku *nxd_dhcp_client.h*, i wysyła komunikat do serwera. Jest on przeznaczony głównie do wysyłania komunikatu INFORM protokołu DHCP.
 
-Aby uzyskać więcej informacji na temat tych usług, zobacz [Opis usług DHCP](chapter3.md) 
+Aby [uzyskać więcej informacji](chapter3.md) na temat tych usług, zobacz Opis usług DHCP 
 
 ## <a name="starting-and-stopping-the-dhcp-client"></a>Uruchamianie i zatrzymywanie klienta DHCP
 
-Aby zatrzymać klienta DHCP, niezależnie od tego, czy osiągnie on stan związany, aplikacja hosta wywołuje *nx_dhcp_stop*.
+Aby zatrzymać klienta DHCP, niezależnie od tego, czy został osiągnięty stan powiązany, aplikacja hosta wywołuje *nx_dhcp_stop*.
 
-Aby ponownie uruchomić klienta DHCP, aplikacja hosta musi najpierw zatrzymać klienta DHCP przy użyciu usługi *nx_dhcp_stop* opisanej powyżej. Następnie host może wywoływać *nx_dhcp_start* , aby wznowić działanie klienta DHCP. Jeśli aplikacja hosta chce wyczyścić poprzedni profil klienta DHCP, na przykład jeden uzyskany przez poprzedni serwer DHCP w innej sieci, aplikacja hosta powinna wywołać *nx_dhcp_reinitialize* , aby wykonać to zadanie wewnętrznie przed wywołaniem *nx_dhcp_start*.
+Aby ponownie uruchomić klienta DHCP, aplikacja hosta musi najpierw zatrzymać klienta DHCP przy użyciu *usługi nx_dhcp_stop* opisanej powyżej. Następnie host może wywołać *nx_dhcp_start,* aby wznowić działanie klienta DHCP. Jeśli aplikacja hosta chce wyczyścić poprzedni profil klienta DHCP, na przykład uzyskany z poprzedniego serwera DHCP w innej sieci, aplikacja hosta powinna wywołać program *nx_dhcp_reinitialize,* aby wykonać to zadanie wewnętrznie przed wywołaniem systemu *nx_dhcp_start*.
 
-Typową sekwencją może być:
+Typowa sekwencja może być:
 
 ```c
 nx_dhcp_stop(&my_dhcp);
@@ -68,27 +68,27 @@ nx_dhcp_reinitialize(&my_dhcp);
 nx_dhcp_start(&my_dhcp);
 ```
 
-W przypadku aplikacji DHCP uruchamianych tylko na jednym interfejsie DHCP zatrzymanie klienta DHCP powoduje także dezaktywację czasomierza klienta DHCP. W rezultacie nie jest już śledzony czas pozostały w dzierżawie IP. Zatrzymanie klienta DHCP w określonym interfejsie nie spowoduje dezaktywacji czasomierza klienta DHCP, ale spowoduje zatrzymanie aktualizacji czasomierza do czasu pozostałej w dzierżawie IP tego interfejsu
+W przypadku aplikacji DHCP działających tylko na jednym interfejsie DHCP zatrzymanie klienta DHCP inaktywuje również czasomierz klienta DHCP. W związku z tym nie jest już śledzone czas pozostały do dzierżawy adresu IP. Zatrzymanie klienta DHCP na określonym interfejsie nie spowoduje uaktywnienia czasomierza klienta DHCP, ale spowoduje zatrzymanie aktualizacji czasomierza do czasu pozostałego w dzierżawie IP tego interfejsu
 
-W związku z tym zatrzymanie klienta DHCP nie jest zalecane, chyba że aplikacja hosta wymaga ponownego uruchomienia lub przełączenia sieci.
+Dlatego zatrzymanie klienta DHCP nie jest zalecane, chyba że aplikacja hosta wymaga ponownego uruchomienia lub przełączenia sieci.
 
-## <a name="using-the-dhcp-client-with-auto-ip"></a>Korzystanie z klienta DHCP z opcją AutoIP
+## <a name="using-the-dhcp-client-with-auto-ip"></a>Używanie klienta DHCP z automatycznym adresem IP
 
-Klient DHCP z systemem NetX Duo działa równolegle z protokołem AutoIP w aplikacjach, w których DHCP i AutoIP gwarantują adres, w którym serwer DHCP nie jest gwarantowany do udostępnienia lub reagowania. Jeśli jednak host nie może wykryć serwera lub uzyskać przypisanego adresu IP, może przełączyć się do protokołu automatyczne IP dla lokalnego adresu IP. Jednak przed wykonaniem tej czynności zaleca się tymczasowe zatrzymanie klienta DHCP w ramach etapów "sondy" i "Obrona". Po przypisaniu automatycznie adresu IP do hosta klient DHCP może zostać ponownie uruchomiony, a jeśli serwer DHCP stanie się dostępny, adres IP hosta może akceptować adres IP oferowany przez serwer DHCP, gdy aplikacja jest uruchomiona.
+Klient DHCP NetX Duo działa współbieżnie z protokołem Automatycznego adresu IP w aplikacjach, w których dhcp i automatyczny adres IP gwarantują, że serwer DHCP nie będzie dostępny ani odpowiadać. Jeśli jednak host nie może wykryć serwera lub uzyskać przypisanego adresu IP, może przełączyć się do protokołu automatycznego adresu IP dla lokalnego adresu IP. Jednak przed wykonaniem tej opcji zaleca się tymczasowe zatrzymanie klienta DHCP, gdy automatyczny adres IP przechodzi przez etapy "sondowania" i "ochrony". Po przypisaniu do hosta automatycznego adresu IP można ponownie uruchomić klienta DHCP, a jeśli serwer DHCP stanie się dostępny, adres IP hosta może zaakceptować adres IP oferowany przez serwer DHCP, gdy aplikacja jest uruchomiona.
 
-Automatycznie adres IP NetX Duo ma powiadomienie o zmianie adresu dla hosta służącego do monitorowania jego działań w przypadku zmiany adresu IP.
+Automatyczny adres IP NetX Duo ma powiadomienie o zmianie adresu, które host może monitorować jego działania w przypadku zmiany adresu IP.
 
-## <a name="packet-chaining"></a>Tworzenie łańcucha pakietów
+## <a name="packet-chaining"></a>Łańcuch pakietów
 
-Aby zwiększyć efektywność używania puli pakietów i zasobów pamięci, klient DHCP może obsługiwać przychodzące pakiety łańcucha (datagramy przekraczające jednostkę MTU sterownika) ze sterownika Ethernet. Jeśli sterownik ma tę możliwość, aplikacja może ustawić pulę pakietów dla odbieranych pakietów poniżej wartości obowiązkowej NX_DHCP_PACKET_PAYLOAD bajtów. NX_DHCP_PACKET_PAYLOAD powinny obsługiwać ramkę sieci fizycznej (zazwyczaj Ethernet) oraz 548 bajtów danych komunikatów DHCP oraz protokołów IP i UDP.
+Aby wydajniej korzystać z puli pakietów i zasobów pamięci, klient DHCP może obsługiwać przychodzące pakiety łańcuchowe (datagramy przekraczające jednostkę MTU sterownika) ze sterownika Ethernet. Jeśli sterownik ma tę możliwość, aplikacja może ustawić pulę pakietów do odbierania pakietów na wartość poniżej wymaganej NX_DHCP_PACKET_PAYLOAD bajtów. NX_DHCP_PACKET_PAYLOAD powinny uwzględniać ramkę sieci fizycznej (zazwyczaj Ethernet) oraz 548 bajtów danych komunikatów DHCP oraz adresy IP i UDP.
 
-Należy zauważyć, że aplikacja może zoptymalizować ładunek pakietu i liczbę pakietów w puli pakietów będącej częścią klienta DHCP, która jest używana do wysyłania komunikatów protokołu DHCP. Może zoptymalizować rozmiar na podstawie oczekiwanego użycia i rozmiaru komunikatów klienta DHCP.
+Należy pamiętać, że aplikacja może zoptymalizować ładunek pakietu i liczbę pakietów w puli pakietów, która jest częścią klienta DHCP i która jest używana do wysyłania komunikatów DHCP. Może zoptymalizować rozmiar na podstawie oczekiwanego użycia i rozmiaru komunikatów klienta DHCP.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykład użycia NetX Duo przedstawiono na rysunku 1,1 poniżej. Funkcja wpisu wątku aplikacji "*my_thread_entry*" jest tworzona w wierszu 101. Po pomyślnym utworzeniu przetwarzanie DHCP jest inicjowane z wywołaniem *nx_dhcp_start* w wierszu 108. W tym momencie zadanie wątku klienta DHCP oddzielnie próbuje skontaktować się z serwerem DHCP. W trakcie tego procesu kod aplikacji czeka na zarejestrowanie prawidłowego adresu IP w wystąpieniu IP przy użyciu usługi *nx_ip_status_check* (lub *nx_ip_interface_status_check* dla pomocniczego interfejsu) w wierszu 95. Jest to bardziej często wykonywane w pętli z krótszą opcją oczekiwania.
+Przykład sposobu korzystania z netX Duo pokazano na rysunku 1.1 poniżej. Funkcja wpisu wątku aplikacji "*my_thread_entry*" jest tworzona w wierszu 101. Po pomyślnym utworzeniu przetwarzanie DHCP jest inicjowane przy *użyciu nx_dhcp_start* w wierszu 108. W tym momencie zadanie wątków klienta DHCP oddzielnie próbuje skontaktować się z serwerem DHCP. W trakcie tego procesu kod aplikacji czeka na zarejestrowanie prawidłowego adresu IP w wystąpieniu  adresu IP przy użyciu usługi *nx_ip_status_check* (lub nx_ip_interface_status_check dla interfejsu pomocniczego) w wierszu 95. Najczęściej jest to wykonywane w pętli z opcją krótszego oczekiwania.
 
-Po wierszu 127 usługa DHCP odebrała prawidłowy adres IP, a następnie może działać, wykorzystując usługi NetX Duo TCP/IP.
+Po wierszu 127 protokół DHCP odebrał prawidłowy adres IP i aplikacja może kontynuować, korzystając z usług TCP/IP NetX Duo zgodnie z potrzebami.
 
 ```c
 #include   "tx_api.h"
@@ -216,25 +216,25 @@ UINT    status;
  }
 
 ```
-## <a name="multi-server-environments"></a>Środowiska z obsługą wielu serwerów
+## <a name="multi-server-environments"></a>Środowiska z wieloma serwerami
 
-W sieciach, w których istnieje więcej niż jeden serwer DHCP, klient DHCP akceptuje pierwszy odebrany komunikat oferty serwera DHCP, postępuje zgodnie ze stanem żądania i ignoruje wszelkie inne odebrane oferty.
+W sieciach, w których istnieje więcej niż jeden serwer DHCP, klient DHCP akceptuje pierwszy odebrany komunikat oferty serwera DHCP, przejść do stanu żądania i ignoruje wszystkie inne odebrane oferty.
 
-## <a name="arp-probes"></a>Sondy protokołu ARP
+## <a name="arp-probes"></a>Sondy ARP
 
-Klienta DHCP można skonfigurować tak, aby wysyłał co najmniej jedną sondę protokołu ARP po przypisaniu adresu IP z serwera DHCP w celu sprawdzenia, czy adres IP nie jest jeszcze używany. Krok sondowania ARP jest zalecany przez RFC 2131 i jest szczególnie istotny w środowiskach z więcej niż jednym serwerem DHCP. Jeśli aplikacja hosta włącza opcję NX_DHCP_CLIENT_SEND_ARP_PROBE (zobacz **Opcje konfiguracji** w rozdziale dwa w przypadku dodatkowych opcji sondowania ARP), klient DHCP wyśle sondę ARP "z własnymi żądaniami" i poczeka przez określony czas na odpowiedź. Jeśli żaden nie zostanie odebrany, klient DHCP postępuje ze stanem związanym. W przypadku odebrania odpowiedzi klient DHCP zakłada, że adres jest już używany. Automatycznie wysyła komunikat odrzucania do serwera i ponownie inicjuje klienta, aby ponownie uruchomić sondy DHCP ze stanu INIT. Spowoduje to ponowne uruchomienie komputera stanu DHCP, a klient wysyła do serwera inny komunikat ODNAJDOWAnia.
+Klienta DHCP można skonfigurować do wysyłania co najmniej jednej sondy ARP po przypisaniu adresu IP z serwera DHCP w celu sprawdzenia, czy adres IP nie jest jeszcze w użyciu. Krok sondowania ARP jest zalecany przez środowisko RFC 2131 i jest szczególnie ważny w środowiskach z więcej niż jednym serwerem DHCP. Jeśli aplikacja hosta włącza opcję NX_DHCP_CLIENT_SEND_ARP_PROBE (zobacz Opcje konfiguracji w rozdziale 2, aby uzyskać dodatkowe opcje sondowania ARP), klient DHCP wyśle "samoadresowane" sondę ARP i zaczeka na określony czas odpowiedzi.  Jeśli żadna nie zostanie odebrana, klient DHCP przesunie się do stanu powiązanego. Jeśli zostanie odebrana odpowiedź, klient DHCP zakłada, że adres jest już w użyciu. Automatycznie wysyła komunikat ODRZUĆ do serwera i ponownie inicjalizuje klienta, aby ponownie uruchomić sondy DHCP ze stanu INIT. Powoduje to ponowne uruchomienie komputera stanu DHCP, a klient wysyła kolejny komunikat DISCOVER do serwera.
 
 ## <a name="bootp-protocol"></a>Protokół BOOTP
 
-Klient DHCP obsługuje również protokół BOOTP. Aby włączyć tę opcję i użyć protokołu BOOTP zamiast DHCP, aplikacja hosta musi ustawić opcję konfiguracji NX_DHCP_BOOTP_ENABLE. Aplikacja hosta może nadal żądać określonych adresów IP w protokole BOOTP. Klient DHCP nie obsługuje jednak ładowania systemu operacyjnego hosta, ponieważ protokół BOOTP jest czasami używany do wykonania.
+Klient DHCP obsługuje również protokół BOOTP, a także protokół DHCP. Aby włączyć tę opcję i używać rozruchu zamiast protokołu DHCP, aplikacja hosta musi ustawić NX_DHCP_BOOTP_ENABLE konfiguracji. Aplikacja hosta może nadal żądać określonych adresów IP w protokole BOOTP. Klient DHCP nie obsługuje jednak ładowania systemu operacyjnego hosta, ponieważ czasami jest używany rozruch.
 
 ## <a name="dhcp-on-a-secondary-interface"></a>Protokół DHCP w interfejsie pomocniczym
 
-Klient DHCP NetX Duo można uruchomić na interfejsach pomocniczych, a nie w domyślnym interfejsie głównym.
+Klient DHCP NetX Duo może działać na interfejsach pomocniczych, a nie w domyślnym interfejsie podstawowym.
 
-Aby uruchomić klienta DHCP z systemem NetX Duo w dodatkowym interfejsie sieciowym, aplikacja hosta musi ustawić indeks interfejsu klienta DHCP na pomocniczy interfejs przy użyciu usługi interfejsu API *nx_dhcp_set_interface_index* . Interfejs musi być już dołączony do podstawowego interfejsu sieciowego przy użyciu usługi *nx_ip_interface_attach* . Więcej informacji na temat dołączania interfejsów pomocniczych można znaleźć w podręczniku użytkownika NetX Duo.
+Aby uruchomić klienta DHCP NetX Duo na pomocniczym interfejsie sieciowym, aplikacja hosta musi ustawić indeks interfejsu klienta DHCP na interfejs pomocniczy przy użyciu usługi *nx_dhcp_set_interface_index* API. Interfejs musi być już dołączony do podstawowego interfejsu sieciowego przy użyciu *nx_ip_interface_attach* usługi. Aby uzyskać więcej informacji na temat dołączania interfejsów pomocniczych, zobacz NetX Duo User Guide (Podręcznik użytkownika aplikacji NetX Duo).
 
-Poniżej znajduje się przykładowy system (rysunek 1,2), w którym aplikacja hosta nawiązuje połączenie z serwerem DHCP w interfejsie pomocniczym. W wierszu 65 pomocniczy interfejs jest dołączany do zadania IP z adresem IP o wartości null. W wierszu 104 po utworzeniu wystąpienia klienta DHCP indeks interfejsu klienta DHCP jest ustawiony na 1 (np. przesunięcie od podstawowego interfejsu, który sam jest indeksem 0) przez wywołanie *nx_dhcp_set_interface_index*. Następnie klient DHCP jest gotowy do uruchomienia w wierszu 108.
+Poniżej znajduje się przykładowy system (Rysunek 1.2), w którym aplikacja hosta łączy się z serwerem DHCP w interfejsie pomocniczym. W wierszu 65 interfejs pomocniczy jest dołączany do zadania IP z pustym adresem IP. W wierszu 104 po utworzeniu wystąpienia klienta DHCP indeks interfejsu klienta DHCP jest ustawiany na wartość 1 (np. przesunięcie od interfejsu podstawowego, który sam jest indeksem 0), wywołując nx_dhcp_set_interface_index *.* Następnie klient DHCP jest gotowy do rozpoczęcia w wierszu 108.
 
 ```c
 #include   "tx_api.h"
@@ -367,29 +367,29 @@ NX_PACKET   *my_packet;
 }
 ```
 
-## <a name="dhcp-client-on-multiple-interfaces-simultaneously"></a>Klient DHCP w wielu interfejsach jednocześnie
+## <a name="dhcp-client-on-multiple-interfaces-simultaneously"></a>Klient DHCP na wielu interfejsach jednocześnie
 
-Aby uruchomić klienta DHCP na wielu interfejsach, NX_MAX_PHYSICAL_INTERFACES w *nx_api. h* musi być ustawiona na liczbę fizycznych interfejsów podłączonych do urządzenia. Domyślnie ta wartość jest równa 1 (np. podstawowy interfejs). Aby zarejestrować dodatkowy interfejs w wystąpieniu protokołu IP, Użyj usługi *nx_ip_interface_attach* . Więcej informacji na temat dołączania interfejsów pomocniczych można znaleźć w podręczniku użytkownika NetX Duo.
+Aby można było uruchomić klienta DHCP na wielu interfejsach, NX_MAX_PHYSICAL_INTERFACES w programie *nx_api.h* musi być ustawiona na liczbę interfejsów fizycznych podłączonych do urządzenia. Domyślnie ta wartość to 1 (np. interfejs podstawowy). Aby zarejestrować dodatkowy interfejs w wystąpieniu adresu IP, użyj *nx_ip_interface_attach* usługi. Aby uzyskać więcej informacji na temat dołączania interfejsów pomocniczych, zobacz NetX Duo User Guide (Podręcznik użytkownika aplikacji NetX Duo).
 
-Następnym krokiem jest ustawienie NX_DHCP_CLIENT_MAX_RECORDS w *nxd_dhcp_client. h* na maksymalną liczbę interfejsów oczekiwanych na równoczesne uruchomienie protokołu DHCP. Należy pamiętać, że NX_DHCP_CLIENT_MAX_RECORDS nie muszą być równe NX_MAX_PHYSICAL_INTERFACES. Na przykład NX_MAX_PHYSICAL_INTERFACES może mieć wartość 3 i NX_DHCP_CLIENT_MAX_RECORDS równe 2. W tej konfiguracji tylko dwa interfejsy (i mogą być dowolne dwa z trzech interfejsów fizycznych w dowolnym momencie) spośród trzech interfejsów fizycznych można w dowolnym momencie uruchomić usługę DHCP. Rekordy klienta DHCP nie mają mapowania jeden do jednego do interfejsów sieciowych, np. rekord klienta 1 nie jest automatycznie skorelowany z indeksem interfejsu fizycznego 1.
+Następnym krokiem jest ustawienie NX_DHCP_CLIENT_MAX_RECORDS w programie *nxd_dhcp_client.h* na maksymalną liczbę interfejsów oczekiwanych do jednoczesnego uruchamiania protokołu DHCP. Należy pamiętać NX_DHCP_CLIENT_MAX_RECORDS że NX_MAX_PHYSICAL_INTERFACES nie musi być NX_MAX_PHYSICAL_INTERFACES. Na przykład NX_MAX_PHYSICAL_INTERFACES 3, a NX_DHCP_CLIENT_MAX_RECORDS równe 2. W tej konfiguracji tylko dwa interfejsy (i mogą być dowolnymi dwoma z trzech interfejsów fizycznych w dowolnym momencie) z trzech interfejsów fizycznych mogą uruchamiać protokół DHCP w dowolnym momencie. Rekordy klienta DHCP nie mają mapowania jeden do jednego do interfejsów sieciowych, np. Rekord klienta 1 nie jest automatycznie skorelowany z indeksem interfejsu fizycznego 1.
 
-NX_DHCP_CLIENT_MAX_RECORDS można również ustawić na wartość większą niż NX_MAX_PHYSICAL_INTERFACES, ale spowoduje to utworzenie nieużywanych rekordów klienta i niewydajne użycie pamięci.
+NX_DHCP_CLIENT_MAX_RECORDS można również ustawić na wartość większą niż NX_MAX_PHYSICAL_INTERFACES, ale będzie to tworzyć nieużywane rekordy klienta i być nieefektywnym użyciem pamięci.
 
-Aby można było uruchomić protokół DHCP w dowolnym interfejsie, aplikacja musi włączyć te interfejsy, wywołując *nx_dhcp_interface_enable*. Należy zauważyć, że wyjątek jest interfejsem podstawowym, który jest automatycznie włączany w wywołaniu *nx_dhcp_create* (i które można wyłączyć za pomocą usługi *nx_dhcp_interface_disable* opisanej poniżej).
+Aby można było uruchomić protokół DHCP na dowolnym interfejsie, aplikacja musi włączyć te interfejsy, wywołując *nx_dhcp_interface_enable*. Należy pamiętać, że wyjątek jest interfejsem podstawowym, który jest automatycznie włączany w wywołaniu *nx_dhcp_create* (i który można wyłączyć przy użyciu usługi *nx_dhcp_interface_disable* omówiono poniżej).
 
-W dowolnym momencie można wyłączyć interfejs DHCP lub można zatrzymać protokół DHCP niezależnie od innych interfejsów z uruchomionym protokołem DHCP.
+W dowolnym momencie interfejs można wyłączyć dla protokołu DHCP lub DHCP można zatrzymać na tym interfejsie niezależnie od innych interfejsów z systemem DHCP.
 
-Jak wspomniano powyżej, aby włączyć określony interfejs dla usługi DHCP, należy użyć usługi *nx_dhcp_interface_enable* i określić indeks interfejsu fizycznego w argumencie wejściowym. Można włączyć do NX_DHCP_CLIENT_MAX_RECORDS interfejsów z jedynym ograniczeniem, że argument wejściowy indeksu interfejsu jest krótszy niż NX_MAX_PHYSICAL_INTERFACES.
+Jak wspomniano powyżej, aby włączyć określony interfejs dla protokołu DHCP, użyj usługi *nx_dhcp_interface_enable* i określ indeks interfejsu fizycznego w argumentze wejściowym. Maksymalnie NX_DHCP_CLIENT_MAX_RECORDS można włączyć z jedynym ograniczeniem, że argument wejściowy indeksu interfejsu jest mniejszy niż NX_MAX_PHYSICAL_INTERFACES.
 
-Aby uruchomić protokół DHCP w określonym interfejsie, Użyj usługi *nx_dhcp_interface_start* . Aby uruchomić protokół DHCP we wszystkich włączonych interfejsach, Użyj usługi *nx_dhcp_start* . (Interfejsy, które już uruchomiły protokół DHCP, nie będą miały wpływ na *nx_dhcp_start*).
+Aby uruchomić protokół DHCP na określonym interfejsie, użyj *nx_dhcp_interface_start* usługi. Aby uruchomić protokół DHCP we wszystkich włączonych interfejsach, użyj *nx_dhcp_start* usługi. (Interfejsy, które już uruchomiły protokół DHCP, nie będą mieć wpływu *nx_dhcp_start*).
 
-Aby zatrzymać usługę DHCP w interfejsie, Użyj usługi *nx_dhcp_interface_stop* . Protokół DHCP musi już być uruchomiony w tym interfejsie lub zwracany jest stan błędu. Aby zatrzymać protokół DHCP we wszystkich włączonych interfejsach, Użyj usługi *nx_dhcp_stop* . Protokół DHCP można zatrzymać niezależnie od innych interfejsów w dowolnym momencie.
+Aby zatrzymać protokół DHCP na interfejsie, użyj *nx_dhcp_interface_stop* usługi. Protokół DHCP musi już zostać uruchomiony w tym interfejsie lub zostanie zwrócony stan błędu. Aby zatrzymać protokół DHCP na wszystkich włączonych interfejsach, użyj *nx_dhcp_stop* usługi. Protokół DHCP można w dowolnym momencie zatrzymać niezależnie od innych interfejsów.
 
-Większość istniejących usług klienta DHCP ma odpowiednik "Interface", np. *nx_dhcp_interface_release* jest odpowiednikiem określonego interfejsu *nx_dhcp_release.* Jeśli klient DHCP jest skonfigurowany dla jednego interfejsu, wykonuje tę samą akcję.
+Większość istniejących usług klienta DHCP ma odpowiednik "interfejsu", np. *nx_dhcp_interface_release* jest odpowiednikiem interfejsu *nx_dhcp_release.* Jeśli klient DHCP jest skonfigurowany dla jednego interfejsu, wykonują tę samą akcję.
 
-Należy pamiętać, że usługi klienta DHCP niezwiązane z interfejsem zwykle mają zastosowanie do wszystkich interfejsów, ale nie wszystkich. W tym drugim przypadku usługa niezależna od interfejsu dotyczy pierwszego interfejsu z włączonym protokołem DHCP, który znajduje się w przeszukiwaniu listy klientów DHCP. Zobacz **Opis usług** w rozdziale trzeci, w jaki sposób usługa niezależna od interfejsu jest wykonywana w przypadku włączenia wielu interfejsów dla protokołu DHCP.
+Należy pamiętać, że usługi klienta DHCP inne niż specyficzne dla interfejsu zwykle mają zastosowanie do wszystkich interfejsów, ale nie wszystkich. W drugim przypadku usługa specyficzna dla interfejsu nie dotyczy pierwszego interfejsu z włączoną obsługą protokołu DHCP, który znajduje się w wyszukiwaniu listy rekordów interfejsu klienta DHCP. Zobacz **Opis usług w rozdziale** 3, aby dowiedzieć się, jak działa usługa nieopisywna dla interfejsu, gdy dla protokołu DHCP jest włączonych wiele interfejsów.
 
-W przykładowej sekwencji poniżej wystąpienie protokołu IP ma dwa interfejsy sieciowe i najpierw uruchamia DHCP w interfejsie pomocniczym. W pewnym momencie później zostanie uruchomiony protokół DHCP w interfejsie podstawowym. Następnie zwalnia adres IP w interfejsie podstawowym i ponownie uruchamia DHCP w interfejsie głównym:
+W poniższej przykładowej sekwencji wystąpienie adresu IP ma dwa interfejsy sieciowe i najpierw uruchamia protokół DHCP w interfejsie pomocniczym. W pewnym momencie protokół DHCP zostanie uruchomiony w interfejsie podstawowym. Następnie zwalnia adres IP w interfejsie podstawowym i ponownie uruchamia protokół DHCP w interfejsie podstawowym:
 
 ```c
 nx_dhcp_create(&my_dhcp_client); /* By default this enables primary interface for DHCP. */
@@ -407,34 +407,34 @@ nx_dhcp_interface_release(&my_dhcp_client, 0); /* Some time later… */
 nx_dhcp_interface_start(&my_dhcp_client, 0); /* DHCP is restarted on primary interface. */
 ```
 
-Aby uzyskać pełną listę specyficznych dla interfejsu usług, zobacz **Opis usług** w rozdziale 3.
+Aby uzyskać pełną listę usług specyficznych dla interfejsu, **zobacz Opis usług w** rozdziale 3.
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Użytkownik konfigurowalny opcje DHCP w *nxd_dhcp_client. h* zezwala aplikacji hosta na precyzyjne dopasowanie klienta DHCP do określonych wymagań. Poniżej znajduje się lista tych parametrów:  
+Konfigurowane przez użytkownika opcje DHCP *w pliku nxd_dhcp_client.h* umożliwiają aplikacji hosta dostosowanie klienta DHCP do określonych wymagań. Poniżej znajduje się lista tych parametrów:  
   
-- **NX_DHCP_ENABLE_BOOTP**: zdefiniowane, ta opcja włącza protokół BOOTP zamiast DHCP. Domyślnie ta opcja jest wyłączona.
-- **NX_DHCP_CLIENT_RESTORE_STATE**: Jeśli jest zdefiniowany, umożliwia klientowi DHCP zapisanie bieżącej licencji klienta DHCP, w tym pozostały czas w dzierżawie, i przywrócenie tego stanu między ponownymi uruchomieniami aplikacji klienta DHCP. Wartość domyślna jest wyłączona.
-- **NX_DHCP_CLIENT_USER_CREATE_PACKET_POOL**: w przypadku ustawienia Klient DHCP nie będzie tworzyć własnej puli pakietów. Aplikacja hosta musi używać usługi *nx_dhcp_packet_pool_set* , aby ustawić pulę pakietów klienta DHCP. Wartość domyślna jest wyłączona.
-- **NX_DHCP_CLIENT_SEND_ARP_PROBE**: zdefiniowane, umożliwia klientowi DHCP wysyłanie sondy ARP po przypisaniu adresów IP w celu sprawdzenia, czy przypisany adres DHCP nie jest własnością innego hosta. Domyślnie ta opcja jest wyłączona.
-- **NX_DHCP_ARP_PROBE_WAIT**: określa, jak długo klient DHCP czeka na odpowiedź po wysłaniu sondy ARP. Wartość domyślna to jedna sekunda (1 * NX_IP_PERIODIC_RATE)
-- **NX_DHCP_ARP_PROBE_MIN**: Określa minimalną zmianę interwału między wysłaniem SOND protokołu ARP. Wartość jest domyślnie równa 1 sekunda.
-- **NX_DHCP_ARP_PROBE_MAX**: określa maksymalną liczbę zmian w interwale między wysłaniem SOND protokołu ARP. Wartość jest domyślnie równa 2 sekund.
-- **NX_DHCP_ARP_PROBE_NUM**: określa liczbę sond protokołu ARP wysyłanych do określenia, czy adres IP przypisany przez serwer DHCP jest już używany. Wartość jest domyślnie równa 3 sondy.
-- **NX_DHCP_RESTART_WAIT**: określa, kiedy klient DHCP ma czekać na ponowne uruchomienie usługi DHCP, jeśli adres IP przypisany do klienta DHCP jest już używany. Wartość jest domyślnie równa 10 sekund.
-- **NX_DHCP_CLIENT_MAX_RECORDS**: określa maksymalną liczbę rekordów interfejsów do zapisania w wystąpieniu klienta DHCP. Rekord interfejsu klienta DHCP jest rekordem klienta DHCP działającego w określonym interfejsie. Wartość domyślna jest ustawiana jako liczba interfejsów fizycznych (NX_MAX_PHYSICAL_INTERFACES).
-- **NX_DHCP_CLIENT_SEND_MAX_DHCP_MESSAGE_OPTION**: zdefiniowane, umożliwia klientowi DHCP wysyłanie maksymalnej wielkości komunikatu DHCP. Domyślnie ta opcja jest wyłączona.
-- **NX_DHCP_CLIENT_ENABLE_HOST_NAME_CHECK**: zdefiniowane, umożliwia klientowi DHCP sprawdzenie nazwy wejściowego hosta w wywołaniu nx_dhcp_create w przypadku nieprawidłowych znaków lub długości. Domyślnie ta opcja jest wyłączona.
-- **NX_DHCP_THREAD_PRIORITY**: priorytet wątku DHCP. Domyślnie ta wartość określa, że wątek DHCP działa z priorytetem 3.
-- **NX_DHCP_THREAD_STACK_SIZE**: rozmiar stosu wątków DHCP. Domyślnie rozmiar to 2048 bajtów.
-- **NX_DHCP_TIME_INTERVAL**: interwał (w sekundach), po którym jest wykonywana funkcja wygaśnięcia czasomierza klienta DHCP. Ta funkcja aktualizuje wszystkie limity czasu w procesie DHCP, np. w przypadku, gdy komunikaty powinny być ponownie przesyłane lub stan klienta DHCP uległy zmianie. Domyślnie ta wartość jest równa 1 sekunda.
-- **NX_DHCP_OPTIONS_BUFFER_SIZE**: rozmiar buforu opcji DHCP. Wartość domyślna to 312 bajtów.
-- **NX_DHCP_PACKET_PAYLOAD**: Określa rozmiar w bajtach ładunku pakietu klienta DHCP. Wartość domyślna to NX_DHCP_MINIMUM_IP_DATAGRAM + rozmiar nagłówka fizycznego. Rozmiar nagłówka fizycznego w sieci wireline jest zwykle rozmiarem ramki sieci Ethernet.
-- **NX_DHCP_PACKET_POOL_SIZE**: Określa rozmiar puli pakietów klienta DHCP. Wartość domyślna to (5 * NX_DHCP_PACKET_PAYLOAD), która zapewni cztery pakiety Plus pomieszczenie dla obciążenia wewnętrznej puli pakietów.
-- **NX_DHCP_MIN_RETRANS_TIMEOUT**: Określa minimalną opcję oczekiwania na odebranie odpowiedzi serwera DHCP na komunikat klienta przed ponownym przesłaniem wiadomości. Wartość domyślna to RFC 2131 zalecane 4 sekundy.
-- **NX_DHCP_MAX_RETRANS_TIMEOUT**: określa maksymalną opcję oczekiwania na odebranie odpowiedzi serwera DHCP na komunikat klienta przed ponownym przesłaniem wiadomości. Wartość domyślna to 64 sekund.
-- **NX_DHCP_MIN_RENEW_TIMEOUT**: określa opcję minimalnej oczekiwania w przypadku odebrania komunikatu serwera DHCP i wysłania żądania odnowienia po powiązaniu klienta DHCP z adresem IP. Wartość domyślna to 60 sekund. Jednak klient DHCP używa odnawiania i ponownego powiązania czasu wygaśnięcia z komunikatów serwera DHCP przed ustawieniem minimalny limit czasu odnawiania.
-- **NX_DHCP_TYPE_OF_SERVICE**: typ usługi wymaganej przez żądania UDP protokołu DHCP. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL w celu wskazania normalnej usługi pakietów IP.
-- **NX_DHCP_FRAGMENT_OPTION**: włączono fragment dla żądań UDP protokołu DHCP. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć fragmentację protokołu UDP protokołu DHCP.
-- **NX_DHCP_TIME_TO_LIVE**: określa liczbę routerów, które ten pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
-- **NX_DHCP_QUEUE_DEPTH**: określa maksymalną głębokość kolejki odbioru. Wartość domyślna to 4.
+- **NX_DHCP_ENABLE_BOOTP:** zdefiniowana, ta opcja włącza protokół BOOTP zamiast DHCP. Domyślnie ta opcja jest wyłączona.
+- **NX_DHCP_CLIENT_RESTORE_STATE:** jeśli ta funkcja jest zdefiniowana, umożliwia klientowi DHCP zapisanie bieżącego stanu licencji klienta DHCP, w tym czasu pozostałego do dzierżawy, i przywrócenie tego stanu między ponownym uruchomieniem aplikacji klienckiej DHCP. Wartość domyślna jest wyłączona.
+- **NX_DHCP_CLIENT_USER_CREATE_PACKET_POOL:** jeśli to ustawienie zostanie ustawione, klient DHCP nie utworzy własnej puli pakietów. Aplikacja hosta musi używać usługi *nx_dhcp_packet_pool_set* do ustawienia puli pakietów klienta DHCP. Wartość domyślna jest wyłączona.
+- **NX_DHCP_CLIENT_SEND_ARP_PROBE:** zdefiniowane, umożliwia klientowi DHCP wysyłanie sondy ARP po przypisaniu adresu IP w celu sprawdzenia, czy przypisany adres DHCP nie jest własnością innego hosta. Domyślnie ta opcja jest wyłączona.
+- **NX_DHCP_ARP_PROBE_WAIT:** określa czas oczekiwania klienta DHCP na odpowiedź po wysłaniu sondy ARP. Wartość domyślna to jedna sekunda (1 * NX_IP_PERIODIC_RATE)
+- **NX_DHCP_ARP_PROBE_MIN:** definiuje minimalną zmienność interwału między wysyłaniem sond ARP. Wartość domyślna to 1 sekunda.
+- **NX_DHCP_ARP_PROBE_MAX:** definiuje maksymalną zmienność interwału między wysyłaniem sond ARP. Wartość domyślna to 2 sekundy.
+- **NX_DHCP_ARP_PROBE_NUM:** definiuje liczbę wysłanych sond ARP w celu określenia, czy adres IP przypisany przez serwer DHCP jest już w użyciu. Wartość domyślna to 3 sondy.
+- **NX_DHCP_RESTART_WAIT:** określa czas oczekiwania klienta DHCP na ponowne uruchomienie protokołu DHCP, jeśli adres IP przypisany do klienta DHCP jest już w użyciu. Wartość domyślna to 10 sekund.
+- **NX_DHCP_CLIENT_MAX_RECORDS:** określa maksymalną liczbę rekordów interfejsu do zapisania w wystąpieniu klienta DHCP. Rekord interfejsu klienta DHCP jest rekordem klienta DHCP uruchomionego na określonym interfejsie. Wartość domyślna jest ustawiana jako liczba interfejsów fizycznych (NX_MAX_PHYSICAL_INTERFACES).
+- **NX_DHCP_CLIENT_SEND_MAX_DHCP_MESSAGE_OPTION:** zdefiniowane, umożliwia klientowi DHCP wysyłanie opcji maksymalnego rozmiaru komunikatu DHCP. Domyślnie ta opcja jest wyłączona.
+- **NX_DHCP_CLIENT_ENABLE_HOST_NAME_CHECK:** zdefiniowane, umożliwia klientowi DHCP sprawdzenie nazwy hosta wejściowego w wywołaniu nx_dhcp_create pod znakiem nieprawidłowych znaków lub długości. Domyślnie ta opcja jest wyłączona.
+- **NX_DHCP_THREAD_PRIORITY:** priorytet wątku DHCP. Domyślnie ta wartość określa, że wątek DHCP jest uruchamiany z priorytetem 3.
+- **NX_DHCP_THREAD_STACK_SIZE:** rozmiar stosu wątku DHCP. Domyślnie rozmiar to 2048 bajtów.
+- **NX_DHCP_TIME_INTERVAL:** interwał w sekundach podczas wykonywania funkcji wygaśnięcia czasomierza klienta DHCP. Ta funkcja aktualizuje wszystkie limity czasu w procesie DHCP, np. jeśli komunikaty powinny być ponownie emitowane lub stan klienta DHCP został zmieniony. Domyślnie ta wartość to 1 sekunda.
+- **NX_DHCP_OPTIONS_BUFFER_SIZE:** rozmiar buforu opcji DHCP. Domyślnie ta wartość to 312 bajtów.
+- **NX_DHCP_PACKET_PAYLOAD:** określa rozmiar w bajtach ładunku pakietu klienta DHCP. Wartość domyślna to NX_DHCP_MINIMUM_IP_DATAGRAM + rozmiar nagłówka fizycznego. Rozmiar nagłówka fizycznego w sieci przewodowej to zazwyczaj rozmiar ramki Ethernet.
+- **NX_DHCP_PACKET_POOL_SIZE:** określa rozmiar puli pakietów klienta DHCP. Wartość domyślna to (5 *NX_DHCP_PACKET_PAYLOAD), która zapewnia cztery pakiety i miejsce na wewnętrzne obciążenie puli pakietów.
+- **NX_DHCP_MIN_RETRANS_TIMEOUT:** określa minimalną opcję oczekiwania na odebranie odpowiedzi serwera DHCP na komunikat klienta przed jego ponownym przesłaniem. Wartość domyślna to zalecane 4 sekundy dla specyfikacji RFC 2131.
+- **NX_DHCP_MAX_RETRANS_TIMEOUT:** określa maksymalną opcję oczekiwania na odebranie odpowiedzi serwera DHCP na komunikat klienta przed jego ponownym przesłaniem. Wartość domyślna to 64 sekundy.
+- **NX_DHCP_MIN_RENEW_TIMEOUT:** określa minimalną opcję oczekiwania na odebranie komunikatu serwera DHCP i wysłanie żądania odnowienia po powiązyniu klienta DHCP z adresem IP. Wartość domyślna to 60 sekund. Klient DHCP używa jednak opcji Odnów i Pobinuj czas wygaśnięcia z komunikatu serwera DHCP przed ustawieniem wartości domyślnej minimalnego limitu czasu odnowienia.
+- **NX_DHCP_TYPE_OF_SERVICE:** typ usługi wymagany dla żądań protokołu UDP protokołu DHCP. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL, aby wskazać normalną usługę pakietów IP.
+- **NX_DHCP_FRAGMENT_OPTION:** włącz fragment dla żądań protokołu UDP protokołu DHCP. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć fragmentowanie protokołu UDP protokołu DHCP.
+- **NX_DHCP_TIME_TO_LIVE:** określa liczbę routerów, które pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
+- **NX_DHCP_QUEUE_DEPTH:** określa maksymalną głębokość kolejki odbierania. Wartość domyślna to 4.

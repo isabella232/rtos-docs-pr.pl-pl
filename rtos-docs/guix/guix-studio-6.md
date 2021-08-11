@@ -1,72 +1,72 @@
 ---
-title: Kod wygenerowany przez GUIX Studio
-description: Po zakończeniu edycji ekranów i zasobów program GUIX Studio tworzy zestaw plików wyjściowych, które mogą być włączone do aplikacji osadzonej.
+title: Kod wygenerowany w programie GUIX Studio
+description: Po zakończeniu edytowania ekranów i zasobów program GUIX Studio tworzy zestaw plików wyjściowych, które można włączyć do osadzonej aplikacji.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: f8868ec770aa8f7f35d2866b99e3eb8f501281a8
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 78b1ec1eea3ec2fcae48c64ad15931f44f34538c876dc8a267c2b1a84234320a
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823034"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116785706"
 ---
-# <a name="chapter-6-guix-studio-generated-code"></a>Rozdział 6: kod wygenerowany przez GUIX Studio
+# <a name="chapter-6-guix-studio-generated-code"></a>Rozdział 6. Kod wygenerowany w programie GUIX Studio
 
-Po zakończeniu edycji ekranów i zasobów program GUIX Studio tworzy zestaw plików wyjściowych, które mogą być włączone do aplikacji osadzonej. Pliki wyjściowe są generowane przez wybranie polecenia ***Generuj pliki zasobów** _ i _ *_Generuj specyfikacje_** z elementu menu projektu. Pliki kodu źródłowego języka c generowane przez program GUIX Studio mają być kompilowane i połączone z osadzonym kodem źródłowym aplikacji. Jeśli plik zasobów w formacie binarnym zostanie utworzony, ten plik powinien zostać zaprogramowany do obszaru magazynu nietrwałego w miejscu docelowym, a funkcja interfejsu API GUIX gx_binres_theme_install powinna zostać użyta do zainstalowania zasobów binarnych w czasie wykonywania.
+Po zakończeniu edytowania ekranów i zasobów program GUIX Studio tworzy zestaw plików wyjściowych, które można włączyć do osadzonej aplikacji. Pliki wyjściowe są generowane przez wybranie pozycji ***** Generuj pliki zasobów _ i *___* Generuj specyfikacje * z Project menu. Pliki kodu źródłowego języka "c" wygenerowane przez program GUIX Studio mają być kompilowane i łączone z osadzonym kodem źródłowym aplikacji. W przypadku produkcji pliku zasobów w formacie binarnym ten plik powinien być zaprogramowany w obszarze magazynu trwałego w miejscu docelowym, a funkcja interfejsu API GUIX gx_binres_theme_install powinna być używana do instalowania zasobów binarnych w czasie wykonywania.
 
-Kod aplikacji osadzonej użytkownika tworzy odwołania do kodu wygenerowanego przez GUIX Studio. Ponadto kod wygenerowany przez program GUIX Studio oczekuje, że wszystkie niestandardowe funkcje rysowania widżetu, obsługi zdarzeń i alokacji pamięci określone w projekcie, które mają być zdefiniowane w osadzonym kodzie aplikacji użytkownika. W przeciwnym razie błędy łączy będą obecne podczas kompilowania aplikacji.
+Kod aplikacji osadzonej użytkownika tworzy odwołania do kodu wygenerowanego przez program GUIX Studio. Ponadto kod wygenerowany w programie GUIX Studio oczekuje, że wszystkie niestandardowe funkcje rysowania widżetów, obsługi zdarzeń i alokacji pamięci określone w projekcie zostaną zdefiniowane w kodzie osadzonej aplikacji użytkownika. Jeśli tak nie jest, podczas tworzenia aplikacji będą obecne błędy linków.
 
 > [!NOTE]
-> Użytkownik nigdy nie musi modyfikować kodu wygenerowanego przez program GUIX Studio i powinien go odporny. Wszystkie modyfikacje interfejsu użytkownika należy wprowadzać w skojarzonym projekcie GUIX Studio. Spowoduje to zsynchronizowanie projektu z aplikacją osadzoną.
+> Użytkownik nigdy nie powinien modyfikować kodu wygenerowanego przez program GUIX Studio i nie powinien się o tym opierać. Wszystkie modyfikacje interfejsu użytkownika powinny być wprowadzone w skojarzonym projekcie GUIX Studio. Pozwoli to zachować synchronizację projektu z aplikacją osadzoną.
 
 ## <a name="generating-resource-files"></a>Generowanie plików zasobów
 
-Pliki zasobów wygenerowane przez program GUIX Studio zawierają wstępnie zdefiniowane struktury danych, które definiują wszystkie zasoby programu GUIX Studio (kolory, czcionki, pixelmaps i ciągi), które są efektywnie wszystkie zasoby zdefiniowane w ***Widok zasobów*** projektu. Te pliki zasobów można generować w kodzie źródłowym lub w postaci binarnej.
+Pliki zasobów generowane przez program GUIX Studio zawierają wstępnie zdefiniowane struktury danych, które definiują wszystkie zasoby programu GUIX Studio (kolory, czcionki, mapy pikseli i ciągi), ***co w*** praktyce oznacza wszystkie zasoby zdefiniowane w Widok zasobów projektu. Te pliki zasobów mogą być generowane w kodzie źródłowym lub w postaci binarnej.
 
-Domyślnie są generowane dwa pliki, jeden plik jest plikiem standardowego kodu źródłowego C, a drugi to plik nagłówka C, który zawiera zewnętrzne odwołania i stałe, które są niezbędne, aby kod aplikacji mógł uzyskać dostęp do zasobów GUIX zdefiniowanych w projekcie. Nazwy plików mają postać:
+Domyślnie są generowane dwa pliki, jeden jest standardowym plikiem kodu źródłowego C, a drugi to plik nagłówka C, który zawiera odwołania zewnętrzne i stałe, które są niezbędne do uzyskania dostępu do zasobów GUIX zdefiniowanych w projekcie przez kod aplikacji. Nazwy plików mają postać:
 
-**{*Project-Name*} _resources. h**
+**{*nazwa projektu*}_resources.h**
 
-**{*Project-Name*} _resources. c**
+**{*project-name*}_resources.c**
 
-Na przykład pliki zasobów utworzone dla projektu "***Simple***" GUIX Studio są następujące:
+Na przykład pliki zasobów utworzone dla ***"prostego" projektu*** GUIX Studio to:
 
-**simple_resources. h**
+**simple_resources.h**
 
-**simple_resources. c**
+**simple_resources.c**
 
-Generowanie plików zasobów jest realizowane przez wybranie opcji ***Generuj pliki zasobów** _ w opcji menu _*_projektu_*_ . Miejsce docelowe plików zasobów jest określone w oknie dialogowym _*_Konfigurowanie projektu_*_ , które jest dostępne za pośrednictwem opcji _*_Konfiguruj projekt/Wyświetl_*_ w elemencie menu _ *_Konfiguracja_**.
+Generowanie plików zasobów jest realizowane przez wybranie opcji ***** Generuj pliki zasobów _ w Project _*_menu._*_ Miejsce docelowe plików zasobów jest określone w oknie dialogowym _*_Konfigurowanie_*_ Project, które jest dostępne za pośrednictwem opcji _*_Project/Wyświetla_*_ w pozycji menu *__Konfiguruj_**.
 
-W przypadku Pixelmap i zasobów czcionek można określić niestandardową nazwę pliku wyjściowego dla każdej Pixelmap i czcionki w oknach dialogowych edytowania skojarzonych zasobów. Ta funkcja umożliwia umieszczenie bardzo dużych zasobów w oddzielnych plikach zamiast umieszczania wszystkich zasobów w jednym wspólnym pliku wyjściowym. Jeśli nie określisz przesłoniętej nazwy pliku dla czcionki lub zasobu Pixelmap, te zasoby są zapisywane w pliku wspólnych zasobów.
+W przypadku zasobów Pixelmap i Font można określić niestandardową nazwę pliku wyjściowego dla każdej mapy pikseli i czcionkę w oknach dialogowych edycji skojarzonych zasobów. Ta funkcja umożliwia umieszczanie bardzo dużych zasobów w odrębnych plikach zamiast umieszczania wszystkich zasobów w jednym wspólnym pliku wyjściowym. Jeśli nie określisz zastąpionej nazwy pliku dla zasobu czcionki lub pixelmap, te zasoby zostaną zapisane we wspólnym pliku zasobów.
 
-Jeśli wolisz używać zasobów binarnych, możesz określić format wyjściowy rekordu Raw lub standard. Zasoby binarne nie są kompilowane ani połączone z kodem aplikacji, ale są ładowane w czasie wykonywania za pomocą interfejsu API gx_binres_them_load (). Ta usługa API kompiluje tabele zasobów wskazujące zasoby przechowywane w pamięci nieulotnej. Następnie można zainstalować te zasoby z określonym ekranem przy użyciu gx_display_theme_install ().
+Jeśli wolisz używać zasobów binarnych, możesz określić nieprzetworzone lub standardowe formaty danych wyjściowych rekordu S. Zasoby binarne nie są kompilowane ani łączone z kodem aplikacji, ale zamiast tego są ładowane w czasie wykonywania przy użyciu interfejsu API gx_binres_them_load(). Ta usługa interfejsu API tworzy tabele zasobów, które wskazują zasoby przechowywane w pamięci trwałej. Następnie można zainstalować te zasoby z określonym ekranem przy użyciu funkcji gx_display_theme_install();
 
 ## <a name="generating-specification-code"></a>Generowanie kodu specyfikacji
 
-Pliki specyfikacji wygenerowane przez program GUIX Studio zawierają cały kod C, aby utworzyć interfejs użytkownika zaprojektowany w programie GUIX Studio. Ten kod odwołuje się również do plików zasobów wygenerowanych dla tego projektu. Kod aplikacji użytkownika wykona wywołania do tego kodu w celu utworzenia obiektów interfejsu użytkownika zdefiniowanych w projekcie. Ponadto kod aplikacji użytkownika zawiera wszystkie niestandardowe funkcje rysowania widżetu, obsługi zdarzeń i alokacji pamięci określone w projekcie. Domyślnie są generowane dwa pliki, jeden plik jest plikiem standardowego kodu źródłowego C, a drugi to plik nagłówka C, który zawiera zewnętrzne odwołania i stałe, które są niezbędne do uzyskania dostępu do specyfikacji programu GUIX Studio w kodzie aplikacji. Nazwy plików mają postać:
+Pliki Specification wygenerowane przez program GUIX Studio zawierają cały kod języka C w celu utworzenia interfejsu użytkownika zaprojektowanego w programie GUIX Studio. Ten kod odwołuje się również do plików zasobów wygenerowanych dla tego projektu. Kod aplikacji użytkownika będzie tworzyć wywołania do tego kodu w celu utworzenia obiektów interfejsu użytkownika zdefiniowanych w projekcie. Ponadto kod aplikacji użytkownika zawiera wszystkie niestandardowe funkcje rysowania widżetów, obsługi zdarzeń i alokacji pamięci określone w projekcie. Domyślnie są generowane dwa pliki, jeden jest standardowym plikiem kodu źródłowego C, a drugi jest plikiem nagłówkowym C, który zawiera odwołania zewnętrzne i stałe, które są niezbędne do uzyskania dostępu kodu aplikacji do specyfikacji GUIX Studio. Nazwy plików mają postać:
 
-**{*Project-Name*} _specifications. h**
+**{*nazwa projektu*}_specifications.h**
 
-**{*Project-Name*} _specifications. c**
+**{*project-name*}_specifications.c**
 
-Na przykład pliki specyfikacji utworzone dla projektu "***Simple***" GUIX Studio są następujące:
+Na przykład pliki Specification utworzone dla ***"prostego"*** projektu GUIX Studio to:
 
-**simple_specifications. h**
+**simple_specifications.h**
 
-**simple_specifications. c**
+**simple_specifications.c**
 
-Generowanie plików specyfikacji jest realizowane przez wybranie opcji ***Generuj pliki specyfikacji** _ w opcji menu _*_projektu_*_ . Miejsce docelowe plików specyfikacji jest określone w oknie dialogowym _*_Konfigurowanie projektu_*_ , które jest dostępne za pośrednictwem opcji _*_Konfiguruj projekt/Wyświetl_*_ w elemencie menu _ *_Konfiguracja_**.
+Generowanie plików specyfikacji jest realizowane przez wybranie opcji ***** Generuj pliki specyfikacji _ w _*_Project_*_ menu. Miejsce docelowe plików Specification jest określone w oknie dialogowym _*_Konfigurowanie_*_ Project, które jest dostępne za pośrednictwem opcji _*_Project/Wyświetla_*_ w pozycji menu _ *_Konfiguruj_**.
 
-## <a name="integrating-with-user-code"></a>Integrowanie z kodem użytkownika
+## <a name="integrating-with-user-code"></a>Integracja z kodem użytkownika
 
-Integracja plików zasobów i specyfikacji wygenerowanych przez program GUIX Studio jest prosta, po prostu wykonaj następujące kroki:
+Integracja plików resource i specification generowanych przez program GUIX Studio jest prosta. Po prostu wykonaj następujące kroki:
 
-1. Skopiuj lub Udostępnij pliki zasobów i specyfikacji za pośrednictwem ustawień ścieżki w osadzonym środowisku kompilacji
-2. Dodaj wszystkie pliki zasobów i specyfikacji do osadzonego projektu IDE lub pliku reguł programu make
-3. Upewnij się, że osadzony kod aplikacji wywołuje niezbędne funkcje, aby zainicjować i utworzyć interfejs użytkownika zawarty w plikach zasobów i specyfikacji
-4. Upewnij się, że osadzony kod aplikacji zawiera wszystkie niezbędne niestandardowe rysunki widżetu, obsługę zdarzeń i funkcje alokacji pamięci
-5. Kompilowanie aplikacji (kompilacja i link)
-6. Wykonaj aplikację.
+1. Skopiuj lub udostępnij pliki Resource and Specification za pośrednictwem ustawień ścieżki do osadzonego środowiska kompilacji
+2. Dodawanie wszystkich plików zasobów i specyfikacji do osadzonego projektu IDE lub pliku make
+3. Upewnij się, że kod osadzony aplikacji wywołuje funkcje niezbędne do zainicjowania i utworzenia interfejsu użytkownika zawartego w plikach Resource and Specification
+4. Upewnij się, że kod osadzony aplikacji zawiera wszystkie niezbędne niestandardowe funkcje rysowania widżetów, obsługi zdarzeń i alokacji pamięci
+5. Kompilowanie aplikacji (kompilowanie i łączenie)
+6. Wykonaj aplikację!

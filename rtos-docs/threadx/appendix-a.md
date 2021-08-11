@@ -1,21 +1,21 @@
 ---
-title: Dodatek A — usługa Azure RTO ThreadX API Services
-description: Zapoznaj się z usługami interfejsu API usługi Azure RTO ThreadX.
+title: Dodatek A — Azure RTOS API Services ThreadX
+description: Zapoznaj się z Azure RTOS API Services ThreadX.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 30a2dc6284b413fe79ae6214e972b01d1321d031
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 99dd57b474f2f82aea2a7b2317a46c6b5a6150009ab33522ee6fbe4a3de6bf2c
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821378"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116788528"
 ---
-# <a name="appendix-a---azure-rtos-threadx-api-services"></a>Dodatek A — usługa Azure RTO ThreadX API Services
+# <a name="appendix-a---azure-rtos-threadx-api-services"></a>Dodatek A — Azure RTOS API Services ThreadX
 
-## <a name="entry-function"></a>Funkcja wprowadzania
+## <a name="entry-function"></a>Entry, funkcja
 
 ```c
 VOID      tx_kernel_enter(VOID);
@@ -66,7 +66,7 @@ UINT      tx_block_pool_prioritize(TX_BLOCK_POOL *pool_ptr);
 UINT      tx_block_release(VOID *block_ptr);
 ```
 
-## <a name="byte-memory-services"></a>Usługi pamięci bajtów
+## <a name="byte-memory-services"></a>Usługi pamięci bajtowej
 
 ```c
 UINT      tx_byte_allocate(TX_BYTE_POOL *pool_ptr,
@@ -113,7 +113,7 @@ UINT      tx_byte_pool_prioritize(TX_BYTE_POOL *pool_ptr);
 UINT      tx_byte_release(VOID *memory_ptr);
 ```
 
-## <a name="event-flags-services"></a>Usługi flag zdarzeń
+## <a name="event-flags-services"></a>Event Flags Services
 
 ```c
 UINT      tx_event_flags_create(TX_EVENT_FLAGS_GROUP *group_ptr,
@@ -160,13 +160,13 @@ UINT      tx_event_flags_set_notify(TX_EVENT_FLAGS_GROUP *group_ptr,
             VOID (*events_set_notify)(TX_EVENT_FLAGS_GROUP *));
 ```
 
-## <a name="interrupt-control"></a>Kontrola przerwania
+## <a name="interrupt-control"></a>Sterowanie przerywaniami
 
 ```c
 UINT      tx_interrupt_control(UINT new_posture);
 ```
 
-## <a name="mutex-services"></a>Usługi muteksów
+## <a name="mutex-services"></a>Usługi Mutex
 
 ```c
 UINT       tx_mutex_create(TX_MUTEX *mutex_ptr, CHAR *name_ptr,
@@ -209,7 +209,7 @@ UINT       tx_mutex_prioritize(TX_MUTEX *mutex_ptr);
 ```c
 UINT       tx_mutex_put(TX_MUTEX *mutex_ptr);
 ```
-## <a name="queue-services"></a>Usługi kolejki
+## <a name="queue-services"></a>Queue Services
 
 ```c
 UINT       tx_queue_create(TX_QUEUE *queue_ptr, CHAR *name_ptr,
@@ -270,7 +270,7 @@ UINT       tx_queue_send_notify(TX_QUEUE *queue_ptr, VOID
               (*queue_send_notify)(TX_QUEUE *));
 ```
 
-## <a name="semaphore-services"></a>Usługi semaforów
+## <a name="semaphore-services"></a>Usługi Semaphore
 
 ```c
 UINT       tx_semaphore_ceiling_put(TX_SEMAPHORE *semaphore_ptr,
@@ -323,7 +323,7 @@ UINT       tx_semaphore_put_notify(TX_SEMAPHORE *semaphore_ptr,
               VOID (*semaphore_put_notify)(TX_SEMAPHORE *));
 ```
 
-## <a name="thread-control-services"></a>Usługi kontroli wątków
+## <a name="thread-control-services"></a>Usługi sterowania wątkami
 
 ```c
 UINT       tx_thread_create(TX_THREAD *thread_ptr,
@@ -424,7 +424,7 @@ UINT       tx_thread_time_slice_change(TX_THREAD *thread_ptr,
 UINT       tx_thread_wait_abort(TX_THREAD *thread_ptr);
 ```
 
-## <a name="time-services"></a>Usługi czasu
+## <a name="time-services"></a>Time Services
 
 ```c
 ULONG      tx_time_get(VOID);

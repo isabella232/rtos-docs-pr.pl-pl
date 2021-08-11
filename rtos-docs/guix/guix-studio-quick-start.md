@@ -1,124 +1,124 @@
 ---
-title: Azure Real-Time Operating System (RTO) GUIX Studio Przewodnik Szybki start
-description: Ten przewodnik zawiera krótkie wprowadzenie do korzystania z aplikacji Azure RTO GUIX Studio, szybkiego środowiska programistycznego interfejsu użytkownika opartego na systemie Microsoft Windows przeznaczonego specjalnie dla biblioteki środowiska uruchomieniowego GUIX platformy Azure RTO firmy Microsoft.
+title: Azure Real-Time Operating System (RTOS) GUIX Studio Przewodnik Szybki start
+description: Ten przewodnik zawiera krótkie wprowadzenie do korzystania z aplikacji Azure RTOS GUIX Studio , opartego na platformie Microsoft Windows środowiska deweloperskiej szybkiego interfejsu użytkownika zaprojektowanego specjalnie dla biblioteki środowiska uruchomieniowego Azure RTOS GUIX firmy Microsoft.
 author: philmea
 ms.author: philmea
 ms.date: 7/20/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: eedd53867b56312b53f4e9509136ee856acabfd7
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 9ab4dfb2edd8990692ee3dc134207f43e4c757538dbc738f6f406bf40864bfb3
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823016"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116785428"
 ---
-# <a name="azure-rtos-guix-studio-quick-start-guide"></a>Usługa Azure RTO GUIX Studio Przewodnik Szybki start
+# <a name="azure-rtos-guix-studio-quick-start-guide"></a>Azure RTOS GUIX Studio Przewodnik Szybki start
 
-Ten przewodnik zawiera krótkie wprowadzenie do korzystania z usługi Azure RTO GUIX Studio. GUIX Studio to oparta na systemie Windows aplikacja projektowania interfejsu użytkownika przeznaczona do użycia z biblioteką środowiska uruchomieniowego GUIX platformy Azure RTO firmy Microsoft. 
+Ten przewodnik zawiera krótkie wprowadzenie do korzystania z Azure RTOS GUIX Studio. GUIX Studio to oparta Windows interfejsu użytkownika aplikacja przeznaczona do użycia z biblioteką Azure RTOS środowiska uruchomieniowego GUIX firmy Microsoft. 
 
-Jest ona przeznaczona dla wbudowanego dewelopera oprogramowania w czasie rzeczywistym przy użyciu systemu operacyjnego ThreadX Real-Time (RTO) i biblioteki wykonawczej interfejsu użytkownika platformy Azure RTO GUIX. Deweloper powinien znać standardowe pojęcia dotyczące platformy Azure RTO ThreadX i platformy Azure RTO GUIX.
+Jest ona przeznaczona dla osadzonego dewelopera oprogramowania w czasie rzeczywistym przy użyciu systemu operacyjnego ThreadX Real-Time (RTOS) i biblioteki uruchomieniowej interfejsu użytkownika Azure RTOS GUIX. Deweloper powinien znać standardowe pojęcia związane z Azure RTOS ThreadX i Azure RTOS GUIX.
 
 ## <a name="summary"></a>Podsumowanie
 
-Usługa Azure RTO GUIX Studio zawiera wszystko, czego potrzebujesz, aby tworzyć, kompilować i uruchamiać własny projekt interfejsu graficznego. Jeśli oceniasz program GUIX Studio, zestaw ewaluacyjny został zaprojektowany tak, aby umożliwiać Kompilowanie i uruchamianie projektu GUIX jako autonomicznej aplikacji klasycznej systemu Windows na potrzeby testowania i oceny. Ponieważ GUIX jest przeznaczony do użycia na niemal dowolnym osadzonym miejscu docelowym, który umożliwia wykonywanie graficznych danych wyjściowych, wykonywane czynności i projekty tworzone na pulpicie zawsze mogą być kompilowane i uruchamiane w osadzonym miejscu docelowym bez zmiany oprogramowania aplikacji.
-Instalator programu GUIX Studio umieszcza kilka składników w systemie deweloperskim:
+Azure RTOS GUIX Studio zawiera wszystko, czego potrzebujesz do tworzenia, kompilowania i uruchamiania własnego projektu interfejsu graficznego. Jeśli oceniasz program GUIX Studio, zestaw ewaluatora został zaprojektowany tak, aby umożliwić skompilowanie i uruchomienie projektu GUIX jako autonomicznej aplikacji klasycznej Windows do celów testowych i ewaluatorowych. Ponieważ graficzny interfejs użytkownika (GUIX) jest przeznaczony do użycia w niemal każdym osadzonym celu umożliwiającym graficzne dane wyjściowe, pracę i projekty tworzone na pulpicie można zawsze kompilować i uruchamiać na osadzonym celu bez zmiany jakiegokolwiek oprogramowania aplikacji.
+Instalator programu GUIX Studio umieszcza w systemie dewelopera kilka składników:
 
 - Aplikacja GUIX Studio.
 - Kilka przykładowych projektów GUIX.
-- Wszystkie zasoby grafiki i czcionki używane w przykładowych projektach.
-- Pliki rozwiązań i pliki projektu do kompilowania w środowisku klasycznym systemu Windows przy użyciu Microsoft Visual Studio IDE.
-- Wstępnie skompilowane biblioteki GUIX i ThreadX dla systemu Win32, dzięki czemu można tworzyć i uruchamiać własne aplikacje na komputerze.
-- GUIX i ThreadX plików nagłówkowych interfejsu API.
+- Wszystkie zasoby graficzne i czcionki używane w przykładowych projektach.
+- Pliki rozwiązań i pliki projektu do budowania w środowisku Windows przy użyciu Microsoft Visual Studio IDE.
+- Wstępnie skompilowane biblioteki GUIX i ThreadX dla systemu Win32, umożliwiające tworzenie i uruchamianie własnych aplikacji na komputerze.
+- Pliki nagłówkowe interfejsu API GUIX i ThreadX.
 
 ## <a name="prerequisites"></a>Wymagania wstępne
 
-Instalator usługi Azure RTO GUIX Studio zawiera kilka prostych przykładowych projektów. oczekujemy, że rozpocznie się od zmodyfikowania, skompilowania i uruchomienia tych przykładów, ponieważ dowiesz się, jak korzystać z aplikacji GUIX Studio. Aby można było skompilować i uruchomić przykłady na pulpicie systemu Windows, potrzebny będzie kompilator Microsoft Visual Studio. Te narzędzia można pobrać z następującej lokalizacji:
+Instalator Azure RTOS GUIX Studio zawiera kilka prostych przykładowych projektów i oczekujemy, że rozpoczniesz od zmodyfikowania, sbudowania i uruchomienia tych przykładów, gdy dowiesz się, jak korzystać z aplikacji GUIX Studio. Do skompilowania i uruchomienia przykładów na komputerze Windows potrzebny jest Microsoft Visual Studio kompilator. Te narzędzia można pobrać z następującej lokalizacji:
 
 https://www.visualstudio.com/en-us/downloads/download-visual-studio-vs#DownloadFamilies_4
 
-Jeśli nie masz zainstalowanych narzędzi programistycznych firmy Microsoft, możesz nadal uruchamiać te opony i korzystać z aplikacji GUIX Studio, aby utworzyć własny projekt interfejsu i przeanalizować utworzony kod źródłowy. Nie będzie jednak można kompilować i uruchamiać projektu jako aplikacji autonomicznej.
+Jeśli nie masz zainstalowanych narzędzi programistyczych firmy Microsoft, możesz nadal ćmignąć łaziki i użyć aplikacji GUIX Studio do utworzenia własnego projektu interfejsu i przeanalizowania kodu źródłowego. Nie będzie można jednak skompilować ani uruchomić projektu jako aplikacji autonomicznej.
 
 ## <a name="running-the-examples"></a>Uruchamianie przykładów
 
-Po uruchomieniu Instalatora programu GUIX Studio w zainstalowanej zawartości znajduje się kilka przykładowych projektów i plików kompilacji. Aby sprawdzić, czy narzędzia pulpitu są zainstalowane i działają prawidłowo, zalecamy rozpoczęcie od skompilowania i uruchomienia każdego z podanych przykładów jako-is. Odwołujemy się do katalogu instalacyjnego \<root> , w takim przypadku należy użyć przeglądarki plików i przeszukać \<root> /GUIX_Studio_6. x/przykłady. W tym katalogu powinny być widoczne kilka prostych przykładowych programów, takich jak demo_guix_calculator, demo_guix_car_infotainment, demo_guix__home_automation, demo_guix_widget_types i innych.
+Po uruchomieniu instalatora programu GUIX Studio znajdziesz kilka przykładowych projektów i plików kompilacji, które znajdują się w zainstalowanej zawartości. Aby sprawdzić, czy narzędzia pulpitu są zainstalowane i działają prawidłowo, zalecamy rozpoczęcie od sbudowania i uruchomienia każdego z podanych przykładów w stanie, w ile jest. Katalog instalacyjny zostanie nazwany , w takim przypadku należy użyć przeglądarki plików i przejść do \<root> \<root> katalogu /GUIX_Studio_6.x/examples. W tym katalogu powinien zostać wyświetlonych kilka prostych przykładowych programów, takich jak demo_guix_calculator, demo_guix_car_infotainment, demo_guix__home_automation, demo_guix_widget_types i inne.
 
 ## <a name="building-an-example"></a>Tworzenie przykładu
 
-Podkatalog o nazwie *Build* powinien znajdować się w każdym z przykładowych folderów. Ten kierunek obejmuje wstępnie skonfigurowane projekty dla każdego z obsługiwanych łańcucha narzędzi. Na przykład możesz przejść do \<root> /GUIX_Studio_6. x/przykłady/termometr/kompilacja/vs_2019 i znaleźć wstępnie skonfigurowany plik rozwiązania Microsoft Visual Studio i plik projektu, gotowy do załadowania i uruchomienia w środowisku IDE programu Visual Studio. Jeśli chcesz użyć innego łańcucha narzędzi, skontaktuj się z [azure_rtos_support](https://docs.microsoft.com/azure/azure-portal/supportability/how-to-create-azure-support-request#create-a-support-request).
+W każdym przykładowym folderze powinien znaleźć się podkatalog o nazwie *build.* Ten kierunek obejmuje wstępnie skonfigurowane projekty dla każdego obsługiwanego zestawu narzędzi. Możesz na przykład przejść do strony /GUIX_Studio_6.x/examples/meter/build/vs_2019 i znaleźć wstępnie skonfigurowany plik rozwiązania i plik projektu rozwiązania Microsoft Visual Studio gotowy do załadowania i uruchomienia w programie \<root> Visual Studio IDE. Jeśli chcesz użyć innego zestawu narzędzi, skontaktuj się z azure_rtos_support [.](https://docs.microsoft.com/azure/azure-portal/supportability/how-to-create-azure-support-request#create-a-support-request)
 
-Zalecamy uruchomienie Microsoft Visual C++ IDE i otwarcie co najmniej jednego z tych przykładów. Naciśnij klawisz \<F7> , aby skompilować przykładowy projekt, a następnie naciśnij klawisz, \<F5> Aby uruchomić program po pomyślnym skompilowaniu. Powinien być teraz widoczny interfejs użytkownika GUIX uruchomiony w oknie Microsoft Windows.
+Zalecamy uruchomienie środowiska IDE Microsoft Visual C++ i otwarcie co najmniej jednego z tych przykładów. Naciśnij klawisz , aby skompilować przykładowy projekt, a następnie naciśnij klawisz , aby \<F7> \<F5> uruchomić program po pomyślnym skompilowaniu. Powinien zostać wyświetlony interfejs użytkownika GUIX uruchomiony w oknie Windows Microsoft.
 
-## <a name="designing-and-running-your-own-user-interface"></a>Projektowanie i uruchamianie własnego interfejsu użytkownika
+## <a name="designing-and-running-your-own-user-interface"></a>Projektowanie i uruchamianie własnych Interfejs użytkownika
 
-Ten przewodnik Szybki Start nie jest zamiennikiem podręcznika użytkownika programu GUIX Studio ani podręcznikiem użytkownika GUIX, ale postanowimy Cię o tym, aby rozpocząć pracę i zachęcamy do kontynuowania, przenosząc się do podręcznika użytkownika programu GUIX Studio, aby uzyskać bardziej szczegółowe informacje.
+Ten przewodnik Szybki start nie zastępuje podręcznika użytkownika programu GUIX Studio ani podręcznika użytkownika GUIX, ale pokażemy Ci wystarczająco, aby rozpocząć pracę i zachęcamy do kontynuowania pracy, korzystając z podręcznika użytkownika programu GUIX Studio, aby uzyskać bardziej szczegółowe informacje.
 
-Istnieją dwie metody tworzenia i modyfikowania własnego interfejsu użytkownika. Możesz badać Podręcznik programowania biblioteki GUIX i używać interfejsu API GUIX bezpośrednio z poziomu oprogramowania aplikacji, aby w pełni zaimplementować swój projekt. W większości przypadków aplikacja GUIX Studio jest używana do wykonywania większości zadań związanych z projektowaniem i układem elementów ekranu, a następnie dokończ obsługę zdarzeń i inną logikę aplikacji, która jest wymagana, aby interfejs użytkownika wykonywał rzeczywistą pracę.
+Istnieją dwie metody tworzenia i modyfikowania własnego interfejsu użytkownika. Możesz zbadać podręcznik programowania biblioteki GUIX i użyć interfejsu API GUIX bezpośrednio z poziomu oprogramowania aplikacji, aby w pełni zaimplementować projekt. Częściej będziesz używać aplikacji GUIX Studio do wykonywania większości zadań projektowania i układu elementów ekranu, a następnie ukończyć obsługę zdarzeń i inną logikę aplikacji wymaganą do rzeczywistego wykonania pracy interfejsu użytkownika.
 
-Każdy z podanych przykładów został utworzony przy użyciu aplikacji projektowej interfejsu GUIX Studio. Po uruchomieniu Instalatora programu GUIX Studio należy mieć na pulpicie ikonę programu GUIX Studio 6. x. x. x.  Uruchom teraz program GUIX Studio i Otwórz projekt o nazwie "demo_guix_widget_types \ guix_widget_types. GXP". Demonstracja *widget_types* jest przykładowym projektem, który ilustruje kilka różnych typów widżetów GUIX.
+Każdy z podanych przykładów został utworzony przy użyciu aplikacji do projektowania interfejsu GUIX Studio. Po uruchomieniu instalatora programu GUIX Studio na pulpicie powinna być wyświetlana ikona programu GUIX Studio 6.x.x.x.  Uruchom teraz program GUIX Studio i otwórz projekt o nazwie "demo_guix_widget_types\guix_widget_types.gxp". Pokaz *widget_types* przykładowy, który demonstruje kilka odmian najpopularniejszych typów widżetów GUIX.
 
-Po otwarciu projektu kliknij przycisk "+", aby otworzyć węzeł drzewa o nazwie "podstawowa" w widoku projektu w lewym górnym rogu IDE, a następnie kliknij okno najwyższego poziomu w tym folderze o nazwie "Menu_Screen". Projekt nie powinien wyglądać tak, jak pokazano poniżej:
+Po otwarciu projektu kliknij przycisk "+", aby otworzyć węzeł drzewa o nazwie "Primary" (Podstawowy) w widoku Project w lewym górnym rogu środowiska IDE, a następnie kliknij okno najwyższego poziomu w tym folderze o nazwie "Menu_Screen". Projekt nie powinien wyglądać tak, jak pokazano poniżej:
 
-![Zrzut ekranu programu Studio z otwartym projektem.](./media/guix-studio/qs_project_open.png)
+![Zrzut ekranu przedstawiający program Studio z otwartym projektem.](./media/guix-studio/qs_project_open.png)
 
 ## <a name="guix-studio-views"></a>Widoki GUIX Studio
 
-Środowisko IDE programu GUIX Studio składa się z kilku ***widoków***. Każdy widok został zaprojektowany, aby pomóc w nawigowaniu po projekcie i wprowadzaniu zmian w projekcie.
+Program GUIX Studio IDE składa się z kilku ***widoków.*** Każdy widok ma na celu pomoc w nawigowanie po projekcie i wprowadzenie zmian w tym projekcie.
 
-### <a name="project-view"></a>Widok projektu
+### <a name="project-view"></a>Project Widok
 
-Widok w lewym górnym rogu nosi nazwę widoku projektu. Ten widok przedstawia każdy z ekranów fizycznych, które są zawarte w projekcie (większość projektów ma tylko jeden ekran), a ekrany i podrzędne elementy widget, które zostały zaprojektowane do uruchamiania na tym ekranie.
+Widok w lewym górnym rogu nosi nazwę widoku Project widoku. Ten widok przedstawia wszystkie fizyczne ekrany uwzględnione w projekcie (większość projektów ma tylko jeden ekran) oraz ekrany i widżety podrzędne, które zostały zaprojektowane do uruchamiania na tym ekranie.
 
 ### <a name="properties-view"></a>Widok właściwości
 
-Poniżej widoku projektu znajduje się widok właściwości. Jak widok Właściwości nazwy wskazuje, ten widok pozwala modyfikować widżety przez zmianę różnych właściwości skojarzonych z nimi.
+Poniżej Project widoku właściwości. Jak wskazuje nazwa Widok właściwości, ten widok umożliwia modyfikowanie widżetów przez zmianę różnych skojarzonych z nimi właściwości.
 
 ### <a name="target-view"></a>Widok docelowy
 
-Centralny obszar wyświetlania jest nazywany widokiem docelowym. Ten widok jest widokiem WYSIWYG interfejsu użytkownika. Ponieważ biblioteka GUIX jest narysowaniem w widoku docelowym, ten widok jest dokładną reprezentacją pikseli, jak projekt będzie wyglądał po wykonaniu na osadzonym miejscu docelowym. Jeśli klikniesz inne widżety w widoku projektu lub centralnym widoku docelowym, zobaczysz wartości wyświetlane w widoku właściwości Zmień, aby wyświetlić właściwości wybranego widżetu.
+Centralny obszar wyświetlania jest nazywany widokiem docelowym. Ten widok to widok WYSIWYG interfejsu użytkownika. Ponieważ biblioteka GUIX rysuje w widoku docelowym, ten widok jest dokładną reprezentacją wyglądu projektu podczas wykonywania na osadzonym celu. Jeśli klikniesz różne widżety w widoku Project lub centralnym widoku docelowym, zobaczysz wartości wyświetlane w widoku właściwości, aby wyświetlić właściwości wybranego widżetu.
 
 ### <a name="resource-view"></a>Widok zasobów
 
-Na koniec po prawej stronie zobaczysz, co jest nazywane Widok zasobów. Ten widok umożliwia wybranie, dodanie, usunięcie i zmodyfikowanie kolorów, czcionek, pixelmaps i ciągów zawartych w projekcie.
+Na koniec po prawej stronie zobaczysz, co nazywa się Widok zasobów. Ten widok umożliwia wybieranie, dodawanie, usuwanie i modyfikowanie kolorów, czcionek, map pikseli i ciągów zawartych w projekcie.
 
 ## <a name="modifying-the-example"></a>Modyfikowanie przykładu
 
-GUIX Studio została zaprojektowana jako intuicyjne. Aby przenieść jedno z elementów widget przedstawionych powyżej, wystarczy kliknąć ten widżet w widoku docelowym i przeciągnąć go do nowej lokalizacji. Aby zmienić kolory widżetu, kliknij odpowiedni widżet i Zmień kolory wyświetlane w widoku właściwości. Aby zmienić czcionkę używaną przez widżet wyświetlania tekstu, po prostu kliknij odpowiednią czcionkę w Widok zasobów i przeciągnij czcionkę i upuść ją na żądany widżet docelowy. Przepływaj myszą na przyciski paska narzędzi, aby zobaczyć szybką pomoc dotyczącą operacji wykonywanej przez poszczególne przyciski.
+Program GUIX Studio został zaprojektowany tak, aby był intuicyjny. Aby przenieść jeden z widżetów pokazanych powyżej, wystarczy kliknąć ten widżet w widoku docelowym i przeciągnąć go do nowej lokalizacji. Aby zmienić kolory widżetu, kliknij żądany element widget i zmień kolory wyświetlane w widoku właściwości. Aby zmienić czcionkę używaną przez widżet wyświetlania tekstu, wystarczy kliknąć żądaną czcionkę w obszarze Widok zasobów i przeciągnąć i upuścić czcionkę do żądanego widżetu docelowego. Ujmij wskaźnik myszy wzdłuż przycisków paska narzędzi, aby wyświetlić szybką pomoc dotyczącą operacji, które wykonuje każdy przycisk.
 
-Eksperymentuj i wprowadzaj drobne zmiany do przykładu. Na przykład możesz przeciągnąć widżet do nowej lokalizacji, zmienić kolor tła okna lub zmienić rozmiar przycisku. Nie zalecamy usuwania żadnych elementów widget z przykładu, dopóki nie uzyskasz więcej doświadczenia w pracy z usługą GUIX, ponieważ usuwanie widżetów może wymagać skojarzonych modyfikacji kodu źródłowego aplikacji.
+Poeksperymentuj samodzielnie i wprowadzaj drobne zmiany w przykładzie. Możesz na przykład przeciągnąć widżet do nowej lokalizacji, zmienić kolor tła okna lub zmienić rozmiar przycisku. Nie zalecamy usuwania żadnych widżetów z przykładu, dopóki nie uzyskasz więcej doświadczenia w pracy z graficznym interfejsem użytkownika, ponieważ usunięcie widżetów może wymagać skojarzonych modyfikacji kodu źródłowego aplikacji.
 
 ## <a name="running-the-application-within-studio"></a>Uruchamianie aplikacji w programie Studio
 
-Możesz użyć Edytuj | Uruchom polecenie menu aplikacji (lub przycisk Uruchom aplikację na pasku przycisku), aby uruchomić aplikację natychmiast w nowym oknie pulpitu. Niestandardowe funkcje rysowania i inny kod aplikacji nie będą wywoływane przy użyciu tej metody, ale pozwalają na szybkie nawigowanie po projekcie interfejsu użytkownika i uzyskanie ogólnego pomysłu na wygląd i działanie aplikacji, w tym nawigację z jednego ekranu do następnego.
+Możesz użyć funkcji edytowania | Uruchom polecenie menu Aplikacja (lub przycisk Uruchom aplikację na pasku przycisku), aby uruchomić aplikację natychmiast w nowym oknie pulpitu. Niestandardowe funkcje rysowania i inny kod aplikacji nie będą wywoływane przy użyciu tej metody, ale umożliwia szybkie nawigowanie po projekcie interfejsu użytkownika i uzyskiwanie ogólnego pojęcia wyglądu i działania aplikacji, w tym nawigacji między ekranami.
 
 ## <a name="generating-source-files"></a>Generowanie plików źródłowych
 
-Po wprowadzeniu zmian należy wywołać polecenia menu programu GUIX Studio, aby generować nowe pliki źródłowe dla projektu. Można następnie ponownie skompilować Przykładowy program, aby zobaczyć zmiany w akcji. Aby wygenerować pliki źródłowe, użyj projektu poleceń menu GUIX Studio | Generowanie plików zasobów i projektu | Generuj pliki specyfikacji (można również kliknąć prawym przyciskiem myszy w widoku projektu, aby wykonać te polecenia).
+Po w związku z wprowadzeniem zmian należy wywołać polecenia menu programu GUIX Studio w celu wygenerowania nowych plików źródłowych dla projektu. Następnie możesz ponownie skompilować przykładowy program, aby zobaczyć zmiany w działaniu. Aby wygenerować pliki źródłowe, użyj poleceń menu GUIX Studio Project| Generowanie plików zasobów i Project| Generuj pliki specyfikacji (możesz również kliknąć prawym przyciskiem myszy ekran w widoku Project, aby wykonać te polecenia).
 
-Podczas generowania tych nowych plików źródłowych należy zaobserwować komunikat z potwierdzeniem informujący, że pliki źródłowe skojarzone z projektem zostały zaktualizowane. Jeśli nie obserwujesz tego komunikatu potwierdzającego, upewnij się, że masz uprawnienia do zapisu w katalogu, w którym znajduje się ten projekt. Teraz możesz zamknąć aplikację GUIX Studio. Jeśli w projekcie wprowadzono zmiany, program GUIX Studio wyświetli zapytanie, czy chcesz zapisać te zmiany. Zaoszczędź i Zapisz zmiany, te przykłady są przeznaczone do użycia i eksperymentowanie z usługą GUIX Studio.
+Podczas generowania tych nowych plików źródłowych powinien zostać wyświetlony komunikat z potwierdzeniem informujący, że pliki źródłowe skojarzone z projektem zostały zaktualizowane. Jeśli nie obserwujesz tego komunikatu potwierdzenia, upewnij się, że masz uprawnienia do zapisu w katalogu, w którym znajduje się projekt. Teraz możesz zamknąć aplikację GUIX Studio. Jeśli w projekcie wproszą się zmiany, program GUIX Studio zapyta, czy chcesz zapisać te zmiany. Zapisz zmiany. Te przykłady są przeznaczone do użycia i eksperymentowania z nim podczas nauki korzystania z programu GUIX Studio.
 
-### <a name="building-and-running-the-application"></a>Kompilowanie i uruchamianie aplikacji
+### <a name="building-and-running-the-application"></a>Budowania i uruchamiania aplikacji
 
-Teraz, gdy program GUIX Studio wygenerował pliki wyjściowe projektu, można skompilować i utworzyć link do tworzenia autonomicznego pliku wykonywalnego Win32. Ponadto, aby uwzględnić niestandardowe rysunki lub obsługę zdarzeń zdefiniowane w aplikacji, należy skompilować i połączyć pliki wyjściowe wygenerowane przez GUIX Studio z oprogramowaniem aplikacji. Będziemy używać Microsoft Visual C++ łańcucha narzędzi jako przykładu, ale ta sama procedura jest używana, jeśli tworzysz i uruchamiasz dla zamierzonego celu.
+Teraz, gdy program GUIX Studio wygenerował pliki wyjściowe projektu, możesz skompilować plik i połączyć go, aby utworzyć autonomiczny plik wykonywalny Win32. Ponadto w celu uwzględnienia wszelkich niestandardowych rysowania lub obsługi zdarzeń zdefiniowanych w aplikacji należy skompilować i połączyć pliki wyjściowe wygenerowane przez program GUIX Studio z własnym oprogramowaniem aplikacji. Jako przykładu użyjemy Microsoft Visual C++ narzędzi, ale w przypadku tworzenia i uruchamiania dla zamierzonego celu jest używana dokładnie ta sama procedura.
 
-- Uruchom środowisko IDE MSVC i Otwórz rozwiązanie \<root> /GUIX_Studio_5. x/przykłady/demo_guix_widget_types/build/vs_2019/guix_widget_types. sln.
+- Uruchom MSVC IDE i otwórz rozwiązanie \<root> /GUIX_Studio_5.x/examples/demo_guix_widget_types/build/vs_2019/guix_widget_types.sln.
 
-- Użyj \<F7> klucza, aby ponownie skompilować rozwiązanie.
-- Użyj \<F5> klucza, aby uruchomić program.
+- Użyj klucza \<F7> , aby ponownie skompilować rozwiązanie.
+- Użyj \<F5> klucza , aby uruchomić program.
  
-Powinien być teraz widoczny uruchomiony program z zmianami wprowadzonymi w programie Studio.
+Powinien zostać wyświetlony uruchomiony program ze zmianami wprowadzonymi w programie Studio.
 
 ### <a name="learning-more"></a>Dodatkowe informacje
 
-**Podręcznik użytkownika programu GUIX Studio** jest dostępny w witrynie [azrtos-GUIX-Studio-User-Guide](https://docs.microsoft.com/azure/rtos/guix/about-guix-studio). Podręcznik użytkownika programu GUIX Studio to bardziej dokładniejszy Przewodnik dotyczący korzystania z programu GUIX Studio.
+Podręcznik **użytkownika programu GUIX Studio jest** dostępny na stronie [azrtos-guix-studio-user-guide.](https://docs.microsoft.com/azure/rtos/guix/about-guix-studio) Podręcznik użytkownika programu GUIX Studio zawiera znacznie bardziej szczegółowe informacje na temat korzystania z programu GUIX Studio.
 
-Ponadto **Podręcznik użytkownika GUIX** jest dostępny w [podręczniku azrtos-GUIX-User-Guide](https://docs.microsoft.com/azure/rtos/guix/about-guix).  Ten przewodnik zawiera wiele bardziej szczegółowych informacji na temat tego, co dzieje się w "pod okapem" podczas wykonywania aplikacji GUIX. Aby w pełni wykorzystać możliwości biblioteki środowiska uruchomieniowego GUIX i programu GUIX Studio, należy odwołać się do obu tych przewodników.
+Ponadto podręcznik użytkownika **GUIX jest** dostępny na stronie [azrtos-guix-user-guide.](https://docs.microsoft.com/azure/rtos/guix/about-guix)  Ten przewodnik zawiera znacznie bardziej szczegółowe informacje o tym, co dzieje się "Pod maską" po wykonaniu aplikacji GUIX. Aby w pełni wykorzystać możliwości biblioteki środowiska uruchomieniowego GUIX i programu GUIX Studio, należy odwołać się do obu tych przewodników.
 
-## <a name="customer-support-center"></a>Centrum pomocy technicznej
+## <a name="customer-support-center"></a>Centrum obsługi klienta
 
-Prosimy o przesłanie biletu pomocy technicznej za pośrednictwem witryny Azure Portal w celu uzyskania pytań lub pomocy przy korzystaniu z tych kroków. Podaj następujące informacje w wiadomości e-mail, aby skuteczniej rozwiązywać Twoje żądanie pomocy technicznej:
+Aby uzyskać pytania lub pomoc, prześlij bilet pomocy technicznej za pośrednictwem witryny Azure Portal. W wiadomości e-mail należy podać następujące informacje, abyśmy w bardziej wydajny sposób rozwiązali Twój wniosek o pomoc techniczną:
 
-- Szczegółowy opis problemu, w tym częstotliwość występowania i sposób niezawodnego wygenerowania.
+- Szczegółowy opis problemu, w tym częstotliwość występowania i sposób jego niezawodnego odtworzenia.
 - Dołącz plik śledzenia, który powoduje problem.
-- Używana wersja platformy Azure RTO GUIX Studio (pokazana w lewym górnym rogu ekranu).
-- Używana wersja usługi Azure RTO GUIX, w tym zmienna **_gx_version_idstring** i **_gx_build_options** .
+- Wersja programu Azure RTOS GUIX Studio, z których korzystasz (wyświetlana w lewym górnym rogu ekranu).
+- Wersja programu Azure RTOS GUIX, z uwzględnieniem _gx_version_idstring **i** **_gx_build_options** graficznego.

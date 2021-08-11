@@ -1,63 +1,63 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX Duo BSD
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika systemu Azure RTO NetX Duo BSD.
+title: Rozdział 2 — Instalowanie i używanie Azure RTOS NetX Duo BSD
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika Azure RTOS NetX Duo BSD.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 582661bc66c51341fc098de9ff7b6fa2a7d746de
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 560621e528c8ce98013ce505ea1511f466317f4a087aa44cc0e70cb4d4b8ed1e
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822057"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116788511"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-bsd"></a>Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX Duo BSD
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-bsd"></a>Rozdział 2 — Instalowanie i używanie Azure RTOS NetX Duo BSD
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika systemu Azure RTO NetX Duo BSD.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika Azure RTOS NetX Duo BSD.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Usługę Azure RTO NetX Duo BSD można uzyskać z naszego publicznego repozytorium kodu źródłowego w lokalizacji [https://github.com/azure-rtos/netx/](https://github.com/azure-rtos/netx/) . Pakiet zawiera dwa pliki źródłowe i plik PDF, który zawiera ten dokument, w następujący sposób:
+Azure RTOS NetX Duo BSD można uzyskać z naszego publicznego repozytorium kodu źródłowego na stronie [https://github.com/azure-rtos/netx/](https://github.com/azure-rtos/netx/) . Pakiet zawiera dwa pliki źródłowe i plik PDF zawierający ten dokument w następujący sposób:
 
-- **nxd_bsd. h**: plik nagłówkowy dla NetX Duo BSD
-- plik źródłowy **nxd_bsd. c**: c dla NetX Duo BSD
-- **nxd_bsd.pdf**: Podręcznik użytkownika dotyczący NetX Duo BSD
+- **nxd_bsd.h:** plik nagłówka dla NetX Duo BSD
+- **nxd_bsd.c:** plik źródłowy C dla NetX Duo BSD
+- **nxd_bsd.pdf:** Podręcznik użytkownika aplikacji NetX Duo BSD
 
 Pliki demonstracyjne:
 
-- **bsd_demo_udp. c**
-- **bsd_demo_tcp. c**
-- **bsd_demo_raw. c**
+- **bsd_demo_udp.c**
+- **bsd_demo_tcp.c**
+- **bsd_demo_raw.c**
 
-## <a name="netx-duo-bsd-installation"></a>Instalacja BSD NetX Duo
+## <a name="netx-duo-bsd-installation"></a>Instalacja zestawu NetX Duo BSD
 
-Aby można było użyć NetX Duo BSD, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowana w katalogu "*\threadx\arm7\green*", wówczas pliki *nxd_bsd. h* i *nxd_bsd. c* powinny zostać skopiowane do tego katalogu.
+Aby można było korzystać z programu NetX Duo BSD, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX Duo. Jeśli na przykład program NetX Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* do tego katalogu powinny zostać skopiowane pliki *nxd_bsd.h* i *nxd_bsd.c.*
 
-## <a name="building-the-threadx-and-netx-duo-components-of-a-bsd-application"></a>Kompilowanie składników ThreadX i NetX Duo aplikacji BSD
+## <a name="building-the-threadx-and-netx-duo-components-of-a-bsd-application"></a>Tworzenie składników ThreadX i NetX Duo aplikacji BSD
 
 ### <a name="threadx"></a>ThreadX
 
-Biblioteka ThreadX musi definiować `bsd_errno` w lokalnym magazynie wątków. Zalecamy wykonanie następującej procedury:
+Biblioteka ThreadX musi `bsd_errno` definiować w lokalnym magazynie wątku. Zalecamy następującą procedurę:
 
-1. W *tx_port. h* Ustaw jeden z TX_THREAD_EXTENSION makr w następujący sposób:
+1. W *tx_port.h* ustaw jedno z TX_THREAD_EXTENSION w następujący sposób:
    - `#define TX_THREAD_EXTENSION_3     int bsd_errno`
 
-1. Skompiluj ponownie bibliotekę ThreadX.
+1. Ponownie skompilować bibliotekę ThreadX.
 
 > [!NOTE]
-> Jeśli TX_THREAD_EXTENSION_3 jest już używany, użytkownik może korzystać z jednego z innych TX_THREAD_EXTENSION makr.
+> Jeśli TX_THREAD_EXTENSION_3 jest już używany, użytkownik może używać jednego z innych makr TX_THREAD_EXTENSION danych.
 
 ### <a name="netx-duo"></a>NetX Duo
 
-Przed rozpoczęciem korzystania z usług BSD NetX Duo należy skompilować bibliotekę NetX Duo przy użyciu zdefiniowanych NX_ENABLE_EXTENDED_NOTIFY_SUPPORT. Domyślnie nie jest on zdefiniowany. Jeśli wykorzystano gniazda BSD RAW, biblioteka NetX Duo musi być skompilowana przy użyciu zdefiniowanych NX_ENABLE_IP_RAW_PACKET_FILTER.
+Przed rozpoczęciem korzystania z usług NetX Duo BSD bibliotekę NetX Duo należy sbudowaną z NX_ENABLE_EXTENDED_NOTIFY_SUPPORT zdefiniowane. Domyślnie nie jest zdefiniowana. Jeśli mają być używane nieprzetworzone gniazda BSD, biblioteka NetX Duo musi zostać s zbudowana z NX_ENABLE_IP_RAW_PACKET_FILTER zdefiniowanymi.
 
-## <a name="using-netx-duo-bsd"></a>Korzystanie z NetX Duo BSD
+## <a name="using-netx-duo-bsd"></a>Korzystanie z netx duo BSD
 
-Projekt aplikacji BSD NetX Duo musi zawierać *nxd_bsd. h* , który zawiera *tx_api. h* i *nx_api. h* , aby można było korzystać z usług BSD określonych w dalszej części tego przewodnika. Aplikacja musi również zawierać *nxd_bsd. c* w procesie kompilacji. Ten plik musi być skompilowany w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do korzystania z NetX Duo BSD.
+Projekt aplikacji NetX Duo BSD musi zawierać plik *nxd_bsd.h,* jeśli zawiera on elementy *tx_api.h* i *nx_api.h,* aby móc korzystać z usług BSD określonych w dalszej części tego przewodnika. Aplikacja musi również *uwzględniać nxd_bsd.c* w procesie kompilacji. Ten plik musi zostać skompilowany w taki sam sposób, jak inne pliki aplikacji, a jego formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z netx duo BSD.
 
-Aby można było korzystać z usług NetX Duo BSD, aplikacja musi utworzyć wystąpienie IP, utworzyć pulę pakietów dla warstwy BSD do przydzielania pakietów z, przydzielić miejsce na pamięć dla wewnętrznego stosu wątków BSD i określić priorytet wewnętrznego wątku BSD. Warstwa BSD jest inicjowana przez wywołanie *bsd_initialize* i przekazanie parametrów. Przedstawiono to w "małych przykładach" w dalszej części tego dokumentu, ale prototyp jest przedstawiony poniżej:
+Aby korzystać z usług NetX Duo BSD, aplikacja musi utworzyć wystąpienie adresu IP, utworzyć pulę pakietów dla warstwy BSD w celu przydzielenia pakietów, przydzielić miejsce do pamięci dla wewnętrznego stosu wątków BSD i określić priorytet wewnętrznego wątku BSD. Warstwa BSD jest inicjowana przez wywołanie *bsd_initialize* i przekazanie parametrów. Przedstawiono to w części "Małe przykłady" w dalszej części tego dokumentu, ale poniżej przedstawiono prototyp:
 
 ```c
 INT bsd_initialize(NX_IP *default_ip, NX_PACKET_POOL *default_pool,
@@ -66,56 +66,56 @@ INT bsd_initialize(NX_IP *default_ip, NX_PACKET_POOL *default_pool,
                     *UINT bsd_thread_priority*);
 ```
 
-Default_ip jest wystąpieniem IP, na którym działa warstwa BSD. Default_pool jest używany przez usługi firmy BSD do przydzielania pakietów z programu. Poniższe dwa parametry: bsd_thread_stack_area, bsd_thread_stack_size definiuje obszar stosu używany przez wewnętrzny wątek BSD, a ostatni parametr, bsd_thread_priority, ustawia priorytet wątku.
+Adres default_ip to wystąpienie adresu IP, na którym działa warstwa BSD. Pakiet default_pool jest używany przez usługi BSD do przydzielania pakietów. Dwa następne parametry: bsd_thread_stack_area, bsd_thread_stack_size definiuje obszar stosu używany przez wewnętrzny wątek BSD, a ostatni parametr , bsd_thread_priority, ustawia priorytet wątku.
 
-## <a name="netx-duo-bsd-raw-socket-support"></a>Obsługa NetX Duo BSD RAW Socket
+## <a name="netx-duo-bsd-raw-socket-support"></a>Obsługa nieprzetworzonych gniazd NetX Duo BSD
 
-NetX Duo BSD obsługuje również niesformatowane gniazda. Aby można było używać gniazd surowych w NetX Duo BSD, biblioteka NetX Duo musi być skompilowana przy użyciu zdefiniowanej NX_ENABLE_IP_RAW_PACKET_FILTER. Domyślnie nie jest on zdefiniowany. Aplikacja musi następnie włączyć przetwarzanie nieprzetworzonego gniazda dla utworzonego wcześniej wystąpienia adresu IP przez wywołanie *nx_ip_raw_packet_enable.*
+NetX Duo BSD obsługuje również nieprzetworzone gniazda. Aby używać nieprzetworzonych gniazd w netx duo BSD, biblioteka NetX Duo musi być skompilowana przy NX_ENABLE_IP_RAW_PACKET_FILTER zdefiniowane. Domyślnie nie jest zdefiniowana. Następnie aplikacja musi włączyć przetwarzanie nieprzetworzonych gniazd dla wcześniej utworzonego wystąpienia adresu IP, wywołując *nx_ip_raw_packet_enable.*
 
-Aby utworzyć nieprzetworzony gniazdo w NetX Duo BSD, aplikacja używa gniazda Create Service *Socket* i określa rodzinę protokołów, typ gniazda i protokół:
+Aby utworzyć nieprzetworzone gniazdo w netx duo BSD, aplikacja używa gniazda create service *socket* i określa rodzinę protokołów, typ gniazda i protokół:
 
 ```c
 sock_1 = socket(INT protocolFamily, INT socket_type, INT protocol)
 ```
 
-protocolFamily jest AF_INET dla gniazd IPv4 lub AF_INET6 dla gniazd IPv6, przy założeniu, że w wystąpieniu IP jest włączony protokół IPv6. Socket_type musi być ustawiona na SOCK_RAW. Protokół jest specyficzny dla aplikacji.
+ProtocolFamily jest AF_INET dla gniazd IPv4 lub AF_INET6 dla gniazd IPv6, przy założeniu, że protokół IPv6 jest włączony w wystąpieniu adresu IP. Wartość socket_type musi być ustawiona na SOCK_RAW. Protokół jest specyficzny dla aplikacji.
 
-Aby wysyłać i odbierać pakiety pierwotne oraz zamykać niesformatowane gniazdo, aplikacja zwykle używa tych samych usług BSD jak dla protokołu UDP, np. *SendTo, recvfrom, Select* i *soc_close*. Gniazda RAW nie obsługują *akceptowania* ani *nasłuchiwania* usług BSD.
+Aby wysyłać i odbierać nieprzetworzone pakiety, a także zamykać nieprzetworzone gniazda, aplikacja zwykle używa tych samych usług BSD, co w przypadku protokołu UDP, np. *sendto, recvfrom, select* i *soc_close*. Gniazda nieprzetworzone nie obsługują *akceptowania ani* *nasłuchiwać* usług BSD.
 
-- Domyślnie odebrane dane pierwotne IPv4 zawierają nagłówek IPv4.  Z drugiej strony odebrane dane pierwotne IPv6 nie obejmują nagłówka IPv6.
+- Domyślnie odebrane dane pierwotne IPv4 zawierają nagłówek IPv4.  Z drugiej strony odebrane dane pierwotne IPv6 nie zawierają nagłówka IPv6.
 
-- Domyślnie podczas wysyłania pierwotnych pakietów IPv6 lub IPv4 warstwa otoki BSD dodaje nagłówek IPv6 lub IPv4 przed wysłaniem danych.
+- Domyślnie podczas wysyłania nieprzetworzonych pakietów IPv6 lub IPv4 warstwa otoki BSD dodaje nagłówek IPv6 lub IPv4 przed wysłaniem danych.
 
-NetX Duo BSD obsługuje dodatkowe niesformatowane Opcje gniazda, w tym IP_RAW_RX_NO_HEADER, IP_HDRINCL i IP_RAW_IPV6_HDRINCL.
+NetX Duo BSD obsługuje dodatkowe opcje gniazd pierwotnych, w tym IP_RAW_RX_NO_HEADER, IP_HDRINCL i IP_RAW_IPV6_HDRINCL.
 
-Jeśli ustawiono IP_RAW_RX_NO_HEADER, nagłówek IPv4 zostanie usunięty, tak że odebrane dane nie zawierają nagłówka IPv4, a raportowana długość komunikatu nie zawiera nagłówka IPv4.  W przypadku usługi IPv6 Sockets domyślnie nieprzetworzony dostęp do gniazda nie zawiera nagłówka IPv6, równoważne z ustawioną opcją IP_RAW_RX_NO_HEADER. Aplikacja może użyć usługi *SetSockOpt* do wyczyszczenia opcji IP_RAW_RX_NO_HEADER, gdy opcja IP_RAW_RX_NO_HEADER zostanie wyczyszczona, odebrane dane pierwotne IPv6 będą zawierać nagłówek IPv6, a raportowana długość komunikatu zawiera nagłówek IPv6.
+Jeśli IP_RAW_RX_NO_HEADER, nagłówek IPv4 jest usuwany, dzięki czemu odebrane dane nie zawierają nagłówka IPv4, a zgłaszana długość komunikatu nie zawiera nagłówka IPv4.  W przypadku gniazd IPv6 domyślnie nieprzetworzone odbieranie gniazda nie zawiera nagłówka IPv6, co odpowiada IP_RAW_RX_NO_HEADER opcji. Aplikacja może użyć usługi *setsockopt* do wyczyszczenia opcji IP_RAW_RX_NO_HEADER. Po wyczyszczeniu opcji IP_RAW_RX_NO_HEADER odebrane dane pierwotne IPv6 będą zawierać nagłówek IPv6, a zgłaszana długość komunikatu będzie zawierać nagłówek IPv6.
 
-Ta opcja nie ma wpływu na dane przesyłane przez protokół IPv4 lub IPv6.
+Ta opcja nie ma wpływu na przesyłane dane protokołu IPv4 lub IPv6.
 
-Jeśli ustawiono IP_HDRINCL, aplikacja zawiera nagłówek IPv4 podczas wysyłania danych.  Ta opcja nie ma wpływu na przesyłanie IPv6 i nie jest domyślnie zdefiniowana. Jeśli ustawiono IP_RAW_IPV6_HDRINCL, aplikacja zawiera nagłówek IPv6 podczas wysyłania danych.  Ta opcja nie ma wpływu na transmisję IPv4 i nie jest domyślnie zdefiniowana.
+Jeśli IP_HDRINCL, podczas wysyłania danych aplikacja będzie zawierała nagłówek IPv4.  Ta opcja nie ma wpływu na transmisję IPv6 i nie jest zdefiniowana domyślnie. Jeśli IP_RAW_IPV6_HDRINCL jest ustawiona, aplikacja uwzględnia nagłówek IPv6 podczas wysyłania danych.  Ta opcja nie ma wpływu na transmisję IPv4 i nie jest zdefiniowana domyślnie.
 
-IP_HDRINCL i IP_RAW_IPV6_HDRINCL nie mają wpływu na odbieranie protokołu IPv4 lub IPv6.
+IP_HDRINCL i IP_RAW_IPV6_HDRINCL nie mają wpływu na odbiór protokołu IPv4 lub IPv6.
 
 > [!NOTE]
-> Specyfikacja gniazda BSD 4,3 określa, że jądro musi skopiować pakiet pierwotny do każdego buforu odbioru gniazda. Jednak w NetX Duo BSD, jeśli utworzono wiele gniazd współużytkujących ten sam protokół, zachowanie jest niezdefiniowane.
+> Specyfikacja gniazda BSD 4.3 określa, że jądro musi skopiować nieprzetworzony pakiet do każdego buforu odbioru gniazda. Jednak w netx duo BSD, jeśli wiele gniazd są tworzone współużytkowanie tego samego protokołu, zachowanie jest niezdefiniowane.
 
-## <a name="netx-duo-bsd-raw-packet-support"></a>Obsługa pakietów NetX Duo BSD RAW
+## <a name="netx-duo-bsd-raw-packet-support"></a>Obsługa nieprzetworzonych pakietów NetX Duo BSD
 
-Aby włączyć obsługę pakietów nieprzetworzonych dla protokołu PPPoE, NetX Duo BSD muszą zostać skompilowane z włączonym NX_BSD_RAW_PPPOE_SUPPORT.
+Aby włączyć obsługę pakietów pierwotnych dla ppPoE, należy sbudowaną otokę NetX Duo BSD NX_BSD_RAW_PPPOE_SUPPORT włączone.
 
-Następujące polecenie tworzy gniazdo BSD do obsługi pierwotnych pakietów PPPoE:
+Następujące polecenie tworzy gniazdo BSD do obsługi nieprzetworzonych pakietów PPPoE:
 
 ```c
 Sockfd = socket(AF_PACKET, SOCK_RAW, protocol);
 ```
 
-Bieżąca implementacja BSD obsługuje tylko dwa typy protokołów w rodzinie AF_PACKET
+Bieżąca implementacja BSD obsługuje tylko dwa typy protokołów z AF_PACKET rodziny
 
-- `ETHERTYPE_PPPOE_DISC`: Pakiety odnajdywania PPPoE. W ramce danych MAC pakiety odnajdywania mają typ ramki Ethernet 0x8863.
+- `ETHERTYPE_PPPOE_DISC`: pakiety odnajdywania PPPoE. W ramce danych MAC pakiety odnajdywania mają typ ramki Ethernet 0x8863.
 
-- `ETHERTYPE_PPPOE_SESS`: Pakiety sesji PPP. W ramce danych MAC pakiety sesji mają typ ramki Ethernet 0x8864.
+- `ETHERTYPE_PPPOE_SESS`: pakiety sesji PPP. W ramce danych MAC pakiety sesji mają typ ramki Ethernet 0x8864.
 
-Struktura `sockaddr_ll` służy do określania parametrów podczas wysyłania lub otrzymywania ramek PPPoE.
+Struktura służy `sockaddr_ll` do określania parametrów podczas wysyłania lub odbierania ramek PPPoE.
 
 `struct sockaddr_ll` jest zadeklarowany jako:
 
@@ -133,13 +133,13 @@ struct sockaddr_ll
 ```
 
 > [!NOTE]
-> Nie każde pole w strukturze jest używane przez `sendto()` lub `recvfrom()` . Zapoznaj się z opisem poniżej, jak skonfigurować na `sockaddr_ll` potrzeby wysyłania i otrzymywania pakietów PPPoE.
+> Nie każde pole w strukturze jest używane przez `sendto()` lub `recvfrom()` . Zapoznaj się z poniższym opisem, aby dowiedzieć się, jak skonfigurować program do wysyłania i odbierania `sockaddr_ll` pakietów PPPoE.
 
-Gniazda utworzonego w ramach rodziny AF_PACKET mogą być używane do wysyłania pakietów odnajdywania PPPoE lub pakietów sesji PPP, niezależnie od określonego protokołu. Podczas przesyłania pakietu PPPoE aplikacja musi przygotować bufor zawierający prawidłowo sformatowaną ramkę PPPoE, w tym nagłówki MAC (docelowy adres MAC, źródłowy adres MAC i typ ramki). Rozmiar buforu zawiera 14-bajtowy nagłówek Ethernet.
+Gniazda utworzone w AF_PACKET można użyć do wysyłania pakietów odnajdywania PPPoE lub pakietów sesji PPP, niezależnie od określonego protokołu. Podczas przesyłania pakietu PPPoE aplikacja musi przygotować bufor, który zawiera prawidłowo sformatowaną ramkę PPPoE, w tym nagłówki MAC (docelowy adres MAC, źródłowy adres MAC i typ ramki). Rozmiar buforu zawiera 14-bajtowy nagłówek Ethernet.
 
-`sockaddr_ll`Struktura `sll_ifindex` jest używana do wskazania interfejsu fizycznego, który ma być używany do wysyłania tego pakietu. Pozostałe pola w strukturze nie są używane. Wartości ustawione na nieużywane pola są ignorowane przez proces wewnętrzny BSD.
+Struktura `sockaddr_ll` , jest używana do `sll_ifindex` wskazywania interfejsu fizycznego, który ma być używany do wysyłania tego pakietu. Pozostałe pola w strukturze nie są używane. Wartości ustawione na nieużywane pola są ignorowane przez wewnętrzny proces BSD.
 
-Poniższy blok kodu ilustruje, jak przesłać pakiet PPPoE:
+Poniższy blok kodu ilustruje sposób przesyłania pakietu PPPoE:
 
 ```c
 struct sockaddr_ll peer_addr;
@@ -150,20 +150,20 @@ n = sendto(sockfd, frame, frame_size, 0, (struct
         sockaddr*)&peer_addr, sizeof(peer_addr));
 ```
 
-Wartość zwracana wskazuje liczbę przesłanych bajtów. Ponieważ pakiety PPPoE są oparte na komunikatach, w przypadku pomyślnej transmisji liczba wysłanych bajtów jest zgodna z rozmiarem pakietu, łącznie z 14-bajtowym nagłówkiem Ethernet.
+Wartość zwracana wskazuje liczbę przesłanych bajtów. Ponieważ pakiety PPPoE są oparte na komunikatach, po pomyślnej transmisji liczba wysłanych bajtów odpowiada rozmiarowi pakietu, w tym nagłówkowi Ethernet o rozmiarze 14 bajtów.
 
-Pakiety PPPoE można odbierać przy użyciu polecenia `recvfrom()` . Bufor odbioru musi być wystarczająco duży, aby pomieścić komunikat o rozmiarze MTU sieci Ethernet. Odebrany pakiet PPPoE zawiera 14-bajtowy nagłówek Ethernet. W przypadku odbierania pakietów PPPoE pakiety odnajdywania PPPoE mogą być odbierane tylko przez gniazdo utworzone za pomocą protokołu `ETHERTYPE_PPPOE_DISC` . Podobnie pakiety sesji PPP mogą być odbierane tylko przez gniazdo utworzone za pomocą protokołu `ETHERTYPE_PPPOE_SESS` . Jeśli dla tego samego typu protokołu utworzono wiele gniazd, przychodzące pakiety PPPoE są przekazywane do gniazda utworzonego jako pierwsze. Jeśli pierwsze gniazdo utworzone dla protokołu jest zamknięte, do otrzymywania tych pakietów jest używane następne gniazdo w kolejności tworzenia.
+Pakiety PPPoE można odbierać przy `recvfrom()` użyciu . Bufor odbierania musi być wystarczająco duży, aby pomieścić komunikat o rozmiarze jednostki MTU sieci Ethernet. Odebrany pakiet PPPoE zawiera 14-bajtowy nagłówek Ethernet. Po odebraniu pakietów PPPoE pakiety odnajdywania PPPoE mogą być odbierane tylko przez gniazdo utworzone za pomocą protokołu `ETHERTYPE_PPPOE_DISC` . Podobnie pakiety sesji PPP mogą być odbierane tylko przez gniazdo utworzone za pomocą protokołu `ETHERTYPE_PPPOE_SESS` . Jeśli utworzono wiele gniazd dla tego samego typu protokołu, przychodzące pakiety PPPoE są najpierw przekazywane do utworzonego gniazda. Jeśli pierwsze gniazdo utworzone dla protokołu zostanie zamknięte, kolejne gniazdo w kolejności tworzenia będzie używane do odbierania tych pakietów.
 
-Po odebraniu pakietu PPPoE następujące pola w `sockaddr_ll` strukturze są prawidłowe:
-- **sll_family**: Ustaw przez wewnętrzną wartość właściwości BSD do AF_PACKET
-- **sll_ifindex**: wskazuje interfejs, z którego został odebrany pakiet
-- **sll_protocol**: Ustaw typ odebranego pakietu: `ETHERTYPE_PPPOE_DISC` lub `ETHERTYPE_PPPOE_SESS`
+Po otrzymaniu pakietu PPPoE następujące pola w `sockaddr_ll` strukturze są prawidłowe:
+- **sll_family:** ustawienie wewnętrznej usługi BSD w celu AF_PACKET
+- **sll_ifindex:** wskazuje interfejs, z którego jest odbierany pakiet
+- **sll_protocol:** ustaw typ odebranego pakietu: `ETHERTYPE_PPPOE_DISC` lub `ETHERTYPE_PPPOE_SESS`
 
 ## <a name="eliminating-internal-bsd-thread"></a>Eliminowanie wewnętrznego wątku BSD
 
-Domyślnie firma BSD używa wewnętrznego wątku do wykonywania niektórych operacji przetwarzania. W systemach z ograniczeniami pamięci, BSD można skompilować przy użyciu zdefiniowanych NX_BSD_TIMEOUT_PROCESS_IN_TIMER, co eliminuje wewnętrzny wątek BSD, a zamiast tego używa wewnętrznego czasomierza do przeprowadzenia tego samego przetwarzania. Eliminuje to pamięć wymaganą dla wewnętrznego bloku sterowania i stosu kontrolki wątku BSD. Jednak znacznie zwiększono przetwarzanie czasomierza, a przetwarzanie BSD może być wykonywane z wyższym priorytetem niż trzeba.
+Domyślnie BSD używa wątku wewnętrznego do wykonywania niektórych jego przetwarzania. W systemach ze ściśle określonymi ograniczeniami pamięci usługę BSD można utworzyć za pomocą zdefiniowanego NX_BSD_TIMEOUT_PROCESS_IN_TIMER, co eliminuje wewnętrzny wątek BSD, a zamiast tego używa wewnętrznego czasomierza do wykonania tego samego przetwarzania. Eliminuje to ilość pamięci wymaganej dla wewnętrznego stosu i bloku sterowania wątkami BSD. Jednak ogólne przetwarzanie czasomierza jest znacznie większe, a przetwarzanie BSD może również być wykonywane z wyższym priorytetem niż jest to konieczne.
 
-Aby skonfigurować gniazda BSD do uruchamiania w kontekście czasomierza ThreadX, zdefiniuj NX_BSD_TIMEOUT_PROCESS_IN_TIMER w *nxd_bsd. h*. Jeśli warstwa BSD jest skonfigurowana do wykonywania zadań BSD w kontekście czasomierza, w wywołaniu *bsd_initialize*, następujące trzy parametry są ignorowane i powinny mieć wartość null:
+Aby skonfigurować gniazda BSD do uruchamiania w kontekście czasomierza ThreadX, zdefiniuj NX_BSD_TIMEOUT_PROCESS_IN_TIMER w *nxd_bsd.h.* Jeśli warstwa BSD jest skonfigurowana do wykonywania zadań BSD w kontekście *czasomierza,* w wywołaniu funkcji bsd_initialize następujące trzy parametry są ignorowane i powinny mieć wartość NULL:
 
 - **bsd_thread_stack_area**
 - **bsd_thread_stack_size**
@@ -171,9 +171,9 @@ Aby skonfigurować gniazda BSD do uruchamiania w kontekście czasomierza ThreadX
 
 ## <a name="netx-duo-bsd-with-dns-support"></a>NetX Duo BSD z obsługą systemu DNS
 
-Jeśli NX_BSD_ENABLE_DNS jest zdefiniowany, NetX Duo BSD może wysyłać zapytania DNS w celu uzyskania informacji o nazwie hosta lub adresie IP hosta. Ta funkcja wymaga, aby klient NetX DNS był wcześniej tworzony przy użyciu usługi *nx_dns_create* . Co najmniej jeden znany adres IP serwera DNS musi być zarejestrowany w wystąpieniu usługi DNS przy użyciu usługi *nx_dns_server_add* do dodawania adresów serwera IPv4 lub przy użyciu usługi *nxd_dns_server_add* do dodawania adresów IPv4 lub IPv6.
+Jeśli NX_BSD_ENABLE_DNS, usługa NetX Duo BSD może wysyłać zapytania DNS w celu uzyskania informacji o nazwie hosta lub adresie IP hosta. Ta funkcja wymaga, aby klient DNS NetX został wcześniej utworzony przy użyciu *nx_dns_create* usługi. Co najmniej jeden znany adres IP serwera DNS musi być zarejestrowany w wystąpieniu DNS przy użyciu usługi *nx_dns_server_add* do dodawania adresów serwerów IPv4 lub przy użyciu usługi *nxd_dns_server_add* do dodawania adresów serwerów IPv4 lub IPv6.
 
-Usługi systemu DNS i alokacja pamięci są używane przez usługi *Getaddrinfo* i *getnameinfo* :
+Usługi DNS i alokacja pamięci są używane przez *usługi getaddrinfo* *i getnameinfo:*
 
 ```c
 INT getaddrinfo(const CHAR *node, const CHAR *service,
@@ -183,74 +183,74 @@ INT getnameinfo(const struct sockaddr *sa, socklen_t salen,
         char *host, size_t hostlen, char *serv, size_t servlen, int flags)
 ```
 
-Gdy aplikacja BSD wywołuje *Getaddrinfo* z nazwą hosta, NetX BSD wywoła następujące usługi, aby uzyskać adres IP:
+Gdy aplikacja BSD wywołuje *polecenie getaddrinfo* z nazwą hosta, netX BSD wywoła dowolną z poniższych usług, aby uzyskać adres IP:
 
 - **nx_dns_ipv4_address_by_name_get**
 - **nxd_dns_ipv6_address_by_name_get**
 - **nx_dns_cname_get**
 
-W przypadku *nx_dns_ipv4_address_by_name_get* i *NXD_DNS_IPV6_ADDRESS_BY_NAME_GET*, NetX BSD używa odpowiednio ipv4_addr_buffer i ipv6_addr_buffer obszarów pamięci. Rozmiar tych buforów jest definiowany odpowiednio przez (NX_BSD_IPV4_ADDR_PER_HOST * 4) i (NX_BSD_IPV6_ADDR_PER_HOST * 16).
+W *nx_dns_ipv4_address_by_name_get* i *nxd_dns_ipv6_address_by_name_get* netx BSD używa odpowiednio ipv4_addr_buffer i ipv6_addr_buffer pamięci. Rozmiar tych buforów jest definiowany przez (NX_BSD_IPV4_ADDR_PER_HOST * 4) i (NX_BSD_IPV6_ADDR_PER_HOST * 16).
 
-W przypadku zwracania informacji o adresie z *Getaddrinfo*, NetX BSD używa tabeli pamięci blokowej ThreadX nx_bsd_addrinfo_pool_memory, której obszar pamięci jest zdefiniowany przez inny zestaw konfigurowalnych opcji, NX_BSD_IPV4_ADDR_MAX_NUM i NX_BSD_IPV6_ADDR_MAX_NUM.
+W przypadku zwracania informacji o adresie z polecenia *getaddrinfo* program NetX BSD używa tabeli pamięci blokowej ThreadX nx_bsd_addrinfo_pool_memory, której obszar pamięci jest definiowany przez inny zestaw konfigurowalnych opcji, NX_BSD_IPV4_ADDR_MAX_NUM i NX_BSD_IPV6_ADDR_MAX_NUM.
 
-Aby uzyskać szczegółowe informacje na temat powyższych opcji konfiguracji, zobacz **Ogólne opcje konfiguracji** .
+Aby **uzyskać więcej informacji** na temat powyższych opcji konfiguracji, zobacz Ogólne opcje konfiguracji.
 
-Ponadto jeśli NX_DNS_ENABLE_EXTENDED_RR_TYPES jest zdefiniowana, a dane wejściowe hosta są nazwą kanoniczną, NetX Duo BSD przydzieli pamięć dynamicznie z wcześniej utworzonej puli blokowej "_nx_bsd_cname_block_pool
+Ponadto jeśli NX_DNS_ENABLE_EXTENDED_RR_TYPES, a dane wejściowe hosta są nazwą kanoniczną, netX Duo BSD dynamicznie przydzieli pamięć z wcześniej utworzonej puli bloków "_nx_bsd_cname_block_pool
 
 > [!NOTE]
-> Po wywołaniu *Getaddrinfo* aplikacja BSD jest odpowiedzialna za zwolnienie pamięci wskazywanej przez argument res z powrotem do tabeli blokowej przy użyciu usługi *freeaddrinfo* .
+> Po *wywołaniu getaddrinfo* aplikacja BSD jest odpowiedzialna za zwolnienie pamięci wskazywanej przez argument res z powrotem do tabeli blokowej przy użyciu *usługi freeaddrinfo.*
 
-## <a name="netx-duo-bsd-limitations"></a>Ograniczenia BSD NetX Duo
+## <a name="netx-duo-bsd-limitations"></a>Ograniczenia usługi NetX Duo BSD
 
-Ze względu na problemy z wydajnością i architekturą NetX Duo BSD nie obsługuje wszystkich funkcji gniazda BSD 4,3:
+Ze względu na problemy z wydajnością i architekturą program NetX Duo BSD nie obsługuje wszystkich funkcji gniazd BSD 4.3:
 
-Flagi INT nie są obsługiwane dla wywołań *send, recv, SendTo* i *recvfrom* .
+Flagi INT nie są obsługiwane w przypadku *wywołań wysyłania, recv, sendto* *i recvom.*
 
 ## <a name="general-configuration-options"></a>Ogólne opcje konfiguracji
 
-Opcje konfigurowalne przez użytkownika w *nxd_bsd. h* pozwalają aplikacji dostroić NetX Duo dla określonych wymagań aplikacji.
+Opcje konfigurowalne przez użytkownika w *programie nxd_bsd.h* umożliwiają aplikacji dostosowanie gniazd NetX Duo BSD do konkretnych wymagań aplikacji.
 
-Poniżej znajduje się lista konfigurowalnych opcji ustawionych w czasie kompilacji:
+Poniżej znajduje się lista konfigurowalnych opcji, które są ustawiane w czasie kompilacji:
 
-- **NX_BSD_TCP_WINDOW**: używany w wywołaniach tworzenia gniazda TCP. 64 KB to typowy rozmiar okna dla sieci Ethernet 100 MB. Wartość domyślna to 65535.
+- **NX_BSD_TCP_WINDOW:** używana w wywołaniach tworzenia gniazd TCP. 64k to typowy rozmiar okna dla sieci Ethernet 100 Mb. Wartość domyślna to 65535.
 
-- **NX_BSD_SOCKFD_START**: jest to logiczny indeks dla wartości początkowej deskryptora pliku gniazda BSD. Domyślnie ta opcja to 32.
+- **NX_BSD_SOCKFD_START:** jest to indeks logiczny dla wartości startowej deskryptora pliku gniazda BSD. Domyślnie ta opcja to 32.
 
-- **NX_BSD_MAX_SOCKETS**: określa maksymalną liczbę gniazd dostępnych w warstwie BSD i musi być wielokrotnością 32. Wartość domyślna to 32.
+- **NX_BSD_MAX_SOCKETS:** określa maksymalną liczbę gniazd dostępnych w warstwie BSD i musi być wielokrotnością 32. Wartość domyślna to 32.
 
-- **NX_BSD_SOCKET_QUEUE_MAX**: określa maksymalną liczbę pakietów UDP przechowywanych w kolejce odbierania. Wartość jest domyślnie równa 5.
+- **NX_BSD_SOCKET_QUEUE_MAX:** określa maksymalną liczbę pakietów UDP przechowywanych w kolejce gniazd odbioru. Wartość domyślna to 5.
 
-- **NX_BSD_MAX_LISTEN_BACKLOG**: Określa rozmiar kolejki nasłuchu ("zaległości") dla gniazd TCP BSD. Wartość domyślna to 5.
+- **NX_BSD_MAX_LISTEN_BACKLOG:** określa rozmiar kolejki nasłuchiwać ("listy prac") dla gniazd TCP BSD. Wartość domyślna to 5.
 
-- **NX_MICROSECOND_PER_CPU_TICK**: określa liczbę mikrosekund na cykl czasomierza harmonogramu.
+- **NX_MICROSECOND_PER_CPU_TICK:** określa liczbę mikrosekund na takt czasomierz harmonogramu.
 
-- **NX_BSD_TIMEOUT**: określa limit czasu w taktach czasomierza dla wywołań wewnętrznych NetX Duo wymaganych przez BSD. Wartość domyślna to (20 * NX_IP_PERIODIC_RATE).
+- **NX_BSD_TIMEOUT: określa** limit czasu w taktach czasomierza w wewnętrznych wywołaniach NetX Duo wymaganych przez BSD. Wartość domyślna to (20 * NX_IP_PERIODIC_RATE).
 
-- **NX_BSD_TCP_SOCKET_DISCONNECT_TIMEOUT**: określa limit czasu w taktach czasomierza dla wywołania rozłączenia NetX Duo. Wartość domyślna to 1.
+- **NX_BSD_TCP_SOCKET_DISCONNECT_TIMEOUT:** określa limit czasu w taktach czasomierza w wywołaniu rozłączenia NetX Duo. Wartość domyślna to 1.
 
-- **NX_BSD_PRINT_ERRORS**: w przypadku ustawienia zwracany stan błędu funkcji BSD zwraca numer wiersza i typ błędu, np. NX_SOC_ERROR wystąpienia błędu. Wymaga to od deweloperów aplikacji zdefiniowania danych wyjściowych debugowania. Ustawienie domyślne jest wyłączone i nie określono danych wyjściowych debugowania w *nxd_bsd. h*.
+- **NX_BSD_PRINT_ERRORS:** jeśli to ustawienie zostanie ustawione, zwracany stan błędu funkcji BSD zwraca numer wiersza i typ błędu, np. NX_SOC_ERROR gdzie wystąpił błąd. Wymaga to zdefiniowania danych wyjściowych debugowania przez dewelopera aplikacji. Ustawienie domyślne jest wyłączone i w pliku *nxd_bsd.h nie określono żadnych danych wyjściowych debugowania.*
 
-- **NX_BSD_TIMER_RATE**: interwał, po którym uruchamiane jest zadanie okresowego czasomierza BSD. Wartość domyślna to 1 sekunda (1 * NX_IP_PERIODIC_RATE).
+- **NX_BSD_TIMER_RATE:** interwał, po którym jest uruchamiane okresowe zadanie czasomierza BSD. Wartość domyślna to 1 sekunda (1 * NX_IP_PERIODIC_RATE).
 
-- **NX_BSD_TIMEOUT_PROCESS_IN_TIMER**: w przypadku ustawienia ta opcja umożliwia wykonanie procesu limitu czasu BSD w kontekście czasomierza systemu. Zachowanie domyślne jest wyłączone. Ta funkcja została szczegółowo opisana w rozdziale 2 "Instalacja i korzystanie z NetX Duo BSD".
+- **NX_BSD_TIMEOUT_PROCESS_IN_TIMER:** jeśli to ustawienie jest ustawione, ta opcja umożliwia wykonanie procesu limitu czasu usługi BSD w kontekście czasomierza systemu. Domyślne zachowanie jest wyłączone. Ta funkcja została opisana bardziej szczegółowo w rozdziale 2 "Instalacja i używanie netx duo BSD".
 
-- **NX_BSD_RAW_PPPOE_SUPPORT**: Włącz obsługę pakietów pierwotnych PPPoE. Domyślnie ta opcja nie jest włączona.
+- **NX_BSD_RAW_PPPOE_SUPPORT:** włącz obsługę nieprzetworzonych pakietów PPPoE. Domyślnie ta opcja nie jest włączona.
 
-- **NX_BSD_ENABLE_DNS**: Jeśli ta funkcja jest włączona, NetX Duo BSD wyśle zapytanie DNS dla nazwy hosta lub adresu IP hosta. Wymaga wcześniejszego utworzenia i uruchomienia wystąpienia klienta DNS. Domyślnie nie jest włączona.
+- **NX_BSD_ENABLE_DNS:** jeśli ta opcja jest włączona, usługa NetX Duo BSD wyśle zapytanie DNS dotyczące nazwy hosta lub adresu IP hosta. Wymaga, aby wystąpienie klienta DNS zostało wcześniej utworzone i uruchomione. Domyślnie nie jest on włączony.
 
-- **NX_BSD_SOCKET_RAW_PROTOCOL_TABLE_SIZE**: Określa rozmiar nieprzetworzonej tabeli gniazda. Wartość musi być potęgą liczby dwa. NetX BSD tworzy tablicę gniazd typu NX_BSD_SOCKETS do wysyłania i otrzymywania pakietów raw. Należy włączyć NX_ENABLE_IP_RAW_PACKET_FILTER. Domyślnie jest to 32.
+- **NX_BSD_SOCKET_RAW_PROTOCOL_TABLE_SIZE:** definiuje rozmiar pierwotnej tabeli gniazd. Wartość musi być potęgą dwóch. NetX BSD tworzy tablicę gniazd typu NX_BSD_SOCKETS do wysyłania i odbierania nieprzetworzonych pakietów. NX_ENABLE_IP_RAW_PACKET_FILTER musi być włączona. Domyślnie jest to 32.
 
-- **NX_BSD_IPV4_ADDR_MAX_NUM**: Maksymalna liczba adresów IPv4 zwróconych przez *Getaddrinfo*. Dzięki NX_BSD_IPV6_ADDR_MAX_NUM definiuje rozmiar puli bloku NetX BSD nx_bsd_addrinfo_block_pool do dynamicznego przydzielania pamięci do przechowywania informacji w *Getaddrinfo*. Wartość domyślna to 5.
+- **NX_BSD_IPV4_ADDR_MAX_NUM:** maksymalna liczba adresów IPv4 zwracanych przez *polecenie getaddrinfo.* Wraz z NX_BSD_IPV6_ADDR_MAX_NUM określa rozmiar puli bloków NetX BSD nx_bsd_addrinfo_block_pool dynamicznego przydzielania pamięci w celu adresowania magazynu informacji w pliku *getaddrinfo.* Wartość domyślna to 5.
 
-- **NX_BSD_IPV6_ADDR_MAX_NUM**: Maksymalna liczba adresów IPv6 zwróconych przez *Getaddrinfo*. Dzięki NX_BSD_IPV4_ADDR_MAX_NUM definiuje rozmiar puli bloku NetX BSD nx_bsd_addrinfo_block_pool do dynamicznego przydzielania pamięci do przechowywania informacji w *Getaddrinfo*.
+- **NX_BSD_IPV6_ADDR_MAX_NUM:** maksymalna liczba adresów IPv6 zwracanych przez *polecenie getaddrinfo.* Wraz z NX_BSD_IPV4_ADDR_MAX_NUM określa rozmiar puli bloków NetX BSD nx_bsd_addrinfo_block_pool dynamicznego przydzielania pamięci w celu adresowania magazynu informacji w pliku *getaddrinfo.*
 
-- **NX_BSD_IPV4_ADDR_PER_HOST**: określa maksymalną liczbę adresów IPv4 przechowywanych dla kwerendy DNS. Wartość domyślna to 5.
+- **NX_BSD_IPV4_ADDR_PER_HOST:** definiuje maksymalną liczbę adresów IPv4 przechowywanych na zapytanie DNS. Wartość domyślna to 5.
 
-- **NX_BSD_IPV6_ADDR_PER_HOST**: określa maksymalne adresy IPv6 przechowywane dla kwerendy DNS. Wartość domyślna to 2.
+- **NX_BSD_IPV6_ADDR_PER_HOST:** definiuje maksymalną liczbę adresów IPv6 przechowywanych na zapytanie DNS. Wartość domyślna to 2.
 
-## <a name="bsd-socket-options"></a>Opcje gniazda BSD
+## <a name="bsd-socket-options"></a>Opcje gniazd BSD
 
-Poniższa lista opcji gniazda BSD NetX Duo można włączyć (lub wyłączyć) w czasie wykonywania dla poszczególnych gniazd przy użyciu usługi *SetSockOpt* :
+Następującą listę opcji gniazd NetX Duo BSD można włączyć (lub wyłączyć) w czasie uruchamiania na podstawie gniazd przy użyciu *usługi setsockopt:*
 
 ```c
 INT setsockopt(INT sockID, INT option_level, INT option_name, 
@@ -259,55 +259,55 @@ INT setsockopt(INT sockID, INT option_level, INT option_name,
 
 Istnieją dwa różne ustawienia dla option_level.
 
-Pierwszy typ opcji gniazda czasu wykonywania jest SOL_SOCKET dla opcji poziomu gniazda. Aby włączyć opcję poziomu gniazda, należy wywołać *setsockopt* option_level z ustawionym na SOL_SOCKET, a option_name ustawić dla konkretnej opcji, np. SO_BROADCAST *.* Aby pobrać ustawienie opcji, wywołaj *getsockopt* dla option_name z option_level ponownie ustawiona na SOL_SOCKET.
+Pierwszy typ opcji gniazd czasu uruchamiania jest SOL_SOCKET dla opcji poziomu gniazda. Aby włączyć opcję poziomu gniazda, zestawy *wywołańsockopt* z option_level ustawioną na SOL_SOCKET i option_name ustawioną na konkretną opcję, np. SO_BROADCAST *.* Aby pobrać ustawienie opcji, wywołaj element *getsockopt* dla option_name z option_level ponownie ustawioną na SOL_SOCKET.
 
-Zostanie wyświetlona lista opcji poziomu gniazda w czasie wykonywania poniżej.
+Poniżej przedstawiono listę opcji poziomu gniazd czasu uruchamiania.
 
-- **SO_BROADCAST**: ustawienie umożliwia wysyłanie i otrzymywanie pakietów emisji z gniazd NetX. Jest to domyślne zachowanie dla NetX Duo. Wszystkie gniazda mają tę możliwość.
+- **SO_BROADCAST:** jeśli to ustawienie jest ustawione, umożliwia wysyłanie i odbieranie pakietów emisji z gniazd Netx. Jest to domyślne zachowanie netx duo. Wszystkie gniazda mają tę możliwość.
 
-- **SO_ERROR**: służy do uzyskiwania stanu gniazda dla operacji poprzedniej gniazda określonego gniazda przy użyciu usługi *getsockopt* . Wszystkie gniazda mają tę możliwość.
+- **SO_ERROR:** służy do uzyskiwania stanu gniazda dla poprzedniej operacji gniazda określonego gniazda przy użyciu *usługi getsockopt.* Wszystkie gniazda mają tę możliwość.
 
-- **SO_KEEPALIVE**: ustawienie powoduje włączenie funkcji utrzymywania aktywności protokołu TCP. Wymaga to, aby Biblioteka NetX Duo była skompilowana przy użyciu NX_TCP_ENABLE_KEEPALIVE zdefiniowanej w *nx_user. h*. Domyślnie ta funkcja jest wyłączona.
+- **SO_KEEPALIVE:** jeśli to ustawienie jest ustawione, włącza funkcję utrzymania aktywności protokołu TCP. Wymaga to, aby biblioteka NetX Duo była zbudowana przy użyciu NX_TCP_ENABLE_KEEPALIVE zdefiniowanej w *nx_user.h.* Domyślnie ta funkcja jest wyłączona.
 
-- **SO_RCVTIMEO**: ustawia opcję oczekiwania w sekundach dla pakietów odbieranych w NetX Duo BSD Sockets. Wartość domyślna to NX_WAIT_FOREVER (0xFFFFFFFF) lub, jeśli jest włączony bez blokowania, NX_NO_WAIT (0x0).
+- **SO_RCVTIMEO:** ustawia opcję oczekiwania w sekundach na odbieranie pakietów w gniazdach NetX Duo BSD. Wartość domyślna to NX_WAIT_FOREVER (0xFFFFFFFF) lub, jeśli włączono blokowanie, NX_NO_WAIT (0x0).
 
-- **SO_RCVBUF**: Określa rozmiar okna gniazda TCP. Wartość domyślna NX_BSD_TCP_WINDOW jest ustawiona na 64 KB w przypadku pakietów BSD TCP Sockets. Aby ustawić rozmiar ponad 65535 wymaga skompilowania biblioteki NetX Duo z NX_TCP_ENABLE_WINDOW_SCALING być zdefiniowana.
+- **SO_RCVBUF:** określa rozmiar okna gniazda TCP. Wartość domyślna, NX_BSD_TCP_WINDOW, jest ustawiona na 64k dla gniazd TCP BSD. Aby ustawić rozmiar powyżej 65535, należy sfiniować bibliotekę NetX Duo z NX_TCP_ENABLE_WINDOW_SCALING.
 
-- **SO_REUSEADDR**: ustawienie umożliwia zmapowanie wielu gniazd na jeden port. Typowy sposób użycia dotyczy gniazda serwera TCP. Jest to domyślne zachowanie NetX Duo.
+- **SO_REUSEADDR:** jeśli to ustawienie jest ustawione, umożliwia mapować wiele gniazd na jeden port. Typowe użycie jest dla gniazda serwera TCP. Jest to domyślne zachowanie gniazd NetX Duo.
 
-Drugim typem opcji gniazda czasu wykonywania jest poziom opcji IP. Aby włączyć opcję poziomu IP, należy wywołać *setsockopt* option_level z ustawionym na IP_PROTO, a option_name ustawić opcję na np. IP_MULTICAST_TTL *.* Aby pobrać ustawienie opcji, wywołaj *getsockopt* dla option_name z option_level ponownie ustawiona na IP_PROTO.
+Drugi typ opcji gniazda czasu uruchamiania to poziom opcji adresu IP. Aby włączyć opcję poziomu adresu IP, zestawy *wywołańsockopt* z option_level ustawioną na IP_PROTO i option_name ustawioną na opcję, np.*IP_MULTICAST_TTL .* Aby pobrać ustawienie opcji, wywołaj element *getsockopt* dla option_name z option_level ponownie ustawioną na IP_PROTO.
 
-Zostanie wyświetlona lista opcji poziomu adresu IP czasu wykonywania poniżej.
+Poniżej przedstawiono listę opcji poziomu adresów IP czasu uruchamiania.
 
-- **IP_MULTICAST_TTL**: służy do ustawiania czasu wygaśnięcia dla gniazd UDP. Wartość domyślna to NX_IP_TIME_TO_LIVE (0x80) podczas tworzenia gniazda. Tę wartość można zastąpić, wywołując *SetSockOpt* z tą opcją gniazda.
+- **IP_MULTICAST_TTL:** ustawia czas na żywo dla gniazd UDP. Wartość domyślna to NX_IP_TIME_TO_LIVE (0x80) podczas tworzenia gniazda. Tę wartość można przesłonić przez wywołanie *metody setsockopt z* tą opcją gniazda.
 
-- **IP_RAW_IPV6_HDRINCL**: Jeśli ta opcja jest ustawiona, aplikacja wywołująca musi dołączyć nagłówek IPv6 i opcjonalne nagłówki aplikacji do danych przesyłanych w przypadku nieprzetworzonych gniazd IPv6 utworzonych przez BSD. Aby można było użyć tej opcji, w zadaniu adresu IP musi być włączone przetwarzanie nieprzetworzonego gniazda.
+- **IP_RAW_IPV6_HDRINCL:** jeśli ta opcja jest ustawiona, aplikacja wywołująca musi dołączyć nagłówek IPv6 i opcjonalnie nagłówki aplikacji do danych przesyłanych na nieprzetworzonych gniazdach IPv6 utworzonych przez BSD. Aby użyć tej opcji, nieprzetworzone przetwarzanie gniazd musi być włączone w zadaniu adresu IP.
 
-- **IP_ADD_MEMBERSHIP**: Jeśli ta opcja jest ustawiona, w celu przyłączenia do określonej grupy IGMP gniazdo BSD (dotyczy tylko gniazd UDP).
+- **IP_ADD_MEMBERSHIP:** jeśli to ustawienie jest ustawione, ta opcja umożliwia dołączenie gniazda BSD (dotyczy tylko gniazd UDP) do określonej grupy IGMP.
 
-- **IP_DROP_MEMBERSHIP**: w przypadku ustawienia, ta opcja włącza gniazdo BSD (dotyczy tylko gniazd UDP), aby opuścić określoną grupę IGMP.
+- **IP_DROP_MEMBERSHIP:** jeśli to ustawienie jest ustawione, ta opcja umożliwia gniazdu BSD (dotyczy tylko gniazd UDP) pozostawienie określonej grupy IGMP.
 
-- **IP_HDRINCL**: Jeśli ta opcja jest ustawiona, aplikacja wywołująca musi dołączyć nagłówek IP i opcjonalne nagłówki aplikacji do danych przesyłanych w przypadku nieprzetworzonych gniazd IPv4 utworzonych w programie BSD. Aby można było użyć tej opcji, w zadaniu adresu IP musi być włączone przetwarzanie nieprzetworzonego gniazda.
+- **IP_HDRINCL:** jeśli ta opcja jest ustawiona, aplikacja wywołująca musi dołączyć nagłówek IP i opcjonalnie nagłówki aplikacji do danych przesyłanych na nieprzetworzonych gniazdach IPv4 utworzonych w UŚCIB. Aby użyć tej opcji, nieprzetworzone przetwarzanie gniazd musi być włączone w zadaniu adresu IP.
 
-- **IP_RAW_RX_NO_HEADER**: Jeśli zostanie wyczyszczony, nagłówek IPv6 zostanie dołączony do odebranych danych dla nieprzetworzonych gniazd protokołu IPv6 utworzonych w systemie BSD. Nagłówki IPv6 są domyślnie usuwane w gniazdach BSD RAW IPv6 Sockets, a długość pakietu nie obejmuje nagłówka IPv6.
+- **IP_RAW_RX_NO_HEADER:** w przypadku wyczyszczenia nagłówka IPv6 jest dołączona do odebranych danych dla pierwotnych gniazd IPv6 utworzonych w BSD. Nagłówki IPv6 są domyślnie usuwane w pierwotnych gniazdach IPv6 usługi BSD, a długość pakietu nie zawiera nagłówka IPv6.
 
-W przypadku ustawienia nagłówek IPv4 zostanie usunięty z odbierania danych w gniazdach BSD RAW typu IPv4. Nagłówki IPv4 są domyślnie uwzględniane w przypadku gniazd BSD RAW IPv4 i długość pakietu obejmuje nagłówek IPv4.
+W przypadku ustawienia nagłówek IPv4 jest usuwany z odebranych danych na pierwotnych gniazdach BSD typu IPv4. Nagłówki IPv4 są domyślnie uwzględniane w pierwotnych gniazdach IPv4 BSD, a długość pakietu obejmuje nagłówek IPv4.
 
 Ta opcja nie ma wpływu na dane transmisji IPv4 lub IPv6.
 
-## <a name="small-ipv4-example"></a>Przykład małych adresów IPv4
+## <a name="small-ipv4-example"></a>Przykład małego adresu IPv4
 
-Poniżej opisano przykład korzystania z usług BSD NetX Duo dla sieci IPv4. W tym przykładzie plik dołączany *nxd_bsd. h* jest wprowadzany w wierszu 8. Następnie *bsd_pool* *bsd_ip* wystąpienia adresu IP i puli pakietów są tworzone jako zmienne globalne w wierszu 20 i 21. Należy zauważyć, że w tej wersji demonstracyjnej jest wykorzystywany sterownik sieciowy pamięci RAM (wirtualnej)*_nx_ram_network_driver*. Klient i serwer będą współużytkować ten sam adres IP na pojedynczym wystąpieniu IP w tym przykładzie.
+Poniżej opisano przykład sposobu korzystania z usług NetX Duo BSD dla sieci IPv4. W tym przykładzie plik dołączania *nxd_bsd.h* jest przekierowyny w wierszu 8. Następnie wystąpienie adresu IP *bsd_ip* pulę pakietów *bsd_pool* jako zmienne globalne w wierszach 20 i 21. Należy pamiętać, że w tej wersji demonstracyjnej jest używany sterownik sieciowy pamięci RAM (wirtualny),*_nx_ram_network_driver*. W tym przykładzie klient i serwer będą współużytkowały ten sam adres IP w pojedynczym wystąpieniu adresu IP.
 
-Wątki klienta i serwera są tworzone w wierszach 62 i 68. Pula pakietów BSD do przesyłania pakietów jest tworzona w wierszu 78 i używana w tworzeniu wystąpienia IP w wierszu 87. Zwróć uwagę, że zadanie wątku IP ma określony priorytet 1 w wywołaniu *nx_ip_create* . Ten wątek powinien być zadaniem o najwyższym priorytecie zdefiniowanym w programie w celu uzyskania optymalnej wydajności NetX.
+Wątki klienta i serwera są tworzone w wierszach 62 i 68. Pula pakietów BSD do przesyłania pakietów jest tworzona w wierszu 78 i używana podczas tworzenia wystąpienia adresu IP w wierszu 87. Należy pamiętać, że zadanie wątku IP ma priorytet 1 w *wywołaniu nx_ip_create* ip. Ten wątek powinien być zadaniem o najwyższym priorytecie zdefiniowanym w programie w celu uzyskania optymalnej wydajności NetX.
 
-Wystąpienie protokołu IP jest włączone dla usług ARP i TCP w wierszach 88 i 110. Ostatnim wymaganiem przed użyciem usług BSD jest wywołanie *bsd_initialize* w wierszu 120 w celu skonfigurowania wszystkich struktur danych i zasobów NetX i ThreadX wymaganych przez BSD.
+Wystąpienie adresu IP jest włączone dla usług ARP i TCP odpowiednio w wierszach 88 i 110. Ostatnim wymaganiem przed rozpoczęciem usług BSD jest wywołanie usługi *bsd_initialize* w wierszu 120 w celu skonfigurowania wszystkich struktur danych oraz zasobów NetX i ThreadX wymaganych przez usługę BSD.
 
-Funkcja wprowadzania wątku serwera jest zdefiniowana dalej. Gniazdo TCP BSD jest tworzone w wierszu 149. Adres IP serwera i port są ustawiane w wierszach 160-163. Zwróć uwagę na użycie makr w kolejności bajtów sieci *htonl* i *htons* zastosowanych do adresu IP i portu. Jest to zgodne ze specyfikacją gniazda BSD, że dane wielobajtowe są przesyłane do usług BSD w kolejności bajtów sieciowych.
+Funkcja wpisu wątku serwera jest definiowana w następnej. Gniazdo TCP BSD jest tworzone w wierszu 149. Adres IP serwera i port są ustawione w wierszach 160–163. Zwróć uwagę na użycie makr kolejności bajtów hosta do sieci *htonl* i *htons* zastosowanych do adresu IP i portu. Jest to zgodne ze specyfikacją gniazda BSD, że dane wielo bajtowe są przesyłane do usług BSD w kolejności bajtów sieciowych.
 
-Następnie główne gniazdo serwera jest powiązane z portem przy użyciu usługi *bind* w wierszu 166. Jest to gniazdo nasłuchiwania dla żądań połączeń TCP korzystających z usługi *Listen* w wierszu 180. W tym miejscu funkcja wątek serwera *thread_server_entry*, pętle służące do sprawdzania odbierania zdarzeń przy użyciu wywołania *select* w wierszu 202. Jeśli zdarzenie Odbierz jest żądaniem połączenia, które jest określane przez porównanie listy gotowość do odczytu, wywołuje metodę *Accept* w wierszu 213. Podrzędne gniazdo serwera jest przypisane do obsługi żądania połączenia i dodawane do głównej listy gniazd serwera TCP podłączonych do klienta w wierszu 223. Jeśli nie ma nowych żądań połączeń, wątek serwera sprawdza wszystkie aktualnie połączone gniazda dla zdarzeń odbioru w pętli for, rozpoczynając od wiersza 236. W przypadku wykrycia zdarzenia odbierania, wywołuje on funkcję *send* i *Odbierz* dla tego gniazda, dopóki nie zostaną odebrane żadne dane (połączenie zamknięte po drugiej stronie), a gniazdo zostanie zamknięte przy użyciu usługi *soc_close* w wierszu 277.
+Następnie gniazdo serwera głównego jest powiązane z portem przy użyciu usługi *powiązania* w wierszu 166. Jest to gniazdo nasłuchiwania żądań połączeń TCP przy użyciu usługi *nasłuchiwania* w wierszu 180. W tym miejscu funkcja wątku serwera, *thread_server_entry*, pętle do sprawdzania zdarzeń odbierania przy użyciu *wywołania select* w wierszu 202. Jeśli zdarzenie odbierania jest żądaniem połączenia, które jest określane przez porównanie listy gotowe do odczytu, wywołuje żądanie *accept w* wierszu 213. Podrzędne gniazdo serwera jest przypisywane do obsługi żądania połączenia i dodawane do głównej listy gniazd serwerów TCP połączonych z klientem w wierszu 223. Jeśli nie ma żadnych nowych żądań połączenia, wątek serwera sprawdza wszystkie aktualnie połączone gniazda pod potrzeby odbierania zdarzeń w pętli for rozpoczynającej się w wierszu 236. Po wykryciu zdarzenia odbierania,  które oczekuje, wywołuje wysyłanie i *recv* na tym gnieździe, dopóki nie zostaną odebrane żadne dane (połączenie zamknięte po drugiej stronie) i gniazdo zostanie zamknięte przy użyciu *usługi soc_close* w wierszu 277.
 
-Po skonfigurowaniu wątku serwera funkcja wprowadzania wątku klienta *thread_client_entry* tworzy gniazdo w wierszu 326 i łączy się z gniazdem serwera TCP przy użyciu połączenia *połączenia* w wierszu 337. Następnie tworzy pętlę, aby wysyłać i odbierać pakiety  przy użyciu *odpowiednio usług wysyłania i odbierania.* Gdy nie otrzymasz więcej danych, program zamknie gniazdo w wierszu 398 przy użyciu usługi *soc_close* . Po rozłączeniu funkcja wprowadzania wątku klienta tworzy nowe gniazdo TCP i wysyła kolejne żądanie połączenia w pętli while uruchomione w wierszu 321.
+Po zakończeniu konfiguracji wątku serwera funkcja wpisu wątku klienta thread_client_entry *tworzy* gniazdo w wierszu 326 i  łączy się z gniazdem serwera TCP przy użyciu wywołania połączenia w wierszu 337. Następnie pętle wysyłają i odbierają pakiety przy *użyciu* odpowiednio usług wysyłania *i* odbierania. Gdy nie są odbierane żadne dane, zamyka gniazdo w wierszu 398 przy użyciu *soc_close* usługi. Po rozłączeniu funkcja wpisu wątku klienta tworzy nowe gniazdo TCP i wysyła kolejne żądanie połączenia w pętli while uruchomionej w wierszu 321.
 
 ```c
 /* This is a small demo of BSD Wrapper for the high-performance NetX Duo
@@ -747,23 +747,23 @@ struct     sockaddr_in localAddr; /
 }
 ```
 
-## <a name="small-ipv6-example-system"></a>Mały system przykładowych adresów IPv6
+## <a name="small-ipv6-example-system"></a>Mały przykładowy system IPv6
 
-Przykład sposobu korzystania z usług BSD NetX Duo dla sieci IPv6 jest opisany w programie poniżej. Ten przykład jest bardzo podobny do programu demonstracyjnego protokołu IPv4, który został wcześniej opisany przy użyciu kilku ważnych różnic.
+Przykład sposobu korzystania z usług NetX Duo BSD dla sieci IPv6 został opisany w poniższym programie. Ten przykład jest bardzo podobny do opisanego wcześniej programu demonstracyjnego IPv4 z kilkoma istotnymi różnicami.
 
-Wątki klienta i serwera, Pula pakietów BSD, wystąpienie protokołu IP i Inicjowanie BSD odbywają się tak, jak w przypadku protokołu IPv4 BSD.
+Wątki klienta i serwera, pula pakietów BSD, wystąpienie adresu IP i inicjowanie BSD mają miejsce tak samo jak w przypadku gniazd BSD IPv4.
 
-W funkcji wprowadzania wątku serwera *thread_server_entry* definiuje kilka zmiennych IPv6 przy użyciu *sockaddr_in6* i *NXD_ADDRESS* typów danych w wierszach 145-148. Typ danych NXD_ADDRESS może w rzeczywistości przechowywać typy adresów IPv4 i IPv6.
+W funkcji wpisu wątku serwera *thread_server_entry* definiuje kilka zmiennych IPv6 przy użyciu typów danych *sockaddr_in6* i *NXD_ADDRESS* w wierszach 145-148. Typ NXD_ADDRESS może w rzeczywistości przechowywać zarówno typy adresów IPv4, jak i IPv6.
 
-Następnie wątek serwera włącza protokół IPv6 i ICMPv6 w wystąpieniu IP przy użyciu usług *nxd_ipv6_enable* i *nxd_icmpv6_enable* odpowiednio w wierszu 161 i 169. Następnie lokalne i globalne adresy IP są rejestrowane przy użyciu wystąpienia adresu IP. Odbywa się to za pomocą usługi *nxd_ipv6_address_set* w wierszach 180 i 195. Następnie w trybie uśpienia jest wystarczająco dużo miejsca, aby zadanie wątku IP zakończyło protokół wykrywania zduplikowanych adresów i zarejestrować te adresy jako prawidłowe adresy w *tx_thread_sleep* wywołaniu w wierszu 201.
+Następnie wątek serwera włącza protokół IPv6 i ICMPv6 w wystąpieniu adresu IP przy użyciu usługi *nxd_ipv6_enable* i *nxd_icmpv6_enable* odpowiednio w wierszu 161 i 169. Następnie lokalne i globalne adresy IP linku są rejestrowane w wystąpieniu adresu IP. Odbywa się to przy *użyciu usługi nxd_ipv6_address_set* w wierszach 180 i 195. Następnie jest ona uśpięty wystarczająco długo, aby zadanie wątku ip kończyło protokół wykrywania zduplikowanych adresów i rejestrowały te adresy jako prawidłowe adresy w wywołaniu *tx_thread_sleep* w wierszu 201.
 
-Następnie gniazdo serwera TCP jest tworzone z argumentem wejściowym typu gniazdo AF_INET6 w wierszu 204. Adres IPv6 i port gniazda są ustawiane w wierszach 216-221, a następnie w przypadku używania makr *htonl* i *htons* do umieszczania danych w kolejności bajtów sieciowych dla usług BSD Sockets. W tym miejscu funkcja wprowadzania wątku serwera jest niemal identyczna z przykładem IPv4.
+Następnie gniazdo serwera TCP jest tworzone z argumentem wejściowym typu AF_INET6 gniazda w wierszu 204. Adres IPv6 gniazda i port są ustawione w wierszach 216-221, ponownie za pomocą *makr htonl* i *htons* umieścić dane w kolejności bajtów sieciowych dla usług gniazd BSD. W tym miejscu funkcja wątków serwera jest praktycznie taka sama jak w przykładzie protokołu IPv4.
 
-Funkcja wprowadzania wątku klienta, *thread_client_entry*, została zdefiniowana dalej. Należy zauważyć, że ponieważ klient TCP w tym przykładzie współużytkuje to samo wystąpienie IP i adres IPv6 co serwer TCP, nie musi ponownie włączać usług IPv6 ani ICMPv6 w wystąpieniu IP. Ponadto adres IPv6 jest już zarejestrowany w wystąpieniu adresu IP. Zamiast tego funkcja wprowadzania wątku klienta po prostu czeka na wiersz 368, aby skonfigurować serwer. Adres serwera i port są ustawiane, przy użyciu makr hosta do kolejności bajtów sieciowych w wierszach 387-392, a następnie klient może połączyć się z serwerem TCP w wierszu 412. Należy pamiętać, że typy danych lokalnego adresu IP w wierszach 378-383 są używane tylko w celu przedstawienia usług *getsockname* i *getpeername* w wierszach 425 i 434 odpowiednio. Ze względu na to, że dane pochodzą z sieci, w sieci można hostować makra kolejności bajtów używane w wierszach 378-383.
+Funkcja wpisu wątku klienta, *thread_client_entry*, jest definiowana jako następna. Należy pamiętać, że ponieważ klient TCP w tym przykładzie ma ten sam adres IP i adres IPv6 co serwer TCP, nie musimy ponownie włączać usług IPv6 ani ICMPv6 w wystąpieniu adresu IP. Ponadto adres IPv6 jest już zarejestrowany w wystąpieniu adresu IP. Zamiast tego funkcja wpisu wątku klienta po prostu czeka w wierszu 368 na skonfigurowanie serwera. Adres serwera i port są ustawione przy użyciu hosta do sieci bajtowych makr kolejności w wierszach 387-392, a następnie klient może połączyć się z serwerem TCP w wierszu 412. Należy pamiętać, że typy danych lokalnego adresu IP w wierszach 378-383 są używane tylko do zademonstrowania usług *getsockname* i *getpeername* odpowiednio w wierszach 425 i 434. Ponieważ dane pochodzą z sieci, sieć hostuje makra kolejności bajtów używane w wierszach 378–383.
 
-Kolejna funkcja wprowadzania wątku klienta wprowadza pętlę, w której tworzony jest gniazdo TCP, sprawia, że połączenie TCP i wysyła i odbiera dane z serwerem TCP, dopóki nie zostanie odebrane praktycznie więcej danych, jak w przypadku przykładu IPv4. Następnie zamyka gniazdo w wierszu 483, wstrzymuje się krótko i tworzy kolejne gniazdo TCP i żąda połączenia z serwerem TCP.
+Następnie funkcja wpisu wątku klienta wchodzi w pętlę, w której tworzy gniazdo TCP, nawiąże połączenie TCP oraz wyśle i odbierze dane z serwera TCP, dopóki nie zostanie odebranych praktycznie tak samo jak w przykładzie IPv4. Następnie zamyka gniazdo w wierszu 483, na krótko wstrzymuje i tworzy kolejne gniazdo TCP oraz żąda połączenia z serwerem TCP.
 
-Jedną z ważnych różnic przy użyciu protokołu IPv4 jest to, że wywołania *gniazda* określają gniazdo IPv6 przy użyciu argumentu AF_INET6 Input. Kolejną istotną różnicą jest to, że wywołanie *połączenia* klienta TCP pobiera *sockaddr_in6* typ danych, a argument długości ma ustawioną wartość *sockaddr_in6* typu danych.
+Jedną z istotnych różnic w przykładzie protokołu IPv4 jest to, że wywołania gniazd określają gniazdo IPv6 przy użyciu AF_INET6 wejściowego.  Inną istotną różnicą jest  to,  że wywołanie połączenia klienta TCP przyjmuje sockaddr_in6 typu danych i argument długości ustawiony na rozmiar sockaddr_in6 *typu* danych.
 
 ```c
 /* This is a small demo of BSD Wrapper for the high-performance NetX Duo

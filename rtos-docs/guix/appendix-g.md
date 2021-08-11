@@ -1,25 +1,25 @@
 ---
-title: Dodatek G-GUIX — struktura czcionek
-description: Dowiedz się więcej na temat struktury czcionek GUIX.
+title: Dodatek G — struktura czcionek GUIX
+description: Dowiedz się więcej o strukturze czcionek GUIX.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: b5f0232e6c21851014b85cfe7b07795062fd1e8d
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 4c7cedb49268f97f8e1fc4cd28329b0b61e697d57562865896f0502bdd1d45f1
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823172"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116784193"
 ---
-# <a name="appendix-g---guix-font-structure"></a>Dodatek G-GUIX — struktura czcionek
+# <a name="appendix-g---guix-font-structure"></a>Dodatek G — struktura czcionek GUIX
 
-Czcionki GUIX są zwykle tworzone przez aplikację GUIX Studio, a glify czcionek są renderowane przez sterownik wyświetlania GUIX. Oprogramowanie aplikacji musi określać tylko czcionkę i kolory, które powinny być używane dla każdego widżetu wyświetlania tekstu. Struktury danych czcionek GUIX są udokumentowane w tym miejscu pod kątem kompletności i umożliwiają deweloperom tworzenie własnych metod generowania lub konwertowania innych czcionek w formacie czcionki GUIX.
+Czcionki GUIX są zwykle produkowane przez aplikację GUIX Studio, a glyphs czcionek są renderowane przez sterownik wyświetlania GUIX. Oprogramowanie aplikacji musi określić tylko czcionkę i kolory, których powinien używać każdy widżet wyświetlania tekstu. Struktury danych czcionek GUIX zostały udokumentowane tutaj, aby uzyskać pełną dokumentację i umożliwić deweloperom tworzenie własnych metod generowania lub konwertowania innych czcionek do formatu czcionek GUIX.
 
-Każda czcionka GUIX rozpoczyna się od struktury GX_FONT. Struktura GX_FONT definiuje globalne parametry czcionki, takie jak znak zawarty w czcionce i wysokość linii czcionki. Struktura GX_FONT wskazuje na tablicę struktur GX_GLYPH. Każda struktura GX_GLYPH definiuje szerokość, Wysokość i Przesunięcie linii bazowej jednego określonego glifu znakowego. Struktura GX_GLYPH wskazuje również rzeczywiste dane mapy bitowej symboli (które mogą mieć wartość NULL w przypadku znaków odstępu).
+Każda czcionka GUIX rozpoczyna się od GX_FONT struktury. Struktura GX_FONT definiuje globalne parametry czcionki, takie jak znak uwzględniony w czcionce i wysokość wiersza czcionki. Struktura GX_FONT punkty na tablicy GX_GLYPH struktur. Każda GX_GLYPH definiuje szerokość, wysokość i przesunięcie linii bazowej jednego określonego znaku. Struktura GX_GLYPH wskazuje również rzeczywiste dane mapy bitowej glifów (które mogą mieć wartość NULL dla znaków odstępu).
 
-Struktura GX_FONT, zawarte w gx_api. h, jest zadeklarowana w następujący sposób:
+Struktura GX_FONT, zawarta w gx_api.h, jest zadeklarowana w następujący sposób:
 
 ```c
 typedef struct GX_FONT_STRUCT
@@ -36,25 +36,25 @@ typedef struct GX_FONT_STRUCT
 } GX_FONT;
 ```
 
-Pole gx_font_format definiuje bity czcionki w pikselach i innych flagach, zgodnie z definicją w pliku nagłówkowym gx_api. h.
+Pole gx_font_format definiuje czcionkę bity na piksel i inne flagi, zgodnie z definicją w pliku nagłówka gx_api.h.
 
-Gx_font_prespace definiuje miejsce w pikselach, aby pominąć każdy wiersz tekstu w wielowierszowym wyświetlaniu tekstu.
+Ten gx_font_prespace definiuje obszar pikseli, który ma być pomijany nad każdym wierszem tekstu na ekranie tekstowym z wieloma wierszami.
 
-Pole gx_font_postspace definiuje odstęp w pikselach, który zostanie pominięty poniżej każdego wiersza tekstu w wielowierszowym wyświetlaniu tekstu.
+Pole gx_font_postspace definiuje przestrzeń pikseli, która ma być pomijana poniżej każdego wiersza tekstu na ekranie tekstowym z wieloma wierszami.
 
-Pole gx_font_line_height definiuje wysokość najwyższego glifu w czcionce.
+Pole gx_font_line_height definiuje wysokość najwyższego symbolu w czcionki.
 
-Pole gx_font_baseline definiuje odległość (w pikselach) od górnego wiersza pikseli symboli do linii bazowej czcionki.
+Pole gx_font_baseline definiuje odległość (w pikselach) od górnego wiersza pikseli symbolu do linii bazowej czcionki.
 
 Pole gx_font_first_glyph definiuje pierwsze kodowanie znaków Unicode zawarte na tej stronie czcionki.
 
 Pole gx_font_last_glyph definiuje ostatnie kodowanie znaków Unicode zawarte na tej stronie czcionki.
 
-Wskaźnik gx_font_glyphs wskazuje tablicę GX_GLYPH struktur. Ta tablica musi mieć rozmiar równy liczbie znaków znajdujących się na tej stronie czcionki, tj. (gx_font_last_glyph – gx_font_first_glyph) + 1.
+Wskaźnik gx_font_glyphs wskazuje na tablicę GX_GLYPH struktur. Ta tablica musi mieć taki sam rozmiar jak liczba znaków zawartych na tej stronie czcionki, tj. (gx_font_last_glyph – gx_font_first_glyph) + 1.
 
-Element członkowski gx_font_next_page jest używany w przypadku wielu czcionek strony. Dla rozszerzonych zestawów znaków i optymalizacji rozmiaru tablic struktury GX_GLYPH są używane różne czcionki strony. Jeśli wszystkie znaki czcionki znajdują się w jednej stronie czcionki lub jeśli jest to Ostatnia strona czcionki, w której znajduje się gx_font_next_page element członkowski jest ustawiony na GX_NULL.
+Ten gx_font_next_page jest używany w przypadku wielu czcionek stron. Wiele czcionek stron jest używanych w rozszerzonych zestawach znaków i do optymalizowania rozmiaru GX_GLYPH tablic struktur. Jeśli wszystkie znaki czcionki znajdują się na jednej stronie czcionki lub jeśli jest to ostatnia strona czcionki, oznacza to, że gx_font_next_page jest ustawiony na GX_NULL.
 
-Jak wspomniano powyżej, powyższa struktura GX_FONT zawiera wskaźnik do tablicy GX_GLYPHS struktur. Dla każdego znaku na stronie czcionki musi istnieć jedna struktura GX_GLYPH. Struktura GX_GLYPH jest definiowana jako:
+Jak wspomniano powyżej, GX_FONT powyżej zawiera wskaźnik do tablicy GX_GLYPHS struktur. Dla każdego znaku na stronie czcionki musi GX_GLYPH jedna struktura. Struktura GX_GLYPH jest zdefiniowana jako:
 
 ```c
 typedef struct GX_GLYPH_STRUCT
@@ -69,12 +69,12 @@ typedef struct GX_GLYPH_STRUCT
 } GX_GLYPH;
 ```
 
-Wskaźnik gx_glyph_map wskazuje mapę bitową symboli. Ten wskaźnik może być GX_NULL dla białych znaków. Dane mapy bitowej są kodowane jako 1 BPP, 2 BPP, 4 BPP lub 8 BPP wartości alpha. W przypadku danych 1-bitowych wartość 1 oznacza, że piksela powinna być zapisywana w kolorze pierwszego planu, a wartość 0 oznacza, że piksel jest przezroczysty. W przypadku 8-bitowych danych wartości z zakresu od 0 (w pełni przezroczyste) do 255 (w pełni nieprzezroczyste). Cała wartość pośrednia reprezentuje wartość mieszania dla czcionek antyaliasowych. Dane mapy bitowej symboli są zawsze dopełniane do pełnego wyrównania bajtowego dla formatów przy użyciu mniej niż 8bpp wartości danych.
+Wskaźnik gx_glyph_map wskazuje mapę bitową glifów. Ten wskaźnik może być GX_NULL znaków odstępu. Dane mapy bitowej są kodowane jako 1 bpp, 2 bpp, 4 bpp lub 8 wartości alfa bpp. W przypadku danych 1-bitowych wartość 1 wskazuje, że piksel powinien być zapisany w kolorze pierwszego planu, a wartość 0 oznacza, że piksel jest przezroczysty. W przypadku danych 8-bitowych wartości z zakresu od 0 (w pełni przezroczyste) do 255 (w pełni opague). Wszystkie wartości pośrednie reprezentują wartość mieszania dla czcionek anty aliasów. Dane mapy bitowej glifów są zawsze dopełnione w celu pełnego wyrównania bajtów dla formatów używających wartości danych mniejszej niż 8bpp.
 
-Wartości gx_glyph_ascent i gx_glyph_descent umieszczają symbol w pionie w odniesieniu do linii bazowej czcionki.
+Symbol gx_glyph_ascent i gx_glyph_descent są pozycjonowane w pionie względem linii bazowej czcionki.
 
-Wartości gx_glyph_width i gx_glyph_height określają rozmiar danych mapy bitowej symboli.
+Wartości gx_glyph_width i gx_glyph_height określają rozmiar danych mapy bitowej glifów.
 
-Wartość gx_glyph_advance Określa szerokość pikseli, aby przejść do pozycji rysowania po narysowaniu glifu (może nie być taka sama jak szerokość glifu).
+Wartość gx_glyph_advance określa szerokość pikseli, aby przejść do pozycji rysowania po narysować glif (może to nie być równe szerokości glifów).
 
-Wartość gx_glyph_leading określa piksele do założenia w kierunku x przed renderowaniem glifu.
+Wartość gx_glyph_leading określa piksele, które mają przejść w kierunku x przed renderowaniem glifów.

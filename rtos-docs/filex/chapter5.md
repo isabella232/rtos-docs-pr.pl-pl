@@ -1,121 +1,121 @@
 ---
-title: Rozdział 5 — sterowniki we/wy dla usługi Azure RTO FileX
-description: Ten rozdział zawiera opis sterowników we/wy dla usługi Azure RTO FileX i został zaprojektowany, aby pomóc deweloperom w pisaniu sterowników specyficznych dla aplikacji.
+title: Rozdział 5 — Sterowniki we/wy dla Azure RTOS FileX
+description: Ten rozdział zawiera opis sterowników we/wy dla aplikacji Azure RTOS FileX i ma na celu pomoc deweloperom w pisanych sterownikach specyficznych dla aplikacji.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 8f2ef697f68a269b24a34147a4bc076b8a2b1660
-ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
+ms.openlocfilehash: 163893119837a46479b3f346c2bd47d200de2af75232f91a23bbc3f64e20ea50
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 04/07/2021
-ms.locfileid: "106550086"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116782918"
 ---
-# <a name="chapter-5---io-drivers-for-azure-rtos-filex"></a>Rozdział 5 — sterowniki we/wy dla usługi Azure RTO FileX
+# <a name="chapter-5---io-drivers-for-azure-rtos-filex"></a>Rozdział 5 — Sterowniki we/wy dla Azure RTOS FileX
 
-Ten rozdział zawiera opis sterowników we/wy dla usługi Azure RTO FileX i został zaprojektowany, aby pomóc deweloperom w pisaniu sterowników specyficznych dla aplikacji.
+Ten rozdział zawiera opis sterowników we/wy dla aplikacji Azure RTOS FileX i ma na celu pomoc deweloperom w pisanych sterownikach specyficznych dla aplikacji.
 
-## <a name="io-driver-introduction"></a>Wprowadzenie do sterownika we/wy
+## <a name="io-driver-introduction"></a>Wprowadzenie do sterownika We/Wy
 
-FileX obsługuje wiele urządzeń multimedialnych. Struktura FX_MEDIA definiuje wszystko wymagane do zarządzania urządzeniem multimedialnym. Ta struktura zawiera wszystkie informacje o nośnikach, w tym sterownik we/wy charakterystyczny dla nośnika i powiązane parametry umożliwiające przekazywanie informacji i stanu między sterownikiem i FileX. W większości systemów istnieje unikatowy sterownik we/wy dla każdego wystąpienia nośnika FileX.
+Plik FileX obsługuje wiele urządzeń multimedialnych. Struktura FX_MEDIA definiuje wszystko, co jest wymagane do zarządzania urządzeniem multimedialnym. Ta struktura zawiera wszystkie informacje o nośniku, w tym sterownik we/wy specyficzny dla nośnika i skojarzone parametry przekazywania informacji i stanu między sterownikiem a plikiem FileX. W większości systemów istnieje unikatowy sterownik we/wy dla każdego wystąpienia nośnika FileX.
 
-## <a name="io-driver-entry"></a>Wpis sterownika we/wy
+## <a name="io-driver-entry"></a>Wpis sterownika We/Wy
 
-Każdy sterownik we/wy FileX ma funkcję pojedynczego wpisu, która jest definiowana przez wywołanie usługi ***fx_media_open*** . Funkcja wprowadzania sterowników ma następujący format:
+Każdy sterownik We/Wy FileX ma jedną funkcję wpisu, która jest definiowana przez ***fx_media_open*** wywołania usługi. Funkcja wprowadzania sterownika ma następujący format:
 
 ```c
 void my_driver_entry(FX_MEDIA *media_ptr);
 ```
 
-FileX wywołuje funkcję wejścia sterownika we/wy, aby zażądać dostępu do nośników fizycznych, w tym wczytywania i odczytywania sektora rozruchowego. Żądania kierowane do sterownika są wykonywane sekwencyjnie; oznacza to, że FileX czeka na zakończenie bieżącego żądania przed wysłaniem innego żądania.
+Plik FileX wywołuje funkcję wpisu sterownika We/Wy, aby zażądać dostępu do wszystkich nośników fizycznych, w tym inicjowania i odczytywania sektorów rozruchu. Żądania do sterownika są wykonywane sekwencyjnie; Tj. plik FileX czeka na ukończenie bieżącego żądania przed wysłaniem innego żądania.
 
-## <a name="io-driver-requests"></a>Żądania sterowników we/wy
+## <a name="io-driver-requests"></a>Żądania sterowników We/Wy
 
-Ze względu na to, że każdy sterownik we/wy ma jedną funkcję wejścia, FileX wykonuje określone żądania za pomocą bloku sterowania nośnika. W konkretnym przypadku  **fx_media_driver_request** członkiem **FX_MEDIA** jest używany do określenia dokładnego żądania sterownika. Sterownik we/wy komunikuje sukces lub niepowodzenie żądania przez **fx_media_driver_status** członkiem **FX_MEDIA**. Jeśli żądanie sterownika zakończyło się pomyślnie, **FX_SUCCESS** jest umieszczane w tym polu przed zwróceniem sterownika. W przeciwnym razie, jeśli zostanie wykryty błąd, FX_IO_ERROR jest umieszczany w tym polu.
+Ponieważ każdy sterownik We/Wy ma jedną funkcję wprowadzania, plik FileX wykonuje określone żądania za pośrednictwem bloku sterowania multimediami. W szczególności  **fx_media_driver_request** jest FX_MEDIA **służy** do określania dokładnego żądania sterownika. Sterownik We/Wy informuje o sukcesie lub niepowodzeniu żądania za pośrednictwem **fx_media_driver_status** członkowskiego **FX_MEDIA**. Jeśli żądanie sterownika powiodło się, **FX_SUCCESS** zostanie umieszczone w tym polu przed jego zwrotem. W przeciwnym razie, jeśli zostanie wykryty błąd, FX_IO_ERROR zostanie umieszczony w tym polu.
 
 ### <a name="driver-initialization"></a>Inicjowanie sterownika
 
-Chociaż rzeczywiste przetwarzanie inicjacji sterownika jest specyficzne dla aplikacji, zwykle składa się ona z inicjalizacji struktury danych i ewentualnej wstępnej inicjalizacji sprzętowej. To żądanie jest najpierw wykonywane przez FileX i jest wykonywane z poziomu usługi fx_media_open.
+Mimo że rzeczywiste przetwarzanie inicjowania sterownika jest specyficzne dla aplikacji, zwykle składa się z inicjowania struktury danych i prawdopodobnie wstępnej inicjalizacji sprzętu. To żądanie jest pierwszym żądaniem wykonanym przez plik FileX i jest wykonywane z poziomu fx_media_open usługi.
 
-Jeśli zostanie wykryta ochrona przed zapisem na nośniku, fx_media_driver_write_protect członkiem FX_MEDIA powinna być ustawiona wartość FX_TRUE.
+Jeśli zostanie wykryta ochrona zapisu multimediów, fx_media_driver_write_protect należy ustawić FX_MEDIA na FX_TRUE.
 
-Następujące elementy członkowskie FX_MEDIA są używane dla żądania inicjacji sterownika we/wy:
+Następujące elementy FX_MEDIA są używane do żądania inicjowania sterownika We/Wy:
 
-|FX_MEDIA składową|Znaczenie|
+|FX_MEDIA członkowski|Znaczenie|
 |-----------|-----------|
 |fx_media_driver_request|FX_DRIVER_INIT|
 
-FileX zapewnia mechanizm do informowania sterownika aplikacji, gdy sektory nie są już używane. Jest to szczególnie przydatne w przypadku menedżerów pamięci FLASH, którzy muszą zarządzać wszystkimi używanymi sektorami logicznymi, które są mapowane na LAMPę BŁYSKową.
+Plik FileX udostępnia mechanizm informowania sterownika aplikacji, gdy sektory nie są już używane. Jest to szczególnie przydatne w przypadku menedżerów pamięci FLASH, które muszą zarządzać wszystkimi w użyciu sektorami logicznymi zamapowanych na flash.
 
-Jeśli wymagane jest powiadomienie o bezpłatnych sektorach, sterownik aplikacji po prostu ustawi pole *fx_media_driver_free_sector_update* w skojarzonej strukturze **FX_MEDIA** do **FX_TRUE**. Po ustawieniu FileX **_FX_DRIVER_RELEASE_SECTORS_** wywołanie sterownika we/wy wskazujące, kiedy jeden lub więcej kolejnych sektorów staje się bezpłatny.
+Jeśli takie powiadomienie o wolnych sektorach jest wymagane, sterownik aplikacji po prostu *ustawia* pole fx_media_driver_free_sector_update w skojarzonej FX_MEDIA **na** **FX_TRUE**. Po skonfigurowaniu plik FileX wykonuje **_wywołanie FX_DRIVER_RELEASE_SECTORS_** we/wy wskazujące, kiedy co najmniej jeden kolejny sektor staje się wolny.
 
 ### <a name="boot-sector-read"></a>Odczyt sektora rozruchowego
 
-Zamiast używać standardowego żądania odczytu, FileX wykonuje konkretne żądanie odczytu sektora rozruchowego nośnika. Następujące **FX_MEDIA** elementy członkowskie są używane dla żądania odczytu sektora rozruchu sterownika we/wy:
+Zamiast używać standardowego żądania odczytu, plik FileX wykonuje określone żądanie odczytu sektora rozruchowego nośnika. Następujące elementy **FX_MEDIA** są używane dla żądania odczytu sektora rozruchowego sterownika We/Wy:
 
-|FX_MEDIA składową|Znaczenie|
+|FX_MEDIA członkowski|Znaczenie|
 |-----------|-----------|
 |fx_media_driver_request| FX_DRIVER_BOOT_READ|
-|fx_media_driver_buffer| Adres docelowy sektora rozruchowego.|
+|fx_media_driver_buffer| Adres miejsca docelowego dla sektora rozruchowego.|
 
 ### <a name="boot-sector-write"></a>Zapis sektora rozruchowego
 
-Zamiast używać standardowego żądania zapisu, FileX wykonuje określone żądanie zapisania sektora rozruchowego nośnika. Następujące składowe **FX_MEDIA** są używane dla żądania zapisu sektora rozruchu sterownika we/wy:
+Zamiast używać standardowego żądania zapisu, plik FileX wykonuje określone żądanie zapisu sektora rozruchowego nośnika. Następujące elementy **FX_MEDIA** są używane dla żądania zapisu sektora rozruchowego sterownika we/wy:
 
-|FX_MEDIA składową|Znaczenie|
+|FX_MEDIA członkowski|Znaczenie|
 |-----------|-----------|
 |fx_media_driver_request| FX_DRIVER_BOOT_WRITE|
 |fx_media_driver_buffer| Adres źródła dla sektora rozruchowego.|
 
 ### <a name="sector-read"></a>Odczyt sektora
 
-FileX odczytuje jeden lub więcej sektorów do pamięci, wydając żądanie odczytu do sterownika we/wy. Następujące elementy członkowskie **FX_MEDIA** są używane dla żądania odczytu sterownika we/wy:
+Plik FileX odczytuje co najmniej jeden sektor w pamięci, wydając żądanie odczytu do sterownika We/Wy. Następujące elementy **FX_MEDIA** są używane dla żądania odczytu sterownika We/Wy:
 
-|FX_MEDIA składową|Znaczenie|
+|FX_MEDIA członkowski|Znaczenie|
 |-----------|-----------|
 |fx_media_driver_request| FX_DRIVER_READ|
 |fx_media_driver_logical_sector|Sektor logiczny do odczytania|
 |fx_media_driver_sectors|Liczba sektorów do odczytania|
-|fx_media_driver_buffer|Odczytaj bufor docelowy dla sektorów|
-|fx_media_driver_data_sector_read|Ustaw, aby FX_TRUE, jeśli zażądano sektora danych pliku. W przeciwnym razie FX_FALSE, jeśli zażądano sektora systemowego (FAT lub sektor katalogu).|
+|fx_media_driver_buffer|Bufor docelowy dla odczytanych sektorów|
+|fx_media_driver_data_sector_read|Ustaw wartość FX_TRUE jeśli żądany jest sektor danych plików. W przeciwnym razie FX_FALSE jeśli jest żądany sektor systemowy (FAT lub katalogowy).|
 |fx_media_driver_sector_type|Definiuje jawny typ żądanego sektora w następujący sposób:<br />FX_FAT_SECTOR (2)<br />FX_DIRECTORY_SECTOR (3)<br />FX_DATA_SECTOR (4)|
 
 ### <a name="sector-write"></a>Zapis sektora
 
-FileX zapisuje jeden lub więcej sektorów na nośniku fizycznym, wysyłając żądanie zapisu do sterownika we/wy. Następujące składowe FX_MEDIA są używane dla żądania zapisu sterowników we/wy:
+Plik FileX zapisuje co najmniej jeden sektor na nośniku fizycznym, wydając żądanie zapisu do sterownika We/Wy. Następujące elementy FX_MEDIA są używane dla żądania zapisu sterownika We/Wy:
 
-|FX_MEDIA składową| Znaczenie|
+|FX_MEDIA członkowski| Znaczenie|
 |-----------|-----------|
 |fx_media_driver_request|FX_DRIVER_WRITE|
 |fx_media_driver_logical_sector|Sektor logiczny do zapisu|
 |fx_media_driver_sectors|Liczba sektorów do zapisu|
 |fx_media_driver_buffer|Bufor źródłowy dla sektorów do zapisu|
-|fx_media_driver_system_write| Ustaw na FX_TRUE w przypadku żądania sektora systemu (FAT lub sektor katalogu). W przeciwnym razie FX_FALSE, jeśli zażądano sektora danych pliku.|
+|fx_media_driver_system_write| Ustaw wartość FX_TRUE jeśli żądany jest sektor systemowy (FAT lub katalogowy). W przeciwnym FX_FALSE, jeśli jest żądany sektor danych plików.|
 |fx_media_driver_sector_type|Definiuje jawny typ żądanego sektora w następujący sposób:<br> <br>FX_FAT_SECTOR (2) <br> FX_DIRECTORY_SECTOR (3) <br>FX_DATA_SECTOR (4).|
 
-### <a name="driver-flush"></a>Opróżnianie sterownika
+### <a name="driver-flush"></a>Opróżnienie sterownika
 
-FileX opróżnia wszystkie sektory znajdujące się obecnie w pamięci podręcznej sektora sterownika do nośnika fizycznego, wysyłając żądanie opróżnienia do sterownika we/wy. Oczywiście, jeśli sterownik nie jest buforowany w sektorach, to żądanie nie wymaga przetwarzania sterownika. Następujące elementy członkowskie FX_MEDIA są używane dla żądania opróżnienia sterownika we/wy:
+Plik FileX opróżnia wszystkie sektory aktualnie w pamięci podręcznej sektorów sterownika na nośnik fizyczny, wydając żądanie opróżniania do sterownika We/Wy. Oczywiście jeśli sterownik nie jest w sektorach buforowania, to żądanie nie wymaga przetwarzania sterowników. Następujące elementy FX_MEDIA są używane do żądania opróżninia sterownika We/Wy:
 
-|FX_MEDIA składową| Znaczenie|
+|FX_MEDIA członkowski| Znaczenie|
 |-----------|-----------|
 |fx_media_driver_request|FX_DRIVER_FLUSH|
 
 ### <a name="driver-abort"></a>Przerwanie sterownika
 
-FileX informuje sterownik, aby przerwać wszystkie dalsze fizyczne operacje we/wy z nośnikiem fizycznym przez wystawienie żądania przerwania dla sterownika we/wy. Sterownik nie powinien wykonać żadnych operacji we/wy ponownie, dopóki nie zostanie ponownie zainicjowany. Następujące elementy członkowskie FX_MEDIA są używane dla żądania przerwania sterownika we/wy:
+FileX informuje sterownik, aby przerwać wszystkie dalsze działania fizyczne we/wy z nośnika fizycznego, wystawiając żądanie przerwania do sterownika We/Wy. Sterownik nie powinien ponownie wykonywać żadnych operacji we/wy, dopóki nie zostanie ponownie zainicjowany. Następujące elementy FX_MEDIA są używane dla żądania przerwania sterownika We/Wy:
 
-|FX_MEDIA składową| Znaczenie|
+|FX_MEDIA członkowski| Znaczenie|
 |-----------|-----------|
 |fx_media_driver_request| FX_DRIVER_ABORT|
 
 ### <a name="release-sectors"></a>Sektory wydania
 
-Jeśli wcześniej została wybrana przez sterownik podczas inicjowania, FileX informuje sterownik za każdym razem, gdy jeden lub kilka kolejnych sektorów staną się bezpłatne. Jeśli sterownik jest w rzeczywistości programem FLASH Manager, te informacje mogą być używane do poinformowania Menedżera programu FLASH o tym, że te sektory nie są już potrzebne. Następujące **FX_MEDIA** elementy członkowskie są używane dla żądania sektorów wydania we/wy:
+Jeśli sterownik został wcześniej wybrany podczas inicjowania, FileX informuje sterownik zawsze, gdy co najmniej jeden kolejny sektor staje się wolny. Jeśli sterownik jest w rzeczywistości menedżerem FLASH, te informacje mogą służyć do poinformuj menedżera FLASH, że te sektory nie są już potrzebne. Następujące elementy **FX_MEDIA** są używane w żądaniu sektorów wydania We/Wy:
 
-|FX_MEDIA składową| Znaczenie|
+|FX_MEDIA członkowski| Znaczenie|
 |-----------|-----------|
 |fx_media_driver_request|FX_DRIVER_RELEASE_SECTORS|
 |fx_media_driver_logical_sector|Początek wolnego sektora|
@@ -123,11 +123,11 @@ Jeśli wcześniej została wybrana przez sterownik podczas inicjowania, FileX in
 
 ### <a name="driver-suspension"></a>Zawieszenie sterownika
 
-Ponieważ we/wy z nośnika fizycznego może upłynąć trochę czasu, wstrzymanie wątku wywołującego jest często pożądane. Oczywiście założono, że wykonywanie bazowej operacji we/wy jest zależne od przerwań. W takim przypadku zawieszenie wątku jest łatwo implementowane przy użyciu semafora ThreadX. Po uruchomieniu operacji wejściowej lub wyjściowej sterownik we/wy zawiesza się we własnym wewnętrznym czasie we/wy (utworzony z początkową liczbą zero podczas inicjowania sterownika). W ramach przetwarzania przerwań we/wy sterownika jest ustawiony ten sam semafor we/wy, który z kolei wznawia zawieszony wątek.
+Ze względu na to, że we/wy z nośnikiem fizycznym może trochę potrwać, często pożądane jest wstrzymanie wątku wywołującego. Oczywiście zakłada się, że ukończenie podstawowej operacji We/Wy jest przerywane. Jeśli tak, zawieszenie wątku można łatwo zaimplementować za pomocą semafora ThreadX. Po uruchomieniu operacji wejściowej lub wyjściowej sterownik we/wy zawiesza się na własnym wewnętrznym semaforze we/wy (utworzonym z początkową wartością 0 podczas inicjowania sterownika). W ramach przetwarzania przerwań zakończenia we/wy sterownika ustawiany jest ten sam semafor we/wy, który z kolei wznawia wstrzymany wątek.
 
-### <a name="sector-translation"></a>Tłumaczenie sektora
+### <a name="sector-translation"></a>Tłumaczenie sektorów
 
-Ponieważ FileX przegląda nośnik jako liniowe sektory logiczne, żądania we/wy wykonywane do sterownika we/wy są tworzone z sektorami logicznymi. Jest on odpowiedzialny za przetłumaczenie sektorów logicznych i fizycznej geometrii nośnika, który może obejmować głowice, ścieżki i sektory fizyczne. W przypadku nośników dysków FLASH i RAM sektory logiczne zwykle mapują katalog na sektory fizyczne. W każdym przypadku poniżej przedstawiono typowe formuły umożliwiające przeprowadzenie mapowania między logicznymi a fizycznymi w sterowniku we/wy:
+Ponieważ system FileX widokuje nośnik jako liniowe sektory logiczne, żądania we/wy do sterownika We/Wy są dokonywane z sektorami logicznymi. To sterownik odpowiada za tłumaczenie między sektorami logicznymi a fizyczną geometrią nośnika, która może obejmować orły, ścieżki i sektory fizyczne. W przypadku nośników dyskowych FLASH i RAM sektory logiczne zazwyczaj mapają katalog na sektory fizyczne. W każdym przypadku poniżej podano typowe formuły do wykonania mapowania sektorów logicznych na fizyczne w sterowniku We/Wy:
 
 ```c
 media_ptr -> fx_media_driver_physical_sector =
@@ -142,19 +142,19 @@ media_ptr -> fx_media_driver_physical_track =(media_ptr ->
     media_ptr -> fx_media_heads)));
 ```
 
-Należy zauważyć, że sektory fizyczne zaczynają się na jednym, podczas gdy sektory logiczne zaczynają się od zera.
+Należy pamiętać, że sektory fizyczne zaczynają się od jednego, a sektory logiczne zaczynają się od zera.
 
 ### <a name="hidden-sectors"></a>Ukryte sektory
 
-Ukryte sektory zostały zamieszkałe przed rekordem rozruchowym na nośniku. Ponieważ są one naprawdę poza zakresem układu systemu plików FAT, muszą być uwzględnione w każdej operacji sektora logicznego.
+Ukryte sektory znajdowały się przed rekordem rozruchowym na nośniku. Ponieważ tak naprawdę są one poza zakresem układu systemu plików FAT, należy uwzględnić je w każdej operacji sektora logicznego sterownika.
 
-### <a name="media-write-protect"></a>Ochrona przed zapisem multimediów
+### <a name="media-write-protect"></a>Ochrona zapisu multimediów
 
-Sterownik FileX może włączyć ochronę przed zapisem przez ustawienie pola fx_media_driver_write_protect w bloku kontroli nośnika. Spowoduje to zwrócenie błędu, jeśli jakiekolwiek wywołania FileX zostaną wykonane podczas próby zapisu na nośniku.
+Sterownik FileX może włączyć ochronę zapisu, ustawiając pole fx_media_driver_write_protect w bloku sterowania multimediami. Spowoduje to zwrócenie błędu, jeśli jakiekolwiek wywołania FileX zostaną wykonane podczas próby zapisu na nośniku.
 
 ## <a name="sample-ram-driver"></a>Przykładowy sterownik pamięci RAM
 
-System demonstracyjny FileX jest dostarczany z małym sterownikiem dysku RAM, który jest zdefiniowany w pliku fx_ram_driver. c. Sterownik zakłada miejsce w pamięci 32 KB i tworzy rekord rozruchowy dla sektorów 256 128-bajtowych. Ten plik zawiera dobry przykład implementacji sterowników we/wy FileX specyficznych dla aplikacji.
+System pokazowy FileX jest dostarczany z małym sterownikem dysku RAM, który jest zdefiniowany w pliku fx_ram_driver.c. Sterownik przyjmuje miejsce w pamięci 32K i tworzy rekord rozruchowy dla 256 128-bajtowych sektorów. Ten plik zawiera dobry przykład sposobu implementacji sterowników we/wy FileX specyficznych dla aplikacji.
 
 ```c
 /*FUNCTION: _fx_ram_driver

@@ -1,21 +1,21 @@
 ---
-title: Przykład GUIX
-description: System demonstracyjny GUIX jest dostarczany z małym przykładem, zdefiniowanym w przykładach/HelloWorld/HelloWorld. c.
+title: Przykład graficznego interfejsu użytkownika
+description: Demonstracyjny system GUIX jest dostarczany z małym przykładem zdefiniowanym w przykładach/helloworld/helloworld.c.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 79d342fc8697fcb40e1f402f9b040621ed43e3fb
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 8af9ee437902467ba40c74266f59d358f3919fe0146d0a5bca3d6e6e5722359e
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822243"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116786403"
 ---
-# <a name="guix-example"></a>Przykład GUIX
+# <a name="guix-example"></a>Przykład graficznego interfejsu użytkownika
 
-System demonstracyjny GUIX jest dostarczany z małym przykładem, zdefiniowanym w przykładach/HelloWorld/HelloWorld. c. W tym przykładzie przedstawiono kroki wymagane do wykonania w celu zainicjowania systemu GUIX, aby skonfigurować sterowniki ekranu. Kod źródłowy jest wymieniony na poniższych stronach.
+Demonstracyjny system GUIX jest dostarczany z małym przykładem zdefiniowanym w przykładach/helloworld/helloworld.c. W tym przykładzie pokazano kroki wymagane do zainicjowania systemu GUIX w celu skonfigurowania sterowników wyświetlania. Kod źródłowy znajduje się na poniższych stronach.
 
 ```c
 /* This is a small demonstration of the high-performance GUIX embedded UI run-time environment. This demonstration consists of a simple "Hello World" prompt on top of the root window. */

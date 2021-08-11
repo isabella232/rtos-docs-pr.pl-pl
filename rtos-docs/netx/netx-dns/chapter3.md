@@ -1,49 +1,49 @@
 ---
-title: Rozdział 3 — Opis usług klienta DNS w usłudze Azure RTO NetX
-description: Ten rozdział zawiera opis wszystkich usług DNS usługi Azure RTO NetX (wymienionych poniżej) w porządku alfabetycznym.
+title: Rozdział 3 — opis Azure RTOS klienta DNS NetX
+description: Ten rozdział zawiera opis wszystkich usług DNS Azure RTOS NetX (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 18e059e79f9742eaaafffbf15b55b4b5063363f8
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 922d41dc374ccd782809404776f18f2aed8f5e3c34b7c9e143075c0ee5567220
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822656"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116782494"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-dns-client-services"></a>Rozdział 3 — Opis usług klienta DNS w usłudze Azure RTO NetX
+# <a name="chapter-3---description-of-azure-rtos-netx-dns-client-services"></a>Rozdział 3 — opis Azure RTOS klienta DNS NetX
 
-Ten rozdział zawiera opis wszystkich usług DNS usługi Azure RTO NetX (wymienionych poniżej) w porządku alfabetycznym.
+Ten rozdział zawiera opis wszystkich usług DNS Azure RTOS NetX (wymienionych poniżej) w kolejności alfabetycznej.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w następujących  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości pogrubione, a wartości bez pogrubienia są całkowicie wyłączone.
 
-- **nx_dns_authority_zone_start_get**: *Wyszukiwanie początku strefy urzędu skojarzonej z określoną nazwą hosta*
-- **nx_dns_cache_initialize**: *zainicjuj pamięć podręczną DNS.*
-- **nx_dns_cache_notify_clear**: *Wyczyść funkcję pełnego powiadamiania pamięci podręcznej.*
-- **nx_dns_cache_notify_set**: *Ustaw funkcję pełnego powiadamiania pamięci podręcznej.*
-- **nx_dns_cname_get**: *wyszukuje nazwę domeny kanonicznej dla aliasu nazwy domeny wejściowej*
-- **nx_dns_create**: *Tworzenie wystąpienia klienta DNS*
-- **nx_dns_delete**: *usuwanie wystąpienia klienta DNS*
-- **nx_dns_domain_name_server_get**: *Wyszukiwanie autorytatywnych serwerów nazw dla strefy domeny wejściowej*
-- **nx_dns_domain_mail_exchange_get**: *Wyszukaj wymianę poczty skojarzoną z określoną nazwą hosta.*
-- **nx_dns_domain_service_get**: *Wyszukaj usługi skojarzone z określoną nazwą hosta*
-- **nx_dns_get_serverlist_size**: *Zwróć rozmiar listy serwerów klienta DNS*
-- **nx_dns_info_by_name_get**: *zwrotny adres IP, badanie portu dla wejściowej nazwy hosta*
-- **nx_dns_ipv4_address_by_name_get**: *wyszukuje adres IPv4 z określonej nazwy hosta*
-- **nx_dns_host_by_address_get**: *Wyszukiwanie nazwy hosta na podstawie określonego adresu IP*
-- **nx_dns_host_by_name_get**: *wyszukuje adres IPv4 z określonej nazwy hosta*
-- **nx_dns_host_text_get**: *wyszukiwanie danych tekstowych dla nazwy domeny wejściowej*
-- **nx_dns_packet_pool_set**: *Ustaw pulę pakietów klienta DNS*
-- **nx_dns_server_add**: *Dodaj serwer DNS o określonym adresie do listy klientów*
-- **nx_dns_server_get**: *Zwróć serwer DNS na liście klientów*
-- **nx_dns_server_remove**: *usuwanie serwera DNS z listy klientów*
-- **nx_dns_server_remove_all**: *Usuń wszystkie serwery DNS z listy klientów*
+- **nx_dns_authority_zone_start_get:** poszukaj *początku* strefy urzędu skojarzonej z określoną nazwą hosta
+- **nx_dns_cache_initialize:** *inicjowanie pamięci podręcznej DNS.*
+- **nx_dns_cache_notify_clear:** wyczyść *funkcję powiadamiania o pełnej pamięci podręcznej.*
+- **nx_dns_cache_notify_set:** ustaw *funkcję powiadamiania o pełnej pamięci podręcznej.*
+- **nx_dns_cname_get:** poszukaj *nazwy domeny kanonicznej dla aliasu nazwy domeny wejściowej*
+- **nx_dns_create:** tworzenie *wystąpienia klienta DNS*
+- **nx_dns_delete:** usuwanie *wystąpienia klienta DNS*
+- **nx_dns_domain_name_server_get:** poszukaj *autorytatywnych serwerów nazw dla strefy domeny danych wejściowych*
+- **nx_dns_domain_mail_exchange_get:** poszukaj nazwy podanego hosta *skojarzonej z wymianą poczty.*
+- **nx_dns_domain_service_get:** *poszukaj usług skojarzonych* z określoną nazwą hosta
+- **nx_dns_get_serverlist_size:** zwraca *rozmiar listy serwerów klienta DNS*
+- **nx_dns_info_by_name_get:** *zwracanie adresu IP, wykonywanie zapytań o port przy nazwie hosta wejściowego*
+- **nx_dns_ipv4_address_by_name_get:** *odszukaj adres IPv4 na podanej nazwie hosta*
+- **nx_dns_host_by_address_get:** poszukaj *nazwy hosta na określonym adresie IP*
+- **nx_dns_host_by_name_get:** *odszukaj adres IPv4 na podanej nazwie hosta*
+- **nx_dns_host_text_get:** *wyszukiwania danych tekstowych dla nazwy domeny wejściowej*
+- **nx_dns_packet_pool_set:** ustawianie *puli pakietów klienta DNS*
+- **nx_dns_server_add:** Dodaj *serwer DNS pod określonym adresem do listy klientów*
+- **nx_dns_server_get:** zwróć *serwer DNS na liście Klient*
+- **nx_dns_server_remove:** *Usuwanie serwera DNS z listy klientów*
+- **nx_dns_server_remove_all:** *Usuń wszystkie serwery DNS z listy klientów*
 
 ## <a name="nx_dns_authority_zone_start_get"></a>nx_dns_authority_zone_start_get
 
-Wyszukiwanie początku strefy urzędu dla hosta wejściowego
+Przeszukaj początek strefy urzędu dla hosta wejściowego
 
 ### <a name="prototype"></a>Prototype
 
@@ -58,45 +58,45 @@ UINT nx_dns_authority_zone_start_get (NX_DNS *dns_ptr, UCHAR *host_name,
 
 ### <a name="description"></a>Opis
 
-Jeśli zdefiniowano NX_DNS_ENABLE_EXTENDED_RR_TYPES, ta usługa wysyła zapytanie typu SOA z określoną nazwą domeny w celu uzyskania początku strefy urzędu dla nazwy domeny wejściowej. Klient DNS kopiuje rekordy SOA zwrócone w odpowiedzi serwera DNS do lokalizacji *record_buffer* pamięci. 
+Jeśli NX_DNS_ENABLE_EXTENDED_RR_TYPES, ta usługa wysyła zapytanie typu SOA z określoną nazwą domeny, aby uzyskać początek strefy urzędu dla nazwy domeny wejściowej. Klient DNS kopiuje rekordy SOA zwrócone w odpowiedzi serwera DNS do *lokalizacji record_buffer* pamięci. 
 >[!NOTE]
-> *Record_buffer* musi mieć 4-bajtowy wyrównany do odbierania danych.
+> Aby *record_buffer* dane, dane muszą być wyrównane o 4 bajty.
 
-W NetX klienta DNS typ rekordu SOA NX_DNS_SOA_ENTRY jest zapisywany jako parametry 7 4 bajtów, łącznie 28 bajtów:
+W kliencie DNS NetX typ rekordu SOA, NX_DNS_SOA_ENTRY, jest zapisywany jako siedem 4-bajtowych parametrów, łącznie 28 bajtów:
 
-- **nx_dns_soa_host_mname_ptr**: wskaźnik do podstawowego źródła danych dla tej strefy
-- **nx_dns_soa_host_rname_ptr**: wskaźnik do skrzynki pocztowej odpowiedzialnej za tę strefę
-- **nx_dns_soa_serial**: numer wersji strefy
-- **nx_dns_soa_refresh**: interwał odświeżania
-- **nx_dns_soa_retry**: interwał między ponownymi próbami zapytania SOA
-- **nx_dns_soa_expire**: czas trwania czasu wygaśnięcia SOA
-- **nx_dns_soa_minmum**: minimalne pole czasu wygaśnięcia w komunikatach odpowiedzi DNS nazwy hosta SOA
+- **nx_dns_soa_host_mname_ptr:** Wskaźnik do podstawowego źródła danych dla tej strefy
+- **nx_dns_soa_host_rname_ptr:** Wskaźnik do skrzynki pocztowej odpowiedzialnej za tę strefę
+- **nx_dns_soa_serial:** Numer wersji strefy
+- **nx_dns_soa_refresh:** interwał odświeżania
+- **nx_dns_soa_retry:** interwał między kolejnymi próbami zapytania SOA
+- **nx_dns_soa_expire:** czas trwania po wygaśnięciu umowy SOA
+- **nx_dns_soa_minmum:** pole minimalnej wartości TTL w komunikatach odpowiedzi DNS nazwy hosta SOA
 
-Poniżej przedstawiono magazyn dwóch rekordów SOA. Rekordy SOA zawierające dane o stałej długości są wprowadzane Zaczynając od góry buforu. Wskaźniki MNAME i RNAME wskazują na dane o zmiennej długości (nazwy hostów), które są przechowywane w dolnej części buforu. Dodatkowe rekordy SOA są wprowadzane po pierwszym rekordzie ("dodatkowe rekordy SOA..."), a ich dane o zmiennej długości są przechowywane powyżej danych o zmiennej długości ("dodatkowe dane długości zmiennej SOA"):
+Poniżej przedstawiono magazyn dwóch rekordów SOA. Rekordy SOA zawierające dane o stałej długości są wprowadzane od góry buforu. Wskaźniki MNAME i RNAME wskazują dane o zmiennej długości (nazwy hostów), które są przechowywane w dolnej części buforu. Dodatkowe rekordy SOA są wprowadzane po pierwszym rekordzie ("dodatkowe rekordy SOA..."), a ich dane o zmiennej długości są przechowywane powyżej danych o zmiennej długości ostatniego wpisu ("dodatkowe dane o zmiennej długości SOA"):
 
-![Diagram przedstawiający magazyn dwóch rekordów A](media/image2.png)
+![Diagram przedstawiający magazyn dwóch rekordów S O A](media/image2.png)
 
-Jeśli dane wejściowe *record_buffer* nie mogą zawierać wszystkich danych SOA w odpowiedzi serwera, *record_buffer* przechowuje tyle rekordów, ile się zmieści, i zwraca liczbę rekordów w buforze.
+Jeśli dane *wejściowe record_buffer* nie mogą przechowywać wszystkich danych SOA w odpowiedzi serwera, serwer *record_buffer* przechowuje tyle rekordów, ile zmieści się i zwraca liczbę rekordów w buforze.
 
-Wraz z liczbą rekordów SOA zwróconych w programie **record_count* aplikacja może analizować dane z *record_buffer* i wyodrębnić początki ciągów nazw hosta urzędu certyfikacji.
+Po zwróceniu liczby rekordów SOA w tabeli **record_count* aplikacja może analizuje dane z usługi *record_buffer* i wyodrębniać początek ciągów nazw hostów urzędu strefy.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do klienta DNS.  
-- **HOST_NAME**: wskaźnik do nazwy hosta w celu uzyskania danych SOA
-- **record_buffer**: wskaźnik do lokalizacji, do której mają zostać wyodrębnione dane SOA
-- **buffer_size**: rozmiar buforu do przechowywania danych SOA
-- **record_count**: wskaźnik do liczby pobranych rekordów SOA
-- **WAIT_OPTION**: Poczekaj na odebranie odpowiedzi serwera DNS
+- **dns_ptr:** wskaźnik do klienta DNS.  
+- **host_name:** Wskaźnik do nazwy hosta w celu uzyskania danych SOA dla
+- **record_buffer:** Wskaźnik do lokalizacji w celu wyodrębnienia danych SOA do
+- **buffer_size:** rozmiar buforu do przechowywania danych SOA
+- **record_count:** wskaźnik do liczby pobranych rekordów SOA
+- **wait_option:** Opcja oczekiwania na odbieranie odpowiedzi serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie uzyskano dane SOA
-- **NX_DNS_NO_SERVER**: (0xa1) lista serwerów klienta jest pusta
-- **NX_DNS_QUERY_FAILED**: (0XA3) nie odebrano prawidłowej odpowiedzi DNS
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
-- NX_DNS_PARAM_ERROR: (0xA8) nieprawidłowe dane wejściowe bez wskaźnika
+- **NX_SUCCESS:**(0x00) Pomyślnie uzyskano dane SOA
+- **NX_DNS_NO_SERVER:**(0xA1) Lista serwerów klientów jest pusta
+- **NX_DNS_QUERY_FAILED:**(0xA3) Nie odebrano prawidłowej odpowiedzi DNS
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
+- NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -186,17 +186,17 @@ Ta usługa tworzy i inicjuje pamięć podręczną DNS.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do bloku kontroli DNS.
-- **cache_ptr**: wskaźnik do pamięci podręcznej DNS.
-- **cache_size**: rozmiar pamięci podręcznej DNS, w bajtach.
+- **dns_ptr:** wskaźnik do bloku sterowania DNS.
+- **cache_ptr:** wskaźnik do pamięci podręcznej DNS.
+- **cache_size:** rozmiar pamięci podręcznej DNS w bajtach.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pamięć podręczna DNS została pomyślnie zainicjowana
-- NX_DNS_ERROR: (0xA0) pamięć podręczna nie ma 4-bajtowego wyrównania.
+- **NX_SUCCESS:**(0x00) Pamięć podręczna DNS została pomyślnie zainicjowana
+- NX_DNS_ERROR: (0xA0) Pamięć podręczna nie jest wyrównana do 4 bajtów.
 - NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowy identyfikator DNS.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik DNS.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -213,7 +213,7 @@ status =  nx_dns_cache_initialize(&my_dns, dns_cache, 2048);
 
 ## <a name="nx_dns_cache_notify_clear"></a>nx_dns_cache_notify_clear
 
-Wyczyść funkcję pełnego powiadamiania pamięci podręcznej DNS
+Wyczyść funkcję powiadamiania o pełnej pamięci podręcznej DNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -222,15 +222,15 @@ UINT     nx_dns_cache_notify_clear(NX_DNS *dns_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa czyści funkcję pełnego powiadamiania pamięci podręcznej.
+Ta usługa wyczyści funkcję powiadamiania o pełnej pamięci podręcznej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do bloku kontroli DNS.
+- **dns_ptr:** wskaźnik do bloku sterowania DNS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślnie ustawiono powiadomienie pamięci podręcznej DNS
+- **NX_SUCCESS:**(0x00) Pamięć podręczna DNS powiadamia o pomyślnym skonfigurowaniu
 - NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowy identyfikator DNS.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik DNS.
 
@@ -249,7 +249,7 @@ status =  nx_dns_cache_notify_clear(&my_dns);
 
 ## <a name="nx_dns_cache_notify_set"></a>nx_dns_cache_notify_set
 
-Ustaw funkcję pełnego powiadamiania pamięci podręcznej DNS
+Ustawianie funkcji powiadamiania o pełnej pamięci podręcznej DNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -259,16 +259,16 @@ UINT nx_dns_cache_notify_set(NX_DNS *dns_ptr, VOID (*cache_full_notify_cb)(NX_DN
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia funkcję pełnego powiadamiania pamięci podręcznej.
+Ta usługa ustawia funkcję powiadamiania o pełnej pamięci podręcznej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do bloku kontroli DNS.
-- **cache_full_notify_cb**: funkcja wywołania zwrotnego, która ma być wywoływana po zapełnieniu pamięci podręcznej.
+- **dns_ptr:** wskaźnik do bloku sterowania DNS.
+- **cache_full_notify_cb:** funkcja wywołania zwrotnego, która ma zostać wywołana, gdy pamięć podręczna zostanie zapełniona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślnie ustawiono powiadomienie pamięci podręcznej DNS
+- **NX_SUCCESS:**(0x00) Pamięć podręczna DNS powiadamiania pomyślnie ustawić
 - NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowy identyfikator DNS.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik DNS.
 
@@ -288,7 +288,7 @@ status =  nx_dns_cache_notify_set(&my_dns, cache_full_notify_cb);
 
 ## <a name="nx_dns_cname_get"></a>nx_dns_cname_get
 
-Wyszukiwanie nazwy kanonicznej dla nazwy hosta wejściowego
+Poszukaj nazwy kanonicznej dla wejściowej nazwy hosta
 
 ### <a name="prototype"></a>Prototype
 ```c
@@ -299,24 +299,24 @@ UINT nx_dns_cname_get(NX_DNS *dns_ptr, UCHAR *host_name,
 
 ### <a name="description"></a>Opis
 
-Jeśli NX_DNS_ENABLE_EXTENDED_RR_TYPES jest zdefiniowana w *nx_dns. h*, ta usługa wysyła zapytanie typu CNAME z określoną nazwą domeny w celu uzyskania nazwy domeny kanonicznej. Klient DNS kopiuje ciąg CNAME zwrócony w odpowiedzi serwera DNS do lokalizacji pamięci *record_buffer* .
+Jeśli NX_DNS_ENABLE_EXTENDED_RR_TYPES w pliku *nx_dns.h,* ta usługa wysyła zapytanie typu CNAME z określoną nazwą domeny w celu uzyskania nazwy domeny kanonicznej. Klient DNS kopiuje ciąg CNAME zwrócony w odpowiedzi serwera DNS do lokalizacji *record_buffer* pamięci.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do klienta DNS.  
-- **HOST_NAME**: wskaźnik do nazwy hosta, aby uzyskać dane CNAME
-- **record_buffer**: wskaźnik do lokalizacji, do której mają zostać wyodrębnione dane CNAME
-- **buffer_size**: rozmiar buforu do przechowywania danych CNAME
-- **WAIT_OPTION**: Poczekaj na odebranie odpowiedzi serwera DNS
+- **dns_ptr:** wskaźnik do klienta DNS.  
+- **host_name:** wskaźnik do nazwy hosta w celu uzyskania danych CNAME dla
+- **record_buffer:** Wskaźnik do lokalizacji w celu wyodrębnienia danych CNAME do
+- **buffer_size:** rozmiar buforu do przechowywania danych CNAME
+- **wait_option:** Opcja oczekiwania na odbieranie odpowiedzi serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie uzyskały dane CNAME
-- **NX_DNS_NO_SERVER**: (0xa1) lista serwerów klienta jest pusta
-- **NX_DNS_QUERY_FAILED**: (0XA3) nie odebrano prawidłowej odpowiedzi DNS
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
-- NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- **NX_SUCCESS:**(0x00) Pomyślnie uzyskano dane CNAME
+- **NX_DNS_NO_SERVER:**(0xA1) Lista serwerów klientów jest pusta
+- **NX_DNS_QUERY_FAILED:**(0xA3) Nie odebrano prawidłowej odpowiedzi DNS
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
+- NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -364,20 +364,20 @@ UINT nx_dns_create(NX_DNS *dns_ptr, NX_IP *ip_ptr, CHAR *domain_name);
 Ta usługa tworzy wystąpienie klienta DNS dla utworzonego wcześniej wystąpienia adresu IP.
 
 >[!NOTE]
->Aplikacja musi upewnić się, że ładunek pakietu puli pakietów używany przez klienta DNS jest wystarczająco duży dla maksymalnego 512 bajtowego komunikatu DNS oraz nagłówków UDP, IP i Ethernet. Jeśli klient DNS tworzy własną pulę pakietów, jest definiowana przez NX_DNS_PACKET_POOL_SIZE i NX_DNS_PACKET_PAYLOAD. Jeśli aplikacja kliencka DNS preferuje dostarczenie wcześniej utworzonej puli pakietów, ładunek dla klienta DNS IPv4 powinien mieć 512 bajtów dla maksymalnej wartości DNS Plus 20 bajtów dla nagłówka IP, 8 bajtów dla nagłówka UDP i 14 bajtów dla nagłówka Ethernet.
+>Aplikacja musi upewnić się, że ładunek pakietu puli pakietów używanej przez klienta DNS jest wystarczająco duży dla maksymalnie 512-bajtowego komunikatu DNS oraz nagłówków UDP, IP i Ethernet. Jeśli klient DNS tworzy własną pulę pakietów, jest ona definiowana przez NX_DNS_PACKET_POOL_SIZE i NX_DNS_PACKET_PAYLOAD. Jeśli aplikacja klienta DNS preferuje podanie wcześniej utworzonej puli pakietów, ładunek klienta DNS IPv4 powinien być 512 bajtów dla maksymalnego serwera DNS plus 20 bajtów dla nagłówka IP, 8 bajtów dla nagłówka UDP i 14 bajtów dla nagłówka Ethernet.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do klienta DNS.  
-- **ip_ptr**: wskaźnik do wcześniej utworzonego wystąpienia adresu IP.  
-- **domain_name**: wskaźnik do nazwy domeny dla wystąpienia DNS.
+- **dns_ptr:** wskaźnik do klienta DNS.  
+- **ip_ptr:** wskaźnik do wcześniej utworzonego wystąpienia adresu IP.  
+- **domain_name:** wskaźnik do nazwy domeny dla wystąpienia DNS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) POMYŚLNE utworzenie DNS
-- **NX_DNS_ERROR**: (0xa0) błąd tworzenia DNS
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS:**(0x00) Pomyślne utworzenie systemu DNS
+- **NX_DNS_ERROR:** błąd tworzenia 0xA0 DNS (0xA0)
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -404,19 +404,19 @@ UINT     nx_dns_delete(NX_DNS *dns_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wcześniej utworzone wystąpienie klienta DNS i zwalnia jego zasoby. 
+Ta usługa usuwa utworzone wcześniej wystąpienie klienta DNS i usuwa jego zasoby. 
 >[!NOTE]
-> Jeśli **NX_DNS_CLIENT_USER_CREATE_PACKET_POOL** jest zdefiniowany i klient DNS ma przypisaną pulę pakietów zdefiniowany przez użytkownika, w celu usunięcia puli pakietów klienta DNS nie jest już potrzebny.
+> Jeśli **NX_DNS_CLIENT_USER_CREATE_PACKET_POOL** i klientowi DNS przypisano pulę pakietów zdefiniowaną przez użytkownika, usunięcie puli pakietów klienta DNS, jeśli nie jest już potrzebne, należy do aplikacji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do wcześniej utworzonego wystąpienia **klienta** DNS.
+- **dns_ptr:** wskaźnik do wcześniej utworzonego wystąpienia **klienta** DNS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne usunięcie klienta DNS.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub klienta DNS.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS:**(0x00) Pomyślne usunięcie klienta DNS.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik ip lub klienta DNS.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -433,7 +433,7 @@ status =  nx_dns_delete(&my_dns);
 ```
 ## <a name="nx_dns_domain_name_server_get"></a>nx_dns_domain_name_server_get
 
-Wyszukiwanie autorytatywnych serwerów nazw dla strefy domeny wejściowej
+Poszukaj autorytatywnych serwerów nazw dla wejściowej strefy domeny
 
 ### <a name="prototype"></a>Prototype
 
@@ -445,41 +445,41 @@ UINT nx_dns_domain_name_server_get(NX_DNS *dns_ptr, UCHAR *host_name,
 
 ### <a name="description"></a>Opis
 
-Jeśli zdefiniowano NX_DNS_ENABLE_EXTENDED_RR_TYPES, ta usługa wysyła zapytanie typu NS z określoną nazwą domeny w celu uzyskania serwerów nazw dla nazwy domeny wejściowej. Klient DNS kopiuje rekordy NS zwrócone w odpowiedzi serwera DNS do lokalizacji pamięci *record_buffer* . 
+Jeśli NX_DNS_ENABLE_EXTENDED_RR_TYPES, usługa wysyła zapytanie typu NS o określonej nazwie domeny w celu uzyskania serwerów nazw dla nazwy domeny wejściowej. Klient DNS kopiuje rekordy NS zwrócone w odpowiedzi serwera DNS do lokalizacji *record_buffer* pamięci. 
 
 >[!NOTE]
->*Record_buffer* musi mieć 4-bajtowy wyrównany do odbierania danych.
+>Aby *record_buffer* dane, musi być wyrównana o 4 bajty.
 
-W NetX DNS Client typ danych NS NX_DNS_NS_ENTRY, jest zapisywany jako parametry 2 4-bajtowe:
+W kliencie DNS NetX typ danych NS (NX_DNS_NS_ENTRY) jest zapisywany jako dwa 4-bajtowe parametry:
 
-- **nx_dns_ns_ipv4_address**: adres IPv4 serwera nazw
-- **nx_dns_ns_hostname_ptr**: wskaźnik do nazwy hosta serwera nazw
+- **nx_dns_ns_ipv4_address:** nazwij adres IPv4 serwera
+- **nx_dns_ns_hostname_ptr:** Wskaźnik do nazwy hosta serwera nazw
 
-Bufor przedstawiony poniżej zawiera cztery NX_DNS_NS_ENTRY rekordy. Wskaźnik do ciągu nazwy hosta w każdym punkcie wejścia wskazuje odpowiadający ciąg nazwy hosta w dolnej połowie buforu:
+Bufor przedstawiony poniżej zawiera cztery NX_DNS_NS_ENTRY rekordów. Wskaźnik do ciągu nazwy hosta w każdym wpisie wskazuje odpowiedni ciąg nazwy hosta w dolnej połowie buforu:
 
-![Diagram bufora zawierający cztery rekordy wpisów w liczbie N X D n s.](media/image3.png)
+![Diagram buforu, który zawiera cztery rekordy wpisów N X D N S S.](media/image3.png)
 
-Jeśli dane wejściowe *record_buffer* nie mogą zawierać wszystkich danych NS w odpowiedzi serwera, *record_buffer* przechowuje tyle rekordów, ile się zmieści, i zwraca liczbę rekordów w buforze.
+Jeśli dane *record_buffer* nie mogą przechowywać wszystkich danych NS w  odpowiedzi serwera, record_buffer przechowuje tyle rekordów, ile zmieści się i zwraca liczbę rekordów w buforze.
 
-Wraz z liczbą rekordów NS zwróconych w programie **record_count* aplikacja może analizować adres IP i nazwę hosta każdego rekordu w *record_buffer*.
+Dzięki liczbie rekordów NS zwróconych w **record_count aplikacja* może rejestrować adres IP i nazwę hosta każdego rekordu w record_buffer *.*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do klienta DNS.  
-- **HOST_NAME**: wskaźnik do nazwy hosta, w której mają zostać uzyskane dane NS
-- **record_buffer**: wskaźnik do lokalizacji, do której mają zostać wyodrębnione dane NS
-- **buffer_size**: rozmiar buforu do przechowywania danych NS
-- **record_count**: wskaźnik do liczby pobranych rekordów NS
-- **WAIT_OPTION**: Poczekaj na odebranie odpowiedzi serwera DNS
+- **dns_ptr:** wskaźnik do klienta DNS.  
+- **host_name:** Wskaźnik do nazwy hosta w celu uzyskania danych NS dla
+- **record_buffer:** Wskaźnik do lokalizacji w celu wyodrębnienia danych NS do
+- **buffer_size:** rozmiar buforu do przechowywania danych NS
+- **record_count:** wskaźnik do liczby pobranych rekordów NS
+- **wait_option:** Opcja oczekiwania na odbieranie odpowiedzi serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie uzyskał dane NS
-- **NX_DNS_NO_SERVER**: (0xa1) lista serwerów klienta jest pusta
-- **NX_DNS_QUERY_FAILED**: (0XA3) nie odebrano prawidłowej odpowiedzi DNS
+- **NX_SUCCESS:**(0x00) Pomyślnie uzyskano dane NS
+- **NX_DNS_NO_SERVER:**(0xA1) Lista serwerów klientów jest pusta
+- **NX_DNS_QUERY_FAILED:**(0xA3) Nie odebrano prawidłowej odpowiedzi DNS
 - NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowy identyfikator DNS.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -547,7 +547,7 @@ hostname = ns4.www.my_example.com
 
 ## <a name="nx_dns_domain_mail_exchange_get"></a>nx_dns_domain_mail_exchange_get
 
-Wyszukaj wymianę poczty dla wejściowej nazwy hosta
+Poszukaj nazw hostów wejściowych w wymianach poczty
 
 ### <a name="prototype"></a>Prototype
 ```c
@@ -561,43 +561,43 @@ UINT     nx_dns_domain_mail_exchange_get(NX_DNS *dns_ptr, UCHAR *host_name,
 
 ### <a name="description"></a>Opis
 
-Jeśli zdefiniowano NX_DNS_ENABLE_EXTENDED_RR_TYPES, ta usługa wysyła zapytanie typu MX z określoną nazwą domeny w celu uzyskania wymiany poczty dla nazwy domeny wejściowej. Klient DNS kopiuje rekordy MX zwrócone w odpowiedzi serwera DNS do lokalizacji *record_buffer* pamięci.
+Jeśli NX_DNS_ENABLE_EXTENDED_RR_TYPES, usługa wysyła zapytanie typu MX z określoną nazwą domeny w celu uzyskania wymiany poczty dla nazwy domeny wejściowej. Klient DNS kopiuje rekordy MX zwrócone w odpowiedzi serwera DNS do *lokalizacji record_buffer* pamięci.
 
 >[!NOTE]
->*Record_buffer* musi mieć 4-bajtowy wyrównany do odbierania danych.
+>Aby *record_buffer* dane, dane muszą być wyrównane o 4 bajty.
 
-W NetX klienta DNS typ rekordu wymiany poczty NX_DNS_MAIL_EXCHANGE_ENTRY, został zapisany jako cztery parametry, łącznie 12 bajtów:
+W kliencie DNS NetX typ rekordu wymiany poczty e-mail, NX_DNS_MAIL_EXCHANGE_ENTRY, jest zapisywany jako cztery parametry, łącznie 12 bajtów:
 
-- **nx_dns_mx_ipv4_address**: adres IPv4 wymiany poczty 4 bajty
-- **nx_dns_mx_preference**: preferencja 2 bajtów
-- **nx_dns_mx_reserved0**: zarezerwowane 2 bajty
-- **nx_dns_mx_hostname_ptr**: wskaźnik do poczty e-mail nazwa hosta 4 bajty
+- **nx_dns_mx_ipv4_address:** adres IPv4 wymiany poczty 4 bajty
+- **nx_dns_mx_preference:** preferencja 2 bajty
+- **nx_dns_mx_reserved0:** zarezerwowane 2 bajty
+- **nx_dns_mx_hostname_ptr:** wskaźnik do nazwy hosta serwera exchange poczty 4 bajty
 
-Poniżej przedstawiono bufor zawierający cztery rekordy MX. Każdy rekord zawiera dane o stałej długości z powyższej listy. Wskaźnik do nazwy hosta serwera Exchange Server wskazuje odpowiednią nazwę hosta u dołu buforu.
+Poniżej przedstawiono bufor zawierający cztery rekordy MX. Każdy rekord zawiera dane o stałej długości z powyższej listy. Wskaźnik do nazwy hosta serwera poczty exchange wskazuje odpowiednią nazwę hosta w dolnej części buforu.
 
-![Diagram przedstawiający bufor zawierający cztery X M rekordów.](media/image4.png)
+![Diagram przedstawiający bufor zawierający cztery rekordy M X.](media/image4.png)
 
-Jeśli dane wejściowe *record_buffer* nie mogą zawierać wszystkich danych MX w odpowiedzi serwera, *record_buffer* przechowuje tyle rekordów, ile się zmieści, i zwraca liczbę rekordów w buforze.
+Jeśli dane *wejściowe record_buffer* nie mogą przechowywać wszystkich danych MX  w odpowiedzi serwera, record_buffer przechowuje tyle rekordów, ile zmieści się i zwraca liczbę rekordów w buforze.
 
-Dzięki liczbie rekordów MX zwróconych w programie **record_count* aplikacja może analizować parametry MX, w tym nazwę hosta poczty każdego rekordu w *record_buffer*.
+Po zwróceniu liczby rekordów MX w rekordzie **record_count* aplikacja może rejestrować parametry MX, w tym nazwę hosta poczty dla każdego rekordu w record_buffer *.*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do klienta DNS.  
-- **HOST_NAME**: wskaźnik do nazwy hosta, aby uzyskać dane MX
-- **record_buffer**: wskaźnik do lokalizacji, do której mają zostać wyodrębnione dane MX
-- **buffer_size**: rozmiar buforu do przechowywania danych MX
-- **record_count**: wskaźnik do liczby pobranych rekordów MX
-- **WAIT_OPTION**: Poczekaj na odebranie odpowiedzi serwera DNS
+- **dns_ptr:** wskaźnik do klienta DNS.  
+- **host_name:** wskaźnik do nazwy hosta w celu uzyskania danych MX dla
+- **record_buffer:** Wskaźnik do lokalizacji w celu wyodrębnienia danych MX do
+- **buffer_size:** rozmiar buforu do przechowywania danych MX
+- **record_count:** wskaźnik do liczby pobranych rekordów MX
+- **wait_option:** Opcja oczekiwania na odbieranie odpowiedzi serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie uzyskał dane MX
-- **NX_DNS_NO_SERVER**: (0xa1) lista serwerów klienta jest pusta
-- **NX_DNS_QUERY_FAILED**: (0XA3) nie odebrano prawidłowej odpowiedzi DNS
+- **NX_SUCCESS:**(0x00) Pomyślnie uzyskano dane MX
+- **NX_DNS_NO_SERVER:**(0xA1) Lista serwerów klientów jest pusta
+- **NX_DNS_QUERY_FAILED:**(0xA3) Nie odebrano prawidłowej odpowiedzi DNS
 - NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowy identyfikator DNS.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -674,7 +674,7 @@ hostname = alt2.aspmx.l.www.my_example.com
 
 ## <a name="nx_dns_domain_service_get"></a>nx_dns_domain_service_get
 
-Wyszukaj usługi dostarczone przez nazwę hosta wejściowego
+Poszukaj usług dostarczonych przez nazwę hosta wejściowego
 
 ### <a name="prototype"></a>Prototype
 
@@ -686,45 +686,45 @@ UINT nx_dns_domain_service_get (NX_DNS *dns_ptr, UCHAR *host_name,
 
 ### <a name="description"></a>Opis
 
-Jeśli zdefiniowano NX_DNS_ENABLE_EXTENDED_RR_TYPES, ta usługa wysyła zapytanie typu SRV z określoną nazwą domeny w celu wyszukania usług i numery portów skojarzone z określoną domeną. Klient DNS kopiuje rekordy SRV zwrócone w odpowiedzi serwera DNS do lokalizacji *record_buffer* pamięci. 
+Jeśli NX_DNS_ENABLE_EXTENDED_RR_TYPES, ta usługa wysyła zapytanie typu SRV z określoną nazwą domeny w celu wyszukiwania usług i ich numeru portu skojarzonego z określoną domeną. Klient DNS kopiuje rekordy SRV zwrócone w odpowiedzi serwera DNS do lokalizacji *record_buffer* pamięci. 
 
 >[!NOTE]
->*Record_buffer* musi mieć 4-bajtowy wyrównany do odbierania danych.
+>Aby *record_buffer* dane, dane muszą być wyrównane o 4 bajty.
 
-W NetX klienta DNS typ rekordu usługi, wpis NX_DNS_SRV_, jest zapisywany jako sześć parametrów, łącznie 16 bajtów. Dzięki temu dane SRV o zmiennej długości mogą być przechowywane w wydajny sposób pamięci:
+W kliencie DNS NetX typ rekordu usługi, NX_DNS_SRV_ ENTRY, jest zapisywany jako sześć parametrów, łącznie 16 bajtów. Dzięki temu dane SRV o zmiennej długości mogą być przechowywane w wydajny sposób w pamięci:
 
-- **Adres IPv4 serwera**: nx_dns_srv_ipv4_address 4 bajty
-- **Priorytet serwera**: nx_dns_srv_priority 2 bajty
-- **Waga serwera**: nx_dns_srv_weight 2 bajty
-- **Numer portu usługi**: nx_dns_srv_port_number 2 bajty
-- **Zarezerwowane dla 4-bajtowego wyrównania**: nx_dns_srv_reserved0 2 bajty
-- **Wskaźnik do nazwy hosta serwera**: * nx_dns_srv_hostname_ptr 4 bajty
+- **Adres IPv4 serwera:** nx_dns_srv_ipv4_address 4 bajty
+- **Priorytet serwera:** nx_dns_srv_priority 2 bajty
+- **Waga serwera:** nx_dns_srv_weight 2 bajty
+- **Numer portu usługi:** nx_dns_srv_port_number 2 bajty
+- **Zarezerwowane dla wyrównania 4-bajtowego:** nx_dns_srv_reserved0 2 bajty
+- **Wskaźnik do nazwy hosta serwera:***nx_dns_srv_hostname_ptr 4 bajty
 
-Cztery rekordy SRV są przechowywane w podanym buforze. Każdy rekord NX_DNS_SRV_ENTRY zawiera wskaźnik *nx_dns_srv_hostname_ptr*, który wskazuje odpowiadający ciąg nazwy hosta w dolnej części buforu rekordu:
+Cztery rekordy SRV są przechowywane w dostarczonym buforze. Każdy NX_DNS_SRV_ENTRY zawiera wskaźnik, *nx_dns_srv_hostname_ptr*, który wskazuje odpowiedni ciąg nazwy hosta w dolnej części buforu rekordu:
 
-![Diagram czterech rekordów języka R V przechowywanych w podanym buforze.](media/image5.png)
+![Diagram czterech rekordów S R V przechowywanych w dostarczonym buforze.](media/image5.png)
 
-Jeśli dane wejściowe *record_buffer* nie mogą zawierać wszystkich danych SRV w odpowiedzi serwera, *record_buffer* przechowuje tyle rekordów, ile się zmieści, i zwraca liczbę rekordów w buforze.
+Jeśli dane *record_buffer* nie mogą przechowywać wszystkich danych SRV w  odpowiedzi serwera, record_buffer przechowuje tyle rekordów, ile zmieści się i zwraca liczbę rekordów w buforze.
 
-Wraz z liczbą rekordów SRV zwróconych w programie **record_count* aplikacja może analizować parametry SRV, w tym nazwę hosta serwera każdego rekordu w *record_buffer*.
+Po zwróceniu liczby rekordów SRV w tabeli **record_count* aplikacja może rejestrować parametry SRV, w tym nazwę hosta serwera każdego rekordu w record_buffer *.*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do klienta DNS.  
-- **HOST_NAME**: wskaźnik do nazwy hosta, aby uzyskać dane SRV
-- **record_buffer**: wskaźnik do lokalizacji, do której mają zostać wyodrębnione dane SRV
-- **buffer_size**: rozmiar buforu do przechowywania danych SRV
-- **record_count**: wskaźnik do liczby pobranych rekordów SRV
-- **WAIT_OPTION**: Poczekaj na odebranie odpowiedzi serwera DNS
+- **dns_ptr:** wskaźnik do klienta DNS.  
+- **host_name:** Wskaźnik do nazwy hosta w celu uzyskania danych SRV dla
+- **record_buffer:** Wskaźnik do lokalizacji w celu wyodrębnienia danych SRV do
+- **buffer_size:** rozmiar buforu do przechowywania danych SRV
+- **record_count:** wskaźnik do liczby pobranych rekordów SRV
+- **wait_option:** Opcja oczekiwania na odbieranie odpowiedzi serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie uzyskał dane SRV
-- **NX_DNS_NO_SERVER**: (0xa1) lista serwerów klienta jest pusta
-- **NX_DNS_QUERY_FAILED**: (0XA3) nie odebrano prawidłowej odpowiedzi DNS
+- **NX_SUCCESS:**(0x00) Pomyślnie uzyskano dane SRV
+- **NX_DNS_NO_SERVER:**(0xA1) Lista serwerów klientów jest pusta
+- **NX_DNS_QUERY_FAILED:**(0xA3) Nie odebrano prawidłowej odpowiedzi DNS
 - NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowy identyfikator DNS.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -807,7 +807,7 @@ hostname = alt1.xmpp.l.www.my_example.com
 
 ## <a name="nx_dns_get_serverlist_size"></a>nx_dns_get_serverlist_size
 
-Zwróć rozmiar listy serwerów klienta DNS
+Zwracanie rozmiaru listy serwerów klienta DNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -817,18 +817,18 @@ UINT nx_dns_get_serverlist_size (NX_DNS *dns_ptr, UINT *size);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwraca liczbę prawidłowych serwerów DNS na liście klientów.
+Ta usługa zwraca liczbę prawidłowych serwerów DNS na liście Klient.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do bloku kontroli DNS  
+- **dns_ptr:** wskaźnik do bloku sterowania DNS  
 - **size**: zwraca liczbę serwerów na liście
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślnie zwrócono rozmiar listy serwerów DNS
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS:**(0x00) rozmiar listy serwerów DNS został pomyślnie zwrócony
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -848,7 +848,7 @@ status =  nx_dns_get_serverlist_size (&my_dns, 5, &my_listsize);
 
 ## <a name="nx_dns_info_by_name_get"></a>nx_dns_info_by_name_get
 
-Zwrotny adres IP i port serwera DNS według nazwy hosta
+Zwracanie adresu IP i portu serwera DNS według nazwy hosta
 
 ### <a name="prototype"></a>Prototype
 
@@ -860,22 +860,22 @@ UINT nx_dns_info_by_name_get(NX_DNS *dns_ptr, UCHAR *host_name,
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwraca adres IP serwera i port (rekord usługi) na podstawie kwerendy wejściowej nazwy hosta według zapytania DNS. Jeśli rekord usługi nie zostanie znaleziony, ta procedura zwraca zerowy adres IP w wskaźniku adresu wejściowego, a stan błędu różny od zera zwraca, aby sygnalizować błąd.
+Ta usługa zwraca adres IP serwera i port (rekord usługi) na podstawie nazwy hosta wejściowego przez zapytanie DNS. Jeśli rekord usługi nie zostanie znaleziony, ta procedura zwraca zerowy adres IP we wskaźniku adresu wejściowego, a stan błędu jest niezerowy, aby zasygnalizować błąd.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do bloku kontroli DNS  
-- **HOST_NAME**: wskaźnik do buforu nazw hosta
-- **host_address_ptr**: wskaźnik do adresu do zwrócenia
-- **host_port_ptr**: wskaźnik do portu w celu zwrócenia Wait_option opcji oczekiwania dla odpowiedzi DNS
+- **dns_ptr:** wskaźnik do bloku sterowania DNS  
+- **host_name:** Wskaźnik do bufora nazw hostów
+- **host_address_ptr:** Wskaźnik do adresu do zwrócenia
+- **host_port_ptr:** wskaźnik do portu w celu zwrócenia wait_option oczekiwania na odpowiedź DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) rekord serwera DNS został pomyślnie zwrócony
-- **NX_DNS_NO_SERVER**: (0XA1) nie zarejestrowano serwera DNS z klientem w celu wysłania zapytania na hoście
-- **NX_DNS_QUERY_FAILED**: (0xA3) nie można wykonać zapytania DNS; Brak odpowiedzi z dowolnego serwera DNS na liście klientów lub nie jest dostępny żaden rekord usługi dla wejściowej nazwy hosta.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS:**(0x00) rekord serwera DNS został pomyślnie zwrócony
+- **NX_DNS_NO_SERVER:**(0xA1) Brak serwera DNS zarejestrowanego w kliencie w celu wysyłania zapytań o nazwę hosta
+- **NX_DNS_QUERY_FAILED:**(0xA3) zapytanie DNS nie powiodło się; Dla wejściowej nazwy hosta nie jest dostępna żadna odpowiedź z serwerów DNS na liście klient lub nie jest dostępny żaden rekord usługi.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -895,7 +895,7 @@ status =  nx_dns_info_by_name_get(&my_dns, “www.abc1234.com”, &ip_address, &
 
 ## <a name="nx_dns_ipv4_address_by_name_get"></a>nx_dns_ipv4_address_by_name_get
 
-Wyszukaj adres IPv4 dla nazwy hosta wejściowego
+Poszukaj adresu IPv4 dla nazwy hosta wejściowego
 
 ### <a name="prototype"></a>Prototype
 
@@ -909,34 +909,34 @@ UINT nx_dns_ipv4_address_by_name_get (NX_DNS *dns_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła zapytanie typu A z określoną nazwą hosta, aby uzyskać adresy IP dla wejściowej nazwy hosta. Klient DNS Kopiuje adres IPv4 z rekordu A zwróconego w odpowiedzi serwera DNS do lokalizacji pamięci *record_buffer* . 
+Ta usługa wysyła zapytanie typu A o określonej nazwie hosta, aby uzyskać adresy IP dla nazwy hosta wejściowego. Klient DNS kopiuje adres IPv4 z rekordów A zwróconych w odpowiedzi serwera DNS do lokalizacji *record_buffer* pamięci. 
 
 >[!NOTE]
->*Record_buffer* musi mieć 4-bajtowy wyrównany do odbierania danych.
+>Aby *record_buffer* dane, musi być wyrównana o 4 bajty.
 
-Wiele adresów IPv4 jest przechowywanych w buforze wyrównanym 4-bajtowym, jak pokazano poniżej:
+Wiele adresów IPv4 jest przechowywanych w 4-bajtowym buforze wyrównany, jak pokazano poniżej:
 
-![Diagram z wieloma adresami I P v 4, które są przechowywane w buforze wyrównanym 4 bajty.](media/image6.png)
+![Diagram przedstawiający wiele adresów IP w wersji 4 przechowywanych w buforze wyrównany o rozmiarze 4 bajtów.](media/image6.png)
 
-Jeśli podany bufor nie może zawierać wszystkich danych adresów IP, pozostałe rekordy nie są przechowywane w *record_buffer*. Dzięki temu aplikacja może pobrać jeden, niektóre lub wszystkie dostępne dane adresu IP w odpowiedzi serwera.
+Jeśli dostarczony bufor nie może przechowywać wszystkich danych adresu IP, pozostałe rekordy A nie są przechowywane w *record_buffer*. Dzięki temu aplikacja może pobrać jeden, część lub wszystkie dostępne dane adresu IP w odpowiedzi serwera.
 
-Wraz z liczbą rekordów zwróconych w programie **record_count* aplikacja może analizować dane adresów IPv4 z *record_buffer*.
+Dzięki liczbie rekordów A zwróconych w **record_count* aplikacja może rozsyłać dane adresu IPv4 z record_buffer *.*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do klienta DNS.  
-- **host_name_ptr**: wskaźnik do nazwy hosta, aby uzyskać wskaźnik buforu adresów IPv4 do lokalizacji, w której mają zostać wyodrębnione dane IPv4
-- **buffer_size**: rozmiar buforu do przechowywania danych IPv4
-- **WAIT_OPTION**: Poczekaj na odebranie odpowiedzi serwera DNS
+- **dns_ptr:** wskaźnik do klienta DNS.  
+- **host_name_ptr:** Wskaźnik do nazwy hosta w celu uzyskania bufora adresów IPv4 Wskaźnik do lokalizacji w celu wyodrębnienia danych IPv4 do
+- **buffer_size:** rozmiar buforu do przechowywania danych protokołu IPv4
+- **wait_option:** Opcja oczekiwania na odbieranie odpowiedzi serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie uzyskano dane IPv4
-- **NX_DNS_NO_SERVER**: (0xa1) lista serwerów klienta jest pusta
-- **NX_DNS_QUERY_FAILED**: (0XA3) nie odebrano prawidłowej odpowiedzi DNS
-- NX_DNS_PARAM_ERROR: (0xA8) nieprawidłowy parametr wejściowy.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS:**(0x00) Pomyślnie uzyskano dane IPv4
+- **NX_DNS_NO_SERVER:**(0xA1) Lista serwerów klientów jest pusta
+- **NX_DNS_QUERY_FAILED:**(0xA3) Nie odebrano prawidłowej odpowiedzi DNS
+- NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowy parametr wejściowy.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -996,7 +996,7 @@ record 4: IP address: 192.2.2.14
 
 ## <a name="nx_dns_host_by_address_get"></a>nx_dns_host_by_address_get
 
-Wyszukiwanie nazwy hosta na podstawie adresu IP
+Wyszukiwania nazwy hosta z adresu IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -1009,29 +1009,29 @@ UINT nx_dns_host_by_address_get(NX_DNS *dns_ptr, ULONG ip_address,
 
 ### <a name="description"></a>Opis
 
-Ta usługa żąda rozpoznawania nazw podanego adresu IP z co najmniej jednego serwera DNS określonego wcześniej przez aplikację. Jeśli to się powiedzie, nazwa hosta zakończona wartością NULL zostanie zwrócona w ciągu określonym przez *host_name_ptr*.
+Ta usługa żąda rozpoznawania nazw podanego adresu IP z co najmniej jednego serwera DNS określonego wcześniej przez aplikację. Jeśli to się powiedzie, nazwa hosta z wartością NULL jest zwracana w ciągu określonym przez *host_name_ptr*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do wcześniej utworzonego wystąpienia usługi DNS.
-- **IP_address**: adres IP do rozpoznania w nazwie
-- **host_name_ptr**: wskaźnik do obszaru docelowego dla nazwy hosta
-- **max_host_name_size**: rozmiar obszaru docelowego dla nazwy hosta
-- **WAIT_OPTION**: określa, jak długo usługa będzie oczekiwać w taktach czasomierza odpowiedzi serwera DNS po każdej kwerendzie DNS i ponowieniu zapytania. Opcje oczekiwania są zdefiniowane w następujący sposób:
-    - **wartość limitu czasu**: (0X00000001-0XFFFFFFFE) wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na rozpoznawanie nazw DNS.
-    - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer DNS odpowie na żądanie.
+- **dns_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DNS.
+- **ip_address:** adres IP do rozpoznania jako nazwa
+- **host_name_ptr:** wskaźnik do obszaru docelowego dla nazwy hosta
+- **max_host_name_size:** rozmiar obszaru docelowego dla nazwy hosta
+- **wait_option:** określa, jak długo usługa będzie czekać w taktach czasomierza na odpowiedź serwera DNS po każdym ponowieniu zapytania DNS i zapytania Opcje oczekiwania są zdefiniowane w następujący sposób:
+    - **wartość** limitu czasu: (0x00000001-0xFFFFFFFE) Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę znaczników czasomierza, które mają pozostać zawieszone podczas oczekiwania na rozpoznawanie nazw DNS.
+    - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki serwer DNS nie odpowie na żądanie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne ROZPOZNAnie DNS  
-- **NX_DNS_TIMEOUT**: (0XA2) upłynął limit czasu podczas uzyskiwania obiektu mutex usługi DNS
-- **NX_DNS_NO_SERVER**: (0XA1) nie określono adresu serwera DNS
-- **NX_DNS_QUERY_FAILED**: (0xA3) nie otrzymał odpowiedzi na zapytanie
-- **NX_DNS_BAD_ADDRESS_ERROR**: (0XA4) wartość null — adres wejściowy
-- **NX_DNS_INVALID_ADDRESS_TYPE**: (0XB2) Indeks wskazuje na nieprawidłowy typ adresu (np. IPv6)
-- **NX_DNS_PARAM_ERROR**: (0XA8) nieprawidłowe dane wejściowe bez wskaźnika
-- NX_PTR_ERROR: (0x07) nieprawidłowe dane wejściowe wskaźnika
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS:**(0x00) Pomyślne rozpoznawanie nazw DNS  
+- **NX_DNS_TIMEOUT:**(0xA2) Timed on obtaining DNS mutex (Uchylił 0xA2) Timed on obtaining DNS mutex (Uchyliło mięknące czasu podczas uzyskiwania obiektu mutex systemu DNS)
+- **NX_DNS_NO_SERVER:**(0xA1) Nie określono adresu serwera DNS
+- **NX_DNS_QUERY_FAILED:**(0xA3) Nie odebrano odpowiedzi na zapytanie
+- **NX_DNS_BAD_ADDRESS_ERROR:**(0xA4) Adres wejściowy o wartości null
+- **NX_DNS_INVALID_ADDRESS_TYPE:**(0xB2) Indeks wskazuje na nieprawidłowy typ adresu (np. IPv6)
+- **NX_DNS_PARAM_ERROR:**(0xA8) Nieprawidłowe dane wejściowe bez wskaźnika
+- NX_PTR_ERROR: (0x07) Nieprawidłowe dane wejściowe wskaźnika
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1055,7 +1055,7 @@ status =  nx_dns_host_by_address_get(&my_dns, IP_ADDRESS(192.2.2.10),
 
 ## <a name="nx_dns_host_by_name_get"></a>nx_dns_host_by_name_get
 
-Wyszukaj adres IP z nazwy hosta
+Look up an IP address from the host name
 
 ### <a name="prototype"></a>Prototype
 
@@ -1066,25 +1066,25 @@ UINT nx_dns_host_by_name_get(NX_DNS *dns_ptr, UCHAR *host_name,
 
 ### <a name="description"></a>Opis
 
-Ta usługa żąda rozpoznawania nazw o podanej nazwie wskazywanej przez *HOST_NAME*, z co najmniej jednego serwera DNS określonego wcześniej przez aplikację. Jeśli to się powiedzie, skojarzony adres IP jest zwracany w miejscu docelowym wskazywanym przez *host_address_ptr*.
+Ta usługa żąda rozpoznawania nazw podanej nazwy wskazywanej przez host_name *,* z co najmniej jednego serwera DNS określonego wcześniej przez aplikację. Jeśli to się powiedzie, skojarzony adres IP jest zwracany w miejscu docelowym wskazywanym przez *host_address_ptr*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do wcześniej utworzonego wystąpienia usługi DNS.
-- **HOST_NAME**: wskaźnik do nazwy hosta
-- **host_address_ptr**: wskaźnik do adresu IP hosta DNS
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na rozwiązanie DNS. Opcje oczekiwania są zdefiniowane w następujący sposób:
-    - **wartość limitu czasu**: (0X00000001 przez 0XFFFFFFFE) wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na rozpoznawanie nazw DNS.
-    - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer DNS odpowie na żądanie.
+- **dns_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DNS.
+- **host_name:** Wskaźnik do nazwy hosta
+- **host_address_ptr:** wskaźnik do adresu IP hosta DNS
+- **wait_option:** określa, jak długo usługa będzie czekać na rozpoznawanie nazw DNS. Opcje oczekiwania są zdefiniowane w następujący sposób:
+    - **Wartość** limitu czasu: (0x00000001 do 0xFFFFFFFE) Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na rozpoznawanie nazw DNS.
+    - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki serwer DNS nie odpowie na żądanie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne rozpoznanie DNS.
-- **NX_DNS_NO_SERVER**: (0XA1) nie określono adresu serwera DNS
-- **NX_DNS_QUERY_FAILED**: (0xA3) nie otrzymał odpowiedzi na zapytanie
-- NX_DNS_PARAM_ERROR: (0xA8) nieprawidłowe dane wejściowe bez wskaźnika
-- NX_PTR_ERROR: (0x07) nieprawidłowe dane wejściowe wskaźnika
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS:**(0x00) Pomyślne rozpoznawanie nazw DNS.
+- **NX_DNS_NO_SERVER:**(0xA1) Nie określono adresu serwera DNS
+- **NX_DNS_QUERY_FAILED:**(0xA3) Nie odebrano odpowiedzi na zapytanie
+- NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowe dane wejściowe bez wskaźnika
+- NX_PTR_ERROR: (0x07) Nieprawidłowe dane wejściowe wskaźnika
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1125,7 +1125,7 @@ IP address: 192.2.2.10
 
 ## <a name="nx_dns_host_text_get"></a>nx_dns_host_text_get
 
-Wyszukaj ciąg tekstowy dla nazwy domeny wejściowej
+Poszukaj ciągu tekstowego dla nazwy domeny wejściowej
 
 ### <a name="prototype"></a>Prototype
 
@@ -1139,27 +1139,27 @@ UINT nx_dns_host_text_get(NX_DNS *dns_ptr, UCHAR *host_name,
 
 Ta usługa wysyła zapytanie typu TXT z określoną nazwą domeny i buforem, aby uzyskać dowolne dane ciągu.
 
-Klient DNS kopiuje ciąg tekstowy z rekordu TXT w odpowiedzi serwera DNS do lokalizacji pamięci *record_buffer* . 
+Klient DNS kopiuje ciąg tekstowy w rekordzie TXT w odpowiedzi serwera DNS do lokalizacji *record_buffer* pamięci. 
 
 >[!NOTE]
->*Record_buffer* nie musi być wyrównany 4-bajtowo w celu uzyskania danych.
+>Aby *record_buffer* dane, nie musi być wyrównana o 4 bajty.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do klienta DNS.  
-- **HOST_NAME**: wskaźnik do nazwy hosta do wyszukania
-- **record_buffer**: wskaźnik do lokalizacji, do której mają zostać wyodrębnione dane txt
-- **buffer_size**: rozmiar buforu do przechowywania danych txt
-- **WAIT_OPTION**: Poczekaj na odebranie odpowiedzi serwera DNS
+- **dns_ptr:** wskaźnik do klienta DNS.  
+- **host_name:** wskaźnik do nazwy hosta, na który ma być wyszukiwany
+- **record_buffer:** wskaźnik do lokalizacji, do których mają być wyodrębnione dane TXT
+- **buffer_size:** rozmiar buforu do przechowywania danych TXT
+- **wait_option:** Opcja oczekiwania na odbieranie odpowiedzi serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie uzyskano ciąg txt
-- **NX_DNS_NO_SERVER**: (0xa1) lista serwerów klienta jest pusta
-- **NX_DNS_QUERY_FAILED**: (0XA3) nie odebrano prawidłowej odpowiedzi DNS
-- NX_PTR_ERROR: (0x07) nieprawidłowe dane wejściowe wskaźnika
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
-- NX_DNS_PARAM_ERROR: (0xA8) nieprawidłowe dane wejściowe bez wskaźnika
+- **NX_SUCCESS:**(0x00) Pomyślnie uzyskany ciąg TXT
+- **NX_DNS_NO_SERVER:**(0xA1) Lista serwerów klientów jest pusta
+- **NX_DNS_QUERY_FAILED:**(0xA3) Nie odebrano prawidłowej odpowiedzi DNS
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik wejściowy
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
+- NX_DNS_PARAM_ERROR: (0xA8) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1206,25 +1206,25 @@ UINT nx_dns_packet_pool_set(NX_DNS *dns_ptr, NX_PACKET_POOL *pool_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia wcześniej utworzoną pulę pakietów jako pulę pakietów **klienta** DNS. Klient DNS użyje tej puli pakietów do wysyłania zapytań DNS, więc ładunek pakietu nie powinien być mniejszy niż NX_DNS_PACKET_PAYLOAD_UNALIGNED, który obejmuje ramki Ethernet, nagłówki IP i UDP i jest zdefiniowany w *nx_dns. h*.
+Ta usługa ustawia wcześniej utworzoną pulę pakietów jako **pulę** pakietów klienta DNS. Klient DNS będzie używać tej puli pakietów do wysyłania zapytań DNS, więc ładunek pakietu nie powinien być mniejszy niż NX_DNS_PACKET_PAYLOAD_UNALIGNED który zawiera ramkę Ethernet, nagłówki IP i UDP i jest zdefiniowany w pliku *nx_dns.h.*
  
 >[!NOTE]
->Po usunięciu klienta DNS Pula pakietów nie jest usuwana i jest odpowiedzialna za usunięcie puli pakietów, gdy nie jest już potrzebna.
+>Po usunięciu klienta DNS pula pakietów nie jest wraz z nim usuwana, a aplikacja jest odpowiedzialna za usunięcie puli pakietów, gdy nie jest już jej potrzebuje.
 
 >[!NOTE]
->Ta usługa jest dostępna tylko wtedy, gdy opcja konfiguracji NX_DNS_CLIENT_USER_CREATE_PACKET_POOL jest zdefiniowana w *nx_dns. h*
+>Ta usługa jest dostępna tylko wtedy, gdy opcja NX_DNS_CLIENT_USER_CREATE_PACKET_POOL jest zdefiniowana w *pliku nx_dns.h*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do wcześniej utworzonego wystąpienia **klienta** DNS.
-- **pool_ptr**: wskaźnik do wcześniej utworzonej puli pakietów
+- **dns_ptr:** wskaźnik do wcześniej utworzonego wystąpienia **klienta** DNS.
+- **pool_ptr:** Wskaźnik do wcześniej utworzonej puli pakietów
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne zakończenie.
-- **NX_NOT_ENABLED**: nie skonfigurowano klienta (0x14) dla tej opcji
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub **klienta** DNS.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS:**(0x00) Pomyślne ukończenie.
+- **NX_NOT_ENABLED:**(0x14) Klient nie jest skonfigurowany dla tej opcji
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik ip lub **klienta** DNS.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1253,7 +1253,7 @@ status =  nx_dns_packet_pool_set(&my_dns, &client_pool);
 
 ## <a name="nx_dns_server_add"></a>nx_dns_server_add
 
-Dodaj adres IP serwera DNS
+Dodawanie adresu IP serwera DNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -1267,17 +1267,17 @@ Ta usługa dodaje serwer DNS IPv4 do listy serwerów.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do bloku kontroli DNS.  
-- **server_address**: adres IP serwera DNS
+- **dns_ptr:** wskaźnik do bloku sterowania DNS.  
+- **server_address:** adres IP serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie dodano serwer **NX_SUCCESS**: (0x00)
-- **NX_DNS_DUPLICATE_ENTRY** lub **NX_NO_MORE_ENTRIES**: (0X17) nie są dozwolone dodatkowe serwery DNS (lista jest pełna)
-- **NX_DNS_PARAM_ERROR**: (0XA8) nieprawidłowe dane wejściowe bez wskaźnika
-- NX_PTR_ERROR: (0x07) nieprawidłowe dane wejściowe wskaźnika
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
-- NX_DNS_BAD_ADDRESS_ERROR: (0xA4) dane wejściowe adresu serwera o wartości null
+- **NX_SUCCESS:**(0x00) Serwer został pomyślnie dodany
+- **NX_DNS_DUPLICATE_ENTRY** lub **NX_NO_MORE_ENTRIES:**(0x17) Brak dozwolonych serwerów DNS (lista jest pełna)
+- **NX_DNS_PARAM_ERROR:**(0xA8) Nieprawidłowe dane wejściowe bez wskaźnika
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik wejściowy
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
+- NX_DNS_BAD_ADDRESS_ERROR: (0xA4) Dane wejściowe adresu serwera o wartości null
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1305,22 +1305,22 @@ UINT nx_dns_server_get(NX_DNS *dns_ptr, UINT index,
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwraca adres serwera DNS IPv4 z listy serwerów o określonym indeksie. Należy zauważyć, że indeks jest oparty na zero. Jeśli indeks wejściowy przekracza rozmiar listy klienta DNS, zwracany jest błąd. Usługa *nx_dns_get_serverlist_size* może zostać wywołana najpierw uzyskać liczbę serwerów DNS na liście klientów.
+Ta usługa zwraca adres serwera DNS IPv4 z listy serwerów w określonym indeksie. Należy pamiętać, że indeks jest oparty na zeru. Jeśli indeks wejściowy przekracza rozmiar listy klientów DNS, zwracany jest błąd. Usługa *nx_dns_get_serverlist_size* może zostać wywołana jako pierwsza, uzyskać liczbę serwerów DNS na liście klient.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do bloku kontroli DNS  
-- **indeks**: indeks na liście serwerów klienta DNS
-- **dns_server_address**: wskaźnik do adresu IP serwera DNS
+- **dns_ptr:** wskaźnik do bloku sterowania DNS  
+- **index:** indeksowanie na liście serwerów klienta DNS
+- **dns_server_address:** wskaźnik do adresu IP serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) zwracany serwer zakończony powodzeniem
-- **NX_DNS_SERVER_NOT_FOUND**: (0XA9) Indeks wskazuje na puste miejsce
-- **NX_DNS_BAD_ADDRESS_ERROR**: (0XA4) Indeks wskazuje na adres null
-- **NX_DNS_PARAM_ERROR**: (0XA8) indeks przekracza rozmiar listy
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS:**(0x00) Zwrócono pomyślny serwer
+- **NX_DNS_SERVER_NOT_FOUND:**(0xA9) Indeks wskazuje puste miejsce
+- **NX_DNS_BAD_ADDRESS_ERROR:** indeks (0xA4) wskazuje na adres Null
+- **NX_DNS_PARAM_ERROR:**(0xA8) Indeks przekracza rozmiar listy
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1350,20 +1350,20 @@ UINT nx_dns_server_remove(NX_DNS *dns_ptr, ULONG server_address);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa serwer DNS IPv4 z listy klientów.
+Ta usługa usuwa serwer DNS IPv4 z listy klient.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do bloku kontroli DNS.
-- **server_address**: adres IP serwera DNS.
+- **dns_ptr:** wskaźnik do bloku sterowania DNS.
+- **server_address:** adres IP serwera DNS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) serwer DNS został pomyślnie usunięty
-- **NX_DNS_SERVER_NOT_FOUND**: (0XA9) serwer nie znajduje się na liście klientów
-- **NX_DNS_BAD_ADDRESS_ERROR**: (0xA4) dane wejściowe adresu serwera o wartości null
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS:**(0x00) serwer DNS został pomyślnie usunięty
+- **NX_DNS_SERVER_NOT_FOUND:**(0xA9) Server not in Client list (Serwer programu 0xA9) na liście klientów
+- **NX_DNS_BAD_ADDRESS_ERROR:**(0xA4) Dane wejściowe adresu serwera o wartości null
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1395,14 +1395,14 @@ Ta usługa usuwa wszystkie serwery DNS z listy klientów.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dns_ptr**: wskaźnik do bloku kontroli DNS.
+- **dns_ptr:** wskaźnik do bloku sterowania DNS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) serwery DNS zostały pomyślnie usunięte
-- **NX_DNS_ERROR**: (0XA0) nie można uzyskać obiektu mutex ochrony
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik adresu IP lub DNS.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS:**(0x00) serwery DNS zostały pomyślnie usunięte
+- **NX_DNS_ERROR:**(0xA0) Nie można uzyskać mutex ochrony
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik IP lub DNS.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
