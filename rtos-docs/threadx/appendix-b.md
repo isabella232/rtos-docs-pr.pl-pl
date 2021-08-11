@@ -1,19 +1,19 @@
 ---
-title: Dodatek B — stałe usługi Azure RTO ThreadX
-description: Poznaj stałe usługi Azure RTO ThreadX.
+title: Dodatek B — Azure RTOS ThreadX
+description: Eksploruj Azure RTOS ThreadX.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: c17af40df7a45a0cdb9961f12e1dcd775b081975
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: c749dc2656894e817f8dcce430e7552763f0fa319cd91d4390983f3cd6a95221
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822494"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116801851"
 ---
-# <a name="appendix-b---azure-rtos-threadx-constants"></a>Dodatek B — stałe usługi Azure RTO ThreadX
+# <a name="appendix-b---azure-rtos-threadx-constants"></a>Dodatek B — Azure RTOS ThreadX
 
 - [**Listy alfabetyczne**](#alphabetic-listings) 
 - [**Wyświetlanie listy według wartości**](#listing-by-value)
@@ -42,7 +42,7 @@ ms.locfileid: "104822494"
 | TX_DONT_START | 0 |
 | TX_EVENT_FLAG | 7 |
 | TX_FALSE | 0 |
-| TX_FEATURE_NOT_ENABLED | 0xFF |
+| TX_FEATURE_NOT_ENABLED | 0xff |
 | TX_FILE | 11 |
 | TX_GROUP_ERROR | 0x06 |
 | TX_INHERIT | 1 |
@@ -61,7 +61,7 @@ ms.locfileid: "104822494"
 | TX_NO_WAIT | 0 |
 | TX_NOT_AVAILABLE | 0x1D |
 | TX_NOT_DONE | 0x20 |
-| TX_NOT_OWNED | 0x1E |
+| TX_NOT_OWNED | 0x1e |
 | TX_NULL | 0 |
 | TX_OPTION_ERROR | 0x08 |
 | TX_OR | 0 |
@@ -172,12 +172,12 @@ ms.locfileid: "104822494"
 | TX_WAIT_ABORT_ERROR | 0x1B |
 | TX_MUTEX_ERROR | 0x1C |
 | TX_NOT_AVAILABLE | 0x1D |
-| TX_NOT_OWNED | 0x1E |
+| TX_NOT_OWNED | 0x1e |
 | TX_INHERIT_ERROR | 0x1F |
 | TX_NOT_DONE | 0x20 |
 | TX_CEILING_EXCEEDED | 0x21 |
 | TX_INVALID_CEILING | 0x22 |
-| TX_FEATURE_NOT_ENABLED | 0xFF |
+| TX_FEATURE_NOT_ENABLED | 0xff |
 | TX_STACK_FILL | 0xEFEFEFEFUL |
 | TX_WAIT_FOREVER | 0xFFFFFFFFUL |
 |               |   |

@@ -1,30 +1,30 @@
 ---
-title: Rozdział 4 — Opis usług Azure RTO NetX Services
-description: Ten rozdział zawiera opis wszystkich usług Azure RTO NetX w porządku alfabetycznym.
+title: Rozdział 4 — Opis Azure RTOS NetX
+description: Ten rozdział zawiera opis wszystkich usług NetX Azure RTOS kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 720e573b53070a754618830134f63a8421b9fd29
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: f1ebbd4d78f96a257fc6cf62474917a1d618524ff6f27f99c108f904589f84fe
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821546"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116801941"
 ---
-# <a name="chapter-4---description-of-azure-rtos-netx-services"></a>Rozdział 4 — Opis usług Azure RTO NetX Services
+# <a name="chapter-4---description-of-azure-rtos-netx-services"></a>Rozdział 4 — Opis Azure RTOS NetX
 
-Ten rozdział zawiera opis wszystkich usług Azure RTO NetX w porządku alfabetycznym. Nazwy usług są zaprojektowane tak, aby wszystkie podobne usługi zostały zgrupowane razem. Na przykład wszystkie usługi ARP znajdują się na początku tego rozdziału.
+Ten rozdział zawiera opis wszystkich usług NetX Azure RTOS kolejności alfabetycznej. Nazwy usług są zaprojektowane tak, aby wszystkie podobne usługi zostały zgrupowane razem. Na przykład wszystkie usługi ARP znajdują się na początku tego rozdziału.
 
 > [!NOTE]
-> *Należy pamiętać, że interfejs API usługi BSD-Compatible Socket jest dostępny dla starszego kodu aplikacji, który nie może w pełni korzystać z interfejsu API NetX o wysokiej wydajności. Aby uzyskać więcej informacji na temat interfejsu API BSD-Compatible gniazda, zobacz Dodatek D.*
+> *Należy pamiętać, że interfejs API BSD-Compatible Socket jest dostępny dla starszego kodu aplikacji, który nie może w pełni wykorzystać interfejsu API NetX o wysokiej wydajności. Zapoznaj się z dodatkiem D, aby uzyskać więcej informacji na temat interfejsu API BSD-Compatible Socket.*
 
-W sekcji "wartości zwracane" w każdym opisie wartości **pogrubione** nie wpływają na wartość opcji NX_DISABLE_ERROR_CHECKING używanej do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości w trybie niepogrubionym są całkowicie wyłączone. Sekcje "dozwolone od" wskazują, z których można wywołać każdą usługę NetX.
+W sekcji "Wartości zwracane" każdego  opisu opcja NX_DISABLE_ERROR_CHECKING używana do wyłączania sprawdzania błędów interfejsu API nie ma wpływu na wartości z pogrubieniem, a wartości pogrubione są całkowicie wyłączone. Sekcje "Dozwolone z" wskazują, z którego można nazwać każdą usługę NetX.
 
 ## <a name="nx_arp_dynamic_entries_invalidate"></a>nx_arp_dynamic_entries_invalidate
 
-Unieważnienie wszystkich wpisów dynamicznych w pamięci podręcznej ARP
+Unieważnij wszystkie wpisy dynamiczne w pamięci podręcznej ARP
 
 ### <a name="prototype"></a>Prototype
 
@@ -34,7 +34,7 @@ UINT nx_arp_dynamic_entries_invalidate(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa unieważnia wszystkie dynamiczne wpisy ARP znajdujące się obecnie w pamięci podręcznej ARP.
+Ta usługa unieważnia wszystkie dynamiczne wpisy ARP obecnie w pamięci podręcznej ARP.
 
 ### <a name="parameters"></a>Parametry
 
@@ -42,16 +42,16 @@ Ta usługa unieważnia wszystkie dynamiczne wpisy ARP znajdujące się obecnie w
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne unieważnienie pamięci podręcznej ARP.
-- **NX_NOT_ENABLED** (0X14) ARP nie jest włączona.
-- **NX_PTR_ERROR** (0X07) nieprawidłowy adres IP.
-- Obiekt wywołujący **NX_CALLER_ERROR** (0x11) nie jest wątkiem.
+- **NX_SUCCESS** (0x00) Pomyślne unieważnienie pamięci podręcznej ARP.
+- **NX_NOT_ENABLED** (0x14) ARP nie jest włączona.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy adres IP.
+- **NX_CALLER_ERROR** (0x11) nie jest wątkiem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -65,7 +65,7 @@ status = nx_arp_dynamic_entries_invalidate(&ip_0);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_arp_dynamic_entry_set, nx_arp_enable, nx_arp_gratuitous_send
+- nx_arp_dynamic_entry_set, nx_arp_enable, nx_arp_gratuitous_send,
 - nx_arp_hardware_address_find, nx_arp_info_get,
 - nx_arp_ip_address_find, nx_arp_static_entries_delete,
 - nx_arp_static_entry_create, nx_arp_static_entry_delete
@@ -86,29 +86,29 @@ UINT nx_arp_dynamic_entry_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przydziela dynamiczny wpis z pamięci podręcznej ARP i konfiguruje określony adres IP na potrzeby mapowania adresów fizycznych. Jeśli określony jest zerowy adres fizyczny, do sieci wysyłane jest rzeczywiste żądanie ARP w celu rozpoznania adresu fizycznego. Należy również zauważyć, że ten wpis zostanie usunięty, jeśli przedawnienie ARP jest aktywne lub jeśli pamięć podręczna ARP jest wyczerpana i jest to najmniej ostatnio używany wpis ARP.
+Ta usługa przydziela dynamiczny wpis z pamięci podręcznej ARP i konfiguruje określony adres IP do mapowania adresów fizycznych. Jeśli określono zero adresu fizycznego, rzeczywiste żądanie ARP jest wysyłane do sieci w celu rozwiązania adresu fizycznego. Należy również pamiętać, że ten wpis zostanie usunięty, jeśli starzeje się ARP lub jeśli pamięć podręczna ARP zostanie wyczerpana i jest to najdawniej używany wpis ARP.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **IP_address** Adres IP do zamapowania.
-- **physical_msw** Pierwsze 16 bitów (47-32) adresu fizycznego.
-- **physical_lsw** Mniejsza 32 bitów (31-0) adresu fizycznego.
+- **ip_address** Adres IP do mapowania.
+- **physical_msw** Pierwsze 16 bitów (47–32) adresu fizycznego.
+- **physical_lsw** Niższe 32 bity (31-0) adresu fizycznego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie dynamiczny zestaw wpisów ARP.
-- **NX_NO_MORE_ENTRIES** (0X17) nie ma więcej wpisów ARP w pamięci podręcznej ARP.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wystąpienia adresu IP.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Successful ARP dynamic entry set (Pomyślny dynamiczny zestaw wpisów ARP).
+- **NX_NO_MORE_ENTRIES** (0x17) W pamięci podręcznej ARP nie są już dostępne żadne wpisy ARP.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wystąpienia adresu IP.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -127,12 +127,12 @@ status = nx_arp_dynamic_entry_set(&ip_0, IP_ADDRESS(1,2,3,4),
 
 - nx_arp_dynamic_entries_invalidate, nx_arp_enable,
 - nx_arp_gratuitous_send, nx_arp_hardware_address_find,
-- nx_arp_info_get, nx_arp_ip_address_find, nx_arp_static_entries_delete
+- nx_arp_info_get, nx_arp_ip_address_find, nx_arp_static_entries_delete,
 - nx_arp_static_entry_create, nx_arp_static_entry_delete
 
 ## <a name="nx_arp_enable"></a>nx_arp_enable
 
-Włącza protokół ARP (Address Resolution Protocol).
+Włącza protokół rozpoznawania adresów (ARP, Address Resolution Protocol).
 
 ### <a name="prototype"></a>Prototype
 
@@ -145,27 +145,27 @@ UINT nx_arp_enable(
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje składnik ARP NetX dla określonego wystąpienia IP. Inicjowanie protokołu ARP obejmuje skonfigurowanie pamięci podręcznej ARP i różnych procedur przetwarzania ARP niezbędnych do wysyłania i otrzymywania wiadomości ARP.
+Ta usługa inicjuje składnik ARP netx dla określonego wystąpienia adresu IP. Inicjowanie ARP obejmuje konfigurowanie pamięci podręcznej ARP i różnych procedur przetwarzania ARP niezbędnych do wysyłania i odbierania komunikatów ARP.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **arp_cache_memory** Wskaźnik do obszaru pamięci, w którym ma zostać umieszczona pamięć podręczna ARP.
-- **arp_cache_size** Każdy wpis ARP o rozmiarze 52 bajtów, Łączna liczba wpisów ARP, w związku z tym rozmiar podzielony przez 52.
+- **arp_cache_memory** Wskaźnik do obszaru pamięci, w którym ma być umieszczana pamięć podręczna ARP.
+- **arp_cache_size** Każdy wpis ARP wynosi 52 bajty, a więc łączna liczba wpisów ARP jest podzielona przez 52.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne włączenie protokołu ARP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub pamięci podręcznej.
-- **NX_SIZE_ERROR** (0x09) podana przez użytkownika pamięć podręczna ARP jest za mała.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_ALREADY_ENABLED** (0X15) ten składnik został już włączony.
+- **NX_SUCCESS** (0x00) Pomyślne włączenie ARP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik pamięci IP lub pamięci podręcznej.
+- **NX_SIZE_ERROR** (0x09) Pamięć podręczna ARP dostarczona przez użytkownika jest za mała.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_ALREADY_ENABLED** (0x15) Ten składnik został już włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -182,12 +182,12 @@ status = nx_arp_enable(&ip_0, (void *) pointer, 1024);
 
 - nx_arp_dynamic_entries_invalidate, nx_arp_dynamic_entry_set,
 - nx_arp_gratuitous_send, nx_arp_hardware_address_find,
-- nx_arp_info_get, nx_arp_ip_address_find, nx_arp_static_entries_delete
+- nx_arp_info_get, nx_arp_ip_address_find, nx_arp_static_entries_delete,
 - nx_arp_static_entry_create, nx_arp_static_entry_delete
 
 ## <a name="nx_arp_gratuitous_send"></a>nx_arp_gratuitous_send
 
-Wyślij żądanie żądania ARP
+Wysyłanie bezgotowego żądania ARP
 
 ### <a name="prototype"></a>Prototype
 
@@ -199,27 +199,27 @@ UINT nx_arp_gratuitous_send(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przechodzi przez wszystkie interfejsy fizyczne, aby przesyłać żądania żądań ARP, o ile adres IP interfejsu jest prawidłowy. Jeśli odpowiedź ARP zostanie następnie odebrana, dostarczona procedura obsługi odpowiedzi jest wywoływana, aby przetworzyć odpowiedź na żądanie w ramach protokołu ARP.
+Ta usługa przechodzi przez wszystkie interfejsy fizyczne, aby przesyłać zbędne żądania ARP, o ile adres IP interfejsu jest prawidłowy. Jeśli odpowiedź ARP zostanie następnie odebrana, zostanie wywołana dostarczona procedura obsługi odpowiedzi, aby przetworzyć odpowiedź na niesądową odpowiedź ARP.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **response_handler** Wskaźnik do funkcji obsługi odpowiedzi. Jeśli podano NX_NULL, odpowiedzi są ignorowane.
+- **response_handler** Wskaźnik do funkcji obsługi odpowiedzi. Jeśli NX_NULL zostanie podany, odpowiedzi są ignorowane.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysyłanie bezpłatnego protokołu ARP.
-- **NX_NO_PACKET** (0X01) Brak dostępnego pakietu.
-- **NX_NOT_ENABLED** (0X14) ARP nie jest włączona.
-- **NX_IP_ADDRESS_ERROR** (0X21) bieżący adres IP jest nieprawidłowy.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- Obiekt wywołujący **NX_CALLER_ERROR** (0x11) nie jest wątkiem.
+- **NX_SUCCESS** (0x00) Pomyślne pomyślne wysłanie wiadomości ARP.
+- **NX_NO_PACKET** (0x01) Brak dostępnych pakietów.
+- **NX_NOT_ENABLED** (0x14) ARP nie jest włączona.
+- **NX_IP_ADDRESS_ERROR** (0x21) Bieżący adres IP jest nieprawidłowy.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nie jest wątkiem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -235,13 +235,13 @@ status = nx_arp_gratuitous_send(&ip_0, NX_NULL);
 ### <a name="see-also"></a>Zobacz też
 
 - nx_arp_dynamic_entries_invalidate, nx_arp_dynamic_entry_set,
-- nx_arp_enable, nx_arp_hardware_address_find, nx_arp_info_get
+- nx_arp_enable, nx_arp_hardware_address_find, nx_arp_info_get,
 - nx_arp_ip_address_find, nx_arp_static_entries_delete,
 - nx_arp_static_entry_create, nx_arp_static_entry_delete
 
 ## <a name="nx_arp_hardware_address_find"></a>nx_arp_hardware_address_find
 
-Lokalizowanie fizycznego adresu sprzętowego danego adresu IP
+Lokalizowanie fizycznego adresu sprzętowego na danym adresie IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -255,29 +255,29 @@ UINT nx_arp_hardware_address_find(
 
 ### <a name="description"></a>Opis
 
-Ta usługa próbuje znaleźć fizyczny adres sprzętowy w pamięci podręcznej ARP, która jest skojarzona z podanym adresem IP.
+Ta usługa próbuje znaleźć fizyczny adres sprzętowy w pamięci podręcznej ARP, która jest skojarzona z dostarczonym adresem IP.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **IP_address** Adres IP do wyszukania.
-- **physical_msw** Wskaźnik do zmiennej w celu zwrócenia pierwszych 16 bitów (47-32) adresu fizycznego.
-- **physical_lsw** Wskaźnik do zmiennej zwraca niższą 32 bitów (31-0) adresu fizycznego.
+- **ip_address** Adres IP do wyszukania.
+- **physical_msw** Wskaźnik do zmiennej do zwracania 16 bitów górnego adresu fizycznego (47–32).
+- **physical_lsw** Wskaźnik do zmiennej do zwracania niższych 32 bitów (31-0) adresu fizycznego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne znalezienie adresu sprzętowego ARP.
-- W pamięci podręcznej ARP nie znaleziono mapowania **NX_ENTRY_NOT_FOUND** (0x16).
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub pamięci.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne znalezienie adresu sprzętowego ARP.
+- **NX_ENTRY_NOT_FOUND** (0x16) Mapowanie nie zostało znalezione w pamięci podręcznej ARP.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP lub pamięci.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -300,13 +300,13 @@ status = nx_arp_hardware_address_find(
 ### <a name="see-also"></a>Zobacz też
 
 - nx_arp_dynamic_entries_invalidate, nx_arp_dynamic_entry_set,
-- nx_arp_enable, nx_arp_gratuitous_send, nx_arp_info_get
+- nx_arp_enable, nx_arp_gratuitous_send, nx_arp_info_get,
 - nx_arp_ip_address_find, nx_arp_static_entries_delete,
 - nx_arp_static_entry_create, nx_arp_static_entry_delete
 
 ## <a name="nx_arp_info_get"></a>nx_arp_info_get
 
-Pobierz informacje o działaniach ARP
+Pobieranie informacji o działaniach ARP
 
 ### <a name="prototype"></a>Prototype
 
@@ -327,32 +327,32 @@ UINT nx_arp_info_get(
 
 Ta usługa pobiera informacje o działaniach ARP dla skojarzonego wystąpienia adresu IP.
 
-*Jeśli wskaźnik docelowy jest NX_NULL, to konkretne informacje nie są zwracane do obiektu wywołującego.*
+*Jeśli wskaźnik docelowy jest NX_NULL, te konkretne informacje nie są zwracane do wywołującego.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **arp_requests_sent** Wskaźnik do miejsca docelowego dla łącznej liczby żądań ARP wysyłanych z tego wystąpienia IP.
-- **arp_requests_received** Wskaźnik do miejsca docelowego dla łącznej liczby odebranych żądań ARP od sieci.
-- **arp_responses_sent** Wskaźnik do miejsca docelowego dla łącznej liczby odpowiedzi ARP wysyłanych z tego wystąpienia IP.
-- **arp_responses_received** Wskaźnik do miejsca docelowego dla łącznej odpowiedzi ARP odebranych z sieci.
-- **arp_dynamic_entries** Wskaźnik do lokalizacji docelowej dla bieżącej liczby dynamicznych wpisów ARP.
-- **arp_static_entries** Wskaźnik do lokalizacji docelowej dla bieżącej liczby statycznych wpisów ARP.
-- **arp_aged_entries** Wskaźnik do lokalizacji docelowej łącznej liczby wpisów ARP, które mają przestarzałe i stały się nieprawidłowe.
-- **arp_invalid_messages** Wskaźnik do lokalizacji docelowej całkowitej liczby odebranych komunikatów ARP.
+- **arp_requests_sent** Wskaźnik do miejsca docelowego dla wszystkich żądań ARP wysłanych z tego wystąpienia adresu IP.
+- **arp_requests_received** Wskaźnik do miejsca docelowego dla wszystkich żądań ARP odebranych z sieci.
+- **arp_responses_sent** Wskaźnik do miejsca docelowego dla łącznej liczby odpowiedzi ARP wysłanych z tego wystąpienia adresu IP.
+- **arp_responses_received** Wskaźnik do miejsca docelowego dla łącznej liczby odpowiedzi ARP otrzymanych z sieci.
+- **arp_dynamic_entries** Wskaźnik do miejsca docelowego dla bieżącej liczby dynamicznych wpisów ARP.
+- **arp_static_entries** Wskaźnik do miejsca docelowego dla bieżącej liczby statycznych wpisów ARP.
+- **arp_aged_entries** Wskaźnik do miejsca docelowego całkowitej liczby wpisów ARP, które zostały przejrzane i stały się nieprawidłowe.
+- **arp_invalid_messages** Wskaźnik do miejsca docelowego łącznej liczby odebranych nieprawidłowych komunikatów ARP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobranie informacji o ARP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne pobieranie informacji ORP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -384,7 +384,7 @@ status = nx_arp_info_get(
 
 ## <a name="nx_arp_ip_address_find"></a>nx_arp_ip_address_find
 
-Zlokalizuj adres IP przy użyciu adresu fizycznego
+Lokalizowanie adresu IP na danym adresie fizycznym
 
 ### <a name="prototype"></a>Prototype
 
@@ -398,29 +398,29 @@ UINT nx_arp_ip_address_find(
 
 ### <a name="description"></a>Opis
 
-Ta usługa próbuje znaleźć adres IP w pamięci podręcznej ARP, która jest skojarzona z podanym adresem fizycznym.
+Ta usługa próbuje znaleźć adres IP w pamięci podręcznej ARP, która jest skojarzona z dostarczonym adresem fizycznym.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **IP_address** Wskaźnik do zwracanego adresu IP, jeśli został znaleziony, który został zamapowany.
-- **physical_msw** Pierwsze 16 bitów (47-32) adresu fizycznego do wyszukania.
-- **physical_lsw** Niższy 32 bitów (31-0) adresu fizycznego do wyszukania.
+- **ip_address** Wskaźnik do zwracania adresu IP, jeśli zostanie znaleziony, który został zamapowany.
+- **physical_msw** Pierwsze 16 bitów (47–32) adresu fizycznego do wyszukania.
+- **physical_lsw** Niższe 32 bity (31–0) adresu fizycznego do wyszukania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne Znajdowanie adresu IP ARP
-- W pamięci podręcznej ARP nie znaleziono mapowania **NX_ENTRY_NOT_FOUND** (0x16).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub pamięci.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
-- **NX_INVALID_PARAMETERS** (0x4D) Physical_msw i physical_lsw są równe 0.
+- **NX_SUCCESS** (0x00) Pomyślne znalezienie adresu IP protokołu ARP
+- **NX_ENTRY_NOT_FOUND** (0x16) Mapowanie nie zostało znalezione w pamięci podręcznej ARP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP lub pamięci.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
+- **NX_INVALID_PARAMETERS** (0x4D) Physical_msw i physical_lsw są 0.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -446,7 +446,7 @@ status = nx_arp_ip_address_find(&ip_0, &ip_address, 0x0, 0x1234);
 
 ## <a name="nx_arp_static_entries_delete"></a>nx_arp_static_entries_delete
 
-Usuń wszystkie statyczne wpisy ARP
+Usuwanie wszystkich statycznych wpisów ARP
 
 ### <a name="prototype"></a>Prototype
 
@@ -464,16 +464,16 @@ Ta usługa usuwa wszystkie wpisy statyczne w pamięci podręcznej ARP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Wpisy statyczne **NX_SUCCESS** (0x00) są usuwane.
-- **NX_PTR_ERROR** (0X07) nieprawidłowy wskaźnik ip_ptr.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Wpisy statyczne są usuwane.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy ip_ptr wskaźnika.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -499,7 +499,7 @@ have been deleted. */
 
 ## <a name="nx_arp_static_entry_create"></a>nx_arp_static_entry_create
 
-Tworzenie statycznego adresu IP na potrzeby mapowania sprzętowego w pamięci podręcznej ARP
+Tworzenie mapowania statycznego adresu IP na sprzęt w pamięci podręcznej usługi ARP
 
 ### <a name="prototype"></a>Prototype
 
@@ -513,30 +513,30 @@ UINT nx_arp_static_entry_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy statyczne mapowanie adresów IP na fizyczne w pamięci podręcznej ARP dla określonego wystąpienia IP. Statyczne wpisy ARP nie podlegają okresowym aktualizacji protokołu ARP.
+Ta usługa tworzy mapowanie statycznych adresów IP na fizyczne w pamięci podręcznej protokołu ARP dla określonego wystąpienia adresu IP. Statyczne wpisy ARP nie podlegają okresowym aktualizacjom ARP.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **IP_address** Adres IP do zamapowania.
-- **physical_msw** Pierwsze 16 bitów (47-32) adresu fizycznego do mapowania.
-- **physical_lsw** Mniejsza 32 bitów (31-0) adresu fizycznego do mapowania.
+- **ip_address** Adres IP do mapowania.
+- **physical_msw** Pierwsze 16 bitów (47–32) adresu fizycznego do mapowania.
+- **physical_lsw** Niższe 32 bity (31-0) adresu fizycznego do mapowania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne utworzenie wpisu statycznego ARP.
-- **NX_NO_MORE_ENTRIES** (0X17) nie ma więcej wpisów ARP w pamięci podręcznej ARP.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
-- **NX_INVALID_PARAMETERS** (0x4D) Physical_msw i physical_lsw są równe 0.
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie wpisu statycznego ARP.
+- **NX_NO_MORE_ENTRIES** (0x17) W pamięci podręcznej ARP nie są dostępne żadne więcej wpisów ARP.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
+- **NX_INVALID_PARAMETERS** (0x4D) Physical_msw i physical_lsw są 0.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -564,7 +564,7 @@ status = nx_arp_static_entry_create(&ip_0, IP_ADDRESS(1,2,3,4),
 
 ## <a name="nx_arp_static_entry_delete"></a>nx_arp_static_entry_delete
 
-Usuń statyczny adres IP do mapowania sprzętowego w pamięci podręcznej ARP
+Usuwanie mapowania statycznego adresu IP na sprzęt w pamięci podręcznej usługi ARP
 
 
 ### <a name="prototype"></a>Prototype
@@ -579,30 +579,30 @@ UINT nx_arp_static_entry_delete(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyszukuje i usuwa wcześniej utworzone mapowanie statycznego adresu IP na adres fizyczny w pamięci podręcznej ARP dla określonego wystąpienia IP.
+Ta usługa znajduje i usuwa wcześniej utworzone mapowanie statycznych adresów IP na fizyczne w pamięci podręcznej ARP dla określonego wystąpienia adresu IP.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **IP_address** Statyczny adres IP.
-- **physical_msw** 16 najważniejszych bitów (47 – 32) adresów fizycznych, które zostały zmapowane statycznie.
-- **physical_lsw** Niższy 32 bitów (31-0) adresu fizycznego, który został zamapowany statycznie.
+- **ip_address** Adres IP, który został zamapowany statycznie.
+- **physical_msw** Pierwsze 16 bitów (47–32) adresu fizycznego, które zostało zamapowane statycznie.
+- **physical_lsw** Niższe 32 bity (31–0) adresu fizycznego, który został zamapowany statycznie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne usunięcie wpisu statycznego ARP.
-- W pamięci podręcznej ARP nie znaleziono wpisu statycznego ARP **NX_ENTRY_NOT_FOUND** (0x16).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP.
-- **NX_INVALID_PARAMETERS** (0x4D) Physical_msw i physical_lsw są równe 0.
+- **NX_SUCCESS** (0x00) Pomyślne usunięcie wpisu statycznego ARP.
+- **NX_ENTRY_NOT_FOUND** (0x16) Statyczny wpis ARP nie został znaleziony w pamięci podręcznej ARP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP.
+- **NX_INVALID_PARAMETERS** (0x4D) Physical_msw i physical_lsw są 0.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -627,7 +627,7 @@ status = nx_arp_static_entry_delete(&ip_0, IP_ADDRESS(1,2,3,4),
 
 ## <a name="nx_icmp_enable"></a>nx_icmp_enable
 
-Włącz protokół ICMP (Internet Control Message Protocol)
+Włączanie protokołu ICMP (Internet Control Message Protocol)
 
 ### <a name="prototype"></a>Prototype
 
@@ -637,8 +637,8 @@ UINT nx_icmp_enable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa włącza składnik ICMP dla określonego wystąpienia IP.
-Składnik ICMP jest odpowiedzialny za obsługę internetowych komunikatów o błędach i żądań ping i odpowiedzi.
+Ta usługa włącza składnik ICMP dla określonego wystąpienia adresu IP.
+Składnik ICMP jest odpowiedzialny za obsługę internetowych komunikatów o błędach oraz żądań ping i odpowiedzi.
 
 ### <a name="parameters"></a>Parametry
 
@@ -646,16 +646,16 @@ Składnik ICMP jest odpowiedzialny za obsługę internetowych komunikatów o bł
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne włączenie protokołu ICMP.
-- **NX_ALREADY_ENABLED** (0X15) Protokół ICMP jest już włączony.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne włączenie ICMP.
+- **NX_ALREADY_ENABLED** (0x15) ICMP jest już włączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -674,7 +674,7 @@ status = nx_icmp_enable(&ip_0);
 
 ## <a name="nx_icmp_info_get"></a>nx_icmp_info_get
 
-Pobierz informacje o działaniach ICMP
+Pobieranie informacji o działaniach ICMP
 
 ### <a name="prototype"></a>Prototype
 
@@ -691,32 +691,32 @@ UINT nx_icmp_info_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o działaniach ICMP dla określonego wystąpienia IP.
+Ta usługa pobiera informacje o działaniach protokołu ICMP dla określonego wystąpienia adresu IP.
 
-*Jeśli wskaźnik docelowy jest NX_NULL, to konkretne informacje nie są zwracane do obiektu wywołującego.*
+*Jeśli wskaźnik docelowy jest NX_NULL, te konkretne informacje nie są zwracane do wywołującego.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **pings_sent** Wskaźnik do miejsca docelowego dla łącznej liczby wysłanych pakietów ping.
-- **ping_timeouts** Wskaźnik do miejsca docelowego dla łącznej liczby limitów czasu polecenia ping.
-- **ping_threads_suspended** Wskaźnik do lokalizacji docelowej łącznej liczby wątków zawieszonych w żądaniach ping.
-- **ping_responses_received** Wskaźnik do Estination o całkowitej liczbie odebranych odpowiedzi ping.
-- **icmp_checksum_errors** Wskaźnik do lokalizacji docelowej łącznej liczby błędów sumy kontrolnej protokołu ICMP.
-- **icmp_unhandled_messages** Wskaźnik do Estination całkowitej liczby nieobsłużonych komunikatów ICMP.
+- **pings_sent** Wskaźnik do miejsca docelowego całkowitej liczby wysłanych ping.
+- **ping_timeouts** Wskaźnik do miejsca docelowego dla całkowitej liczby limitów czasu ping.
+- **ping_threads_suspended** Wskaźnik do miejsca docelowego całkowitej liczby wątków zawieszonych na żądaniach ping.
+- **ping_responses_received** Wskaźnik do wartości całkowitej liczby odebranych odpowiedzi ping.
+- **icmp_checksum_errors** Wskaźnik do miejsca docelowego całkowitej liczby błędów sumy kontrolnej ICMP.
+- **icmp_unhandled_messages** Wskaźnik do wartości całkowitej liczby nieobjętych komunikatów ICMP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobranie informacji protokołu ICMP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pobieranie informacji ICMP powiodło się.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -743,7 +743,7 @@ status = nx_icmp_info_get(
 
 ## <a name="nx_icmp_ping"></a>nx_icmp_ping
 
-Wyślij żądanie ping do określonego adresu IP
+Wysyłanie żądania ping na określony adres IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -758,39 +758,39 @@ UINT nx_icmp_ping(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła żądanie ping do określonego adresu IP i czeka przez określony czas dla komunikatu odpowiedzi na polecenie ping. Jeśli odpowiedź nie zostanie odebrana, zwracany jest błąd. W przeciwnym razie cały komunikat odpowiedzi jest zwracany w zmiennej wskazywanej przez response_ptr.
+Ta usługa wysyła żądanie ping na określony adres IP i czeka przez określony czas na komunikat odpowiedzi ping. Jeśli nie zostanie odebrana żadna odpowiedź, zostanie zwrócony błąd. W przeciwnym razie cały komunikat odpowiedzi jest zwracany w zmiennej wskazywanej przez response_ptr.
 
-*Jeśli NX_SUCCESS jest zwracana, aplikacja jest odpowiedzialna za zwolnienie odebranego pakietu, gdy nie jest już potrzebne.*
+*Jeśli NX_SUCCESS zwracany, aplikacja jest odpowiedzialna za zwalnianie odebranego pakietu, gdy nie jest już potrzebny.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **IP_address** Adres IP w kolejności bajtów hosta do ping. Wskaźnik danych do obszaru danych dla wiadomości ping.
+- **ip_address** Adres IP w kolejności bajtów hosta na polecenie ping. data Pointer to data area for ping message (Wskaźnik danych do obszaru danych dla komunikatu ping).
 - **data_size** Liczba bajtów w danych ping
-- **response_ptr** Wskaźnik na wskaźnik pakietu, aby przywrócić komunikat odpowiedzi ping w.
-- **WAIT_OPTION** Określa czas oczekiwania na odpowiedź na polecenie ping. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **response_ptr** Wskaźnik do wskaźnika pakietu, aby zwrócić komunikat odpowiedzi ping w.
+- **wait_option** Definiuje czas oczekiwania na odpowiedź ping. Opcje oczekiwania są zdefiniowane w następujący sposób:
 
   - NX_NO_WAIT (0x00000000)
   - NX_WAIT_FOREVER (0xFFFFFFFF)
-  - wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+  - wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — pomyślne polecenie ping. Wskaźnik komunikatu odpowiedzi został umieszczony w zmiennej wskazywanej przez response_ptr.
-- **NX_NO_PACKET** (0X01) nie może przydzielić pakietu żądania ping.
-- **NX_OVERFLOW** (0X03) określony obszar danych przekracza domyślny rozmiar pakietu dla tego wystąpienia IP.
-- **NX_NO_RESPONSE** (0X29) żądany adres IP nie odpowiedział.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie tx_thread_wait_abort.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub odpowiedzi.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne polecenie ping. Wskaźnik komunikatu odpowiedzi został umieszczony w zmiennej wskazywanej przez response_ptr.
+- **NX_NO_PACKET** (0x01) Nie można przydzielić pakietu żądania ping.
+- **NX_OVERFLOW** (0x03) Określony obszar danych przekracza domyślny rozmiar pakietu dla tego wystąpienia adresu IP.
+- **NX_NO_RESPONSE** (0x29) Żądany adres IP nie odpowiedział.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik adresu IP lub odpowiedzi.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -814,7 +814,7 @@ status = nx_icmp_ping(&ip_0, IP_ADDRESS(1,2,3,5), "abcd", 4,
 
 ## <a name="nx_igmp_enable"></a>nx_igmp_enable
 
-Włącz protokół IGMP (Internet Group Management Protocol)
+Włączanie protokołu IGMP (Internet Group Management Protocol)
 
 ### <a name="prototype"></a>Prototype
 
@@ -824,8 +824,8 @@ UINT nx_igmp_enable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa włącza składnik IGMP w określonym wystąpieniu IP.
-Składnik IGMP jest odpowiedzialny za zapewnienie wsparcia dla operacji zarządzania grupami multiemisji IP.
+Ta usługa włącza składnik IGMP w określonym wystąpieniu adresu IP.
+Składnik IGMP jest odpowiedzialny za zapewnienie obsługi operacji zarządzania grupą multiemisji IP.
 
 ### <a name="parameters"></a>Parametry
 
@@ -833,16 +833,16 @@ Składnik IGMP jest odpowiedzialny za zapewnienie wsparcia dla operacji zarządz
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne włączenie protokołu IGMP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_ALREADY_ENABLED** (0X15) ten składnik został już włączony.
+- **NX_SUCCESS** (0x00) Pomyślne włączenie IGMP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_ALREADY_ENABLED** (0x15) Ten składnik został już włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -863,7 +863,7 @@ status = nx_igmp_enable(&ip_0);
 
 ## <a name="nx_igmp_info_get"></a>nx_igmp_info_get
 
-Pobierz informacje o działaniach IGMP
+Pobieranie informacji o działaniach IGMP
 
 ### <a name="prototype"></a>Prototype
 
@@ -878,30 +878,30 @@ UINT nx_igmp_info_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o działaniach IGMP dla określonego wystąpienia IP.
+Ta usługa pobiera informacje o działaniach IGMP dla określonego wystąpienia adresu IP.
 
-*Jeśli wskaźnik docelowy jest NX_NULL, to konkretne informacje nie są zwracane do obiektu wywołującego.*
+*Jeśli wskaźnik docelowy jest NX_NULL, te konkretne informacje nie są zwracane do wywołującego.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **igmp_reports_sent** Wskaźnik do miejsca docelowego dla łącznej liczby wysłanych raportów ICMP.
-- **igmp_queries_received** Wskaźnik do miejsca docelowego dla łącznej liczby zapytań odebranych przez router multiemisji.
-- **igmp_checksum_errors** Wskaźnik do lokalizacji docelowej łącznej liczby błędów sumy kontrolnej IGMP dla pakietów odebranych.
-- **current_groups_joined** Wskaźnik do lokalizacji docelowej bieżącej liczby grup przyłączonych za pomocą tego wystąpienia IP.
+- **igmp_reports_sent** Wskaźnik do miejsca docelowego całkowitej liczby wysłanych raportów ICMP.
+- **igmp_queries_received** Wskaźnik do miejsca docelowego dla całkowitej liczby zapytań odebranych przez router multiemisji.
+- **igmp_checksum_errors** Wskaźnik do miejsca docelowego całkowitej liczby błędów sumy kontrolnej IGMP w odbieranych pakietach.
+- **current_groups_joined** Wskaźnik do miejsca docelowego bieżącej liczby grup przyłączone za pośrednictwem tego wystąpienia adresu IP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie pobiera informacje o protokole IGMP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pobieranie informacji IGMP powiodło się.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -927,7 +927,7 @@ status = nx_igmp_info_get(
 
 ## <a name="nx_igmp_loopback_disable"></a>nx_igmp_loopback_disable
 
-Wyłącz sprzężenie zwrotne protokołu IGMP
+Wyłączanie sprzężenia zwrotnego IGMP
 
 ### <a name="prototype"></a>Prototype
 
@@ -937,23 +937,23 @@ UINT nx_igmp_loopback_disable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyłącza sprzężenie zwrotne protokołu IGMP dla wszystkich kolejnych grup multiemisji przyłączonych.
+Ta usługa wyłącza sprzężenia zwrotne IGMP dla wszystkich kolejnych przyłączone do grup multiemisji.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślne wyłączenie sprzężenia zwrotnego protokołu IGMP.
-- **NX_NOT_ENABLED** (0X14) protokół IGMP nie jest włączony.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- Obiekt wywołujący **NX_CALLER_ERROR** (0x11) nie jest wątkiem lub inicjalizacją.
+- **NX_SUCCESS** (0x00) Pomyślne wyłączenie sprzężenia zwrotnego IGMP.
+- **NX_NOT_ENABLED** (0x14) IGMP nie jest włączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) nie jest wątkiem ani inicjowaniem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -968,7 +968,7 @@ status = nx_igmp_loopback_disable(&ip_0);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_igmp_enable, nx_igmp_info_get, nx_igmp_loopback_enable
+- nx_igmp_enable, nx_igmp_info_get, nx_igmp_loopback_enable,
 - nx_igmp_multicast_interface_join, nx_igmp_multicast_join,
 - nx_igmp_multicast_leave
 
@@ -984,23 +984,23 @@ UINT nx_igmp_loopback_enable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa włącza sprzężenie zwrotne protokołu IGMP dla wszystkich kolejnych grup multiemisji przyłączonych.
+Ta usługa umożliwia sprzężenia zwrotnego IGMP dla wszystkich kolejnych przyłączone grupy multiemisji.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślne wyłączenie sprzężenia zwrotnego protokołu IGMP.
-- **NX_NOT_ENABLED** (0X14) protokół IGMP nie jest włączony.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- Obiekt wywołujący **NX_CALLER_ERROR** (0x11) nie jest wątkiem lub inicjalizacją.
+- **NX_SUCCESS** (0x00) Pomyślne wyłączenie sprzężenia zwrotnego IGMP.
+- **NX_NOT_ENABLED** (0x14) IGMP nie jest włączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) nie jest wątkiem ani inicjowaniem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1015,13 +1015,13 @@ status = nx_igmp_loopback_enable(&ip_0);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_igmp_enable, nx_igmp_info_get, nx_igmp_loopback_disable
+- nx_igmp_enable, nx_igmp_info_get, nx_igmp_loopback_disable,
 - nx_igmp_multicast_interface_join, nx_igmp_multicast_join,
 - nx_igmp_multicast_leave
 
 ## <a name="nx_igmp_multicast_interface_join"></a>nx_igmp_multicast_interface_join
 
-Dołącz wystąpienie IP do określonej grupy multiemisji za pośrednictwem interfejsu
+Przyłącz wystąpienie adresu IP do określonej grupy multiemisji za pośrednictwem interfejsu
 
 ### <a name="prototype"></a>Prototype
 
@@ -1034,29 +1034,29 @@ UINT nx_igmp_multicast_interface_join(
 
 ### <a name="description"></a>Opis
 
-Ta usługa sprzęga wystąpienie IP z określoną grupą multiemisji za pośrednictwem określonego interfejsu sieciowego. Wewnętrzny licznik jest konserwowany, aby śledzić liczbę przypadków, gdy ta sama Grupa została przyłączona. Po dołączeniu do grupy multiemisji składnik IGMP zezwoli na odbieranie pakietów IP z tym adresem grupy za pośrednictwem określonego interfejsu sieciowego, a także zgłaszanie do routerów, do których ten adres IP jest członkiem tej grupy multiemisji. Komunikaty przyłączenia do członkostwa w protokole IGMP, raport i opuszczenie są również wysyłane za pośrednictwem określonego interfejsu sieciowego.
+Ta usługa dołącza wystąpienie adresu IP do określonej grupy multiemisji za pośrednictwem określonego interfejsu sieciowego. Licznik wewnętrzny jest utrzymywany w celu śledzenia, ile razy ta sama grupa została dołączenia. Po dołączeniu do grupy multiemisji składnik IGMP zezwoli na odbiór pakietów IP z tym adresem grupy za pośrednictwem określonego interfejsu sieciowego, a także zgłasza routerom, że ten adres IP jest członkiem tej grupy multiemisji. Komunikaty dołączania do członkostwa IGMP, zgłaszania i opuszczania są również wysyłane za pośrednictwem określonego interfejsu sieciowego.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **group_address** Adres grupy multiemisji IP klasy D do przyłączenia w kolejności bajtów hosta.
+- **group_address** Adres ip grupy multiemisji klasy D do przyłączenia w kolejności bajtów hosta.
 - **interface_index** Indeks interfejsu dołączonego do wystąpienia NetX.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne dołączenie do grupy multiemisji.
-- **NX_NO_MORE_ENTRIES** (0X17) nie można przyłączyć więcej grup multiemisji, Przekroczono maksymalną liczbę.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- Indeks urządzenia **NX_INVALID_INTERFACE** (0x4C) wskazuje nieprawidłowy interfejs sieciowy.
-- Podany adres grupy multiemisji **NX_IP_ADDRESS_ERROR** (0x21) nie jest prawidłowym adresem klasy D.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0x14) obsługa multiemisji IP nie jest włączona.
+- **NX_SUCCESS** (0x00) Pomyślne przyłączenie do grupy multiemisji.
+- **NX_NO_MORE_ENTRIES** (0x17) Nie można łączyć więcej grup multiemisji, przekroczono maksymalną liczbę grup.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_INVALID_INTERFACE** (0x4C) Indeks urządzenia wskazuje nieprawidłowy interfejs sieciowy.
+- **NX_IP_ADDRESS_ERROR** (0x21) Podany adres grupy multiemisji nie jest prawidłowym adresem klasy D.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) obsługa multiemisji ip nie jest włączona.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1076,13 +1076,13 @@ status = nx_igmp_multicast_interface_join
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_igmp_enable, nx_igmp_info_get, nx_igmp_loopback_disable
+- nx_igmp_enable, nx_igmp_info_get, nx_igmp_loopback_disable,
 - nx_igmp_loopback_enable, nx_igmp_multicast_join,
 - nx_igmp_multicast_leave
 
 ## <a name="nx_igmp_multicast_join"></a>nx_igmp_multicast_join
 
-Dołącz wystąpienie adresu IP do określonej grupy multiemisji
+Przyłącz wystąpienie adresu IP do określonej grupy multiemisji
 
 ### <a name="prototype"></a>Prototype
 
@@ -1094,31 +1094,31 @@ UINT nx_igmp_multicast_join(
 
 ### <a name="description"></a>Opis
 
-Ta usługa sprzęga wystąpienie IP z określoną grupą multiemisji. Wewnętrzny licznik jest konserwowany, aby śledzić liczbę przypadków, gdy ta sama Grupa została przyłączona. Sterownik jest poleceniem, aby wysłać raport IGMP, jeśli jest to pierwsze połączenie w sieci wskazujące zamiar hosta do przyłączenia do grupy. Po dołączeniu składnik IGMP zezwoli na odbieranie pakietów IP z tym adresem grupy i raport na routerach, do których ten adres IP jest członkiem tej grupy multiemisji.
+Ta usługa dołącza wystąpienie adresu IP do określonej grupy multiemisji. Licznik wewnętrzny jest utrzymywany w celu śledzenia, ile razy ta sama grupa została dołączenia. Sterownik jest polecany w celu wysłania raportu IGMP, jeśli jest to pierwsze żądanie dołączenia do sieci wskazujące na zamiar dołączenia hosta do grupy. Po dołączeniu składnik IGMP umożliwi odbiór pakietów IP z tym adresem grupy i zgłasza routerom, że ten adres IP jest elementem członkowskim tej grupy multiemisji.
 
 > [!NOTE]
-> *Aby dołączyć do grupy multiemisji na urządzeniu niebędącym podstawowym, należy użyć **nx_igmp_multicast_interface_join usługi.***
+> *Aby dołączyć grupę multiemisji na urządzeniu innym niż podstawowe, użyj usługi **nx_igmp_multicast_interface_join.***
 
 - **Parametry**
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **group_address** Adres grupy multiemisji IP klasy D do przyłączenia.
+- **group_address** Adres IP grupy multiemisji klasy D do przyłączenia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne dołączenie do grupy multiemisji.
-- **NX_NO_MORE_ENTRIES** (0X17) nie można przyłączyć więcej grup multiemisji, Przekroczono maksymalną liczbę.
-- Indeks urządzenia **NX_INVALID_INTERFACE** (0x4C) wskazuje nieprawidłowy interfejs sieciowy.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres grupy adresów IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne przyłączenie do grupy multiemisji.
+- **NX_NO_MORE_ENTRIES** (0x17) Nie można łączyć więcej grup multiemisji, przekroczono maksymalną liczbę grup.
+- **NX_INVALID_INTERFACE** (0x4C) Indeks urządzenia wskazuje nieprawidłowy interfejs sieciowy.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP grupy.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1135,13 +1135,13 @@ status = nx_igmp_multicast_join(&ip_0, IP_ADDRESS(224,0,0,200));
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_igmp_enable, nx_igmp_info_get, nx_igmp_loopback_disable
+- nx_igmp_enable, nx_igmp_info_get, nx_igmp_loopback_disable,
 - nx_igmp_loopback_enable, nx_igmp_multicast_interface_join,
 - nx_igmp_multicast_leave
 
 ## <a name="nx_igmp_multicast_leave"></a>nx_igmp_multicast_leave
 
-Przyczyna opuszczenia określonej grupy multiemisji przez wystąpienie protokołu IP
+Spowodować, że wystąpienie adresu IP opuści określoną grupę multiemisji
 
 ### <a name="prototype"></a>Prototype
 
@@ -1153,7 +1153,7 @@ UINT nx_igmp_multicast_leave(
 
 ### <a name="description"></a>Opis
 
-Ta usługa powoduje, że wystąpienie IP opuszcza określoną grupę multiemisji, jeśli liczba żądań opuszczenia jest zgodna z liczbą żądań dołączenia. W przeciwnym razie wewnętrzna liczba sprzężeń jest po prostu zmniejszana.
+Ta usługa powoduje, że wystąpienie adresu IP opuszcza określoną grupę multiemisji, jeśli liczba żądań opuszczenia odpowiada liczbie żądań sprzężenia. W przeciwnym razie liczba sprzęzeń wewnętrznych jest po prostu zmniejszana.
 
 ### <a name="parameters"></a>Parametry
 
@@ -1162,19 +1162,19 @@ Ta usługa powoduje, że wystąpienie IP opuszcza określoną grupę multiemisji
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne dołączenie do grupy multiemisji.
-- Nie znaleziono poprzedniego żądania Join **NX_ENTRY_NOT_FOUND** (0x16).
-- Indeks urządzenia **NX_INVALID_INTERFACE** (0x4C) wskazuje nieprawidłowy interfejs sieciowy.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres grupy adresów IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne przyłączenie do grupy multiemisji.
+- **NX_ENTRY_NOT_FOUND** (0x16) Nie znaleziono poprzedniego żądania dołączenia.
+- **NX_INVALID_INTERFACE** (0x4C) Indeks urządzenia wskazuje nieprawidłowy interfejs sieciowy.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP grupy.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1189,13 +1189,13 @@ status = nx_igmp_multicast_leave(&ip_0, IP_ADDRESS(224,0,0,200);
 ```
 ### <a name="see-also"></a>Zobacz też
 
-- nx_igmp_enable, nx_igmp_info_get, nx_igmp_loopback_disable
+- nx_igmp_enable, nx_igmp_info_get, nx_igmp_loopback_disable,
 - nx_igmp_loopback_enable, nx_igmp_multicast_interface_join,
 - nx_igmp_multicast_join
 
 ## <a name="nx_ip_address_change_notifiy"></a>nx_ip_address_change_notifiy
 
-Powiadamiaj aplikację, jeśli zmienią się adresy IP
+Powiadamianie aplikacji o zmianie adresu IP
 
 
 ### <a name="prototype"></a>Prototype
@@ -1209,25 +1209,25 @@ UINT nx_ip_address_change_notify(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję powiadamiania aplikacji, która jest wywoływana za każdym razem, gdy adres IP zostanie zmieniony.
+Ta usługa rejestruje funkcję powiadomień aplikacji, która jest wywoływana przy każdej zmianie adresu IP.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **CHANGE_NOTIFY** Wskaźnik na funkcję powiadamiania o zmianie adresu IP. Jeśli ten parametr jest NX_NULL, powiadomienie o zmianie adresu IP jest wyłączone.
-- **additional_info** Wskaźnik do opcjonalnych dodatkowych informacji, które są również dostarczane do funkcji powiadomień, gdy adres IP zostanie zmieniony.
+- **change_notify** Wskaźnik do funkcji powiadamiania o zmianie adresu IP. Jeśli ten parametr jest NX_NULL, powiadomienie o zmianie adresu IP jest wyłączone.
+- **additional_info** Wskaźnik do opcjonalnych dodatkowych informacji, które są również dostarczane do funkcji powiadomień po zmianie adresu IP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślne powiadomienie o zmianie adresu IP **NX_SUCCESS** (0x00).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Powiadomienie o pomyślnej zmianie adresu IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1247,7 +1247,7 @@ status = nx_ip_address_change_notify(&ip_0, my_ip_changed, NX_NULL);
 - nx_ip_address_get, nx_ip_address_set, nx_ip_create, nx_ip_delete,
 - nx_ip_driver_direct_command, nx_ip_driver_interface_direct_command,
 - nx_ip_forwarding_disable, nx_ip_forwarding_enable,
-- nx_ip_fragment_disable, nx_ip_fragment_enable, nx_ip_info_get
+- nx_ip_fragment_disable, nx_ip_fragment_enable, nx_ip_info_get,
 - nx_ip_status_check, nx_system_initialize
 
 ## <a name="nx_ip_address_get"></a>nx_ip_address_get
@@ -1265,28 +1265,28 @@ UINT nx_ip_address_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera adres IP i maskę podsieci podstawowego interfejsu sieciowego.
+Ta usługa pobiera adres IP i jego maskę podsieci podstawowego interfejsu sieciowego.
 
-* Aby uzyskać informacje na temat urządzenia pomocniczego, Użyj usługi
-- **nx_ip_interface_address_get**. *
+*Aby uzyskać informacje o urządzeniu pomocniczym, użyj usługi
+- **nx_ip_interface_address_get**.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **IP_address** Wskaźnik do miejsca docelowego dla adresu IP.
-- **network_mask** Wskaźnik do miejsca docelowego dla maski sieci.
+- **ip_address** Wskaźnik do miejsca docelowego dla adresu IP.
+- **network_mask** Wskaźnik do miejsca docelowego maski sieci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobieranie adresu IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub zmiennej Return.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne uzyskiwanie adresu IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy adres IP lub zwracany wskaźnik zmiennej.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1304,11 +1304,11 @@ status = nx_ip_address_get(&ip_0,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_set, nx_ip_create
+- nx_ip_address_change_notify, nx_ip_address_set, nx_ip_create,
 - nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_disable,
 - nx_ip_forwarding_enable, nx_ip_fragment_disable,
-- nx_ip_fragment_enable, nx_ip_info_get, nx_ip_status_check
+- nx_ip_fragment_enable, nx_ip_info_get, nx_ip_status_check,
 - nx_system_initialize
 
 ## <a name="nx_ip_address_set"></a>nx_ip_address_set
@@ -1328,26 +1328,26 @@ UINT nx_ip_address_set(
 
 Ta usługa ustawia adres IP i maskę sieci dla podstawowego interfejsu sieciowego.
 
-*Aby ustawić adres IP i maskę sieci dla urządzenia pomocniczego, użyj **nx_ip_interface_address_set** usługi.*
+*Aby ustawić adres IP i maskę sieci dla urządzenia pomocniczego, użyj usługi **nx_ip_interface_address_set**.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **IP_address** Nowy adres IP.
+- **ip_address** Nowy adres IP.
 - **network_mask** Nowa maska sieci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślny zestaw adresów IP **NX_SUCCESS** (0x00).
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Zestaw pomyślnych adresów IP.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1364,11 +1364,11 @@ status = nx_ip_address_set(&ip_0, IP_ADDRESS(1,2,3,4), 0xFFFFFF00UL);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_create
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_create,
 - nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_disable,
 - nx_ip_forwarding_enable, nx_ip_fragment_disable,
-- nx_ip_fragment_enable, nx_ip_info_get, nx_ip_status_check
+- nx_ip_fragment_enable, nx_ip_info_get, nx_ip_status_check,
 - nx_system_initialize
 
 ## <a name="nx_ip_create"></a>nx_ip_create
@@ -1392,34 +1392,34 @@ UINT nx_ip_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wystąpienie IP przy użyciu adresu IP i sterownika sieci dostarczonego przez użytkownika. Ponadto aplikacja musi dostarczyć wcześniej utworzoną pulę pakietów dla wystąpienia IP, które ma być używane na potrzeby wewnętrznej alokacji pakietów. Należy pamiętać, że podany sterownik sieciowy aplikacji nie jest wywoływany do momentu wykonania wątku tego adresu IP.
+Ta usługa tworzy wystąpienie adresu IP z dostarczonym przez użytkownika adresem IP i sterownikem sieciowym. Ponadto aplikacja musi podać wcześniej utworzoną pulę pakietów dla wystąpienia adresu IP do użycia na użytek wewnętrznej alokacji pakietów. Należy pamiętać, że dostarczony sterownik sieciowy aplikacji nie jest wywoływany, dopóki nie zostanie wykonany wątek tego adresu IP.
 
 ### <a name="parameters"></a>Parametry
 
-- **ip_ptr** Wskaźnik do bloku sterującego, aby utworzyć nowe wystąpienie adresu IP.
-- **Nazwa** Nazwa nowego wystąpienia IP.
-- **IP_address** Adres IP dla tego nowego wystąpienia IP.
-- **network_mask** Maskowanie, aby odróżnić część sieci adresu IP dla podsieci i użycia w ramach wykorzystania pamięci masowej.
-- **default_pool** Wskaźnik sterujący blokiem utworzonej wcześniej puli pakietów NetX.
+- **ip_ptr** Wskaźnik do bloku sterowania w celu utworzenia nowego wystąpienia adresu IP.
+- **name (nazwa)** Nazwa nowego wystąpienia adresu IP.
+- **ip_address** Adres IP dla tego nowego wystąpienia adresu IP.
+- **network_mask** Maskuj, aby odszybować część sieciową adresu IP do zastosowań podsieci i supersieć.
+- **default_pool** Wskaźnik do bloku sterowania wcześniej utworzonej puli pakietów NetX.
 - **ip_network_driver** Sterownik sieciowy dostarczony przez użytkownika używany do wysyłania i odbierania pakietów IP.
 - **memory_ptr** Wskaźnik do obszaru pamięci dla obszaru stosu wątku pomocnika IP.
-- **memory_size** Liczba bajtów w obszarze pamięci dla stosu wątku pomocnika IP.
-- **priorytet** Priorytet wątku pomocnika adresów IP.
+- **memory_size** Liczba bajtów w obszarze pamięci stosu wątku pomocnika IP.
+- **priorytet** Priorytet wątku pomocnika IP.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślne utworzenie wystąpienia adresu IP.
-- Biblioteka NetX **NX_NOT_IMPLEMENTED** (0x4A) jest niepoprawnie skonfigurowana.
-- **NX_PTR_ERROR** (0X07) nieprawidłowy adres IP, wskaźnik funkcji sterownika sieci, Pula pakietów lub wskaźnik pamięci.
-- **NX_SIZE_ERROR** (0x09) podany rozmiar stosu jest zbyt mały.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_IP_ADDRESS_ERROR** (0x21) podany adres IP jest nieprawidłowy.
-- **NX_OPTION_ERROR** (0x21) podany priorytet wątku IP jest nieprawidłowy.
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie wystąpienia adresu IP.
+- **NX_NOT_IMPLEMENTED** (0x4A) biblioteki NetX jest niepoprawnie skonfigurowana.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy adres IP, wskaźnik funkcji sterownika sieci, pula pakietów lub wskaźnik pamięci.
+- **NX_SIZE_ERROR** (0x09) Rozmiar podanego stosu jest zbyt mały.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_IP_ADDRESS_ERROR** (0x21) Podany adres IP jest nieprawidłowy.
+- **NX_OPTION_ERROR** (0x21) Podany priorytet wątku IP jest nieprawidłowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1446,16 +1446,16 @@ status = nx_ip_create(
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
 - nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_disable,
 - nx_ip_forwarding_enable, nx_ip_fragment_disable,
-- nx_ip_fragment_enable, nx_ip_info_get, nx_ip_status_check
+- nx_ip_fragment_enable, nx_ip_info_get, nx_ip_status_check,
 - nx_system_initialize
 
 ## <a name="nx_ip_delete"></a>nx_ip_delete
 
-Usuń poprzednio utworzone wystąpienie adresu IP
+Usuwanie wcześniej utworzonego wystąpienia adresu IP
 
 
 ### <a name="prototype"></a>Prototype
@@ -1466,23 +1466,23 @@ UINT nx_ip_delete(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wcześniej utworzone wystąpienie protokołu IP i zwalnia wszystkie zasoby systemowe należące do wystąpienia IP.
+Ta usługa usuwa wcześniej utworzone wystąpienie adresu IP i zwalnia wszystkie zasoby systemowe należące do wystąpienia adresu IP.
 
 ### <a name="parameters"></a>Parametry
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie usunięto adres IP **NX_SUCCESS** (0x00).
-- **NX_SOCKETS_BOUND** (0X28) to wystąpienie protokołu IP nadal ma powiązane z nim gniazda UDP lub TCP. Przed usunięciem wystąpienia adresu IP wszystkie gniazda muszą zostać anulowane i usunięte.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne usunięcie adresu IP.
+- **NX_SOCKETS_BOUND** (0x28) To wystąpienie adresu IP nadal ma powiązane gniazda UDP lub TCP. Wszystkie gniazda muszą być niepowiązane i usunięte przed usunięciem wystąpienia adresu IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -1497,16 +1497,16 @@ status = nx_ip_delete(&ip_0);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
 - nx_ip_create, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_disable,
 - nx_ip_forwarding_enable, nx_ip_fragment_disable,
-- nx_ip_fragment_enable, nx_ip_info_get, nx_ip_status_check
+- nx_ip_fragment_enable, nx_ip_info_get, nx_ip_status_check,
 - nx_system_initialize
 
 ## <a name="nx_ip_driver_direct_command"></a>nx_ip_driver_direct_command
 
-Wydaj polecenie do sterownika sieciowego
+Wydawanie polecenia do sterownika sieciowego
 
 ### <a name="prototype"></a>Prototype
 
@@ -1519,16 +1519,16 @@ UINT nx_ip_driver_direct_command(
 
 ### <a name="description"></a>Opis
 
-Ta usługa udostępnia interfejs bezpośredni do podstawowego sterownika interfejsu sieciowego aplikacji określonego podczas wywołania ***nx_ip_create*** .
+Ta usługa udostępnia interfejs bezpośredni do podstawowego sterownika interfejsu sieciowego aplikacji określonego podczas ***nx_ip_create*** wywołania.
 
-Polecenia specyficzne dla aplikacji mogą służyć do podawania wartości liczbowych, które są większe lub równe NX_LINK_USER_COMMAND.
+Można użyć poleceń specyficznych dla aplikacji, jeśli ich wartość liczbowa jest większa lub równa NX_LINK_USER_COMMAND.
 
-*Aby wydać polecenie dla urządzenia pomocniczego, Użyj usługi **nx_ip_driver_interface_direct_command** .*
+*Aby wydać polecenie dla urządzenia pomocniczego, użyj **nx_ip_driver_interface_direct_command** usługi.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **polecenie** Kod polecenia numerycznego. Polecenia standardowe są zdefiniowane w następujący sposób:
+- **polecenie** Numeryczny kod polecenia. Polecenia standardowe są zdefiniowane w następujący sposób:
 
 - NX_LINK_GET_STATUS (10)
 - NX_LINK_GET_SPEED (11)
@@ -1539,21 +1539,21 @@ Polecenia specyficzne dla aplikacji mogą służyć do podawania wartości liczb
 - NX_LINK_GET_ALLOC_ERRORS (16)
 - NX_LINK_USER_COMMAND (50)
 
-- **return_value_ptr** Wskaźnik do zwrócenia zmiennej w obiekcie wywołującym.
+- **return_value_ptr** Wskaźnik do zwracania zmiennej w wywołującym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne polecenie sterownika sieci.
-- **NX_UNHANDLED_COMMAND** (0x44) nieobsłużone lub niezaimplementowane polecenie sterownika sieciowego.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub wartości zwracanej.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_INVALID_INTERFACE** (0X4C) Nieprawidłowy indeks interfejsu.
+- **NX_SUCCESS** (0x00) Pomyślne bezpośrednie polecenie sterownika sieciowego.
+- **NX_UNHANDLED_COMMAND** (0x44) Nieobsłużone lub niezaplementowane polecenie sterownika sieciowego.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy adres IP lub wskaźnik wartości zwracanej.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_INVALID_INTERFACE** (0x4C) Nieprawidłowy indeks interfejsu.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-- **Możliwe przeprowadzenie**
+- **Możliwe wywłasznia**
 
 Nie
 
@@ -1574,15 +1574,15 @@ status = nx_ip_driver_direct_command(
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
-- nx_ip_create, nx_ip_delete, nx_ip_driver_interface_direct_command
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
+- nx_ip_create, nx_ip_delete, nx_ip_driver_interface_direct_command,
 - nx_ip_forwarding_disable, nx_ip_forwarding_enable,
-- nx_ip_fragment_disable, nx_ip_fragment_enable, nx_ip_info_get
+- nx_ip_fragment_disable, nx_ip_fragment_enable, nx_ip_info_get,
 - nx_ip_status_check, nx_system_initialize
 
 ## <a name="nx_ip_driver_interface_direct_command"></a>nx_ip_driver_interface_direct_command
 
-Wydaj polecenie do sterownika sieciowego
+Wydawanie polecenia do sterownika sieciowego
 
 ### <a name="prototype"></a>Prototype
 
@@ -1596,12 +1596,12 @@ UINT nx_ip_driver_interface_direct_command(
 
 ### <a name="description"></a>Opis
 
-Ta usługa udostępnia bezpośrednie polecenie do sterownika urządzenia sieciowego aplikacji w wystąpieniu protokołu IP. Polecenia specyficzne dla aplikacji mogą służyć do podawania wartości liczbowych, które są większe lub równe *NX_LINK_USER_COMMAND*.
+Ta usługa udostępnia bezpośrednie polecenie do sterownika urządzenia sieciowego aplikacji w wystąpieniu adresu IP. Polecenia specyficzne dla aplikacji mogą być używane, jeśli ich wartość liczbowa jest większa lub równa NX_LINK_USER_COMMAND *.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **polecenie** Kod polecenia numerycznego. Polecenia standardowe są zdefiniowane w następujący sposób:
+- **polecenie** Kod polecenia numerycznego. Standardowe polecenia są zdefiniowane w następujący sposób:
 - NX_LINK_GET_STATUS (10)
 - NX_LINK_GET_SPEED (11)
 - NX_LINK_GET_DUPLEX_TYPE (12)
@@ -1610,21 +1610,21 @@ Ta usługa udostępnia bezpośrednie polecenie do sterownika urządzenia sieciow
 - NX_LINK_GET_TX_COUNT (15)
 - NX_LINK_GET_ALLOC_ERRORS (16)
 - NX_LINK_USER_COMMAND (50)
-- **interface_index** Indeks interfejsu sieciowego, do którego ma zostać wysłane polecenie.
-- **return_value_ptr** Wskaźnik do zwrócenia zmiennej w obiekcie wywołującym.
+- **interface_index** Indeks interfejsu sieciowego, do których należy wysłać polecenie.
+- **return_value_ptr** Wskaźnik do zwracania zmiennej w wywołującym.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślne polecenie sterownika sieci.
-- **NX_UNHANDLED_COMMAND** (0x44) nieobsłużone lub niezaimplementowane polecenie sterownika sieciowego.
-- **NX_INVALID_INTERFACE** (0X4C) Nieprawidłowy indeks interfejsu
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub wartości zwracanej.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne bezpośrednie polecenie sterownika sieciowego.
+- **NX_UNHANDLED_COMMAND** (0x44) Nieobsłużone lub niezaplementowane polecenie sterownika sieciowego.
+- **NX_INVALID_INTERFACE** (0x4C) Nieprawidłowy indeks interfejsu
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy adres IP lub wskaźnik wartości zwracanej.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1648,10 +1648,10 @@ UINT interface_index = 0;
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
-- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
+- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_forwarding_disable, nx_ip_forwarding_enable,
-- nx_ip_fragment_disable, nx_ip_fragment_enable, nx_ip_info_get
+- nx_ip_fragment_disable, nx_ip_fragment_enable, nx_ip_info_get,
 - nx_ip_status_check, nx_system_initialize
 
 ## <a name="nx_ip_forwarding_disable"></a>nx_ip_forwarding_disable
@@ -1666,7 +1666,7 @@ UINT nx_ip_forwarding_disable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyłącza przekazywanie pakietów IP wewnątrz składnika IP NetX. Po utworzeniu zadania IP ta usługa zostanie automatycznie wyłączona.
+Ta usługa wyłącza przekazywanie pakietów IP wewnątrz składnika NetX IP. Podczas tworzenia zadania adresu IP ta usługa jest automatycznie wyłączana.
 
 ### <a name="parameters"></a>Parametry
 
@@ -1674,15 +1674,15 @@ Ta usługa wyłącza przekazywanie pakietów IP wewnątrz składnika IP NetX. Po
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wyłączenie przekazywania adresów IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Wyłączanie pomyślnego przekazywania adresów IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze
+Inicjowanie, wątki, czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1698,10 +1698,10 @@ status = nx_ip_forwarding_disable(&ip_0);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
-- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
+- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_enable,
-- nx_ip_fragment_disable, nx_ip_fragment_enable, nx_ip_info_get
+- nx_ip_fragment_disable, nx_ip_fragment_enable, nx_ip_info_get,
 - nx_ip_status_check, nx_system_initialize
 
 ## <a name="nx_ip_forwarding_enable"></a>nx_ip_forwarding_enable
@@ -1716,22 +1716,22 @@ UINT nx_ip_forwarding_enable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia przekazywanie pakietów IP w składniku IP NetX. Po utworzeniu zadania IP ta usługa zostanie automatycznie wyłączona.
+Ta usługa umożliwia przekazywanie pakietów IP wewnątrz składnika NETX IP. Podczas tworzenia zadania adresu IP ta usługa jest automatycznie wyłączana.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślne włączenie przekazywania adresów IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne przekazywanie ip.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze
+Inicjowanie, wątki, czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1747,15 +1747,15 @@ status = nx_ip_forwarding_enable(&ip_0);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
-- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
+- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_disable,
-- nx_ip_fragment_disable, nx_ip_fragment_enable, nx_ip_info_get
+- nx_ip_fragment_disable, nx_ip_fragment_enable, nx_ip_info_get,
 - nx_ip_status_check, nx_system_initialize
 
 ## <a name="nx_ip_fragment_disable"></a>nx_ip_fragment_disable
 
-Wyłącz fragmentację pakietu IP
+Wyłączanie fragmentowania pakietów IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -1765,23 +1765,23 @@ UINT nx_ip_fragment_disable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyłącza funkcję fragmentacji i ponownego składania pakietów IP. W przypadku pakietów, które oczekują na ponowną złożenie, ta usługa zwalnia te pakiety. Po utworzeniu zadania IP ta usługa zostanie automatycznie wyłączona.
+Ta usługa wyłącza fragmentowanie pakietów IP i funkcję ponownego assemblingu. W przypadku pakietów oczekujących na ponowne zseparowane usługa zwalnia te pakiety. Po utworzeniu zadania adresu IP ta usługa jest automatycznie wyłączona.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0x00) — wyłączono pomyślne fragmenty adresów IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) fragmentacja IP nie jest włączona w wystąpieniu adresu IP.
+- **NX_SUCCESS** (0x00) Pomyślne wyłączenie fragmentu adresu IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) fragmentacja adresów IP nie jest włączona w wystąpieniu adresu IP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1797,15 +1797,15 @@ status = nx_ip_fragment_disable(&ip_0);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
-- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
+- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_disable,
-- nx_ip_forwarding_enable, nx_ip_fragment_enable, nx_ip_info_get
+- nx_ip_forwarding_enable, nx_ip_fragment_enable, nx_ip_info_get,
 - nx_ip_status_check, nx_system_initialize
 
 ## <a name="nx_ip_fragment_enable"></a>nx_ip_fragment_enable
 
-Włącz fragmentację pakietów IP
+Włączanie fragmentowania pakietów IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -1815,7 +1815,7 @@ UINT nx_ip_fragment_enable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia fragmentację i remontowanie pakietów IP. Po utworzeniu zadania IP ta usługa zostanie automatycznie wyłączona.
+Ta usługa umożliwia fragmentowanie pakietów IP i ponowne ocenianie funkcji. Po utworzeniu zadania adresu IP ta usługa jest automatycznie wyłączona.
 
 ### <a name="parameters"></a>Parametry
 
@@ -1823,16 +1823,16 @@ Ta usługa umożliwia fragmentację i remontowanie pakietów IP. Po utworzeniu z
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00), pomyślne włączenie FRAGMENTU adresu IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- Funkcje fragmentacji adresów IP **NX_NOT_ENABLED** (0x14) nie są kompilowane do NetX.
+- **NX_SUCCESS** (0x00) Włączenie pomyślnego fragmentu adresu IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) fragmentacji adresów IP nie są kompilowane w języku NetX.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1848,15 +1848,15 @@ status = nx_ip_fragment_enable(&ip_0);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
-- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
+- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_disable,
-- nx_ip_forwarding_enable, nx_ip_fragment_disable, nx_ip_info_get
+- nx_ip_forwarding_enable, nx_ip_fragment_disable, nx_ip_info_get,
 - nx_ip_status_check, nx_system_initialize
 
 ## <a name="nx_ip_gateway_address_set"></a>nx_ip_gateway_address_set
 
-Ustaw adres IP bramy
+Ustawianie adresu IP bramy
 
 ### <a name="prototype"></a>Prototype
 
@@ -1868,25 +1868,25 @@ UINT nx_ip_gateway_address_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia adres IP bramy IP. Cały ruch poza siecią jest kierowany do tej bramy na potrzeby transmisji. Brama musi być bezpośrednio dostępna za pomocą jednego z interfejsów sieciowych.
+Ta usługa ustawia adres IP bramy IP. Cały ruch poza siecią jest przekierowyny do tej bramy w celu transmisji. Brama musi być bezpośrednio dostępna za pośrednictwem jednego z interfejsów sieciowych.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **IP_address** Adres IP bramy.
+- **ip_address** Adres IP bramy.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — pomyślny zbiór adresów IP bramy.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wystąpienia adresu IP.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślny adres IP bramy.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wystąpienia adresu IP.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątek
+Inicjowanie, wątek
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1906,7 +1906,7 @@ status = nx_ip_gateway_address_set(&ip_0, IP_ADDRESS(1,2,3,99));
 
 ## <a name="nx_ip_info_get"></a>nx_ip_info_get
 
-Pobierz informacje o działaniach IP
+Pobieranie informacji o działaniach ip
 
 ### <a name="prototype"></a>Prototype
 
@@ -1927,35 +1927,35 @@ UINT nx_ip_info_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o działaniach IP dla określonego wystąpienia IP.
+Ta usługa pobiera informacje o działaniach protokołu IP dla określonego wystąpienia adresu IP.
 
-*Jeśli wskaźnik docelowy jest NX_NULL, to konkretne informacje nie są zwracane do obiektu wywołującego.*
+*Jeśli wskaźnik docelowy jest NX_NULL, te konkretne informacje nie są zwracane do wywołującego.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **ip_total_packets_sent** Wskaźnik do miejsca docelowego dla łącznej liczby wysłanych pakietów IP.
-- **ip_total_bytes_sent** Wskaźnik do miejsca docelowego dla łącznej liczby wysłanych bajtów.
-- **ip_total_packets_received** Wskaźnik do lokalizacji docelowej całkowitej liczby pakietów odbioru adresów IP.
-- **ip_total_bytes_received** Wskaźnik do lokalizacji docelowej łącznej liczby odebranych bajtów IP.
-- **ip_invalid_packets** Wskaźnik do lokalizacji docelowej całkowitej liczby nieprawidłowych pakietów IP.
-- **ip_receive_packets_dropped** Wskaźnik do lokalizacji docelowej całkowitej liczby porzuconych pakietów odebranych.
-- **ip_receive_checksum_errors** Wskaźnik do lokalizacji docelowej łącznej liczby błędów sumy kontrolnej w pakietach odbierania.
-- **ip_send_packets_dropped** Wskaźnik do lokalizacji docelowej całkowitej liczby porzuconych pakietów do wysłania.
-- **ip_total_fragments_sent** Wskaźnik do lokalizacji docelowej łącznej liczby wysłanych fragmentów.
-- **ip_total_fragments_received** Wskaźnik do lokalizacji docelowej łącznej liczby odebranych fragmentów.
+- **ip_total_packets_sent** Wskaźnik do miejsca docelowego całkowitej liczby wysłanych pakietów IP.
+- **ip_total_bytes_sent** Wskaźnik do miejsca docelowego całkowitej liczby wysłanych bajtów.
+- **ip_total_packets_received** Wskaźnik do miejsca docelowego całkowitej liczby pakietów odbieranych przez adres IP.
+- **ip_total_bytes_received** Wskaźnik do miejsca docelowego całkowitej liczby odebranych bajtów IP.
+- **ip_invalid_packets** Wskaźnik do miejsca docelowego całkowitej liczby nieprawidłowych pakietów IP.
+- **ip_receive_packets_dropped** Wskaźnik do miejsca docelowego całkowitej liczby porzuconych pakietów odbieranych.
+- **ip_receive_checksum_errors** Wskaźnik do miejsca docelowego całkowitej liczby błędów sumy kontrolnej w odbieranych pakietach.
+- **ip_send_packets_dropped** Wskaźnik do miejsca docelowego całkowitej liczby porzuconych pakietów wysyłania.
+- **ip_total_fragments_sent** Wskaźnik do miejsca docelowego całkowitej liczby wysłanych fragmentów.
+- **ip_total_fragments_received** Wskaźnik do miejsca docelowego całkowitej liczby odebranych fragmentów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobieranie informacji o adresie IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
+- **NX_SUCCESS** (0x00) Pobieranie informacji o adresie IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1981,8 +1981,8 @@ status = nx_ip_info_get(&ip_0,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
-- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
+- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_disable,
 - nx_ip_forwarding_enable, nx_ip_fragment_disable,
 - nx_ip_fragment_enable, nx_ip_status_check, nx_system_initialize
@@ -2003,29 +2003,29 @@ UINT nx_ip_interface_address_get (
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera adres IP określonego interfejsu sieciowego.
+Ta usługa pobiera adres IP określonego interfejsu sieciowego.
 
-*Określone urządzenie, jeśli nie urządzenie podstawowe, musi być wcześniej dołączone do wystąpienia IP.*
+*Określone urządzenie, jeśli nie jest urządzeniem podstawowym, musi być wcześniej dołączone do wystąpienia adresu IP.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **interface_index** Indeks interfejsu, taka sama jak wartość indeksu do interfejsu sieciowego dołączonego do wystąpienia protokołu IP.
-- **IP_address** Wskaźnik do miejsca docelowego dla adresu IP interfejsu urządzenia.
-- **network_mask** Wskaźnik do miejsca docelowego dla maski sieci interfejsu urządzenia.
+- **interface_index** Indeks interfejsu, taka sama wartość jak indeks do interfejsu sieciowego dołączonego do wystąpienia adresu IP.
+- **ip_address** Wskaźnik do miejsca docelowego dla adresu IP interfejsu urządzenia.
+- **network_mask** Wskaźnik do miejsca docelowego maski sieci interfejsu urządzenia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobieranie adresu IP.
-- **NX_INVALID_INTERFACE** (0X4C) określony interfejs sieciowy jest nieprawidłowy.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
+- **NX_SUCCESS** (0x00) Pomyślne uzyskiwanie adresu IP.
+- **NX_INVALID_INTERFACE** (0x4C) Określony interfejs sieciowy jest nieprawidłowy.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2050,7 +2050,7 @@ status = nx_ip_interface_address_get(ip_ptr,INTERFACE_INDEX,
 
 ## <a name="nx_ip_interface_address_set"></a>nx_ip_interface_address_set
 
-Ustaw adres IP interfejsu i maskę sieci
+Ustawianie adresu IP interfejsu i maski sieci
 
 ### <a name="prototype"></a>Prototype
 
@@ -2066,28 +2066,28 @@ UINT nx_ip_interface_address_set(
 
 Ta usługa ustawia adres IP i maskę sieci dla określonego interfejsu IP.
 
-*Określony interfejs musi być wcześniej dołączony do wystąpienia IP.*
+*Określony interfejs musi być wcześniej dołączony do wystąpienia adresu IP.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 - **interface_index** Indeks interfejsu dołączonego do wystąpienia NetX.
-- **IP_address** Nowy adres IP interfejsu sieciowego.
+- **ip_address** Nowy adres IP interfejsu sieciowego.
 - **network_mask** Nowa maska sieci interfejsu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślny zestaw adresów IP **NX_SUCCESS** (0x00).
-- **NX_INVALID_INTERFACE** (0X4C) określony interfejs sieciowy jest nieprawidłowy.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_PTR_ERROR** (0X07) nieprawidłowe wskaźniki.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP
+- **NX_SUCCESS** (0x00) Zestaw pomyślnych adresów IP.
+- **NX_INVALID_INTERFACE** (0x4C) Określony interfejs sieciowy jest nieprawidłowy.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe wskaźniki.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2112,7 +2112,7 @@ successfully set. */
 
 ## <a name="nx_ip_interface_attach"></a>nx_ip_interface_attach
 
-Dołącz interfejs sieciowy do wystąpienia protokołu IP
+Dołączanie interfejsu sieciowego do wystąpienia adresu IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -2128,39 +2128,39 @@ UINT nx_ip_interface_attach(
 
 ### <a name="description"></a>Opis
 
-Ta usługa dodaje fizyczny interfejs sieciowy do interfejsu IP. Należy zauważyć, że wystąpienie IP jest tworzone przy użyciu interfejsu podstawowego, więc każdy dodatkowy interfejs jest pomocniczy dla interfejsu podstawowego. Łączna liczba interfejsów sieciowych dołączonych do wystąpienia IP (łącznie z interfejsem podstawowym) nie może przekroczyć **NX_MAX_PHYSICAL_INTERFACES**.
+Ta usługa dodaje fizyczny interfejs sieciowy do interfejsu IP. Zwróć uwagę, że wystąpienie adresu IP jest tworzone przy użyciu interfejsu podstawowego, więc każdy dodatkowy interfejs jest pomocniczy dla interfejsu podstawowego. Całkowita liczba interfejsów sieciowych dołączonych do wystąpienia adresu IP (w tym interfejsu podstawowego) nie może **przekraczać NX_MAX_PHYSICAL_INTERFACES**.
 
 Jeśli wątek IP nie został jeszcze uruchomiony, interfejsy pomocnicze zostaną zainicjowane w ramach procesu uruchamiania wątku IP, który inicjuje wszystkie interfejsy fizyczne.
 
-Jeśli wątek IP nie jest jeszcze uruchomiony, interfejs pomocniczy jest inicjowany w ramach usługi ***nx_ip_interface_attach*** .
+Jeśli wątek IP nie jest jeszcze uruchomiony, interfejs pomocniczy jest inicjowany jako ***część nx_ip_interface_attach*** usługi.
 
-*ip_ptr musi wskazywać prawidłową strukturę adresu IP NetX.*
+*ip_ptr musi wskazać prawidłową strukturę adresów IP NetX.*
 
-- *Należy skonfigurować **NX_MAX_PHYSICAL_INTERFACES** dla liczby interfejsów sieciowych dla wystąpienia protokołu IP. Wartość domyślna to 1.*
+- ***NX_MAX_PHYSICAL_INTERFACES** należy skonfigurować dla liczby interfejsów sieciowych dla wystąpienia adresu IP. Wartość domyślna to jedna.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **INTERFACE_NAME** Wskaźnik do ciągu nazwy interfejsu.
-- **IP_address** Adres IP urządzenia w kolejności bajtów hosta.
+- **interface_name** Wskaźnik do ciągu nazwy interfejsu.
+- **ip_address** Adres IP urządzenia w kolejności bajtów hosta.
 - **network_mask** Maska sieci urządzenia w kolejności bajtów hosta.
 - **ip_link_driver** Sterownik Ethernet dla interfejsu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Wpis **NX_SUCCESS** (0x00) jest dodawany do statycznej tabeli routingu.
-- **NX_NO_MORE_ENTRIES** (0X17) Maksymalna liczba interfejsów.
-- Przekroczono **NX_MAX_PHYSICAL_INTERFACES** .
-- **NX_DUPLICATED_ENTRY** (0x52) podany adres IP jest już używany w tym wystąpieniu adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowe dane wejściowe adresu IP.
+- **NX_SUCCESS** (0x00) Entry jest dodawany do tabeli routingu statycznego.
+- **NX_NO_MORE_ENTRIES** (0x17) Maksymalna liczba interfejsów.
+- **NX_MAX_PHYSICAL_INTERFACES** zostanie przekroczony.
+- **NX_DUPLICATED_ENTRY** (0x52) Podany adres IP jest już używany w tym wystąpieniu adresu IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowe dane wejściowe adresu IP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2185,7 +2185,7 @@ status = nx_ip_interface_attach(ip_ptr, “secondary_port”,
 
 ## <a name="nx_ip_interface_info_get"></a>nx_ip_interface_info_get
 
-Pobierz parametry interfejsu sieciowego
+Pobieranie parametrów interfejsu sieciowego
 
 
 ### <a name="prototype"></a>Prototype
@@ -2206,31 +2206,31 @@ UINT nx_ip_interface_info_get(
 
 Ta usługa pobiera informacje o parametrach sieci dla określonego interfejsu sieciowego. Wszystkie dane są pobierane w kolejności bajtów hosta.
 
-*ip_ptr musi wskazywać prawidłową strukturę adresu IP NetX. Określony interfejs, jeśli nie jest interfejsem podstawowym, musi być wcześniej dołączony do wystąpienia IP.*
+*ip_ptr musi wskazać prawidłową strukturę adresów IP NetX. Określony interfejs, jeśli nie interfejs podstawowy, musi być wcześniej dołączony do wystąpienia adresu IP.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 - **interface_index** Indeks określający interfejs sieciowy.
-- **INTERFACE_NAME** Wskaźnik do buforu, który zawiera nazwę interfejsu sieciowego.
-- **IP_address** Wskaźnik do lokalizacji docelowej dla adresu IP interfejsu.
-- **network_mask** Wskaźnik do miejsca docelowego dla maski sieci.
+- **interface_name** Wskaźnik do buforu, który zawiera nazwę interfejsu sieciowego.
+- **ip_address** Wskaźnik do miejsca docelowego adresu IP interfejsu.
+- **network_mask** Wskaźnik do miejsca docelowego maski sieci.
 - **mtu_size** Wskaźnik do miejsca docelowego dla maksymalnej jednostki transferu dla tego interfejsu.
-- **physical_address_msw** Wskaźnik do miejsca docelowego dla pierwszych 16 bitów adresu MAC urządzenia.
+- **physical_address_msw** Wskaźnik do miejsca docelowego dla 16 bitów górnego adresu MAC urządzenia.
 - **physical_address_lsw** Wskaźnik do miejsca docelowego dla niższych 32 bitów adresu MAC urządzenia.
 
 
 ### <a name="return-values"></a>Wartości zwrócone
-- Uzyskano informacje o interfejsie **NX_SUCCESS** (0x00).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
-- **NX_INVALID_INTERFACE** (0X4C) Nieprawidłowy wskaźnik adresu IP.
-- Usługa **NX_CALLER_ERROR** (0x11) nie jest wywoływana z inicjalizacji systemu lub kontekstu wątku.
+- **NX_SUCCESS** (0x00) Interfejs zostały uzyskane.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe dane wejściowe wskaźnika.
+- **NX_INVALID_INTERFACE** (0x4C) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Usługa nie jest wywoływana z inicjowania systemu lub kontekstu wątku.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2260,7 +2260,7 @@ status = nx_ip_interface_info_get(ip_ptr, INTERFACE_INDEX,
 
 ## <a name="nx_ip_interface_status_check"></a>nx_ip_interface_status_check
 
-Sprawdź stan wystąpienia adresu IP
+Sprawdzanie stanu wystąpienia adresu IP
 
 
 ### <a name="prototype"></a>Prototype
@@ -2282,7 +2282,7 @@ Ta usługa sprawdza i opcjonalnie czeka na określony stan interfejsu sieciowego
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 - **interface_index** Numer indeksu interfejsu
-- **needed_status** Żądany stan adresu IP, zdefiniowany w postaci mapy bitowej, w następujący sposób:
+- **needed_status** Żądany stan adresu IP zdefiniowany w postaci mapy bitowej w następujący sposób:
     - NX_IP_INITIALIZE_DONE (0x0001)
     - NX_IP_ADDRESS_RESOLVED (0x0002)
     - NX_IP_LINK_ENABLED (0x0004)
@@ -2293,25 +2293,25 @@ Ta usługa sprawdza i opcjonalnie czeka na określony stan interfejsu sieciowego
     - NX_IP_RARP_COMPLETE (0x0080)
     - NX_IP_INTERFACE_LINK_ENABLED (0x0100)
 - **actual_status** Wskaźnik do miejsca docelowego rzeczywistego zestawu bitów.
-- **WAIT_OPTION** Definiuje, w jaki sposób działa usługa, jeśli żądane bity stanu są niedostępne. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **wait_option** Definiuje zachowanie usługi, jeśli żądane bity stanu są niedostępne. Opcje oczekiwania są zdefiniowane w następujący sposób:
     - NX_NO_WAIT (0x00000000)
     - NX_WAIT_FOREVER (0xFFFFFFFF)
-    - wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+    - wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Sprawdzanie stanu IP **NX_SUCCESS** (0x00) powiodło się.
-- Żądanie stanu **NX_NOT_SUCCESSFUL** (0x43) nie było spełnione w określonym limicie czasu.
-- Wskaźnik IP **NX_PTR_ERROR** (0x07) ma wartość lub jest nieprawidłowy lub rzeczywisty wskaźnik stanu jest nieprawidłowy.
-- **NX_OPTION_ERROR** (0X0a) Nieprawidłowa opcja stanu.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Sprawdzanie stanu adresu IP powiodło się.
+- **NX_NOT_SUCCESSFUL** (0x43) Żądanie stanu nie zostało spełnione w określonym czasie.
+- **NX_PTR_ERROR** (0x07) wskaźnik IP jest lub stał się nieprawidłowy lub rzeczywisty wskaźnik stanu jest nieprawidłowy.
+- **NX_OPTION_ERROR** (0x0a) Nieprawidłowa potrzebna opcja stanu.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 - **NX_INVALID_INTERFACE** (0x4C) Interface_index jest poza zakresem. lub interfejs jest nieprawidłowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2335,7 +2335,7 @@ status = nx_ip_interface_status_check(&ip_0, 1, NX_IP_LINK_ENABLED,
 
 ## <a name="nx_ip_link_status_change_notify_set"></a>nx_ip_link_status_change_notify_set
 
-Ustaw funkcję wywołania zwrotnego powiadomienia o zmianie stanu łącza
+Ustawianie funkcji wywołania zwrotnego powiadamiania o zmianie stanu linku
 
 ### <a name="prototype"></a>Prototype
 
@@ -2347,26 +2347,26 @@ UINT nx_ip_link_status_change_notify_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia skonfigurowanie funkcji wywołania zwrotnego powiadomienia o zmianie stanu łącza. Procedura *link_status_change_notify* podana przez użytkownika jest wywoływana, gdy zostanie zmieniony stan podstawowego lub pomocniczego interfejsu (na przykład adres IP jest zmieniany). Jeśli *link_status_change_notify* ma wartość null, funkcja wywołania zwrotnego powiadomienia o zmianie stanu łącza jest wyłączona.
+Ta usługa konfiguruje funkcję wywołania zwrotnego powiadamiania o zmianie stanu łącza. Procedura zarządzania  link_status_change_notify jest wywoływana, gdy zmienia się stan interfejsu podstawowego lub pomocniczego (na przykład adres IP jest zmieniany). Jeśli *link_status_change_notify* ma wartość NULL, funkcja powiadamiania o zmianie stanu linku jest wyłączona.
 
 ### <a name="parameters"></a>Parametry
 
-- **ip_ptr** Wskaźnik bloku kontroli adresów IP
-- **link_status_change_notify** Funkcja wywołania zwrotnego dostarczonego przez użytkownika, która ma być wywoływana po zmianie interfejsu fizycznego.
+- **ip_ptr** Wskaźnik bloku sterowania ip
+- **link_status_change_notify** Funkcja wywołania zwrotnego dostarczana przez użytkownika, która ma być wywoływana po zmianie interfejsu fizycznego.
 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślne ustawienie **NX_SUCCESS** (0x00)
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik bloku kontroli adresów IP lub Nowy wskaźnik adresu fizycznego
-- Usługa **NX_CALLER_ERROR** (0x11) nie jest wywoływana z inicjalizacji systemu lub kontekstu wątku.
+- **NX_SUCCESS** (0x00) Zestaw pomyślny
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik bloku sterowania IP lub nowy wskaźnik adresu fizycznego
+- **NX_CALLER_ERROR** (0x11) Usługa nie jest wywoływana z inicjowania systemu lub kontekstu wątku.
 
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2389,7 +2389,7 @@ status = nx_ip_link_status_change_notify_set(&ip_0, my_change_cb);
 
 ## <a name="nx_ip_raw_packet_disable"></a>nx_ip_raw_packet_disable
 
-Wyłącz wysyłanie/otrzymywanie pakietów pierwotnych
+Wyłączanie wysyłania/odbierania nieprzetworzonych pakietów
 
 
 ### <a name="prototype"></a>Prototype
@@ -2400,7 +2400,7 @@ UINT nx_ip_raw_packet_disable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyłącza przekazywanie i odbieranie nieprzetworzonych pakietów IP dla tego wystąpienia IP. Jeśli usługa pakietów RAW była wcześniej włączona, a w kolejce odbierania istnieją pakiety RAW, ta usługa zwolni wszystkie Odebrane pakiety pierwotne.
+Ta usługa wyłącza przesyłanie i odbiór nieprzetworzonych pakietów IP dla tego wystąpienia adresu IP. Jeśli usługa pakietów pierwotnych została wcześniej włączona, a w kolejce odbierania znajdują się nieprzetworzone pakiety, usługa ta zwalnia wszystkie odebrane nieprzetworzone pakiety.
 
 ### <a name="parameters"></a>Parametry
 
@@ -2408,15 +2408,15 @@ Ta usługa wyłącza przekazywanie i odbieranie nieprzetworzonych pakietów IP d
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie wyłączono pakiet pierwotny IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne wyłączenie nieprzetworzonych pakietów IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2437,7 +2437,7 @@ status = nx_ip_raw_packet_disable(&ip_0);
 
 ## <a name="nx_ip_raw_packet_enable"></a>nx_ip_raw_packet_enable
 
-Włącz przetwarzanie pakietów nieprzetworzonych
+Włączanie przetwarzania nieprzetworzonych pakietów
 
 
 ### <a name="prototype"></a>Prototype
@@ -2448,7 +2448,7 @@ UINT nx_ip_raw_packet_enable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia przekazywanie i odbieranie nieprzetworzonych pakietów IP dla tego wystąpienia IP. Przychodzące pakiety TCP, UDP, ICMP i IGMP są nadal przetwarzane przez NetX. Pakiety z nieznanymi typami protokołów warstwy wyższej są przetwarzane przez nieprzetworzoną procedurę odbierania pakietów.
+Ta usługa umożliwia przesyłanie i odbiór nieprzetworzonych pakietów IP dla tego wystąpienia adresu IP. Przychodzące pakiety TCP, UDP, ICMP i IGMP są nadal przetwarzane przez netX. Pakiety z nieznanymi typami protokołów górnej warstwy są przetwarzane przez nieprzetworzoną procedurę odbioru pakietów.
 
 ### <a name="parameters"></a>Parametry
 
@@ -2456,15 +2456,15 @@ Ta usługa umożliwia przekazywanie i odbieranie nieprzetworzonych pakietów IP 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne włączenie pakietów pierwotnych adresów IP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Włączenie pakietu nieprzetworzonych adresów IP pomyślne.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2485,7 +2485,7 @@ status = nx_ip_raw_packet_enable(&ip_0);
 
 ## <a name="nx_ip_raw_packet_interface_send"></a>nx_ip_raw_packet_interface_send
 
-Wyślij pakiet Raw IP za poorednictwem określonego interfejsu sieciowego
+Wysyłanie nieprzetworzonych pakietów IP za pośrednictwem określonego interfejsu sieciowego
 
 ### <a name="prototype"></a>Prototype
 
@@ -2500,37 +2500,37 @@ UINT nx_ip_raw_packet_interface_send(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pakiet pierwotnego adresu IP do docelowego adresu IP przy użyciu określonego lokalnego adresu IP jako adresu źródłowego i za pośrednictwem skojarzonego interfejsu sieciowego. Należy zauważyć, że ta procedura wraca natychmiast, a tym samym nie wiadomo, czy pakiet IP został faktycznie wysłany. Sterownik sieciowy będzie odpowiedzialny za wydanie pakietu, gdy transmisja zostanie zakończona. Ta usługa różni się od innych usług, ponieważ nie ma możliwości znajomości, czy pakiet został faktycznie wysłany. Może on zostać utracony przez Internet.
+Ta usługa wysyła nieprzetworzony pakiet IP do docelowego adresu IP przy użyciu określonego lokalnego adresu IP jako adresu źródłowego i za pośrednictwem skojarzonego interfejsu sieciowego. Należy zauważyć, że ta procedura zwraca natychmiast i dlatego nie jest wiadomo, czy pakiet IP został rzeczywiście wysłany. Sterownik sieciowy będzie odpowiedzialny za zwolnienie pakietu po zakończeniu transmisji. Ta usługa różni się od innych usług tym, że nie ma możliwości, aby sprawdzić, czy pakiet został rzeczywiście wysłany. Może on zostać zgubiony w Internecie.
 
-*Należy pamiętać, że przetwarzanie Raw IP musi być włączone.*
+*Należy pamiętać, że przetwarzanie nieprzetworzonych adresów IP musi być włączone.*
 
-*Ta usługa jest podobna do **nx_ip_raw_packet_send**, z tą różnicą, że ta usługa umożliwia aplikacji wysyłanie pakietów pierwotnych adresów IP z określonych interfejsów fizycznych.*
+*Ta usługa jest podobna do **nx_ip_raw_packet_send**, z tą różnicą, że ta usługa umożliwia aplikacji wysyłanie nieprzetworzonych pakietów IP z określonych interfejsów fizycznych.*
 
 ### <a name="parameters"></a>Parametry
 
-- **ip_ptr** Wskaźnik do wcześniej utworzonego zadania IP.
-- **packet_ptr** Wskaźnik do pakietu do przesłania.
-- **destination_ip** Adres IP do wysłania pakietu.
-- **address_index** Indeks adresu interfejsu, dla którego ma zostać wysłany pakiet.
-- **Type_of_Service** Typ usługi dla pakietu.
+- **ip_ptr** Wskaźnik do wcześniej utworzonego zadania adresu IP.
+- **packet_ptr** Wskaźnik do pakietu, który ma być przesyłany.
+- **destination_ip** Adres IP do wysyłania pakietów.
+- **address_index** Indeks adresu interfejsu do wysyłania pakietów.
+- **type_of_service** Typ usługi pakietu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie przesłano pakiet **NX_SUCCESS** (0x00).
-- **NX_IP_ADDRESS_ERROR** (0X21) nie jest dostępny odpowiedni interfejs wychodzący.
-- **NX_NOT_ENABLED** (0x14) przetwarzanie pakietów Raw IP nie jest włączone.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
-- **NX_OPTION_ERROR** (0x0A) określono nieprawidłowy typ usługi.
-- **NX_OVERFLOW** (0X03) Nieprawidłowy wskaźnik dołączania do pakietu.
-- **NX_UNDERFLOW** (0X02) Nieprawidłowy wskaźnik dołączania do pakietu.
-- **NX_INVALID_INTERFACE** (0x4C) określono nieprawidłowy indeks interfejsu.
+- **NX_SUCCESS** (0x00) pakiet został pomyślnie przesłany.
+- **NX_IP_ADDRESS_ERROR** (0x21) Brak odpowiedniego interfejsu wychodzącego.
+- **NX_NOT_ENABLED** (0x14) Nieprzetworzone przetwarzanie pakietów IP nie jest włączone.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_OPTION_ERROR** (0x0A) Określono nieprawidłowy typ usługi.
+- **NX_OVERFLOW** (0x03) Wskaźnik zawiera nieprawidłowy pakiet.
+- **NX_UNDERFLOW** (0x02) Nieprawidłowy wskaźnik wstępnie dołączanych pakietów.
+- **NX_INVALID_INTERFACE** (0x4C) Określono nieprawidłowy indeks interfejsu.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2553,7 +2553,7 @@ status = nx_ip_raw_packet_interface_send(ip_ptr, packet_ptr,
 
 ## <a name="nx_ip_raw_packet_receive"></a>nx_ip_raw_packet_receive
 
-Odbierz pakiet pierwotnego adresu IP
+Odbieranie nieprzetworzonych pakietów IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -2566,33 +2566,33 @@ UINT nx_ip_raw_packet_receive(
 
 ### <a name="description"></a>Opis
 
-Ta usługa odbiera pakiet Raw IP od określonego wystąpienia IP. Jeśli istnieją pakiety IP w kolejce odbierania pakietów nieprzetworzonych, pierwszy (najstarszy) pakiet jest zwracany do obiektu wywołującego. W przeciwnym razie, jeśli żaden pakiet nie jest dostępny, obiekt wywołujący może zawiesić się zgodnie z opcją oczekiwania.
+Ta usługa odbiera nieprzetworzone pakiety IP z określonego wystąpienia adresu IP. Jeśli w kolejce odbierania nieprzetworzonych pakietów znajdują się pakiety IP, pierwszy (najstarszy) pakiet jest zwracany do wywołującego. W przeciwnym razie, jeśli pakiety nie są dostępne, wywołujący może wstrzymać określone przez opcję oczekiwania.
 
-*Jeśli NX_SUCCESS, jest zwracana, aplikacja jest odpowiedzialna za zwolnienie odebranego pakietu, gdy nie jest już potrzebne.*
+*Jeśli NX_SUCCESS, aplikacja jest odpowiedzialna za zwolnienie odebranego pakietu, gdy nie jest już potrzebny.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **packet_ptr** Wskaźnik do wskaźnika, aby umieścić odebrany pakiet pierwotnego adresu IP w programie.
-- **WAIT_OPTION** Definiuje, w jaki sposób działa usługa, jeśli nie ma dostępnych pakietów pierwotnych adresów IP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **packet_ptr** Wskaźnik do wskaźnika do miejsca odebranego nieprzetworzonych pakietów IP.
+- **wait_option** Definiuje zachowanie usługi w przypadku, gdy nie ma dostępnych nieprzetworzonych pakietów IP. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) odbieranie nieprzetworzonych pakietów IP.
-- **NX_NO_PACKET** (0X01) Brak dostępnego pakietu.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie tx_thread_wait_abort.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub pakietu zwrotnego.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS** (0x00) Pomyślne odbieranie nieprzetworzonych pakietów IP.
+- **NX_NO_PACKET** (0x01) Żaden pakiet nie był dostępny.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy adres IP lub wskaźnik pakietów powrotnych.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2614,7 +2614,7 @@ status = nx_ip_raw_packet_receive(&ip_0, &packet_ptr, 4);
 
 ## <a name="nx_ip_raw_packet_send"></a>nx_ip_raw_packet_send
 
-Wyślij pakiet Raw IP
+Wysyłanie nieprzetworzonych pakietów IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -2628,18 +2628,18 @@ UINT nx_ip_raw_packet_send(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pakiet Raw IP do docelowego adresu IP. Należy zauważyć, że ta procedura wraca natychmiast i dlatego nie wiadomo, czy pakiet IP został faktycznie wysłany. Sterownik sieciowy będzie odpowiedzialny za wydanie pakietu, gdy transmisja zostanie zakończona.
+Ta usługa wysyła nieprzetworzonych pakietów IP do docelowego adresu IP. Należy pamiętać, że ta procedura zwraca się natychmiast i dlatego nie wiadomo, czy pakiet IP został rzeczywiście wysłany. Sterownik sieciowy będzie odpowiedzialny za zwolnienie pakietu po zakończeniu transmisji.
 
-W przypadku systemu wielodostępnego NetX używa docelowego adresu IP do znalezienia odpowiedniego interfejsu sieciowego i używa adresu IP interfejsu jako adresu źródłowego. Jeśli docelowy adres IP jest emisji lub multiemisji, używany jest pierwszy prawidłowy interfejs. Aplikacje używają ***nx_ip_raw_packet_interface_send*** w tym przypadku.
+W przypadku systemu wieloadresowego netX używa docelowego adresu IP do znalezienia odpowiedniego interfejsu sieciowego i używa adresu IP interfejsu jako adresu źródłowego. Jeśli docelowy adres IP jest rozgłaszany lub multiemisja, używany jest pierwszy prawidłowy interfejs. W tym ***nx_ip_raw_packet_interface_send*** aplikacje używają tej funkcji.
 
-*Jeśli błąd nie zostanie zwrócony, aplikacja nie powinna zwolnić pakietu po tym wywołaniu. Wykonanie tej operacji spowoduje nieprzewidywalne wyniki, ponieważ sterownik sieciowy zwolni pakiet po przekazaniu.*
+*Jeśli nie zostanie zwrócony błąd, aplikacja nie powinna zwalniać pakietu po tym wywołaniu. Spowoduje to nieprzewidywalne wyniki, ponieważ sterownik sieciowy zwolni pakiet po zakończeniu transmisji.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **packet_ptr** Wskaźnik na pakiet Raw IP do wysłania.
-- **destination_ip** Docelowy adres IP, który może być określonym adresem IP hosta, emisją sieci, pętlą wewnętrzną lub adresem multiemisji.
-- **Type_of_Service** Definiuje typ usługi do transmisji, wartości prawne są następujące:
+- **packet_ptr** Wskaźnik do nieprzetworzonych pakietów IP do wysłania.
+- **destination_ip** Docelowy adres IP, który może być określonym adresem IP hosta, emisji sieciowej, wewnętrznej pętli zwrotnej lub adresu multiemisji.
+- **type_of_service** Definiuje typ usługi transmisji, a wartości prawne są następujące:
 - NX_IP_NORMAL (0x00000000)
 - NX_IP_MIN_DELAY (0x00100000)
 - NX_IP_MAX_DATA (0x00080000)
@@ -2649,20 +2649,20 @@ W przypadku systemu wielodostępnego NetX używa docelowego adresu IP do znalezi
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie zainicjowano wysyłanie pakietów pierwotnych adresów IP.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP.
-- Funkcja Raw IP **NX_NOT_ENABLED** (0x14) nie jest włączona.
-- **NX_OPTION_ERROR** (0X0a) Nieprawidłowy typ usługi.
-- **NX_UNDERFLOW** (0X02) nie ma wystarczającej ilości miejsca do dołączania nagłówka IP do pakietu.
-- Wskaźnik dołączania pakietu **NX_OVERFLOW** (0x03) jest nieprawidłowy.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub pakietu.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Zainicjowano wysyłanie nieprzetworzonych pakietów IP pomyślnie.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP.
+- **NX_NOT_ENABLED** (0x14) Nieprzetworzone adresy IP nie są włączone.
+- **NX_OPTION_ERROR** (0x0A) Nieprawidłowy typ usługi.
+- **NX_UNDERFLOW** (0x02) Za mało miejsca na dołączanie nagłówka IP pakietu.
+- **NX_OVERFLOW** (0x03) Wskaźnik dołączania pakietów jest nieprawidłowy.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy adres IP lub wskaźnik pakietu.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2700,31 +2700,31 @@ UINT nx_ip_static_route_add(
 
 ### <a name="description"></a>Opis
 
-Ta usługa dodaje wpis do statycznej tabeli routingu. Należy pamiętać, że adres *next_hop* musi być bezpośrednio dostępny z jednego z lokalnych urządzeń sieciowych.
+Ta usługa dodaje wpis do tabeli routingu statycznego. Należy *pamiętać, że next_hop* musi być bezpośrednio dostępny z jednego z lokalnych urządzeń sieciowych.
 
-*Należy zauważyć, że ip_ptr musi wskazywać prawidłową strukturę IP NetX, a Biblioteka NetX musi być skompilowana przy użyciu NX_ENABLE_IP_STATIC_ROUTING zdefiniowanej do korzystania z tej usługi. Domyślnie NetX jest zbudowany bez zdefiniowanego NX_ENABLE_IP_STATIC_ROUTING.*
+*Pamiętaj, ip_ptr musi wskazać prawidłową strukturę adresów IP NetX, a biblioteka NetX musi zostać s zbudowana przy użyciu NX_ENABLE_IP_STATIC_ROUTING, aby można było korzystać z tej usługi. Domyślnie netx jest łączona bez NX_ENABLE_IP_STATIC_ROUTING zdefiniowanych.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 - **network_address** Docelowy adres sieciowy w kolejności bajtów hosta
 - **net_mask** Docelowa maska sieci w kolejności bajtów hosta
-- **next_hop** Adres następnego skoku dla sieci docelowej w kolejności bajtów hosta
+- **next_hop** Adres następnego przeskoku dla sieci docelowej w kolejności bajtów hosta
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Wpis **NX_SUCCESS** (0x00) jest dodawany do statycznej tabeli routingu.
-- Tabela routingu statycznego **NX_OVERFLOW** (0x03) jest pełna.
-- **NX_NOT_SUPPORTED** (0X4B) Ta funkcja nie jest skompilowana w programie.
-- **NX_IP_ADDRESS_ERROR** (0X21) następnym przeskokiem nie jest bezpośrednio dostępny za pośrednictwem interfejsów lokalnych.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_PTR_ERROR** (0X07) nieprawidłowy wskaźnik ip_ptr.
+- **NX_SUCCESS** (0x00) Entry jest dodawany do tabeli routingu statycznego.
+- **NX_OVERFLOW** (0x03) Statyczna tabela routingu jest pełna.
+- **NX_NOT_SUPPORTED** (0x4B) Ta funkcja nie jest kompilowana.
+- **NX_IP_ADDRESS_ERROR** (0x21) Następny przeskok nie jest bezpośrednio dostępny za pośrednictwem interfejsów lokalnych.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy ip_ptr wskaźnika.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2747,7 +2747,7 @@ status = nx_ip_static_route_add(ip_ptr, IP_ADDRESS(192,168,10,0),
 
 ## <a name="nx_ip_static_route_delete"></a>nx_ip_static_route_delete
 
-Usuń trasę statyczną z tabeli routingu
+Usuwanie trasy statycznej z tabeli routingu
 
 ### <a name="prototype"></a>Prototype
 
@@ -2760,9 +2760,9 @@ UINT nx_ip_static_route_delete(
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wpis z statycznej tabeli routingu.
+Ta usługa usuwa wpis z tabeli routingu statycznego.
 
-*Należy zauważyć, że ip_ptr musi wskazywać prawidłową strukturę IP NetX, a Biblioteka NetX musi być skompilowana przy użyciu NX_ENABLE_IP_STATIC_ROUTING zdefiniowanej do korzystania z tej usługi. Domyślnie NetX jest zbudowany bez zdefiniowanego NX_ENABLE_IP_STATIC_ROUTING.*
+*Pamiętaj, ip_ptr musi wskazać prawidłową strukturę adresów IP NetX, a biblioteka NetX musi zostać s zbudowana przy użyciu NX_ENABLE_IP_STATIC_ROUTING, aby można było korzystać z tej usługi. Domyślnie netx jest łączona bez NX_ENABLE_IP_STATIC_ROUTING zdefiniowanych.*
 
 ### <a name="parameters"></a>Parametry
 
@@ -2772,9 +2772,9 @@ Ta usługa usuwa wpis z statycznej tabeli routingu.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2795,7 +2795,7 @@ status = nx_ip_static_route_delete(ip_ptr,
 
 ## <a name="nx_ip_status_check"></a>nx_ip_status_check
 
-Sprawdź stan wystąpienia adresu IP
+Sprawdzanie stanu wystąpienia adresu IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -2809,12 +2809,12 @@ UINT nx_ip_status_check(
 
 ### <a name="description"></a>Opis
 
-Ta usługa sprawdza i opcjonalnie czeka na określony stan podstawowego interfejsu sieciowego utworzonego wcześniej wystąpienia adresu IP. Aby uzyskać stan w interfejsach pomocniczych, aplikacje używają ***nx_ip_interface_status_check usługi.***
+Ta usługa sprawdza i opcjonalnie czeka na określony stan podstawowego interfejsu sieciowego utworzonego wcześniej wystąpienia adresu IP. Aby uzyskać stan w interfejsach pomocniczych, aplikacje muszą używać usługi ***nx_ip_interface_status_check.***
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **needed_status** Żądany stan adresu IP, zdefiniowany w postaci mapy bitowej, w następujący sposób:
+- **needed_status** Żądany stan adresu IP zdefiniowany w postaci mapy bitowej w następujący sposób:
 - NX_IP_INITIALIZE_DONE (0x0001)
 - NX_IP_ADDRESS_RESOLVED (0x0002)
 - NX_IP_LINK_ENABLED (0x0004)
@@ -2825,24 +2825,24 @@ Ta usługa sprawdza i opcjonalnie czeka na określony stan podstawowego interfej
 - NX_IP_RARP_COMPLETE (0x0080)
 - NX_IP_INTERFACE_LINK_ENABLED (0x0100)
 - **actual_status** Wskaźnik do miejsca docelowego rzeczywistego zestawu bitów.
-- **WAIT_OPTION** Definiuje, w jaki sposób działa usługa, jeśli żądane bity stanu są niedostępne. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **wait_option** Definiuje zachowanie usługi, jeśli żądane bity stanu są niedostępne. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Sprawdzanie stanu IP **NX_SUCCESS** (0x00) powiodło się.
-- Żądanie stanu **NX_NOT_SUCCESSFUL** (0x43) nie było spełnione w określonym limicie czasu.
-- Wskaźnik IP **NX_PTR_ERROR** (0x07) ma wartość lub jest nieprawidłowy lub rzeczywisty wskaźnik stanu jest nieprawidłowy.
-- **NX_OPTION_ERROR** (0X0a) Nieprawidłowa opcja stanu.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Sprawdzanie stanu adresu IP powiodło się.
+- **NX_NOT_SUCCESSFUL** (0x43) Stan nie został spełniony w określonym czasie.
+- **NX_PTR_ERROR** (0x07) wskaźnik IP jest lub stał się nieprawidłowy lub rzeczywisty wskaźnik stanu jest nieprawidłowy.
+- **NX_OPTION_ERROR** (0x0a) Nieprawidłowa potrzebna opcja stanu.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2860,15 +2860,15 @@ status = nx_ip_status_check(&ip_0, NX_IP_LINK_ENABLED,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
-- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
+- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_disable,
 - nx_ip_forwarding_enable, nx_ip_fragment_disable,
 - nx_ip_fragment_enable, nx_ip_info_get, nx_system_initialize
 
 ## <a name="nx_packet_allocate"></a>nx_packet_allocate
 
-Przydziel pakiet z określonej puli
+Przydzielanie pakietu z określonej puli
 
 ### <a name="prototype"></a>Prototype
 
@@ -2882,33 +2882,33 @@ UINT nx_packet_allocate(
 
 ### <a name="description"></a>Opis
 
-Ta usługa przydziela pakiet z określonej puli i dostosowuje wskaźnik dołączania w pakiecie zgodnie z typem określonego pakietu. Jeśli pakiet nie jest dostępny, usługa zawiesza się zgodnie z podaną opcją oczekiwania.
+Ta usługa przydziela pakiet z określonej puli i dostosowuje dołączany wskaźnik w pakiecie zgodnie z określonym typem pakietu. Jeśli pakiet nie jest dostępny, usługa jest wstrzymywana zgodnie z podaną opcją oczekiwania.
 
 ### <a name="parameters"></a>Parametry
 
 - **pool_ptr** Wskaźnik do wcześniej utworzonej puli pakietów.
-- **packet_ptr** Wskaźnik do wskaźnika przydzieloną wskaźnik pakietu.
-- **packet_type** Definiuje typ żądanego pakietu. Zobacz sekcję "pule pakietów" na stronie 49 w rozdziale 3, aby zapoznać się z listą obsługiwanych typów pakietów.
-- **WAIT_OPTION** Definiuje czas oczekiwania w taktach, jeśli w puli pakietów nie ma dostępnych pakietów. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **packet_ptr** Wskaźnik do wskaźnika wskaźnika przydzielonego pakietu.
+- **packet_type** Definiuje typ żądanego pakietu. Listę obsługiwanych typów pakietów można znaleźć w części "Pule pakietów" na stronie 49 w rozdziale 3.
+- **wait_option** Definiuje czas oczekiwania w taktach, jeśli w puli pakietów nie ma dostępnych pakietów. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślna alokacja pakietu **NX_SUCCESS** (0x00).
-- **NX_NO_PACKET** (0X01) Brak dostępnego pakietu.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie tx_thread_wait_abort.
-- Rozmiar pakietu **NX_INVALID_PARAMETERS** (0x4D) nie może obsługiwać protokołu.
-- **NX_OPTION_ERROR** (0X0a) Nieprawidłowy typ pakietu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowa Pula lub wskaźnik powrotu pakietu.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowa opcja oczekiwania z niewątku.
+- **NX_SUCCESS** (0x00) Pomyślne przydzielenie pakietu.
+- **NX_NO_PACKET** (0x01) Brak dostępnych pakietów.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort.
+- **NX_INVALID_PARAMETERS** (0x4D) Rozmiar pakietu nie obsługuje protokołu.
+- **NX_OPTION_ERROR** (0x0A) Nieprawidłowy typ pakietu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik powrotu puli lub pakietu.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowa opcja oczekiwania z nieprzeczytanego.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR (sterowniki sieciowe aplikacji). Opcja oczekiwania musi być NX_NO_WAIT, gdy jest używana w trybie ISR lub w kontekście czasomierza.
+Inicjowanie, wątki, czasomierze i isr (sterowniki sieciowe aplikacji). Opcja oczekiwania musi być NX_NO_WAIT używana w isr lub w kontekście czasomierza.
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2928,13 +2928,13 @@ status = nx_packet_allocate(&pool_0, &packet_ptr, NX_UDP_PACKET, 5);
 
 - nx_packet_copy, nx_packet_data_append,
 - nx_packet_data_extract_offset, nx_packet_data_retrieve,
-- nx_packet_length_get, nx_packet_pool_create, nx_packet_pool_delete
+- nx_packet_length_get, nx_packet_pool_create, nx_packet_pool_delete,
 - nx_packet_pool_info_get, nx_packet_release,
 - nx_packet_transmit_release
 
 ## <a name="nx_packet_copy"></a>nx_packet_copy
 
-Kopiuj pakiet
+Kopiowanie pakietu
 
 ### <a name="prototype"></a>Prototype
 
@@ -2948,34 +2948,34 @@ UINT nx_packet_copy(
 
 ### <a name="description"></a>Opis
 
-Ta usługa kopiuje informacje z dostarczonego pakietu do jednego lub kilku nowych pakietów, które są przydzielono z dostarczonej puli pakietów. Jeśli to się powiedzie, wskaźnik do nowego pakietu jest zwracany w miejscu docelowym wskazywanym przez **new_packet_ptr**.
+Ta usługa kopiuje informacje zawarte w dostarczonym pakiecie do co najmniej jednego nowego pakietu przydzielonego z podanej puli pakietów. Jeśli to się powiedzie, wskaźnik do nowego pakietu jest zwracany w miejscu docelowym wskazywanym przez new_packet_ptr **.**
 
 ### <a name="parameters"></a>Parametry
 
-- **packet_ptr** Wskaźnik na pakiet źródłowy.
-- **new_packet_ptr** Wskaźnik do miejsca docelowego, do którego ma zostać zwrócony wskaźnik do nowej kopii pakietu.
-- **pool_ptr** Wskaźnik do wcześniej utworzonej puli pakietów, która jest używana do przydzielenia jednego lub większej liczby pakietów do kopiowania.
-- **WAIT_OPTION** Definiuje, w jaki sposób usługa czeka, jeśli nie ma dostępnych pakietów. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **packet_ptr** Wskaźnik do pakietu źródłowego.
+- **new_packet_ptr** Wskaźnik do miejsca docelowego, gdzie ma być zwracany wskaźnik do nowej kopii pakietu.
+- **pool_ptr** Wskaźnik do wcześniej utworzonej puli pakietów używanej do przydzielania co najmniej jednego pakietu dla kopii.
+- **wait_option** Definiuje, jak usługa czeka, jeśli nie ma dostępnych pakietów. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
-- Pomyślna kopia pakietu **NX_SUCCESS** (0x00).
-- Pakiet **NX_NO_PACKET** (0x01) nie jest dostępny do kopiowania.
-- **NX_INVALID_PACKET** (0X12) pusty pakiet źródłowy lub kopiowanie nie powiodło się.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie tx_thread_wait_abort.
-- Rozmiar pakietu **NX_INVALID_PARAMETERS** (0x4D) nie może obsługiwać protokołu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowa Pula, pakiet lub wskaźnik docelowy.
-- **NX_UNDERFLOW** (0X02) Nieprawidłowy wskaźnik dołączania do pakietu.
-- **NX_OVERFLOW** (0X03) Nieprawidłowy wskaźnik dołączania pakietu.
-- **NX_CALLER_ERROR** (0x11) opcja oczekiwania została określona w inicjalizacji lub w ramach procedury ISR.
+- **NX_SUCCESS** (0x00) Pomyślne skopiowanie pakietu.
+- **NX_NO_PACKET** (0x01) nie jest dostępny do kopiowania.
+- **NX_INVALID_PACKET** (0x12) Pusty pakiet źródłowy lub kopiowanie nie powiodło się.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort.
+- **NX_INVALID_PARAMETERS** (0x4D) Rozmiar pakietu nie obsługuje protokołu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowa pula, pakiet lub wskaźnik docelowy.
+- **NX_UNDERFLOW** (0x02) Nieprawidłowy wskaźnik dołączany do pakietu.
+- **NX_OVERFLOW** (0x03) Nieprawidłowy wskaźnik dołączania pakietów.
+- **NX_CALLER_ERROR** (0x11) Opcja oczekiwania została określona podczas inicjowania lub w isr.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2995,13 +2995,13 @@ status = nx_packet_copy(old_packet, &new_copy_ptr, &pool_0, 20);
 
 - nx_packet_allocate, nx_packet_data_append,
 - nx_packet_data_extract_offset, nx_packet_data_retrieve,
-- nx_packet_length_get, nx_packet_pool_create, nx_packet_pool_delete
+- nx_packet_length_get, nx_packet_pool_create, nx_packet_pool_delete,
 - nx_packet_pool_info_get, nx_packet_release,
 - nx_packet_transmit_release
 
 ## <a name="nx_packet_data_append"></a>nx_packet_data_append
 
-Dołącz dane do końca pakietu
+Dołączanie danych na końcu pakietu
 
 ### <a name="prototype"></a>Prototype
 
@@ -3016,36 +3016,36 @@ UINT nx_packet_data_append(
 
 ### <a name="description"></a>Opis
 
-Ta usługa dołącza dane na końcu określonego pakietu. Dostarczony obszar danych jest kopiowany do pakietu. Jeśli jest za mało dostępnej pamięci, a funkcja pakiet łańcucha jest włączona, co najmniej jeden pakiet zostanie przydzielony do spełnienia żądania. Jeśli funkcja pakietu łańcucha nie jest włączona, zostanie zwrócona *NX_SIZE_ERROR* .
+Ta usługa dołącza dane na końcu określonego pakietu. Podany obszar danych jest kopiowany do pakietu. Jeśli nie ma wystarczającej ilości pamięci, a funkcja pakietów łańcuchowych jest włączona, co najmniej jeden pakiet zostanie przydzielony w celu spełnienia żądania. Jeśli funkcja pakietów łańcuchowych nie jest włączona, *NX_SIZE_ERROR* zwracana.
 
 ### <a name="parameters"></a>Parametry
 
 - **packet_ptr** Wskaźnik pakietu.
-- **data_start** Wskaźnik na początek obszaru danych użytkownika do dołączenia do pakietu.
+- **data_start** Wskaźnik do początku obszaru danych użytkownika, aby dołączyć do pakietu.
 - **data_size** Rozmiar obszaru danych użytkownika.
-- **pool_ptr** Wskaźnik do puli pakietów, z której ma zostać przydzielony inny pakiet, jeśli w bieżącym pakiecie nie ma wystarczającej ilości miejsca.
-- **WAIT_OPTION** Definiuje, w jaki sposób działa usługa, jeśli nie ma dostępnych pakietów. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **pool_ptr** Wskaźnik do puli pakietów, z której ma być przydzielany inny pakiet, jeśli w bieżącym pakiecie nie ma wystarczającej ilości miejsca.
+- **wait_option** Definiuje zachowanie usługi, jeśli nie ma dostępnych pakietów. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnego dołączenia do pakietu.
-- **NX_NO_PACKET** (0X01) Brak dostępnego pakietu.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie *tx_thread_wait_abort*.
-- Rozmiar pakietu **NX_INVALID_PARAMETERS** (0x4D) nie może obsługiwać protokołu.
-- Wskaźnik prefiksu **NX_UNDERFLOW** (0x02) jest mniejszy niż początek ładunku.
-- **NX_OVERFLOW** (0x03) dołączany wskaźnik jest większy niż koniec ładunku.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowa Pula, pakiet lub wskaźnik danych.
-- **NX_SIZE_ERROR** (0X09) Nieprawidłowy rozmiar danych.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowa opcja oczekiwania z niewątku.
+- **NX_SUCCESS** (0x00) Pomyślne dołączanie pakietów.
+- **NX_NO_PACKET** (0x01) Brak dostępnych pakietów.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort *.*
+- **NX_INVALID_PARAMETERS** (0x4D) Rozmiar pakietu nie obsługuje protokołu.
+- **NX_UNDERFLOW** (0x02) Wskaźnik dołączany jest mniejszy niż początek ładunku.
+- **NX_OVERFLOW** (0x03) Wskaźnik dołączania jest większy niż koniec ładunku.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowa pula, pakiet lub wskaźnik danych.
+- **NX_SIZE_ERROR** (0x09) Nieprawidłowy rozmiar danych.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowa opcja oczekiwania z nieprzeczytanego.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR (sterowniki sieciowe aplikacji)
+Inicjowanie, wątki, czasomierze i isR (sterowniki sieciowe aplikacji)
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3062,14 +3062,14 @@ status = nx_packet_data_append(packet_ptr, "abcd", 4, &pool_0, 5);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_packet_allocate, nx_packet_copy, nx_packet_data_extract_offset
-- nx_packet_data_retrieve, nx_packet_length_get, nx_packet_pool_create
-- nx_packet_pool_delete, nx_packet_pool_info_get, nx_packet_release
+- nx_packet_allocate, nx_packet_copy, nx_packet_data_extract_offset,
+- nx_packet_data_retrieve, nx_packet_length_get, nx_packet_pool_create,
+- nx_packet_pool_delete, nx_packet_pool_info_get, nx_packet_release,
 - nx_packet_transmit_release
 
 ## <a name="nx_packet_data_extract_offset"></a>nx_packet_data_extract_offset
 
-Wyodrębnij dane z pakietu za pośrednictwem przesunięcia
+Wyodrębnianie danych z pakietu za pośrednictwem przesunięcia
 
 ### <a name="prototype"></a>Prototype
 
@@ -3084,27 +3084,27 @@ UINT nx_packet_data_extract_offset(
 
 ### <a name="description"></a>Opis
 
-Ta usługa kopiuje dane z pakietu NetX (lub łańcucha pakietów), rozpoczynając od określonego przesunięcia od wskaźnika dołączania pakietu o określonym rozmiarze w bajtach do określonego buforu. Liczba bajtów w rzeczywistości kopiowanych jest zwracana w *bytes_copied.* Ta usługa nie usuwa danych z pakietu ani nie dostosowuje wskaźnika dołączania ani innych informacji o stanie wewnętrznym.
+Ta usługa kopiuje dane z pakietu NetX (lub łańcucha pakietów) rozpoczynając od określonego przesunięcia od wskaźnika o określonym rozmiarze w bajtach do określonego buforu. Liczba rzeczywiście skopiowanych bajtów jest zwracana w *bytes_copied.* Ta usługa nie usuwa danych z pakietu ani nie dostosowuje wstępnie zawartego wskaźnika ani innych informacji o stanie wewnętrznym.
 
 ### <a name="parameters"></a>Parametry
 
 - **packet_ptr** Wskaźnik do pakietu do wyodrębnienia
-- **przesunięcie** Przesunięcie od bieżącego wskaźnika dołączania.
-- **buffer_start** Wskaźnik do początku zapisu bufora
-- **BUFFER_LENGTH** Liczba bajtów do skopiowania
-- **bytes_copied** Liczba bajtów rzeczywiście skopiowanych
+- **przesunięcie** Przesunięcie od bieżącego wstępnie otwartego wskaźnika.
+- **buffer_start** Wskaźnik do rozpoczęcia zapisywania buforu
+- **buffer_length** Liczba bajtów do skopiowania
+- **bytes_copied** Liczba rzeczywiście skopiowanych bajtów
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślna kopia pakietu **NX_SUCCESS** (0x00)
-- **NX_PACKET_OFFSET_ERROR** (0x53) podano nieprawidłową wartość przesunięcia
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik pakietu lub wskaźnik buforu
+- **NX_SUCCESS** (0x00) Pomyślne kopiowanie pakietów
+- **NX_PACKET_OFFSET_ERROR** (0x53) Po określono nieprawidłową wartość przesunięcia
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik pakietu lub wskaźnik buforu
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3122,9 +3122,9 @@ status = nx_packet_data_extract_offset(my_packet, 0, &data[0], 10,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_packet_allocate, nx_packet_copy, nx_packet_data_append
-- nx_packet_data_retrieve, nx_packet_length_get, nx_packet_pool_create
-- nx_packet_pool_delete, nx_packet_pool_info_get, nx_packet_release
+- nx_packet_allocate, nx_packet_copy, nx_packet_data_append,
+- nx_packet_data_retrieve, nx_packet_length_get, nx_packet_pool_create,
+- nx_packet_pool_delete, nx_packet_pool_info_get, nx_packet_release,
 - nx_packet_transmit_release
 
 ## <a name="nx_packet_data_retrieve"></a>nx_packet_data_retrieve
@@ -3142,29 +3142,29 @@ UINT nx_packet_data_retrieve(
 
 ### <a name="description"></a>Opis
 
-Ta usługa kopiuje dane z dostarczonego pakietu do podanego buforu. Rzeczywista liczba skopiowanych bajtów jest zwracana w miejscu docelowym wskazywanym przez **bytes_copied**.
+Ta usługa kopiuje dane z dostarczonego pakietu do podanego buforu. Rzeczywista liczba skopiowanych bajtów jest zwracana w miejscu docelowym wskazywanym przez bytes_copied **.**
 
-Należy zauważyć, że ta usługa nie zmienia wewnętrznego stanu pakietu. Pobierane dane są nadal dostępne w pakiecie.
+Należy pamiętać, że ta usługa nie zmienia stanu wewnętrznego pakietu. Pobierane dane są nadal dostępne w pakiecie.
 
-*Bufor docelowy musi być wystarczająco duży, aby można było przechowywać zawartość pakietu. W przeciwnym razie pamięć zostanie uszkodzona, powodując nieprzewidywalne wyniki.*
+*Bufor docelowy musi być wystarczająco duży, aby pomieścić zawartość pakietu. Jeśli nie, pamięć zostanie uszkodzona, co spowoduje nieprzewidywalne wyniki.*
 
 ### <a name="parameters"></a>Parametry
 
-- **packet_ptr** Wskaźnik na pakiet źródłowy.
-- **buffer_start** Wskaźnik na początek obszaru bufora.
-- **bytes_copied** Wskaźnik do miejsca docelowego dla liczby kopiowanych bajtów.
+- **packet_ptr** Wskaźnik do pakietu źródłowego.
+- **buffer_start** Wskaźnik do początku obszaru buforu.
+- **bytes_copied** Wskaźnik do miejsca docelowego dla liczby skopiowanych bajtów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobranie danych pakietu.
-- **NX_INVALID_PACKET** (0X12) nieprawidłowy pakiet.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik skopiowanego pakietu, uruchomienia buforu lub bajtów.
+- **NX_SUCCESS** (0x00) Pobieranie danych pakietów powiodło się.
+- **NX_INVALID_PACKET** (0x12) Nieprawidłowy pakiet.
+- **NX_PTR_ERROR** (0x07) Wskaźnik nieprawidłowy pakiet, uruchamianie buforu lub bajty skopiowane.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3183,7 +3183,7 @@ status = nx_packet_data_retrieve(packet_ptr, buffer, &bytes_copied);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_packet_allocate, nx_packet_copy, nx_packet_data_append
+- nx_packet_allocate, nx_packet_copy, nx_packet_data_append,
 - nx_packet_data_extract_offset, nx_packet_length_get,
 - nx_packet_pool_create, nx_packet_pool_delete,
 - nx_packet_pool_info_get, nx_packet_release,
@@ -3191,7 +3191,7 @@ status = nx_packet_data_retrieve(packet_ptr, buffer, &bytes_copied);
 
 ## <a name="nx_packet_length_get"></a>nx_packet_length_get
 
-Pobierz długość danych pakietu
+Uzyskiwanie długości danych pakietów
 
 ### <a name="prototype"></a>Prototype
 
@@ -3203,18 +3203,18 @@ UINT nx_packet_length_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera długość danych w określonym pakiecie.
+Ta usługa pobiera długość danych w określonym pakiecie.
 
 ### <a name="parameters"></a>Parametry
 
 - **packet_ptr** Wskaźnik do pakietu.
-- **Długość** Wartość docelowa dla długości pakietu.
+- **długość** Miejsce docelowe dla długości pakietu.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3229,7 +3229,7 @@ status = nx_packet_length_get(my_packet, &my_length);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_packet_allocate, nx_packet_copy, nx_packet_data_append
+- nx_packet_allocate, nx_packet_copy, nx_packet_data_append,
 - nx_packet_data_extract_offset, nx_packet_data_retrieve,
 - nx_packet_pool_create, nx_packet_pool_delete,
 - nx_packet_pool_info_get, nx_packet_release,
@@ -3237,7 +3237,7 @@ status = nx_packet_length_get(my_packet, &my_length);
 
 ## <a name="nx_packet_pool_create"></a>nx_packet_pool_create
 
-Utwórz pulę pakietów w określonym obszarze pamięci
+Tworzenie puli pakietów w określonym obszarze pamięci
 
 ### <a name="prototype"></a>Prototype
 
@@ -3256,24 +3256,24 @@ Ta usługa tworzy pulę pakietów o określonym rozmiarze pakietu w obszarze pam
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr** Wskaźnik do bloku kontroli puli pakietów.
-- **Nazwa** Wskaźnik do nazwy aplikacji dla puli pakietów.
-- **payload_size** Liczba bajtów w każdym pakiecie w puli. Ta wartość musi być równa co najmniej 40 bajtów i musi być również niewidoczna przez 4.
-- **memory_ptr** Wskaźnik do obszaru pamięci, w którym ma zostać umieszczona Pula pakietów. Wskaźnik powinien być wyrównany na granicy ULONG.
+- **pool_ptr** Wskaźnik do bloku sterowania puli pakietów.
+- **name (nazwa)** Wskaźnik do nazwy aplikacji dla puli pakietów.
+- **payload_size** Liczba bajtów w każdym pakiecie w puli. Ta wartość musi mieć co najmniej 40 bajtów, a także musi być podzielna równomiernie przez 4.
+- **memory_ptr** Wskaźnik do obszaru pamięci, w którym ma być umieszczana pula pakietów. Wskaźnik powinien być wyrównany na granicy ULONG.
 - **memory_size** Rozmiar obszaru pamięci puli.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie utworzono pulę pakietów.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik puli lub pamięci.
-- **NX_SIZE_ERROR** (0X09) Nieprawidłowy rozmiar bloku lub pamięci.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie puli pakietów.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik puli lub pamięci.
+- **NX_SIZE_ERROR** (0x09) Nieprawidłowy rozmiar bloku lub pamięci.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3291,14 +3291,14 @@ status = nx_packet_pool_create(&pool_0, "Default Pool", 128,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_packet_allocate, nx_packet_copy, nx_packet_data_append
+- nx_packet_allocate, nx_packet_copy, nx_packet_data_append,
 - nx_packet_data_extract_offset, nx_packet_data_retrieve,
-- nx_packet_length_get, nx_packet_pool_delete, nx_packet_pool_info_get
+- nx_packet_length_get, nx_packet_pool_delete, nx_packet_pool_info_get,
 - nx_packet_release, nx_packet_transmit_release
 
 ## <a name="nx_packet_pool_delete"></a>nx_packet_pool_delete
 
-Usuń wcześniej utworzoną pulę pakietów
+Usuwanie wcześniej utworzonej puli pakietów
 
 ### <a name="prototype"></a>Prototype
 
@@ -3308,23 +3308,23 @@ UINT nx_packet_pool_delete(NX_PACKET_POOL *pool_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wcześniej utworzoną pulę pakietów. NetX sprawdza, czy wszystkie wątki są aktualnie zawieszone w pakietach w puli pakietów i czyści zawieszenie.
+Ta usługa usuwa wcześniej utworzoną pulę pakietów. NetX sprawdza wszystkie wątki, które są obecnie wstrzymane w pakietach w puli pakietów, i czyszczy zawieszenie.
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr** Wskaźnik bloku kontroli puli pakietów.
+- **pool_ptr** Wskaźnik bloku sterowania pulą pakietów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne usunięcie puli pakietów.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik puli.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne usunięcie puli pakietów.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik puli.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -3340,7 +3340,7 @@ status = nx_packet_pool_delete(&pool_0);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_packet_allocate, nx_packet_copy, nx_packet_data_append
+- nx_packet_allocate, nx_packet_copy, nx_packet_data_append,
 - nx_packet_data_extract_offset, nx_packet_data_retrieve,
 - nx_packet_length_get, nx_packet_pool_create,
 - nx_packet_pool_info_get, nx_packet_release,
@@ -3366,28 +3366,28 @@ UINT nx_packet_pool_info_get(
 
 Ta usługa pobiera informacje o określonej puli pakietów.
 
-*Jeśli wskaźnik docelowy jest NX_NULL, to konkretne informacje nie są zwracane do obiektu wywołującego.*
+*Jeśli wskaźnik docelowy jest NX_NULL, te konkretne informacje nie są zwracane do wywołującego.*
 
 ### <a name="parameters"></a>Parametry
 
 - **pool_ptr** Wskaźnik do wcześniej utworzonej puli pakietów.
-- **total_packets** Wskaźnik do miejsca docelowego dla łącznej liczby pakietów w puli.
-- **free_packets** Wskaźnik do miejsca docelowego dla łącznej liczby aktualnie bezpłatnych pakietów.
-- **empty_pool_requests** Wskaźnik do lokalizacji docelowej łącznej liczby żądań alokacji, gdy pula była pusta.
-- **empty_pool_suspensions** Wskaźnik do lokalizacji docelowej łącznej liczby pustych zawieszeń puli.
-- **invalid_packet_releases** Wskaźnik do lokalizacji docelowej całkowitej liczby nieprawidłowych wersji pakietu.
+- **total_packets** Wskaźnik do miejsca docelowego całkowitej liczby pakietów w puli.
+- **free_packets** Wskaźnik do miejsca docelowego całkowitej liczby obecnie wolnych pakietów.
+- **empty_pool_requests** Wskaźnik do miejsca docelowego całkowitej liczby żądań alokacji, gdy pula była pusta.
+- **empty_pool_suspensions** Wskaźnik do miejsca docelowego całkowitej liczby pustych zawieszenia puli.
+- **invalid_packet_releases** Wskaźnik do miejsca docelowego całkowitej liczby nieprawidłowych wydań pakietów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pobieranie informacji o puli pakietów powiodło się.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pobieranie informacji o puli pakietów powiodło się.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki i czasomierze
+Inicjowanie, wątki i czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3408,14 +3408,14 @@ status = nx_packet_pool_info_get(&pool_0,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_packet_allocate, nx_packet_copy, nx_packet_data_append
+- nx_packet_allocate, nx_packet_copy, nx_packet_data_append,
 - nx_packet_data_extract_offset, nx_packet_data_retrieve,
 - nx_packet_length_get, nx_packet_pool_create, nx_packet_pool_delete
 - nx_packet_release, nx_packet_transmit_release
 
 ## <a name="nx_packet_release"></a>nx_packet_release
 
-Zwolnij wcześniej przydzieloną pakietów
+Zwolnij wcześniej przydzielony pakiet
 
 ### <a name="prototype"></a>Prototype
 
@@ -3425,9 +3425,9 @@ UINT nx_packet_release(NX_PACKET *packet_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwalnia pakiet, w tym wszystkie dodatkowe pakiety powiązane z określonym pakietem. Jeśli inny wątek jest blokowany w alokacji pakietów, otrzymuje pakiet i został wznowiony.
+Ta usługa zwalnia pakiet, w tym wszelkie dodatkowe pakiety łańcuchowe do określonego pakietu. Jeśli inny wątek zostanie zablokowany podczas alokacji pakietów, zostanie mu nadany pakiet i wznowiony.
 
-*Aplikacja musi uniemożliwiać zwolnienie pakietu więcej niż raz, ponieważ takie działanie spowoduje nieprzewidywalne wyniki.*
+*Aplikacja musi zapobiegać wydaniu pakietu więcej niż raz, ponieważ spowoduje to nieprzewidywalne wyniki.*
 
 ### <a name="parameters"></a>Parametry
 
@@ -3435,16 +3435,16 @@ Ta usługa zwalnia pakiet, w tym wszystkie dodatkowe pakiety powiązane z okreś
 
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślne wydanie pakietu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik pakietu.
-- Wskaźnik prefiksu **NX_UNDERFLOW** (0x02) jest mniejszy niż początek ładunku.
-- **NX_OVERFLOW** (0x03) dołączany wskaźnik jest większy niż koniec ładunku.
+- **NX_SUCCESS** (0x00) Pomyślne wydanie pakietu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik pakietu.
+- **NX_UNDERFLOW** (0x02) Dołączany wskaźnik jest mniejszy niż początek ładunku.
+- **NX_OVERFLOW** (0x03) Wskaźnik dołączania jest większy niż koniec ładunku.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR (sterowniki sieciowe aplikacji)
+Inicjowanie, wątki, czasomierze i isr (sterowniki sieciowe aplikacji)
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -3460,14 +3460,14 @@ status = nx_packet_release(packet_ptr);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_packet_allocate, nx_packet_copy, nx_packet_data_append
+- nx_packet_allocate, nx_packet_copy, nx_packet_data_append,
 - nx_packet_data_extract_offset, nx_packet_data_retrieve,
-- nx_packet_length_get, nx_packet_pool_create, nx_packet_pool_delete
+- nx_packet_length_get, nx_packet_pool_create, nx_packet_pool_delete,
 - nx_packet_pool_info_get, nx_packet_transmit_release
 
 ## <a name="nx_packet_transmit_release"></a>nx_packet_transmit_release
 
-Zwolnij przesłany pakiet
+Zwalnianie przesyłanego pakietu
 
 ### <a name="prototype"></a>Prototype
 
@@ -3477,7 +3477,7 @@ UINT nx_packet_transmit_release(NX_PACKET *packet_ptr);
 
 ### <a name="description"></a>Opis
 
-W przypadku pakietów innych niż TCP ta usługa zwalnia przesyłany pakiet, w tym wszystkie dodatkowe pakiety połączone z określonym pakietem. Jeśli inny wątek jest blokowany w alokacji pakietów, otrzymuje pakiet i został wznowiony. W przypadku przesyłanego pakietu TCP pakiet jest oznaczany jako przesyłany, ale nie jest uwalniany do momentu potwierdzenia pakietu. Ta usługa jest zwykle wywoływana ze sterownika sieci aplikacji po przesłaniu pakietu.
+W przypadku pakietów innych niż TCP ta usługa zwalnia przesłany pakiet, w tym wszelkie dodatkowe pakiety łańcuchowe do określonego pakietu. Jeśli inny wątek zostanie zablokowany podczas alokacji pakietów, zostanie mu nadany pakiet i wznowiony. W przypadku przesyłanego pakietu TCP pakiet jest oznaczony jako przesyłany, ale nie jest zwalniany do momentu potwierdzenia pakietu. Ta usługa jest zwykle wywoływana ze sterownika sieciowego aplikacji po przesłaniu pakietu.
 
 *Sterownik sieciowy powinien usunąć nagłówek nośnika fizycznego i dostosować długość pakietu przed wywołaniem tej usługi.*
 
@@ -3487,16 +3487,16 @@ W przypadku pakietów innych niż TCP ta usługa zwalnia przesyłany pakiet, w t
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślna transmisja pakietów.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik pakietu.
-- Wskaźnik prefiksu **NX_UNDERFLOW** (0x02) jest mniejszy niż początek ładunku.
-- **NX_OVERFLOW** (0x03) dołączany wskaźnik jest większy niż koniec ładunku.
+- **NX_SUCCESS** (0x00) Pomyślne wydanie pakietu przesyłania.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik pakietu.
+- **NX_UNDERFLOW** (0x02) Dołączany wskaźnik jest mniejszy niż początek ładunku.
+- **NX_OVERFLOW** (0x03) Wskaźnik dołączania jest większy niż koniec ładunku.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze, sterowniki sieciowe aplikacji (w tym procedury ISR)
+Inicjowanie, wątki, czasomierze, sterowniki sieciowe aplikacji (w tym sterowniki ISR)
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -3513,14 +3513,14 @@ status = nx_packet_transmit_release(packet_ptr);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_packet_allocate, nx_packet_copy, nx_packet_data_append
+- nx_packet_allocate, nx_packet_copy, nx_packet_data_append,
 - nx_packet_data_extract_offset, nx_packet_data_retrieve,
-- nx_packet_length_get, nx_packet_pool_create, nx_packet_pool_delete
+- nx_packet_length_get, nx_packet_pool_create, nx_packet_pool_delete,
 - nx_packet_pool_info_get, nx_packet_release
 
 ## <a name="nx_rarp_disable"></a>nx_rarp_disable
 
-Wyłącz protokół odwrotnego rozpoznawania adresów (RARP)
+Wyłącz protokół RARP (Reverse Address Resolution Protocol)
 
 ### <a name="prototype"></a>Prototype
 
@@ -3530,7 +3530,7 @@ UINT nx_rarp_disable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyłącza składnik RARP elementu NetX dla określonego wystąpienia IP. W przypadku systemu wielodomowego ta usługa wyłącza RARP na wszystkich interfejsach.
+Ta usługa wyłącza składnik RARP netx dla określonego wystąpienia adresu IP. W przypadku systemu wieloadresowego ta usługa wyłącza funkcję RARP we wszystkich interfejsach.
 
 ### <a name="parameters"></a>Parametry
 
@@ -3538,16 +3538,16 @@ Ta usługa wyłącza składnik RARP elementu NetX dla określonego wystąpienia 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) POMYŚLNE wyłączenie RARP.
-- Nie włączono **NX_NOT_ENABLED** (0X14) RARP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne wyłączenie rarp.
+- **NX_NOT_ENABLED** (0x14) RARP nie został włączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3566,7 +3566,7 @@ status = nx_rarp_disable(&ip_0);
 
 ## <a name="nx_rarp_enable"></a>nx_rarp_enable
 
-Włącz protokół odwrotnego rozpoznawania adresów (RARP)
+Włączanie protokołu RARP (Reverse Address Resolution Protocol)
 
 ### <a name="prototype"></a>Prototype
 
@@ -3576,7 +3576,7 @@ UINT nx_rarp_enable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa włącza składnik RARP NetX dla określonego wystąpienia IP. Składniki RARP przeszukują wszystkie podłączone interfejsy sieciowe dla zerowego adresu IP. Zerowy adres IP wskazuje, że interfejs nie ma jeszcze przypisywania adresów IP. RARP próbuje rozpoznać adres IP, włączając proces RARP w tym interfejsie.
+Ta usługa umożliwia składnikOWI RARP netx dla określonego wystąpienia adresu IP. Składniki RARP przeszukuje wszystkie dołączone interfejsy sieciowe w poszukiwaniu zerowego adresu IP. Zerowy adres IP wskazuje, że interfejs nie ma jeszcze przypisania adresu IP. Protokół RARP próbuje rozpoznać adres IP, włączając proces RARP w tym interfejsie.
 
 ### <a name="parameters"></a>Parametry
 
@@ -3584,17 +3584,17 @@ Ta usługa włącza składnik RARP NetX dla określonego wystąpienia IP. Skład
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) POMYŚLNE włączenie RARP.
-- Adres IP **NX_IP_ADDRESS_ERROR** (0x21) jest już prawidłowy.
-- **NX_ALREADY_ENABLED** (0X15) RARP został już włączony.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne włączenie funkcji RARP.
+- **NX_IP_ADDRESS_ERROR** (0x21) adres IP jest już prawidłowy.
+- **NX_ALREADY_ENABLED** (0x15) RARP została już włączona.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze
+Inicjowanie, wątki, czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3614,7 +3614,7 @@ status = nx_rarp_enable(&ip_0);
 
 ## <a name="nx_rarp_info_get"></a>nx_rarp_info_get
 
-Pobierz informacje o działaniach RARP
+Pobieranie informacji o działaniach RARP
 
 ### <a name="prototype"></a>Prototype
 
@@ -3628,29 +3628,29 @@ UINT nx_rarp_info_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o działaniach RARP dla określonego wystąpienia IP.
+Ta usługa pobiera informacje o działaniach RARP dla określonego wystąpienia adresu IP.
 
-*Jeśli wskaźnik docelowy jest NX_NULL, to konkretne informacje nie są zwracane do obiektu wywołującego.*
+*Jeśli wskaźnik docelowy jest NX_NULL, te konkretne informacje nie są zwracane do wywołującego.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **rarp_requests_sent** Wskaźnik do miejsca docelowego dla łącznej liczby wysłanych żądań RARP.
-- **rarp_responses_received** Wskaźnik do miejsca docelowego dla łącznej liczby odebranych odpowiedzi RARP.
-- **rarp_invalid_messages** Wskaźnik do lokalizacji docelowej całkowitej liczby nieprawidłowych komunikatów.
+- **rarp_requests_sent** Wskaźnik do miejsca docelowego całkowitej liczby wysłanych żądań RARP.
+- **rarp_responses_received** Wskaźnik do miejsca docelowego dla całkowitej liczby odebranych odpowiedzi RARP.
+- **rarp_invalid_messages** Wskaźnik do miejsca docelowego całkowitej liczby nieprawidłowych komunikatów.
 
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślnie RARP pobieranie informacji.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pobieranie informacji RARP powiodło się.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3673,7 +3673,7 @@ status = nx_rarp_info_get(&ip_0,
 
 ## <a name="nx_system_initialize"></a>nx_system_initialize
 
-Zainicjuj system NetX
+Inicjowanie systemu NetX
 
 ### <a name="prototype"></a>Prototype
 
@@ -3683,7 +3683,7 @@ VOID nx_system_initialize(VOID);
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje podstawowe zasoby systemowe NetX w przygotowaniu do użycia. Powinien być wywoływany przez aplikację podczas inicjowania i przed innymi wywołaniami NetX.
+Ta usługa inicjuje podstawowe zasoby systemowe NetX w ramach przygotowania do użycia. Powinien on być wywoływany przez aplikację podczas inicjowania i przed każdym innym wywołaniem NetX.
 
 ### <a name="parameters"></a>Parametry
 
@@ -3695,9 +3695,9 @@ Brak
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze, procedury ISR
+Inicjowanie, wątki, czasomierze, isr
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3713,15 +3713,15 @@ nx_system_initialize();
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set
-- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command
+- nx_ip_address_change_notify, nx_ip_address_get, nx_ip_address_set,
+- nx_ip_create, nx_ip_delete, nx_ip_driver_direct_command,
 - nx_ip_driver_interface_direct_command, nx_ip_forwarding_disable,
 - nx_ip_forwarding_enable, nx_ip_fragment_disable,
 - nx_ip_fragment_enable, nx_ip_info_get, nx_ip_status_check
 
 ## <a name="nx_tcp_client_socket_bind"></a>nx_tcp_client_socket_bind
 
-Powiąż gniazdo TCP klienta z portem TCP
+Wiązanie gniazda TCP klienta z portem TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -3733,34 +3733,34 @@ UINT nx_tcp_client_socket_bind(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wiąże wcześniej utworzone gniazdo klienta TCP z określonym portem TCP. Prawidłowy zakres TCP Sockets należy do zakresu od 0 do 0xFFFF. Jeśli określony port TCP jest niedostępny, usługa zawiesza się zgodnie z podaną opcją oczekiwania.
+Ta usługa wiąże wcześniej utworzone gniazdo klienta TCP z określonym portem TCP. Prawidłowe gniazda TCP zakres od 0 do 0xFFFF. Jeśli określony port TCP jest niedostępny, usługa wstrzymuje się zgodnie z podaną opcją oczekiwania.
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego wystąpienia gniazda TCP.
-- **port** Numer portu do powiązania (od 1 do 0xFFFF). Jeśli numer portu to NX_ANY_PORT (0x0000), wystąpienie protokołu IP wyszuka następny bezpłatny port i użyje go do powiązania.
-- **WAIT_OPTION** Definiuje, w jaki sposób działa usługa, jeśli port jest już powiązany z innym gniazdem. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **port** Numer portu do powiązania (od 1 do 0xFFFF). Jeśli numer portu jest NX_ANY_PORT (0x0000), wystąpienie adresu IP wyszuka następny bezpłatny port i użyje go dla powiązania.
+- **wait_option** Definiuje zachowanie usługi, jeśli port jest już powiązany z innym gniazdem. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnego powiązania gniazda.
-- **NX_ALREADY_BOUND** (0X22) to gniazdo jest już powiązane z innym portem TCP.
-- Port **NX_PORT_UNAVAILABLE** (0x23) jest już powiązany z innym gniazdem.
-- **NX_NO_FREE_PORTS** (0X45) brak wolnego portu.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie *tx_thread_wait_abort*.
-- **NX_INVALID_PORT** (0X46) nieprawidłowy port.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne powiązanie gniazda.
+- **NX_ALREADY_BOUND** (0x22) To gniazdo jest już powiązane z innym portem TCP.
+- **NX_PORT_UNAVAILABLE** (0x23) port jest już powiązany z innym gniazdem.
+- **NX_NO_FREE_PORTS** (0x45) Brak bezpłatnego portu.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort *.*
+- **NX_INVALID_PORT** (0x46) Nieprawidłowy port.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3778,7 +3778,7 @@ status = nx_tcp_client_socket_bind(&client_socket, 12, 7);
 ### <a name="see-also"></a>Zobacz też
 
 - nx_tcp_client_socket_connect, nx_tcp_client_socket_port_get,
-- nx_tcp_client_socket_unbind, nx_tcp_enable, nx_tcp_free_port_find
+- nx_tcp_client_socket_unbind, nx_tcp_enable, nx_tcp_free_port_find,
 - nx_tcp_info_get, nx_tcp_server_socket_accept,
 - nx_tcp_server_socket_listen, nx_tcp_server_socket_relisten,
 - nx_tcp_server_socket_unaccept, nx_tcp_server_socket_unlisten,
@@ -3790,7 +3790,7 @@ status = nx_tcp_client_socket_bind(&client_socket, 12, 7);
 
 ## <a name="nx_tcp_client_socket_connect"></a>nx_tcp_client_socket_connect
 
-Połącz gniazdo TCP klienta
+Połączenie tcp klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -3804,37 +3804,37 @@ UINT nx_tcp_client_socket_connect(
 
 ### <a name="description"></a>Opis
 
-Ta usługa łączy wcześniej utworzone i powiązane gniazdo klienta TCP z portem określonego serwera. Prawidłowe porty serwera TCP mieszczą się w zakresie od 0 do 0xFFFF. Jeśli połączenie nie zakończy się natychmiast, usługa zawiesza się zgodnie z podaną opcją oczekiwania.
+Ta usługa łączy wcześniej utworzone i powiązane gniazdo klienta TCP z portem określonego serwera. Prawidłowe porty serwera TCP mają zakres od 0 do 0xFFFF. Jeśli połączenie nie zostanie nawiązaniu natychmiast, usługa zostanie wstrzymana zgodnie z podaną opcją oczekiwania.
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego wystąpienia gniazda TCP.
-- **server_IP** Adres IP serwera.
-- **SERVER_PORT** Numer portu serwera, z którym ma zostać nawiązane połączenie (od 1 do 0xFFFF).
-- **WAIT_OPTION** Definiuje sposób zachowania usługi podczas ustanawiania połączenia. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **server_ip** Adres IP serwera.
+- **server_port** Numer portu serwera, z którym ma nawiązać połączenie (od 1 do 0xFFFF).
+- **wait_option** Definiuje sposób, w jaki usługa zachowuje się podczas nawiązynia połączenia. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnego nawiązania połączenia z gniazdem.
-- Gniazdo **NX_NOT_BOUND** (0x24) nie jest powiązane.
-- Gniazdo **NX_NOT_CLOSED** (0x35) nie jest w stanie zamkniętym.
-- **NX_IN_PROGRESS** (0X37) nie określono oczekiwania, próba połączenia jest w toku.
-- **NX_INVALID_INTERFACE** (0x4C) podano nieprawidłowy interfejs.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie tx_thread_wait_abort.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP serwera.
-- **NX_INVALID_PORT** (0X46) nieprawidłowy port.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne połączenie gniazda.
+- **NX_NOT_BOUND** (0x24) Gniazda nie jest powiązana.
+- **NX_NOT_CLOSED** (0x35) Gniazdo nie jest w stanie zamkniętym.
+- **NX_IN_PROGRESS** (0x37) Nie określono oczekiwania, próba połączenia jest w toku.
+- **NX_INVALID_INTERFACE** (0x4C) Podany nieprawidłowy interfejs.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP serwera.
+- **NX_INVALID_PORT** (0x46) Nieprawidłowy port.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3856,7 +3856,7 @@ status = nx_tcp_client_socket_connect(&client_socket,
 ### <a name="see-also"></a>Zobacz też
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_port_get,
-- nx_tcp_client_socket_unbind, nx_tcp_enable, nx_tcp_free_port_find
+- nx_tcp_client_socket_unbind, nx_tcp_enable, nx_tcp_free_port_find,
 - nx_tcp_info_get, nx_tcp_server_socket_accept,
 - nx_tcp_server_socket_listen, nx_tcp_server_socket_relisten,
 - nx_tcp_server_socket_unaccept, nx_tcp_server_socket_unlisten,
@@ -3868,7 +3868,7 @@ status = nx_tcp_client_socket_connect(&client_socket,
 
 ## <a name="nx_tcp_client_socket_port_get"></a>nx_tcp_client_socket_port_get
 
-Pobieranie numeru portu powiązanego z gniazdem TCP klienta
+Uzyskiwanie numeru portu powiązanego z gniazdem TCP klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -3880,7 +3880,7 @@ UINT nx_tcp_client_socket_port_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera numer portu skojarzony z gniazdem, który jest przydatny do znajdowania portu przydzielonego przez NetX w sytuacjach, w których NX_ANY_PORT został określony w momencie powiązania gniazda.
+Ta usługa pobiera numer portu skojarzony z gniazdem, co jest przydatne do znalezienia portu przydzielonego przez netx w sytuacjach, NX_ANY_PORT został określony w czasie, gdy gniazdo zostało powiązane.
 
 ### <a name="parameters"></a>Parametry
 
@@ -3889,17 +3889,17 @@ Ta usługa Pobiera numer portu skojarzony z gniazdem, który jest przydatny do z
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnego powiązania gniazda.
-- **NX_NOT_BOUND** (0X24) to gniazdo nie jest powiązane z portem.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda lub zwracany przez port wskaźnik.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne powiązanie gniazda.
+- **NX_NOT_BOUND** (0x24) To gniazdo nie jest powiązane z portem.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda lub wskaźnik powrotu portu.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3917,7 +3917,7 @@ status = nx_tcp_client_socket_port_get(&client_socket, &port);
 ### <a name="see-also"></a>Zobacz też
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
-- nx_tcp_client_socket_unbind, nx_tcp_enable, nx_tcp_free_port_find
+- nx_tcp_client_socket_unbind, nx_tcp_enable, nx_tcp_free_port_find,
 - nx_tcp_info_get, nx_tcp_server_socket_accept,
 - nx_tcp_server_socket_listen, nx_tcp_server_socket_relisten,
 - nx_tcp_server_socket_unaccept, nx_tcp_server_socket_unlisten,
@@ -3929,7 +3929,7 @@ status = nx_tcp_client_socket_port_get(&client_socket, &port);
 
 ## <a name="nx_tcp_client_socket_unbind"></a>nx_tcp_client_socket_unbind
 
-Usuń powiązanie gniazda klienta TCP z portu TCP
+Unbind TCP client socket from TCP port (Odłącz gniazdo klienta TCP od portu TCP)
 
 ### <a name="prototype"></a>Prototype
 
@@ -3939,7 +3939,7 @@ UINT nx_tcp_client_socket_unbind(NX_TCP_SOCKET *socket_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwalnia powiązanie między gniazdem klienta TCP i portem TCP. Jeśli istnieją inne wątki oczekujące na powiązanie innego gniazda z tym samym numerem portu, pierwszy zawieszony wątek zostanie powiązany z tym portem.
+Ta usługa zwalnia powiązanie między gniazdem klienta TCP i portem TCP. Jeśli inne wątki oczekują na powiązanie innego gniazda z tym samym numerem portu, pierwszy zawieszony wątek jest następnie powiązany z tym portem.
 
 ### <a name="parameters"></a>Parametry
 
@@ -3947,18 +3947,18 @@ Ta usługa zwalnia powiązanie między gniazdem klienta TCP i portem TCP. Jeśli
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) odpinanie gniazda zakończone powodzeniem.
-- Gniazdo **NX_NOT_BOUND** (0x24) nie zostało powiązane z żadnym portem.
-- Gniazdo **NX_NOT_CLOSED** (0x35) nie zostało odłączone.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne powiązycie gniazda.
+- **NX_NOT_BOUND** (0x24) nie zostało powiązane z żadnym portem.
+- **NX_NOT_CLOSED** (0x35) nie zostało odłączone.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -3975,7 +3975,7 @@ status = nx_tcp_client_socket_unbind(&client_socket);
 ### <a name="see-also"></a>Zobacz też
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
-- nx_tcp_client_socket_port_get, nx_tcp_enable, nx_tcp_free_port_find
+- nx_tcp_client_socket_port_get, nx_tcp_enable, nx_tcp_free_port_find,
 - nx_tcp_info_get, nx_tcp_server_socket_accept,
 - nx_tcp_server_socket_listen, nx_tcp_server_socket_relisten,
 - nx_tcp_server_socket_unaccept, nx_tcp_server_socket_unlisten,
@@ -3987,7 +3987,7 @@ status = nx_tcp_client_socket_unbind(&client_socket);
 
 ## <a name="nx_tcp_enable"></a>nx_tcp_enable
 
-Włącz składnik TCP elementu NetX
+Włączanie składnika TCP netx
 
 ### <a name="prototype"></a>Prototype
 
@@ -3997,7 +3997,7 @@ UINT nx_tcp_enable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa włącza składnik Transmission Control Protocol (TCP) NetX. Po włączeniu połączenia TCP mogą być nawiązywane przez aplikację.
+Ta usługa umożliwia Transmission Control Protocol (TCP) netx. Po włączeniu połączenia TCP mogą zostać nawiązane przez aplikację.
 
 ### <a name="parameters"></a>Parametry
 
@@ -4005,16 +4005,16 @@ Ta usługa włącza składnik Transmission Control Protocol (TCP) NetX. Po włą
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne włączenie protokołu TCP.
-- **NX_ALREADY_ENABLED** (0X15) TCP jest już włączony.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Pomyślne włączenie protokołu TCP.
+- **NX_ALREADY_ENABLED** (0x15) TCP jest już włączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze
+Inicjowanie, wątki, czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -4031,7 +4031,7 @@ status = nx_tcp_enable(&ip_0);
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_free_port_find, nx_tcp_info_get, nx_tcp_server_socket_accept
+- nx_tcp_free_port_find, nx_tcp_info_get, nx_tcp_server_socket_accept,
 - nx_tcp_server_socket_listen, nx_tcp_server_socket_relisten,
 - nx_tcp_server_socket_unaccept, nx_tcp_server_socket_unlisten,
 - nx_tcp_socket_bytes_available, nx_tcp_socket_create,
@@ -4042,7 +4042,7 @@ status = nx_tcp_enable(&ip_0);
 
 ## <a name="nx_tcp_free_port_find"></a>nx_tcp_free_port_find
 
-Znajdź następny dostępny port TCP
+Znajdowanie następnego dostępnego portu TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -4054,30 +4054,30 @@ UINT nx_tcp_free_port_find(
 
 ### <a name="description"></a>Opis
 
-Ta usługa próbuje zlokalizować bezpłatny port TCP (niepowiązany), rozpoczynając od portu dostarczonego przez aplikację. Logika wyszukiwania zostanie zawinięty, jeśli wyszukiwanie nastąpi do osiągnięcia maksymalnej wartości maksymalnego portu. Jeśli wyszukiwanie zakończyło się pomyślnie, port wolny jest zwracany w zmiennej wskazywanej przez *free_port_ptr*.
+Ta usługa próbuje zlokalizować bezpłatny port TCP (niepowiązany) rozpoczynający się od portu dostarczonego przez aplikację. Logika wyszukiwania opakuje się, jeśli wyszukiwanie osiągnie maksymalną wartość portu 0xFFFF. Jeśli wyszukiwanie powiedzie się, bezpłatny port jest zwracany w zmiennej wskazywanej przez free_port_ptr *.*
 
-*Ta usługa może być wywoływana z innego wątku i ma ten sam port. Aby uniknąć tego warunku wyścigu, aplikacja może chcieć umieścić tę usługę i rzeczywiste powiązanie gniazda klienta w ramach ochrony obiektu mutex.*
+*Tę usługę można wywołać z innego wątku i zwrócić ten sam port. Aby zapobiec takiej sytuacji wyścigu, aplikacja może chcieć umieścić tę usługę i rzeczywiste powiązanie gniazda klienta w ramach ochrony obiektu mutex.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **port** Numer portu, aby rozpocząć wyszukiwanie (od 1 do 0xFFFF).
-- **free_port_ptr** Wskaźnik na wartość zwrotną wolnego portu docelowego.
+- **port** Numer portu do rozpoczęcia wyszukiwania od (od 1 do 0xFFFF).
+- **free_port_ptr** Wskaźnik do wartości zwracanej wolnego portu docelowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne znalezienie bezpłatnego portu.
-- **NX_NO_FREE_PORTS** (0X45) nie znaleziono wolnych portów.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
-- **NX_INVALID_PORT** (0x46) określony numer portu jest nieprawidłowy.
+- **NX_SUCCESS** (0x00) Pomyślne znalezienie bezpłatnego portu.
+- **NX_NO_FREE_PORTS** (0x45) Nie znaleziono wolnych portów.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
+- **NX_INVALID_PORT** (0x46) Określony numer portu jest nieprawidłowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -4096,7 +4096,7 @@ status = nx_tcp_free_port_find(&ip_0, 12, &free_port);
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_info_get, nx_tcp_server_socket_accept
+- nx_tcp_enable, nx_tcp_info_get, nx_tcp_server_socket_accept,
 - nx_tcp_server_socket_listen, nx_tcp_server_socket_relisten,
 - nx_tcp_server_socket_unaccept, nx_tcp_server_socket_unlisten,
 - nx_tcp_socket_bytes_available, nx_tcp_socket_create,
@@ -4107,7 +4107,7 @@ status = nx_tcp_free_port_find(&ip_0, 12, &free_port);
 
 ## <a name="nx_tcp_info_get"></a>nx_tcp_info_get
 
-Pobierz informacje o działaniach TCP
+Pobieranie informacji o działaniach TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -4129,37 +4129,37 @@ UINT nx_tcp_info_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o działaniach TCP dla określonego wystąpienia IP.
+Ta usługa pobiera informacje o działaniach TCP dla określonego wystąpienia adresu IP.
 
-*Jeśli wskaźnik docelowy jest NX_NULL, to konkretne informacje nie są zwracane do obiektu wywołującego.*
+*Jeśli wskaźnik docelowy jest NX_NULL, te konkretne informacje nie są zwracane do wywołującego.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **tcp_packets_sent** Wskaźnik do miejsca docelowego dla łącznej liczby wysłanych pakietów TCP.
-- **tcp_bytes_sent** Wskaźnik do miejsca docelowego dla łącznej liczby wysłanych bajtów TCP.
-- **tcp_packets_received** Wskaźnik do lokalizacji docelowej łącznej liczby odebranych pakietów TCP.
-- **tcp_bytes_received** Wskaźnik do lokalizacji docelowej łącznej liczby odebranych bajtów TCP.
-- **tcp_invalid_packets** Wskaźnik do lokalizacji docelowej całkowitej liczby nieprawidłowych pakietów TCP.
-- **tcp_receive_packets_dropped** Wskaźnik do lokalizacji docelowej całkowitej liczby porzuconych pakietów TCP odbioru.
-- **tcp_checksum_errors** Wskaźnik do lokalizacji docelowej całkowitej liczby pakietów TCP z błędami sumy kontrolnej.
-- **tcp_connections** Wskaźnik do lokalizacji docelowej łącznej liczby połączeń TCP.
-- **tcp_disconnections** Wskaźnik do lokalizacji docelowej łącznej liczby odniesień protokołu TCP.
-- **tcp_connections_dropped** Wskaźnik do lokalizacji docelowej całkowitej liczby porzuconych połączeń TCP.
-- **tcp_retransmit_packets** Wskaźnik do lokalizacji docelowej całkowitej liczby przesłanych pakietów TCP.
+- **tcp_packets_sent** Wskaźnik do miejsca docelowego całkowitej liczby wysłanych pakietów TCP.
+- **tcp_bytes_sent** Wskaźnik do miejsca docelowego całkowitej liczby wysłanych bajtów TCP.
+- **tcp_packets_received** Wskaźnik do miejsca docelowego całkowitej liczby odebranych pakietów TCP.
+- **tcp_bytes_received** Wskaźnik do miejsca docelowego całkowitej liczby odebranych bajtów TCP.
+- **tcp_invalid_packets** Wskaźnik do miejsca docelowego całkowitej liczby nieprawidłowych pakietów TCP.
+- **tcp_receive_packets_dropped** Wskaźnik do miejsca docelowego całkowitej liczby porzuconych pakietów odbieranych przez protokół TCP.
+- **tcp_checksum_errors** Wskaźnik do miejsca docelowego całkowitej liczby pakietów TCP z błędami sumy kontrolnej.
+- **tcp_connections** Wskaźnik do miejsca docelowego całkowitej liczby połączeń TCP.
+- **tcp_disconnections** Wskaźnik do miejsca docelowego całkowitej liczby rozłączeń TCP.
+- **tcp_connections_dropped** Wskaźnik do miejsca docelowego całkowitej liczby porzuconych połączeń TCP.
+- **tcp_retransmit_packets** Wskaźnik do miejsca docelowego całkowitej liczby ponownie emitowanych pakietów TCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobieranie informacji TCP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pobieranie informacji TCP powiodło się.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -4187,7 +4187,7 @@ status = nx_tcp_info_get(&ip_0,
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_server_socket_accept
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_server_socket_accept,
 - nx_tcp_server_socket_listen, nx_tcp_server_socket_relisten,
 - nx_tcp_server_socket_unaccept, nx_tcp_server_socket_unlisten,
 - nx_tcp_socket_bytes_available, nx_tcp_socket_create,
@@ -4198,7 +4198,7 @@ status = nx_tcp_info_get(&ip_0,
 
 ## <a name="nx_tcp_server_socket_accept"></a>nx_tcp_server_socket_accept
 
-Zaakceptuj połączenie TCP
+Akceptowanie połączenia TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -4210,35 +4210,35 @@ UINT nx_tcp_server_socket_accept(
 
 ### <a name="description"></a>Opis
 
-Ta usługa akceptuje (lub przygotowuje do akceptowania) żądanie połączenia gniazda klienta TCP dla portu, który został wcześniej skonfigurowany do nasłuchiwania. Ta usługa może być wywoływana natychmiast po wywołaniu przez aplikację nasłuchiwania lub ponownego nasłuchiwania albo gdy wywoływana jest procedura wywołania zwrotnego Listen, gdy połączenie z klientem jest rzeczywiście obecne. Jeśli połączenie nie może być od razu ustanowione, usługa zawiesza się zgodnie z podaną opcją oczekiwania.
+Ta usługa akceptuje (lub przygotowuje do zaakceptowania) żądanie połączenia gniazda klienta TCP dla portu, który został wcześniej ustawiony do nasłuchiwania. Ta usługa może być wywoływana natychmiast po wywołaniu przez aplikację usługi nasłuchiwać lub ponownego nasłuchiwać lub po wywołaniu procedury wywołania zwrotnego nasłuchiwać, gdy połączenie klienta jest rzeczywiście obecne. Jeśli nie można od razu nawiązanego połączenia, usługa wstrzymuje się zgodnie z podaną opcją oczekiwania.
 
-*Aplikacja musi wywoływać **nx_tcp_server_socket_unaccept** , gdy połączenie nie jest już potrzebne do usunięcia powiązania gniazda serwera z portem serwera.*
+*Aplikacja musi **wywołać** nx_tcp_server_socket_unaccept gdy połączenie nie będzie już potrzebne do usunięcia powiązania gniazda serwera z portem serwera.*
 
-*Procedury wywołania zwrotnego aplikacji są wywoływane z wewnątrz wątku pomocnika IP.*
+*Procedury wywołania zwrotnego aplikacji są wywoływane z poziomu wątku pomocnika adresu IP.*
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do bloku sterowania gniazda serwera TCP.
-- **WAIT_OPTION** Definiuje sposób zachowania usługi podczas ustanawiania połączenia. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **wait_option** Definiuje sposób, w jaki usługa zachowuje się podczas nawiązynia połączenia. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślne zaakceptowanie gniazda serwera TCP (połączenie pasywne).
-- **NX_NOT_LISTEN_STATE** (0x36) dostarczony gniazdo serwera nie jest w stanie nasłuchiwania.
-- **NX_IN_PROGRESS** (0X37) nie określono oczekiwania, próba połączenia jest w toku.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie *tx_thread_wait_abort*.
-- Błąd wskaźnika gniazda **NX_PTR_ERROR** (0x07).
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Akceptowanie pomyślnego gniazda serwera TCP (połączenie pasywne).
+- **NX_NOT_LISTEN_STATE** (0x36) Dostarczone gniazdo serwera nie jest w stanie nasłuchiwać.
+- **NX_IN_PROGRESS** (0x37) Nie określono oczekiwania, próba połączenia jest w toku.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort *.*
+- **NX_PTR_ERROR** (0x07) Błąd wskaźnika gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -4341,7 +4341,7 @@ void port_12_server_thread_entry(ULONG id)
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_listen, nx_tcp_server_socket_relisten,
 - nx_tcp_server_socket_unaccept, nx_tcp_server_socket_unlisten,
 - nx_tcp_socket_bytes_available, nx_tcp_socket_create,
@@ -4367,39 +4367,39 @@ UINT nx_tcp_server_socket_listen(
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia nasłuchiwanie żądania połączenia klienta na określonym porcie TCP. Po odebraniu żądania połączenia z klientem podane gniazdo serwera jest powiązane z określonym portem i wywoływana funkcja wywołania zwrotnego nasłuchiwania.
+Ta usługa umożliwia nasłuchiwanie żądania połączenia klienta na określonym porcie TCP. Po otrzymaniu żądania połączenia klienta podane gniazdo serwera jest powiązane z określonym portem i wywoływana jest podana funkcja wywołania zwrotnego nasłuchiwać.
 
-Przetwarzanie procedury wywołania zwrotnego Listen jest całkowicie do aplikacji. Może on zawierać logikę do wznowienia wątku aplikacji, który następnie wykonuje operację akceptacji. Jeśli aplikacja ma już zawieszony wątek przy akceptowaniu przetwarzania dla tego gniazda, procedura wywołania zwrotnego odbiornika może nie być wymagana.
+Przetwarzanie procedury wywołania zwrotnego nasłuchiwać jest całkowicie do aplikacji. Może ona zawierać logikę wznawiania wątku aplikacji, który następnie wykonuje operację akceptowania. Jeśli aplikacja ma już wątek zawieszony podczas akceptowania przetwarzania dla tego gniazda, procedura wywołania zwrotnego nasłuchiwać może nie być potrzebna.
 
-Jeśli aplikacja chce obsługiwać dodatkowe połączenia klientów na tym samym porcie, ***nx_tcp_server_socket_relisten*** musi zostać wywołana z dostępnym gniazdem (gniazdo w stanie zamkniętym) dla następnego połączenia. Do momentu wywołania usługi ponownego nasłuchiwania dodatkowe połączenia klienckie są umieszczane w kolejce. Po przekroczeniu maksymalnej głębokości kolejki żądanie najstarszego połączenia zostanie porzucone na rzecz kolejkowania nowego żądania połączenia. Maksymalna głębokość kolejki jest określona przez tę usługę.
+Jeśli aplikacja chce obsługiwać dodatkowe połączenia klienta na  tym samym porcie, nx_tcp_server_socket_relisten musi zostać wywołana przy użyciu dostępnego gniazda (gniazda w stanie ZAMKNIĘTY) dla następnego połączenia. Dopóki usługa ponownego nasłuchiwać nie zostanie wywołana, dodatkowe połączenia klienta są kolejkowane. Po przekroczeniu maksymalnej głębokości kolejki najstarsze żądanie połączenia jest porzucane na rzecz kolejkowania nowego żądania połączenia. Maksymalna głębokość kolejki jest określana przez tę usługę.
 
-*Procedury wywołania zwrotnego aplikacji są wywoływane z wątku pomocnika wewnętrznego adresu IP.*
+*Procedury wywołania zwrotnego aplikacji są wywoływane z wewnętrznego wątku pomocnika IP.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **port** Numer portu, na którym nasłuchuje nasłuchiwanie (od 1 do 0xFFFF).
-- **socket_ptr** Wskaźnik do gniazda, który ma być używany w połączeniu.
-- **listen_queue_size** Liczba żądań połączenia klienta, które można umieścić w kolejce.
-- **listen_callback** Funkcja aplikacji do wywołania po odebraniu połączenia. Jeśli określono wartość NULL, funkcja wywołania zwrotnego Listen jest wyłączona.
+- **port** Numer portu do nasłuchiwać (od 1 do 0xFFFF).
+- **socket_ptr** Wskaźnik do gniazda do użycia dla połączenia.
+- **listen_queue_size** Liczba żądań połączenia klienta, które mogą być w kolejce.
+- **listen_callback** Funkcja Application do wywołania po otrzymaniu połączenia. Jeśli określono wartość NULL, funkcja wywołania zwrotnego nasłuchiwać jest wyłączona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne włączenie nasłuchiwania portu TCP.
-- **NX_MAX_LISTEN** (0X33) nie ma więcej dostępnych struktur żądań nasłuchiwania. Stała NX_MAX_LISTEN_REQUESTS w nx_api. h definiuje liczbę aktywnych żądań nasłuchiwania.
-- **NX_NOT_CLOSED** (0x35) dostarczony gniazdo serwera nie jest w stanie zamkniętym.
-- **NX_ALREADY_BOUND** (0x22) dostarczony gniazdo serwera jest już powiązany z portem.
-- **NX_DUPLICATE_LISTEN** (0X34) istnieje już aktywne żądanie nasłuchiwania dla tego portu.
-- **NX_INVALID_PORT** (0x46) określono nieprawidłowy port.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne włączenie nasłuchiwać portów TCP.
+- **NX_MAX_LISTEN** (0x33) Nie są dostępne żadne struktury żądań nasłuchiwać. Stała w NX_MAX_LISTEN_REQUESTS w nx_api.h definiuje, ile aktywnych żądań nasłuchiwać jest możliwych.
+- **NX_NOT_CLOSED** (0x35) Podane gniazdo serwera nie jest w stanie zamkniętym.
+- **NX_ALREADY_BOUND** (0x22) Podane gniazdo serwera jest już powiązane z portem.
+- **NX_DUPLICATE_LISTEN** (0x34) Istnieje już aktywne żądanie nasłuchiwać dla tego portu.
+- **NX_INVALID_PORT** (0x46) Określono nieprawidłowy port.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP lub gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -4505,7 +4505,7 @@ nx_tcp_socket_delete(&server_socket);
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_relisten,
 - nx_tcp_server_socket_unaccept, nx_tcp_server_socket_unlisten,
 - nx_tcp_socket_bytes_available, nx_tcp_socket_create,
@@ -4516,7 +4516,7 @@ nx_tcp_socket_delete(&server_socket);
 
 ## <a name="nx_tcp_server_socket_relisten"></a>nx_tcp_server_socket_relisten
 
-Ponowne nasłuchiwanie połączenia klienta na porcie TCP
+Ponowne nasłuchiwać połączenia klienta na porcie TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -4529,32 +4529,32 @@ UINT nx_tcp_server_socket_relisten(
 
 ### <a name="description"></a>Opis
 
-Ta usługa jest wywoływana po odebraniu połączenia na porcie, który został wcześniej skonfigurowany do nasłuchiwania. Głównym celem tej usługi jest udostępnienie nowego gniazda serwera dla następnego połączenia z klientem. Jeśli żądanie połączenia jest kolejkowane, połączenie zostanie przetworzone natychmiast w trakcie tego wywołania usługi.
+Ta usługa jest wywoływana po otrzymaniu połączenia na porcie, który był wcześniej konfigurował nasłuchiwanie. Głównym celem tej usługi jest zapewnienie nowego gniazda serwera na potrzeby następnego połączenia klienta. Jeśli żądanie połączenia jest w kolejce, połączenie zostanie przetworzone natychmiast podczas tego wywołania usługi.
 
-*Ta sama procedura wywołania zwrotnego określona przez oryginalne żądanie Listen jest również wywoływana, gdy istnieje połączenie dla tego nowego gniazda serwera.*
+*Ta sama procedura wywołania zwrotnego określona przez oryginalne żądanie nasłuchiwu jest również wywoływana, gdy połączenie jest obecne dla tego nowego gniazda serwera.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **port** Numer portu do ponownego nasłuchiwania (od 1 do 0xFFFF).
-- **socket_ptr** Gniazdo do użycia dla następnego połączenia z klientem.
+- **port** Numer portu do ponownego nasłuchiwać (od 1 do 0xFFFF).
+- **socket_ptr** Gniazdo do użycia dla następnego połączenia klienta.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślne ponowne nasłuchiwanie portu TCP.
-- **NX_NOT_CLOSED** (0x35) dostarczony gniazdo serwera nie jest w stanie zamkniętym.
-- **NX_ALREADY_BOUND** (0x22) dostarczony gniazdo serwera jest już powiązany z portem.
-- **NX_INVALID_RELISTEN** (0X47) istnieje już prawidłowy wskaźnik gniazda dla tego portu lub określony port nie ma aktywnego żądania listen.
-- **NX_CONNECTION_PENDING** (0X48) taka sama jak NX_SUCCESS, z wyjątkiem tego, że wystąpiło żądanie połączenia w kolejce i zostało przetworzone w trakcie tego wywołania.
-- **NX_INVALID_PORT** (0x46) określono nieprawidłowy port.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wywołania zwrotnego adresu IP lub nasłuchiwania.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne ponowne nasłuchiwać portu TCP.
+- **NX_NOT_CLOSED** (0x35) Podane gniazdo serwera nie jest w stanie zamkniętym.
+- **NX_ALREADY_BOUND** (0x22) Podane gniazdo serwera jest już powiązane z portem.
+- **NX_INVALID_RELISTEN** (0x47) Istnieje już prawidłowy wskaźnik gniazda dla tego portu lub określony port nie ma aktywnego żądania nasłuchiwać.
+- **NX_CONNECTION_PENDING** (0x48) To samo co NX_SUCCESS, z wyjątkiem żądania połączenia w kolejce, które zostało przetworzone podczas tego wywołania.
+- **NX_INVALID_PORT** (0x46) Określono nieprawidłowy port.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy adres IP lub wskaźnik wywołania zwrotnego nasłuchiwać.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -4658,7 +4658,7 @@ void port_12_server_thread_entry(ULONG id)
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_listen,
 - nx_tcp_server_socket_unaccept, nx_tcp_server_socket_unlisten,
 - nx_tcp_socket_bytes_available, nx_tcp_socket_create,
@@ -4669,7 +4669,7 @@ void port_12_server_thread_entry(ULONG id)
 
 ## <a name="nx_tcp_server_socket_unaccept"></a>nx_tcp_server_socket_unaccept
 
-Usuń skojarzenie gniazda z portem nasłuchiwania
+Usuwanie skojarzenia gniazda z portem nasłuchiwania
 
 ### <a name="prototype"></a>Prototype
 
@@ -4679,25 +4679,25 @@ UINT nx_tcp_server_socket_unaccept(NX_TCP_SOCKET *socket_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa skojarzenie między tym gniazdem serwera i określonym portem serwera. Aplikacja musi wywołać tę usługę po rozwiązaniu lub po niepomyślnym wywołaniu.
+Ta usługa usuwa skojarzenie między tym gniazdem serwera i określonym portem serwera. Aplikacja musi wywołać tę usługę po rozłączeniu lub po nieudanym wywołaniu akceptowania.
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Wskaźnik do wcześniej instalacyjnego wystąpienia gniazda serwera.
+- **socket_ptr** Wskaźnik do poprzednio konfiguracji wystąpienia gniazda serwera.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne nieakceptowanie gniazda serwera.
-- Gniazdo serwera **NX_NOT_LISTEN_STATE** (0x36) jest w niewłaściwym stanie i prawdopodobnie nie jest odłączone.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne coakceptuj gniazda serwera.
+- **NX_NOT_LISTEN_STATE** (0x36) Serwer jest w nieprawidłowym stanie i prawdopodobnie nie jest odłączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -4797,11 +4797,11 @@ void port_12_server_thread_entry(ULONG id)
 ### <a name="see-also"></a>Zobacz też
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
-- nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind, nx_tcp_enable
-- nx_tcp_free_port_find, nx_tcp_info_get, nx_tcp_server_socket_accept
+- nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind, nx_tcp_enable,
+- nx_tcp_free_port_find, nx_tcp_info_get, nx_tcp_server_socket_accept,
 - nx_tcp_server_socket_listen, nx_tcp_server_socket_relisten,
 - nx_tcp_server_socket_unlisten, nx_tcp_socket_bytes_available,
-- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_disconnect
+- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_disconnect,
 - nx_tcp_socket_info_get, nx_tcp_socket_receive,
 - nx_tcp_socket_receive_queue_max_set, nx_tcp_socket_send,
 - nx_tcp_socket_state_wait
@@ -4827,18 +4827,18 @@ Ta usługa wyłącza nasłuchiwanie żądania połączenia klienta na określony
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — wyłączanie nasłuchiwania protokołu TCP.
-- Nasłuchiwanie **NX_ENTRY_NOT_FOUND** (0x16) nie zostało włączone dla określonego portu.
-- **NX_INVALID_PORT** (0x46) określono nieprawidłowy port.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne wyłączenie nasłuchiwać TCP.
+- **NX_ENTRY_NOT_FOUND** (0x16) Nasłuchiwanie nie zostało włączone dla określonego portu.
+- **NX_INVALID_PORT** (0x46) Określono nieprawidłowy port.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -4936,7 +4936,7 @@ void port_12_server_thread_entry(ULONG id)
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_listen,
 - nx_tcp_server_socket_relisten, nx_tcp_server_socket_unaccept,
 - nx_tcp_socket_bytes_available, nx_tcp_socket_create,
@@ -4959,7 +4959,7 @@ UINT nx_tcp_socket_bytes_available(
 
 ### <a name="description"></a>Opis
 
-Ta usługa uzyskuje liczbę bajtów dostępnych do pobrania w określonym gnieździe TCP. Należy pamiętać, że gniazdo TCP musi już być połączone.
+Ta usługa uzyskuje liczbę bajtów dostępnych do pobrania w określonym gnieździe TCP. Należy pamiętać, że gniazdo TCP musi być już połączone.
 
 ### <a name="parameters"></a>Parametry
 
@@ -4968,17 +4968,17 @@ Ta usługa uzyskuje liczbę bajtów dostępnych do pobrania w określonym gnieź
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Usługa **NX_SUCCESS** (0x00) została wykonana pomyślnie. Liczba bajtów dostępnych do odczytu jest zwracana do obiektu wywołującego.
-- Gniazdo **NX_NOT_CONNECTED** (0x38) nie jest w stanie połączonym.
-- **NX_PTR_ERROR** (0X07) nieprawidłowe wskaźniki.
-- **NX_NOT_ENABLED** (0X14) TCP nie jest włączona.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Service zostanie pomyślnie wykonany. Liczba bajtów dostępnych do odczytu jest zwracana do wywołującego.
+- **NX_NOT_CONNECTED** (0x38) Socket nie jest w stanie połączenia.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe wskaźniki.
+- **NX_NOT_ENABLED** (0x14) TCP nie jest włączony.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -4997,7 +4997,7 @@ status = nx_tcp_socket_bytes_available(&my_socket,
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_listen,
 - nx_tcp_server_socket_relisten, nx_tcp_server_socket_unaccept,
 - nx_tcp_server_socket_unlisten, nx_tcp_socket_create,
@@ -5008,7 +5008,7 @@ status = nx_tcp_socket_bytes_available(&my_socket,
 
 ## <a name="nx_tcp_socket_create"></a>nx_tcp_socket_create
 
-Utwórz klienta TCP lub gniazdo serwera
+Tworzenie klienta TCP lub gniazda serwera
 
 ### <a name="prototype"></a>Prototype
 
@@ -5026,16 +5026,16 @@ UINT nx_tcp_socket_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy gniazdo klienta TCP lub serwera dla określonego wystąpienia IP.
+Ta usługa tworzy klienta TCP lub gniazdo serwera dla określonego wystąpienia adresu IP.
 
 *Procedury wywołania zwrotnego aplikacji są wywoływane z wątku skojarzonego z tym wystąpieniem adresu IP.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **socket_ptr** Wskaźnik do nowego bloku sterowania gniazdem TCP.
-- **Nazwa** Nazwa aplikacji dla tego gniazda TCP.
-- **Type_of_Service** Definiuje typ usługi do transmisji, wartości prawne są następujące:
+- **socket_ptr** Wskaźnik do nowego bloku sterowania gniazda TCP.
+- **name (nazwa)** Nazwa aplikacji dla tego gniazda TCP.
+- **type_of_service** Definiuje typ usługi transmisji, a wartości prawne są następujące:
 
 - NX_IP_NORMAL (0x00000000)
 - NX_IP_MIN_DELAY (0x00100000)
@@ -5043,24 +5043,24 @@ Ta usługa tworzy gniazdo klienta TCP lub serwera dla określonego wystąpienia 
 - NX_IP_MAX_RELIABLE (0x00040000)
 - NX_IP_MIN_COST (0x00020000)
 
-- **fragment**  Określa, czy jest dozwolone fragmentacja adresów IP. Jeśli określono NX_FRAGMENT_OKAY (0x0), jest dozwolone fragmentacja adresów IP. Jeśli określono NX_DONT_FRAGMENT (0x4000), fragmentacja adresów IP jest wyłączona.
-- **time_to_live** Określa 8-bitową wartość, która definiuje liczbę routerów, które ten pakiet może przekazać przed wyrzucaniem. Wartość domyślna jest określana przez NX_IP_TIME_TO_LIVE.
+- **fragment**  Określa, czy fragmentowanie adresów IP jest dozwolone. Jeśli NX_FRAGMENT_OKAY (0x0) jest określony, fragmentowanie adresów IP jest dozwolone. Jeśli NX_DONT_FRAGMENT (0x4000) jest określony, fragmentowanie adresów IP jest wyłączone.
+- **time_to_live** Określa wartość 8-bitową, która definiuje liczbę routerów, które pakiet może przekazać, zanim zostanie wyrzucony. Wartość domyślna jest określana przez NX_IP_TIME_TO_LIVE.
 - **window_size** Określa maksymalną dozwoloną liczbę bajtów w kolejce odbierania dla tego gniazda
-- **urgent_data_callback** Funkcja aplikacji, która jest wywoływana za każdym razem, gdy w strumieniu odbioru zostanie wykryte pilne dane. Jeśli ta wartość jest NX_NULL, pilne dane zostaną zignorowane.
-- **disconnect_callback** Funkcja aplikacji, która jest wywoływana za każdym razem, gdy łącznik zostanie wystawiony przez gniazdo na drugim końcu połączenia. Jeśli ta wartość jest NX_NULL, funkcja odłączania wywołania zwrotnego jest wyłączona.
+- **urgent_data_callback** Funkcja aplikacji wywoływana za każdym razem, gdy w strumieniu odbierania zostaną wykryte pilne dane. Jeśli ta wartość jest NX_NULL, pilne dane są ignorowane.
+- **disconnect_callback** Funkcja aplikacji wywoływana za każdym razem, gdy gniazdo na drugim końcu połączenia wystawia rozłączenie. Jeśli ta wartość jest NX_NULL, funkcja wywołania zwrotnego rozłączenia jest wyłączona.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślnie utworzono gniazdo klienta TCP.
-- **NX_OPTION_ERROR** (0X0a) Nieprawidłowy typ usługi, fragment, nieprawidłowy rozmiar okna lub opcja czasu tolive.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie gniazda klienta TCP.
+- **NX_OPTION_ERROR** (0x0A) Nieprawidłowy typ usługi, fragment, nieprawidłowy rozmiar okna lub opcja czasu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP lub gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5086,7 +5086,7 @@ status = nx_tcp_socket_create(&ip_0, &client_socket,
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_listen,
 - nx_tcp_server_socket_relisten, nx_tcp_server_socket_unaccept,
 - nx_tcp_server_socket_unlisten, nx_tcp_socket_bytes_available,
@@ -5097,7 +5097,7 @@ status = nx_tcp_socket_create(&ip_0, &client_socket,
 
 ## <a name="nx_tcp_socket_delete"></a>nx_tcp_socket_delete
 
-Usuń gniazdo TCP
+Usuwanie gniazda TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -5111,22 +5111,22 @@ Ta usługa usuwa wcześniej utworzone gniazdo TCP. Jeśli gniazdo jest nadal pow
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Poprzednio utworzone gniazdo TCP
+- **socket_ptr** Wcześniej utworzone gniazdo TCP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne usunięcie gniazda.
-- Gniazdo **NX_NOT_CREATED** (0x27) nie zostało utworzone.
-- Gniazdo **NX_STILL_BOUND** (0x42) jest nadal powiązane.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne usunięcie gniazda.
+- **NX_NOT_CREATED** (0x27) Nie utworzono gniazda.
+- **NX_STILL_BOUND** (0x42) Gniazdo jest nadal powiązane.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5143,7 +5143,7 @@ status = nx_tcp_socket_delete(&client_socket);
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_listen,
 - nx_tcp_server_socket_relisten, nx_tcp_server_socket_unaccept,
 - nx_tcp_server_socket_unlisten, nx_tcp_socket_bytes_available,
@@ -5166,31 +5166,31 @@ UINT nx_tcp_socket_disconnect(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rozłącza ustanowione połączenie z gniazdem klienta lub serwera. Po rozłączeniu gniazda serwera powinno następować żądanie nieakceptowane, a gniazdo klienta, które zostało odłączone, pozostaje w stanie gotowym do innego żądania połączenia. Jeśli proces rozłączenia nie może zakończyć się natychmiast, usługa zawiesza się zgodnie z podaną opcją oczekiwania.
+Ta usługa rozłącza nawiązane połączenie klienta lub gniazda serwera. Po odłączeniu gniazda serwera powinno nasłonić żądanie nieakceptowane, a odłączone gniazdo klienta pozostaje w stanie gotowym na inne żądanie połączenia. Jeśli proces rozłączania nie może zakończyć się natychmiast, usługa zostanie wstrzymana zgodnie z podaną opcją oczekiwania.
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Wskaźnik do wcześniej połączonego wystąpienia klienta lub gniazda serwera.
-- **WAIT_OPTION** Definiuje, w jaki sposób działa usługa, gdy trwa odłączanie. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **socket_ptr** Wskaźnik do wcześniej połączonego klienta lub wystąpienia gniazda serwera.
+- **wait_option** Określa, jak usługa zachowuje się, gdy rozłączenie jest w toku. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne rozłączenie gniazda.
-- Określone gniazdo **NX_NOT_CONNECTED** (0x38) nie jest połączone.
-- **NX_IN_PROGRESS** (0x37) rozłączenie jest w toku, nie określono oczekiwania.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie tx_thread_wait_abort.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne rozłączenie gniazda.
+- **NX_NOT_CONNECTED** (0x38) Określone gniazdo nie jest połączone.
+- **NX_IN_PROGRESS** (0x37) Rozłączanie jest w toku, nie określono oczekiwania.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -5210,17 +5210,17 @@ status = nx_tcp_socket_disconnect(&client_socket, 400);
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_listen,
 - nx_tcp_server_socket_relisten, nx_tcp_server_socket_unaccept,
 - nx_tcp_server_socket_unlisten, nx_tcp_socket_bytes_available,
-- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_info_get
+- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_info_get,
 - nx_tcp_socket_receive, nx_tcp_socket_receive_queue_max_set,
 - nx_tcp_socket_send, nx_tcp_socket_state_wait
 
 ## <a name="nx_tcp_socket_disconnect_complete_notify"></a>nx_tcp_socket_disconnect_complete_notify
 
-Zainstaluj funkcję wywołania zwrotnego powiadomienia o rozłączeniu protokołu TCP
+Instalowanie pełnej funkcji wywołania zwrotnego powiadamiania o rozłączeniu protokołu TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -5233,27 +5233,27 @@ UINT nx_tcp_socket_disconnect_complete_notify(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego, która jest wywoływana po zakończeniu operacji rozłączenia gniazda. Funkcja wywołania zwrotnego rozłączenia gniazda TCP jest dostępna, jeśli NetX jest skompilowana przy użyciu opcji
+Ta usługa rejestruje funkcję wywołania zwrotnego, która jest wywoływana po zakończeniu operacji rozłączenia gniazda. Funkcja kompletnego wywołania zwrotnego rozłączenia gniazda TCP jest dostępna, jeśli netx jest sbudowaną opcją
 
-- Zdefiniowano ***NX_ENABLE_EXTENDED_NOTIFY_SUPPORT*** .
+- ***NX_ENABLE_EXTENDED_NOTIFY_SUPPORT*** zdefiniowane.
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Wskaźnik do wcześniej połączonego wystąpienia klienta lub gniazda serwera.
+- **socket_ptr** Wskaźnik do wcześniej połączonego klienta lub wystąpienia gniazda serwera.
 - **tcp_disconnect_complete_notify** Funkcja wywołania zwrotnego do zainstalowania.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0X00) pomyślnie zarejestrował funkcję wywołania zwrotnego.
+- **NX_SUCCESS** (0x00) Pomyślnie zarejestrowano funkcję wywołania zwrotnego.
 - **NX_NOT_SUPPORTED** (0x4B) Funkcja rozszerzonego powiadamiania nie jest wbudowana w bibliotekę NetX
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- Funkcja TCP **NX_NOT_ENABLED** (0x14) nie jest włączona.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) TCP nie jest włączona.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5267,7 +5267,7 @@ status = nx_tcp_socket_disconnect_complete_notify(&client_socket,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_tcp_enable, nx_tcp_socket_create, nx_tcp_socket_establish_notify
+- nx_tcp_enable, nx_tcp_socket_create, nx_tcp_socket_establish_notify,
 - nx_tcp_socket_mss_get, nx_tcp_socket_mss_peer_get,
 - nx_tcp_socket_mss_set, nx_tcp_socket_peer_info_get,
 - nx_tcp_socket_receive_notify, nx_tcp_socket_timed_wait_callback,
@@ -5276,7 +5276,7 @@ status = nx_tcp_socket_disconnect_complete_notify(&client_socket,
 
 ## <a name="nx_tcp_socket_establish_notify"></a>nx_tcp_socket_establish_notify
 
-Ustaw funkcję wywołania zwrotnego powiadomienia o ustanowieniu protokołu TCP
+Ustawianie funkcji wywołania zwrotnego powiadamiania protokołu TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -5288,26 +5288,26 @@ UINT nx_tcp_socket_establish_notify(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego, która jest wywoływana po nawiązaniu połączenia przez gniazdo TCP. Funkcja wywołania zwrotnego gniazda TCP jest dostępna, jeśli NetX jest skompilowana przy użyciu opcji zdefiniowanej ***NX_ENABLE_EXTENDED_NOTIFY_SUPPORT*** .
+Ta usługa rejestruje funkcję wywołania zwrotnego, która jest wywoływana po nawiązaniu połączenia przez gniazdo TCP. Funkcja wywołania zwrotnego establish gniazda TCP jest dostępna,  jeśli netx jest budowy z NX_ENABLE_EXTENDED_NOTIFY_SUPPORT opcją.
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Wskaźnik do wcześniej połączonego wystąpienia klienta lub gniazda serwera.
-- **tcp_establish_notify** Wywoływanie funkcji wywołania zwrotnego po nawiązaniu połączenia TCP.
+- **socket_ptr** Wskaźnik do wcześniej połączonego klienta lub wystąpienia gniazda serwera.
+- **tcp_establish_notify** Funkcja wywołania zwrotnego wywoływana po nawiązaniu połączenia TCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawia funkcję powiadamiania.
+- **NX_SUCCESS** (0x00) Pomyślnie ustawia funkcję notify.
 - **NX_NOT_SUPPORTED** (0x4B) Funkcja rozszerzonego powiadamiania nie jest wbudowana w bibliotekę NetX
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) TCP nie został włączony przez aplikację.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) TCP nie został włączony przez aplikację.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5330,7 +5330,7 @@ status = nx_tcp_socket_establish_notify(&client_socket, callback);
 
 ## <a name="nx_tcp_socket_info_get"></a>nx_tcp_socket_info_get
 
-Pobierz informacje o działaniach gniazda TCP
+Pobieranie informacji o działaniach gniazda TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -5354,29 +5354,29 @@ UINT nx_tcp_socket_info_get(
 
 Ta usługa pobiera informacje o działaniach gniazda TCP dla określonego wystąpienia gniazda TCP.
 
-*Jeśli wskaźnik docelowy jest NX_NULL, to konkretne informacje nie są zwracane do obiektu wywołującego.*
+*Jeśli wskaźnik docelowy jest NX_NULL, te konkretne informacje nie są zwracane do wywołującego.*
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego wystąpienia gniazda TCP.
-- **tcp_packets_sent** Wskaźnik do miejsca docelowego dla łącznej liczby pakietów TCP wysłanych w gnieździe.
-- **tcp_bytes_sent** Wskaźnik do miejsca docelowego dla łącznej liczby bajtów TCP wysłanych w gnieździe.
-- **tcp_packets_received** Wskaźnik do miejsca docelowego całkowitej liczby pakietów TCP odebranych w gnieździe.
-- **tcp_bytes_received** Wskaźnik do lokalizacji docelowej łącznej liczby bajtów TCP odebranych w gnieździe.
-- **tcp_retransmit_packets** Wskaźnik do lokalizacji docelowej łącznej liczby ponownych transmisji pakietów TCP.
-- **tcp_packets_queued** Wskaźnik do lokalizacji docelowej łącznej liczby pakietów TCP umieszczonych w kolejce w gnieździe.
-- **tcp_checksum_errors** Wskaźnik do miejsca docelowego całkowitej liczby pakietów TCP z błędami sumy kontrolnej w gnieździe.
+- **tcp_packets_sent** Wskaźnik do miejsca docelowego całkowitej liczby pakietów TCP wysyłanych na gniazdo.
+- **tcp_bytes_sent** Wskaźnik do miejsca docelowego całkowitej liczby bajtów TCP wysłanych na gniazdo.
+- **tcp_packets_received** Wskaźnik do miejsca docelowego całkowitej liczby pakietów TCP odebranych na gnieździe.
+- **tcp_bytes_received** Wskaźnik do miejsca docelowego całkowitej liczby bajtów TCP odebranych na gnieździe.
+- **tcp_retransmit_packets** Wskaźnik do miejsca docelowego całkowitej liczby ponownych transmisji pakietów TCP.
+- **tcp_packets_queued** Wskaźnik do miejsca docelowego całkowitej liczby pakietów TCP w kolejce na gnieździe.
+- **tcp_checksum_errors** Wskaźnik do miejsca docelowego całkowitej liczby pakietów TCP z błędami sumy kontrolnej na gnieździe.
 - **tcp_socket_state** Wskaźnik do miejsca docelowego bieżącego stanu gniazda.
-- **tcp_transmit_queue_depth** Wskaźnik do miejsca docelowego całkowitej liczby pakietów nadawczych oczekujących w kolejce na potwierdzenie.
-- **tcp_transmit_window** Wskaźnik do miejsca docelowego bieżącego rozmiaru okna wysyłania.
+- **tcp_transmit_queue_depth** Wskaźnik do miejsca docelowego całkowitej liczby pakietów przesyłanych nadal w kolejce oczekujących na ACK.
+- **tcp_transmit_window** Wskaźnik do miejsca docelowego bieżącego rozmiaru okna przesyłania.
 - **tcp_receive_window** Wskaźnik do miejsca docelowego bieżącego rozmiaru okna odbierania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobieranie informacji o gnieździe TCP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pobieranie informacji o pomyślnym gnieździe TCP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -5400,9 +5400,9 @@ status = nx_tcp_socket_info_get(&socket_0,
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5430,17 +5430,17 @@ status = nx_tcp_socket_info_get(&socket_0,
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_listen,
 - nx_tcp_server_socket_relisten, nx_tcp_server_socket_unaccept,
 - nx_tcp_server_socket_unlisten, nx_tcp_socket_bytes_available,
-- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_disconnect
+- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_disconnect,
 - nx_tcp_socket_receive, nx_tcp_socket_receive_queue_max_set,
 - nx_tcp_socket_send, nx_tcp_socket_state_wait
 
 ## <a name="nx_tcp_socket_mss_get"></a>nx_tcp_socket_mss_get
 
-Pobierz rozmiar pasma gniazda
+Uzyskiwanie usługi MSS gniazda
 
 ### <a name="prototype"></a>Prototype
 
@@ -5452,25 +5452,25 @@ UINT nx_tcp_socket_mss_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera lokalny maksymalny rozmiar segmentu określonego gniazda (Maximum).
+Ta usługa pobiera lokalny maksymalny rozmiar segmentu (MSS) określonego gniazda.
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego gniazda.
--  rozmiar/rozmiar Miejsce docelowe zwracające rozmiar urządzenia.
+- **mss** Miejsce docelowe zwracania usługi MSS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobieranie.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik miejsca docelowego gniazda lub wskaźnika.
-- **NX_NOT_ENABLED** (0X14) TCP nie jest włączona.
-- Obiekt wywołujący **NX_CALLER_ERROR** (0x11) nie jest wątkiem lub inicjalizacją.
+- **NX_SUCCESS** (0x00) Pomyślnie pobierz mss.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda lub miejsca docelowego MSS.
+- **NX_NOT_ENABLED** (0x14) TCP nie jest włączony.
+- **NX_CALLER_ERROR** (0x11) nie jest wątkiem ani inicjowaniem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5496,7 +5496,7 @@ status = nx_tcp_socket_mss_get(&my_socket, &mss_value);
 
 ## <a name="nx_tcp_socket_mss_peer_get"></a>nx_tcp_socket_mss_peer_get
 
-Pobierz rozmiar pasma równorzędnego gniazda TCP
+Uzyskiwanie usługi MSS równorzędnego gniazda TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -5508,26 +5508,26 @@ UINT nx_tcp_socket_mss_peer_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera maksymalny rozmiar segmentu (Maximum) anonsowany przez gniazdo równorzędne.
+Ta usługa pobiera maksymalny rozmiar segmentu (MSS) anonsowany przez gniazdo równorzędne.
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego i połączonego gniazda.
--  rozmiar/rozmiar Miejsce docelowe zwracające rozmiar tego samego poziomu.
+- **mss** Miejsce docelowe zwracania usługi MSS.
 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobieranie elementu równorzędnego.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik miejsca docelowego gniazda lub wskaźnika.
-- **NX_NOT_ENABLED** (0X14) TCP nie jest włączona.
-- Obiekt wywołujący **NX_CALLER_ERROR** (0x11) nie jest wątkiem lub inicjalizacją.
+- **NX_SUCCESS** (0x00) Pomyślny równorzędny dostęp do usługi MSS.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda lub miejsca docelowego MSS.
+- **NX_NOT_ENABLED** (0x14) TCP nie jest włączony.
+- **NX_CALLER_ERROR** (0x11) nie jest wątkiem ani inicjowaniem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5553,7 +5553,7 @@ status = nx_tcp_socket_mss_peer_get(&my_socket, &mss_value);
 
 ## <a name="nx_tcp_socket_mss_set"></a>nx_tcp_socket_mss_set
 
-Ustaw rozmiar pasma gniazda
+Ustawianie zestawu MSS gniazda
 
 ### <a name="prototype"></a>Prototype
 
@@ -5565,29 +5565,29 @@ UINT nx_tcp_socket_mss_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia maksymalny rozmiar segmentu określonego gniazda (Maximum). Należy pamiętać, że wartość parametru/limit musi znajdować się w zakresie jednostki MTU interfejsu sieciowego, co pozwala na pozostawienie miejsca na nagłówki IP i TCP.
+Ta usługa ustawia maksymalny rozmiar segmentu określonego gniazda (MSS). Należy pamiętać, że wartość MSS musi znajdować się w obrębie jednostki MTU ip interfejsu sieciowego, co pozwala na miejsce na nagłówki IP i TCP.
 
-Ta usługa powinna zostać użyta, zanim gniazdo TCP rozpocznie proces nawiązywania połączenia. Jeśli usługa jest używana po nawiązaniu połączenia TCP, Nowa wartość nie ma wpływu na połączenie.
+Ta usługa powinna być używana przed rozpoczęciem procesu połączenia przez gniazdo TCP. Jeśli usługa jest używana po nawiązaniu połączenia TCP, nowa wartość nie ma wpływu na połączenie.
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego gniazda.
--  rozmiar/rozmiar Wartość parametru o wartości do ustawienia.
+- **mss** Wartość MSS do ustawienia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — zestaw o pomyślnym przeprowadzeniu.
-- Wartość parametru **NX_SIZE_ERROR** (0x09) jest zbyt duża.
-- **NX_NOT_CONNECTED** (0x38) połączenie TCP nie zostało nawiązane
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_NOT_ENABLED** (0X14) TCP nie jest włączona.
-- Obiekt wywołujący **NX_CALLER_ERROR** (0x11) nie jest wątkiem lub inicjalizacją.
+- **NX_SUCCESS** (0x00) Zestaw MSS pomyślnie.
+- **NX_SIZE_ERROR** (0x09) Określona wartość MSS jest zbyt duża.
+- **NX_NOT_CONNECTED** (0x38) TCP nie zostało nawiązane
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_NOT_ENABLED** (0x14) TCP nie jest włączony.
+- **NX_CALLER_ERROR** (0x11) nie jest wątkiem ani inicjowaniem.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5612,7 +5612,7 @@ status = nx_tcp_socket_mss_set(&my_socket, 1000);
 
 ## <a name="nx_tcp_socket_peer_info_get"></a>nx_tcp_socket_peer_info_get
 
-Pobierz informacje o gnieździe równorzędnym TCP
+Pobieranie informacji o równorzędnych gniazdach TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -5625,27 +5625,27 @@ UINT nx_tcp_socket_peer_info_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o adresie IP i porcie elementu równorzędnego dla połączonego gniazda TCP przez sieć IP.
+Ta usługa pobiera informacje o adresie IP elementu równorzędnego i porcie dla połączonego gniazda TCP za pośrednictwem sieci IP.
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego gniazda TCP.
-- **peer_ip_address** Wskaźnik do lokalizacji docelowej dla adresu IP elementu równorzędnego w kolejności bajtów hosta.
-- **peer_port** Wskaźnik do lokalizacji docelowej dla numeru portu elementu równorzędnego w kolejności bajtów hosta.
+- **peer_ip_address** Wskaźnik do miejsca docelowego dla adresu IP elementu równorzędnego w kolejności bajtów hosta.
+- **peer_port** Wskaźnik do miejsca docelowego dla numeru portu elementu równorzędnego w kolejności bajtów hosta.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Usługa **NX_SUCCESS** (0x00) została wykonana pomyślnie. Adres IP i numer portu elementu równorzędnego są zwracane do obiektu wywołującego.
-- Gniazdo **NX_NOT_CONNECTED** (0x38) nie jest w stanie połączonym.
-- **NX_PTR_ERROR** (0X07) nieprawidłowe wskaźniki.
-- **NX_NOT_ENABLED** (0X14) TCP nie jest włączona.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Service zostanie pomyślnie wykonany. Adres IP elementu równorzędnego i numer portu są zwracane do elementu wywołującego.
+- **NX_NOT_CONNECTED** (0x38) Gniazda nie jest w stanie połączenia.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe wskaźniki.
+- **NX_NOT_ENABLED** (0x14) TCP nie jest włączony.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5684,58 +5684,58 @@ UINT nx_tcp_socket_receive(
 
 ### <a name="description"></a>Opis
 
-Ta usługa odbiera dane TCP z określonego gniazda. Jeśli żadne dane nie są umieszczane w określonym gnieździe, obiekt wywołujący zawiesza się na podstawie podanej opcji oczekiwania.
+Ta usługa odbiera dane TCP z określonego gniazda. Jeśli żadne dane nie są kolejkowane na określonym gnieździe, wywołujący wstrzymuje się na podstawie podanej opcji oczekiwania.
 
-*Jeśli NX_SUCCESS jest zwracana, aplikacja jest odpowiedzialna za zwolnienie odebranego pakietu, gdy nie jest już potrzebne.*
+*Jeśli NX_SUCCESS zwracany, aplikacja jest odpowiedzialna za zwalnianie odebranego pakietu, gdy nie jest już potrzebny.*
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego wystąpienia gniazda TCP.
-- **packet_ptr** Wskaźnik na wskaźnik pakietu TCP.
-- **WAIT_OPTION** Definiuje, jak działa usługa, jeśli żadne dane nie są obecnie umieszczane w kolejce w tym gnieździe. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **packet_ptr** Wskaźnik do wskaźnika pakietów TCP.
+- **wait_option** Definiuje zachowanie usługi, jeśli żadne dane nie są obecnie w kolejce na tym gnieździe. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0x00) odbieranie danych gniazda zakończone powodzeniem.
-- Gniazdo **NX_NOT_BOUND** (0x24) nie jest jeszcze powiązane.
-- **NX_NO_PACKET** (0X01) nie odebrano żadnych danych.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie tx_thread_wait_abort.
-- **NX_NOT_CONNECTED** (0x38) gniazdo nie jest już połączone.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik lub pakiet zwrotny pakietu.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne odbieranie danych gniazda.
+- **NX_NOT_BOUND** (0x24) Socket nie jest jeszcze powiązany.
+- **NX_NO_PACKET** (0x01) Nie odebrano żadnych danych.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort.
+- **NX_NOT_CONNECTED** (0x38) Gniazdo nie jest już połączone.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe gniazdo lub wskaźnik pakietów powrotnych.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
 ### <a name="example"></a>Przykład
 
-/* Odbieraj pakiet z wcześniej utworzonego i połączonego gniazda klienta TCP. Jeśli żaden pakiet nie jest dostępny, poczekaj na 200 Takty czasomierza przed pokazaniem. */status = nx_tcp_socket_receive (&client_socket, &packet_ptr, 200);
+/* Odbierz pakiet z wcześniej utworzonego i połączonego gniazda klienta TCP. Jeśli pakiet nie jest dostępny, zaczekaj na 200 takt czasomierzy przed rezygnacją. */ status = nx_tcp_socket_receive(&client_socket, &packet_ptr, 200);
 
-/* Jeśli stan jest NX_SUCCESS, otrzymany pakiet jest wskazywany przez "packet_ptr". */
+/* Jeśli stan jest NX_SUCCESS, odebrany pakiet jest wskazywany przez "packet_ptr". */
 
 ### <a name="see-also"></a>Zobacz też
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_listen,
 - nx_tcp_server_socket_relisten, nx_tcp_server_socket_unaccept,
 - nx_tcp_server_socket_unlisten, nx_tcp_socket_bytes_available,
-- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_disconnect
+- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_disconnect,
 - nx_tcp_socket_info_get, nx_tcp_socket_receive_queue_max_set,
 - nx_tcp_socket_send, nx_tcp_socket_state_wait
 
 ## <a name="nx_tcp_socket_receive_notify"></a>nx_tcp_socket_receive_notify
 
-Powiadamiaj aplikację o odebranych pakietach
+Powiadamianie aplikacji o odebranych pakietach
 
 
 ### <a name="prototype"></a>Prototype
@@ -5748,25 +5748,25 @@ UINT nx_tcp_socket_receive_notify(
 
 ### <a name="description"></a>Opis
 
-Ta usługa konfiguruje wskaźnik Odbierz funkcję powiadamiania za pomocą funkcji wywołania zwrotnego określonego przez aplikację. Ta funkcja wywołania zwrotnego jest następnie wywoływana za każdym razem, gdy co najmniej jeden pakiet jest odbierany w gnieździe. Jeśli zostanie dostarczony NX_NULL wskaźnik, funkcja powiadamiania jest wyłączona.
+Ta usługa konfiguruje wskaźnik funkcji receive notify z funkcją wywołania zwrotnego określoną przez aplikację. Ta funkcja wywołania zwrotnego jest następnie wywoływana za każdym razem, gdy co najmniej jeden pakiet zostanie odebrany w gnieździe. Jeśli zostanie NX_NULL wskaźnik, funkcja notify zostanie wyłączona.
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Wskaźnik na gniazdo TCP.
-- **tcp_receive_notify** Wskaźnik funkcji wywołania zwrotnego aplikacji, który jest wywoływany, gdy co najmniej jeden pakiet jest odbierany w gnieździe.
+- **socket_ptr** Wskaźnik do gniazda TCP.
+- **tcp_receive_notify** Wskaźnik funkcji wywołania zwrotnego aplikacji wywoływany po otrzymaniu co najmniej jednego pakietu w gnieździe.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) powiadomienie o pomyślnym odebraniu gniazda.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- Funkcja TCP **NX_NOT_ENABLED** (0x14) nie jest włączona.
+- **NX_SUCCESS** (0x00) Powiadomienie o pomyślnym otrzymaniu gniazda.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) TCP nie jest włączona.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5808,40 +5808,40 @@ UINT nx_tcp_socket_send(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła dane TCP za pośrednictwem wcześniej połączonego gniazda TCP. Jeśli rozmiar okna o ostatnio anonsowanym odbiorniku jest mniejszy niż to żądanie, usługa opcjonalnie zawiesza się na podstawie podanej opcji oczekiwania. Ta usługa gwarantuje, że do warstwy IP nie są wysyłane żadne dane pakietu o rozmiarze większym niż wartość maksymalna.
+Ta usługa wysyła dane TCP za pośrednictwem wcześniej połączonego gniazda TCP. Jeśli rozmiar okna ostatnio anonsowanego odbiornika jest mniejszy niż to żądanie, usługa opcjonalnie wstrzymuje się na podstawie określonej opcji oczekiwania. Ta usługa gwarantuje, że żadne dane pakietu większe niż MSS są wysyłane do warstwy ip.
 
-*Jeśli błąd nie zostanie zwrócony, aplikacja nie powinna zwolnić pakietu po tym wywołaniu. Wykonanie tej operacji spowoduje nieprzewidywalne wyniki, ponieważ sterownik sieciowy podejmie również próbę zwolnienia pakietu po transmisji.*
+*Jeśli nie zostanie zwrócony błąd, aplikacja nie powinna zwalniać pakietu po tym wywołaniu. Spowoduje to nieprzewidywalne wyniki, ponieważ sterownik sieciowy spróbuje również zwolnić pakiet po zakończeniu transmisji.*
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej połączonego wystąpienia gniazda TCP.
 - **packet_ptr** Wskaźnik pakietu danych TCP.
-- **WAIT_OPTION** Definiuje, w jaki sposób działa usługa, jeśli żądanie jest większe niż rozmiar okna odbiornika. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **wait_option** Definiuje zachowanie usługi, jeśli żądanie jest większe niż rozmiar okna odbiornika. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie gniazda.
-- Gniazdo **NX_NOT_BOUND** (0x24) nie zostało powiązane z żadnym portem.
-- **NX_NO_INTERFACE_ADDRESS** (0X50) nie znaleziono odpowiedniego interfejsu wychodzącego.
-- Gniazdo **NX_NOT_CONNECTED** (0x38) nie jest już połączone.
-- Żądanie **NX_WINDOW_OVERFLOW** (0x39) jest większe niż anonsowany rozmiar okna odbiornika w bajtach.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie tx_thread_wait_abort.
-- Pakiet **NX_INVALID_PACKET** (0x12) nie jest przydzielony.
-- Osiągnięto maksymalną głębokość kolejki przesyłania **NX_TX_QUEUE_DEPTH** (0x49).
-- Wskaźnik dołączania pakietu **NX_OVERFLOW** (0x03) jest nieprawidłowy.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
-- Wskaźnik dołączania pakietu **NX_UNDERFLOW** (0x02) jest nieprawidłowy.
+- **NX_SUCCESS** (0x00) Pomyślne wysłanie gniazda.
+- **NX_NOT_BOUND** (0x24) Gniazdo nie zostało powiązane z żadnym portem.
+- **NX_NO_INTERFACE_ADDRESS** (0x50) Nie znaleziono odpowiedniego interfejsu wychodzącego.
+- **NX_NOT_CONNECTED** (0x38) Socket is no longer connected (Gniazdo (0x38) nie jest już połączone.
+- **NX_WINDOW_OVERFLOW** (0x39) Jest większe niż rozmiar okna anonsowanego odbiornika w bajtach.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort.
+- **NX_INVALID_PACKET** (0x12) pakiet nie jest przydzielony.
+- **NX_TX_QUEUE_DEPTH** (0x49) Osiągnięto maksymalną głębokość kolejki przesyłania.
+- **NX_OVERFLOW** (0x03) Wskaźnik dołączania pakietów jest nieprawidłowy.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
+- **NX_UNDERFLOW** (0x02) Wskaźnik dołączany pakiet jest nieprawidłowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5860,17 +5860,17 @@ status = nx_tcp_socket_send(&client_socket, packet_ptr, 200);
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_listen,
 - nx_tcp_server_socket_relisten, nx_tcp_server_socket_unaccept,
 - nx_tcp_server_socket_unlisten, nx_tcp_socket_bytes_available,
-- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_disconnect
+- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_disconnect,
 - nx_tcp_socket_info_get, nx_tcp_socket_receive,
 - nx_tcp_socket_receive_queue_max_set, nx_tcp_socket_state_wait
 
 ### <a name="nx_tcp_socket_state_wait"></a>nx_tcp_socket_state_wait
 
-Poczekaj, aż gniazdo TCP przeniesie określony stan
+Oczekiwanie na wprowadzenie określonego stanu przez gniazdo TCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -5882,12 +5882,12 @@ UINT nx_tcp_socket_state_wait(
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa czeka, aż gniazdo przejdzie do żądanego stanu. Jeśli gniazdo nie jest w żądanym stanie, usługa zawiesza się zgodnie z podaną opcją oczekiwania.
+Ta usługa czeka na wprowadzenie żądanego stanu gniazda. Jeśli gniazdo nie jest w żądanym stanie, usługa wstrzymuje się zgodnie z podaną opcją oczekiwania.
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej połączonego wystąpienia gniazda TCP.
-- **desired_state** Żądany stan protokołu TCP. Prawidłowe Stany gniazda TCP są zdefiniowane w następujący sposób:
+- **desired_state** Żądany stan TCP. Prawidłowe stany gniazd TCP są zdefiniowane w następujący sposób:
 - NX_TCP_CLOSED (0x01)
 - NX_TCP_LISTEN_STATE (0x02)
 - NX_TCP_SYN_SENT (0x03)
@@ -5899,25 +5899,25 @@ Ta usługa czeka, aż gniazdo przejdzie do żądanego stanu. Jeśli gniazdo nie 
 - NX_TCP_CLOSING (0x09)
 - NX_TCP_TIMED_WAIT (0x0A)
 - NX_TCP_LAST_ACK (0x0B)
-- **WAIT_OPTION** Definiuje, w jaki sposób działa usługa, jeśli żądany stan nie jest obecny. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **wait_option** Definiuje zachowanie usługi, jeśli żądany stan nie istnieje. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
-- Zaczekanie na **NX_SUCCESS** (0x00).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_NOT_SUCCESSFUL** (0x43) nie występuje w określonym czasie oczekiwania.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie tx_thread_wait_abort.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
-- **NX_OPTION_ERROR** (0x0A) żądany stan gniazda jest nieprawidłowy.
+- **NX_SUCCESS** (0x00) Oczekiwanie na powodzenie stanu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_NOT_SUCCESSFUL** (0x43) Stan nie występuje w określonym czasie oczekiwania.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
+- **NX_OPTION_ERROR** (0x0A) Żądany stan gniazda jest nieprawidłowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5937,17 +5937,17 @@ status = nx_tcp_socket_state_wait(&client_socket,
 
 - nx_tcp_client_socket_bind, nx_tcp_client_socket_connect,
 - nx_tcp_client_socket_port_get, nx_tcp_client_socket_unbind,
-- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get
+- nx_tcp_enable, nx_tcp_free_port_find, nx_tcp_info_get,
 - nx_tcp_server_socket_accept, nx_tcp_server_socket_listen,
 - nx_tcp_server_socket_relisten, nx_tcp_server_socket_unaccept,
 - nx_tcp_server_socket_unlisten, nx_tcp_socket_bytes_available,
-- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_disconnect
+- nx_tcp_socket_create, nx_tcp_socket_delete, nx_tcp_socket_disconnect,
 - nx_tcp_socket_info_get, nx_tcp_socket_receive,
 - nx_tcp_socket_receive_queue_max_set, nx_tcp_socket_send
 
 ## <a name="nx_tcp_socket_timed_wait_callback"></a>nx_tcp_socket_timed_wait_callback
 
-Instalacja wywołania zwrotnego dla stanu oczekiwania, który upłynął
+Instalowanie wywołania zwrotnego dla stanu oczekiwania z czasem
 
 ### <a name="prototype"></a>Prototype
 
@@ -5959,26 +5959,26 @@ UINT nx_tcp_socket_timed_wait_callback(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego, która jest wywoływana, gdy gniazdo TCP jest w stanie oczekiwania. Aby można było korzystać z tej usługi, biblioteka NetX musi być skompilowana przy użyciu opcji zdefiniowanej ***NX_ENABLE_EXTENDED_NOTIFY*** .
+Ta usługa rejestruje funkcję wywołania zwrotnego, która jest wywoływana, gdy gniazdo TCP jest w stanie oczekiwania z czasem. Aby można było korzystać z tej usługi, biblioteka NetX musi zostać s zbudowana przy użyciu ***NX_ENABLE_EXTENDED_NOTIFY*** zdefiniowanej opcji.
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Wskaźnik do wcześniej połączonego wystąpienia klienta lub gniazda serwera.
-- **tcp_timed_wait_callback** Funkcja wywołania zwrotnego czasu oczekiwania
+- **socket_ptr** Wskaźnik do wcześniej połączonego klienta lub wystąpienia gniazda serwera.
+- **tcp_timed_wait_callback** Funkcja wywołania zwrotnego oczekiwania z czasem
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie rejestruje gniazdo funkcji wywołania zwrotnego
-- **NX_NOT_SUPPORTED** (0X4B) NetX Library została skompilowana bez włączonej funkcji rozszerzonego powiadamiania.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- Funkcja TCP **NX_NOT_ENABLED** (0x14) nie jest włączona.
+- **NX_SUCCESS** (0x00) Pomyślnie rejestruje gniazdo funkcji wywołania zwrotnego
+- **NX_NOT_SUPPORTED** (0x4B) biblioteka NetX jest łączona bez włączonej funkcji rozszerzonego powiadamiania.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) TCP nie jest włączona.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6001,7 +6001,7 @@ nx_tcp_socket_timed_wait_callback(&client_socket, callback);
 
 ## <a name="nx_tcp_socket_transmit_configure"></a>nx_tcp_socket_transmit_configure
 
-Konfiguruj parametry transmisji gniazda
+Konfigurowanie parametrów przesyłania gniazda
 
 ### <a name="prototype"></a>Prototype
 
@@ -6016,28 +6016,28 @@ UINT nx_tcp_socket_transmit_configure(
 
 ### <a name="description"></a>Opis
 
-Ta usługa konfiguruje różne parametry transmisji określonego gniazda TCP.
+Ta usługa konfiguruje różne parametry przesyłania określonego gniazda TCP.
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Wskaźnik na gniazdo TCP.
-- **max_queue_depth** Maksymalna liczba pakietów, które mogą być umieszczone w kolejce na potrzeby transmisji.
-- **limit czasu** Liczba czasomierzy ThreadXa jest oczekiwana przez potwierdzenie przed ponownym wysłaniem pakietu.
-- **max_retries** Maksymalna dozwolona liczba ponownych prób.
-- **timeout_shift** Wartość służąca do zmiany limitu czasu dla każdej kolejnej próby. Wartość 0 powoduje ten sam limit czasu między kolejnymi próbami. Wartość 1 powoduje podwojony limit czasu między ponownymi próbami.
+- **socket_ptr** Wskaźnik do gniazda TCP.
+- **max_queue_depth** Maksymalna liczba pakietów, które mogą być w kolejce do transmisji.
+- **limit czasu** Liczba znaczników czasomierza ThreadX, na które czeka ACK, zanim pakiet zostanie wysłany ponownie.
+- **max_retries** Dozwolona maksymalna liczba ponownych prób.
+- **timeout_shift** Wartość do zmiany limitu czasu dla każdej kolejnej próby ponownego wykonania. Wartość 0 powoduje ten sam limit czasu między kolejnymi próbami. Wartość 1 podwaja limit czasu między ponownych prób.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- **NX_SUCCESS** (0x00) pomyślna Konfiguracja gniazda transmisji.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_OPTION_ERROR** (0X0a) Nieprawidłowa opcja głębokości kolejki.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- Funkcja TCP **NX_NOT_ENABLED** (0x14) nie jest włączona.
+- **NX_SUCCESS** (0x00) Pomyślna konfiguracja gniazda przesyłania.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_OPTION_ERROR** (0x0a) Nieprawidłowa opcja głębokości kolejki.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) TCP nie jest włączona.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6066,7 +6066,7 @@ status = nx_tcp_socket_transmit_configure(&client_socket,
 
 ## <a name="nx_tcp_socket_window_update_notify_set"></a>nx_tcp_socket_window_update_notify_set
 
-Powiadamianie o aktualizacjach rozmiaru okna
+Powiadamianie aplikacji o aktualizacjach rozmiaru okna
 
 ### <a name="prototype"></a>Prototype
 
@@ -6080,25 +6080,25 @@ UINT nx_tcp_socket_window_update_notify_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa instaluje procedurę wywołania zwrotnego aktualizacji okna gniazda. Ta procedura jest wywoływana automatycznie za każdym razem, gdy określone gniazdo odbierze pakiet wskazujący wzrost rozmiaru okna hosta zdalnego.
+Ta usługa instaluje procedurę wywołania zwrotnego aktualizacji okna gniazda. Ta procedura jest wywoływana automatycznie za każdym razem, gdy określone gniazdo odbiera pakiet wskazujący wzrost rozmiaru okna hosta zdalnego.
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego gniazda TCP.
-- **tcp_window_update_notify** Procedura wywołania zwrotnego, która ma zostać wywołana, gdy zmienia się rozmiar okna. Wartość NULL powoduje wyłączenie zmiany okna.
+- **tcp_window_update_notify** Procedura wywołania zwrotnego, która ma być wywoływana po zmianie rozmiaru okna. Wartość NULL wyłącza aktualizację zmiany okna.
 
 ### <a name="return-values"></a>Wartości zwrócone
-- Procedura wywołania zwrotnego **NX_SUCCESS** (0x00) jest instalowana w gnieździe.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_PTR_ERROR** (0X07) nieprawidłowe wskaźniki.
-- Funkcja TCP **NX_NOT_ENABLED** (0x14) nie jest włączona.
+- **NX_SUCCESS** (0x00) Procedura wywołania zwrotnego jest zainstalowana na gnieździe.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe wskaźniki.
+- **NX_NOT_ENABLED** (0x14) TCP nie jest włączona.
 
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6129,7 +6129,7 @@ void my_windows_update_callback(NX_TCP_SCOCKET *data_socket)
 
 ## <a name="nx_udp_enable"></a>nx_udp_enable
 
-Włącz składnik UDP elementu NetX
+Włączanie składnika UDP netx
 
 ### <a name="prototype"></a>Prototype
 
@@ -6139,7 +6139,7 @@ UINT nx_udp_enable(NX_IP *ip_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa włącza składnik UDP (User Datagram Protocol) NetX. Po włączeniu protokołu UDP datagramy mogą być wysyłane i odbierane przez aplikację.
+Ta usługa włącza składnik protokołu UDP (User Datagram Protocol) netx. Po włączeniu można wysyłać i odbierać datagramy protokołu UDP przez aplikację.
 
 ### <a name="parameters"></a>Parametry
 
@@ -6147,16 +6147,16 @@ Ta usługa włącza składnik UDP (User Datagram Protocol) NetX. Po włączeniu 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne włączenie protokołu UDP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_ALREADY_ENABLED** (0X15) ten składnik został już włączony.
+- **NX_SUCCESS** (0x00) Pomyślne włączenie protokołu UDP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_ALREADY_ENABLED** (0x15) Ten składnik został już włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze
+Inicjowanie, wątki, czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6172,10 +6172,10 @@ status = nx_udp_enable(&ip_0);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_free_port_find, nx_udp_info_get, nx_udp_packet_info_extract
+- nx_udp_free_port_find, nx_udp_info_get, nx_udp_packet_info_extract,
 - nx_udp_socket_bind, nx_udp_socket_bytes_available,
 - nx_udp_socket_checksum_disable, nx_udp_socket_checksum_enable,
-- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get
+- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get,
 - nx_udp_socket_port_get, nx_udp_socket_receive,
 - nx_udp_socket_receive_notify, nx_udp_socket_send,
 - nx_udp_socket_interface_send, nx_udp_socket_unbind,
@@ -6183,7 +6183,7 @@ status = nx_udp_enable(&ip_0);
 
 ## <a name="nx_udp_free_port_find"></a>nx_udp_free_port_find
 
-Znajdź następny dostępny port UDP
+Znajdowanie następnego dostępnego portu UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -6196,31 +6196,31 @@ UINT nx_udp_free_port_find(
 
 ### <a name="description"></a>Opis
 
-Ta usługa szuka bezpłatnego portu UDP (niepowiązanego) rozpoczynającego się od dostarczonej przez aplikację numeru portu. Logika wyszukiwania zostanie zawinięty, jeśli wyszukiwanie osiągnie maksymalną wartość dla wartości 0xFFFF. Jeśli wyszukiwanie zakończyło się pomyślnie, port wolny jest zwracany w zmiennej wskazywanej przez *free_port_ptr*.
+Ta usługa wyszukuje bezpłatny port UDP (niepowiązany) rozpoczynający się od numeru portu podanego przez aplikację. Logika wyszukiwania zawinie się, jeśli wyszukiwanie osiągnie maksymalną wartość portu 0xFFFF. Jeśli wyszukiwanie powiedzie się, bezpłatny port jest zwracany w zmiennej wskazywanej przez free_port_ptr *.*
 
-*Ta usługa może być wywoływana z innego wątku i może mieć ten sam port. Aby uniknąć tego warunku wyścigu, aplikacja może chcieć umieścić tę usługę i rzeczywiste powiązanie gniazda w ramach ochrony obiektu mutex.*
+*Ta usługa może być wywoływana z innego wątku i może mieć zwrócony ten sam port. Aby zapobiec sytuacji wyścigu, aplikacja może chcieć umieścić tę usługę i rzeczywiste powiązanie gniazda pod ochroną obiektu mutex.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 - **port** Numer portu do rozpoczęcia wyszukiwania (od 1 do 0xFFFF).
-- **free_port_ptr** Wskaźnik na zmienną zwrotną wolnego portu docelowego.
+- **free_port_ptr** Wskaźnik do zmiennej zwracania wolnego portu docelowego.
 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne znalezienie bezpłatnego portu.
-- **NX_NO_FREE_PORTS** (0X45) nie znaleziono wolnych portów.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
-- **NX_INVALID_PORT** (0X46) określony numer portu jest nieprawidłowy.
+- **NX_SUCCESS** (0x00) Pomyślne znalezienie bezpłatnego portu.
+- **NX_NO_FREE_PORTS** (0x45) Nie znaleziono wolnych portów.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
+- **NX_INVALID_PORT** (0x46) Określony numer portu jest nieprawidłowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6237,10 +6237,10 @@ status = nx_udp_free_port_find(&ip_0, 12, &free_port);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_info_get, nx_udp_packet_info_extract
+- nx_udp_enable, nx_udp_info_get, nx_udp_packet_info_extract,
 - nx_udp_socket_bind, nx_udp_socket_bytes_available,
 - nx_udp_socket_checksum_disable, nx_udp_socket_checksum_enable,
-- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get
+- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get,
 - nx_udp_socket_port_get, nx_udp_socket_receive,
 - nx_udp_socket_receive_notify, nx_udp_socket_send,
 - nx_udp_socket_interface_send, nx_udp_socket_unbind,
@@ -6248,7 +6248,7 @@ status = nx_udp_free_port_find(&ip_0, 12, &free_port);
 
 ## <a name="nx_udp_info_get"></a>nx_udp_info_get
 
-Pobierz informacje o działaniach UDP
+Pobieranie informacji o działaniach UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -6266,34 +6266,34 @@ UINT nx_udp_info_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o działaniach UDP dla określonego wystąpienia IP.
+Ta usługa pobiera informacje o działaniach UDP dla określonego wystąpienia adresu IP.
 
-*Jeśli wskaźnik docelowy jest NX_NULL, to konkretne informacje nie są zwracane do obiektu wywołującego.*
+*Jeśli wskaźnik docelowy jest NX_NULL, te konkretne informacje nie są zwracane do wywołującego.*
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **udp_packets_sent** Wskaźnik do miejsca docelowego dla łącznej liczby wysłanych pakietów UDP.
-- **udp_bytes_sent** Wskaźnik do miejsca docelowego dla łącznej liczby wysłanych bajtów UDP.
-- **udp_packets_received** Wskaźnik do lokalizacji docelowej łącznej liczby odebranych pakietów UDP.
-- **udp_bytes_received** Wskaźnik do lokalizacji docelowej łącznej liczby odebranych bajtów UDP.
-- **udp_invalid_packets** Wskaźnik do lokalizacji docelowej całkowitej liczby nieprawidłowych pakietów UDP.
-- **udp_receive_packets_dropped** Wskaźnik do lokalizacji docelowej całkowitej liczby porzuconych pakietów protokołu UDP.
-- **udp_checksum_errors** Wskaźnik do lokalizacji docelowej całkowitej liczby pakietów UDP z błędami sumy kontrolnej.
+- **udp_packets_sent** Wskaźnik do miejsca docelowego całkowitej liczby wysłanych pakietów UDP.
+- **udp_bytes_sent** Wskaźnik do miejsca docelowego całkowitej liczby wysłanych bajtów UDP.
+- **udp_packets_received** Wskaźnik do miejsca docelowego całkowitej liczby odebranych pakietów UDP.
+- **udp_bytes_received** Wskaźnik do miejsca docelowego całkowitej liczby odebranych bajtów UDP.
+- **udp_invalid_packets** Wskaźnik do miejsca docelowego całkowitej liczby nieprawidłowych pakietów UDP.
+- **udp_receive_packets_dropped** Wskaźnik do miejsca docelowego całkowitej liczby porzuconych pakietów odbieranych przez UDP.
+- **udp_checksum_errors** Wskaźnik do miejsca docelowego całkowitej liczby pakietów UDP z błędami sumy kontrolnej.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobieranie informacji o UDP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pobieranie informacji protokołu UDP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik IP.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki i czasomierze
+Inicjowanie, wątki i czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6314,10 +6314,10 @@ status = nx_udp_info_get(&ip_0, &udp_packets_sent,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_packet_info_extract
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_packet_info_extract,
 - nx_udp_socket_bind, nx_udp_socket_bytes_available,
 - nx_udp_socket_checksum_disable, nx_udp_socket_checksum_enable,
-- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get
+- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get,
 - nx_udp_socket_port_get, nx_udp_socket_receive,
 - nx_udp_socket_receive_notify, nx_udp_socket_send,
 - nx_udp_socket_interface_send, nx_udp_socket_unbind,
@@ -6325,7 +6325,7 @@ status = nx_udp_info_get(&ip_0, &udp_packets_sent,
 
 ## <a name="nx_udp_packet_info_extract"></a>nx_udp_packet_info_extract
 
-Wyodrębnij parametry sieci z pakietu UDP
+Wyodrębnianie parametrów sieciowych z pakietu UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -6340,28 +6340,28 @@ UINT nx_udp_packet_info_extract(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyodrębnia parametry sieci, takie jak adres IP, numer portu równorzędnego, typ protokołu (usługa zawsze zwraca typ UDP) z pakietu otrzymanego w interfejsie przychodzącym.
+Ta usługa wyodrębnia parametry sieci, takie jak adres IP, numer portu równorzędnego, typ protokołu (ta usługa zawsze zwraca typ UDP) z pakietu odebranego w interfejsie przychodzącym.
 
 ### <a name="parameters"></a>Parametry
 
 - **packet_ptr** Wskaźnik do pakietu.
-- **IP_address** Wskaźnik na adres IP nadawcy.
-- **Protokół** Wskaźnik do protokołu UDP.
-- **port** Wskaźnik na numer portu nadawcy.
-- **interface_index** Wskaźnik do odbioru indeksu interfejsu.
+- **ip_address** Wskaźnik do adresu IP nadawcy.
+- **protokół** Wskaźnik do protokołu (UDP).
+- **port** Wskaźnik do numeru portu nadawcy.
+- **interface_index** Wskaźnik do odbierania indeksu interfejsu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie wyodrębniono dane interfejsu pakietu **NX_SUCCESS** (0x00).
-- Pakiet **NX_INVALID_PACKET** (0x12) nie zawiera ramki adresu IP.
-- **NX_PTR_ERROR** (0X07) nieprawidłowe dane wejściowe wskaźnika
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Dane interfejsu pakietu zostały pomyślnie wyodrębnione.
+- **NX_INVALID_PACKET** (0x12) Pakiet nie zawiera ramki IP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe dane wejściowe wskaźnika
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6378,10 +6378,10 @@ status = nx_udp_packet_info_extract( packet_ptr, &ip_address,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_socket_bind, nx_udp_socket_bytes_available,
 - nx_udp_socket_checksum_disable, nx_udp_socket_checksum_enable,
-- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get
+- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get,
 - nx_udp_socket_port_get, nx_udp_socket_receive,
 - nx_udp_socket_receive_notify, nx_udp_socket_send,
 - nx_udp_socket_interface_send, nx_udp_socket_unbind,
@@ -6389,7 +6389,7 @@ status = nx_udp_packet_info_extract( packet_ptr, &ip_address,
 
 ## <a name="nx_udp_socket_bind"></a>nx_udp_socket_bind
 
-Powiąż gniazdo UDP z portem UDP
+Wiązanie gniazda UDP z portem UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -6402,34 +6402,34 @@ UINT nx_udp_socket_bind(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wiąże wcześniej utworzone gniazdo UDP z określonym portem UDP. Prawidłowy zakres UDP wynosi od 0 do 0xFFFF. Jeśli żądany numer portu jest powiązany z innym gniazdem, ta usługa czeka przez określony czas, w którym gniazdo ma usunąć powiązanie z numerem portu.
+Ta usługa wiąże wcześniej utworzone gniazdo UDP z określonym portem UDP. Prawidłowe gniazda UDP zakres od 0 do 0xFFFF. Jeśli żądany numer portu jest powiązany z innym gniazdem, ta usługa czeka przez określony czas, aż gniazdo zostanie odłączone od numeru portu.
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego wystąpienia gniazda UDP.
-- **port** Numer portu, z którym ma zostać utworzone powiązanie (od 1 do 0xFFFF). Jeśli numer portu to NX_ANY_PORT (0x0000), wystąpienie protokołu IP wyszuka następny bezpłatny port i użyje go do powiązania.
-- **WAIT_OPTION** Definiuje, w jaki sposób działa usługa, jeśli port jest już powiązany z innym gniazdem. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **port** Numer portu do powiązania (od 1 do 0xFFFF). Jeśli numer portu jest NX_ANY_PORT (0x0000), wystąpienie adresu IP wyszuka następny bezpłatny port i użyje go dla powiązania.
+- **wait_option** Definiuje zachowanie usługi, jeśli port jest już powiązany z innym gniazdem. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnego powiązania gniazda.
-- **NX_ALREADY_BOUND** (0X22) to gniazdo jest już powiązane z innym portem.
-- Port **NX_PORT_UNAVAILABLE** (0x23) jest już powiązany z innym gniazdem.
-- **NX_NO_FREE_PORTS** (0X45) brak wolnego portu.
-- Zażądane zawieszenie **NX_WAIT_ABORTED** (0x1A) zostało przerwane przez wywołanie tx_thread_wait_abort.
-- **NX_INVALID_PORT** (0x46) określono nieprawidłowy port.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne powiązanie gniazda.
+- **NX_ALREADY_BOUND** (0x22) To gniazdo jest już powiązane z innym portem.
+- **NX_PORT_UNAVAILABLE** (0x23) port jest już powiązany z innym gniazdem.
+- **NX_NO_FREE_PORTS** (0x45) Brak bezpłatnego portu.
+- **NX_WAIT_ABORTED** (0x1A) Żądanie zawieszenia zostało przerwane przez wywołanie tx_thread_wait_abort.
+- **NX_INVALID_PORT** (0x46) Określono nieprawidłowy port.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6447,10 +6447,10 @@ status = nx_udp_socket_bind(&udp_socket, 12, 300);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bytes_available,
 - nx_udp_socket_checksum_disable, nx_udp_socket_checksum_enable,
-- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get
+- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get,
 - nx_udp_socket_port_get, nx_udp_socket_receive,
 - nx_udp_socket_receive_notify, nx_udp_socket_send,
 - nx_udp_socket_interface_send, nx_udp_socket_unbind,
@@ -6470,7 +6470,7 @@ UINT nx_udp_socket_bytes_available(
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera liczbę bajtów dostępnych do odbioru w określonym gnieździe UDP.
+Ta usługa pobiera liczbę bajtów dostępnych do odbioru w określonym gnieździe UDP.
 
 ### <a name="parameters"></a>Parametry
 
@@ -6479,17 +6479,17 @@ Ta usługa Pobiera liczbę bajtów dostępnych do odbioru w określonym gnieźdz
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślne pobieranie odebranych bajtów **NX_SUCCESS** (0x00).
-- Gniazdo **NX_NOT_SUCCESSFUL** (0x43) nie jest powiązane z portem.
-- **NX_PTR_ERROR** (0X07) nieprawidłowe wskaźniki.
-- Funkcja UDP **NX_NOT_ENABLED** (0x14) nie jest włączona.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS** (0x00) Dostępne bajty pomyślne.
+- **NX_NOT_SUCCESSFUL** (0x43) nie jest powiązane z portem.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe wskaźniki.
+- **NX_NOT_ENABLED** (0x14) UDP nie jest włączona.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6505,10 +6505,10 @@ status = nx_udp_socket_bytes_available(&my_socket, &bytes_available);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_checksum_disable, nx_udp_socket_checksum_enable,
-- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get
+- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get,
 - nx_udp_socket_port_get, nx_udp_socket_receive,
 - nx_udp_socket_receive_notify, nx_udp_socket_send,
 - nx_udp_socket_interface_send, nx_udp_socket_unbind,
@@ -6516,7 +6516,7 @@ status = nx_udp_socket_bytes_available(&my_socket, &bytes_available);
 
 ## <a name="nx_udp_socket_checksum_disable"></a>nx_udp_socket_checksum_disable
 
-Wyłącz sumę kontrolną dla gniazda UDP
+Wyłączanie sumy kontrolnej dla gniazda UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -6526,9 +6526,9 @@ UINT nx_udp_socket_checksum_disable(NX_UDP_SOCKET *socket_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyłącza logikę sumy kontrolnej na potrzeby wysyłania i otrzymywania pakietów w określonym gnieździe UDP. Gdy logika sum kontrolnych jest wyłączona, wartość zero jest ładowana do pola sumy kontrolnej nagłówka UDP dla wszystkich pakietów wysyłanych za pomocą tego gniazda. Wartość sumy kontrolnej zero wartości w nagłówku UDP sygnalizuje odbiornikowi, że suma kontrolna nie jest obliczana dla tego pakietu.
+Ta usługa wyłącza logikę sumy kontrolnej wysyłania i odbierania pakietów na określonym gnieździe UDP. Gdy logika sumy kontrolnej jest wyłączona, wartość zero jest ładowana do pola sumy kontrolnej nagłówka UDP dla wszystkich pakietów wysyłanych przez to gniazdo. Wartość sumy kontrolnej o wartości zerowej w nagłówku UDP sygnalizuje odbiornikowi, że dla tego pakietu nie jest obliczana wartość sumy kontrolnej.
 
-Należy również zauważyć, że nie ma to żadnego efektu, jeśli ***NX_DISABLE_UDP_RX_CHECKSUM** _ i _ *_NX_DISABLE_UDP_TX_CHECKSUM_** są zdefiniowane podczas otrzymywania i wysyłania pakietów UDP odpowiednio.
+Należy również zauważyć, że nie ma to wpływu, jeśli ***NX_DISABLE_UDP_RX_CHECKSUM** _ i _ *_NX_DISABLE_UDP_TX_CHECKSUM_** są zdefiniowane podczas odbierania i wysyłania pakietów UDP odpowiednio.
 
 ### <a name="parameters"></a>Parametry
 
@@ -6536,17 +6536,17 @@ Należy również zauważyć, że nie ma to żadnego efektu, jeśli ***NX_DISABL
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — Wyłącz sumę kontrolną gniazda.
-- Gniazdo **NX_NOT_BOUND** (0x24) nie jest powiązane.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Wyłączenie sumy kontrolnej pomyślnego gniazda.
+- **NX_NOT_BOUND** (0x24) Gniazda nie jest powiązana.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierz
+Inicjowanie, wątki, czasomierz
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6562,10 +6562,10 @@ status = nx_udp_socket_checksum_disable(&udp_socket);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
-- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get
+- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get,
 - nx_udp_socket_port_get, nx_udp_socket_receive,
 - nx_udp_socket_receive_notify, nx_udp_socket_send,
 - nx_udp_socket_interface_send, nx_udp_socket_unbind,
@@ -6573,7 +6573,7 @@ status = nx_udp_socket_checksum_disable(&udp_socket);
 
 ## <a name="nx_udp_socket_checksum_enable"></a>nx_udp_socket_checksum_enable
 
-Włącz sumę kontrolną dla gniazda UDP
+Włączanie sumy kontrolnej dla gniazda UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -6583,9 +6583,9 @@ UINT nx_udp_socket_checksum_enable(NX_UDP_SOCKET *socket_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia logikę sumy kontrolnej na potrzeby wysyłania i otrzymywania pakietów w określonym gnieździe UDP. Suma kontrolna obejmuje cały obszar danych UDP oraz nagłówek pseudo IP.
+Ta usługa umożliwia logikę sumy kontrolnej wysyłania i odbierania pakietów na określonym gnieździe UDP. Sumy kontrolne obejmują cały obszar danych UDP oraz nagłówek pseudo-IP.
 
-Należy również pamiętać, że nie ma to wpływu, jeśli **NX_DISABLE_UDP_RX_CHECKSUM** i **NX_DISABLE_UDP_TX_CHECKSUM** są zdefiniowane podczas otrzymywania i wysyłania pakietów UDP odpowiednio.
+Należy również zauważyć, że nie ma to wpływu, **jeśli NX_DISABLE_UDP_RX_CHECKSUM** i **NX_DISABLE_UDP_TX_CHECKSUM** są zdefiniowane podczas odbierania i wysyłania pakietów UDP.
 
 ### <a name="parameters"></a>Parametry
 
@@ -6593,17 +6593,17 @@ Należy również pamiętać, że nie ma to wpływu, jeśli **NX_DISABLE_UDP_RX_
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) włączono pomyślne włączenie sumy kontrolnej gniazda.
-- Gniazdo **NX_NOT_BOUND** (0x24) nie jest powiązane.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Włączenie sumy kontrolnej pomyślnego gniazda.
+- **NX_NOT_BOUND** (0x24) Gniazda nie jest powiązana.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierz
+Inicjowanie, wątki, czasomierz
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6619,10 +6619,10 @@ status = nx_udp_socket_checksum_enable(&udp_socket);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
-- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get
+- nx_udp_socket_create, nx_udp_socket_delete, nx_udp_socket_info_get,
 - nx_udp_socket_port_get, nx_udp_socket_receive,
 - nx_udp_socket_receive_notify, nx_udp_socket_send,
 - nx_udp_socket_interface_send, nx_udp_socket_unbind,
@@ -6644,36 +6644,36 @@ UINT nx_udp_socket_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy gniazdo UDP dla określonego wystąpienia IP.
+Ta usługa tworzy gniazdo UDP dla określonego wystąpienia adresu IP.
 
 ### <a name="parameters"></a>Parametry
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **socket_ptr** Wskaźnik do nowej kontrolki gniazda UDP blo.
-- **Nazwa** Nazwa aplikacji dla tego gniazda UDP.
-- **Type_of_Service** Definiuje typ usługi do transmisji, wartości prawne są następujące:
+- **socket_ptr** Wskaźnik do nowego bloku sterowania gniazdami UDP.
+- **name (nazwa)** Nazwa aplikacji dla tego gniazda UDP.
+- **type_of_service** Definiuje typ usługi transmisji, a wartości prawne są następujące:
     - NX_IP_NORMAL (0x00000000)
     - NX_IP_MIN_DELAY (0x00100000)
     - NX_IP_MAX_DATA (0x00080000)
     - NX_IP_MAX_RELIABLE (0x00040000)
     - NX_IP_MIN_COST (0x00020000)
-- **fragment** Określa, czy jest dozwolone fragmentacja adresów IP. Jeśli określono NX_FRAGMENT_OKAY (0x0), jest dozwolone fragmentacja adresów IP. Jeśli określono NX_DONT_FRAGMENT (0x4000), fragmentacja adresów IP jest wyłączona.
-- **time_to_live** Określa 8-bitową wartość, która definiuje liczbę routerów, które ten pakiet może przekazać przed wyrzucaniem. Wartość domyślna jest określana przez NX_IP_TIME_TO_LIVE.
-- **queue_maximum** Określa maksymalną liczbę datagramów UDP, która może być umieszczona w kolejce dla tego gniazda. Po osiągnięciu limitu kolejki dla każdego nowego pakietu odebrano najstarszy pakiet UDP.
+- **fragment** Określa, czy fragmentowanie adresów IP jest dozwolone. Jeśli NX_FRAGMENT_OKAY (0x0) jest określony, fragmentowanie adresów IP jest dozwolone. Jeśli NX_DONT_FRAGMENT (0x4000) jest określony, fragmentowanie adresów IP jest wyłączone.
+- **time_to_live** Określa wartość 8-bitową, która definiuje liczbę routerów, które pakiet może przekazać, zanim zostanie wyrzucony. Wartość domyślna jest określana przez NX_IP_TIME_TO_LIVE.
+- **queue_maximum** Definiuje maksymalną liczbę datagramów protokołu UDP, które można dodać do kolejki dla tego gniazda. Po osiągnięciu limitu kolejki dla każdego odebranego nowego pakietu zwalniany jest najstarszy pakiet UDP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie utworzono gniazdo UDP.
-- **NX_OPTION_ERROR** (0X0a) Nieprawidłowy typ usługi, fragmentu lub opcji Time-to-Live.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik adresu IP lub gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie gniazda UDP.
+- **NX_OPTION_ERROR** (0x0A) Nieprawidłowa opcja typu usługi, fragmentu lub czasu eksploatacji.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy adres IP lub wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6690,7 +6690,7 @@ status = nx_udp_socket_create(&ip_0, &udp_socket, "Sample UDP Socket",
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
 - nx_udp_socket_checksum_enable, nx_udp_socket_delete,
@@ -6701,7 +6701,7 @@ status = nx_udp_socket_create(&ip_0, &udp_socket, "Sample UDP Socket",
 
 ## <a name="nx_udp_socket_delete"></a>nx_udp_socket_delete
 
-Usuń gniazdo UDP
+Usuwanie gniazda UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -6711,7 +6711,7 @@ UINT nx_udp_socket_delete(NX_UDP_SOCKET *socket_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wcześniej utworzone gniazdo UDP. Jeśli gniazdo zostało powiązane z portem, gniazdo musi być najpierw niepowiązane.
+Ta usługa usuwa wcześniej utworzone gniazdo UDP. Jeśli gniazdo zostało powiązane z portem, najpierw musi być niepowiązane.
 
 ### <a name="parameters"></a>Parametry
 
@@ -6719,17 +6719,17 @@ Ta usługa usuwa wcześniej utworzone gniazdo UDP. Jeśli gniazdo zostało powi�
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne usunięcie gniazda.
-- Gniazdo **NX_STILL_BOUND** (0x42) jest nadal powiązane.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne usunięcie gniazda.
+- **NX_STILL_BOUND** (0x42) gniazdo jest nadal powiązane.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6745,7 +6745,7 @@ status = nx_udp_socket_delete(&udp_socket);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
 - nx_udp_socket_checksum_enable, nx_udp_socket_create,
@@ -6756,7 +6756,7 @@ status = nx_udp_socket_delete(&udp_socket);
 
 ## <a name="nx_udp_socket_info_get"></a>nx_udp_socket_info_get
 
-Pobierz informacje o działaniach gniazda UDP
+Pobieranie informacji o działaniach gniazd UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -6776,31 +6776,31 @@ UINT nx_udp_socket_info_get(
 
 Ta usługa pobiera informacje o działaniach gniazda UDP dla określonego wystąpienia gniazda UDP.
 
-*Jeśli wskaźnik docelowy jest NX_NULL, to konkretne informacje nie są zwracane do obiektu wywołującego.*
+*Jeśli wskaźnik docelowy jest NX_NULL, te konkretne informacje nie są zwracane do wywołującego.*
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Wskaźnik do wcześniej utworzonego wystąpienia gniazda UDP.
-- **udp_packets_sent** Wskaźnik do miejsca docelowego dla łącznej liczby pakietów UDP wysłanych w gnieździe.
-- **udp_bytes_sent** Wskaźnik do miejsca docelowego dla łącznej liczby bajtów UDP wysłanych w gnieździe.
-- **udp_packets_received** Wskaźnik do miejsca docelowego całkowitej liczby pakietów UDP odebranych w gnieździe.
-- **udp_bytes_received** Wskaźnik do lokalizacji docelowej łącznej liczby bajtów UDP odebranych w gnieździe.
-- **udp_packets_queued** Wskaźnik do lokalizacji docelowej całkowitej liczby pakietów UDP umieszczonych w kolejce w gnieździe.
-- **udp_receive_packets_dropped** Wskaźnik do lokalizacji docelowej łącznej liczby pakietów odbioru protokołu UDP porzuconych dla gniazda z powodu przekroczenia rozmiaru kolejki.
-- **udp_checksum_errors** Wskaźnik do lokalizacji docelowej całkowitej liczby pakietów UDP z błędami sumy kontrolnej w gnieździe.
+- **socket_ptr** Wskaźnik do utworzonego wcześniej wystąpienia gniazda UDP.
+- **udp_packets_sent** Wskaźnik do miejsca docelowego całkowitej liczby pakietów UDP wysyłanych na gniazdo.
+- **udp_bytes_sent** Wskaźnik do miejsca docelowego całkowitej liczby bajtów UDP wysłanych na gniazdo.
+- **udp_packets_received** Wskaźnik do miejsca docelowego całkowitej liczby pakietów UDP odebranych na gnieździe.
+- **udp_bytes_received** Wskaźnik do miejsca docelowego całkowitej liczby bajtów UDP odebranych na gnieździe.
+- **udp_packets_queued** Wskaźnik do miejsca docelowego całkowitej liczby pakietów UDP w kolejce na gnieździe.
+- **udp_receive_packets_dropped** Wskaźnik do miejsca docelowego całkowitej liczby pakietów odbierania UDP porzucanych dla gniazda z powodu przekroczenia rozmiaru kolejki.
+- **udp_checksum_errors** Wskaźnik do miejsca docelowego całkowitej liczby pakietów UDP z błędami sumy kontrolnej na gnieździe.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobranie informacji o gnieździe UDP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne pobieranie informacji o gniazdach UDP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki i czasomierze
+Inicjowanie, wątki i czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6822,7 +6822,7 @@ status = nx_udp_socket_info_get(&socket_0,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
 - nx_udp_socket_checksum_enable, nx_udp_socket_create,
@@ -6833,7 +6833,7 @@ status = nx_udp_socket_info_get(&socket_0,
 
 ## <a name="nx_udp_socket_port_get"></a>nx_udp_socket_port_get
 
-Wybierz numer portu powiązany z gniazdem UDP
+Odbiór numeru portu powiązanego z gniazdem UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -6843,26 +6843,26 @@ UINT nx_udp_socket_port_get(NX_UDP_SOCKET *socket_ptr, UINT *port_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera numer portu skojarzony z gniazdem, który jest przydatny do znajdowania portu przydzielonego przez NetX w sytuacjach, w których NX_ANY_PORT został określony w momencie powiązania gniazda.
+Ta usługa pobiera numer portu skojarzony z gniazdem, co jest przydatne do znalezienia portu przydzielonego przez netx w sytuacjach, NX_ANY_PORT został określony w czasie, gdy gniazdo zostało powiązane.
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego wystąpienia gniazda UDP.
-- **port_ptr** Wskaźnik do miejsca docelowego dla numeru portu powrotu. Prawidłowe numery portów to (1-0xFFFF).
+- **port_ptr** Wskaźnik do miejsca docelowego dla numeru portu powrotu. Prawidłowe numery portów to (od 1 do 0xFFFF).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnego powiązania gniazda.
-- **NX_NOT_BOUND** (0X24) to gniazdo nie jest powiązane z portem.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda lub zwracany przez port wskaźnik.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne powiązanie gniazda.
+- **NX_NOT_BOUND** (0x24) To gniazdo nie jest powiązane z portem.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda lub wskaźnik powrotu portu.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6878,7 +6878,7 @@ status = nx_udp_socket_port_get(&udp_socket, &port);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
 - nx_udp_socket_checksum_enable, nx_udp_socket_create,
@@ -6902,24 +6902,24 @@ UINT nx_udp_socket_receive(
 
 ### <a name="description"></a>Opis
 
-Ta usługa odbiera datagram UDP od określonego gniazda. Jeśli żaden datagram nie jest umieszczony w określonym gnieździe, obiekt wywołujący zawiesza się na podstawie podanej opcji oczekiwania.
+Ta usługa odbiera datagram UDP z określonego gniazda. Jeśli na określonym gnieździe nie ma żadnego datagramu, wywołujący wstrzymuje się na podstawie podanej opcji oczekiwania.
 
-*Jeśli NX_SUCCESS jest zwracana, aplikacja jest odpowiedzialna za zwolnienie odebranego pakietu, gdy nie jest już potrzebne.*
+*Jeśli NX_SUCCESS zostanie zwrócony, aplikacja jest odpowiedzialna za zwolnienie odebranego pakietu, gdy nie jest już potrzebny.*
 
 ### <a name="parameters"></a>Parametry
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego wystąpienia gniazda UDP.
-- **packet_ptr** Wskaźnik na wskaźnik pakietu datagramu UDP.
-- **WAIT_OPTION** Definiuje, w jaki sposób działa usługa, jeśli datagram nie jest obecnie umieszczony w tym gnieździe. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **packet_ptr** Wskaźnik do wskaźnika pakietu datagramu UDP.
+- **wait_option** Definiuje zachowanie usługi, jeśli datagram nie jest obecnie w kolejce na tym gnieździe. Opcje oczekiwania są zdefiniowane w następujący sposób:
 - NX_NO_WAIT (0x00000000)
 - NX_WAIT_FOREVER (0xFFFFFFFF)
-- wartość limitu czasu w taktach (0x00000001 przez 0xFFFFFFFE)
+- wartość limitu czasu w taktach (0x00000001 do 0xFFFFFFFE)
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6937,7 +6937,7 @@ status = nx_udp_socket_receive(&udp_socket, &packet_ptr, 500);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
 - nx_udp_socket_checksum_enable, nx_udp_socket_create,
@@ -6948,7 +6948,7 @@ status = nx_udp_socket_receive(&udp_socket, &packet_ptr, 500);
 
 ## <a name="nx_udp_socket_receive_notify"></a>nx_udp_socket_receive_notify
 
-Powiadamiaj aplikację o każdym odebranym pakiecie
+Powiadamianie aplikacji o każdym odebranym pakiecie
 
 ### <a name="prototype"></a>Prototype
 
@@ -6961,18 +6961,18 @@ UINT nx_udp_socket_receive_notify(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia wskaźnik funkcji Odbierz powiadomienie na funkcję wywołania zwrotnego określonego przez aplikację. Ta funkcja wywołania zwrotnego jest wywoływana za każdym razem, gdy pakiet jest odbierany w gnieździe. Jeśli zostanie dostarczony NX_NULL wskaźnik, funkcja Odbierz powiadomienie jest wyłączona.
+Ta usługa ustawia wskaźnik funkcji odbierania powiadomienia do funkcji wywołania zwrotnego określonej przez aplikację. Ta funkcja wywołania zwrotnego jest następnie wywoływana za każdym razem, gdy na gnieździe zostanie odebrany pakiet. Jeśli zostanie NX_NULL, funkcja powiadamiania o odbierania jest wyłączona.
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Wskaźnik na gniazdo UDP.
-- **udp_receive_notify** Wskaźnik funkcji wywołania zwrotnego aplikacji, który jest wywoływany, gdy pakiet jest odbierany w gnieździe.
+- **socket_ptr** Wskaźnik do gniazda UDP.
+- **udp_receive_notify** Wskaźnik funkcji wywołania zwrotnego aplikacji, który jest wywoływany po otrzymaniu pakietu na gnieździe.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -6991,18 +6991,18 @@ status = nx_udp_socket_receive_notify(&udp_socket,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
 - nx_udp_socket_checksum_enable, nx_udp_socket_create,
 - nx_udp_socket_delete, nx_udp_socket_info_get,
-- nx_udp_socket_port_get, nx_udp_socket_receive, nx_udp_socket_send
+- nx_udp_socket_port_get, nx_udp_socket_receive, nx_udp_socket_send,
 - nx_udp_socket_interface_send, nx_udp_socket_unbind,
 - nx_udp_source_extract
 
 ## <a name="nx_udp_socket_send"></a>nx_udp_socket_send
 
-Wysyłanie datagramu UDP
+Wysyłanie datagramów UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -7016,9 +7016,9 @@ UINT nx_udp_socket_send(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła datagram UDP przy użyciu wcześniej utworzonego i powiązanego gniazda UDP. NetX znajduje odpowiedni lokalny adres IP jako adres źródłowy na podstawie docelowego adresu IP. Aby określić konkretny interfejs i źródłowy adres IP, aplikacja powinna używać usługi **nx_udp_socket_interface_send** .
+Ta usługa wysyła datagram UDP za pośrednictwem wcześniej utworzonego i powiązanego gniazda UDP. NetX znajduje odpowiedni lokalny adres IP jako adres źródłowy na podstawie docelowego adresu IP. Aby określić określony interfejs i źródłowy adres IP, aplikacja powinna używać **nx_udp_socket_interface_send** ip.
 
-Należy zauważyć, że ta usługa wraca natychmiast niezależnie od tego, czy datagram UDP został pomyślnie wysłany.
+Należy pamiętać, że ta usługa zwraca natychmiast, niezależnie od tego, czy datagram protokołu UDP został pomyślnie wysłany.
 
 Gniazdo musi być powiązane z portem lokalnym.
 
@@ -7026,27 +7026,27 @@ Gniazdo musi być powiązane z portem lokalnym.
 
 - **socket_ptr** Wskaźnik do wcześniej utworzonego wystąpienia gniazda UDP
 - **packet_ptr** Wskaźnik pakietu datagramu UDP
-- **IP_address** Docelowy adres IP
-- **port** Prawidłowy numer portu docelowego z zakresu od 1 do 0xFFFF) w kolejności bajtów hosta
+- **ip_address** Docelowy adres IP
+- **port** Prawidłowy numer portu docelowego od 1 do 0xFFFF) w kolejności bajtów hosta
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie gniazda UDP
-- Gniazdo **NX_NOT_BOUND** (0x24) nie jest powiązane z żadnym portem
-- **NX_NO_INTERFACE_ADDRESS** (0X50) nie można znaleźć odpowiedniego interfejsu wychodzącego.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP serwera
-- **NX_UNDERFLOW** (0X02) nie ma wystarczającej ilości miejsca na nagłówek UDP w pakiecie
-- Wskaźnik dołączania pakietu **NX_OVERFLOW** (0x03) jest nieprawidłowy
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi
-- Nie włączono protokołu UDP **NX_NOT_ENABLED** (0x14)
-- Numer portu **NX_INVALID_PORT** (0x46) nie należy do prawidłowego zakresu
+- **NX_SUCCESS** (0x00) Pomyślne wysłanie gniazda UDP
+- **NX_NOT_BOUND** (0x24) nie jest powiązane z żadnym portem
+- **NX_NO_INTERFACE_ADDRESS** (0x50) Nie można znaleźć odpowiedniego interfejsu wychodzącego.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP serwera
+- **NX_UNDERFLOW** (0x02) Za mało miejsca dla nagłówka UDP w pakiecie
+- **NX_OVERFLOW** (0x03) Wskaźnik dołączania pakietów jest nieprawidłowy
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę
+- **NX_NOT_ENABLED** (0x14) UDP nie został włączony
+- **NX_INVALID_PORT** (0x46) Numer portu nie znajduje się w prawidłowym zakresie
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -7068,7 +7068,7 @@ status = nx_udp_socket_send(&client_socket, packet_ptr,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
 - nx_udp_socket_checksum_enable, nx_udp_socket_create,
@@ -7079,7 +7079,7 @@ status = nx_udp_socket_send(&client_socket, packet_ptr,
 
 ## <a name="nx_udp_socket_interface_send"></a>nx_udp_socket_interface_send
 
-Wyślij datagram za poorednictwem gniazda UDP.
+Wysyłanie datagramu za pośrednictwem gniazda UDP.
 
 ### <a name="prototype"></a>Prototype
 
@@ -7094,34 +7094,34 @@ UINT nx_udp_socket_interface_send(
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła datagram UDP przy użyciu wcześniej utworzonego i powiązanego gniazda UDP za pomocą interfejsu sieciowego z określonym adresem IP jako adresem źródłowym. Należy pamiętać, że usługa wraca natychmiast, niezależnie od tego, czy datagram UDP został pomyślnie wysłany.
+Ta usługa wysyła datagram UDP za pośrednictwem wcześniej utworzonego i powiązanego gniazda UDP za pośrednictwem interfejsu sieciowego z określonym adresem IP jako adresem źródłowym. Należy pamiętać, że usługa zwraca natychmiast, niezależnie od tego, czy datagram UDP został pomyślnie wysłany.
 
 ### <a name="parameters"></a>Parametry
 
-- **socket_ptr** Gniazdo umożliwiające przesłanie pakietu.
-- **packet_ptr** Wskaźnik do pakietu do przesłania.
-- **IP_address** Docelowy adres IP do wysłania pakietu.
+- **socket_ptr** Gniazdo do przesyłania pakietu na zewnątrz.
+- **packet_ptr** Wskaźnik do pakietu, który ma być przesyłany.
+- **ip_address** Docelowy adres IP do wysłania pakietu.
 - **port** Port docelowy.
-- **address_index** Indeks adresu skojarzonego z interfejsem, na którym ma zostać wysłany pakiet.
+- **address_index** Indeks adresu skojarzonego z interfejsem do wysyłania pakietów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie wysłano pakiet **NX_SUCCESS** (0x00).
-- Gniazdo **NX_NOT_BOUND** (0x24) nie jest powiązane z portem.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy adres IP.
-- Nie włączono przetwarzania UDP **NX_NOT_ENABLED** (0x14).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik.
-- **NX_OVERFLOW** (0X03) Nieprawidłowy wskaźnik dołączania pakietu.
-- **NX_UNDERFLOW** (0X02) Nieprawidłowy wskaźnik dołączania do pakietu.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_INVALID_INTERFACE** (0X4C) Nieprawidłowy indeks adresu.
-- **NX_INVALID_PORT** (0x46) numer portu przekracza maksymalny numer portu.
+- **NX_SUCCESS** (0x00) Pakiet został pomyślnie wysłany.
+- **NX_NOT_BOUND** (0x24) socket nie jest powiązany z portem.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy adres IP.
+- **NX_NOT_ENABLED** (0x14) UDP nie jest włączone.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik.
+- **NX_OVERFLOW** (0x03) Nieprawidłowy wskaźnik dołączania pakietów.
+- **NX_UNDERFLOW** (0x02) Nieprawidłowy wskaźnik wstępnie dołączanych pakietów.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_INVALID_INTERFACE** (0x4C) Nieprawidłowy indeks adresów.
+- **NX_INVALID_PORT** (0x46) Numer portu przekracza maksymalną liczbę portów.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -7141,7 +7141,7 @@ status = nx_udp_packet_interface_send(socket_ptr, packet_ptr,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
 - nx_udp_socket_checksum_enable, nx_udp_socket_create,
@@ -7152,7 +7152,7 @@ status = nx_udp_packet_interface_send(socket_ptr, packet_ptr,
 
 ## <a name="nx_udp_socket_unbind"></a>nx_udp_socket_unbind
 
-Usuń powiązanie gniazda UDP z portu UDP.
+Odłącz gniazdo UDP od portu UDP.
 
 ### <a name="prototype"></a>Prototype
 
@@ -7162,9 +7162,9 @@ UINT nx_udp_socket_unbind(NX_UDP_SOCKET *socket_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwalnia powiązanie między gniazdem UDP i portem UDP. Wszystkie odebrane pakiety przechowywane w kolejce odbierania zostaną wydane jako część operacji usuwania powiązania.
+Ta usługa zwalnia powiązanie między gniazdem UDP i portem UDP. Wszystkie odebrane pakiety przechowywane w kolejce odbierania są zwalniane w ramach operacji bez wiązania.
 
-Jeśli istnieją inne wątki oczekujące na powiązanie innego gniazda z niezwiązanym portem, pierwszy zawieszony wątek zostaje następnie powiązany z nowym niezwiązanym portem.
+Jeśli istnieją inne wątki oczekujące na powiązanie innego gniazda z portem niepowiązanych, pierwszy wstrzymany wątek jest następnie powiązany z nowo niepowiązaną portem.
 
 ### <a name="parameters"></a>Parametry
 
@@ -7172,17 +7172,17 @@ Jeśli istnieją inne wątki oczekujące na powiązanie innego gniazda z niezwi�
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) odpinanie gniazda zakończone powodzeniem.
-- Gniazdo **NX_NOT_BOUND** (0x24) nie zostało powiązane z żadnym portem.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik gniazda.
-- **NX_CALLER_ERROR** (0X11) Nieprawidłowy obiekt wywołujący tej usługi.
-- **NX_NOT_ENABLED** (0X14) ten składnik nie został włączony.
+- **NX_SUCCESS** (0x00) Pomyślne powiązycie gniazda.
+- **NX_NOT_BOUND** (0x24) nie zostało powiązane z żadnym portem.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik gniazda.
+- **NX_CALLER_ERROR** (0x11) Nieprawidłowy wywołujący tę usługę.
+- **NX_NOT_ENABLED** (0x14) Ten składnik nie został włączony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -7198,7 +7198,7 @@ status = nx_udp_socket_unbind(&udp_socket);
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
 - nx_udp_socket_checksum_enable, nx_udp_socket_create,
@@ -7209,7 +7209,7 @@ status = nx_udp_socket_unbind(&udp_socket);
 
 ## <a name="nx_udp_source_extract"></a>nx_udp_source_extract
 
-Wyodrębnij adres IP i Wyślij port z datadatagramu UDP
+Wyodrębnianie adresu IP i wysyłanie portu z datagramu UDP
 
 ### <a name="prototype"></a>Prototype
 
@@ -7226,20 +7226,20 @@ Ta usługa wyodrębnia adres IP i numer portu nadawcy z nagłówków IP i UDP do
 ### <a name="parameters"></a>Parametry
 
 - **packet_ptr** Wskaźnik pakietu datagramu UDP.
-- **IP_address** Prawidłowy wskaźnik do zmiennej zwracanego adresu IP.
+- **ip_address** Prawidłowy wskaźnik do zmiennej zwracanych adresów IP.
 - **port** Prawidłowy wskaźnik do zmiennej portu powrotu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne oddzielenie adresu IP/portu.
-- **NX_INVALID_PACKET** (0x12) podany pakiet jest nieprawidłowy.
-- **NX_PTR_ERROR** (0X07) nieprawidłowy pakiet lub adres IP lub port docelowy.
+- **NX_SUCCESS** (0x00) Pomyślne wyodrębnianie źródłowego adresu IP/portu.
+- **NX_INVALID_PACKET** (0x12) Podany pakiet jest nieprawidłowy.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy pakiet, adres IP lub port docelowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze, ISR
+Inicjowanie, wątki, czasomierze, ISR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -7257,7 +7257,7 @@ status = nx_udp_source_extract(packet_ptr, &sender_ip_address,
 
 ### <a name="see-also"></a>Zobacz też
 
-- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get
+- nx_udp_enable, nx_udp_free_port_find, nx_udp_info_get,
 - nx_udp_packet_info_extract, nx_udp_socket_bind,
 - nx_udp_socket_bytes_available, nx_udp_socket_checksum_disable,
 - nx_udp_socket_checksum_enable, nx_udp_socket_create,

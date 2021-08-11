@@ -1,21 +1,21 @@
 ---
-title: Dodatek A — usługi Azure RTO NetX Duo
-description: Dowiedz się więcej na temat usług Azure RTO NetX Duo.
+title: Dodatek A — Azure RTOS NetX Duo Services
+description: Dowiedz się więcej o Azure RTOS NetX Duo.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: d093fbd8abe50ee1a21f62141329e84051c70006
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: a5c4f209819935e771ca47c8ff9b8cf8e4872978e1b73d3ea24e590e792e2059
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822951"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790143"
 ---
-# <a name="appendix-a---azure-rtos-netx-duo-services"></a>Dodatek A — usługi Azure RTO NetX Duo
+# <a name="appendix-a---azure-rtos-netx-duo-services"></a>Dodatek A — Azure RTOS NetX Duo Services
 
-## <a name="address-resolution-protocol-arp"></a>Protokół ARP (Address Resolution Protocol)  
+## <a name="address-resolution-protocol-arp"></a>Protokół rozpoznawania adresów (ARP)  
 
 ```c
 UINT     nx_arp_dynamic_entries_invalidate(NX_IP *ip_ptr);
@@ -382,7 +382,7 @@ UINT     nx_packet_release(NX_PACKET *packet_ptr);
 UINT     nx_packet_transmit_release(NX_PACKET *packet_ptr);
 ```
 
-## <a name="reverse-address-resolution-protocol-rarp"></a>Protokół odwrotnego rozpoznawania adresów (RARP)  
+## <a name="reverse-address-resolution-protocol-rarp"></a>Protokół RARP (Reverse Address Resolution Protocol)  
 
 ```c
 UINT     nx_rarp_disable(NX_IP *ip_ptr);
@@ -551,7 +551,7 @@ UINT     nxd_tcp_socket_peer_info_get(NX_TCP_SOCKET
                 ULONG *peer_port)
 ```                                                                        
 
-## <a name="user-datagram-protocol-udp"></a>User Datagram Protocol (UDP)  
+## <a name="user-datagram-protocol-udp"></a>Protokół UDP (User Datagram Protocol)  
 
 ```c
 UINT     nx_udp_enable(NX_IP *ip_ptr);

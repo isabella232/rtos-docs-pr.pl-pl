@@ -1,17 +1,17 @@
 ---
 title: Rozdział 2 — Instalowanie i używanie Azure RTOS LevelX
-description: Instalacja i użycie oprogramowania LevelX jest proste i opisane w poniższych sekcjach tego rozdziału.
+description: Instalacja i używanie oprogramowania LevelX jest proste i opisane w poniższych sekcjach tego rozdziału.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 34110e74e8ad0a6acd376c00c1284a3ea715c5f5
-ms.sourcegitcommit: 4ebe7c51ba850951c6a9d0f15e22d07bb752bc28
+ms.openlocfilehash: cfd2d616896e1797114e55abcaf1a7559685282f29c2d0dee8274d2a26ea8f0e
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 05/20/2021
-ms.locfileid: "110223319"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790313"
 ---
 # <a name="chapter-2---installation-and-use-of-azure-rtos-levelx"></a>Rozdział 2 — Instalowanie i używanie Azure RTOS LevelX
 
@@ -57,7 +57,7 @@ LevelX jest dystrybuowany w języku ANSI C, gdzie każda funkcja znajduje się w
 - lx_nor_flash_sector_write.c
 - lx_nor_flash_system_error.c
 
-Dostępne są również przykłady sterowników Symulator i FileX dla wystąpień LevelX NAND i NOR w następujący sposób.
+Dostępne są również przykłady sterowników Symulator i FileX dla wystąpień levelX NAND i NOR w następujący sposób.
 
 - demo_filex_nand_flash.c  
 - fx_nand_flash_simulated_driver.c
@@ -66,16 +66,16 @@ Dostępne są również przykłady sterowników Symulator i FileX dla wystąpie�
 - fx_nor_flash_simulated_driver.c
 - lx_nor_flash_simulator.c
 
-Oczywiście jeśli wymagana jest tylko flash NAND, potrzebne są tylko pliki flash NaND LevelX (***lx_nand_ \* .c).*** Podobnie, jeśli wymagany jest tylko flash NOR, tylko pliki flash NOR (**_lx_nor_ \_ .c!) są potrzebne.
+Oczywiście jeśli wymagana jest tylko flash NAND, potrzebne są tylko pliki flash NaND LevelX (***lx_nand_ \* .c).*** Podobnie, jeśli wymagany jest tylko flash NOR, wymagane są tylko pliki flash NOR (**_lx_nor_ \_ .c!).
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-LevelX można skonfigurować w czasie kompilacji za pomocą opisanych poniżej zdefiniowania warunkowego. Wystarczy dodać żądaną definicję do kompilacji każdego źródła LevelX, aby użyć opcji .
+LevelX można skonfigurować w czasie kompilacji za pomocą opisanych poniżej zdefiniowania warunkowego. Po prostu dodaj żądaną definicję do kompilacji każdego źródła LevelX, aby użyć opcji .
 
-- **LX_DIRECT_READ:** zdefiniowana, ta opcja pomija procedurę odczytu sterownika flash NOR na korzyść lub bezpośrednie odczytywanie pamięci NOR, co powoduje znaczny wzrost wydajności.
+- **LX_DIRECT_READ:** zdefiniowana, ta opcja pomija procedurę odczytu sterownika flash NOR na korzyść lub bezpośrednie odczytywanie pamięci NOR, co powoduje znaczący wzrost wydajności.
 - **LX_FREE_SECTOR_DATA_VERIFY:** Zdefiniowane, powoduje to, że otwarta logika LevelX NOR wystąpienia sprawdza, czy wszystkie sektory NIE są wolnymi sektorami.
 - **LX_NAND_SECTOR_MAPPING_CACHE_SIZE:** domyślnie ta wartość to 16 i definiuje rozmiar pamięci podręcznej mapowania sektorów logicznych. Duże wartości poprawiają wydajność, ale kosztują pamięć. Minimalny rozmiar to 8, a wszystkie wartości muszą mieć potęgę 2.
-- **LX_NAND_FLASH_DIRECT_MAPPING_CACHE:** zdefiniowane, powoduje utworzenie pamięci podręcznej mapowania bezpośredniego, tak aby nie było żadnych chybień pamięci podręcznej. Wymaga to również LX_NAND_SECTOR_MAPPING_CACHE_SIZE reprezentuje dokładną liczbę wszystkich stron w urządzeniu flash.
+- **LX_NAND_FLASH_DIRECT_MAPPING_CACHE:** zdefiniowane, powoduje utworzenie pamięci podręcznej mapowania bezpośredniego, tak aby nie było żadnych chybień pamięci podręcznej. Wymagane jest również, LX_NAND_SECTOR_MAPPING_CACHE_SIZE reprezentuje dokładną liczbę wszystkich stron na urządzeniu flash.
 - **LX_NOR_DISABLE_EXTENDED_CACHE:** zdefiniowane, to wyłączyło rozszerzoną pamięć podręczną NOR.
 - **LX_NOR_EXTENDED_CACHE_SIZE:** domyślnie ta wartość to 8, która reprezentuje maksymalnie 8 sektorów, które mogą być buforowane w wystąpieniu NOR.
 - **LX_NOR_SECTOR_MAPPING_CACHE_SIZE:** domyślnie ta wartość to 16 i definiuje rozmiar pamięci podręcznej mapowania sektorów logicznych. Duże wartości poprawiają wydajność, ale kosztują pamięć. Minimalny rozmiar to 8, a wszystkie wartości muszą mieć potęgę 2.
@@ -85,6 +85,6 @@ LevelX można skonfigurować w czasie kompilacji za pomocą opisanych poniżej z
 > [!IMPORTANT]
 > W przypadku korzystania z bibliotek LevelX w trybie **autonomicznym (LX_STANDALONE_ENABLE** musi być zdefiniowany), pliki/biblioteki ThreadX nie są wymagane. Funkcja bezpiecznej wątkowo funkcji LevelX jest wyłączona w tym trybie.
 
-## <a name="using-levelx"></a>Korzystanie z LevelX
+## <a name="using-levelx"></a>Korzystanie z levelX
 
 Aby użyć levelX, samodzielnie lub z FileX, należy dołączyć plik ***lx_api.h** _ w kodzie, który odwołuje się do interfejsu API LevelX. Upewnij się również, że kod obiektu LevelX jest dostępny w czasie łączenia. Zapoznaj się z _*_plikami demo_filex_nand_flash.c_*_ i _ *_demo_filex_nor_flash.c_**, aby uzyskać przykłady użycia levelX.

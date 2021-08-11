@@ -1,129 +1,129 @@
-- name: Dokumentacja NetX
+- name: Dokumentacja netx
   href: index.yml
-- name: Przegląd NetX
+- name: Omówienie netx
   href: overview-netx.md
-- name: Podręcznik użytkownika NetX
+- name: Podręcznik użytkownika netx
   expanded: true
   items:
     - name: O tym przewodniku
       href: about-this-guide.md
-    - name: Ch. 1 — wprowadzenie do NetX
+    - name: Ch. 1 — Wprowadzenie do NetX
       href: chapter1.md
-    - name: Ch. 2 — Instalowanie i korzystanie z NetX
+    - name: Ch. 2 — Instalowanie i używanie oprogramowania NetX
       href: chapter2.md
-    - name: Ch. 3-funkcjonalne składniki NetX
+    - name: Ch. 3 — Funkcjonalne składniki NetX
       href: chapter3.md
-    - name: Ch. 4 — Opis usług NetX Services
+    - name: Ch. 4 — Opis usług NetX
       href: chapter4.md
-    - name: Ch. 5 — sterowniki sieciowe NetX
+    - name: Ch. 5 — Sterowniki sieciowe NetX
       href: chapter5.md
-    - name: Aplikacje. A — usługi NetX
+    - name: App. A — usługi NetX
       href: appendix-a.md
-    - name: Aplikacje. B — stałe NetX
+    - name: App. B — stałe NetX
       href: appendix-b.md
-    - name: Aplikacje. C-NetX — typy danych
+    - name: App. C — typy danych NetX
       href: appendix-c.md
-    - name: Aplikacje. Interfejs API gniazda zgodny ze standardem BSD
+    - name: App. D — interfejs API gniazd zgodny z BSD
       href: appendix-d.md
-    - name: Aplikacje. Kody znaków E-ASCII
+    - name: App. E — kody znaków ASCII
       href: appendix-e.md
 - name: Dodatki NetX
   items:
-    - name: Podręcznik użytkownika NetX AutoIP
+    - name: Podręcznik użytkownika aplikacji NetX AutoIP
       items:
-        - name: Ch. 1 — wprowadzenie do NetX AutoIP
+        - name: Ch. 1 — Wprowadzenie do funkcji NetX AutoIP
           href: netx-auto-ip/chapter1.md
-        - name: Ch. 2 — Instalowanie i korzystanie z programu NetX AutoIP
+        - name: Ch. 2 — Instalowanie i używanie funkcji NetX AutoIP
           href: netx-auto-ip/chapter2.md
-        - name: Ch. 3 — Opis usług NetX AutoIP Services
+        - name: Ch. 3 — Opis usług NetX AutoIP
           href: netx-auto-ip/chapter3.md
-    - name: Podręcznik użytkownika NetX BSD
+    - name: NetX BSD user guide (Podręcznik użytkownika usługi NetX BSD)
       items:
-        - name: Ch. 1 — wprowadzenie do NetX BSD
+        - name: Ch. 1 — Wprowadzenie do usługi NetX BSD
           href: netx-bsd/chapter1.md
-        - name: Ch. 2 — Instalowanie i korzystanie z NetX BSD
+        - name: Ch. 2 — Instalacja i korzystanie z netx BSD
           href: netx-bsd/chapter2.md
-        - name: Ch. 3 NetX usługi BSD
+        - name: Ch. 3 — Usługi NetX BSD
           href: netx-bsd/chapter3.md
-    - name: NetX klienta DHCP
+    - name: Klient DHCP NetX
       items:
-        - name: Ch. 1 wprowadzenie do NetX klienta DHCP
+        - name: Ch. 1 — Wprowadzenie do klienta DHCP NetX
           href: netx-dhcp-client/chapter1.md
-        - name: Ch. 2 — Instalowanie i używanie klienta DHCP NetX
+        - name: Ch. 2 — Instalacja i korzystanie z klienta DHCP NetX
           href: netx-dhcp-client/chapter2.md
         - name: Ch. 3 — Opis usług klienta DHCP NetX
           href: netx-dhcp-client/chapter3.md
-        - name: Aplikacje. Opis funkcji przywracania stanu
+        - name: App. A — opis funkcji stanu przywracania
           href: netx-dhcp-client/appendix-a.md
     - name: Podręcznik użytkownika serwera DHCP NetX
       items:
-        - name: Ch. 1 wprowadzenie do serwera DHCP NetX
+        - name: Ch. 1 — Wprowadzenie do serwera DHCP NetX
           href: netx-dhcp-server/chapter1.md
         - name: Ch. 2 — Instalowanie i używanie serwera DHCP NetX
           href: netx-dhcp-server/chapter2.md
         - name: Ch. 3 — Opis usług serwera DHCP NetX
           href: netx-dhcp-server/chapter3.md
-    - name: Podręcznik użytkownika klienta usługi NetX DNS
+    - name: NetX DNS client user guide (Podręcznik użytkownika klienta DNS netX)
       items:
-        - name: Ch. 1 — wprowadzenie do klienta DNS NetX
+        - name: Ch. 1 — Wprowadzenie do klienta DNS NetX
           href: netx-dns/chapter1.md
-        - name: Ch. 2 — Instalowanie i używanie klienta DNS NetX
+        - name: Ch. 2 — Instalacja i korzystanie z klienta DNS NetX
           href: netx-dns/chapter2.md
         - name: Ch. 3 — Opis usług klienta DNS NetX
           href: netx-dns/chapter3.md
-    - name: Podręcznik użytkownika usługi NetX FTP
+    - name: NetX FTP user guide (Podręcznik użytkownika protokołu FTP netX)
       items:
-        - name: Ch. 1 — wprowadzenie do usługi NetX FTP
+        - name: Ch. 1 — Wprowadzenie do protokołu FTP NetX
           href: netx-ftp/chapter1.md
-        - name: Ch. 2 — Instalowanie i korzystanie z usługi NetX FTP
+        - name: Ch. 2 — Instalowanie i używanie protokołu FTP NetX
           href: netx-ftp/chapter2.md
-        - name: Ch. 3 — Opis usług NetX FTP
+        - name: Ch. 3 — Opis usług FTP NetX
           href: netx-ftp/chapter3.md
     - name: NetX HTTP
       items:
-        - name: Ch. 1 — wprowadzenie do NetX HTTP
+        - name: Ch. 1 — Wprowadzenie do protokołu HTTP NetX
           href: netx-http/chapter1.md
-        - name: Ch. 2 — Instalacja i użycie protokołu HTTP NetX
+        - name: Ch. 2 — Instalowanie i używanie protokołu HTTP NetX
           href: netx-http/chapter2.md
         - name: Ch. 3 — Opis usług HTTP NetX
           href: netx-http/chapter3.md
-    - name: Podręcznik użytkownika NetX LWM2M
+    - name: Podręcznik użytkownika aplikacji NetX MARKSM2M
       items:
-        - name: Ch. 1 — wprowadzenie do NetX LWM2M
+        - name: Ch. 1 — Wprowadzenie do systemu NetX PODCZASM2M
           href: netx-lwm2m/chapter1.md
-        - name: Ch. 2 — Instalowanie i korzystanie z programu NetX LWM2M
+        - name: Ch. 2 — Instalowanie i używanie systemu NetX PODCZASM2M
           href: netx-lwm2m/chapter2.md
-        - name: Ch. 3 — Opis funkcjonalny NetX LWM2M
+        - name: Ch. 3 — Opis funkcjonalny aplikacji NetX PODCZASM2M
           href: netx-lwm2m/chapter3.md
-        - name: Ch. 4 — Opis usług NetX LWM2M Services
+        - name: Ch. 4 — Opis usług NetX PODCZASM2M
           href: netx-lwm2m/chapter4.md
-    - name: Podręcznik użytkownika klienta usługi NetX POP3
+    - name: Podręcznik użytkownika klienta NetX POP3
       items:
-        - name: Ch. 1 — wprowadzenie do usługi NetX POP3
+        - name: Ch. 1 — Wprowadzenie do netx pop3
           href: netx-pop3-client/chapter1.md
-        - name: Ch. 2 — Instalowanie i używanie klienta NetX POP3
+        - name: Ch. 2 — Instalowanie i używanie klienta NETX POP3
           href: netx-pop3-client/chapter2.md
-        - name: Ch. 3 — Opis usług klienta POP3 NetX
+        - name: Ch. 3 — Opis usług klienta NetX POP3
           href: netx-pop3-client/chapter3.md
-    - name: Podręcznik użytkownika NetX PPP
+    - name: Podręcznik użytkownika systemu NetX PPP
       items:
-        - name: Ch. 1 — wprowadzenie do NetX Point-to-Point Protocol (PPP)
+        - name: Ch. 1 — Wprowadzenie do protokołu NetX Point-to-Point Protocol (PPP)
           href: netx-ppp/chapter1.md
-        - name: Ch. 2 — Instalowanie i korzystanie z NetX Point-to-Point Protocol (PPP)
+        - name: Ch. 2 — Instalowanie i używanie protokołu NetX Point-to-Point Protocol (PPP)
           href: netx-ppp/chapter2.md
         - name: Ch. 3 — Opis usług NetX Point-to-Point Protocol (PPP)
           href: netx-ppp/chapter3.md
     - name: Podręcznik użytkownika klienta NetX PPPoE
       items:
-        - name: Rozdział 1 — wprowadzenie do klienta NetX PPPoE
+        - name: Rozdział 1 — Wprowadzenie do klienta NetX PPPoE
           href: netx-pppoe-client/chapter1.md
-        - name: Rozdział 2 — Instalowanie i używanie klienta NetX PPPoE
+        - name: Rozdział 2 — Instalacja i korzystanie z klienta NetX PPPoE
           href: netx-pppoe-client/chapter2.md
         - name: Rozdział 3 — Opis usług klienta NetX PPPoE
           href: netx-pppoe-client/chapter3.md
     - name: Podręcznik użytkownika serwera NetX PPPoE
       items:
-        - name: Ch. 1 wprowadzenie do serwera NetX PPPoE
+        - name: Ch. 1 — Wprowadzenie do serwera NetX PPPoE
           href: netx-pppoe-server/chapter1.md
         - name: Ch. 2 — Instalowanie i używanie serwera NetX PPPoE
           href: netx-pppoe-server/chapter2.md
@@ -133,11 +133,11 @@
   href: 'https://github.com/azure-rtos/netx'
 - name: Powiązane usługi
   items:
-    - name: Defender for IoT — RTO (wersja zapoznawcza)
+    - name: Defender dla IoT — RTOS (wersja zapoznawcza)
       href: /azure/asc-for-iot
 - name: Składniki firmy Microsoft
   items:
-    - name: Microsoft Azure RTO
+    - name: Microsoft Azure Rtos
       href: ../index.yml
     - name: ThreadX
       href: ../threadx/index.yml
@@ -147,9 +147,9 @@
       href: ../netx-duo/index.yml
     - name: NetX
       href: ../netx/index.yml
-    - name: GUIX
+    - name: Graficzny interfejs użytkownika
       href: ../guix/index.yml
-    - name: FileX
+    - name: PlikX
       href: ../filex/index.yml
     - name: LevelX
       href: ../levelx/index.yml

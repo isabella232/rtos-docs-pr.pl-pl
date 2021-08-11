@@ -1,41 +1,41 @@
 ---
-title: Rozdział 3 — Opis usługi Azure RTO NetX Duo MQTT Client Services
+title: Rozdział 3 — opis Azure RTOS klienta NetX Duo MQTT
 description: Ten rozdział zawiera opis wszystkich usług klienta NetX Duo MQTT (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 9cbb65946c45bfbc476091f7c604346e839a42fc
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: cc08f7c0dceb84d5843e25384275557d2871e3546d90579aab006119a2d9980c
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821799"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116797521"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-duo-mqtt-client-services"></a>Rozdział 3 — Opis usługi Azure RTO NetX Duo MQTT Client Services
+# <a name="chapter-3---description-of-azure-rtos-netx-duo-mqtt-client-services"></a>Rozdział 3 — Opis Azure RTOS klienta NetX Duo MQTT
 
-Ten rozdział zawiera opis wszystkich usług klienta Azure RTO NetX Duo MQTT (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług Azure RTOS NetX Duo MQTT (wymienionych poniżej) w kolejności alfabetycznej.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w poniższych  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości z pogrubieniem, a wartości bez pogrubienia są całkowicie wyłączone.
 
-- **nxd_mqtt_client_create** *utworzyć wystąpienia klienta MQTT*
-- **nxd_mqtt_client_will_message_set** *ustawić komunikat będzie*
-- **nxd_mqtt_client_client_login_set** *ustawić nazwy użytkownika i hasła logowania klienta MQTT*
-- **nxd_mqtt_client_connect** *łączenie z klientem programu MQTT z brokerem*
-- **nxd_mqtt_client_secure_connect** *łączenie klienta z klientem przy użyciu zabezpieczeń TLS*
-- **nxd_mqtt_client_publish** *opublikować komunikat za pośrednictwem brokera.*
-- **nxd_mqtt_client_subscribe** *subskrybować tematu*
-- **nxd_mqtt_client_unsubscribe** *Anulowanie subskrypcji tematu*
-- **nxd_mqtt_client_receive_notify_set** *Ustaw funkcję wywołania zwrotnego powiadomienia o OTRZYMAniu komunikatu MQTT*
-- **nxd_mqtt_client_message_get** *pobrać komunikatu z brokera*
-- **nxd_mqtt_client_disconnect_notify_set** *Ustaw funkcję wywołania zwrotnego powiadomienia o rozłączeniu komunikatu MQTT*
-- **nxd_mqtt_client_disconnect** *rozłączyć klienta MQTT z brokera*
-- **nxd_mqtt_client_delete** *usunąć wystąpienia klienta MQTT*
+- **nxd_mqtt_client_create** *tworzenie wystąpienia klienta MQTT*
+- **nxd_mqtt_client_will_message_set** *ustawić komunikat will*
+- **nxd_mqtt_client_client_login_set** *ustawić nazwę użytkownika i hasło logowania klienta MQTT*
+- **nxd_mqtt_client_connect** *Połączenie klienta MQTT do brokera*
+- **nxd_mqtt_client_secure_connect** *Połączenie MQTT do brokera z zabezpieczeniami TLS*
+- **nxd_mqtt_client_publish** *publikowanie komunikatu za pośrednictwem brokera.*
+- **nxd_mqtt_client_subscribe** *Subskrybowanie tematu*
+- **nxd_mqtt_client_unsubscribe** *anuluj subskrypcję tematu*
+- **nxd_mqtt_client_receive_notify_set** ustawić funkcję wywołania zwrotnego powiadomienia o odbierania *komunikatu MQTT*
+- **nxd_mqtt_client_message_get** *pobieranie komunikatu z brokera*
+- **nxd_mqtt_client_disconnect_notify_set** ustawić funkcję wywołania zwrotnego powiadomienia o rozłączeniu *komunikatu MQTT*
+- **nxd_mqtt_client_disconnect** *odłącz klienta MQTT od brokera*
+- **nxd_mqtt_client_delete** *usuwanie wystąpienia klienta MQTT*
 
 ## <a name="nxd_mqtt_client_create"></a>nxd_mqtt_client_create
 
-Utwórz wystąpienie klienta MQTT
+Tworzenie wystąpienia klienta MQTT
 
 ### <a name="prototype"></a>Prototype
 
@@ -50,28 +50,28 @@ UINT nxd_mqtt_client_create(NXD_MQTT_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wystąpienie klienta MQTT na określonym wystąpieniu IP. Ciąg *client_id* jest przesyłany do serwera podczas fazy połączenia MQTT jako *Identyfikator klienta (ClientId)*. Tworzy również niezbędne zasoby ThreadX (wątek zadania klienta MQTT, mutex, grupę flag zdarzeń i gniazdo TCP).
+Ta usługa tworzy wystąpienie klienta MQTT w określonym wystąpieniu adresu IP. Ciąg *client_id* jest przekazywany do serwera w fazie połączenia MQTT jako *identyfikator klienta (ClientId).* Tworzy również niezbędne zasoby ThreadX (wątek zadania klienta MQTT, mutex, grupa flag zdarzeń i gniazdo TCP).
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
-- **CLIENT_NAME** Ciąg nazwy klienta.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
+- **client_name** Ciąg nazwy klienta.
 - **client_id** Ciąg identyfikatora klienta używany podczas fazy połączenia. Broker MQTT używa tego client_id do unikatowego identyfikowania klienta.
 - **client_id_length** Długość ciągu identyfikatora klienta w bajtach.
-- **ip_ptr** Wskaźnik na wystąpienie adresu IP.
-- **pool_ptr** Wskaźnik do puli pakietów MQTT przez klienta do jego działania.
+- **ip_ptr** Wskaźnik do wystąpienia adresu IP.
+- **pool_ptr** Wskaźnik do puli pakietów używany przez klienta MQTT do jego działania.
 - **stack_ptr** Obszar stosu dla wątku klienta MQTT.
 - **stack_size** Rozmiar obszaru stosu w bajtach.
 - **mqtt_thread_priority** Priorytet wątku MQTT.
-- **memory_ptr** Przestarzałe. Nie jest już używane.
-- **memory_size** Przestarzałe. Nie jest już używane.
+- **memory_ptr** Przestarzałe. Nie jest już używany.
+- **memory_size** Przestarzałe. Nie jest już używany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie UTWORZYŁ klienta MQTT.
-- Błąd wewnętrzny logiki **NXD_MQTT_INTERNAL_ERROR** (0x10004)
-- NX_PTR_ERROR (0x07) nieprawidłowy MQTT bloku sterowania, ip_ptr lub puli pakietów.
-- NXD_MQTT_INVALID_PARAMETER (0x10009) Nieprawidłowa wartość ciągu tematu, will_retrain_flag lub will_QoS.
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślnie utworzono klienta MQTT.
+- **NXD_MQTT_INTERNAL_ERROR** (0x10004) Wewnętrzny błąd logiki
+- NX_PTR_ERROR (0x07) Nieprawidłowy wskaźnik puli pakietów, blok ip_ptr MQTT.
+- NXD_MQTT_INVALID_PARAMETER (0x10009) Nieprawidłowy ciąg tematu, will_retrain_flag lub will_QoS tematu.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -100,7 +100,7 @@ status = **nxd_mqtt_client_create**(&my_client, "my client",
 
 ## <a name="nxd_mqtt_client_will_message_set"></a>nxd_mqtt_client_will_message_set
 
-Ustawia komunikat będzie
+Ustawia komunikat Will
 
 ### <a name="prototype"></a>Prototype
 
@@ -117,26 +117,26 @@ UINT nxd_mqtt_client_will_message_set(NXD_MQTT_CLIENT
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia opcjonalny temat i zostanie wyświetlony komunikat, zanim klient nawiąże połączenie z serwerem. Temat musi być ciągiem zakodowanym w formacie UTF-8.
+Ta usługa ustawia opcjonalny temat will i będzie wysyłać komunikat, zanim klient połączy się z serwerem. Temat Will musi być ciągiem zakodowanym w formacie UTF-8.
 
-Jeśli zestaw zostanie wysłany do brokera w ramach komunikatu CONNECT, zostanie wyświetlony komunikat. W związku z tym aplikacja, której zamierzasz używać, będzie musiał używać tej usługi przed nawiązaniem połączenia MQTT.
+Komunikat będzie, jeśli zostanie ustawiony, jest przesyłany do brokera jako część komunikatu CONNECT. W związku z tym aplikacja, która chce użyć usługi , musi użyć tej usługi przed nawiązaniu połączenia MQTT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
-- **will_topic** Kodowanie UTF-8 będzie ciąg tematu. Sekcja musi być obecna. Obiekt wywołujący musi utrzymywać poprawność ciągu will_topic, aż do wywołania *nx_mqtt_client_connect* .
-- **will_topic_length** Liczba bajtów w ciągu tematu
-- **will_message** Zdefiniowana aplikacja będzie komunikatem. Jeśli komunikat nie jest wymagany, aplikacja może ustawić to pole na *NX_NULL.*
-- **will_message_length** Liczba bajtów w ciągu komunikatu. Jeśli will_message ma wartość NULL, will_message_length musi być ustawiona na 0.
-- **will_retain_flag** Czy serwer publikuje komunikat w postaci wiadomości przechowywanej. Prawidłowe wartości to *NX_TRUE* lub *NX_FALSE.*
-- **will_QoS** Wartość QoS używana przez serwer podczas wysyłania zostanie wyświetlony komunikat. Prawidłowe wartości to 0 lub 1.  
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
+- **will_topic** Kodowanie UTF-8 spowoduje ciąg tematu. Temat Will musi być obecny. Wywołujący musi zachować will_topic prawidłowy do momentu nx_mqtt_client_connect *wywołania.*
+- **will_topic_length** Liczba bajtów w ciągu tematu will
+- **will_message** Komunikat zostanie wyświetlony przez zdefiniowaną przez aplikację. Jeśli komunikat będzie nie jest wymagany, aplikacja może ustawić to pole *na wartość NX_NULL.*
+- **will_message_length** Liczba bajtów w ciągu komunikatu will. Jeśli will_message ustawiono wartość NULL, will_message_length musi być ustawiona na 0.
+- **will_retain_flag** Określa, czy serwer publikuje komunikat będzie wyświetlany jako zachowany komunikat. Prawidłowe wartości to *NX_TRUE* lub *NX_FALSE.*
+- **will_QoS** Wartość QoS używana przez serwer podczas wysyłania komunikatu będzie. Prawidłowe wartości to 0 lub 1.  
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie ustawia komunikat o błędzie.
-- **NXD_MQTT_QOS2_NOT_SUPPORTED** (0X1000C) jakość komunikatów poziomu 2 nie są obsługiwane.
-- NX_PTR_ERROR (0x07) nieprawidłowy blok sterowania MQTT.
-- NXD_MQTT_INVALID_PARAMETER (0x10009) Nieprawidłowa wartość ciągu tematu, will_retrain_flag lub will_QoS.
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślnie ustawia komunikat will.
+- **NXD_MQTT_QOS2_NOT_SUPPORTED** (0x1000C) komunikatów QoS poziom 2 nie są obsługiwane.
+- NX_PTR_ERROR (0x07) Nieprawidłowy blok kontrolek MQTT.
+- NXD_MQTT_INVALID_PARAMETER (0x10009) Nieprawidłowy ciąg tematu, will_retrain_flag lub will_QoS tematu.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -176,22 +176,22 @@ UINT nxd_mqtt_client_login_set(NXD_MQTT_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia nazwę użytkownika i hasło, które są używane podczas fazy połączenia MQTT na potrzeby logowania w celu uwierzytelnienia.
+Ta usługa ustawia nazwę użytkownika i hasło, które są używane podczas fazy połączenia MQTT na potrzeby uwierzytelniania logowania.
 
-Identyfikator logowania klienta MQTT z nazwą użytkownika i hasłem jest opcjonalny. W sytuacjach, gdy serwer wymaga nazwy użytkownika i hasła, przed nawiązaniem połączenia należy ustawić nazwę użytkownika i hasło.
+Identyfikator logowania klienta MQTT z nazwą użytkownika i hasłem jest opcjonalny. W sytuacjach, gdy serwer wymaga nazwy użytkownika i hasła, przed nawiązaniu połączenia należy ustawić nazwę użytkownika i hasło.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
-- **Nazwa użytkownika** Zakodowany ciąg nazwy użytkownika w formacie UTF-8. Obiekt wywołujący musi utrzymywać prawidłowy ciąg nazwy użytkownika, aż do wywołania *nx_mqtt_client_connect* .
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
+- **nazwa użytkownika** Ciąg nazwy użytkownika zakodowany w formacie UTF-8. Wywołujący musi zachować prawidłowy ciąg nazwy użytkownika do *nx_mqtt_client_connect* wywołania.
 - **username_length** Liczba bajtów w ciągu nazwy użytkownika
-- **hasło** Ciąg hasła. Jeśli hasło nie jest wymagane, to pole może mieć wartość NX_NULL.
+- **hasło** Ciąg hasła. Jeśli hasło nie jest wymagane, to pole może być ustawione na NX_NULL.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie ustawia komunikat o błędzie.
-- NX_PTR_ERROR (0x07) nieprawidłowy blok sterowania MQTT.
-- NXD_MQTT_INVALID_PARAMETER (0x10009) Nieprawidłowa nazwa użytkownika lub ciąg hasła.
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślnie ustawia komunikat will.
+- NX_PTR_ERROR (0x07) Nieprawidłowy blok kontrolek MQTT.
+- NXD_MQTT_INVALID_PARAMETER (0x10009) Nieprawidłowy ciąg nazwy użytkownika lub ciąg hasła.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -216,7 +216,7 @@ transmitted to the server during MQTT connection. */
 
 ## <a name="nxd_mqtt_client_connect"></a>nxd_mqtt_client_connect
 
-Łączenie klienta MQTT z brokerem
+Połączenie Klient MQTT do brokera
 
 ### <a name="prototype"></a>Prototype
 
@@ -228,36 +228,36 @@ UINT nxd_mqtt_client_connect(NXD_MQTT_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje połączenie z brokerem. Najpierw wiąże się z gniazdem TCP, a następnie nawiązuje połączenie TCP. Przy założeniu, że program zakończy się pomyślnie, tworzy czasomierz, jeśli funkcja utrzymywania aktywności MQTT jest włączona. Następnie łączy się z serwerem MQTT (brokerem).
+Ta usługa inicjuje połączenie z brokerem. Najpierw wiąże gniazdo TCP, a następnie tworzy połączenie TCP. Przy założeniu, że to się powiedzie, program utworzy czasomierz, jeśli funkcja utrzymania aktywności MQTT jest włączona. Następnie nawiązuje połączenie z serwerem MQTT (brokerem).
 
-Należy zauważyć, że ta usługa tworzy połączenie MQTT bez ochrony TLS. Aby można było utworzyć bezpieczne połączenie MQTT, aplikacja używa usługi ***nxd_mqtt_client_secure_connect ().***
+Należy pamiętać, że ta usługa tworzy połączenie MQTT bez ochrony TLS. Aby utworzyć bezpieczne połączenie MQTT, aplikacja musi używać usługi ***nxd_mqtt_client_secure_connect().***
 
-Jeśli klient ustawi *clean_session* na NX_FALSE, klient będzie ponownie przesyłał wszystkie zapisane komunikaty, które nie zostały jeszcze potwierdzone.
+Po nawiązaniu połączenia, jeśli  klient clean_session na NX_FALSE, klient ponownie przetransmituje wszystkie przechowywane komunikaty, które nie zostały jeszcze potwierdzone.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
-- **server_IP** Adres IP brokera.
-- **SERVER_PORT** Numer portu brokera. Domyślny port dla MQTT jest zdefiniowany jako **_NXD_MQTT_PORT_** (1883).
-- **keep_alive** Wartość utrzymywania aktywności (w sekundach), która ma być używana podczas sesji. Wartość wskazuje maksymalny czas między dwoma komunikatami sterującymi MQTT wysyłanymi do brokera, zanim Broker przekroczy ten klient. Wartość 0 wyłącza funkcję Keep-Alive.
-- **clean_session** Czy serwer rozpoczyna czyszczenie tej sesji. Prawidłowe opcje to **_NX_TRUE_*_ lub _*_NX_FALSE._**
-- **WAIT_OPTION** Czas oczekiwania na połączenie.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
+- **server_ip** Adres IP brokera.
+- **server_port** Numer portu brokera. Domyślny port dla MQTT jest zdefiniowany jako **_NXD_MQTT_PORT_** (1883).
+- **keep_alive** Wartość keep alive (podtrzymanie aktywności) w sekundach, która ma być używana podczas sesji. Wartość wskazuje maksymalny czas między dwoma komunikatami sterującymi MQTT wysyłanymi do brokera, zanim broker przejmie limit czasu tego klienta. Wartość 0 powoduje wyłączenie funkcji utrzymania aktywności.
+- **clean_session** Czy serwer powinien uruchomić tę sesję czyste. Prawidłowe opcje to **_NX_TRUE_*_ lub _*_NX_FALSE._**
+- **wait_option** Czas oczekiwania na połączenie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie MQTT połączenie
-- **NXD_MQTT_ALREADY_CONNECTED** (0x10001) klient jest już połączony z brokerem.
-- **NXD_MQTT_MUTEX_FAILURE** (0X10003) nie może uzyskać MQTT obiektu MUTEX 
-- Błąd wewnętrzny logiki **NXD_MQTT_INTERNAL_ERROR** (0x10004)
-- **NXD_MQTT_CONNECT_FAILURE** (0X10005) nie może nawiązać połączenia z brokerem.
-- **NXD_MQTT_COMMUNICATION_FAILURE** (0X10007) nie może wysłać komunikatów do brokera.
-- Serwer **NXD_MQTT_SERVER_MESSAGE_FAILURE** (0x10008) odpowiedział z błędem
-- Kod odpowiedzi serwera **NXD_MQTT_ERROR_UNACCEPTABLE_PROTOCOL** (0x10081)
-- Kod odpowiedzi serwera **NXD_MQTT_ERROR_IDENTIFYIER_REJECTED** (0x10082)
-- Kod odpowiedzi serwera **NXD_MQTT_ERROR_SERVER_UNAVAILABLE** (0x10083)
-- Kod odpowiedzi serwera **NXD_MQTT_ERROR_BAD_USERNAME_PASSWORD** (0x10084)
-- Kod odpowiedzi serwera **NXD_MQTT_ERROR_NOT_AUTHORIZED** (0x10085)
-- NX_PTR_ERROR (0x07) Nieprawidłowa MQTT bloku sterowania, ip_ptr lub puli pakietów
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślne połączenie MQTT
+- **NXD_MQTT_ALREADY_CONNECTED** (0x10001) Klient jest już połączony z brokerem.
+- **NXD_MQTT_MUTEX_FAILURE** (0x10003) Nie można uzyskać obiektu mutex MQTT 
+- **NXD_MQTT_INTERNAL_ERROR** (0x10004) Wewnętrzny błąd logiki
+- **NXD_MQTT_CONNECT_FAILURE** (0x10005) Nie można nawiązać połączenia z brokerem.
+- **NXD_MQTT_COMMUNICATION_FAILURE** (0x10007) Nie można wysyłać komunikatów do brokera.
+- **NXD_MQTT_SERVER_MESSAGE_FAILURE** (0x10008) Serwer odpowiedział z błędem
+- NXD_MQTT_ERROR_UNACCEPTABLE_PROTOCOL (0x10081) Server response code (Kod odpowiedzi serwera programu **0x10081)**
+- NXD_MQTT_ERROR_IDENTIFYIER_REJECTED (0x10082) Server response code (Kod odpowiedzi serwera programu **0x10082)**
+- **NXD_MQTT_ERROR_SERVER_UNAVAILABLE** (0x10083) Server response code (Kod odpowiedzi serwera NXD_MQTT_ERROR_SERVER_UNAVAILABLE (0x10083)
+- **NXD_MQTT_ERROR_BAD_USERNAME_PASSWORD** (0x10084) Server response code (Kod odpowiedzi serwera 0x10084)
+- **NXD_MQTT_ERROR_NOT_AUTHORIZED** (0x10085) Server response code (Kod odpowiedzi serwera NXD_MQTT_ERROR_NOT_AUTHORIZED (0x10085)
+- NX_PTR_ERROR (0x07) Nieprawidłowy wskaźnik puli pakietów, blok ip_ptr MQTT
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -284,7 +284,7 @@ status = nxd_mqtt_client_connect(&my_client, &broker_address,
 
 ## <a name="nxd_mqtt_client_secure_connect"></a>nxd_mqtt_client_secure_connect
 
-Podłączanie klienta MQTT do brokera z zabezpieczeniami TLS
+Połączenie Klient MQTT do brokera z zabezpieczeniami TLS
 
 ### <a name="prototype"></a>Prototype
 
@@ -302,40 +302,40 @@ UINT nxd_mqtt_client_secure_connect(NXD_MQTT_CLIENT
 
 ### <a name="description"></a>Opis
 
-Ta usługa jest taka sama jak ***nxd_mqtt_client_connect*** , z tą różnicą, że połączenie przechodzi przez warstwę TLS zamiast TCP. W związku z tym komunikacja między klientem i brokerem jest zabezpieczona.
+Ta usługa jest taka sama ***jak nxd_mqtt_client_connect*** z tą różnicą, że połączenie przechodzi przez warstwę TLS zamiast protokołu TCP. W związku z tym komunikacja między klientem a brokerem jest zabezpieczona.
 
-*Tls_setup* zdefiniowane przez użytkownika to funkcja wywołania zwrotnego, która jest stosowana przez klienta MQTT przed nawiązaniem połączenia z klientem MQTT. Aplikacja inicjuje NetX Secure TLS, konfiguruje parametry zabezpieczeń i ładuje odpowiednie certyfikaty do użycia podczas uzgadniania protokołu TLS. Rzeczywista uzgadnianie protokołu TLS następuje po ustanowieniu połączenia TCP na porcie MQTT TLS brokera (domyślny port TCP 8883). Po pomyślnym przeprowadzeniu uzgadniania TLS pakiet MQTT CONNECT Control zostanie wysłany za pośrednictwem protokołu TLS.
+Zdefiniowane przez użytkownika *tls_setup* jest funkcją wywołania zwrotnego używaną przez klienta MQTT przed nawiązaniu połączenia klienta MQTT. Aplikacja powinna zainicjować zabezpieczenia NetX Secure TLS, skonfigurować parametry zabezpieczeń i załadować odpowiednie certyfikaty, które mają być używane podczas ugody TLS. Rzeczywiste uściślicie protokołu TLS ma miejsce po nawiązaniu połączenia TCP na porcie TLS protokołu MQTT brokera (domyślny port TCP 8883). Po pomyślnym zakończeniu połączenia TLS pakiet kontrolny MQTT CONNECT jest wysyłany za pośrednictwem protokołu TLS.
 
-Aby zapewnić bezpieczne połączenia, musi być dostępna Biblioteka NetX Secure TLS, a klient NetX Duo MQTT musi być skompilowany przy użyciu zdefiniowanych ***NX_SECURE_ENABLE*** .
+Aby można było bezpiecznego połączenia, biblioteka NetX Secure TLS musi ***być*** dostępna, a klient NetX Duo MQTT musi być NX_SECURE_ENABLE zdefiniowany.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
-- **server_IP** Adres IP brokera.
-- **SERVER_PORT** Numer portu brokera. Domyślny port dla MQTT IsDefined jako **_NXD_MQTT_TLS_PORT_** (8883).
-- **tls_setup** Funkcja wywołania zwrotnego konfiguracji protokołu TLS dostarczonej przez użytkownika. Ta funkcja wywołania zwrotnego jest wywoływana w celu skonfigurowania parametrów połączenia klienta protokołu TLS.
-- **keep_alive** Wartość Keep-Alive, która ma być używana podczas sesji. Wartość 0 wyłącza funkcję Keep-Alive.
-- **clean_session** Bez względu na to, czy serwer rozpoczyna czyszczenie tej sesji. Prawidłowe opcje to **_NX_TRUE_*_ lub _*_NX_FALSE._**
-- **WAIT_OPTION** Czas oczekiwania na połączenie.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
+- **server_ip** Adres IP brokera.
+- **server_port** Numer portu brokera. Domyślny port dla MQTT jestokreślony jako **_NXD_MQTT_TLS_PORT_** (8883).
+- **tls_setup** Funkcja wywołania zwrotnego Instalatora TLS dostarczana przez użytkownika. Ta funkcja wywołania zwrotnego jest wywoływana w celu skonfigurowania parametrów połączenia klienta TLS.
+- **keep_alive** Wartość keep-alive, która ma być używana podczas sesji. Wartość 0 powoduje wyłączenie funkcji utrzymania aktywności.
+- **clean_session** Czy serwer powinien uruchomić tę sesję czyste. Prawidłowe opcje to **_NX_TRUE_*_ lub _*_NX_FALSE._**
+- **wait_option** Czas oczekiwania na połączenie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie MQTT połączenie z klientem za pośrednictwem protokołu TLS.
-- **NXD_MQTT_ALREADY_CONNECTED** (0x10001) klient jest już połączony z brokerem.
-- **NXD_MQTT_MUTEX_FAILURE** (0X10003) nie może uzyskać MQTT obiektu MUTEX 
-- Błąd wewnętrzny logiki **NXD_MQTT_INTERNAL_ERROR** (0x10004)
-- **NXD_MQTT_CONNECT_FAILURE** (0X10005) nie może nawiązać połączenia z brokerem.
-- **NXD_MQTT_COMMUNICATION_FAILURE** (0X10007) nie może wysłać komunikatów do brokera.
-- Serwer **NXD_MQTT_SERVER_MESSAGE_FAILURE** (0x10008) odpowiedział na komunikat o błędzie.
-- Kod odpowiedzi serwera **NXD_MQTT_ERROR_UNACCEPTABLE_PROTOCOL** (0x10081)
-- Kod odpowiedzi serwera **NXD_MQTT_ERROR_IDENTIFYIER_REJECTED** (0x10082)
-- Kod odpowiedzi serwera **NXD_MQTT_ERROR_SERVER_UNAVAILABLE** (0x10083)
-- Kod odpowiedzi serwera **NXD_MQTT_ERROR_BAD_USERNAME_PASSWORD** (0x10084)
-- Kod odpowiedzi serwera **NXD_MQTT_ERROR_NOT_AUTHORIZED** (0x10085)
-- NX_PTR_ERROR (0x07) nieprawidłowy blok sterowania MQTT lub struktura adresów serwera.
-- Port serwera NX_INVALID_PORT (0x46) nie może mieć wartości 0.
-- Błąd parametru wejściowego NXD_MQTT_INVALID_PARAMETER (0x10009)
-- Nie rozpoczęto jeszcze działania NXD_MQTT_CLIENT_NOT_RUNNING (0x1000E) MQTT.
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślne połączenie klienta MQTT nawiązane za pośrednictwem TLS.
+- **NXD_MQTT_ALREADY_CONNECTED** (0x10001) Klient jest już połączony z brokerem.
+- **NXD_MQTT_MUTEX_FAILURE** (0x10003) Nie można uzyskać obiektu mutex MQTT 
+- **NXD_MQTT_INTERNAL_ERROR** (0x10004) Wewnętrzny błąd logiki
+- **NXD_MQTT_CONNECT_FAILURE** (0x10005) Nie można nawiązać połączenia z brokerem.
+- **NXD_MQTT_COMMUNICATION_FAILURE** (0x10007) Nie można wysyłać komunikatów do brokera.
+- **NXD_MQTT_SERVER_MESSAGE_FAILURE** (0x10008) Serwer odpowiedział z komunikatem o błędzie.
+- NXD_MQTT_ERROR_UNACCEPTABLE_PROTOCOL (0x10081) Server response code (Kod odpowiedzi serwera programu **0x10081)**
+- NXD_MQTT_ERROR_IDENTIFYIER_REJECTED (0x10082) Server response code (Kod odpowiedzi serwera programu **0x10082)**
+- **NXD_MQTT_ERROR_SERVER_UNAVAILABLE** (0x10083) Server response code (Kod odpowiedzi serwera NXD_MQTT_ERROR_SERVER_UNAVAILABLE (0x10083)
+- **NXD_MQTT_ERROR_BAD_USERNAME_PASSWORD** (0x10084) Server response code (Kod odpowiedzi serwera 0x10084)
+- **NXD_MQTT_ERROR_NOT_AUTHORIZED** (0x10085) Server response code (Kod odpowiedzi serwera NXD_MQTT_ERROR_NOT_AUTHORIZED (0x10085)
+- NX_PTR_ERROR (0x07) Nieprawidłowa struktura adresu lub bloku kontrolki MQTT.
+- NX_INVALID_PORT (0x46) Server port nie może być 0.
+- NXD_MQTT_INVALID_PARAMETER (0x10009) Błąd parametru wejściowego
+- NXD_MQTT_CLIENT_NOT_RUNNING (0x1000E) wątek MQTT nie został jeszcze uruchomiony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -386,7 +386,7 @@ status = nxd_mqtt_client_secure_connect(&my_client,
 
 ## <a name="nxd_mqtt_client_publish"></a>nxd_mqtt_client_publish
 
-Publikowanie wiadomości za pośrednictwem brokera
+Publikowanie komunikatu za pośrednictwem brokera
 
 ### <a name="prototype"></a>Prototype
 
@@ -399,28 +399,28 @@ UINT nxd_mqtt_client_publish(NXD_MQTT_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa publikuje komunikat za pośrednictwem brokera. Publikowanie komunikatów poziomu 2 usług QoS nie jest jeszcze obsługiwane.
+Ta usługa publikuje komunikat za pośrednictwem brokera. Publikowanie komunikatów QoS poziomu 2 nie jest jeszcze obsługiwane.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
 - **topic_name** Temat do opublikowania.
 - **topic_name_length** Długość tematu w bajtach.
 - **komunikat** Wskaźnik do buforu komunikatów.
-- **message_length** Rozmiar wiadomości (w bajtach)
-- **Zachowaj** Określa, czy ten komunikat jest przechowywany przez brokera.
-- **Jakość** usług (QoS) Wymagana wartość QoS: 0 lub 1.
+- **message_length** Rozmiar komunikatu w bajtach
+- **zachowaj** Określa, czy broker powinien zachować komunikat.
+- **QoS** Żądana wartość QoS: 0 lub 1.
 - **limit czasu** Wartość limitu czasu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślne utworzenie klienta MQTT
-- Błąd wewnętrzny logiki **NXD_MQTT_INTERNAL_ERROR** (0x10004).
-- **NXD_MQTT_PACKET_POOL_FAILURE** (0X10006) nie może uzyskać pakietu z puli pakietów.
-- **NXD_MQTT_COMMUNICATION_FAILURE** (0X10007) nie może nawiązać komunikacji z brokerem.
-- **NXD_MQTT_QOS2_NOT_SUPPORTED** (0X1000C) jakość komunikatów poziomu 2 nie są obsługiwane.
-- NX_PTR_ERROR (0x07) Nieprawidłowa MQTT bloku sterowania, ip_ptr lub puli pakietów
-- Błąd parametru wejściowego NXD_MQTT_INVALID_PARAMETER (0x10009)
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślne utworzenie klienta MQTT
+- **NXD_MQTT_INTERNAL_ERROR** (0x10004) Wewnętrzny błąd logiki.
+- **NXD_MQTT_PACKET_POOL_FAILURE** (0x10006) Nie można uzyskać pakietu z puli pakietów.
+- **NXD_MQTT_COMMUNICATION_FAILURE** (0x10007) Nie można nawiązywała komunikacji z brokerem.
+- **NXD_MQTT_QOS2_NOT_SUPPORTED** (0x1000C) QoS level 2 nie są obsługiwane.
+- NX_PTR_ERROR (0x07) Nieprawidłowy blok sterowania MQTT, ip_ptr lub wskaźnik puli pakietów
+- NXD_MQTT_INVALID_PARAMETER (0x10009) Błąd parametru wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -458,25 +458,25 @@ UINT nxd_mqtt_client_subscribe(NXD_MQTT_CLIENT
 
 ### <a name="description"></a>Opis
 
-Ta usługa subskrybuje określony temat. Subskrybowanie komunikatów poziomu 2 usługi QoS nie jest jeszcze obsługiwane.
+Ta usługa subskrybuje określony temat. Subskrybowanie komunikatów QoS na poziomie 2 nie jest jeszcze obsługiwane.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
 - **topic_name** Temat do opublikowania.
 - **topic_name_length** Długość tematu w bajtach.
-- **Jakość usług QoS żądany poziom jakości usług:** 0 lub 1.
+- **QoS Żądany poziom QoS:** 0 lub 1.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie subskrybuje temat.
-- **NXD_MQTT_NOT_CONNECTED** (0x10002) klient nie jest połączony z brokerem.
-- **NXD_MQTT_MUTEX_FAILURE** (0X10003) nie może uzyskać MQTT obiektu MUTEX
-- Błąd wewnętrzny logiki **NXD_MQTT_INTERNAL_ERROR** (0x10004)
-- **NXD_MQTT_COMMUNICATION_FAILURE** (0X10007) nie może wysłać komunikatów do brokera.
-- **NXD_MQTT_QOS2_NOT_SUPPORTED** (0x1000C) poziom QoS 2messages nie są obsługiwane.
-- NX_PTR_ERROR (0x07) Nieprawidłowa MQTT bloku sterowania, ip_ptr lub puli pakietów
-- Nie ustawiono topic_name NXD_MQTT_INVALID_PARAMETER (0x10009) lub topic_name_length jest równa zero lub wartość ustawienia QoS jest nieprawidłowa.
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślnie subskrybowanie tematu.
+- **NXD_MQTT_NOT_CONNECTED** (0x10002) Klient nie jest połączony z brokerem.
+- **NXD_MQTT_MUTEX_FAILURE** (0x10003) Nie można uzyskać obiektu mutex MQTT
+- **NXD_MQTT_INTERNAL_ERROR** (0x10004) Wewnętrzny błąd logiki
+- **NXD_MQTT_COMMUNICATION_FAILURE** (0x10007) Nie można wysyłać komunikatów do brokera.
+- **NXD_MQTT_QOS2_NOT_SUPPORTED** (0x1000C) QoS level 2messages nie są obsługiwane.
+- NX_PTR_ERROR (0x07) Nieprawidłowy blok sterowania MQTT, ip_ptr lub wskaźnik puli pakietów
+- NXD_MQTT_INVALID_PARAMETER (0x10009) topic_name jest ustawiona lub topic_name_length jest równa zero lub QoS to wartość jest nieprawidłowa.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -511,23 +511,23 @@ UINT nxd_mqtt_client_unsubscribe(NXD_MQTT_CLIENT
 
 ### <a name="description"></a>Opis
 
-Ta usługa anuluje subskrypcję z tematu.
+Ta usługa anuluje subskrypcję tematu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
-- **topic_name** Temat anulowania subskrypcji.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
+- **topic_name** Temat do anulowania subskrypcji.
 - **topic_name_length** Długość tematu w bajtach.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie anulował subskrypcję tematu.
-- **NXD_MQTT_NOT_CONNECTED** (0x10002) klient nie jest połączony z brokerem.
-- **NXD_MQTT_MUTEX_FAILURE** (0X10003) nie może uzyskać MQTT obiektu MUTEX.
-- Błąd wewnętrzny logiki **NXD_MQTT_INTERNAL_ERROR** (0x10004)
-- **NXD_MQTT_COMMUNICATION_FAILURE** (0X10007) nie może wysłać komunikatów do brokera.
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślnie anulowano subskrypcję tematu.
+- **NXD_MQTT_NOT_CONNECTED** (0x10002) Klient nie jest połączony z brokerem.
+- **NXD_MQTT_MUTEX_FAILURE** (0x10003) Nie można uzyskać obiektu mutex MQTT.
+- **NXD_MQTT_INTERNAL_ERROR** (0x10004) Wewnętrzny błąd logiki
+- **NXD_MQTT_COMMUNICATION_FAILURE** (0x10007) Nie można wysyłać komunikatów do brokera.
 - NX_PTR_ERROR (0x07) Nieprawidłowy wskaźnik bloku sterowania MQTT
-- Nie ustawiono topic_name NXD_MQTT_INVALID_PARAMETER (0x10009) lub topic_name_length wynosi zero.
+- NXD_MQTT_INVALID_PARAMETER (0x10009) topic_name jest ustawiona lub topic_name_length jest równa zero.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -548,7 +548,7 @@ unsubscribes the topic "temperate". */
 
 ## <a name="nxd_mqtt_client_receive_notify_set"></a>nxd_mqtt_client_receive_notify_set
 
-Ustaw funkcję wywołania zwrotnego powiadomienia o otrzymaniu komunikatu MQTT
+Ustawianie funkcji wywołania zwrotnego powiadomienia o odbierania komunikatu MQTT
 
 ### <a name="prototype"></a>Prototype
 
@@ -561,17 +561,17 @@ UINT nxd_mqtt_client_receive_notify_set(NXD_MQTT_CLIENT
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego za pomocą klienta MQTT. Po odebraniu komunikatu opublikowanego przez brokera klient MQTT przechowuje komunikat w kolejce odbierania. Jeśli funkcja wywołania zwrotnego jest ustawiona, wywoływana jest funkcja wywołania zwrotnego w celu powiadomienia aplikacji o gotowości do pobrania. Funkcja odbierania powiadomień przyjmuje wskaźnik do bloku kontroli klienta MQTT, a *message_count* wskazujący liczbę komunikatów dostępnych w kolejce odbierania. Należy pamiętać, że liczba może ulec zmianie między powiadomieniem dotyczącym odebrania a pobraniem tych komunikatów przez aplikację, ponieważ w interwale mogły zostać odebrane nowe komunikaty.
+Ta usługa rejestruje funkcję wywołania zwrotnego przy użyciu klienta MQTT. Po otrzymaniu komunikatu opublikowanego przez brokera klient MQTT przechowuje komunikat w kolejce odbierania. Jeśli funkcja wywołania zwrotnego jest ustawiona, wywoływana jest funkcja wywołania zwrotnego, aby powiadomić aplikację, że komunikat jest gotowy do pobrania. Funkcja receive notify przyjmuje wskaźnik do bloku sterowania klienta  MQTT i message_count wskazującą liczbę komunikatów dostępnych w kolejce odbierania. Należy pamiętać, że liczba może ulec zmianie między powiadomieniem odbioru a pobraniem tych komunikatów przez aplikację, ponieważ w interwale mogą pojawić się nowe komunikaty.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
-- **receive_notify** Funkcja wywołania zwrotnego podanego przez użytkownika ma być wywoływana podczas otrzymywania komunikatu.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
+- **receive_notify** Funkcja wywołania zwrotnego dostarczona przez użytkownika, która ma być wywoływana po otrzymaniu komunikatu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie ustawił funkcję Odbierz powiadomienie.
-- NX_PTR_ERROR (0x07) nieprawidłowy blok sterowania MQTT.
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślnie ustaw funkcję powiadomienia o odbierania.
+- NX_PTR_ERROR (0x07) Nieprawidłowy blok kontrolek MQTT.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -619,30 +619,30 @@ UINT nxd_mqtt_client_message_get(NXD_MQTT_CLIENT
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera komunikat opublikowany przez brokera. Wszystkie komunikaty przychodzące są przechowywane w kolejce odbierania. Aplikacja używa tej usługi do pobierania tych komunikatów. To wywołanie nie blokuje się. Jeśli kolejka odbierania jest pusta, ta usługa zwraca ***NXD_MQTT_NO_MESSAGE** _. Aplikacja, która chce otrzymywać powiadomienia o przychodzących komunikatach, może wywołać usługę _ *_nxd_mqtt_client_receive_notify_set_**, aby zarejestrować funkcję wywołania zwrotnego.
+Ta usługa pobiera komunikat opublikowany przez brokera. Wszystkie komunikaty przychodzące są przechowywane w kolejce odbierania. Aplikacja używa tej usługi do pobierania tych komunikatów. To wywołanie nie jest blokujące. Jeśli kolejka odbierania jest pusta, ta usługa zwraca wartość ***NXD_MQTT_NO_MESSAGE** _. Aplikacja, która ma być powiadamiana o komunikacie przychodzącym, może wywołać usługę _ *_nxd_mqtt_client_receive_notify_set_** w celu zarejestrowania funkcji odbierania wywołania zwrotnego.
 
-Obiekt wywołujący musi podać miejsce w pamięci dla ciągu tematu i treści komunikatu. Rozmiary tych dwóch buforów są przesyłane przy użyciu *topic_buffer_size* i *message_buffer_size*. Rzeczywista liczba bajtów w ciągu tematu i treść komunikatu są zwracane w *actual_topic_length* i *actual_message_length*. Jeśli długość tematu lub długość Massage jest większa niż podana ilość miejsca w buforze, ta usługa zwróci kod błędu *NXD_MQTT_INSUFFICIENT_BUFFER_SIZE*.
+Wywołujący musi zapewnić miejsce w pamięci dla ciągu tematu i treści komunikatu. Rozmiary tych dwóch buforów są przekazywane przy użyciu topic_buffer_size *i* *message_buffer_size*. Rzeczywista liczba bajtów w ciągu tematu i treści  komunikatu są zwracane w ciągu actual_topic_length i *actual_message_length*. Jeśli długość tematu lub długość odstępu jest większa niż ilość miejsca w buforze, ta usługa zwraca kod *błędu NXD_MQTT_INSUFFICIENT_BUFFER_SIZE*.
 
-Aplikacja przydzieli większy bufor i spróbuj ponownie.
+Aplikacja musi przydzielić większy bufor i spróbować ponownie.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
-- **topic_buffer** Wskaźnik do lokalizacji pamięci, w której jest kopiowany ciąg tematu.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
+- **topic_buffer** Wskaźnik do lokalizacji pamięci, do której jest kopiowany ciąg tematu.
 - **topic_buffer_size** Rozmiar buforu tematu.
 - **actual_topic_length** Wskaźnik do lokalizacji pamięci, w której jest zwracana rzeczywista długość tematu.
-- **message_buffer** Wskaźnik do lokalizacji pamięci, w której jest kopiowany ciąg wiadomości.
+- **message_buffer** Wskaźnik do lokalizacji pamięci, do której jest kopiowany ciąg komunikatu.
 - **message_buffer_size** Rozmiar buforu komunikatów.
-- **actual_message_length** Wskaźnik do lokalizacji pamięci, w której zostanie zwrócona długość wiadomości.
+- **actual_message_length** Wskaźnik do lokalizacji pamięci, w której jest zwracana długość komunikatu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie pobrał komunikat.
-- Błąd wewnętrzny logiki **NXD_MQTT_INTERNAL_ERROR** (0x10004)
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślnie pobrano komunikat.
+- **NXD_MQTT_INTERNAL_ERROR** (0x10004) Wewnętrzny błąd logiki
 - **NXD_MQTT_NO_MESSAGE** (0x1000A) Kolejka odbierania jest pusta.
-- Bufor tematu (0x1000D) lub bufor komunikatów jest za mały dla tematu lub wiadomości. **NXD_MQTT_INSUFFICIENT_BUFFER_SIZE**
-- NX_PTR_ERROR (0x07) Nieprawidłowa MQTT bloku sterowania, ip_ptr lub puli pakietów
-- NXD_MQTT_INVALID_PARAMETER (0x10009) message_buffer lub topic_buffer wskaźnik ma wartość NULL
+- **NXD_MQTT_INSUFFICIENT_BUFFER_SIZE** (0x1000D) Bufor tematu lub bufor komunikatów jest zbyt mały dla tematu lub komunikatu.
+- NX_PTR_ERROR (0x07) Nieprawidłowy blok sterowania MQTT, ip_ptr lub wskaźnik puli pakietów
+- NXD_MQTT_INVALID_PARAMETER (0x10009) message_buffer lub topic_buffer ma wartość NULL
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -678,7 +678,7 @@ else
 
 ## <a name="nxd_mqtt_client_disconnect_notify_set"></a>nxd_mqtt_client_disconnect_notify_set
 
-Ustaw funkcję wywołania zwrotnego powiadomienia o rozłączeniu komunikatu MQTT
+Ustawianie funkcji powiadamiania zwrotnego o rozłączeniu komunikatu MQTT
 
 ### <a name="prototype"></a>Prototype
 
@@ -690,7 +690,7 @@ UINT nxd_mqtt_client_disconnect_notify_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego za pomocą klienta MQTT. Gdy MQTT wykrywa połączenie z brokerem, wywołuje tę funkcję powiadamiania o alercie do aplikacji. W związku z tym aplikacja może używać tej funkcji wywołania zwrotnego do wykrywania utraconych połączeń i w celu ponownego nawiązania połączenia z brokerem.
+Ta usługa rejestruje funkcję wywołania zwrotnego przy użyciu klienta MQTT. Gdy MQTT wykryje, że połączenie z brokerem zostanie utracone, wywołuje tę funkcję powiadamiania, aby ostrzec aplikację. W związku z tym aplikacja może używać tej funkcji wywołania zwrotnego do wykrywania utraconego połączenia i ponownego nawiązywania połączenia z brokerem.
 
 ```c
 VOID callback_func(NXD_MQTT_CLIENT *client_ptr);
@@ -698,13 +698,13 @@ VOID callback_func(NXD_MQTT_CLIENT *client_ptr);
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
-- **disconnect_notify** Funkcja wywołania zwrotnego, która ma zostać wywołana, gdy MQTT wykrywa połączenie z brokerem, zostanie utracona.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
+- **disconnect_notify** Funkcja wywołania zwrotnego dostarczona przez użytkownika, która ma być wywoływana, gdy program MQTT wykryje, że połączenie z brokerem zostanie utracone.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie ustawił funkcję powiadamiania o rozłączeniu.
-- NX_PTR_ERROR (0x07) nieprawidłowy blok sterowania MQTT.
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślnie ustaw funkcję powiadamiania o rozłączeniu.
+- NX_PTR_ERROR (0x07) Nieprawidłowy blok kontrolek MQTT.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -734,21 +734,21 @@ UINT nxd_mqtt_client_disconnect(NXD_MQTT_CLIENT *client_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa rozłącza klienta od brokera. Zwróć uwagę na to, że komunikaty w kolejce odbierania są wydane. Komunikaty z funkcją QoS 1 w kolejce transmisji nie są wydane. Po ponownym nawiązaniu połączenia klienta z serwerem można przetworzyć komunikaty QoS 1, chyba że klient ponownie nawiąże połączenie z serwerem z flagą *clean_session* ustawioną na ***NX_TRUE***.
+Ta usługa odłącza klienta od brokera. Należy pamiętać, że komunikaty w kolejce odbierania są zwalniane. Komunikaty z QoS 1 w kolejce przesyłania nie są zwalniane. Po ponownym nawiązaniu połączenia z serwerem można przetwarzać komunikaty QoS 1, chyba że klient ponownie nawiąży połączenie z serwerem za pomocą flagi *clean_session* ustawionej na ***NX_TRUE***.
 
-Jeśli połączenie zostało nawiązane z ochroną zabezpieczeń TLS, ta usługa zamknie sesję TLS przed odłączeniem połączenia TCP.
+Jeśli połączenie zostało nawiązaniu przy użyciu zabezpieczeń protokołu TLS, ta usługa zamknie sesję protokołu TLS przed odłączeniem połączenia TCP.
 
-Rzeczywiste wywołanie rozłączenia gniazda TCP jest zdefiniowane przez NXD_MQTT_SOCKET_TIMEOUT (Takty czasomierza). Wartość domyślna to NX_WAIT_FOREVER. Aby uniknąć nieograniczonego zawieszenia w przypadku utraty połączenia sieciowego lub braku odpowiedzi serwera, ustaw tę opcję na wartość skończoną.
+Rzeczywiste wywołanie rozłączenia gniazda TCP ma opcję oczekiwania zdefiniowaną przez NXD_MQTT_SOCKET_TIMEOUT (takty czasomierza). Wartość domyślna to NX_WAIT_FOREVER. Aby uniknąć zawieszenia na czas nieokreślony w przypadku, gdy połączenie sieciowe zostanie utracone lub serwer nie odpowiada, ustaw tę opcję na wartość skończoną.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) zostało pomyślnie rozłączone z brokerem
-- **NXD_MQTT_MUTEX_FAILURE** (0X10003) nie może uzyskać MQTT obiektu MUTEX.
-- NX_PTR_ERROR (0x07) nieprawidłowy blok sterowania MQTT
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślnie odłączony od brokera
+- **NXD_MQTT_MUTEX_FAILURE** (0x10003) Nie można uzyskać obiektu mutex MQTT.
+- NX_PTR_ERROR (0x07) Nieprawidłowy blok kontrolek MQTT
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -776,20 +776,20 @@ UINT nxd_mqtt_client_delete(NXD_MQTT_CLIENT *client_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wystąpienie klienta MQTT i zwalnia zasoby wewnętrzne. Ta usługa automatycznie rozłącza klienta z brokera, jeśli jest nadal połączony. Komunikaty, które nie zostały jeszcze przesłane lub nie zostały potwierdzone, są wydawane. Komunikaty odebrane, ale nie pobrane przez aplikację są również wydane.
+Ta usługa usuwa wystąpienie klienta MQTT i zwalnia zasoby wewnętrzne. Ta usługa automatycznie rozłącza klienta z brokerem, jeśli jest nadal połączony. Komunikaty, które nie zostały jeszcze przesłane lub nie zostały potwierdzone, są zwalniane. Komunikaty odebrane, ale nie pobrane przez aplikację również są zwalniane.
 
-Jeśli nastąpiło połączenie z ochroną zabezpieczeń TLS, ta usługa zamyka sesję protokołu TLS przed odłączeniem połączenia TCP.
+Jeśli połączenie zostało nawiązaniu przy użyciu zabezpieczeń protokołu TLS, ta usługa zamyka sesję protokołu TLS przed odłączeniem połączenia TCP.
 
 Po usunięciu klienta aplikacja, która chce korzystać z usługi MQTT, musi utworzyć nowe wystąpienie.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do MQTT bloku sterowania klientem.
+- **client_ptr** Wskaźnik do bloku sterowania klienta MQTT.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NXD_MQTT_SUCCESS** (0X00) pomyślnie usunął klienta MQTT.
-- NX_PTR_ERROR (0x07) nieprawidłowy blok sterowania MQTT
+- **NXD_MQTT_SUCCESS** (0x00) Pomyślnie usunięto klienta MQTT.
+- NX_PTR_ERROR (0x07) Nieprawidłowy blok kontrolek MQTT
 
 ### <a name="allowed-from"></a>Dozwolone z
 

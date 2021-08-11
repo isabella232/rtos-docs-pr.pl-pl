@@ -1,218 +1,218 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem stosu sieci o wysokiej wydajności Azure RTO NetX.
+title: Rozdział 2 — Instalowanie i używanie oprogramowania Azure RTOS NetX
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem stosu sieciowego o wysokiej wydajności Azure RTOS NetX.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 80d6ba18f47ad2b017dfa32260c83ba074a6dbac
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 942250cf864fca3c35b97ae731549c070ac2f2f2ef3ef8897e5cbf1e705e7c6a
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821541"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116801807"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx"></a>Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx"></a>Rozdział 2 — Instalowanie i używanie oprogramowania Azure RTOS NetX
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem stosu sieci o wysokiej wydajności Azure RTO NetX.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem stosu sieciowego o wysokiej wydajności Azure RTOS NetX.
 
 ## <a name="host-considerations"></a>Zagadnienia dotyczące hosta
 
-Projektowanie osadzone jest zwykle wykonywane na komputerach hostów z systemem Windows lub Linux (UNIX). Gdy aplikacja zostanie skompilowana, połączona, a plik wykonywalny jest generowany na hoście, zostanie pobrany na docelowy sprzęt do wykonania.
+Opracowywanie osadzone jest zwykle wykonywane na komputerach Windows komputerach hostów z systemem Linux (Unix). Gdy aplikacja zostanie skompilowana, połączona, a plik wykonywalny zostanie wygenerowany na hoście, zostanie pobrany na docelowy sprzęt w celu wykonania.
 
-Zazwyczaj pobieranie docelowe odbywa się z poziomu debugera narzędzia deweloperskiego. Po pobraniu debuger jest odpowiedzialny za zapewnienie docelowej kontroli wykonania (go, zatrzymania, punktu przerwania itp.) oraz dostęp do rejestrów pamięci i procesora.
+Zazwyczaj pobieranie docelowe jest wykonywane z poziomu debugera narzędzia dewelopera. Po pobraniu debuger jest odpowiedzialny za zapewnienie docelowej kontroli wykonywania (go, halt, breakpoint itp.), a także dostępu do rejestrów pamięci i procesora.
 
-Większość debugerów narzędzi programistycznych komunikuje się z sprzętem docelowym za pośrednictwem połączeń OCD (on-Chip Debug), takich jak JTAG (IEEE 1149,1) i tryb debugowania w tle (BDM). Debugery komunikują się również z sprzętem docelowym za pomocą połączeń In-Circuit Emulation (lodem). Połączenia OCD i lód zapewniają niezawodne rozwiązania z minimalnym dostępem do docelowego oprogramowania rezydentnego.
+Większość debugerów narzędzi deweloperskie komunikuje się ze sprzętem docelowym za pośrednictwem połączeń debugowania na mikroukładach (OCD), takich jak JTAG (IEEE 1149.1) i tryb debugowania w tle (BDM). Debugerzy komunikują się również ze sprzętem docelowym za pośrednictwem In-Circuit emulacji (ICE). Połączenia OCD i ICE zapewniają niezawodne rozwiązania z minimalnym wtargnięciem do docelowego oprogramowania.
 
-Podobnie jak w przypadku zasobów używanych na hoście, kod źródłowy dla NetX jest dostarczany w formacie ASCII i wymaga około 1 MB miejsca na dysku twardym komputera hosta.
+Podobnie jak w przypadku zasobów używanych na hoście, kod źródłowy netx jest dostarczany w formacie ASCII i wymaga około 1 MB miejsca na dysku twardym komputera hosta.
 
-## <a name="target-considerations"></a>Zagadnienia dotyczące obiektów docelowych
+## <a name="target-considerations"></a>Zagadnienia dotyczące celu
 
-NetX wymaga od 5 kilobajtów do 45 Read-Only KB pamięci (ROM) w miejscu docelowym. Dla stosu wątku NetX i innych globalnych struktur danych wymagane są inne od 1 do 5 kilobajtów pamięci RAM docelowego.
+NetX wymaga od 5 KB do 45 KB pamięci Read-Only pamięci (ROM) na komputerze docelowym. Kolejne od 1 do 5 KB pamięci RAM (Random Access Memory) obiektu docelowego są wymagane dla stosu wątków NetX i innych globalnych struktur danych.
 
 Ponadto NetX wymaga użycia dwóch obiektów czasomierza ThreadX i jednego obiektu mutex ThreadX. Te obiekty są używane do okresowego przetwarzania i ochrony wątków w stosie protokołu NetX.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Usługę Azure RTO NetX można uzyskać z naszego publicznego repozytorium kodu źródłowego w lokalizacji <https://github.com/azure-rtos/netx/> .
+Azure RTOS NetX można uzyskać z naszego publicznego repozytorium kodu źródłowego na stronie <https://github.com/azure-rtos/netx/> .
 
 Poniżej znajduje się lista kilku ważnych plików w repozytorium:
 
-- ***nx_api. h***: plik nagłówkowy C zawierający wszystkie równe systemowe, struktury danych i prototypy usługi.
-- ***nx_port. h***: plik nagłówkowy C zawierający wszystkie narzędzia deweloperskie oraz definicje i struktury danych specyficzne dla elementów docelowych.  
-- Plik ***demo_netx. c***: c zawierający małą aplikację demonstracyjną.
-- ***NX. a (lub NX. lib)** _: wersja binarna biblioteki NetX C, która jest dystrybuowana z pakietem _standard *.             |
+- ***nx_api.h:*** plik nagłówkowy C zawierający wszystkie elementy systemowe, struktury danych i prototypy usług.
+- ***nx_port.h:*** plik nagłówkowy C zawierający wszystkie definicje i struktury danych specyficzne dla poszczególnych narzędzi deweloperskich i docelowych.  
+- ***demo_netx.c:*** plik C zawierający małą aplikację demonstracyjną.
+- ***nx.a (lub nx.lib)** _: wersja binarna biblioteki NetX C dystrybuowana za pomocą pakietu _standard*.             |
 
 ## <a name="netx-installation"></a>Instalacja NetX
 
-Możesz zainstalować NetX przez klonowanie repozytorium GitHub na komputerze lokalnym. Poniżej przedstawiono typową składnię tworzenia klonu repozytorium NetX na komputerze:
+Platformę NetX można zainstalować, klonjąc repozytorium GitHub na maszynę lokalną. Poniżej przedstawiono typową składnię tworzenia klonu repozytorium NetX na komputerze:
 
 ```c
     git clone https://github.com/azure-rtos/netx
 ```
 
-Alternatywnie możesz pobrać kopię repozytorium za pomocą przycisku **Pobierz** na stronie głównej usługi GitHub.
+Możesz też pobrać kopię repozytorium przy  użyciu przycisku Pobierz na GitHub głównej.
 
-Znajdziesz również instrukcje dotyczące tworzenia biblioteki NetX na stronie frontonu repozytorium online.
+Instrukcje dotyczące tworzenia biblioteki NetX można również znaleźć na pierwszej stronie repozytorium online.
 
 > [!IMPORTANT]
-> Oprogramowanie aplikacji wymaga dostępu do pliku biblioteki NetX (zazwyczaj ***NX. a** _ lub _*_NX. lib_*_) oraz plików C include _ *_nx_api. h i nx_port. h_* *. W tym celu należy ustawić odpowiednią ścieżkę dla narzędzi programistycznych lub skopiować te pliki do obszaru projektowania aplikacji.
+> Oprogramowanie aplikacji musi mieć dostęp do pliku biblioteki NetX (zazwyczaj ***nx.a** _ lub _*_nx.lib_*_), a pliki dołączane w języku C _*_nx_api.h i nx_port.h_**. W tym celu należy wybrać odpowiednią ścieżkę dla narzędzi deweloperskie lub skopiować te pliki do obszaru projektowania aplikacji.
 
-## <a name="using-netx"></a>Korzystanie z NetX
+## <a name="using-netx"></a>Korzystanie z netx
 
-Aby użyć NetX, kod aplikacji musi zawierać znak ***nx_api. h** _ podczas kompilacji i łączyć się z biblioteką NetX _*_NX. a_*_ (lub _ *_NX. lib_*) *.
+Aby można było korzystać z netX, kod aplikacji musi zawierać plik ***nx_api.h** _ podczas kompilacji i połączyć go z biblioteką NetX _*_nx.a_*_ (lub _ *_nx.lib_*)*.
 
-Poniżej przedstawiono cztery kroki wymagane do kompilowania aplikacji NetX:
+Poniżej przedstawiono cztery wymagane kroki tworzenia aplikacji NetX:
 
-1. Uwzględnij plik ***nx_api. h*** we wszystkich plikach aplikacji, które korzystają z usług NetX Services lub struktur danych.
-1. Zainicjuj system NetX przez wywołanie ***nx_system_initialize** _ z funkcji _ *_tx_application_define_** lub wątku aplikacji.  
-1. Utwórz wystąpienie adresu IP, Włącz protokół ARP (Address Resolution Protocol), w razie potrzeby, i wszelkie gniazda po wywołaniu ***nx_system_initialize*** .  
-1. Skompiluj Źródło aplikacji i połącz je z biblioteką uruchomieniową NetX ***NX. a** _ (lub _ *_NX. lib_* *). Obraz wyników można pobrać do elementu docelowego i wykonać!
+1. Dołącz plik ***nx_api.h*** do wszystkich plików aplikacji, które korzystają z usług NetX lub struktur danych.
+1. Zaimicjuj system NetX, wywołując funkcję ***nx_system_initialize** _ z funkcji _ *_tx_application_define_** lub wątku aplikacji.  
+1. Utwórz wystąpienie adresu IP, włącz protokół rozpoznawania adresów (ARP), jeśli to konieczne, oraz wszelkie gniazda po ***nx_system_initialize*** wywoływania.  
+1. Kompilowanie źródła aplikacji i łączenie za pomocą biblioteki środowiska uruchomieniowego NetX ***nx.a** _ (lub _*_nx.lib_**). Wynikowy obraz można pobrać do obiektu docelowego i wykonać.
 
 ## <a name="troubleshooting"></a>Rozwiązywanie problemów
 
-Każdy port NetX jest dostarczany z co najmniej jednym przykładem wykonywanym w rzeczywistej sieci lub za pośrednictwem symulowanego sterownika sieciowego. Zawsze dobrym pomysłem jest rozpoczęcie pierwszego uruchomienia systemu przykładowego.
+Każdy port NetX jest dostarczany z co najmniej jednym przykładem, który jest wykonywany w rzeczywistej sieci lub za pośrednictwem symulowanego sterownika sieciowego. Zawsze dobrym pomysłem jest uruchomienie przykładowego systemu w pierwszej kolejności.
 
-Jeśli przykładowy system nie działa prawidłowo, wykonaj następujące operacje, aby zawęzić ten problem:
+Jeśli przykładowy system nie działa prawidłowo, wykonaj następujące operacje, aby zawęzić problem:
 
 1. Określ, jaka część przykładu jest uruchomiona.
-2. Zwiększ rozmiary stosu w nowych wątkach aplikacji.
-3. Ponownie skompiluj bibliotekę NetX z odpowiednimi opcjami debugowania wymienionymi w sekcji opcji konfiguracji.
-4. Sprawdź strukturę **NX_IP** , aby sprawdzić, czy pakiety są wysyłane lub odbierane.
+2. Zwiększ rozmiary stosów we wszystkich nowych wątkach aplikacji.
+3. Skompiluj ponownie bibliotekę NetX przy użyciu odpowiednich opcji debugowania wymienionych w sekcji opcji konfiguracji.
+4. Sprawdź strukturę **NX_IP,** aby sprawdzić, czy pakiety są wysyłane lub odbierane.
 5. Sprawdź domyślną pulę pakietów, aby sprawdzić, czy są dostępne pakiety.
-6. Upewnij się, że sterownik sieciowy dostarcza pakiety ARP i IP ze swoimi nagłówkami w 4-bajtowych granicach dla aplikacji wymagających łączności IP.
-7. Tymczasowo Pomiń wszystkie ostatnie zmiany, aby sprawdzić, czy problem znika lub nie ulegnie zmianie. Takie informacje powinny być przydatne dla inżynierów pomocy technicznej.
+6. Upewnij się, że sterownik sieciowy dostarcza pakiety ARP i IP z jego nagłówkami w granicach 4-bajtowych dla aplikacji wymagających łączności IP.
+7. Tymczasowo pomiń wszystkie ostatnie zmiany, aby sprawdzić, czy problem znika lub zmienia się. Takie informacje powinny okazać się przydatne dla naszych inżynierów pomocy technicznej.
 
-Wykonaj procedury opisane w temacie [centrum pomocy technicznej](about-this-guide.md) , aby wysłać informacje zebrane z kroków rozwiązywania problemów.
+Postępuj zgodnie z procedurami opisanymi w [temacie Centrum obsługi](about-this-guide.md) klienta, aby wysłać informacje zebrane z kroków rozwiązywania problemów.
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Podczas kompilowania biblioteki NetX i aplikacji przy użyciu NetX istnieje kilka opcji konfiguracji. Opcje konfiguracji można definiować w źródle aplikacji, w wierszu polecenia lub w pliku ***nx_user. h*** , o ile nie określono inaczej.
+Istnieje kilka opcji konfiguracji podczas budowania biblioteki NetX i aplikacji przy użyciu narzędzia NetX. Opcje konfiguracji można zdefiniować w źródle aplikacji, w wierszu polecenia lub w pliku ***dołączania nx_user.h, chyba*** że określono inaczej.
 
 > [!IMPORTANT]
-> Opcje zdefiniowane w ***nx_user. h** _ są stosowane tylko wtedy, gdy aplikacja i Biblioteka NetX zostały skompilowane przy użyciu _ *NX_INCLUDE_USER_DEFINE_FILE** zdefiniowanej.
+> Opcje zdefiniowane w ***nx_user.h** _ są stosowane tylko wtedy, gdy aplikacja i biblioteka NetX są budowaną za pomocą zdefiniowanej wartości _ *NX_INCLUDE_USER_DEFINE_FILE**.
 
-W poniższych sekcjach wymieniono opcje konfiguracji dostępne w NetX.
+W poniższych sekcjach przedstawiono opcje konfiguracji dostępne w programie NetX.
 
 ### <a name="system-configuration-options"></a>Opcje konfiguracji systemu  
 
 | Opcja  | Opis  |
 |---|---|
-| X_DEBUG | Zdefiniowane, umożliwia opcjonalne informacje debugowania drukowania dostępne ze sterownika sieci Ethernet w pamięci RAM. |
-| NX_DISABLE_ERROR_CHECKING | Zdefiniowane, usuwa interfejs API podstawowego NetX sprawdzanie błędów i zwiększa wydajność. Kody powrotne interfejsu API, które nie mają wpływ na wyłączanie sprawdzania błędów, są wymienione w pogrubionym kroju pisma w definicji interfejsu API. Ta definicja jest zwykle używana po debugowaniu aplikacji i w przypadku zwiększenia wydajności i zmniejszenia rozmiaru kodu. |
-| NX_DRIVER_DEFERRED_PROCESSING | Zdefiniowane, umożliwia obsługę pakietów sterownika sieci odroczonej. Dzięki temu sterownik sieciowy może umieścić pakiet w wystąpieniu IP i mieć rzeczywistą procedurę przetwarzania wywoływaną z wątku pomocnika wewnętrznego adresu IP NetX. |
-| NX_ENABLE_EXTENDED_NOTIFY_SUPPORT | Włącza więcej punktów zaczepienia wywołania zwrotnego w stosie. Te funkcje wywołania zwrotnego są używane przez warstwę otoki BSD. Domyślnie ta opcja nie jest zdefiniowana. |
-| NX_ENABLE_SOURCE_ADDRESS_CHECK | Zdefiniowany, umożliwia sprawdzenie adresu źródłowego pakietu przychodzącego. Domyślnie ta opcja jest wyłączona. |
-| NX_LITTLE_ENDIAN | Zdefiniowane, wykonuje konieczność wymiany bajtów w środowiskach little endian, aby upewnić się, że nagłówki protokołu są w prawidłowym formacie big endian. Uwaga domyślna jest zazwyczaj instalacją w ***nx_port. h***. |
-| NX_MAX_PHYSICAL_INTERFACES | Określa łączną liczbę fizycznych interfejsów sieciowych na urządzeniu. Wartość domyślna to 1 i jest definiowana w ***nx_api. h***. Urządzenie musi mieć co najmniej jeden interfejs fizyczny. Należy zauważyć, że nie obejmuje to interfejsu sprzężenia zwrotnego. |
-| NX_PHYSICAL_HEADER | Określa rozmiar w bajtach fizycznego nagłówka ramki. Wartość domyślna to 16 (oparta na typowym 14-bajtowym ramce Ethernet wyrównanym do 32-bitowej granicy) i jest zdefiniowana w ***nx_api. h** _. Aplikacja może przesłonić domyślne przez zdefiniowanie wartości przed _*_nx_api. h_*_ , na przykład _ *_nx_user. h_*. * |
+| X_DEBUG | Zdefiniowano , włącza opcjonalne informacje debugowania drukowania dostępne ze sterownika sieci Ethernet pamięci RAM. |
+| NX_DISABLE_ERROR_CHECKING | Zdefiniowano , usuwa podstawowy interfejs API sprawdzania błędów NetX i poprawia wydajność. Kody powrotne interfejsu API, na które nie ma wpływu wyłączenie sprawdzania błędów, są wyświetlane pogrubioną czcionką w definicji interfejsu API. Ta definicja jest zwykle używana po debugowaniu aplikacji i gdy jej użycie zwiększa wydajność i zmniejsza rozmiar kodu. |
+| NX_DRIVER_DEFERRED_PROCESSING | Zdefiniowane umożliwia odroczoną obsługę pakietów sterowników sieciowych. Dzięki temu sterownik sieciowy umieszcza pakiet w wystąpieniu adresu IP i ma rzeczywistą procedurę przetwarzania o nazwie z wątku pomocnika wewnętrznego adresu IP NetX. |
+| NX_ENABLE_EXTENDED_NOTIFY_SUPPORT | Włącza więcej wpięć wywołania zwrotnego w stosie. Te funkcje wywołania zwrotnego są używane przez warstwę otoki BSD. Domyślnie ta opcja nie jest zdefiniowana. |
+| NX_ENABLE_SOURCE_ADDRESS_CHECK | Zdefiniowane umożliwia sprawdzanie adresu źródłowego pakietu przychodzącego. Domyślnie ta opcja jest wyłączona. |
+| NX_LITTLE_ENDIAN | Zdefiniowane, wykonuje niezbędne wymiany bajtów w środowiskach little endian, aby upewnić się, że nagłówki protokołu są we właściwym big endian formatu. Pamiętaj, że wartość domyślna jest zwykle konfigurowana ***w nx_port.h.*** |
+| NX_MAX_PHYSICAL_INTERFACES | Określa łączną liczbę fizycznych interfejsów sieciowych na urządzeniu. Wartość domyślna to 1 i jest zdefiniowana w ***nx_api.h.*** Urządzenie musi mieć co najmniej jeden interfejs fizyczny. Pamiętaj, że nie obejmuje to interfejsu sprzężenia zwrotnego. |
+| NX_PHYSICAL_HEADER | Określa rozmiar w bajtach fizycznego nagłówka ramki. Wartość domyślna to 16 (na podstawie typowej 14-bajtowej ramki Ethernet wyrównanej do granicy 32-bitowej) i jest zdefiniowana w ***nx_api.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed _*_nx_api.h,_*_ na przykład w _ *_nx_user.h.*_* |
 
-### <a name="arp-configuration-options"></a>Opcje konfiguracji protokołu ARP  
-
-| Opcja  | Opis  |
-|---|---|
-| NX_ARP_DEFEND_BY_REPLY | Zdefiniowane, umożliwia NetX obrony swojego adresu IP, wysyłając odpowiedź ARP. |
-| NX_ARP_DEFEND_INTERVAL | Definiuje interwał (w sekundach), w którym moduł ARP wysyła następny pakiet obrony w odpowiedzi na przychodzący komunikat protokołu ARP wskazujący, że adres jest w konflikcie. |
-| NX_ARP_DISABLE_AUTO_ARP_ENTRY | Zmieniono nazwę na **NX_DISABLE_ARP_AUTO_ENTRY**. Mimo że jest to nadal obsługiwane, zachęcamy nowe projekty do korzystania z **NX_DISABLE_ARP_AUTO_ENTRY**.
-| NX_ARP_EXPIRATION_RATE | Określa liczbę sekund wygaśnięcia wpisów ARP. Wartość domyślna zero wyłącza wygasanie lub przedawnianie wpisów ARP i jest zdefiniowana w ***nx_api. h** _. Aplikacja może przesłonić domyślne, definiując wartość przed _ *_nx_api. h_** jest uwzględniona.
-| NX_ARP_MAC_CHANGE_NOTIFICATION_ENABLE | Zmieniono nazwę na **NX_ENABLE_ARP_MAC_CHANGE_NOTIFICATION**. Mimo że jest to nadal obsługiwane, zachęcamy nowe projekty do korzystania z **NX_ENABLE_ARP_MAC_CHANGE_NOTIFICATION**. |
-| NX_ARP_MAX_QUEUE_DEPTH | Określa maksymalną liczbę pakietów, które można umieścić w kolejce podczas oczekiwania na odpowiedź ARP. Wartość domyślna to 4 i jest definiowana w ***nx_api. h***. |
-| NX_ARP_MAXIMUM_RETRIES | Określa maksymalną liczbę ponownych prób protokołu ARP bez odpowiedzi ARP. Wartość domyślna to 18 i jest definiowana w ***nx_api. h** _. Aplikacja może przesłonić domyślne przez zdefiniowanie wartości przed dołączeniem _ *_nx_api. h_* *. |
-| NX_ARP_UPDATE_RATE | Określa liczbę sekund między ponownymi próbami ARP. Wartość domyślna to 10, która reprezentuje 10 sekund, i jest zdefiniowana w ***nx_api. h** _. Aplikacja może przesłonić domyślne przez zdefiniowanie wartości przed dołączeniem _ *_nx_api. h_* *. |
-| NX_DISABLE_ARP_AUTO_ENTRY | Zdefiniowane, wyłącza wprowadzanie informacji o żądaniu ARP w pamięci podręcznej ARP. |
-| NX_DISABLE_ARP_INFO | Zdefiniowane, wyłącza zbieranie informacji o ARP. |
-| NX_ENABLE_ARP_MAC_CHANGE_NOTIFICATION | Zdefiniowane, umożliwia protokółowi ARP wywołaj funkcję powiadamiania o wywołaniu zwrotnym przy wykrywaniu adresu MAC. |
-
-### <a name="icmp-configuration-options"></a>Opcje konfiguracji protokołu ICMP  
+### <a name="arp-configuration-options"></a>Opcje konfiguracji ARP  
 
 | Opcja  | Opis  |
 |---|---|
-| NX_DISABLE_ICMP_INFO | Zdefiniowane, wyłącza zbieranie informacji protokołu ICMP. |
-| NX_DISABLE_ICMP_RX_CHECKSUM | Wyłącza Obliczanie sumy kontrolnej protokołu ICMP dla odebranych pakietów ICMP. Ta opcja jest przydatna, gdy sterownik interfejsu sieciowego może zweryfikować sumę kontrolną protokołu ICMP, a aplikacja nie korzysta z funkcji fragmentacji adresów IP. Domyślnie ta opcja nie jest zdefiniowana. |
-| NX_DISABLE_ICMP_TX_CHECKSUM | Wyłącza Obliczanie sum kontrolnych protokołu ICMP dla wysłanych pakietów protokołu ICMP. Ta opcja jest przydatna, gdy sterownik interfejsu sieciowego może obliczyć sumę kontrolną protokołu ICMP, a aplikacja nie korzysta z funkcji fragmentacji IP. Domyślnie ta opcja nie jest zdefiniowana. |
+| NX_ARP_DEFEND_BY_REPLY | Zdefiniowane umożliwia platformie NetX obronę swojego adresu IP przez wysyłanie odpowiedzi ARP. |
+| NX_ARP_DEFEND_INTERVAL | Definiuje interwał, w sekundach, moduł ARP wysyła następny pakiet obrony w odpowiedzi na przychodzący komunikat ARP, który wskazuje adres w konflikcie. |
+| NX_ARP_DISABLE_AUTO_ARP_ENTRY | Zmieniono nazwę **na NX_DISABLE_ARP_AUTO_ENTRY**. Mimo że ta wersja jest nadal obsługiwana, zachęcamy do korzystania z nowych projektów **NX_DISABLE_ARP_AUTO_ENTRY**.
+| NX_ARP_EXPIRATION_RATE | Określa liczbę sekund, przez które wpisy ARP pozostają prawidłowe. Wartość domyślna zero wyłącza wygasanie lub przedawnianie wpisów ARP i jest zdefiniowana w ***nx_api.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed dopisem _ *_nx_api.h*._*
+| NX_ARP_MAC_CHANGE_NOTIFICATION_ENABLE | Zmieniono nazwę **na NX_ENABLE_ARP_MAC_CHANGE_NOTIFICATION**. Mimo że jest ona nadal obsługiwana, zachęcamy do korzystania z nowych projektów **NX_ENABLE_ARP_MAC_CHANGE_NOTIFICATION**. |
+| NX_ARP_MAX_QUEUE_DEPTH | Określa maksymalną liczbę pakietów, które mogą być kolejkowane podczas oczekiwania na odpowiedź ARP. Wartość domyślna to 4 i jest zdefiniowana w ***nx_api.h.*** |
+| NX_ARP_MAXIMUM_RETRIES | Określa maksymalną liczbę ponownych prób ARP wykonanych bez odpowiedzi ARP. Wartość domyślna to 18 i jest zdefiniowana w ***nx_api.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed dopisem _*_nx_api.h_**. |
+| NX_ARP_UPDATE_RATE | Określa liczbę sekund między ponownych prób ARP. Wartość domyślna to 10, która reprezentuje 10 sekund i jest zdefiniowana w ***nx_api.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed dopisem _*_nx_api.h_**. |
+| NX_DISABLE_ARP_AUTO_ENTRY | Zdefiniowane wyłącza wprowadzanie informacji o żądaniu ARP w pamięci podręcznej ARP. |
+| NX_DISABLE_ARP_INFO | Zdefiniowane wyłącza zbieranie informacji przez usługę ARP. |
+| NX_ENABLE_ARP_MAC_CHANGE_NOTIFICATION | Zdefiniowane umożliwia URP wywoływanie funkcji powiadamiania o wywołaniu zwrotnych po wykryciu, że adres MAC został zaktualizowany. |
 
-### <a name="igmp-configuration-options"></a>Opcje konfiguracji protokołu IGMP  
+### <a name="icmp-configuration-options"></a>Opcje konfiguracji ICMP  
+
+| Opcja  | Opis  |
+|---|---|
+| NX_DISABLE_ICMP_INFO | Zdefiniowane wyłącza zbieranie informacji ICMP. |
+| NX_DISABLE_ICMP_RX_CHECKSUM | Wyłącza obliczanie sumy kontrolnej ICMP dla odebranych pakietów ICMP. Ta opcja jest przydatna, gdy sterownik interfejsu sieciowego jest w stanie zweryfikować sumy kontrolne ICMP, a aplikacja nie używa funkcji fragmentacji adresów IP. Domyślnie ta opcja nie jest zdefiniowana. |
+| NX_DISABLE_ICMP_TX_CHECKSUM | Wyłącza obliczanie sumy kontrolnej ICMP dla przesyłanych pakietów ICMP. Ta opcja jest przydatna, gdy sterownik interfejsu sieciowego jest w stanie obliczyć sumy kontrolne ICMP, a aplikacja nie używa funkcji fragmentacji adresów IP. Domyślnie ta opcja nie jest zdefiniowana. |
+
+### <a name="igmp-configuration-options"></a>Opcje konfiguracji IGMP  
 
 | Opcja  | Opis  |
 |---|---| 
-| NX_DISABLE_IGMP_INFO | Zdefiniowane, wyłącza zbieranie informacji IGMP. |
-| NX_DISABLE_IGMPV2 | Zdefiniowane, wyłącza obsługę IGMPv2, a NetX obsługuje tylko IGMPv1. Domyślnie ta opcja nie jest ustawiona i jest definiowana w ***nx_api. h***. |
-| NX_MAX_MULTICAST_GROUPS | Określa maksymalną liczbę grup multiemisji, które mogą być sprzężone. Wartość domyślna to 7 i została zdefiniowana w ***nx_api. h** _. Aplikacja może przesłonić domyślne, definiując wartość przed _ *_nx_api. h_** jest uwzględniona. |
+| NX_DISABLE_IGMP_INFO | Zdefiniowane wyłącza zbieranie informacji IGMP. |
+| NX_DISABLE_IGMPV2 | Zdefiniowano, wyłącza obsługę protokołu IGMPv2, a netX obsługuje tylko protokół IGMPv1. Domyślnie ta opcja nie jest ustawiona i jest zdefiniowana w ***nx_api.h.*** |
+| NX_MAX_MULTICAST_GROUPS | Określa maksymalną liczbę grup multiemisji, które mogą być połączone. Wartość domyślna to 7 i jest zdefiniowana w ***nx_api.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed dopisem _ *_nx_api.h*._* |
 
-### <a name="ip-configuration-options"></a>Opcje konfiguracji protokołu IP
-
-| Opcja  | Opis  |
-|---|---|
-| NX_DISABLE_FRAGMENTATION | Zdefiniowane, wyłącza fragmentację IP i logikę ponownego zestawu. |
-| NX_DISABLE_IP_INFO | Zdefiniowane, wyłącza zbieranie informacji o adresie IP. |
-| NX_DISABLE_IP_RX_CHECKSUM | Zdefiniowane, powoduje wyłączenie logiki sumy kontrolnej dla odebranych pakietów IP. Jest to przydatne, jeśli urządzenie sieciowe może zweryfikować sumę kontrolną nagłówka IP, a aplikacja nie korzysta z fragmentacji adresów IP. |
-| NX_DISABLE_IP_TX_CHECKSUM | Zdefiniowane, powoduje wyłączenie logiki sumy kontrolnej dla wysłanych pakietów IP. Jest to przydatne w sytuacjach, w których bazowe urządzenie sieciowe może generować sumę kontrolną nagłówka IP, a aplikacja nie korzysta z fragmentacji adresów IP. |
-| NX_DISABLE_LOOPBACK_INTERFACE | Zdefiniowane, wyłącza obsługę NetX dla interfejsu sprzężenia zwrotnego. |
-| NX_DISABLE_RX_SIZE_CHECKING | Zdefiniowane, wyłącza sprawdzanie rozmiaru odebranych pakietów. |
-| NX_ENABLE_IP_STATIC_ROUTING | Zdefiniowane, umożliwia statycznego routingu IP, w którym adres docelowy może być przypisany do określonego adresu następnego przeskoku. Domyślnie statyczny Routing adresów IP jest wyłączony. |
-| NX_IP_PERIODIC_RATE | Zdefiniowane, określa liczbę cykli czasomierza ThreadX w jednej sekundzie. Wartość domyślna pochodzi od symbolu ThreadX **TX_TIMER_TICKS_PER_SECOND,** który domyślnie jest ustawiony na 100 (10 ms Timer). W przypadku modyfikowania tej wartości aplikacje sprawdzają pozostałą ostrożność, ponieważ pozostałe moduły NetX uzyskują informacje o chronometrażu z **NX_IP_PERIODIC_RATE *.** |
-| NX_IP_ROUTING_TABLE_SIZE | Zdefiniowane, ustawia maksymalną liczbę wpisów w statycznej tabeli routingu IP, która jest listą interfejsu wychodzącego i następnego przeskoku
-adresy dla danego adresu docelowego. Wartość domyślna to 8 i została zdefiniowana w ***nx_api. h.** _ Ten symbol jest używany tylko wtedy, gdy jest zdefiniowany _ *NX_ENABLE_IP_STATIC_ROUTING**. |
-
-### <a name="packet-configuration-options"></a>Opcje konfiguracji pakietu  
+### <a name="ip-configuration-options"></a>Opcje konfiguracji adresu IP
 
 | Opcja  | Opis  |
 |---|---|
-| NX_DISABLE_PACKET_INFO | Zdefiniowane, powoduje wyłączenie zbierania informacji o puli pakietów. | 
-| NX_PACKET_HEADER_PAD | Zdefiniowane, umożliwia uzupełnienie do końca bloku sterowania NX_PACKET. Liczba słów **ULONG** do zablokowania jest definiowana przez **NX_PACKET_HEADER_PAD_SIZE**. |
-| NX_PACKET_HEADER_PAD_SIZE | Ustawia liczbę słów **ULONG** , które mają być uzupełnione do struktury NX_PACKET, co pozwala na rozpoczęcie działania obszaru ładunku pakietu
-struktury. Ta funkcja jest przydatna, gdy Odbierz punkty deskryptorów buforów bezpośrednio do obszaru ładunku NX_PACKET, a logika odbierania interfejsu sieciowego lub logika operacji pamięci podręcznej oczekuje, że adres początkowy buforu spełnia pewne wymagania dotyczące wyrównania. Ta wartość jest prawidłowa tylko wtedy, gdy **NX_PACKET_HEADER_PAD** jest zdefiniowana. |
+| NX_DISABLE_FRAGMENTATION | Zdefiniowane wyłącza fragmentację adresów IP i logikę ponownego zsadowania. |
+| NX_DISABLE_IP_INFO | Zdefiniowane wyłącza zbieranie informacji o adresie IP. |
+| NX_DISABLE_IP_RX_CHECKSUM | Zdefiniowane wyłącza logikę sumy kontrolnej dla odebranych pakietów IP. Jest to przydatne, jeśli urządzenie sieciowe jest w stanie zweryfikować sumy kontrolne nagłówka IP, a aplikacja nie używa fragmentacji adresu IP. |
+| NX_DISABLE_IP_TX_CHECKSUM | Zdefiniowane wyłącza logikę sumy kontrolnej dla wysyłanych pakietów IP. Jest to przydatne w sytuacjach, w których bazowe urządzenie sieciowe jest w stanie wygenerować sumy kontrolne nagłówka IP, a aplikacja nie używa fragmentacji adresu IP. |
+| NX_DISABLE_LOOPBACK_INTERFACE | Zdefiniowane wyłącza obsługę NetX dla interfejsu sprzężenia zwrotnego. |
+| NX_DISABLE_RX_SIZE_CHECKING | Zdefiniowane wyłącza sprawdzanie rozmiaru odebranych pakietów. |
+| NX_ENABLE_IP_STATIC_ROUTING | Zdefiniowane umożliwia routing statyczny IP, w którym adresowi docelowemu można przypisać określony adres następnego przeskoku. Domyślnie statyczny routing IP jest wyłączony. |
+| NX_IP_PERIODIC_RATE | Zdefiniowane określa liczbę takt czasomierza ThreadX w ciągu jednej sekundy. Wartość domyślna jest pochodną symbolu ThreadX **TX_TIMER_TICKS_PER_SECOND,** która domyślnie jest ustawiona na 100 (czasomierz 10ms). Aplikacje powinny zachować ostrożność podczas modyfikowania tej wartości, ponieważ pozostałe moduły NetX wyprowadzają informacje o chronometrażu **z NX_IP_PERIODIC_RATE*.** |
+| NX_IP_ROUTING_TABLE_SIZE | Zdefiniowane, ustawia maksymalną liczbę wpisów w tabeli routingu statycznego IP, która jest listą interfejsu wychodzącego i następnym przeskoku
+adresy dla danego adresu docelowego. Wartość domyślna to 8 i jest zdefiniowana w ***nx_api.h.** _ Ten symbol jest używany tylko wtedy,*gdy zdefiniowano NX_ENABLE_IP_STATIC_ROUTING** . |
 
-### <a name="rarp-configuration-options"></a>RARP opcje konfiguracji  
+### <a name="packet-configuration-options"></a>Opcje konfiguracji pakietów  
 
 | Opcja  | Opis  |
 |---|---|
-| NX_DISABLE_RARP_INFO | Zdefiniowane, wyłącza zbieranie informacji RARP. |
+| NX_DISABLE_PACKET_INFO | Zdefiniowane wyłącza zbieranie informacji o puli pakietów. | 
+| NX_PACKET_HEADER_PAD | Zdefiniowane, umożliwia wypełnienie pod koniec NX_PACKET sterowania. Liczba wyrazów **do dosyłania** w programie ULONG jest definiowana przez **NX_PACKET_HEADER_PAD_SIZE**. |
+| NX_PACKET_HEADER_PAD_SIZE | Ustawia liczbę wyrazów **ULONG,** które mają zostać doliszowane do struktury NX_PACKET, dzięki czemu obszar ładunku pakietu może zaczynać się od żądanego
+Wyrównanie. Ta funkcja jest przydatna, gdy deskryptory buforu odbierania wskazują bezpośrednio do obszaru ładunku usługi NX_PACKET, a logika odbierania interfejsu sieciowego lub logika operacji pamięci podręcznej oczekuje, że adres początkowy buforu spełnia określone wymagania wyrównania. Ta wartość staje się prawidłowa tylko **wtedy, NX_PACKET_HEADER_PAD** jest zdefiniowana. |
+
+### <a name="rarp-configuration-options"></a>Opcje konfiguracji RARP  
+
+| Opcja  | Opis  |
+|---|---|
+| NX_DISABLE_RARP_INFO | Zdefiniowane wyłącza zbieranie informacji RARP. |
 
 ### <a name="tcp-configuration-options"></a>Opcje konfiguracji protokołu TCP
 
 | Opcja  | Opis  |
 |---|---|
-| NX_DISABLE_RESET_DISCONNECT | Zdefiniowane, wyłącza przetwarzanie Reset podczas rozłączania, gdy podana wartość limitu czasu zostanie określona jako **NX_NO_WAIT**. |
+| NX_DISABLE_RESET_DISCONNECT | Zdefiniowany, wyłącza przetwarzanie resetowania podczas rozłączania, gdy podana wartość limitu czasu jest określona jako **NX_NO_WAIT**. |
 | NX_DISABLE_TCP_INFO | Zdefiniowane, wyłącza zbieranie informacji TCP. |
-| NX_DISABLE_TCP_RX_CHECKSUM | Zdefiniowane, powoduje wyłączenie logiki sumy kontrolnej dla odebranych pakietów TCP. Jest to przydatne tylko w sytuacjach, w których warstwa linku ma niezawodną sumę kontrolną lub przetwarzanie CRC, albo sterownik interfejsu może zweryfikować sumę kontrolną protokołu TCP na sprzęcie. |
-| NX_DISABLE_TCP_TX_CHECKSUM | Zdefiniowane, powoduje wyłączenie logiki sumy kontrolnej do wysyłania pakietów TCP. Jest to przydatne tylko w sytuacjach, w których węzeł sieci odbiorczej ma wyłączony licznik sum kontrolnych TCP lub źródłowy sterownik sieciowy może generować sumę kontrolną protokołu TCP. |
-| NX_ENABLE_TCP_KEEPALIVE | Zdefiniowany, włącza opcjonalny czasomierz aktywności TCP. Ustawienia domyślne nie są włączone. |
-| NX_ENABLE_TCP_MSS_CHECKING | Zdefiniowane, umożliwia weryfikację minimalnej liczby elementów równorzędnych przed zaakceptowaniem połączenia TCP. Aby użyć tej funkcji, należy zdefiniować symbol **NX_ENABLE_TCP_MSS_MINIMUM** . Domyślnie ta opcja nie jest włączona. |
-NX_ENABLE_TCP_WINDOW_SCALING | Włącza opcję skalowania okna dla aplikacji TCP. W przypadku zdefiniowania opcji skalowania okna jest negocjowane w fazie połączenia TCP, a aplikacja może określić rozmiar okna większy niż 64 KB. Ustawienie domyślne nie jest włączone (nie określono). |
-| NX_MAX_LISTEN_REQUESTS | Określa maksymalną liczbę żądań nasłuchiwania serwera. Wartość domyślna to 10 i została zdefiniowana w ***nx_api. h** _. Aplikacja może przesłonić domyślne, definiując wartość przed _ *_nx_api. h_** jest uwzględniona. |
-| NX_TCP_ACK_EVERY_N_PACKETS | Określa liczbę pakietów TCP do odebrania przed wysłaniem potwierdzenia. Uwaga Jeśli **NX_TCP_IMMEDIATE_ACK** jest włączona, ale **NX_TCP_ACK_EVERY_N_PACKETS** nie jest, ta wartość jest automatycznie ustawiana na 1 w celu zapewnienia zgodności z poprzednimi wersjami. |
-| NX_TCP_ACK_TIMER_RATE | Określa, w jaki sposób liczba cykli systemu (NX_IP_PERIODIC_RATE) jest dzielona, aby obliczyć szybkość czasomierza dla przetwarzania opóźnionego ACK protokołu TCP. Wartość domyślna to 5, która reprezentuje 200ms i jest zdefiniowana w ***nx_tcp. h** _. Aplikacja może przesłonić domyślne przez zdefiniowanie wartości przed dołączeniem _ *_nx_api. h_* *. |
-| NX_TCP_ENABLE_KEEPALIVE | Zmieniono nazwę na **NX_ENABLE_TCP_KEEPALIVE**. Mimo że jest to nadal obsługiwane, zachęcamy nowe projekty do korzystania z **NX_ENABLE_TCP_KEEPALIVE**. |
-| NX_TCP_ENABLE_WINDOW_SCALING | Zmieniono nazwę na **NX_ENABLE_TCP_WINDOW_SCALING**. Mimo że jest to nadal obsługiwane, zachęcamy nowe projekty do korzystania z **NX_ENABLE_TCP_WINDOW_SCALING**. |
-| NX_TCP_FAST_TIMER_RATE | Określa, jak liczba wewnętrznych taktów NetX (NX_IP_PERIODIC_RATE) jest dzielona do obliczenia szybkości szybkiego czasomierza TCP. Szybki Zegar TCP jest używany do kierowania różnych czasomierzy TCP, w tym czasomierza opóźnionego ACK. Wartość domyślna to 10, która reprezentuje 100 ms przy założeniu, że czasomierz ThreadX jest uruchomiony w 10 ms. Ta wartość jest zdefiniowana w ***nx_tcp. h** _. Aplikacja może przesłonić domyślne przez zdefiniowanie wartości przed dołączeniem _ *_nx_api. h_* *. |
-| NX_TCP_IMMEDIATE_ACK | Zdefiniowane, włącza opcjonalne przetwarzanie odpowiedzi protokołu TCP natychmiastowe potwierdzenie. Definiowanie tego symbolu jest równoznaczne z zdefiniowaniem **NX_TCP_ACK_EVERY_N_PACKETS** równego 1. |
-| NX_TCP_KEEPALIVE_INITIAL | Określa liczbę sekund braku aktywności przed aktywowaniem czasomierza utrzymywania aktywności. Wartość domyślna to 7200, która reprezentuje 2 godziny, i jest zdefiniowana w ***nx_tcp. h** _. Aplikacja może przesłonić domyślne przez zdefiniowanie wartości przed dołączeniem _ *_nx_api. h_* *. |
-| NX_TCP_KEEPALIVE_RETRIES | Określa, ile ponownych prób jest dozwolonych, zanim połączenie zostanie uznane za przerwane. Wartość domyślna to 10, która reprezentuje 10 ponownych prób i jest zdefiniowana w ***nx_tcp. h** _. Aplikacja może przesłonić domyślne, definiując wartość przed _ *_nx_api. h_** jest uwzględniona. |
-| NX_TCP_KEEPALIVE_RETRY | Określa liczbę sekund między ponownymi próbami czasomierza aktywności, przy założeniu, że druga strona połączenia nie odpowiada. Wartość domyślna to 75, która reprezentuje 75 sekund między ponownymi próbami i jest zdefiniowana w ***nx_tcp. h** _. Aplikacja może przesłonić domyślne, definiując wartość przed _ *_nx_api. h_** jest uwzględniona. |
-| NX_TCP_MAX_OUT_OF_ORDER_PACKETS | Symbol definiujący maksymalną liczbę pakietów TCP poza kolejnością, które mogą być przechowywane w kolejce odbioru gniazda TCP. Ten symbol może służyć do ograniczania liczby pakietów umieszczonych w kolejce w gnieździe odbioru TCP, uniemożliwiając Starved puli pakietów. Domyślnie ten symbol nie jest zdefiniowany, więc nie ma żadnego limitu liczby pakietów poza kolejnością w gnieździe TCP. |
-| NX_TCP_MAXIMUM_RETRIES | Określa, ile ponownych prób transmisji danych jest dozwolonych, zanim połączenie zostanie uznane za przerwane. Wartość domyślna to 10, która reprezentuje 10 ponownych prób i jest zdefiniowana w ***nx_tcp. h** _. Aplikacja może przesłonić domyślne przez zdefiniowanie wartości przed dołączeniem _ *_nx_api. h_* *. |
-| NX_TCP_MAXIMUM_TX_QUEUE | Określa maksymalną głębokość kolejki transmisji protokołu TCP przed wstrzymaniem lub odrzuceniem żądań wysłania protokołu TCP. Wartość domyślna to 20, co oznacza, że maksymalnie 20 pakietów może znajdować się w kolejce transmisji w danym momencie. Zwróć uwagę na to, że pakiety pozostają w kolejce transmisji do momentu potwierdzenia, który obejmuje niektóre lub wszystkie dane pakietu są otrzymywane od drugiej strony połączenia. Ta stała jest definiowana w ***nx_tcp. h** _. Aplikacja może przesłonić wartość domyślną przez zdefiniowanie wartości przed uwzględnieniem _ *_nx_api. h_* *. |
-| X_TCP_MSS_CHECKING_ENABLED | Zmieniono nazwę na **NX_ENABLE_TCP_MSS_CHECKING**. Mimo że jest to nadal obsługiwane, zachęcamy nowe projekty do korzystania z **NX_ENABLE_TCP_MSS_CHECKING**. |
-| NX_TCP_MSS_MINIMUM | Symbol, który definiuje minimalną wartość NetX, która akceptuje moduł TCP. Ta funkcja jest włączona przez **NX_ENABLE_TCP_MSS_CHECK** |
-| NX_TCP_RETRY_SHIFT | Określa sposób zmiany okresu ponownego przesyłania czasu między ponownymi próbami. Jeśli ta wartość wynosi 0, początkowy limit czasu ponownego przesyłania jest taki sam, jak kolejne limity czasu ponownego przesyłania. Jeśli ta wartość jest równa 1, każde kolejne ponowne przesłanie jest dwa razy dłuższe. Jeśli ta wartość jest równa 2, każdy kolejny limit czasu ponownego przesyłania jest dłuższy niż cztery razy. Wartość domyślna to 0 i jest zdefiniowana w ***nx_tcp. h** _. Aplikacja może przesłonić domyślne przez zdefiniowanie wartości przed dołączeniem _ *_nx_api. h_* *. |
-| NX_TCP_TRANSMIT_TIMER_RATE| Określa, jak liczba cykli systemu **NX_IP_PERIODIC_RATE**) jest podzielona, aby obliczyć szybkość czasomierza dla przetwarzania ponawiania prób transmisji protokołu TCP. Wartość domyślna to 1, która reprezentuje 1 sekundę, i jest zdefiniowana w **_nx_tcp. h_*_. Aplikacja może przesłonić domyślne przez zdefiniowanie wartości przed uwzględnieniem _*_nx_api. h_**. |
+| NX_DISABLE_TCP_RX_CHECKSUM | Zdefiniowano, wyłącza logikę sumy kontrolnej dla odebranych pakietów TCP. Jest to przydatne tylko w sytuacjach, w których warstwa łącza ma niezawodną sumy kontrolnej lub CRC przetwarzania lub sterownik interfejsu jest w stanie zweryfikować sumy kontrolne TCP w sprzęcie. |
+| NX_DISABLE_TCP_TX_CHECKSUM | Zdefiniowano, wyłącza logikę sumy kontrolnej do wysyłania pakietów TCP. Jest to przydatne tylko w sytuacjach, w których węzeł sieci odbierający ma odebraną logikę sumy kontrolnej TCP wyłączona lub źródłowy sterownik sieci jest w stanie wygenerować sumy kontrolne TCP. |
+| NX_ENABLE_TCP_KEEPALIVE | Zdefiniowany parametr włącza opcjonalny czasomierz utrzymania aktywności protokołu TCP. Ustawienia domyślne nie są włączone. |
+| NX_ENABLE_TCP_MSS_CHECKING | Zdefiniowane umożliwia weryfikację minimalnej równorzędnej usługi MSS przed zaakceptowaniem połączenia TCP. Aby można było korzystać z tej funkcji, **NX_ENABLE_TCP_MSS_MINIMUM** musi być zdefiniowana. Domyślnie ta opcja nie jest włączona. |
+NX_ENABLE_TCP_WINDOW_SCALING | Włącza opcję skalowania okien dla aplikacji TCP. Jeśli ta opcja jest zdefiniowana, opcja skalowania okien jest negocjowana w fazie połączenia TCP, a aplikacja może określić rozmiar okna większy niż 64K. Ustawienie domyślne nie jest włączone (nie zdefiniowano). |
+| NX_MAX_LISTEN_REQUESTS | Określa maksymalną liczbę żądań nasłuchiwać serwera. Wartość domyślna to 10 i jest zdefiniowana w ***nx_api.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed dopisem wartości _ *_nx_api.h*._* |
+| NX_TCP_ACK_EVERY_N_PACKETS | Określa liczbę pakietów TCP do odbierania przed wysłaniem ACK. Jeśli ta **NX_TCP_IMMEDIATE_ACK** włączona, NX_TCP_ACK_EVERY_N_PACKETS **jest** włączona, ta wartość jest automatycznie ustawiana na 1 w celu zapewnienia zgodności z poprzednimi wersjami. |
+| NX_TCP_ACK_TIMER_RATE | Określa, w jaki sposób liczba taktów systemowych (NX_IP_PERIODIC_RATE) jest dzielona w celu obliczenia szybkości czasomierza dla opóźnionego przetwarzania ACK protokołu TCP. Wartość domyślna to 5, która reprezentuje 200ms i jest zdefiniowana w ***nx_tcp.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed uwzględnieniem wartości _*_nx_api.h_**. |
+| NX_TCP_ENABLE_KEEPALIVE | Zmieniono nazwę **na NX_ENABLE_TCP_KEEPALIVE**. Mimo że ta wersja jest nadal obsługiwana, zachęcamy do korzystania z nowych projektów **NX_ENABLE_TCP_KEEPALIVE**. |
+| NX_TCP_ENABLE_WINDOW_SCALING | Zmieniono nazwę na **NX_ENABLE_TCP_WINDOW_SCALING**. Mimo że ta wersja jest nadal obsługiwana, zachęcamy do korzystania z nowych projektów **NX_ENABLE_TCP_WINDOW_SCALING**. |
+| NX_TCP_FAST_TIMER_RATE | Określa, w jaki sposób liczba wewnętrznych taktowania NetX (NX_IP_PERIODIC_RATE) jest dzielona w celu obliczenia szybkości czasomierza TCP. Szybki czasomierz TCP jest używany do kierowania różnymi czasomierzami TCP, w tym opóźnionym czasomierzem ACK. Wartość domyślna to 10, która reprezentuje 100ms przy założeniu, że czasomierz ThreadX jest uruchomiony na 10ms. Ta wartość jest zdefiniowana w ***nx_tcp.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed uwzględnieniem wartości _*_nx_api.h_**. |
+| NX_TCP_IMMEDIATE_ACK | Zdefiniowane umożliwia opcjonalne natychmiastowe przetwarzanie odpowiedzi ACK protokołu TCP. Zdefiniowanie tego symbolu jest równoważne zdefiniowaniu **NX_TCP_ACK_EVERY_N_PACKETS** na 1. |
+| NX_TCP_KEEPALIVE_INITIAL | Określa liczbę sekund braku aktywności przed aktywowanie czasomierza utrzymania aktywności. Wartość domyślna to 7200, która reprezentuje 2 godziny i jest zdefiniowana w ***nx_tcp.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed uwzględnieniem wartości _*_nx_api.h_**. |
+| NX_TCP_KEEPALIVE_RETRIES | Określa, ile prób utrzymania aktywności jest dozwolonych, zanim połączenie zostanie uznane za przerwane. Wartość domyślna to 10, która reprezentuje 10 ponownych prób i jest zdefiniowana w ***nx_tcp.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed dopisem wartości _ *_nx_api.h*._* |
+| NX_TCP_KEEPALIVE_RETRY | Określa liczbę sekund między ponownych prób czasomierza utrzymania aktywności przy założeniu, że druga strona połączenia nie odpowiada. Wartość domyślna to 75, która reprezentuje 75 sekund między ponownych prób i jest zdefiniowana w ***nx_tcp.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed dopisem wartości _ *_nx_api.h*._* |
+| NX_TCP_MAX_OUT_OF_ORDER_PACKETS | Symbol definiujący maksymalną liczbę poza kolejnością pakietów TCP, które mogą być przechowywane w kolejce odbierania gniazd TCP. Ten symbol może służyć do ograniczania liczby pakietów w kolejce w gnieździe odbierania TCP, zapobiegając utracie puli pakietów. Domyślnie ten symbol nie jest zdefiniowany, w związku z tym nie ma limitu liczby pakietów poza kolejnością, które są kolejkowane w gnieździe TCP. |
+| NX_TCP_MAXIMUM_RETRIES | Określa, ile danych przesyła ponowne próby, zanim połączenie zostanie uznane za przerwane. Wartość domyślna to 10, która reprezentuje 10 ponownych prób i jest zdefiniowana w ***nx_tcp.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed uwzględnieniem wartości _*_nx_api.h_**. |
+| NX_TCP_MAXIMUM_TX_QUEUE | Określa maksymalną głębokość kolejki przesyłania TCP, zanim żądania wysyłania TCP zostaną wstrzymane lub odrzucone. Wartość domyślna to 20, co oznacza, że w kolejce przesyłania może w danym momencie być maksymalnie 20 pakietów. Należy pamiętać, że pakiety pozostają w kolejce przesyłania, dopóki nie zostanie odebrany ACK, który obejmuje część lub wszystkie dane pakietów z drugiej strony połączenia. Ta stała jest zdefiniowana w ***nx_tcp.h** _. Aplikacja może zastąpić wartość domyślną, definiując wartość przed dopisem _*_nx_api.h_**. |
+| X_TCP_MSS_CHECKING_ENABLED | Zmieniono nazwę **na NX_ENABLE_TCP_MSS_CHECKING**. Mimo że nadal jest ona obsługiwana, zachęcamy do korzystania z nowych projektów **NX_ENABLE_TCP_MSS_CHECKING**. |
+| NX_TCP_MSS_MINIMUM | Symbol definiujący minimalną wartość MSS akceptowaną przez moduł TCP NetX. Ta funkcja jest włączana **przez NX_ENABLE_TCP_MSS_CHECK** |
+| NX_TCP_RETRY_SHIFT | Określa, jak zmienia się limit czasu retransmisji między ponownymi próbami. Jeśli ta wartość wynosi 0, początkowy limit czasu ponownego przetłumaczenia jest taki sam jak kolejne limity czasu ponownego przetłumaczenia. Jeśli ta wartość wynosi 1, każdy kolejny retransmisja jest dwa razy dłuższy. Jeśli ta wartość wynosi 2, każdy kolejny limit czasu ponownego przetłumaczenia jest cztery razy dłuższy. Wartość domyślna to 0 i jest zdefiniowana w ***nx_tcp.h** _. Aplikacja może przesłonić wartość domyślną, definiując wartość przed uwzględnieniem wartości _*_nx_api.h_**. |
+| NX_TCP_TRANSMIT_TIMER_RATE| Określa, jak liczba takty systemu **NX_IP_PERIODIC_RATE**) jest dzielona w celu obliczenia szybkości czasomierza dla przetwarzania ponowienia przesyłania TCP. Wartość domyślna to 1, która reprezentuje 1 sekundę i jest zdefiniowana w **_nx_tcp.h_*_. Aplikacja może przesłonić wartość domyślną, definiując wartość przed dopisem _*_nx_api.h._** |
 
-### <a name="udp-configuration-options"></a>Opcje konfiguracji protokołu UDP
+### <a name="udp-configuration-options"></a>Opcje konfiguracji UDP
 | Opcja  | Opis  |
 |---|---|
-| NX_DISABLE_UDP_INFO | Zdefiniowane, wyłącza zbieranie informacji o UDP. |
-| NX_DISABLE_UDP_RX_CHECKSUM | Zdefiniowane, wyłącza Obliczanie sum kontrolnych UDP dla przychodzących pakietów UDP. Jest to przydatne, jeśli sterownik interfejsu sieciowego może zweryfikować sumę kontrolną nagłówka UDP w sprzęcie, a aplikacja nie włącza logiki fragmentacji adresów IP. |
-| NX_DISABLE_UDP_TX_CHECKSUM | Zdefiniowane, wyłącza Obliczanie sum kontrolnych UDP dla wychodzących pakietów UDP. Jest to przydatne, jeśli sterownik interfejsu sieciowego może obliczać sumę kontrolną nagłówka UDP i wstawiać wartość w nagłówku IP przed przekazaniem danych, a aplikacja nie włącza logiki fragmentacji adresów IP. |
+| NX_DISABLE_UDP_INFO | Zdefiniowane, wyłącza zbieranie informacji UDP. |
+| NX_DISABLE_UDP_RX_CHECKSUM | Zdefiniowano , wyłącza obliczanie sumy kontrolnej UDP dla przychodzących pakietów UDP. Jest to przydatne, jeśli sterownik interfejsu sieciowego jest w stanie zweryfikować sumy kontrolne nagłówka UDP na sprzęcie, a aplikacja nie włącza logiki fragmentacji adresu IP. |
+| NX_DISABLE_UDP_TX_CHECKSUM | Zdefiniowane wyłącza obliczanie sumy kontrolnej UDP dla wychodzących pakietów UDP. Jest to przydatne, jeśli sterownik interfejsu sieciowego może obliczyć sumy kontrolne nagłówka UDP i wstawić wartość w nagłówku adresu IP przed przesyłaniem danych, a aplikacja nie włączy logiki fragmentacji adresu IP. |
 
 ## <a name="netx-version-id"></a>Identyfikator wersji NetX
 
-Bieżąca wersja programu NetX jest dostępna zarówno dla użytkownika, jak i oprogramowania aplikacji podczas wykonywania. Programista może uzyskać wersję NetX z pliku **nx_port. h** . Ponadto ten plik zawiera historię wersji odpowiedniego portu. Oprogramowanie aplikacji może uzyskać wersję NetX, badając ciąg globalny **_nx_version_id** w **_nx_port. h_**.  
+Bieżąca wersja oprogramowania NetX jest dostępna zarówno dla użytkownika, jak i dla oprogramowania aplikacji w czasie wykonywania. Programista może uzyskać wersję NetX z **pliku nx_port.h.** Ponadto ten plik zawiera historię wersji odpowiedniego portu. Oprogramowanie aplikacji może uzyskać wersję NetX, sprawdzając globalny ciąg _nx_version_id **w** **_nx_port.h._**  
 
-Oprogramowanie aplikacji może również uzyskać informacje o wersji ze stałych przedstawionych poniżej, które są zdefiniowane w ***nx_api. h**. *
+Oprogramowanie aplikacji może również uzyskać informacje o wersji ze stałych pokazanych poniżej, które są zdefiniowane w ***nx_api.h**.*
 
-Te stałe określają bieżącą wersję produktu według nazwy i wersję główną i pomocniczą produktu.
+Te stałe identyfikują bieżące wydanie produktu według nazwy oraz wersji pomocniczej i wersji pomocniczej produktu.
 
 ```c
 #define EL_PRODUCT_NETX

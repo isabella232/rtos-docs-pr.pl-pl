@@ -1,43 +1,43 @@
 ---
-title: Rozdział 3 — Opis usług klienta usługi Azure RTO NetX Duo (SNTP)
-description: Ten rozdział zawiera opis wszystkich usług klienta SNTP NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+title: Rozdział 3 — Opis Azure RTOS klienta NetX Duo SNTP
+description: Ten rozdział zawiera opis wszystkich usług klienta NetX Duo SNTP (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 75b2b878cd084ca1c1cdd1eed4333d303fe32ad6
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 7aee18642e480ec61488515164c8a6816753dca86eb8f6d146ea22d4956e037a
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821649"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116791673"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-duo-sntp-client-services"></a>Rozdział 3 — Opis usług klienta usługi Azure RTO NetX Duo (SNTP)
+# <a name="chapter-3---description-of-azure-rtos-netx-duo-sntp-client-services"></a>Rozdział 3 — Opis Azure RTOS klienta NetX Duo SNTP
 
-Ten rozdział zawiera opis wszystkich usług klienta usługi Azure RTO NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług Azure RTOS NetX Duo SNTP (wymienionych poniżej) w kolejności alfabetycznej.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w poniższych  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości z pogrubieniem, a wartości bez pogrubienia są całkowicie wyłączone.
 
-- **nx_sntp_client_create**: *Tworzenie klienta SNTP*
-- **nx_sntp_client_delete**: *Usuwanie klienta SNTP*
-- **nx_sntp_client_get_local_time**: *pobieranie czasu lokalnego klienta SNTP*
-- **nx_sntp_client_get_local_time_extended**: *pobieranie czasu lokalnego klienta SNTP*
-- **nx_sntp_client_initialize_broadcast**: *zainicjuj klienta dla operacji emisji IPv4*
-- **nxd_sntp_client_initialize_broadcast**: *zainicjuj klienta dla operacji emisji IPv6 lub IPv4*
-- **nx_sntp_client_initialize_unicast**: *zainicjuj klienta dla operacji IPv4 emisji pojedynczej*
-- **nxd_sntp_client_initialize_unicast**: *zainicjuj klienta dla operacji IPv4 lub IPv6 emisji pojedynczej*
-- **nx_sntp_client_receiving_udpates**: *klient otrzymuje obecnie prawidłowe aktualizacje SNTP*
-- **nx_sntp_client_request_unicast_time**: *Wyślij żądanie emisji pojedynczej bezpośrednio do serwera NTP*
-- **nx_sntp_client_run_broadcast**: *Uruchamianie klienta w trybie emisji*
-- **nx_sntp_client_run_unicast**: *Uruchamianie klienta w trybie emisji pojedynczej*
-- **nx_sntp_client_set_local_time**: *Ustaw początkowy czas lokalny klienta SNTP*
-- **nx_sntp_client_set_time_update_notify**: *Ustaw wywołanie ZWROTne aktualizacji SNTP*
-- **nx_sntp_client_stop**: *Zatrzymywanie wątku klienta SNTP*
-- **nx_sntp_client_utility_display_date_and_time**: *Wyświetlanie czasu NTP w sekundach*
-- **nx_sntp_client_utility_msecs_to_fraction**: *konwertowanie MILISEKUND na składnik NTP*
-- **nx_sntp_client_utility_usecs_to_fraction**: *Konwertuj mikrosekundy na składnik ułamka NTP*
-- **nx_sntp_client_utility_fraction_to_usecs**: *konwertowanie składnika częściowego NTP na mikrosekundy*
+- **nx_sntp_client_create:** tworzenie *klienta SNTP*
+- **nx_sntp_client_delete:** *usuwanie klienta SNTP*
+- **nx_sntp_client_get_local_time:** uzyskiwanie *czasu lokalnego klienta SNTP*
+- **nx_sntp_client_get_local_time_extended:** Uzyskiwanie *czasu lokalnego klienta SNTP*
+- **nx_sntp_client_initialize_broadcast:** *inicjowanie klienta dla operacji emisji IPv4*
+- **nxd_sntp_client_initialize_broadcast:** inicjowanie klienta dla operacji emisji *IPv6 lub IPv4*
+- **nx_sntp_client_initialize_unicast:** *inicjowanie klienta dla operacji emisji pojedynczej protokołu IPv4*
+- **nxd_sntp_client_initialize_unicast:** inicjowanie klienta dla operacji emisji pojedynczej *IPv4 lub IPv6*
+- **nx_sntp_client_receiving_udpates:** Klient *obecnie otrzymuje prawidłowe aktualizacje SNTP*
+- **nx_sntp_client_request_unicast_time:** wyślij *żądanie emisji pojedynczej bezpośrednio do serwera NTP*
+- **nx_sntp_client_run_broadcast:** uruchamianie *klienta w trybie emisji*
+- **nx_sntp_client_run_unicast:** uruchamianie *klienta w trybie emisji pojedynczej*
+- **nx_sntp_client_set_local_time:** ustaw *początkowy czas lokalny* klienta SNTP
+- **nx_sntp_client_set_time_update_notify:** ustaw *wywołanie zwrotne aktualizacji SNTP*
+- **nx_sntp_client_stop:** *zatrzymaj wątek klienta SNTP*
+- **nx_sntp_client_utility_display_date_and_time:** Wyświetl *czas NTP w sekundach*
+- **nx_sntp_client_utility_msecs_to_fraction:** *konwertowanie milisekund na składnik ułamkowy NTP*
+- **nx_sntp_client_utility_usecs_to_fraction:** *konwertowanie mikrosekund na składnik ułamkowy NTP*
+- **nx_sntp_client_utility_fraction_to_usecs:** *konwertowanie składnika ułamkowego NTP na mikrosekundy*
 
 
 ## <a name="nx_sntp_client_create"></a>nx_sntp_client_create
@@ -65,7 +65,7 @@ Ta usługa tworzy wystąpienie klienta SNTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
 - **ip_ptr** Wskaźnik do wystąpienia adresu IP klienta
 
@@ -73,25 +73,25 @@ Ta usługa tworzy wystąpienie klienta SNTP.
 
 - **packet_pool_ptr** Wskaźnik do puli pakietów klienta
 
-- **leap_second_handler** Wywołanie zwrotne dla odpowiedzi aplikacji w trakcie oczekiwania na sekundę
+- **leap_second_handler** Wywołanie zwrotne odpowiedzi aplikacji na zbliżającą się sekundę przestępną
 
-- **kiss_of_death_handler** Wywołanie zwrotne dla odpowiedzi aplikacji do odebrania pakietu zgonu
+- **kiss_of_death_handler** Wywołanie zwrotne odpowiedzi aplikacji na odebranie pakietu Zniechęć do zgonu
 
 - **random_number_generator** Wywołanie zwrotne do usługi generatora liczb losowych
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne utworzenie klienta
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie klienta
 
-- **NX_SNTP_INSUFFICIENT_PACKET_PAYLOAD** (0XD2A) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- **NX_SNTP_INSUFFICIENT_PACKET_PAYLOAD** (0xD2A) Nieprawidłowe dane wejściowe bez wskaźnika
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 - NX_INVALID_INTERFACE (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -125,15 +125,15 @@ Ta usługa usuwa wystąpienie klienta SNTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne utworzenie klienta
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie klienta
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -152,7 +152,7 @@ status =  nx_sntp_client_delete(&demo_client);
 
 ## <a name="nx_sntp_client_get_local_time"></a>nx_sntp_client_get_local_time
 
-Pobieranie czasu lokalnego klienta SNTP
+Uzyskiwanie czasu lokalnego klienta SNTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -166,27 +166,27 @@ UINT nx_sntp_client_get_local_time(NX_SNTP_CLIENT *client_ptr ,
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera czas lokalny klienta SNTP z wejściem wskaźnika buforu opcji w celu odbierania danych w formacie ciągu wiadomości.
+Ta usługa pobiera czas lokalny klienta SNTP z danymi wejściowymi wskaźnika buforu opcji w celu odbierania danych w formacie komunikatu ciągu.
 
-Ta usługa jest przestarzała. Deweloperzy są zachęcani do migracji do *nx_sntp_client_get_local_time_extended*().
+Ta usługa jest przestarzała. Zachęcamy deweloperów do migracji do *nx_sntp_client_get_local_time_extended*().
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
-- **sekund** Wskaźnik na czas lokalny w sekundach
+- **sekundy** Wskaźnik do lokalnego czasu w sekundach
 
-- **ułamek** Składnik lokalnej części czasu
+- **ułamek** Składnik ułamka czasu lokalnego
 
-- **bufor** Wskaźnik do buforu w celu zapisania danych czasu
+- **bufor** Wskaźnik do buforu do zapisu danych czasu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne utworzenie klienta
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie klienta
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -212,7 +212,7 @@ status =  nx_sntp_client_get_local_time(&demo_client,
 
 ## <a name="nx_sntp_client_get_local_time_extended"></a>nx_sntp_client_get_local_time_extended
 
-Pobieranie rozszerzonego czasu lokalnego klienta SNTP
+Uzyskiwanie rozszerzonego czasu lokalnego klienta SNTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -228,29 +228,29 @@ UINT nx_sntp_client_get_local_time_extended(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera rozszerzony czas lokalny klienta SNTP z wejściem wskaźnika buforu opcji w celu odbierania danych w formacie ciągu wiadomości.
+Ta usługa pobiera rozszerzony czas lokalny klienta SNTP z danymi wejściowymi wskaźnika buforu opcji w celu odbierania danych w formacie komunikatu ciągu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
-- **sekund** Wskaźnik na czas lokalny w sekundach
+- **sekundy** Wskaźnik do lokalnego czasu w sekundach
 
 - **ułamek** Wskaźnik do składnika ułamkowego
 
-- **bufor** Wskaźnik do buforu w celu zapisania danych czasu
+- **bufor** Wskaźnik do buforu do zapisu danych czasu
 
 - **buffer_size** Długość buforu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne utworzenie klienta
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie klienta
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący usługę
 
-- Sprawdzanie NX_SIZE_ERROR (0x09) nie powiodło się buffer_size
+- NX_SIZE_ERROR (0x09) Sprawdzanie buffer_size nie powiodło się
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -281,7 +281,7 @@ status =  nx_sntp_client_get_local_time_extended(&demo_client,
 
 ## <a name="nx_sntp_client_initialize_broadcast"></a>nx_sntp_client_initialize_broadcast
 
-Zainicjuj klienta dla operacji emisji
+Inicjowanie klienta dla operacji emisji
 
 ### <a name="prototype"></a>Prototype
 
@@ -295,11 +295,11 @@ UINT nx_sntp_client_initialize_broadcast(NX_SNTP_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje klienta na potrzeby operacji emisji, ustawiając adres IP serwera SNTP i inicjując parametry uruchamiania i limity czasu usługi SNTP. Jeśli adresy multiemisji i emisji są inne niż null, wybierany jest adres multiemisji. Jeśli oba adresy mają wartość null, zwracany jest błąd. Zwróć uwagę na to, że obsługuje tylko adresy serwera IPv4.
+Ta usługa inicjuje operację klienta do emisji, ustawiając adres IP serwera SNTP oraz inicjjąc parametry uruchamiania SNTP i limity czasu. Jeśli adresy multiemisji i emisji nie mają wartości null, jest wybierany adres multiemisji. Jeśli oba adresy mają wartość null, zwracany jest błąd. Należy pamiętać, że obsługuje tylko adresy serwerów IPv4.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
 - **multicast_server_address** Adres multiemisji SNTP
 
@@ -307,17 +307,17 @@ Ta usługa inicjuje klienta na potrzeby operacji emisji, ustawiając adres IP se
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne utworzenie klienta
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie klienta
 
-- **NX_INVALID_PARAMETERS** (0x4D) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- **NX_INVALID_PARAMETERS** (0x4D) Nieprawidłowe dane wejściowe bez wskaźnika
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -333,7 +333,7 @@ status =  nx_sntp_client_initialize_broadcast(client_ptr,0x0,
 
 ## <a name="nxd_sntp_client_initialize_broadcast"></a>nxd_sntp_client_initialize_broadcast
 
-Zainicjuj klienta dla operacji emisji IPv4 lub IPv6
+Inicjowanie klienta dla operacji emisji IPv4 lub IPv6
 
 ### <a name="prototype"></a>Prototype
 
@@ -346,11 +346,11 @@ UINT nxd_sntp_client_initialize_broadcast(NX_SNTP_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje klienta na potrzeby operacji emisji przez skonfigurowanie adresu IP serwera SNTP i Inicjowanie parametrów uruchamiania i limitów czasu usługi SNTP. Jeśli wskaźniki emisji i adresów multiemisji nie mają wartości null, wybierany jest adres multiemisji. Jeśli oba wskaźniki adresów mają wartość null, zwracany jest błąd. Obsługuje to zarówno typy adresów IPv4, jak i IPv6. Należy zauważyć, że protokół IPv6 nie obsługuje emisji, więc wskaźnik adresu emisji jest ustawiony na wartość IPv6, zwracany jest błąd.
+Ta usługa inicjuje operację klienta dla emisji, ustawiając adres IP serwera SNTP oraz inicjjąc parametry uruchamiania SNTP i limity czasu. Jeśli wskaźniki adresów emisji i multiemisji nie mają wartości null, jest wybierany adres multiemisji. Jeśli oba wskaźniki adresów mają wartość null, zwracany jest błąd. Obsługuje to zarówno typy adresów IPv4, jak i IPv6. Należy pamiętać, że protokół IPv6 nie obsługuje emisji, więc wskaźnik adresu emisji jest ustawiony na IPv6, zwracany jest błąd.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
 - **multicast_server_address** Adres multiemisji serwera SNTP
 
@@ -358,18 +358,18 @@ Ta usługa inicjuje klienta na potrzeby operacji emisji przez skonfigurowanie ad
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — pomyślnie zainicjowano klienta
+- **NX_SUCCESS** (0x00) Client successfully initialized (Klient usługi 0x00) został pomyślnie zainicjowany
 
-- NX_SNTP_PARAM_ERROR (0xD0D) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_SNTP_PARAM_ERROR (0xD0D) Nieprawidłowe dane wejściowe bez wskaźnika
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący usługę
 
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -405,27 +405,27 @@ UINT nx_sntp_client_initialize_unicast(NX_SNTP_CLIENT * client_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje klienta dla operacji emisji pojedynczej, ustawiając adres IP serwera SNTP i inicjując parametry uruchamiania i limity czasu usługi SNTP. Zwróć uwagę na to, że obsługuje tylko adresy serwera IPv4.
+Ta usługa inicjuje operację emisji pojedynczej klienta przez ustawienie adresu IP serwera SNTP oraz zainicjowanie parametrów uruchamiania SNTP i limitów czasu. Należy pamiętać, że obsługuje tylko adresy serwerów IPv4.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
 - **unicast_time_server** Adres IP serwera SNTP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — pomyślnie zainicjowano klienta
+- **NX_SUCCESS** (0x00) Client successfully initialized (Klient usługi 0x00) został pomyślnie zainicjowany
 
-- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowe dane wejściowe bez wskaźnika
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -443,7 +443,7 @@ status =  nx_sntp_client_initialize_unicast(&client_ptr,
 
 ## <a name="nxd_sntp_client_initialize_unicast"></a>nxd_sntp_client_initialize_unicast
 
-Konfigurowanie klienta SNTP do uruchamiania w protokole IPv4 lub IPv6 emisji pojedynczej
+Konfigurowanie klienta SNTP do uruchamiania w emisji pojedynczej IPv4 lub IPv6
 
 ### <a name="prototype"></a>Prototype
 
@@ -455,27 +455,27 @@ UINT nxd_sntp_client_initialize_unicast(NX_SNTP_CLIENT * client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje klienta dla operacji emisji pojedynczej przez skonfigurowanie adresu IP serwera SNTP i Inicjowanie parametrów uruchamiania i limitów czasu usługi SNTP. Obsługuje to zarówno typy adresów IPv4, jak i IPv6.
+Ta usługa inicjuje operację emisji pojedynczej klienta przez skonfigurowanie adresu IP serwera SNTP oraz zainicjowanie parametrów uruchamiania SNTP i przecięć limitu czasu. Obsługuje to zarówno typy adresów IPv4, jak i IPv6.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
 - **unicast_time_server** Adres IP serwera SNTP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — pomyślnie zainicjowano klienta
+- **NX_SUCCESS** (0x00) Client successfully initialized (Klient usługi 0x00) został pomyślnie zainicjowany
 
-- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowe dane wejściowe bez wskaźnika
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -500,7 +500,7 @@ status =  nxd_sntp_client_initialize_unicast(&client_ptr,
 
 ## <a name="nx_sntp_client_receiving_updates"></a>nx_sntp_client_receiving_updates
 
-Wskaż, czy klient otrzymuje prawidłowe aktualizacje
+Wskazanie, czy klient otrzymuje prawidłowe aktualizacje
 
 ### <a name="prototype"></a>Prototype
 
@@ -512,23 +512,23 @@ UINT nx_sntp_client_receiving_updates(NX_SNTP_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wskazuje, czy klient otrzymuje prawidłowe aktualizacje SNTP. Jeśli maksymalny czas przestanie obowiązywać bez prawidłowej aktualizacji lub limitu kolejnych nieprawidłowych aktualizacji, stan odbierania zostanie zwrócony jako FAŁSZ. Należy pamiętać, że klient protokołu SNTP nadal działa i jeśli aplikacja chce ponownie uruchomić klienta SNTP z innym emisją pojedynczą lub serwerem emisji/multiemisji, musi zatrzymać klienta protokołu SNTP przy użyciu usługi *nx_sntp_client_stop* , ponownie zainicjować klienta przy użyciu jednej z zainicjowanych usług z innym serwerem.
+Ta usługa wskazuje, czy klient otrzymuje prawidłowe aktualizacje SNTP. Jeśli zostanie przekroczony maksymalny czas bez ważnej aktualizacji lub limitu kolejnych nieprawidłowych aktualizacji, stan odbierania jest zwracany jako false. Należy pamiętać, że klient SNTP jest nadal uruchomiony i jeśli aplikacja chce ponownie uruchomić klienta SNTP z innym serwerem emisji pojedynczej lub emisji/multiemisji, musi zatrzymać klienta SNTP przy użyciu usługi *nx_sntp_client_stop,* ponownie zainicjować klienta przy użyciu jednej z usług inicjowania z innym serwerem.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP.
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP.
 
 - **receive_status** Wskaźnik do wskaźnika, jeśli klient otrzymuje prawidłowe aktualizacje.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Klient **NX_SUCCESS** (0x00) pomyślnie otrzymał stan aktualizacji
+- **NX_SUCCESS** (0x00) Klient pomyślnie odebrał stan aktualizacji
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -546,7 +546,7 @@ status =  nx_sntp_client_receiving_updates(client_ptr,
 
 ## <a name="nx_sntp_client_request_unicast_time"></a>nx_sntp_client_request_unicast_time
 
-Wyślij żądanie emisji pojedynczej bezpośrednio do serwera NTP
+Wysyłanie żądania emisji pojedynczej bezpośrednio do serwera NTP
 
 
 ### <a name="prototype"></a>Prototype
@@ -558,23 +558,23 @@ UINT nx_sntp_client_request_unicast_time(NX_SNTP_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia aplikacji bezpośrednie wysyłanie żądania emisji pojedynczej do serwera NTP asynchronicznie z zadania wątku klienta SNTP. Opcja oczekiwania określa czas oczekiwania na odpowiedź. Jeśli to się powiedzie, aplikacja może używać innych usług klienta SNTP do uzyskania najnowszego czasu. Aby uzyskać więcej informacji, zobacz sekcję **żądania asynchronicznej emisji pojedynczej** .
+Ta usługa umożliwia aplikacji bezpośrednie wysyłanie żądania emisji pojedynczej do serwera NTP asynchronicznie z zadania wątku klienta SNTP. Opcja oczekiwania określa, jak długo czekać na odpowiedź. Jeśli to się powiedzie, aplikacja może użyć innych usług klienta SNTP w celu uzyskania najnowszej wersji. Aby uzyskać więcej informacji, zobacz sekcję **SNTP Asynchronous Unicast Requests** (Asynchroniczne żądania emisji pojedynczej SNTP).
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP.
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP.
 
-- **Wait_option** Opcja oczekiwania dla odpowiedzi NTP w taktach czasomierza.
+- **Wait_option** Opcja oczekiwania na odpowiedź NTP w taktach czasomierza.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Klient **NX_SUCCESS** (0x00) pomyślnie wysyła i odbiera aktualizację emisji pojedynczej
+- **NX_SUCCESS** (0x00) Klient pomyślnie wysyła i odbiera aktualizację emisji pojedynczej
 
-- Wątek klienta **NX_SNTP_CLIENT_NOT_STARTED** (0xD0B) nie został uruchomiony
+- **NX_SNTP_CLIENT_NOT_STARTED** (0xD0B) Wątek klienta nie został uruchomiony
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -605,23 +605,23 @@ UINT nx_sntp_client_run_broadcast(NX_SNTP_CLIENT *client_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa uruchamia klienta w trybie rozgłaszania, w którym będzie czekać na odebranie emisji z serwera SNTP. Jeśli zostanie odebrany prawidłowy komunikat protokołu SNTP, limit czasu klienta protokołu SNTP dla maksymalnego wygaśnięcia bez aktualizacji i liczby kolejnych nieprawidłowych komunikatów odebranych są resetowane. W przypadku przekroczenia jednego z tych limitów klient SNTP ustawia stan serwera na nieprawidłowy, mimo że nadal będzie czekać na otrzymywanie aktualizacji. Aplikacja może sondować zadanie klienta SNTP dla stanu serwera, a jeśli jest nieprawidłowa, Zatrzymaj klienta SNTP i ponownie zainicjuj go przy użyciu innego adresu emisji protokołu SNTP. Może również przełączać się na serwer SNTP emisji pojedynczej.
+Ta usługa uruchamia klienta w trybie emisji, w którym będzie czekać na odbieranie emisji z serwera SNTP. Jeśli zostanie odebrany prawidłowy komunikat SNTP emisji, zostanie zresetowany limit czasu klienta SNTP dla maksymalnej wartości bez aktualizacji i liczba odebranych kolejnych nieprawidłowych komunikatów. Jeśli którykolwiek z tych limitów zostanie przekroczony, klient SNTP ustawia stan serwera na nieprawidłowy, mimo że nadal będzie czekać na otrzymanie aktualizacji. Aplikacja może sondować zadanie klienta SNTP pod temat stanu serwera, a w przypadku nieprawidłowego zatrzymania klienta SNTP i ponownego zainicjowania go przy użyciu innego adresu emisji SNTP. Można również przełączyć się na serwer SNTP emisji pojedynczej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP.
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **stan--------rzeczywisty** stan ukończenia
+- **stan** -------- stan ukończenia
 
-- Klient **NX_SNTP_CLIENT_ALREADY_STARTED** (0xD0C) jest już uruchomiony
+- **NX_SNTP_CLIENT_ALREADY_STARTED** (0xD0C) Client już uruchomiony
 
-- Nie zainicjowano klienta **NX_SNTP_CLIENT_NOT_INITIALIZED** (0xD01)
+- **NX_SNTP_CLIENT_NOT_INITIALIZED** (0xD01) Client not initialized (Klient nie zainicjowany)
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -649,25 +649,25 @@ UINT nx_sntp_client_run_unicast(NX_SNTP_CLIENT *client_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa uruchamia klienta w trybie emisji pojedynczej, w którym okresowo wysyła żądanie emisji pojedynczej do serwera SNTP w celu zaktualizowania czasu. Jeśli zostanie odebrany prawidłowy komunikat SNTP, zostanie zresetowany limit czasu klienta SNTP dla maksymalnego wygaśnięcia bez aktualizacji, początkowy interwał sondowania oraz liczba kolejnych nieprawidłowych komunikatów odebranych. W przypadku przekroczenia jednego z tych limitów klient SNTP ustawia stan serwera na nieprawidłowy, mimo że nadal będzie sondował i czekał na otrzymywanie aktualizacji. Aplikacja może sondować zadanie klienta SNTP dla stanu serwera, a jeśli jest nieprawidłowa, Zatrzymaj klienta SNTP i ponownie zainicjuj go przy użyciu innego adresu SNTP emisji pojedynczej. Może również przełączać się na serwer emisji SNTP.
+Ta usługa uruchamia klienta w trybie emisji pojedynczej, gdzie okresowo wysyła żądanie emisji pojedynczej do serwera SNTP w celu aktualizacji czasu. Jeśli zostanie odebrany prawidłowy komunikat SNTP, limit czasu klienta SNTP dla maksymalnej liczby bez aktualizacji, początkowy interwał sondowania i liczba kolejnych odebranych nieprawidłowych komunikatów są resetowane. Jeśli którykolwiek z tych limitów zostanie przekroczony, klient SNTP ustawia stan serwera na nieprawidłowy, mimo że nadal będzie sondować i czekać na otrzymanie aktualizacji. Aplikacja może sondować zadanie klienta SNTP pod temat stanu serwera, a w przypadku nieprawidłowego zatrzymania klienta SNTP i ponownego zainicjowania go przy użyciu innego adresu emisji pojedynczej SNTP. Może również przełączyć się na serwer SNTP emisji.
 
 .
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP.
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie uruchomił klienta w trybie emisji pojedynczej
+- **NX_SUCCESS** (0x00) Pomyślnie uruchomiliśmy klienta w trybie emisji pojedynczej
 
-- Klient **NX_SNTP_CLIENT_ALREADY_STARTED** (0xD0C) jest już uruchomiony
+- **NX_SNTP_CLIENT_ALREADY_STARTED** (0xD0C) Client już uruchomiony
 
-- Nie zainicjowano klienta **NX_SNTP_CLIENT_NOT_INITIALIZED** (0xD01)
+- **NX_SNTP_CLIENT_NOT_INITIALIZED** (0xD01) Client not initialized (Klient nie zainicjowany)
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący usługę
 
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -698,23 +698,23 @@ UINT nx_sntp_client_set_local_time(NX_SNTP_CLIENT *client_ptr ,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia czas lokalny klienta SNTP z czasem wejścia w formacie SNTP, np. sekund i "ułamek", który jest formatem do umieszczania ułamków sekundy w formacie szesnastkowym. Jest on przeznaczony do aktualizowania czasu lokalnego klienta SNTP z niezależnego, na przykład zegara czasu rzeczywistego. Protokół SNTP jest przeznaczony do aktualizacji czasu SNTP, aby zachować czas lokalnego zegara od "dryfing". Aktualizacje czasu serwera SNTP mogą być, ale nie mają być jedynym wejściem do czasu lokalnego klienta SNTP, jeśli na urządzeniu aplikacji nie ma niezależnego czasu.
+Ta usługa ustawia czas lokalny klienta SNTP na czas wejściowy w formacie SNTP, np. sekundy i "ułamek", który jest formatem do umieszczania ułamków sekundy w formacie szesnastkowym. Jest on przeznaczony do aktualizowania czasu lokalnego klienta SNTP z niezależnego strażnika czasu, np. zegara czasu rzeczywistego. Protokół SNTP jest przeznaczony dla aktualizacji czasu SNTP zachować czas zegara lokalnego "dryfowania". Aktualizacje czasu serwera SNTP mogą być, ale nie są przeznaczone do wyłącznego wprowadzania czasu lokalnego klienta SNTP, jeśli na urządzeniu aplikacji nie ma niezależnego strażnika czasu.
 
-Tego interfejsu API można również użyć, aby nadać klientowi SNTP czas podstawowy przed uruchomieniem wątku klienta SNTP. Czas lokalny klienta SNTP jest porównywany z otrzymanymi aktualizacjami prawidłowych danych czasu. Po pierwszym odebraniu aktualizacji może wystąpić bardzo duża rozbieżność. W związku z tym istnieje możliwość, że klient SNTP zignoruje niezgodność z pierwszą aktualizacją. W ten sposób klient SNTP można uruchomić bez czasu podstawowego. Czas wejścia można uzyskać od znanych czasów epoki (zwykle dostępnych w Internecie) i są one obliczane jako liczba sekund od 1 stycznia 1900 (do 2036, gdy zostanie rozpoczęte nowe "Epoka").
+Za pomocą tego interfejsu API można również zapewnić klientowi SNTP czas podstawowy przed uruchomieniem wątku klienta SNTP. Czas lokalny klienta SNTP jest porównywany z odebranych aktualizacji dla danych prawidłowego czasu. Po pierwszym otrzymaniu aktualizacji mogą wystąpić bardzo duże rozbieżności. W związku z tym istnieje możliwość ignorowania rozbieżności w pierwszej aktualizacji przez klienta SNTP. W ten sposób klient SNTP może uruchomić się bez czasu podstawowego. Czas wejściowy można uzyskać ze znanych czasów epok (zazwyczaj dostępnych w Internecie) i są obliczane jako liczba sekund od 1 stycznia 1900 r. (do 2036 r., gdy zostanie uruchomiona nowa "epoka".
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
-- **sekund** Składnik sekund danych wejściowych czasu
+- **sekundy** Składnik sekund danych wejściowych czasu
 
-- **ułamek** Składnik podsekund w formacie ułameku SNTP
+- **ułamek** Składnik Subseconds w formacie ułamkowym SNTP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawił czas lokalny
+- **NX_SUCCESS** (0x00) Pomyślnie ustawiono czas lokalny
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -751,19 +751,19 @@ UINT nx_sntp_client_set_time_update_notify(NX_SNTP_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia wywołanie zwrotne w celu powiadomienia aplikacji, gdy klient SNTP otrzymuje prawidłową aktualizację czasu. Dostarcza rzeczywisty komunikat protokołu SNTP i czas lokalny klienta SNTP (zwykle taki sam) w formacie NTP. Aplikacja może korzystać z danych NTP bezpośrednio lub wywołać *usługę nx_sntp_client_utility_display_date_time* , aby przekonwertować czas na czytelny format.
+Ta usługa ustawia wywołanie zwrotne, aby powiadomić aplikację, gdy klient SNTP odbierze aktualizację prawidłowego czasu. Dostarcza rzeczywisty komunikat SNTP i czas lokalny klienta SNTP (zazwyczaj taki sam) w formacie NTP. Aplikacja może bezpośrednio używać danych NTP lub wywołać usługę nx_sntp_client_utility_display_date_time, aby *przekonwertować* czas na format czytelny dla człowieka.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
 - **time_update_cb** Wskaźnik do funkcji wywołania zwrotnego
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawił wywołanie zwrotne
+- **NX_SUCCESS** (0x00) Pomyślnie ustaw wywołanie zwrotne
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -789,7 +789,7 @@ status = nx_sntp_client_set_time_update_notify(&demo_client,
 
 ## <a name="nx_sntp_client_stop"></a>nx_sntp_client_stop
 
-Zatrzymaj wątek klienta SNTP
+Zatrzymywanie wątku klienta SNTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -799,23 +799,23 @@ UINT nx_sntp_client_stop(NX_SNTP_CLIENT *client_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa przerywa wątek klienta SNTP. Zadania wątku klienta SNTP, które są uruchamiane w pętli nieskończonej, wstrzymują wszystkie iteracje w celu wydania kontroli stanu klienta SNTP i zezwalają aplikacjom na wykonywanie wywołań interfejsu API na kliencie SNTP.
+Ta usługa zatrzymuje wątek klienta SNTP. Zadania wątków klienta SNTP, które są uruchamiane w nieskończonej pętli, wstrzymują się przy każdej iteracji, aby zwolnić kontrolę stanu klienta SNTP i umożliwić aplikacjom wykonywanie wywołań interfejsu API na kliencie SNTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr** Wskaźnik do bloku kontroli klienta SNTP
+- **client_ptr** Wskaźnik do bloku sterowania klienta SNTP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie zatrzymano wątek klienta
+- **NX_SUCCESS** (0x00) Pomyślnie zatrzymany wątek klienta
 
-- **NX_SNTP_CLIENT_NOT_STARTED** (0xDB) wątek klienta SNTP nie został uruchomiony
+- **NX_SNTP_CLIENT_NOT_STARTED** (0xDB) SNTP Client thread not started (Nie uruchomiliśmy wątku klienta SNTP)
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -830,7 +830,7 @@ status =  nx_sntp_client_stop(&demo_client);
 
 ## <a name="nx_sntp_client_utility_display_date_time"></a>nx_sntp_client_utility_display_date_time
 
-Konwertowanie czasu NTP na ciąg daty i godziny
+Konwertowanie ntp czasu na ciąg daty i czasu
 
 ### <a name="prototype"></a>Prototype
 
@@ -842,7 +842,7 @@ UINT nx_sntp_client_utility_display_date_time (NX_SNTP_CLIENT
 
 ### <a name="description"></a>Opis
 
-Ta usługa konwertuje czas lokalny klienta SNTP na format daty miesiąca roku i zwraca datę z podanego buforu. NX_SNTP_CURRENT_YEAR nie może być tym samym rokiem co bieżący czas klienta, ale musi być zdefiniowany.
+Ta usługa konwertuje czas lokalny klienta SNTP na format daty miesiąca roku i zwraca datę w dostarczonym buforze. Ta NX_SNTP_CURRENT_YEAR nie musi być tym samym rokiem co bieżący czas klienta, ale musi być zdefiniowana.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -850,20 +850,20 @@ Ta usługa konwertuje czas lokalny klienta SNTP na format daty miesiąca roku i 
 
 - **bufor** Wskaźnik do buforu do przechowywania daty
 
-- **Długość** Rozmiar buforu wejściowego
+- **długość** Rozmiar buforu wejściowego
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Konwersja **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Pomyślna konwersja
 
-- **NX_SNTP_ERROR_CONVERTING_DATETIME** (0xD08) nie NX_SNTP_CURRENT_YEAR zdefiniowany lub nie został określony czas lokalnego klienta
+- **NX_SNTP_ERROR_CONVERTING_DATETIME** (0xD08) NX_SNTP_CURRENT_YEAR zdefiniowany lub nie określono czasu klienta lokalnego
 
-- **NX_SNTP_INVALID_DATETIME_BUFFER** (0xD07) niewystarczająca długość buforu
+- **NX_SNTP_INVALID_DATETIME_BUFFER** (0xD07) Niewystarczająca długość buforu
 
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -880,7 +880,7 @@ status =  nx_sntp_client_utility_display_date_time(client_ptr ,
 
 ## <a name="nx_sntp_client_utility_msecs_to_fraction"></a>nx_sntp_client_utility_msecs_to_fraction
 
-Konwertuj milisekundy na składnik datafrakcji NTP
+Konwertowanie milisekund na składnik ułamkowy NTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -892,25 +892,25 @@ UINT nx_sntp_client_utility_msecs_to_fraction (ULONG milliseconds,
 
 ### <a name="description"></a>Opis
 
-Ta usługa konwertuje dane wejściowe w milisekundach na składnik NTP. Jest ona przeznaczona do użycia z aplikacjami, które mają początkowy czas podstawowy dla klienta SNTP, ale nie w formacie sekundy NTP/ułamek. Liczba milisekund musi być mniejsza niż 1000, aby można było wprowadzić prawidłowy ułamek.
+Ta usługa konwertuje milisekundy wejściowe na składnik ułamka NTP. Jest on przeznaczony do użytku z aplikacjami, które mają początkowy czas podstawowy dla klienta SNTP, ale nie w formacie NTP sekund/ułamków. Aby można było zrobić prawidłowy ułamek, liczba milisekund musi być mniejsza niż 1000.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **milisekundy do przekonwertowania**
+- **milisekundy (w milisekundach) do konwersji**
 
-- **ułamek** Wskaźnik do milisekund przekonwertowanych na ułamek
+- **ułamek** Wskaźnik do milisekund przekonwertowany na ułamek
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Konwersja **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Pomyślna konwersja
 
-- Błąd **NX_SNTP_OVERFLOW_ERROR** (0XD32) podczas konwertowania czasu na datę
+- **NX_SNTP_OVERFLOW_ERROR** (0xD32) Błąd podczas konwertowania czasu na datę
 
-- NX_SNTP_INVALID_TIME (0xD30) nieprawidłowe dane wejściowe SNTP
+- NX_SNTP_INVALID_TIME (0xD30) Nieprawidłowe dane wejściowe SNTP
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -928,7 +928,7 @@ status =  nx_sntp_client_utility_msecs_to_fraction(milliseconds,
 
 ## <a name="nx_sntp_client_utility_usecs_to_fraction"></a>nx_sntp_client_utility_usecs_to_fraction
 
-Konwertuj mikrosekundy na składnik część ułamka NTP
+Konwertowanie mikrosekund na składnik ułamkowy NTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -939,25 +939,25 @@ UINT nx_sntp_client_utility_usecs_to_fraction (ULONG microseconds,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa konwertuje mikrosekundy wejściowe na składnik część ułamka NTP. Jest ona przeznaczona do użycia z aplikacjami, które mają początkowy czas podstawowy dla klienta SNTP, ale nie w formacie sekundy NTP/ułamek. Liczba mikrosekund musi być mniejsza niż 1000000, aby można było wprowadzić prawidłowy ułamek.
+Ta usługa konwertuje mikrosekundy wejściowe na składnik ułamkowy NTP. Jest on przeznaczony do użytku z aplikacjami, które mają początkowy czas podstawowy dla klienta SNTP, ale nie w formacie NTP sekund/ułamków. Liczba mikrosekund musi być mniejsza niż 1000000, aby można było dokonać prawidłowego ułamka.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mikrosekundy** Mikrosekundy do przekonwertowania
+- **mikrosekundy** Mikrosekundy do konwersji
 
 - **ułamek** Wskaźnik do mikrosekund przekonwertowany na ułamek
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Konwersja **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Pomyślna konwersja
 
-- Błąd **NX_SNTP_OVERFLOW_ERROR** (0XD32) podczas konwertowania czasu na datę
+- **NX_SNTP_OVERFLOW_ERROR** (0xD32) Błąd podczas konwertowania czasu na datę
 
-- NX_SNTP_INVALID_TIME (0xD30) nieprawidłowe dane wejściowe SNTP
+- NX_SNTP_INVALID_TIME (0xD30) Nieprawidłowe dane wejściowe SNTP
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -974,7 +974,7 @@ status =  nx_sntp_client_utility_msecs_to_fraction(microseconds,
 
 ## <a name="nx_sntp_client_utility_fraction_to_usecs"></a>nx_sntp_client_utility_fraction_to_usecs
 
-Konwertuj składnik część ułamka NTP na mikrosekundy
+Konwertowanie składnika ułamkowego NTP na mikrosekundy
 
 ### <a name="prototype"></a>Prototype
 
@@ -986,23 +986,23 @@ UINT nx_sntp_client_utility_fraction_to_usecs (ULONG fraction,
 
 ### <a name="description"></a>Opis
 
-Ta usługa konwertuje wejściowy składnik NTP do mikrosekund.
+Ta usługa konwertuje wejściowy składnik ułamkowy NTP na mikrosekundy.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ułamek dziesiętny do przekonwertowania**
+- **fraction Fraction do konwersji**
 
-- **mikrosekundy** Wskaźnik do ułamka konwertowany na mikrosekundy
+- **mikrosekundy** Wskaźnik do ułamka przekonwertowany na mikrosekundy
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Konwersja **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Pomyślna konwersja
 
-- NX_SNTP_INVALID_TIME (0xD30) nieprawidłowe dane wejściowe SNTP
+- NX_SNTP_INVALID_TIME (0xD30) Nieprawidłowe dane wejściowe SNTP
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 

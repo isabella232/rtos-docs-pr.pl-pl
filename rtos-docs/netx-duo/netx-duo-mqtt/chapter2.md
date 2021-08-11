@@ -1,61 +1,62 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX Duo MQTT Client
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta NetX Duo MQTT.
+title: Rozdział 2 — Instalowanie i używanie klienta Azure RTOS NetX Duo MQTT
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika klienta NetX Duo MQTT.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: cde19a0e84f369f1199ea4027fa09e6bd038e837
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: faf9d84b8b2bce12a99a72198a396b121055a8eef975349f53833a180092e0a3
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821811"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116797538"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-mqtt-client"></a>Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX Duo MQTT Client
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-mqtt-client"></a>Rozdział 2 — Instalowanie i używanie klienta Azure RTOS NetX Duo MQTT
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta platformy Azure RTO NetX Duo MQTT.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika klienta Azure RTOS NetX Duo MQTT.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-MQTT Client for NetX Duo jest dostępny pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera dwa pliki źródłowe, jeden plik dołączany i plik, który zawiera ten dokument, w następujący sposób:
+Klient MQTT dla netX Duo jest dostępny na stronie [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera dwa pliki źródłowe, jeden plik dołączany i plik zawierający ten dokument w następujący sposób:
 
-- **nxd_mqtt_client. h** Plik nagłówkowy dla klienta MQTT dla NetX Duo
-- **nxd_mqtt_client. c** Plik źródłowy języka C dla klienta MQTT dla programu NetX Duo
-- **nxd_mqtt_client.pdf** Opis klienta MQTT dla programu NetX Duo
-- **demo_mqtt_client. c** Demonstracja NetX Duo MQTT
+- **nxd_mqtt_client.h** Plik nagłówkowy klienta MQTT dla NetX Duo
+- **nxd_mqtt_client.c** Plik źródłowy języka C dla klienta MQTT dla NetX Duo
+- **nxd_mqtt_client.pdf** Opis klienta MQTT dla netx duo
+- **demo_mqtt_client.c** Pokaz netx duo MQTT
 
 ## <a name="mqtt-client-installation"></a>Instalacja klienta MQTT
 
-Aby można było używać klienta MQTT do NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX Duo. Na przykład jeśli NetX Duo jest zainstalowana w katalogu "*\threadx\arm7\green*", następnie należy skopiować do tego katalogu klienta *nxd_mqtt_client. h* i *Nxd_mqtt_client. c* dla NetX Duo MQTT.
+Aby można było korzystać z klienta MQTT dla netX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX Duo. Jeśli na przykład program NetX Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* do tego katalogu należy skopiować pliki *nxd_mqtt_client.h* i *nxd_mqtt_client.c* klienta NetX Duo MQTT.
 
 ## <a name="using-mqtt-client"></a>Korzystanie z klienta MQTT
 
-Korzystanie z programu MQTT Client for NetX Duo jest proste. W zasadzie kod aplikacji musi zawierać *nxd_mqtt_client. h* , po uwzględnieniu *tx_api. h* i *nx_api. h*, aby użyć odpowiednio ThreadX i NetX Duo. Po dołączeniu plików nagłówkowych klienta MQTT kod aplikacji może korzystać z usług MQTT opisanych w dalszej części tego przewodnika. Aplikacja musi również zawierać *nxd_mqtt_client. c* w procesie kompilacji. Te pliki muszą być kompilowane w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do korzystania z programu NetX Duo MQTT Client.
+Korzystanie z klienta MQTT dla netX Duo jest łatwe. Zasadniczo kod aplikacji musi zawierać kod *nxd_mqtt_client.h,* gdy zawiera on elementy *tx_api.h* i *nx_api.h,* aby można było używać odpowiednio threadX i NetX Duo. Gdy zostaną dołączone pliki nagłówkowe klienta MQTT, kod aplikacji będzie mógł korzystać z usług MQTT opisanych w dalszej części tego przewodnika. Aplikacja musi również *uwzględniać nxd_mqtt_client.c* w procesie kompilacji. Te pliki muszą być kompilowane w taki sam sposób jak inne pliki aplikacji, a ich formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z klienta NetX Duo MQTT.
 
-## <a name="using-mqtt-client-with-netx-secure-tls"></a>Korzystanie z MQTT Client with NetX Secure TLS
+## <a name="using-mqtt-client-with-netx-secure-tls"></a>Korzystanie z klienta MQTT z bezpiecznym TLS NetX
 
-Aby można było używać klienta MQTT z modułem Secure TLS NetX, aplikacja musi mieć zainstalowany moduł NetX Secure TLS i zawierać *nx_secure_tls_api. h* i *nx_crypto. h*. Biblioteka MQTT musi być skompilowana przy użyciu zdefiniowanego symbolu ***NX_SECURE_ENABLE*** .
+Aby można było używać klienta MQTT z modułem NetX Secure TLS, aplikacja musi mieć zainstalowany moduł NetX Secure TLS z zainstalowanym modułem *nx_secure_tls_api.h* *i nx_crypto.h.* Biblioteka MQTT musi być zbudowana przy użyciu symbolu ***NX_SECURE_ENABLE*** zdefiniowanej.
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Istnieje kilka opcji konfiguracji do kompilowania klienta MQTT dla NetX Duo. Poniżej znajduje się lista wszystkich opcji, w których poszczególne są szczegółowo opisane. Wartości domyślne są wyświetlane, ale można je zdefiniować ponownie przed włączeniem *nxd_mqtt_client. h.*
+Istnieje kilka opcji konfiguracji do tworzenia klienta MQTT dla netX Duo. Poniżej znajduje się lista wszystkich opcji, z których każda jest szczegółowo opisana. Zostaną wyświetlone wartości domyślne, ale można je ponownie zdefiniować przed dodaniem *wartości nxd_mqtt_client.h.*
 
-- **NX_DISABLE_ERROR_CHECKING**: zdefiniowane, ta opcja usuwa podstawowe sprawdzanie błędów klienta MQTT. Jest on zazwyczaj używany po debugowaniu aplikacji.
-- **NX_SECURE_ENABLE**: zdefiniowany klient MQTT jest oparty na obsłudze protokołu TLS.
-Zdefiniowanie tego symbolu wymaga zainstalowania bezpiecznego modułu protokołu TLS NetX.
-*NX_SECURE_ENABLE* nie jest domyślnie włączona. * *
-- **NXD_MQTT_REQUIRE_TLS**: zdefiniowane, aplikacja musi używać protokołu TLS do łączenia się z brokerem MQTT. Ta funkcja wymaga zdefiniowania *NX_SECURE_ENABLE* . Domyślnie ten symbol nie jest zdefiniowany.
-- **NXD_MQTT_MAX_TOPIC_NAME_LENGTH**: przestarzałe.
-- **NXD_MQTT_MAX_MESSAGE_LENGTH**: przestarzałe.
-- **NXD_MQTT_KEEPALIVE_TIMER_RATE**: określa szybkość czasomierza MQTT w taktach czasomierza ThreadX. Ten czasomierz służy do śledzenia czasu od momentu wysłania ostatniej wiadomości sterującej MQTT i wysłania komunikatu MQTT PINGREQ przed upływem czasu utrzymywania aktywności. Ten czasomierz jest uaktywniany, jeśli klient nawiązuje połączenie z brokerem z ustawioną wartością czasomierza Keep-Alive. Wartość domyślna to TX_TIMER_TICKS_PER_SECOND, która jest czasomierzem jednosekundowym.
-- **NXD_MQTT_PING_TIMEOUT_DELAY**: określa czas oczekiwania klienta MQTT na PINGRESP z brokera po wysłaniu przez niego MQTT PINGREQ. Jeśli nie otrzymasz PINGRESP po upływie tego limitu czasu, klient traktuje brokera jako nieodpowiadający i rozłącza się z brokerem. Domyślne opóźnienie limitu czasu polecenia PING to TX_TIMER_TICKS_PER_SECOND, co jest jedną sekundą.
-- **NXD_MQTT_SOCKET_TIMEOUT**: określa limit czasu w wywołaniu połączenia gniazda TCP podczas rozłączania z serwerem MQTT w taktach czasomierza. Wartość domyślna to NX_WAIT_FOREVER.
+- **NX_DISABLE_ERROR_CHECKING:** zdefiniowana, ta opcja usuwa podstawowe sprawdzanie błędów klienta MQTT. Jest on zwykle używany po debugowaniu aplikacji.
+- **NX_SECURE_ENABLE:** zdefiniowany klient MQTT jest zbudowany z obsługą TLS.
+Zdefiniowanie tego symbolu wymaga zainstalowania modułu NetX Secure TLS.
+*NX_SECURE_ENABLE* nie jest domyślnie włączona.**
+- **NXD_MQTT_REQUIRE_TLS:** zdefiniowane, aplikacja musi używać TLS do nawiązywania połączenia z brokerem MQTT. Ta funkcja wymaga *NX_SECURE_ENABLE* zdefiniowanej. Domyślnie ten symbol nie jest zdefiniowany.
+- **NXD_MQTT_MAXIMUM_TRANSMIT_QUEUE_DEPTH:** zdefiniowano, włączono głębokość kolejki przesyłania MQTT. Musi to być dodatnia liczba całkowita.
+- **NXD_MQTT_MAX_TOPIC_NAME_LENGTH:** przestarzałe.
+- **NXD_MQTT_MAX_MESSAGE_LENGTH:** przestarzałe.
+- **NXD_MQTT_KEEPALIVE_TIMER_RATE:** definiuje szybkość czasomierza MQTT w taktowaniach czasomierza ThreadX. Ten czasomierz służy do śledzenia czasu od ostatniego wysłania komunikatu sterującego MQTT i wysyła komunikat PINGREQ MQTT przed upływem czasu aktywności. Ten czasomierz jest aktywowany, jeśli klient łączy się z brokerem przy użyciu ustawionej wartości czasomierza keep-alive. Wartość domyślna to TX_TIMER_TICKS_PER_SECOND, która jest czasomierzem sekundy.
+- **NXD_MQTT_PING_TIMEOUT_DELAY:** definiuje czas oczekiwania przez klienta MQTT na pingRESP z brokera po wysłaniem żądania PINGREQ MQTT. Jeśli po tym opóźnieniu limitu czasu nie zostanie odebrany żaden pingRESP, klient traktuje brokera jako nie odpowiada i rozłącza się z brokerem. Domyślne opóźnienie limitu czasu ping wynosi TX_TIMER_TICKS_PER_SECOND, czyli jedną sekundę.
+- **NXD_MQTT_SOCKET_TIMEOUT:** definiuje przekątny w wywołaniu rozłączania gniazda TCP podczas odłączania od serwera MQTT w taktach czasomierza. Wartość domyślna to NX_WAIT_FOREVER.
 
 ## <a name="sample-mqtt-program"></a>Przykładowy program MQTT
 
-Poniższy program ilustruje prostą aplikację MQTT. W celu uproszczenia kody powrotne są uznawane za pomyślne, dlatego nie jest wykonywane żadne dalsze sprawdzanie błędów.
+Poniższy program ilustruje prostą aplikację MQTT. Dla uproszczenia zakłada się, że kody powrotne są pomyślne, dlatego nie jest wykonywane żadne dalsze sprawdzanie błędów.
 
 ```c
 #define LOCAL_SERVER_ADDRESS (IP_ADDRESS(192, 168, 1, 81))

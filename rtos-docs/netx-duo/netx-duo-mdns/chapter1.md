@@ -1,27 +1,27 @@
 ---
-title: Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Duo mDNS/DNS-SD
-description: Azure RTO NetX Duo mDNS/DNS-SD rozszerza tradycyjną usługę DNS.
+title: Rozdział 1 — Wprowadzenie do Azure RTOS NetX Duo mDNS/DNS-SD
+description: Azure RTOS NetX Duo mDNS/DNS-SD rozszerza tradycyjną usługę DNS.
 author: philmea
 ms.author: philmea
 ms.date: 07/09/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: b46539ee4d502fa4c90fb3392e25cd3bee40dc5b
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 7cde8e81809dcc74ee5d0b09d8e7a8d2ae96850cd84250a5bf003fdd5763925a
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821829"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116796450"
 ---
-# <a name="chapter-1---introduction-to-azure-rtos-netx-duo-mdnsdns-sd"></a>Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Duo mDNS/DNS-SD
+# <a name="chapter-1---introduction-to-azure-rtos-netx-duo-mdnsdns-sd"></a>Rozdział 1 — Wprowadzenie do Azure RTOS NetX Duo mDNS/DNS-SD
 
-Usługa mDNS i system DNS-SD to protokoły zaprojektowane w celu rozszerzenia tradycyjnej usługi DNS. Usługa mDNS udostępnia nazwy hosta i wyszukiwania usług do węzłów w sieci lokalnej. Każdy węzeł korzysta z protokołu IPv4 lub IPv6 kanału multiemisji do ogłaszania usług, które oferuje do swoich sąsiadów, reaguje na zapytania od jego sąsiadów i wysyła zapytania dotyczące zachowania aplikacji. Zgodnie z projektem usługa mDNS działa w środowisku rozproszonym, dzięki czemu eliminuje scentralizowaną ochronę.
+MDNS i DNS-SD to protokoły przeznaczone do rozszerzenia tradycyjnej usługi DNS. Usługa mDNS udostępnia nazwę hosta i wyszukiwania usług w węzłach w sieci lokalnej. Każdy węzeł używa kanału multiemisji IPv4 lub IPv6 do ogłaszania usług oferowanych sąsiadom, odpowiada na zapytania od sąsiadów i wysyła zapytania dotyczące zachowania aplikacji. Zgodnie z projektem usługa mDNS działa w środowisku rozproszonym, co eliminuje scentralizowaną obsługę.
 
-Usługa DNS-SD jest oparta na usłudze mDNS. Usługa DNS-SD umożliwia węzłom ogłaszanie usług udostępnianych w sieci lokalnej lub odnajdywania usług oferowanych przez inne węzły w sieci lokalnej. W całym dokumencie termin *mDNS* odnosi się do usług, które obejmują specyfikację MDNS i specyfikację DNS-SD.
+Usługa DNS-SD jest zbudowana na podstawie nazw mDNS. System DNS-SD umożliwia węzłom ogłaszanie usług, które zapewniają w sieci lokalnej, lub odnajdywanie usług oferowanych przez inne węzły w sieci lokalnej. W całym dokumencie termin *mDNS* odnosi się do usług, które obejmują zarówno specyfikację mDNS, jak i specyfikację DNS-SD.
 
-## <a name="mdns-standard"></a>Standard mDNS
+## <a name="mdns-standard"></a>mDNS Standard
 
-Implementacja usługi mDNS/SD NetX Duo jest zgodna z następującymi specyfikacjami RFC:
+Implementacja netX Duo mDNS/DNS-SD jest zgodna z następującymi RFC:
 
-- RFC 6762: Specyfikacja mDNS
-- RFC 6763: Specyfikacja DNS-SD
+- RFC 6762: specyfikacja mDNS
+- RFC 6763: specyfikacja DNS-SD

@@ -1,35 +1,35 @@
 ---
-title: Rozdział 5 — generowanie buforów śledzenia
-description: Ten rozdział zawiera opis sposobu tworzenia buforu zdarzeń usługi Azure RTO TraceX, a także opis źródłowego formatu buforu.
+title: Rozdział 5 — Generowanie buforów śledzenia
+description: Ten rozdział zawiera opis sposobu tworzenia buforu zdarzeń Azure RTOS TraceX oraz podstawowy format buforu.
 author: philmea
 ms.service: rtos
 ms.topic: article
 ms.date: 5/19/2020
 ms.author: philmea
-ms.openlocfilehash: f296137d23b9f3c1c4fd115947bb50a32b768123
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 7d5c90675728fc7e374d625f5a9ae27340268ca8398200c68fb7113a84aa2983
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823425"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116801788"
 ---
-# <a name="chapter-5---generating-trace-buffers"></a>Rozdział 5 — generowanie buforów śledzenia
+# <a name="chapter-5---generating-trace-buffers"></a>Rozdział 5 — Generowanie buforów śledzenia
 
-Ten rozdział zawiera opis sposobu tworzenia buforu zdarzeń usługi Azure RTO TraceX, a także opis źródłowego formatu buforu.
+Ten rozdział zawiera opis sposobu tworzenia buforu zdarzeń Azure RTOS TraceX oraz podstawowy format buforu.
 
 ## <a name="threadx-event-trace-support"></a>Obsługa śledzenia zdarzeń ThreadX
 
-ThreadX zapewnia wbudowaną obsługę śledzenia zdarzeń dla wszystkich usług ThreadX, zmian stanu wątków i zdarzeń zdefiniowanych przez użytkownika. Funkcja śledzenia zdarzeń ThreadX jest przeznaczona głównie do analizowania ostatnich działań "n" w aplikacji. Z tych informacji deweloperzy mogą wychwycić problemy i/lub potencjalne cele optymalizacji.
+ThreadX zapewnia wbudowaną obsługę śledzenia zdarzeń dla wszystkich usług ThreadX, zmian stanu wątku i zdarzeń zdefiniowanych przez użytkownika. Funkcja śledzenia zdarzeń ThreadX została zaprojektowana głównie jako narzędzie post mortem do analizowania ostatnich "n" działań w aplikacji. Na tych informacjach deweloper może wykryć problemy i/lub potencjalne cele optymalizacji.
 
-TraceX graficznie wyświetla bufor śledzenia zdarzeń zbudowany przez ThreadX. Poniżej opisano sposób tworzenia buforu i opisuje podstawowy format buforu.
+TraceX wyświetla graficznie bufor śledzenia zdarzeń sbudowaną przez ThreadX. Poniżej opisano sposób kompilowania buforu i opisano podstawowy format buforu.
 
 ## <a name="enabling-event-trace"></a>Włączanie śledzenia zdarzeń
 
-Aby włączyć śledzenie zdarzeń, zdefiniuj stałe sygnatur czasowych, skompiluj bibliotekę ThreadX z zdefiniowanym **TX_ENABLE_EVENT_TRACE** i Włącz śledzenie, wywołując funkcję **tx_trace_enable** .
+Aby włączyć śledzenie zdarzeń, zdefiniuj stałe sygnatury  czasowej, skompilować bibliotekę ThreadX przy użyciu TX_ENABLE_EVENT_TRACE i włączyć śledzenie, wywołując **funkcję tx_trace_enable.**
 
 ## <a name="defining-time-stamp-constants"></a>Definiowanie Time-Stamp stałych
 
-Stałe sygnatur czasowych zostały zaprojektowane w celu udostępnienia kontrolki dla deweloperów względem sygnatury czasowej używanej w wpisach śledzenia zdarzeń. Dwie stałe sygnatury czasowej i ich wartości domyślne są następujące:
+Stałe sygnatury czasowej są przeznaczone do zapewnienia deweloperowi kontroli nad sygnaturą czasową używaną w wpisach śledzenia zdarzeń. Dwie stałe sygnatury czasowej i ich wartości domyślne są następujące:
 
 ```c
 #ifndef TX_TRACE_TIME_SOURCE
@@ -40,7 +40,7 @@ Stałe sygnatur czasowych zostały zaprojektowane w celu udostępnienia kontrolk
 #endif
 ```
 
-Powyższe stałe są zdefiniowane w **tx_port. h** i tworzą "fałszywą" sygnaturę czasową, która po prostu zwiększa się o jeden dla każdego zdarzenia. Poniżej znajduje się przykład rzeczywistej definicji sygnatur czasowych:
+Powyższe stałe są definiowane w **tx_port.h** i tworzą "fałszywy" znacznik czasu, który po prostu zwiększa się o jeden dla każdego zdarzenia. Poniżej przedstawiono przykład rzeczywistej definicji znacznika czasu:
 
 ```c
 #ifndef TX_TRACE_TIME_SOURCE
@@ -51,34 +51,34 @@ Powyższe stałe są zdefiniowane w **tx_port. h** i tworzą "fałszywą" sygnat
 #endif
 ```
 
-Powyższe stałe określają 32-bitowy czasomierz, który jest uzyskiwany poprzez odczytywanie adresu 0x13000004. Większość sygnatur czasowych specyficznych dla aplikacji powinna być skonfigurowana w podobny sposób.
+Powyższe stałe określają czasomierz 32-bitowy uzyskany przez odczytanie adresu 0x13000004. Większość znaczników czasu specyficznych dla aplikacji powinna być konfigurowana w podobny sposób.
 
 ## <a name="exporting-the-trace-buffer"></a>Eksportowanie buforu śledzenia
 
-TraceX potrzebuje buforu śledzenia w formacie pliku binarnego, SZESNASTKOWym Intel lub Motorola S-Record na hoście. Najprostszym sposobem, aby to zrobić, jest zatrzymanie obiektu docelowego i nakazuje debugerowi Zrzut obszaru pamięci dostarczonego do ***tx_trace_enable*** funkcji do pliku na hoście.
+TraceX wymaga buforu śledzenia w formacie binarnym Intel HEX lub Csv S-Record na hoście. Najprostszym sposobem osiągnięcia tego celu jest zatrzymanie obiektu docelowego i poinstruuj debuger, aby zrzucił obszar pamięci dostarczony do funkcji ***tx_trace_enable*** do pliku na hoście.
 
 > [!WARNING]
->***Należy zachować ostrożność, aby nie zatrzymywać elementu docelowego w samym kodzie zbierania śladu. Wykonanie tej operacji może spowodować nieprawidłowe informacje o śledzeniu. Jeśli program jest zatrzymany w ThreadX, najlepiej wykonać krok przed każdym makrem wstawiania śledzenia przed zatopieniem bufora śledzenia.***
+>***Należy uważać, aby nie zatrzymywać obiektu docelowego w obrębie samego kodu zbierania śladów. Może to spowodować nieprawidłowe informacje śledzenia. Jeśli program zostanie zatrzymany w threadX, przed zrzucaniem buforu śledzenia najlepiej przestępować przez dowolne makro wstawiania śledzenia.***
 
 > [!IMPORTANT]
-> *Dodatek D pokazuje, jak zrzucić bufor śledzenia z różnych narzędzi programistycznych.*
+> *Dodatek D pokazuje, jak zrzucić bufor śledzenia z różnych narzędzi programistów.*
 
 ## <a name="extended-event-trace-api"></a>Rozszerzony interfejs API śledzenia zdarzeń
 
-Po skompilowaniu ThreadX z zdefiniowanymi **TX_ENABLE_EVENT_TRACE** , następujące nowe interfejsy API śledzenia zdarzeń są dostępne dla aplikacji:
+Gdy threadX jest **budowany TX_ENABLE_EVENT_TRACE** zdefiniowane, następujące nowe interfejsy API śledzenia zdarzeń są dostępne dla aplikacji:
 
-- tx_trace_enable: *Włącz śledzenie zdarzeń*
-- tx_trace_event_filter: *Filtruj określone zdarzenia*
-- tx_trace_event_unfilter: *odfiltruj określone zdarzenia*
-- tx_trace_disable: *wyłączanie śledzenia zdarzeń*
-- tx_trace_isr_enter_insert: *Wstawianie zdarzenia ISR wprowadź zdarzenie śledzenia*
-- tx_trace_isr_exit_insert: *Wstaw zdarzenie śledzenia wyjścia ISR*
-- tx_trace_buffer_full_notify: *Rejestrowanie wywołania zwrotnego pełnej aplikacji w buforze śledzenia*
+- tx_trace_enable: Włączanie *śledzenia zdarzeń*
+- tx_trace_event_filter: *Filtrowanie określonych zdarzeń*
+- tx_trace_event_unfilter: *Niefiltruj określone zdarzenia*
+- tx_trace_disable: Wyłączanie *śledzenia zdarzeń*
+- tx_trace_isr_enter_insert: *Wstawianie zdarzenia śledzenia przez isr*
+- tx_trace_isr_exit_insert: Wstaw *zdarzenie śledzenia zakończenia isr*
+- tx_trace_buffer_full_notify: Rejestrowanie *pełnego wywołania zwrotnego aplikacji buforu śledzenia*
 - tx_trace_user_event_insert: *Wstawianie zdarzenia użytkownika*
 
 ### <a name="tx_trace_enable"></a>tx_trace_enable
 
-Włącz śledzenie zdarzeń
+Włączanie śledzenia zdarzeń
 
 #### <a name="prototype"></a>Prototype
 
@@ -88,27 +88,27 @@ UINT tx_trace_enable (VOID *trace_buffer_start,
 ```
 
 #### <a name="description"></a>Opis
-Ta usługa umożliwia śledzenie zdarzeń w programie ThreadX. Bufor śledzenia i Maksymalna liczba obiektów ThreadX są dostarczane przez aplikację.
+Ta usługa umożliwia śledzenie zdarzeń wewnątrz ThreadX. Bufor śledzenia i maksymalna liczba obiektów ThreadX są dostarczane przez aplikację.
 
 > [!IMPORTANT]
-> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą zostać skompilowane z użyciem **TX_ENABLE_EVENT_TRACE** zdefiniowanej.
+> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą **TX_ENABLE_EVENT_TRACE** zdefiniowane za pomocą funkcji śledzenia zdarzeń.
 
 #### <a name="input-parameters"></a>Parametry wejściowe
 
-- **trace_buffer_start**: wskaźnik na początku buforu śledzenia dostarczonego przez użytkownika.
-- **trace_buffer_size**: całkowita liczba bajtów w pamięci dla buforu śledzenia. Im większy bufor śledzenia, tym większa jest możliwość przechowywania.
-- **registry_entries**: liczba obiektów ThreadX aplikacji, które mają być przechowywane w rejestrze śledzenia. Rejestr jest używany do skorelowania adresów obiektów z nazwami obiektów. Jest to bardzo przydatne w przypadku graficznego interfejsu użytkownika narzędzia do analizy śledzenia.
+- **trace_buffer_start:** wskaźnik na początek buforu śledzenia dostarczonego przez użytkownika.
+- **trace_buffer_size:** łączna liczba bajtów w pamięci buforu śledzenia. Im większy bufor śledzenia, tym więcej wpisów jest w stanie przechowywać.
+- **registry_entries:** liczba obiektów ThreadX aplikacji do utrzymania w rejestrze śledzenia. Rejestr służy do korelowania adresów obiektów z nazwami obiektów. Jest to bardzo przydatne w przypadku narzędzi do analizy śledzenia graficznego interfejsu użytkownika.
 
 #### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS** (0X00) pomyślne Włączenie śledzenia zdarzeń.
-- **TX_SIZE_ERROR** (0X05) określony rozmiar buforu śledzenia jest zbyt mały. Musi być wystarczająco duży dla nagłówka śledzenia, rejestru obiektów i co najmniej jednego wpisu śledzenia.
-- Śledzenie zdarzeń **TX_NOT_DONE** (0x20) zostało już włączone.
-- System **TX_FEATURE_NOT_ENABLED** (0xFF) nie został skompilowany z włączonym śledzeniem.
+- **TX_SUCCESS** (0x00) Włączanie śledzenia zdarzeń pomyślne.
+- **TX_SIZE_ERROR** (0x05) Określony rozmiar buforu śledzenia jest zbyt mały. Musi być wystarczająco duży dla nagłówka śledzenia, rejestru obiektów i co najmniej jednego wpisu śledzenia.
+- **TX_NOT_DONE** (0x20) Śledzenie zdarzeń zostało już włączone.
+- **TX_FEATURE_NOT_ENABLED** (0xFF) System nie został skompilowany z włączonym śledzeniem.
 
 #### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 #### <a name="example"></a>Przykład
 
@@ -137,14 +137,14 @@ UINT tx_trace_event_filter (ULONG  vent_filter_bits);
 
 #### <a name="description"></a>Opis
 
-Ta usługa filtruje określone zdarzenia z wstawienia do aktywnego buforu śledzenia. Należy pamiętać, że domyślnie żadne zdarzenia nie są filtrowane po wywołaniu *tx_trace_enable* .
+Ta usługa filtruje określone zdarzenia przed wstawieniu do aktywnego buforu śledzenia. Należy pamiętać, że domyślnie po wywołaniu tx_trace_enable nie *są filtrowane* żadne zdarzenia.
 
 > [!IMPORTANT]
-> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą zostać skompilowane z użyciem **TX_ENABLE_EVENT_TRACE** zdefiniowanej.
+> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą **TX_ENABLE_EVENT_TRACE** zdefiniowane za pomocą funkcji śledzenia zdarzeń.
 
 #### <a name="input-parameters"></a>Parametry wejściowe
 
-- **event_filter_bits**: bity odpowiadające zdarzeniom do filtrowania. Wiele zdarzeń może być filtrowanych przez oring ze sobą odpowiednie stałe. Prawidłowe stałe dla tej zmiennej są zdefiniowane w następujący sposób:
+- **event_filter_bits:** bity, które odpowiadają zdarzeniam do filtrowania. Wiele zdarzeń można filtrować przez proste lub wspólne odpowiednie stałe. Prawidłowe stałe dla tej zmiennej są zdefiniowane w następujący sposób:
 
 ```c
 TX_TRACE_ALL_EVENTS                   0x000007FF
@@ -186,12 +186,12 @@ UX_TRACE_DEVICE_CLASS_EVENTS          0x40000000
 
 #### <a name="return-values"></a>Wartości zwrócone
 
-- Filtr zdarzenia pomyślnego **TX_SUCCESS** (0x00).
-- System **TX_FEATURE_NOT_ENABLED** (0xFF) nie został skompilowany z włączonym śledzeniem.
+- **TX_SUCCESS** (0x00) Filtr zdarzeń Powodzenie.
+- **TX_FEATURE_NOT_ENABLED** (0xFF) System nie został skompilowany z włączonym śledzeniem.
 
 #### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 #### <a name="example"></a>Przykład
 
@@ -209,7 +209,7 @@ tx_trace_enable, tx_trace_event_unfilter, tx_trace_disable, tx_trace_isr_enter_i
 
 ### <a name="tx_trace_event_unfilter"></a>tx_trace_event_unfilter
 
-Odfiltruj określone zdarzenia
+Niefiltruj określone zdarzenia
 
 #### <a name="prototype"></a>Prototype
 
@@ -219,14 +219,14 @@ UINT tx_trace_event_unfilter (ULONG event_unfilter_bits);
 
 #### <a name="description"></a>Opis
 
-Ta usługa umożliwia odfiltrowanie określonych zdarzeń w taki sposób, aby były one wstawiane do aktywnego buforu śledzenia.
+Ta usługa odfiltruje określone zdarzenia, tak aby zostały wstawione do aktywnego buforu śledzenia.
 
 > [!IMPORTANT]
-> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą zostać skompilowane z użyciem **TX_ENABLE_EVENT_TRACE** zdefiniowanej.
+> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą **TX_ENABLE_EVENT_TRACE** zdefiniowane za pomocą funkcji śledzenia zdarzeń.
 
 #### <a name="input-parameters"></a>Parametry wejściowe
 
-- **event_unfilter_bits**: bity odpowiadające zdarzeniom do odfiltrowania. Wiele zdarzeń może być niefiltrowanych przez zwykłe lub, w połączeniu z odpowiednimi stałymi. Prawidłowe stałe dla tej zmiennej są zdefiniowane w następujący sposób:
+- **event_unfilter_bits:** bity, które odpowiadają zerowym warunkom filtrowania. Wiele zdarzeń może być niefiltrowanych przez proste lub ing razem odpowiednie stałe. Prawidłowe stałe dla tej zmiennej są zdefiniowane w następujący sposób:
 
 ```c
 TX_TRACE_ALL_EVENTS                  0x000007FF
@@ -268,12 +268,12 @@ UX_TRACE_DEVICE_CLASS_EVENTS         0x40000000
 
 #### <a name="return-values"></a>Wartości zwrócone
 
-- Odfiltrowanie zdarzenia powiodło się **TX_SUCCESS** (0x00).
-- System **TX_FEATURE_NOT_ENABLED** (0xFF) nie został skompilowany z włączonym śledzeniem.
+- **TX_SUCCESS** (0x00) Niefiltrowane pomyślne zdarzenie.
+- **TX_FEATURE_NOT_ENABLED** (0xFF) System nie został skompilowany z włączonym śledzeniem.
 
 #### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 #### <a name="example"></a>Przykład
 
@@ -291,7 +291,7 @@ tx_trace_enable, tx_trace_event_filter, tx_trace_disable, tx_trace_isr_enter_ins
 
 ### <a name="tx_trace_disable"></a>tx_trace_disable
 
-#### <a name="disable-event-tracing"></a>Wyłącz śledzenie zdarzeń
+#### <a name="disable-event-tracing"></a>Wyłączanie śledzenia zdarzeń
 
 #### <a name="prototype"></a>Prototype
 
@@ -301,10 +301,10 @@ UINT tx_trace_disable (VOID);
 
 #### <a name="description"></a>Opis
 
-Ta usługa wyłącza śledzenie zdarzeń wewnątrz ThreadX. Może to być przydatne, jeśli aplikacja chce zablokować bieżący bufor śledzenia zdarzeń i ewentualnie transportować go zewnętrznie w czasie wykonywania. Po wyłączeniu **tx_trace_enable** można wywołać, aby ponownie uruchomić śledzenie.
+Ta usługa wyłącza śledzenie zdarzeń wewnątrz ThreadX. Może to być przydatne, jeśli aplikacja chce zablokować bieżący bufor śledzenia zdarzeń i prawdopodobnie transportować go zewnętrznie w czasie działania. Po wyłączeniu **tx_trace_enable,** aby ponownie rozpocząć śledzenie.
 
 > [!IMPORTANT]
-> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą zostać skompilowane z użyciem **TX_ENABLE_EVENT_TRACE** zdefiniowanej.
+> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą **TX_ENABLE_EVENT_TRACE** zdefiniowane za pomocą funkcji śledzenia zdarzeń.
 
 #### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -312,13 +312,13 @@ Brak.
 
 #### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS** (0X00) pomyślne wyłączenie śledzenia zdarzeń.
-- Śledzenie zdarzeń **TX_NOT_DONE** (0x20) nie zostało włączone.
-- System **TX_FEATURE_NOT_ENABLED** (0xFF) nie został skompilowany z włączonym śledzeniem.
+- **TX_SUCCESS** (0x00) Wyłączenie śledzenia zdarzeń pomyślne.
+- **TX_NOT_DONE** (0x20) Śledzenie zdarzeń nie zostało włączone.
+- **TX_FEATURE_NOT_ENABLED** (0xFF) System nie został skompilowany z włączonym śledzeniem.
 
 #### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 #### <a name="example"></a>Przykład 
 
@@ -335,7 +335,7 @@ tx_trace_enable, tx_trace_event_filter, tx_trace_event_unfilter, tx_trace_isr_en
 
 ### <a name="tx_trace_isr_enter_insert"></a>tx_trace_isr_enter_insert
 
-#### <a name="insert-isr-enter-event"></a>Wstaw zdarzenie przejścia do procedury ISR
+#### <a name="insert-isr-enter-event"></a>Wstawianie zdarzenia wprowadzania isr
 
 #### <a name="prototype"></a>Prototype
 
@@ -345,13 +345,13 @@ VOID tx_trace_isr_enter_insert (ULONG isr_id);
 
 #### <a name="description"></a>Opis
 
-Ta usługa wstawia zdarzenie przejścia ISR do buforu śledzenia zdarzeń. Powinien być wywoływany przez aplikację na początku przetwarzania w ramach procedury ISR. Podany parametr powinien identyfikować konkretne przeisr do aplikacji.
+Ta usługa wstawia zdarzenie wprowadzania isr do buforu śledzenia zdarzeń. Powinien on być wywoływany przez aplikację na początku przetwarzania isr. Podany parametr powinien identyfikować specyficzny dla aplikacji isr.
 
 > [!IMPORTANT]
-> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą zostać skompilowane z użyciem **TX_ENABLE_EVENT_TRACE** zdefiniowanej.
+> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą **TX_ENABLE_EVENT_TRACE** zdefiniowane za pomocą funkcji śledzenia zdarzeń.
 
 #### <a name="input-parameters"></a>Parametry wejściowe 
-- **isr_id**: wartość specyficzna dla aplikacji w celu zidentyfikowania procedury ISR.
+- **isr_id:** Wartość specyficzna dla aplikacji do identyfikowania isr.
 
 #### <a name="return-values"></a>Wartości zwrócone
 
@@ -359,7 +359,7 @@ Ta usługa wstawia zdarzenie przejścia ISR do buforu śledzenia zdarzeń. Powin
 
 #### <a name="allowed-from"></a>Dozwolone z 
 
-Procedury ISR
+Isrs
 
 #### <a name="example"></a>Przykład
 
@@ -377,7 +377,7 @@ tx_trace_enable, tx_trace_event_filter, tx_trace_event_unfilter, tx_trace_disabl
 
 ### <a name="tx_trace_isr_exit_insert"></a>tx_trace_isr_exit_insert
 
-#### <a name="insert-isr-exit-event"></a>Wstaw zdarzenie zakończenia procedury ISR
+#### <a name="insert-isr-exit-event"></a>Wstaw zdarzenie zakończenia isr
 
 #### <a name="prototype"></a>Prototype
 
@@ -387,14 +387,14 @@ VOID tx_trace_isr_exit_insert (ULONG isr_id);
 
 #### <a name="description"></a>Opis
 
-Ta usługa wstawia zdarzenie wpisu ISR do buforu śledzenia zdarzeń. Powinien być wywoływany przez aplikację na początku przetwarzania w ramach procedury ISR. Podany parametr powinien identyfikować przeisr do aplikacji.
+Ta usługa wstawia zdarzenie wpisu ISR do buforu śledzenia zdarzeń. Powinien on być wywoływany przez aplikację na początku przetwarzania isr. Podany parametr powinien identyfikować usługę ISR dla aplikacji.
 
 > [!IMPORTANT]
-> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą zostać skompilowane z użyciem **TX_ENABLE_EVENT_TRACE** zdefiniowanej.
+> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą **TX_ENABLE_EVENT_TRACE** zdefiniowane za pomocą funkcji śledzenia zdarzeń.
 
 #### <a name="input-parameters"></a>Parametry wejściowe 
 
-- **isr_id**: wartość specyficzna dla aplikacji w celu zidentyfikowania procedury ISR.
+- **isr_id:** Wartość specyficzna dla aplikacji do identyfikowania isr.
 
 #### <a name="return-values"></a>Wartości zwrócone
 
@@ -402,7 +402,7 @@ Ta usługa wstawia zdarzenie wpisu ISR do buforu śledzenia zdarzeń. Powinien b
 
 #### <a name="allowed-from"></a>Dozwolone z
 
-Procedury ISR
+Isrs
 
 #### <a name="example"></a>Przykład
 
@@ -420,7 +420,7 @@ tx_trace_enable, tx_trace_event_filter, tx_trace_event_unfilter, tx_trace_disabl
 
 ### <a name="tx_trace_buffer_full_notify"></a>tx_trace_buffer_full_notify
 
-#### <a name="register-trace-buffer-full-application-callback"></a>Rejestrowanie wywołania zwrotnego pełnej aplikacji w buforze śledzenia
+#### <a name="register-trace-buffer-full-application-callback"></a>Rejestrowanie pełnego wywołania zwrotnego aplikacji bufora śledzenia
 
 #### <a name="prototype"></a>Prototype
 
@@ -430,14 +430,14 @@ VOID tx_trace_buffer_full_notify (VOID (*full_buffer_callback)(VOID *));
 
 #### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego aplikacji, która jest wywoływana przez ThreadX, gdy bufor śledzenia zostanie zapełniony. Następnie aplikacja może wybrać wyłączenie śledzenia i/lub prawdopodobnie konfigurację nowego buforu śledzenia.
+Ta usługa rejestruje funkcję wywołania zwrotnego aplikacji, która jest wywoływana przez threadX, gdy bufor śledzenia jest pełny. Następnie aplikacja może wyłączyć śledzenie i/lub ewentualnie skonfigurować nowy bufor śledzenia.
 
 > [!IMPORTANT]
-> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą zostać skompilowane z użyciem **TX_ENABLE_EVENT_TRACE** zdefiniowanej.
+> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą **TX_ENABLE_EVENT_TRACE** zdefiniowane za pomocą funkcji śledzenia zdarzeń.
 
 #### <a name="input-parameters"></a>Parametry wejściowe
 
-- **full_buffer_callback**: funkcja aplikacji do wywołania, gdy bufor śledzenia jest pełny. Wartość NULL powoduje wyłączenie wywołania zwrotnego powiadomienia.
+- **full_buffer_callback:** funkcja aplikacji do wywołania, gdy bufor śledzenia jest pełny. Wartość NULL wyłącza wywołanie zwrotne powiadomień.
 
 #### <a name="return-values"></a>Wartości zwrócone
 
@@ -445,7 +445,7 @@ Ta usługa rejestruje funkcję wywołania zwrotnego aplikacji, która jest wywo�
 
 #### <a name="allowed-from"></a>Dozwolone z
 
-Procedury ISR
+Isrs
 
 #### <a name="example"></a>Przykład
 
@@ -471,7 +471,7 @@ tx_trace_enable, tx_trace_event_filter, tx_trace_event_unfilter, tx_trace_disabl
 
 ### <a name="tx_trace_user_event_insert"></a>tx_trace_user_event_insert
 
-#### <a name="insert-user-event"></a>Wstaw zdarzenie użytkownika
+#### <a name="insert-user-event"></a>Wstawianie zdarzenia użytkownika
 
 #### <a name="prototype"></a>Prototype
 
@@ -483,27 +483,27 @@ UINT tx_trace_user_event_insert (ULONG event_id,
 
 #### <a name="description"></a>Opis
 
-Ta usługa wstawia zdarzenie użytkownika do buforu śledzenia. Identyfikatory zdarzeń użytkownika muszą być większe niż stałe **TX_TRACE_USER_EVENT_START**, które jest zdefiniowane jako 4096. Wartość maksymalnego zdarzenia użytkownika jest definiowana przez **TX_TRACE_USER_EVENT_END** stałą, która jest zdefiniowana jako 65535. Wszystkie zdarzenia należące do tego zakresu są dostępne dla aplikacji. Pola informacji są specyficzne dla aplikacji.
+Ta usługa wstawia zdarzenie użytkownika do buforu śledzenia. Identyfikatory zdarzeń użytkownika muszą być większe niż stała **TX_TRACE_USER_EVENT_START**, która jest zdefiniowana jako 4096. Maksymalne zdarzenie użytkownika jest definiowane przez **stałą TX_TRACE_USER_EVENT_END**, która jest zdefiniowana jako 65535. Wszystkie zdarzenia w tym zakresie są dostępne dla aplikacji. Pola informacji są specyficzne dla aplikacji.
 
 > [!IMPORTANT]
-> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą zostać skompilowane z użyciem **TX_ENABLE_EVENT_TRACE** zdefiniowanej.
+> Aby można było używać śledzenia zdarzeń, biblioteka i aplikacja ThreadX muszą **TX_ENABLE_EVENT_TRACE** zdefiniowane za pomocą funkcji śledzenia zdarzeń.
 
 #### <a name="input-parameters"></a>Parametry wejściowe
 
-- **event_id**: Identyfikacja zdarzeń specyficznych dla aplikacji musi być większa niż **TX_TRACE_USER_EVENT_START** i mniejsza niż lub równa **TX_TRACE_USER_EVENT_END**.
-- **info_field_1**: informacje specyficzne dla aplikacji.
-- **info_field_2**: informacje specyficzne dla aplikacji.
-- **info_field_3**: informacje specyficzne dla aplikacji.
-- **info_field_4**: informacje specyficzne dla aplikacji.
+- **event_id:** identyfikacja zdarzeń specyficzna dla aplikacji i musi być większa niż **TX_TRACE_USER_EVENT_START** i mniejsza niż lub równa TX_TRACE_USER_EVENT_END **.**
+- **info_field_1:** pole informacji specyficzne dla aplikacji.
+- **info_field_2:** pole informacji specyficzne dla aplikacji.
+- **info_field_3:** pole informacji specyficzne dla aplikacji.
+- **info_field_4:** pole informacji specyficzne dla aplikacji.
 
 #### <a name="return-values"></a>Wartości zwrócone
-- **TX_SUCCESS** (0X00) pomyślne Wstawianie zdarzeń przez użytkownika.
-- Śledzenie zdarzeń **TX_NOT_DONE** (0x20) nie jest włączone.
-- **TX_FEATURE_NOT_ENABLED** (0xFF) system nie został skompilowany z włączonym śledzeniem.
+- **TX_SUCCESS** (0x00) Pomyślne wstawianie zdarzenia użytkownika.
+- **TX_NOT_DONE** (0x20) Śledzenie zdarzeń nie jest włączone.
+- **TX_FEATURE_NOT_ENABLED** (0xFF) System nie został skompilowany z włączonym śledzeniem.
 
 #### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 #### <a name="example"></a>Przykład
 

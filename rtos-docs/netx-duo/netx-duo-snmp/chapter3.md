@@ -1,149 +1,149 @@
 ---
-title: Rozdział 3 — Opis usług Azure RTO NetX Duo SNMP Agent
+title: Rozdział 3 — opis Azure RTOS agentów NetX Duo SNMP
 description: Ten rozdział zawiera opis wszystkich usług agenta SNMP NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: cf4c4cb0edb7deb7bd0f257f48949b5c7355426b
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: b24776c2eb25a53195ea4eb452497b23b933e4ab3f9f0a379ea64d8469c1c971
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821672"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790126"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-duo-snmp-agent-services"></a>Rozdział 3 — Opis usług Azure RTO NetX Duo SNMP Agent
+# <a name="chapter-3---description-of-azure-rtos-netx-duo-snmp-agent-services"></a>Rozdział 3 — opis Azure RTOS agentów NetX Duo SNMP
 
-Ten rozdział zawiera opis wszystkich usług agenta SNMP usługi Azure RTO NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług Azure RTOS agenta NetX Duo SNMP (wymienionych poniżej) w kolejności alfabetycznej.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w następujących  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości pogrubione, a wartości bez pogrubienia są całkowicie wyłączone.
 
 - [nx_snmp_agent_auth_trap_key_use](#nx_snmp_agent_auth_trap_key_use)
-   - *Określ klucz uwierzytelniania (tylko protokół SNMP v3) dla komunikatów pułapki*
+   - *Określanie klucza uwierzytelniania (tylko SNMP v3) dla komunikatów pułapek*
 - [nx_snmp_agent_authenticate_key_use](#nx_snmp_agent_authenticate_key_use)
-   - *Określ klucz uwierzytelniania (tylko protokół SNMP v3) dla komunikatów odpowiedzi*
+   - *Określanie klucza uwierzytelniania (tylko SNMP v3) dla komunikatów odpowiedzi*
 - [nx_snmp_agent_community_get](#nx_snmp_agent_community_get)
-   - *Pobierz nazwę społeczności*
+   - *Pobieranie nazwy społeczności*
 - [nx_snmp_agent_context_engine_set](#nx_snmp_agent_context_engine_set)
-   - *Ustaw aparat kontekstu (tylko protokół SNMP v3)*
+   - *Ustawianie aparatu kontekstu (tylko SNMP v3)*
 - [nx_snmp_agent_context_name_set](#nx_snmp_agent_context_name_set)
-   - *Ustaw nazwę kontekstu (tylko protokół SNMP v3)*
+   - *Ustawianie nazwy kontekstu (tylko SNMP v3)*
 - [nx_snmp_agent_create](#nx_snmp_agent_create)
-   - *Utwórz agenta SNMP*
+   - *Tworzenie agenta SNMP*
 - [nx_snmp_agent_current_version_get](#nx_snmp_agent_current_version_get)
-   - *Pobierz wersję protokołu SNMP odebranego pakietu*
+   - *Pobierz wersję SNMP odebranego pakietu*
 - [nx_snmp_agent_request_get_type_test](#nx_snmp_agent_request_get_type_test)
    - *Wskaż, czy ostatnie żądanie SNMP ma typ GET lub SET*
 - [nx_snmp_agent_private_string_test](#nx_snmp_agent_private_string_test)
-   - *Określ, czy ciąg jest zgodny z prywatnym ciągiem agenta*
+   - *Określanie, czy ciąg pasuje do ciągu prywatnego agenta*
 - [nx_snmp_agent_public_string_test](#nx_snmp_agent_public_string_test)
-   - *Określ, czy ciąg jest zgodny z publicznym ciągiem agenta*
+   - *Określanie, czy ciąg pasuje do ciągu publicznego agenta*
 - [nx_snmp_agent_set_interface](#nx_snmp_agent_set_interface)
-   - *Ustawianie interfejsu sieciowego dla obsługi komunikatów SNMP*
+   - *Ustawianie interfejsu sieciowego dla komunikatów SNMP*
 - [nx_snmp_agent_private_string_set](#nx_snmp_agent_private_string_set)
-   - *Ustaw ciąg społeczności prywatnej agenta SNMP*
+   - *Ustawianie prywatnego ciągu społeczności agenta SNMP*
 - [nx_snmp_agent_public_string_set](#nx_snmp_agent_public_string_set)
-   - *Ustaw publiczny ciąg społeczności agenta SNMP*
+   - *Ustawianie publicznego ciągu społeczności agenta SNMP*
 - [nx_snmp_agent_version_set](#nx_snmp_agent_version_set)
-   - *Ustaw stan agenta SNMP dla wszystkich wersji SNMP*
+   - *Ustawianie stanu agenta SNMP dla wszystkich wersji SNMP*
 - [nx_snmp_agent_delete](#nx_snmp_agent_delete)
-   - *Usuń agenta SNMP*
+   - *Usuwanie agenta SNMP*
 - [nx_snmp_agent_md5_key_create](#nx_snmp_agent_md5_key_create)
-   - *Utwórz klucz MD5 (tylko protokół SNMP v3)*
+   - *Tworzenie klucza md5 (tylko SNMP v3)*
 - [nx_snmp_agent_md5_key_create_extended](#nx_snmp_agent_md5_key_create_extended)
-   - *Utwórz klucz MD5 (tylko protokół SNMP v3)*
+   - *Tworzenie klucza md5 (tylko SNMP v3)*
 - [nx_snmp_agent_priv_trap_key_use](#nx_snmp_agent_priv_trap_key_use)
-   - *Określ klucz szyfrowania (tylko protokół SNMP v3) dla komunikatów pułapki*
+   - *Określanie klucza szyfrowania (tylko SNMP v3) dla komunikatów pułapek*
 - [nx_snmp_agent_privacy_key_use](#nx_snmp_agent_privacy_key_use)
-   - *Określ klucz szyfrowania (tylko protokół SNMP v3) dla komunikatów odpowiedzi*
+   - *Określanie klucza szyfrowania (tylko SNMP v3) dla komunikatów odpowiedzi*
 - [nx_snmp_agent_sha_key_create](#nx_snmp_agent_sha_key_create)
-   - *Utwórz klucz SHA (tylko protokół SNMP v3)*
+   - *Tworzenie klucza sha (tylko SNMP v3)*
 - [nx_snmp_agent_sha_key_create_extended](#nx_snmp_agent_sha_key_create_extended)
-   - *Utwórz klucz SHA (tylko protokół SNMP v3)*
+   - *Tworzenie klucza sha (tylko SNMP v3)*
 - [nx_snmp_agent_start](#nx_snmp_agent_start)
-   - *Uruchom agenta SNMP*
+   - *Uruchamianie agenta SNMP*
 - [nx_snmp_agent_stop](#nx_snmp_agent_stop)
-   - *Zatrzymaj agenta SNMP*
+   - *Zatrzymywanie agenta SNMP*
 - [nx_snmp_agent_trap_send](#nx_snmp_agent_trap_send)
-   - *Wyślij pułapkę SNMP v1 (tylko IPv4)*
+   - *Wysyłanie pułapki SNMP v1 (tylko protokół IPv4)*
 - [nx_snmp_agent_trapv2_send](#nx_snmp_agent_trapv2_send)
-   - *Wyślij pułapkę SNMP v2 (tylko IPv4)*
+   - *Wysyłanie pułapki SNMP v2 (tylko protokół IPv4)*
 - [nx_snmp_agent_trapv2_oid_send](#nx_snmp_agent_trapv2_oid_send)
-   - *Wyślij pułapkę SNMP v2 (tylko IPv4) określającą identyfikator OID*
+   - *Wysyłanie pułapki SNMP v2 (tylko protokół IPv4) z określeniem OID*
 - [nx_snmp_agent_trapv3_send](#nx_snmp_agent_trapv3_send)
-   - *Wyślij pułapkę SNMP v3 (tylko IPv4)*
+   - *Wysyłanie pułapki SNMP v3 (tylko protokół IPv4)*
 - [nx_snmp_agent_trapv3_oid_send](#nx_snmp_agent_trapv3_oid_send)
-   - *Wyślij pułapkę SNMP v2 (tylko IPv4) określającą identyfikator OID*
+   - *Wysyłanie pułapki SNMP v2 (tylko protokół IPv4) z określeniem OID*
 - [nxd_snmp_agent_trap_send](#nxd_snmp_agent_trap_send)
-   - *Wyślij pułapkę SNMP v1 (IPv4 i IPv6)*
+   - *Wysyłanie pułapki SNMP v1 (IPv4 i IPv6)*
 - [nxd_snmp_agent_trapv2_send](#nxd_snmp_agent_trapv2_send)
-   - *Wyślij pułapkę SNMP v2 (IPv4 i IPv6)*
+   - *Wysyłanie pułapki SNMP v2 (IPv4 i IPv6)*
 - [nxd_snmp_agent_trapv2_oid_send](#nxd_snmp_agent_trapv2_oid_send)
-   - *Wyślij pułapkę SNMP v2 (IPv4/IPv6) określającą identyfikator OID*
+   - *Wysyłanie pułapki SNMP v2 (IPv4/IPv6) z określeniem OID*
 - [nxd_snmp_agent_trapv3_send](#nxd_snmp_agent_trapv3_send)
-   - *Wyślij pułapkę SNMP v3 (IPv4 i IPv6)*
+   - *Wysyłanie pułapki SNMP v3 (IPv4 i IPv6)*
 - [nxd_snmp_agent_trapv3_oid_send](#nxd_snmp_agent_trapv3_oid_send)
-   - *Wyślij pułapkę SNMP v2 (IPv4/IPv6) określającą identyfikator OID*
+   - *Wysyłanie pułapki SNMP v2 (IPv4/IPv6) z określeniem OID*
 - [nx_snmp_agent_v3_context_boots_set](#nx_snmp_agent_v3_context_boots_set)
-   - *Ustaw liczbę ponownych uruchomień*
+   - *Ustawianie liczby ponownych uruchomień*
 - [nx_snmp_object_compare](#nx_snmp_object_compare)
-   - *Porównaj dwa obiekty*
+   - *Porównywanie dwóch obiektów*
 - [nx_snmp_object_compare_extended](#nx_snmp_object_compare_extended)
-   - *Porównaj dwa obiekty*
+   - *Porównywanie dwóch obiektów*
 - [nx_snmp_object_copy](#nx_snmp_object_copy)
    - *Kopiowanie obiektu*
 - [nx_snmp_object_copy_extended](#nx_snmp_object_copy_extended)
    - *Kopiowanie obiektu*
 - [nx_snmp_object_counter_get](#nx_snmp_object_counter_get)
-   - *Pobierz obiekt licznika*
+   - *Uzyskiwanie obiektu licznika*
 - [nx_snmp_object_counter_set](#nx_snmp_object_counter_set)
    - *Ustaw obiekt licznika*
 - [nx_snmp_object_counter64_get](#nx_snmp_object_counter64_get)
-   - *Pobierz 64-bitowy obiekt licznika*
+   - *Pobierz obiekt licznika 64-bitowego*
 - [nx_snmp_object_counter64_set](#nx_snmp_object_counter64_set)
-   - *Ustaw 64-bitowy obiekt licznika*
+   - *Ustaw obiekt licznika 64-bitowego*
 - [nx_snmp_object_end_of_mib](#nx_snmp_object_end_of_mib)
-   - *Ustaw wartość końca MIB*
+   - *Ustawianie wartości końca mib*
 - [nx_snmp_object_gauge_get](#nx_snmp_object_gauge_get)
-   - *Pobierz obiekt miernika*
+   - *Uzyskiwanie obiektu miernika*
 - [nx_snmp_object_gauge_set](#nx_snmp_object_gauge_set)
-   - *Ustaw obiekt miernika*
+   - *Ustawianie obiektu miernika*
 - [nx_snmp_object_id_get](#nx_snmp_object_id_get)
-   - *Pobierz identyfikator obiektu*
+   - *Uzyskiwanie identyfikatora obiektu*
 - [nx_snmp_object_id_set](#nx_snmp_object_id_set)
-   - *Ustaw identyfikator obiektu*
+   - *Ustawianie identyfikatora obiektu*
 - [nx_snmp_object_integer_get](#nx_snmp_object_integer_get)
-   - *Pobierz obiekt typu Integer*
+   - *Uzyskiwanie obiektu liczby całkowitej*
 - [nx_snmp_object_integer_set](#nx_snmp_object_integer_set)
-   - *Ustaw obiekt liczb całkowitych*
+   - *Ustawianie obiektu liczby całkowitej*
 - [nx_snmp_object_ip_address_get](#nx_snmp_object_ip_address_get)
-   - *Pobierz obiekt adresu IP (tylko IPv4)*
+   - *Uzyskiwanie obiektu adresu IP (tylko protokół IPv4)*
 - [nx_snmp_object_ip_address_set](#nx_snmp_object_ip_address_set)
-   - *Ustawianie obiektu adresu IP (tylko IPv4)*
+   - *Ustawianie obiektu adresu IP (tylko protokół IPv4)*
 - [nx_snmp_object_ipv6_address_get](#nx_snmp_object_ipv6_address_get)
-   - *Pobieranie obiektu adresu IP (tylko protokół IPv6)*
+   - *Uzyskiwanie obiektu adresu IP (tylko protokół IPv6)*
 - [nx_snmp_object_ipv6_address_set](#nx_snmp_object_ipv6_address_set)
    - *Ustawianie obiektu adresu IP (tylko protokół IPv6)*
 - [nx_snmp_object_no_instance](#nx_snmp_object_no_instance)
-   - *Ustaw wartość bez wystąpienia*
+   - *Ustawianie wartości bez wystąpienia*
 - [nx_snmp_object_not_found](#nx_snmp_object_not_found)
-   - *Ustaw wartość nie znaleziono*
+   - *Ustawianie wartości nie znaleziono*
 - [nx_snmp_object_octet_string_get](#nx_snmp_object_octet_string_get)
-   - *Pobieranie obiektu ciągu oktetowego*
+   - *Uzyskiwanie obiektu ciągu oktetu*
 - [nx_snmp_object_octet_string_set](#nx_snmp_object_octet_string_set)
-   - *Ustawianie obiektu ciągu oktetowego*
+   - *Ustawianie obiektu ciągu oktetu*
 - [nx_snmp_object_string_get](#nx_snmp_object_string_get)
-   - *Pobierz obiekt ciągu ASCII*
+   - *Uzyskiwanie obiektu ciągu ASCII*
 - [nx_snmp_object_string_set](#nx_snmp_object_string_set)
-   - *Ustaw obiekt ciągu ASCII*
+   - *Ustawianie obiektu ciągu ASCII*
 - [nx_snmp_object_timetics_get](#nx_snmp_object_timetics_get)
-   - *Pobierz obiekt timetics*
+   - *Uzyskiwanie obiektu timetics*
 - [nx_snmp_object_timetics_set](#nx_snmp_object_timetics_set)
-   - *Ustaw obiekt timetics*
+   - *Ustawianie obiektu timetics*
 
 ## <a name="nx_snmp_agent_auth_trap_key_use"></a>nx_snmp_agent_auth_trap_key_use
-Określ klucz uwierzytelniania dla komunikatów pułapki
+Określanie klucza uwierzytelniania dla komunikatów pułapek
 
 ### <a name="prototype"></a>Prototype
 
@@ -153,25 +153,25 @@ UINT nx_snmp_agent_auth_trap_key_use(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa określa klucz, który ma być używany do ustawiania parametrów uwierzytelniania w nagłówku zabezpieczeń SNMPv3 w komunikatach pułapki. Podanie wartości NX_NULL klucza powoduje wyłączenie uwierzytelniania.
+Ta usługa określa klucz, który ma być używany do ustawiania parametrów uwierzytelniania w nagłówku zabezpieczeń SNMPv3 w komunikatach pułapek. Dostarczenie wartości NX_NULL klucza powoduje wyłączenie uwierzytelniania.
 
 > [!NOTE]
-> Należy wcześniej utworzyć klucz. Zobacz nx_snmp_agent_md5_key_create lub nx_snmp_agent_sha_key_create.
+> Klucz musi zostać utworzony wcześniej. Zobacz nx_snmp_agent_md5_key_create lub nx_snmp_agent_sha_key_create.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
 - **klucz** Wskaźnik do wcześniej utworzonego klucza MD5 lub SHA.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — pomyślne uwierzytelnianie zestawu kluczy.
-- **NX_NOT_ENABLED** (0X14) zabezpieczenia protokołu SNMP wyłączone 
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik agenta SNMP.
+- **NX_SUCCESS** (0x00) Zestaw kluczy uwierzytelniania pomyślne.
+- **NX_NOT_ENABLED** (0x14) SNMP Security disabled (Wyłączone zabezpieczenia SNMP) 
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik agenta SNMP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -185,7 +185,7 @@ status =  nx_snmp_agent_auth_trap_key_use(&my_agent, &my_key);
 ```
 
 ## <a name="nx_snmp_agent_authenticate_key_use"></a>nx_snmp_agent_authenticate_key_use
-Określ klucz uwierzytelniania dla komunikatów odpowiedzi
+Określanie klucza uwierzytelniania dla komunikatów odpowiedzi
 
 ### <a name="prototype"></a>Prototype
 
@@ -195,25 +195,25 @@ UINT nx_snmp_agent_authenticate_key_use(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa określa klucz, który ma być używany dla parametrów uwierzytelniania w parametrze zabezpieczeń SNMPv3 dla wszystkich żądań wykonanych po jej ustawieniu. Podanie wartości NX_NULL klucza powoduje wyłączenie uwierzytelniania.
+Ta usługa określa klucz, który ma być używany dla parametrów uwierzytelniania w parametrze zabezpieczeń SNMPv3 dla wszystkich żądań wykonanych po jego skonfigurowaniu. Dostarczenie wartości NX_NULL klucza powoduje wyłączenie uwierzytelniania.
 
 > [!NOTE]
-> Należy wcześniej utworzyć klucz. Zobacz nx_snmp_agent_md5_key_create lub nx_snmp_agent_sha_key_create.
+> Klucz musi zostać utworzony wcześniej. Zobacz nx_snmp_agent_md5_key_create lub nx_snmp_agent_sha_key_create.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
 - **klucz** Wskaźnik do wcześniej utworzonego klucza MD5 lub SHA.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawiono klucz SNMP.
-- **NX_NOT_ENABLED** (0X14) zabezpieczenia protokołu SNMP wyłączone
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik agenta SNMP.
+- **NX_SUCCESS** (0x00) Zestaw kluczy SNMP powodzenie.
+- **NX_NOT_ENABLED** (0x14) SNMP Security disabled (Wyłączone zabezpieczenia SNMP)
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik agenta SNMP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -227,7 +227,7 @@ status =  nx_snmp_agent_authenticate_key_use(&my_agent, &my_key);
 ```
 
 ## <a name="nx_snmp_agent_community_get"></a>nx_snmp_agent_community_get
-Pobierz nazwę społeczności
+Pobieranie nazwy społeczności
 
 ### <a name="prototype"></a>Prototype
 
@@ -238,21 +238,21 @@ UINT nx_snmp_agent_community_get(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera nazwę społeczności z najnowszego żądania SNMP otrzymanego przez agenta SNMP.
+Ta usługa pobiera nazwę społeczności z ostatniego żądania SNMP otrzymanego przez agenta SNMP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **community_string_ptr** Wskaźnik na wskaźnik ciągu, aby zwrócić ciąg identyfikacyjny agenta SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **community_string_ptr** Wskaźnik do wskaźnika ciągu w celu zwrócenia ciągu społeczności agenta SNMP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie pobiera społeczność SNMP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślne uzyskiwanie przez społeczność SNMP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -279,23 +279,23 @@ UINT nx_snmp_agent_request_get_type_test(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wskazuje, czy najnowsze żądanie od menedżera SNMP to GET (GET, GetNext lub GetBulk) lub typu zestawu. Jest ona przeznaczona do użycia z wywołaniem zwrotnym nazwy użytkownika, w którym aplikacja SNMPv1 lub SNMPv2 będzie chcieć porównać otrzymany ciąg identyfikacyjny z publicznym ciągiem agenta SNMP, jeśli żądanie jest typu GET lub do prywatnego ciągu agenta SNMP, jeśli żądanie jest typem zestawu.
+Ta usługa wskazuje, czy najnowsze żądanie z Menedżera SNMP ma typ GET (GET, GETNEXT lub GETBULK) lub SET. Jest on przeznaczony do użycia z wywołaniem zwrotny nazwy użytkownika, w którym aplikacja SNMPv1 lub SNMPv2 będzie chciała porównać otrzymany ciąg społeczności z ciągiem publicznym agenta SNMP, jeśli żądanie jest typem GET, lub z prywatnym ciągiem agenta SNMP, jeśli żądanie jest typem ZESTAWU.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
 - **is_get_type** Wskaźnik do stanu typu żądania:  
-NX_TRUE Jeśli typ pobrania  
-NX_FALSE Jeśli typ zestawu
+NX_TRUE, jeśli typ GET  
+NX_FALSE jeśli typ SET
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie zwrócił typ
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślnie zwrócony typ
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -310,7 +310,7 @@ status =  nx_snmp_agent_request_get_type_test(&my_agent, &is_get_type);
 ```
 
 ## <a name="nx_snmp_agent_context_engine_set"></a>nx_snmp_agent_context_engine_set
-Ustaw aparat kontekstu (tylko protokół SNMP v3)
+Ustawianie aparatu kontekstu (tylko SNMP v3)
 
 ### <a name="prototype"></a>Prototype
 
@@ -321,7 +321,7 @@ UINT nx_snmp_agent_context_engine_set(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia aparat kontekstu agenta SNMP. Ma to zastosowanie tylko w przypadku przetwarzania SNMPv3. Należy to wywołać przed utworzeniem kluczy zabezpieczeń, jeśli aplikacja korzysta z uwierzytelniania i szyfrowania, ponieważ w procesie tworzenia klucza jest używany identyfikator aparatu kontekstu. Jeśli nie, NetX Duo SNMP zapewnia domyślny identyfikator aparatu kontekstu w górnej części *nxd_snmp. c:*
+Ta usługa ustawia aparat kontekstu agenta SNMP. Ma zastosowanie tylko do przetwarzania SNMPv3. Należy to zrobić przed utworzeniem kluczy zabezpieczeń, jeśli aplikacja korzysta z uwierzytelniania i szyfrowania, ponieważ identyfikator aparatu kontekstu jest używany w procesie tworzenia klucza. Jeśli nie, NetX Duo SNMP udostępnia domyślny identyfikator aparatu kontekstu na początku *nxd_snmp.c:*
 
 ```c
 UCHAR _nx_snmp_default_context_engine[NX_SNMP_MAX_CONTEXT_STRING] =  
@@ -331,20 +331,20 @@ UCHAR _nx_snmp_default_context_engine[NX_SNMP_MAX_CONTEXT_STRING] =
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **context_engine** Wskaźnik na ciąg aparatu kontekstu.
-- **context_engine_size** Rozmiar ciągu aparatu kontekstu. Należy zauważyć, że maksymalna liczba bajtów w aparacie kontekstu jest definiowana przez NX_SNMP_MAX_CONTEXT_STRING.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **context_engine** Wskaźnik do ciągu aparatu kontekstu.
+- **context_engine_size** Rozmiar ciągu aparatu kontekstu. Należy pamiętać, że maksymalna liczba bajtów w a aparatze kontekstu jest definiowana przez NX_SNMP_MAX_CONTEXT_STRING.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) zestaw aparatów kontekstu SNMP zakończony pomyślnie.
-- **NX_NOT_ENABLED** (0X14) SNMPv3 nie jest włączona
-- Błąd rozmiaru aparatu **NX_SNMP_ERROR** (0x100).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Zestaw aparatu kontekstu SNMP z powodzeniem.
+- **NX_NOT_ENABLED** (0x14) SNMPv3 nie jest włączony
+- **NX_SNMP_ERROR** (0x100) Błąd rozmiaru aparatu kontekstu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -358,7 +358,7 @@ status =  nx_snmp_agent_context_engine_set(&my_agent, my_engine, 9);
 /* If status is NX_SUCCESS the context engine has been set.  */
 ```
 ## <a name="nx_snmp_agent_context_name_set"></a>nx_snmp_agent_context_name_set
-Ustaw nazwę kontekstu (tylko protokół SNMP v3)
+Ustawianie nazwy kontekstu (tylko SNMP v3)
 
 ### <a name="prototype"></a>Prototype
 
@@ -370,23 +370,23 @@ UINT nx_snmp_agent_context_name_set(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia nazwę kontekstu agenta SNMP. Ma to zastosowanie tylko w przypadku przetwarzania SNMPv3. Jeśli nie zostanie wywołana, Agent SNMP NetX Duo pozostawi pustej nazwy kontekstu.
+Ta usługa ustawia nazwę kontekstu agenta SNMP. Ma zastosowanie tylko do przetwarzania SNMPv3. Jeśli nie zostanie wywołana, agent NETX Duo SNMP pozostawi pustą nazwę kontekstu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **context_name** Wskaźnik na ciąg nazwy kontekstu.
-- **context_name_size** Rozmiar ciągu nazwy kontekstu. Należy zauważyć, że maksymalna liczba bajtów w nazwie kontekstu jest definiowana przez NX_SNMP_MAX_CONTEXT_STRING.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **context_name** Wskaźnik do ciągu nazwy kontekstu.
+- **context_name_size** Rozmiar ciągu nazwy kontekstu. Należy pamiętać, że maksymalna liczba bajtów w nazwie kontekstu jest definiowana przez NX_SNMP_MAX_CONTEXT_STRING.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślna Nazwa kontekstu SNMP.
-- Błąd rozmiaru nazwy kontekstu **NX_SNMP_ERROR** (0x100).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Zestaw pomyślnych nazw kontekstowych SNMP.
+- **NX_SNMP_ERROR** (0x100) Rozmiar nazwy kontekstu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -399,7 +399,7 @@ status =  nx_snmp_agent_context_name_set(&my_agent, “my_context_name”, 15);
 ```
 
 ## <a name="nx_snmp_agent_create"></a>nx_snmp_agent_create
-Utwórz agenta SNMP
+Tworzenie agenta SNMP
 
 ### <a name="prototype"></a>Prototype
 
@@ -421,30 +421,30 @@ UINT nx_snmp_agent_create(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy agenta SNMP dla określonego wystąpienia IP.
+Ta usługa tworzy agenta SNMP dla określonego wystąpienia adresu IP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
 - **snmp_agent_name** Wskaźnik do ciągu nazwy agenta SNMP.
-- **ip_ptr** Wskaźnik na wystąpienie adresu IP.
+- **ip_ptr** Wskaźnik do wystąpienia adresu IP.
 - **stack_ptr** Wskaźnik do wskaźnika stosu wątku agenta SNMP.
 - **stack_size** Rozmiar stosu w bajtach.
 - **pool_ptr** Wskaźnik domyślnej puli pakietów dla tego agenta SNMP.
 - **snmp_agent_username_process** Wskaźnik funkcji do procedury obsługi nazwy użytkownika aplikacji.
-- **snmp_agent_get_process** Wskaźnik funkcji do procedury obsługi żądania GET.
-- **snmp_agent_getnext_process** Wskaźnik funkcji do procedury obsługi GetNext Request dla aplikacji.
-- **snmp_agent_set_process** Wskaźnik funkcji do procedury obsługi żądania zestawu aplikacji.
+- **snmp_agent_get_process** Wskaźnik funkcji do procedury obsługi żądań GET aplikacji.
+- **snmp_agent_getnext_process** Wskaźnik funkcji do procedury obsługi żądań GETNEXT aplikacji.
+- **snmp_agent_set_process** Wskaźnik funkcji do procedury obsługi żądań SET aplikacji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne utworzenie agenta SNMP.
-- **NX_SNMP_ERROR** (0x100) wystąpił błąd podczas tworzenia agenta SNMP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie agenta SNMP.
+- **NX_SNMP_ERROR** (0x100) SNMP Agent create error (Błąd tworzenia agenta SNMP).
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -461,7 +461,7 @@ status =  nx_snmp_agent_create(&my_agent, "My SNMP Agent", &ip_0, stack_start_pt
 ```
 
 ## <a name="nx_snmp_agent_current_version_get"></a>nx_snmp_agent_current_version_get
-Pobierz wersję pakietu SNMP
+Uzyskiwanie wersji pakietu SNMP
 
 ### <a name="prototype"></a>Prototype
 
@@ -472,17 +472,17 @@ UINT nx_snmp_agent_current_version_get(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera wersję protokołu SNMP przeanalizowane z ostatniego odebranego pakietu SNMP.
+Ta usługa pobiera analizowane wersje SNMP z najnowszego odebranego pakietu SNMP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **wersja** Wskaźnik do wersji SNMP przeanalizowanej z odebranego pakietu SNMP
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **wersja** Wskaźnik do wersji SNMP analizowane z odebranego pakietu SNMP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne pobieranie wersji SNMP
-- **NX_PTR_ERROR** (0X07) nieprawidłowe dane wejściowe wskaźnika
+- **NX_SUCCESS** (0x00) Pomyślne uzyskiwanie wersji SNMP
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -503,7 +503,7 @@ status =  nx_snmp_agent_current_version_get (&my_agent, &snmp_version);
 ```
 
 ## <a name="nx_snmp_agent_private_string_test"></a>nx_snmp_agent_private_string_test
-Sprawdź, czy ciąg prywatny jest zgodny z prywatnym ciągiem agenta
+Sprawdzanie, czy ciąg prywatny pasuje do ciągu prywatnego agenta
 
 ### <a name="prototype"></a>Prototype
 
@@ -515,20 +515,20 @@ UINT nx_snmp_agent_private_string_test(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa porównuje ciąg identyfikacyjny zakończony zerem o wartości null z prywatnym ciągiem agenta SNMP i wskazuje, czy są one zgodne.
+Ta usługa porównuje ciąg wejściowy społeczności zakończony z wartością null z prywatnym ciągiem agenta SNMP i wskazuje, czy są zgodne.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
 - **community_string** Wskaźnik do ciągu do porównania
 - **is_private** Wskaźnik do wyniku porównania  
-Dopasowania ciągu NX_TRUE  
-NX_FALSE — ciąg nie jest zgodny
+NX_TRUE — dopasowania ciągów  
+NX_FALSE — ciąg nie jest zgodne
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślne porównanie **NX_SUCCESS** (0x00)
-- **NX_PTR_ERROR** (0X07) nieprawidłowe dane wejściowe wskaźnika
+- **NX_SUCCESS** (0x00) Porównanie powodzenia
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -551,7 +551,7 @@ status =  nx_snmp_agent_private_string_test(&my_agent, community_string_ptr,
 ```
 
 ## <a name="nx_snmp_agent_public_string_test"></a>nx_snmp_agent_public_string_test
-Sprawdź, czy otrzymany ciąg publiczny jest zgodny z publicznym ciągiem agenta
+Sprawdzanie, czy odebrany ciąg publiczny pasuje do ciągu publicznego agenta
 
 ### <a name="prototype"></a>Prototype
 
@@ -562,20 +562,20 @@ UINT nx_snmp_agent_public_string_test(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa porównuje ciąg identyfikacyjny zakończony zerem o wartości null z publicznym ciągiem agenta SNMP i wskazuje, czy są one zgodne.
+Ta usługa porównuje ciąg wejściowy społeczności zakończony z wartością null z publicznym ciągiem agenta SNMP i wskazuje, czy są zgodne.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
 - **community_string** Wskaźnik do ciągu do porównania
 - **is_public** Wskaźnik do wyniku porównania  
-Dopasowania ciągu NX_TRUE  
-NX_FALSE — ciąg nie jest zgodny
+NX_TRUE — dopasowania ciągów  
+NX_FALSE — ciąg nie jest zgodne
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślne porównanie **NX_SUCCESS** (0x00)
-- **NX_PTR_ERROR** (0X07) nieprawidłowe dane wejściowe wskaźnika
+- **NX_SUCCESS** (0x00) Porównanie powodzenia
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -599,7 +599,7 @@ status =  nx_snmp_agent_public_string_test(&my_agent, community_string_ptr,
 ```
 
 ## <a name="nx_snmp_agent_version_set"></a>nx_snmp_agent_version_set
-Ustaw stan agenta SNMP dla każdej wersji SNMP
+Ustawianie stanu agenta SNMP dla każdej wersji SNMP
 
 ### <a name="prototype"></a>Prototype
 
@@ -611,19 +611,19 @@ UINT nx_snmp_agent_version_set(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia stan (włączony/wyłączony) dla każdego z wersji SNMP, v1, v2 i V3 w agencie SNMP. Należy pamiętać, że opcje konfigurowane przez użytkownika, NX_SNMP_DISABLE_V1, NX_SNMP_DISABLE_V2 i NX_SNMP_DISABLE_V3, przesłonią te ustawienia czasu wykonywania. Domyślnie Agent SNMP jest włączony dla wszystkich trzech wersji.
+Ta usługa ustawia stan (włączony/wyłączony) dla każdej wersji SNMP, V1, V2 i V3 agenta SNMP. Należy pamiętać, że opcje konfigurowalne przez użytkownika, NX_SNMP_DISABLE_V1, NX_SNMP_DISABLE_V2 i NX_SNMP_DISABLE_V3, zastąpią te ustawienia czasu uruchamiania. Domyślnie agent SNMP jest włączony dla wszystkich trzech wersji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **enabled_v1** Ustawia stan włączenia protokołu SNMP v1 na Włącz/Wyłącz.
-- **enabled_v2** Ustawia stan włączenia protokołu SNMP V2 na Włącz/Wyłącz.
-- **enabled_v3** Ustawia stan włączenia protokołu SNMP V3 na Włącz/Wyłącz.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **enabled_v1** Ustawia włączony stan dla SNMP V1 wł./wył.
+- **enabled_v2** Ustawia włączony stan dla SNMP V2 wł./wył.
+- **enabled_v3** Ustawia włączony stan dla SNMP V3 wł./wył.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne Ustawianie wersji SNMP
-- **NX_PTR_ERROR** (0X07) nieprawidłowe dane wejściowe wskaźnika
+- **NX_SUCCESS** (0x00) Zestaw pomyślnych wersji SNMP
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -647,7 +647,7 @@ status =  nx_snmp_agent_version_set(&my_agent, v1_on, v2_on, v3_on);
 ```
 
 ## <a name="nx_snmp_agent_private_string_set"></a>nx_snmp_agent_private_string_set
-Ustaw ciąg prywatny agenta SNMP
+Ustawianie prywatnego ciągu agenta SNMP
 
 ### <a name="prototype"></a>Prototype
 
@@ -658,18 +658,18 @@ UINT nx_snmp_agent_private_string_set(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia ciąg społeczności prywatnej agenta SNMP z ciągiem zakończonym zerem o wartości null. Wartość domyślna to NULL (bez prywatnego zestawu parametrów), w taki sposób, że żaden pakiet SNMP otrzymany z "prywatnym" ciągiem Wspólnoty nie zostanie zaakceptowany przez agenta SNMP na potrzeby dostępu do odczytu i zapisu. Ciąg wejściowy musi być mniejszy niż lub równy użytkownikowi konfigurowalnemu NX_SNMP_MAX_USER_NAME-1 (aby można było pozostawić miejsce na zakończenie o wartości null).
+Ta usługa ustawia prywatny ciąg społeczności agenta SNMP przy użyciu wejściowego ciągu zakończonego z wartością null. Wartość domyślna to NULL (bez zestawu ciągów prywatnych), tak aby żaden pakiet SNMP otrzymany z "prywatnym" ciągiem społeczności nie został zaakceptowany przez agenta SNMP na potrzeby dostępu do odczytu/zapisu. Ciąg wejściowy musi być mniejszy lub równy rozmiarowi konfigurowalnego przez użytkownika NX_SNMP_MAX_USER_NAME-1 (w celu umożliwienia zakończenia wartości null).
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **community_string** Wskaźnik do prywatnego ciągu do przypisania
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **community_string** Wskaźnik do ciągu prywatnego do przypisania
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawił ciąg prywatny
-- Rozmiar ciągu **NX_SNMP_ERROR_TOOBIG** (0x01) jest zbyt duży 
-- **NX_PTR_ERROR** (0X07) nieprawidłowe dane wejściowe wskaźnika
+- **NX_SUCCESS** (0x00) Pomyślnie ustawiono ciąg prywatny
+- **NX_SNMP_ERROR_TOOBIG** (0x01) Rozmiar ciągu jest zbyt duży 
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -688,7 +688,7 @@ status =  nx_snmp_agent_private_string_set(&my_agent, “private”));
 ```
 
 ## <a name="nx_snmp_agent_public_string_set"></a>nx_snmp_agent_public_string_set
-Ustawianie ciągu publicznego agenta SNMP
+Ustawianie publicznego ciągu agenta SNMP
 
 ### <a name="prototype"></a>Prototype
 
@@ -699,18 +699,18 @@ UINT nx_snmp_agent_public_string_set(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia ciąg społeczności publicznej agenta SNMP z ciągiem zakończonym zerem o wartości null. Ciąg identyfikacyjny nie może być mniejszy niż lub równy użytkownikowi konfigurowalnemu NX_SNMP_MAX_USER_NAME-1 (aby można było zwolnić miejsce na zakończenie o wartości null).
+Ta usługa ustawia publiczny ciąg społeczności agenta SNMP na wejściowy ciąg zakończony z wartością null. Ciąg społeczności musi być mniejszy lub równy rozmiarowi konfigurowalnego przez użytkownika NX_SNMP_MAX_USER_NAME-1 (w celu umożliwienia zakończenia wartości null).
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **community_string** Wskaźnik na ciąg publiczny do przypisania
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **community_string** Wskaźnik do ciągu publicznego do przypisania
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawił ciąg publiczny
-- Rozmiar ciągu **NX_SNMP_ERROR_TOOBIG** (0x01) jest zbyt duży
-- **NX_PTR_ERROR** (0X07) nieprawidłowe dane wejściowe wskaźnika
+- **NX_SUCCESS** (0x00) Pomyślnie ustawiono ciąg publiczny
+- **NX_SNMP_ERROR_TOOBIG** (0x01) Rozmiar ciągu jest zbyt duży
+- **NX_PTR_ERROR** (0x07) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -729,7 +729,7 @@ nx_snmp_agent_public_string_set(&my_agent, “my_public”));
 ```
 
 ## <a name="nx_snmp_agent_delete"></a>nx_snmp_agent_delete
-Usuń agenta SNMP
+Usuwanie agenta SNMP
 
 ### <a name="prototype"></a>Prototype
 
@@ -742,16 +742,16 @@ Ta usługa usuwa wcześniej utworzonego agenta SNMP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne usunięcie agenta SNMP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślne usunięcie agenta SNMP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -764,7 +764,7 @@ status =  nx_snmp_agent_delete(&my_agent);
 ```
 
 ## <a name="nx_snmp_agent_set_interface"></a>nx_snmp_agent_set_interface
-Ustaw interfejs sieciowy agenta SNMP
+Ustawianie interfejsu sieciowego agenta SNMP
 
 ### <a name="prototype"></a>Prototype
 
@@ -775,21 +775,21 @@ UINT nx_snmp_agent_set_interface(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia interfejs sieciowy SNMP dla agenta SNMP określony przez indeks interfejsu wejściowego. Jest to przydatne tylko w przypadku aplikacji hosta SNMP z NetX Duo 5,6 lub nowszymi, które obsługują wiele interfejsów sieciowych. Wartość domyślna, jeśli nie zostanie określona przez hosta, wynosi zero dla interfejsu podstawowego.
+Ta usługa ustawia interfejs sieciowy SNMP dla agenta SNMP określony przez indeks interfejsu wejściowego. Jest to przydatne tylko w przypadku aplikacji hosta SNMP z NetX Duo 5.6 lub wyższym, które obsługują wiele interfejsów sieciowych. Wartość domyślna, jeśli nie zostanie określona przez hosta jest zero dla interfejsu podstawowego.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
 - **If_index** Indeks określający interfejs SNMP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawiono interfejs SNMP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Zestaw interfejsów SNMP pomyślnie.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -803,7 +803,7 @@ status =  nx_snmp_agent_set_interface(&my_agent, if_index);
 ```
 
 ## <a name="nx_snmp_agent_md5_key_create"></a>nx_snmp_agent_md5_key_create
-Utwórz klucz MD5 (tylko protokół SNMP v3)
+Tworzenie klucza md5 (tylko SNMP v3)
 
 ### <a name="prototype"></a>Prototype
 
@@ -817,23 +817,23 @@ UINT nx_snmp_agent_md5_key_create(NX_SNMP_AGENT *agent_ptr,
 
 Ta usługa tworzy klucz MD5, który może służyć do uwierzytelniania i szyfrowania.
 
-Ta usługa jest przestarzała. Deweloperzy są zachęcani do migracji do *nx_snmp_agent_md5_key_create_extended ()*.
+Ta usługa jest przestarzała. Zachęcamy deweloperów do migracji do *nx_snmp_agent_md5_key_create_extended()*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **hasło** Wskaźnik na ciąg hasła.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **hasło** Wskaźnik do ciągu hasła.
 - **destination_key** Wskaźnik do struktury danych klucza SNMP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie utworzono klucz **NX_SUCCESS** (0x00).
-- Nie włączono zabezpieczeń **NX_NOT_ENABLED** (0x14).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie klucza.
+- **NX_NOT_ENABLED** (0x14) Zabezpieczenia nie są włączone.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -848,7 +848,7 @@ status =  nx_snmp_agent_md5_key_create(&my_agent, “authpw”, &my_key);
 ```
 
 ## <a name="nx_snmp_agent_md5_key_create_extended"></a>nx_snmp_agent_md5_key_create_extended
-Utwórz klucz MD5 (tylko protokół SNMP v3)
+Tworzenie klucza md5 (tylko SNMP v3)
 
 ### <a name="prototype"></a>Prototype
 
@@ -863,25 +863,25 @@ UINT nx_snmp_agent_md5_key_create_extended(NX_SNMP_AGENT *agent_ptr,
 
 Ta usługa tworzy klucz MD5, który może służyć do uwierzytelniania i szyfrowania.
 
-Ta usługa zastępuje *nx_snmp_agent_md5_key_create ().* Ta wersja wymaga, aby obiekt wywołujący dostarczał długość hasła.
+Ta usługa zastępuje *nx_snmp_agent_md5_key_create().* Ta wersja wymaga, aby wywołujący podał długość hasła.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **hasło** Wskaźnik na ciąg hasła.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **hasło** Wskaźnik do ciągu hasła.
 - **password_length** Długość ciągu hasła.
 - **destination_key** Wskaźnik do struktury danych klucza SNMP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie utworzono klucz **NX_SUCCESS** (0x00).
-- Nie włączono zabezpieczeń **NX_NOT_ENABLED** (0x14).
-- **NX_SNMP_FAILED** (0X102) SNMP nie powiodło się.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie klucza.
+- **NX_NOT_ENABLED** (0x14) Zabezpieczenia nie są włączone.
+- **NX_SNMP_FAILED** (0x102) SNMP nie powiodło się.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -896,7 +896,7 @@ status =  nx_snmp_agent_md5_key_create_extended(&my_agent, “authpw”, 6, &my_
 ```
 
 ## <a name="nx_snmp_agent_priv_trap_key_use"></a>nx_snmp_agent_priv_trap_key_use
-Określ klucz szyfrowania dla komunikatów pułapki
+Określanie klucza szyfrowania dla komunikatów pułapek
 
 ### <a name="prototype"></a>Prototype
 
@@ -907,25 +907,25 @@ UINT nx_snmp_agent_priv_trap_key_use(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa określa, że wcześniej utworzony klucz prywatności ma być używany do szyfrowania i odszyfrowywania komunikatów pułapki SNMPv3.
+Ta usługa określa, że wcześniej utworzony klucz prywatności ma być używany do szyfrowania i odszyfrowywania komunikatów pułapek SNMPv3.
 
 > [!NOTE]
-> *Należy wcześniej utworzyć klucz authentictation. W przypadku protokołu SNMP v3 (szyfrowanie) wymagane jest uwierzytelnienie. Aby uzyskać szczegółowe informacje, zobacz nx_snmp_agent_auth_trap_key_use.*
+> *Klucz uwierzytelniania musi zostać utworzony wcześniej. Prywatność SNMP v3 (szyfrowanie) wymaga uwierzytelniania. Zobacz nx_snmp_agent_auth_trap_key_use, aby uzyskać szczegółowe informacje.*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **klucz** Wskaźnik do wcześniej utworzonego klucza.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **klucz** Wskaźnik do wcześniej utworzyć klucz.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawiono klucz prywatności.
-- Nie włączono zabezpieczeń **NX_NOT_ENABLED** (0x14).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Zestaw kluczy prywatności Powodzenie.
+- **NX_NOT_ENABLED** (0x14) Zabezpieczenia nie są włączone.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -938,7 +938,7 @@ status =  nx_snmp_agent_priv_trap_key_use(&my_agent, &my_privacy_key);
 ```
 
 ## <a name="nx_snmp_agent_privacy_key_use"></a>nx_snmp_agent_privacy_key_use
-Określ klucz szyfrowania dla komunikatów odpowiedzi
+Określanie klucza szyfrowania dla komunikatów odpowiedzi
 
 ### <a name="prototype"></a>Prototype
 
@@ -948,25 +948,25 @@ UINT nx_snmp_agent_privacy_key_use(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa określa, że utworzony wcześniej klucz ma być używany do szyfrowania i odszyfrowywania komunikatów odpowiedzi SNMPv3.
+Ta usługa określa, że wcześniej utworzony klucz ma być używany do szyfrowania i odszyfrowywania komunikatów odpowiedzi SNMPv3.
 
 > [!NOTE]
-> *Należy wcześniej określić klucz uwierzytelniania. Szyfrowanie SNMP v3 wymaga również utworzenia klucza uwierzytelniania. Aby uzyskać szczegółowe informacje, zobacz nx_snmp_agent_authentiation_key_use.*
+> *Klucz uwierzytelniania musi zostać wcześniej określony. Szyfrowanie SNMP v3 wymaga również utworzenia klucza uwierzytelniania. Zobacz nx_snmp_agent_authentiation_key_use, aby uzyskać szczegółowe informacje.*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **klucz** Wskaźnik do wcześniej utworzonego klucza.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **klucz** Wskaźnik do wcześniej utworzyć klucz.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawiono klucz prywatności.
-- Nie włączono zabezpieczeń **NX_NOT_ENABLED** (0x14).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Zestaw kluczy prywatności Powodzenie.
+- **NX_NOT_ENABLED** (0x14) Zabezpieczenia nie są włączone.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -979,7 +979,7 @@ status =  nx_snmp_agent_privacy_key_use(&my_agent, &my_privacy_key);
 ```
 
 ## <a name="nx_snmp_agent_sha_key_create"></a>nx_snmp_agent_sha_key_create
-Utwórz klucz SHA (tylko protokół SNMP v3)
+Tworzenie klucza SHA (tylko SNMP v3)
 
 ### <a name="prototype"></a>Prototype
 
@@ -991,25 +991,25 @@ UINT nx_snmp_agent_sha_key_create(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy klucz SHA, który może być używany do uwierzytelniania i szyfrowania.
+Ta usługa tworzy klucz SHA, który może służyć do uwierzytelniania i szyfrowania.
 
-Ta usługa jest przestarzała. Deweloperzy są zachęcani do migracji do *nx_snmp_agent_sha_key_create_extended ()*.
+Ta usługa jest przestarzała. Zachęcamy deweloperów do migracji do *nx_snmp_agent_sha_key_create_extended()*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **hasło** Wskaźnik na ciąg hasła.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **hasło** Wskaźnik do ciągu hasła.
 - **destination_key** Wskaźnik do struktury danych klucza SNMP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie utworzono klucz **NX_SUCCESS** (0x00).
-- Błąd tworzenia klucza **NX_SNMP_ERROR** (0x100).
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik agenta lub klucza SNMP.
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie klucza.
+- **NX_SNMP_ERROR** (0x100) Błąd tworzenia klucza.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy agent SNMP lub wskaźnik klucza.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -1024,7 +1024,7 @@ status =  nx_snmp_agent_sha_key_create(&my_agent, “authpw”, &my_key);
 ```
 
 ## <a name="nx_snmp_agent_sha_key_create_extended"></a>nx_snmp_agent_sha_key_create_extended
-Utwórz klucz SHA (tylko protokół SNMP v3)
+Tworzenie klucza SHA (tylko SNMP v3)
 
 ### <a name="prototype"></a>Prototype
 
@@ -1037,27 +1037,27 @@ UINT nx_snmp_agent_sha_key_create_extended(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy klucz SHA, który może być używany do uwierzytelniania i szyfrowania.
+Ta usługa tworzy klucz SHA, który może służyć do uwierzytelniania i szyfrowania.
 
-Ta usługa zastępuje *nx_snmp_agent_sha_key_create ().* Ta wersja wymaga, aby obiekt wywołujący dostarczał długość hasła.
+Ta usługa zastępuje *nx_snmp_agent_sha_key_create().* Ta wersja wymaga, aby wywołujący podał długość hasła.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **hasło** Wskaźnik na ciąg hasła.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **hasło** Wskaźnik do ciągu hasła.
 - **password_length** Długość ciągu hasła.
 - **destination_key** Wskaźnik do struktury danych klucza SNMP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie utworzono klucz **NX_SUCCESS** (0x00).
-- Błąd tworzenia klucza **NX_SNMP_ERROR** (0x100).
-- Tworzenie klucza **NX_SNMP_FAILED** (0x102) nie powiodło się.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik agenta lub klucza SNMP.
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie klucza.
+- **NX_SNMP_ERROR** (0x100) Błąd tworzenia klucza.
+- **NX_SNMP_FAILED** (0x102) Tworzenie klucza nie powiodło się.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy agent SNMP lub wskaźnik klucza.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -1072,7 +1072,7 @@ status =  nx_snmp_agent_sha_key_create_extended(&my_agent, “authpw”, 6, &my_
 ```
 
 ## <a name="nx_snmp_agent_start"></a>nx_snmp_agent_start
-Uruchom agenta SNMP 
+Uruchamianie agenta SNMP 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1085,17 +1085,17 @@ Ta usługa wiąże gniazdo UDP z portem SNMP 161 i uruchamia zadanie wątku agen
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne uruchomienie agenta SNMP.
-- **NX_SNMP_ERROR** (0x100) błąd uruchamiania agenta SNMP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślne rozpoczęcie agenta SNMP.
+- **NX_SNMP_ERROR** (0x100) snmp agent start.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -1107,7 +1107,7 @@ status =  nx_snmp_agent_start(&my_agent);
 /* If status is NX_SUCCESS the SNMP Agent “my_agent” has been started.  */
 ```
 ## <a name="nx_snmp_agent_stop"></a>nx_snmp_agent_stop
-Zatrzymaj agenta SNMP 
+Zatrzymywanie agenta SNMP 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1116,16 +1116,16 @@ UINT nx_snmp_agent_stop(NX_SNMP_AGENT *agent_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa przerywa zadanie wątku agenta SNMP i rozwiąże gniazdo UDP z portem SNMP.
+Ta usługa zatrzymuje zadanie wątku agenta SNMP i odłącza gniazdo UDP od portu SNMP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne zatrzymanie agenta SNMP.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik agenta SNMP.
+- **NX_SUCCESS** (0x00) Pomyślne zatrzymanie agenta SNMP.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik agenta SNMP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1141,7 +1141,7 @@ status =  nx_snmp_agent_stop(&my_agent);
 /* If status is NX_SUCCESS the SNMP Agent “my_agent” has been stopped.  */
 ```
 ## <a name="nx_snmp_agent_trap_send"></a>nx_snmp_agent_trap_send
-Wyślij pułapki SNMPv1 *(tylko IPv4)*
+Wysyłanie pułapki SNMPv1 *(tylko protokół IPv4)*
 
 ### <a name="prototype"></a>Prototype
 
@@ -1155,14 +1155,14 @@ UINT nx_snmp_agent_trap_send(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pułapkę SNMP do menedżera SNMP na określonym adresie IPv4. Preferowaną metodą wysyłania pułapki SNMP w NetX Duo jest użycie usługi *nxd_snmp_agent_trap_send* . *nx_snmp_agent_trap_send* jest zawarty w NetX Duo do obsługi istniejących aplikacji agenta SNMP NetX.
+Ta usługa wysyła pułapkę SNMP do Menedżera SNMP pod określonym adresem IPv4. Preferowaną metodą wysyłania pułapki SNMP w netX Duo jest użycie *usługi nxd_snmp_agent_trap_send* sieciowej. *nx_snmp_agent_trap_send* jest dołączony do netx duo w celu obsługi istniejących aplikacji agentów NetX SNMP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **IP_address** Adres IPv4 menedżera SNMP.
-- **przedsiębiorstwo** Ciąg identyfikatora obiektu przedsiębiorstwa (sysObectID).
-- **trap_type** Typ żądania pułapki w następujący sposób:  
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **ip_address** Adres IPv4 Menedżera SNMP.
+- **enterprise** Enterprise identyfikator obiektu (sysObectID).
+- **trap_type** Żądany typ pułapki w następujący sposób:  
    - NX_SNMP_TRAP_COLDSTART (0)  
    - NX_SNMP_TRAP_WARMSTART (1)  
    - NX_SNMP_TRAP_LINKDOWN (2)  
@@ -1170,16 +1170,16 @@ Ta usługa wysyła pułapkę SNMP do menedżera SNMP na określonym adresie IPv4
    - NX_SNMP_TRAP_AUTHENTICATE_FAILURE (4)  
    - NX_SNMP_TRAP_EGPNEIGHBORLOSS (5)  
 
-- **trap_code** Konkretny kod pułapki.
-- **elapsed_time** System czasu został osiągnięty (sysUpTime).
-- **object_list_ptr** Tablica obiektów i ich skojarzone wartości do uwzględnienia w pułapki SNMP. Lista została zakończona NX_NULL.
+- **trap_code** Określony kod pułapki.
+- **elapsed_time** System czasu został już działania (sysUpTime).
+- **object_list_ptr** Tablica obiektów i skojarzonych z nimi wartości, które mają zostać uwzględnione w pułapce SNMP. Lista zostanie NX_NULL zakończona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie pułapki SNMP.
-- **NX_SNMP_ERROR** (0X100) błąd podczas wysyłania pułapki SNMP.
-- **NX_NOT_ENABLED** (0X14) SNMPv1 nie jest włączona.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślne wysłanie pułapki SNMP.
+- **NX_SNMP_ERROR** (0x100) Błąd wysyłania pułapki SNMP.
+- **NX_NOT_ENABLED** (0x14) SNMPv1 nie jest włączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1209,7 +1209,7 @@ status =  nx_snmp_agent_trap_send(&my_agent,dest_ip_address,
 /* If status is NX_SUCCESS the SNMP trap has been sent.  */
 ```
 ## <a name="nxd_snmp_agent_trap_send"></a>nxd_snmp_agent_trap_send
-Wyślij pułapki SNMPv1 *(IPv4 i IPv6)*
+Wysyłanie pułapki SNMPv1 *(IPv4 i IPv6)*
 
 ### <a name="prototype"></a>Prototype
 
@@ -1221,14 +1221,14 @@ UINT nxd_snmp_agent_trap_send(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pułapkę SNMP do menedżera SNMP na określonym adresie IP. Równoważną metodą wysyłania pułapki SNMP w NetX jest usługa *nxd_snmp_agent_trap_send* .
+Ta usługa wysyła pułapkę SNMP do Menedżera SNMP pod określonym adresem IP. Równoważną metodą wysyłania pułapki SNMP w NetX jest *nxd_snmp_agent_trap_send* usługa.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **IP_address** Adres IPv4 lub IPv6 menedżera SNMP.
-- **przedsiębiorstwo** Ciąg identyfikatora obiektu przedsiębiorstwa (sysObectID).
-- **trap_type** Typ żądania pułapki w następujący sposób:  
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **ip_address** Adres IPv4 lub IPv6 Menedżera SNMP.
+- **enterprise** Enterprise identyfikator obiektu (sysObectID).
+- **trap_type** Żądany typ pułapki w następujący sposób:  
    - NX_SNMP_TRAP_COLDSTART (0)
    - NX_SNMP_TRAP_WARMSTART (1)
    - NX_SNMP_TRAP_LINKDOWN (2)
@@ -1236,16 +1236,16 @@ Ta usługa wysyła pułapkę SNMP do menedżera SNMP na określonym adresie IP. 
    - NX_SNMP_TRAP_AUTHENTICATE_FAILURE (4)
    - NX_SNMP_TRAP_EGPNEIGHBORLOSS (5)
 
-- **trap_code** Konkretny kod pułapki.
-- **elapsed_time** System czasu został osiągnięty (sysUpTime).
-- **object_list_ptr** Tablica obiektów i ich skojarzone wartości do uwzględnienia w pułapki SNMP. Lista została zakończona NX_NULL.
+- **trap_code** Określony kod pułapki.
+- **elapsed_time** System czasu został już działania (sysUpTime).
+- **object_list_ptr** Tablica obiektów i skojarzonych z nimi wartości, które mają zostać uwzględnione w pułapce SNMP. Lista zostanie NX_NULL zakończona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie pułapki SNMP.
-- **NX_SNMP_ERROR** (0X100) błąd podczas wysyłania pułapki SNMP.
-- **NX_NOT_ENABLED** (0X14) SNMPv1 nie jest włączona.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślne wysłanie pułapki SNMP.
+- **NX_SNMP_ERROR** (0x100) Błąd wysyłania pułapki SNMP.
+- **NX_NOT_ENABLED** (0x14) SNMPv1 nie jest włączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1282,7 +1282,7 @@ status =  nxd_snmp_agent_trap_send(&my_agent,&dest_ip_address,
 ```
 
 ## <a name="nx_snmp_agent_trapv2_send"></a>nx_snmp_agent_trapv2_send
-Wyślij pułapkę SNMPv2 (tylko IPv4)
+Wysyłanie pułapki SNMPv2 (tylko protokół IPv4)
 
 ### <a name="prototype"></a>Prototype
 
@@ -1293,15 +1293,15 @@ UINT nx_snmp_agent_trapv2_send(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pułapkę SNMPv2 do menedżera SNMP na określonym adresie IPv4. Preferowaną metodą wysyłania pułapki SNMP w NetX Duo jest użycie usługi *nxd_snmp_agent_trapv2_send* . *nx_snmp_agent_trapv2_send* jest zawarty w NetX Duo do obsługi istniejących aplikacji agenta SNMP NetX.
+Ta usługa wysyła pułapkę SNMPv2 do Menedżera SNMP pod określonym adresem IPv4. Preferowaną metodą wysyłania pułapki SNMP w netX Duo jest użycie *usługi nxd_snmp_agent_trapv2_send* sieciowej. *nx_snmp_agent_trapv2_send* jest dołączony do netX Duo w celu obsługi istniejących aplikacji agentów NetX SNMP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **IP_address** Adres IPv4 menedżera SNMP.
-- **społeczność** Nazwa Wspólnoty (username).
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **ip_address** Adres IPv4 Menedżera SNMP.
+- **nazwa** Community społeczności (nazwa użytkownika).
 - **trap_type**  
-   Typ żądanego pułapki. Standardowe zdarzenia to:  
+   Żądany typ pułapki. Zdarzenia standardowe to:  
    - NX_SNMP_TRAP_COLDSTART (0)
    - NX_SNMP_TRAP_WARMSTART (1)
    - NX_SNMP_TRAP_LINKDOWN (2)
@@ -1310,17 +1310,17 @@ Ta usługa wysyła pułapkę SNMPv2 do menedżera SNMP na określonym adresie IP
    - NX_SNMP_TRAP_EGPNEIGHBORLOSS (5)
 
    W przypadku danych zastrzeżonych:  
-   - NX_SNMP_TRAP_CUSTOM (0xFFFFFFFF) (zdefiniowane w *nxd_snmp. h*)
+   - NX_SNMP_TRAP_CUSTOM (0xFFFFFFFF) (zdefiniowane w *nxd_snmp.h*)
    
-- **elapsed_time** System czasu został osiągnięty (sysUpTime).
-- **object_list_ptr** Tablica obiektów i ich skojarzone wartości do uwzględnienia w pułapki SNMP. Lista została zakończona NX_NULL.
+- **elapsed_time** System czasu został w górę (sysUpTime).
+- **object_list_ptr** Tablica obiektów i skojarzonych z nimi wartości do dołączona do pułapki SNMP. Lista zostanie NX_NULL zakończona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie pułapki SNMP.
-- **NX_SNMP_ERROR** (0X100) błąd podczas wysyłania pułapki SNMP.
-- **NX_NOT_ENABLED** (0X14) SNMPv2 nie jest włączony.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślny wysyłanie pułapek SNMP.
+- **NX_SNMP_ERROR** (0x100) Błąd wysyłania pułapki SNMP.
+- **NX_NOT_ENABLED** (0x14) SNMPv2 nie jest włączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1344,7 +1344,7 @@ Status =  nx_snmp_agent_trapv2_send(&my_agent,dest_ip_address, "public",
 ```
 
 ## <a name="nx_snmp_agent_trapv2_oid_send"></a>nx_snmp_agent_trapv2_oid_send
-Wysyłanie pułapki SNMPv2 Określanie identyfikatora OID bezpośrednio 
+Wysyłanie pułapki SNMPv2 z bezpośrednim określeniem OID 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1357,24 +1357,24 @@ UINT nx_snmp_agent_trapv2_oid_send(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pułapkę SNMPv2 do menedżera SNMP pod określonym adresem IP (tylko IPv4) i umożliwia obiektowi wywołującemu bezpośrednie określenie identyfikatora OID. Preferowaną metodą wysyłania pułapki SNMP z określonym identyfikatorem OID w NetX Duo jest użycie usługi *nxd_snmp_agent_trapv2_oid_send* . *nx_snmp_agent_trapv2_oid_ Send* jest zawarty w NetX Duo do obsługi istniejących aplikacji agenta SNMP NetX.
+Ta usługa wysyła pułapkę SNMPv2 do Menedżera SNMP pod określonym adresem IP (tylko IPv4) i umożliwia obiektowi wywołującemu bezpośrednie określenie OID. Preferowaną metodą wysyłania pułapki SNMP z określonym OID w NetX Duo *jest* użycie nxd_snmp_agent_trapv2_oid_send danych. *nx_snmp_agent_trapv2_oid_ do usługi NetX* Duo do obsługi istniejących aplikacji agenta NetX SNMP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **IP_address** Adres IP menedżera SNMP.
-- **społeczność** Nazwa Wspólnoty (username).
-- **Identyfikator OID** Wskaźnik do buforu zawierającego identyfikator OID.
-- **elapsed_time** System czasu został osiągnięty (sysUpTime).
-- **object_list_ptr** Tablica obiektów i ich skojarzone wartości do uwzględnienia w pułapki SNMP. Lista została zakończona NX_NULL.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **ip_address** Adres IP menedżera SNMP.
+- **nazwa** Community społeczności (nazwa użytkownika).
+- **oid** Wskaźnik do buforu zawierającego OID.
+- **elapsed_time** System czasu został w górę (sysUpTime).
+- **object_list_ptr** Tablica obiektów i skojarzonych z nimi wartości do dołączona do pułapki SNMP. Lista zostanie NX_NULL zakończona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie pułapki SNMP.
-- **NX_SNMP_ERROR** (0X100) błąd podczas wysyłania pułapki SNMP.
-- **NX_PTR_ERROR** (0X16) Nieprawidłowy wskaźnik agenta lub parametru SNMP.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy docelowy adres IP.
-- **NX_OPTION_ERROR** (0X0a) nieprawidłowy parametr.
+- **NX_SUCCESS** (0x00) Pomyślny wysyłanie pułapek SNMP.
+- **NX_SNMP_ERROR** (0x100) Błąd wysyłania pułapki SNMP.
+- **NX_PTR_ERROR** (0x16) Nieprawidłowy agent SNMP lub wskaźnik parametru.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy docelowy adres IP.
+- **NX_OPTION_ERROR** (0x0a) Nieprawidłowy parametr.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1410,15 +1410,15 @@ UINT nxd_snmp_agent_trapv2_send(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła do menedżera SNMP pułapkę SNMP v2 o określonym adresie IP.
+Ta usługa wysyła pułapkę SNMP V2 do Menedżera SNMP pod określonym adresem IP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **IP_address** Adres IP (IPv4 lub IPv6) menedżera SNMP.
-- **społeczność** Nazwa Wspólnoty (username).
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **ip_address** Adres IP (IPv4 lub IPv6) menedżera SNMP.
+- **nazwa** Community społeczności (nazwa użytkownika).
 - **trap_type**  
-   Typ żądanego pułapki. Standardowe zdarzenia to:  
+   Żądany typ pułapki. Zdarzenia standardowe to:  
    - NX_SNMP_TRAP_COLDSTART (0)
    - NX_SNMP_TRAP_WARMSTART (1)
    - NX_SNMP_TRAP_LINKDOWN (2)
@@ -1428,18 +1428,18 @@ Ta usługa wysyła do menedżera SNMP pułapkę SNMP v2 o określonym adresie IP
 
    W przypadku danych zastrzeżonych:
 
-   - NX_SNMP_TRAP_CUSTOM (0xFFFFFFFF) (zdefiniowane w *nxd_snmp. h*)
+   - NX_SNMP_TRAP_CUSTOM (0xFFFFFFFF) (zdefiniowane w *nxd_snmp.h*)
 
-- **elapsed_time** System czasu został osiągnięty (sysUpTime).
-- **object_list_ptr** Tablica obiektów i ich skojarzone wartości do uwzględnienia w pułapki SNMP. Lista została zakończona NX_NULL.
+- **elapsed_time** System czasu został w górę (sysUpTime).
+- **object_list_ptr** Tablica obiektów i skojarzonych z nimi wartości do dołączona do pułapki SNMP. Lista zostanie NX_NULL zakończona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie pułapki SNMP.
-- **NX_SNMP_ERROR** (0X100) błąd podczas wysyłania pułapki SNMP.
-- **NX_NOT_ENABLED** (0X14) SNMPv2 nie jest włączony.
-- **NX_SNMP_INVALID_IP_PROTOCOL_ERROR** (0x104) nieobsługiwana wersja protokołu IP
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślny wysyłanie pułapek SNMP.
+- **NX_SNMP_ERROR** (0x100) Błąd wysyłania pułapki SNMP.
+- **NX_NOT_ENABLED** (0x14) SNMPv2 nie jest włączony.
+- **NX_SNMP_INVALID_IP_PROTOCOL_ERROR** (0x104) Nieobsługiwana wersja adresu IP
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1470,7 +1470,7 @@ Status =  nxd_snmp_agent_trapv2_send(&my_agent,&dest_ip_address, "public",
 ```
 
 ## <a name="nxd_snmp_agent_trapv2_oid_send"></a>nxd_snmp_agent_trapv2_oid_send
-Wysyłanie pułapki SNMPv2 Określanie identyfikatora OID bezpośrednio 
+Wysyłanie pułapki SNMPv2 z bezpośrednim określeniem OID 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1484,24 +1484,24 @@ UINT nxd_snmp_agent_trapv2_oid_send(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pułapkę protokołu SNMP v2 do menedżera SNMP pod określonym adresem IP (IPv4/IPv6) i umożliwia obiektowi wywołującemu bezpośrednie określenie identyfikatora OID.
+Ta usługa wysyła pułapkę SNMP v2 do Menedżera SNMP pod określonym adresem IP (IPv4/IPv6) i umożliwia obiektowi wywołującemu bezpośrednie określenie OID.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **IP_address** Adres IP menedżera SNMP (IPv4/IPv6).
-- **społeczność** Nazwa Wspólnoty (username).
-- **Identyfikator OID** Wskaźnik do buforu zawierającego identyfikator OID.
-- **elapsed_time** System czasu został osiągnięty (sysUpTime).
-- **object_list_ptr** Tablica obiektów i ich skojarzone wartości do uwzględnienia w pułapki SNMP. Lista została zakończona NX_NULL.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **ip_address** Adres IP menedżera SNMP (IPv4/IPv6).
+- **nazwa** Community społeczności (nazwa użytkownika).
+- **oid** Wskaźnik do buforu zawierającego OID.
+- **elapsed_time** System czasu został w górę (sysUpTime).
+- **object_list_ptr** Tablica obiektów i skojarzonych z nimi wartości do dołączona do pułapki SNMP. Lista zostanie NX_NULL zakończona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie pułapki SNMP.
-- **NX_SNMP_ERROR** (0X100) błąd podczas wysyłania pułapki SNMP.
-- **NX_PTR_ERROR** (0X16) Nieprawidłowy wskaźnik agenta lub parametru SNMP.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy docelowy adres IP.
-- **NX_OPTION_ERROR** (0X0a) nieprawidłowy parametr.
+- **NX_SUCCESS** (0x00) Pomyślny wysyłanie pułapek SNMP.
+- **NX_SNMP_ERROR** (0x100) Błąd wysyłania pułapki SNMP.
+- **NX_PTR_ERROR** (0x16) Nieprawidłowy agent SNMP lub wskaźnik parametru.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy docelowy adres IP.
+- **NX_OPTION_ERROR** (0x0a) Nieprawidłowy parametr.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1528,7 +1528,7 @@ Status =  nxd_snmp_agent_trapv2_oid_send(&my_agent, &address,
 /* If status is NX_SUCCESS the SNMP trap has been sent.  */
 ```
 ## <a name="nx_snmp_agent_trapv3_send"></a>nx_snmp_agent_trapv3_send
-Wyślij pułapkę SNMPv3 (tylko IPv4)
+Wysyłanie pułapki SNMPv3 (tylko protokół IPv4)
 
 ### <a name="prototype"></a>Prototype
 
@@ -1540,15 +1540,15 @@ UINT nx_snmp_agent_trapv3_send(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pułapki SNMPv3 do menedżera SNMP na określonym adresie IPv4. Preferowaną metodą wysyłania pułapki SNMP w NetX Duo jest użycie usługi *nxd_snmp_agent_trapv3_send* . *nx_snmp_agent_trapv3_send* jest zawarty w NetX Duo do obsługi istniejących aplikacji agenta SNMP NetX.
+Ta usługa wysyła pułapkę SNMPv3 do Menedżera SNMP pod określonym adresem IPv4. Preferowaną metodą wysyłania pułapki SNMP w netX Duo jest użycie *nxd_snmp_agent_trapv3_send* usługi. *nx_snmp_agent_trapv3_send* jest dołączony do usługi NetX Duo w celu obsługi istniejących aplikacji agenta NetX SNMP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **IP_address** Adres IPv4 menedżera SNMP.
-- **Nazwa użytkownika** Nazwa Wspólnoty (username).
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **ip_address** Adres IPv4 Menedżera SNMP.
+- **nazwa** Community nazwa użytkownika (nazwa użytkownika).
 - **trap_type**  
-   Typ żądanego pułapki. Standardowe zdarzenia to:  
+   Żądany typ pułapki. Zdarzenia standardowe to:  
    - NX_SNMP_TRAP_COLDSTART (0)
    - NX_SNMP_TRAP_WARMSTART (1)
    - NX_SNMP_TRAP_LINKDOWN (2)
@@ -1557,21 +1557,21 @@ Ta usługa wysyła pułapki SNMPv3 do menedżera SNMP na określonym adresie IPv
    - NX_SNMP_TRAP_EGPNEIGHBORLOSS (5)
 
    W przypadku danych zastrzeżonych:
-   - NX_SNMP_TRAP_CUSTOM (0xFFFFFFFF) (zdefiniowane w *nxd_snmp. h*)
+   - NX_SNMP_TRAP_CUSTOM (0xFFFFFFFF) (zdefiniowane w *nxd_snmp.h*)
 
-- **elapsed_time** System czasu został osiągnięty (sysUpTime).
-- **object_list_ptr** Tablica obiektów i ich skojarzone wartości do uwzględnienia w pułapki SNMP. Lista została zakończona NX_NULL.
+- **elapsed_time** System czasu został w górę (sysUpTime).
+- **object_list_ptr** Tablica obiektów i skojarzonych z nimi wartości do dołączona do pułapki SNMP. Lista zostanie NX_NULL zakończona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie pułapki SNMP.
-- **NX_SNMP_ERROR** (0X100) błąd podczas wysyłania pułapki SNMP.
-- **NX_NOT_ENABLED** (0X14) SNMPv3 nie jest włączona.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślny wysyłanie pułapki SNMP.
+- **NX_SNMP_ERROR** (0x100) Błąd wysyłania pułapki SNMP.
+- **NX_NOT_ENABLED** (0x14) SNMPv3 nie jest włączony.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -1591,7 +1591,7 @@ Status =  nx_snmp_agent_trapv3_send(&my_agent, dest_ip_address, "public",
 ```
 
 ## <a name="nx_snmp_agent_trapv3_oid_send"></a>nx_snmp_agent_trapv3_oid_send
-Wysyłanie pułapki SNMPv3 Określanie identyfikatora OID bezpośrednio 
+Wysyłanie pułapki SNMPv3 z bezpośrednim określeniem OID 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1604,24 +1604,24 @@ UINT nx_snmp_agent_trapv3_oid_send(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pułapki SNMPv3 do menedżera SNMP pod określonym adresem IP (tylko IPv4) i umożliwia obiektowi wywołującemu bezpośrednie określenie identyfikatora OID. Preferowaną metodą wysyłania pułapki SNMP z określonym identyfikatorem OID w NetX Duo jest użycie usługi *nxd_snmp_agent_trapv3_oid_send* . *nx_snmp_agent_trapv3_oid_ Send* jest zawarty w NetX Duo do obsługi istniejących aplikacji agenta SNMP NetX.
+Ta usługa wysyła pułapkę SNMPv3 do Menedżera SNMP pod określonym adresem IP (tylko IPv4) i umożliwia obiektowi wywołującemu bezpośrednie określenie OID. Preferowaną metodą wysyłania pułapki SNMP z określonym OID w NetX Duo *jest* użycie nxd_snmp_agent_trapv3_oid_send danych. *nx_snmp_agent_trapv3_oid_ jest dołączony* do usługi NetX Duo w celu obsługi istniejących aplikacji agenta NetX SNMP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **IP_address** Adres IP menedżera SNMP.
-- **Nazwa użytkownika** Nazwa Wspólnoty (username).
-- **Identyfikator OID** Wskaźnik do buforu zawierającego identyfikator OID.
-- **elapsed_time** System czasu został osiągnięty (sysUpTime).
-- **object_list_ptr** Tablica obiektów i ich skojarzone wartości do uwzględnienia w pułapki SNMP. Lista została zakończona NX_NULL.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **ip_address** Adres IP menedżera SNMP.
+- **nazwa** Community nazwa użytkownika (nazwa użytkownika).
+- **oid** Wskaźnik do buforu zawierającego OID.
+- **elapsed_time** System czasu został w górę (sysUpTime).
+- **object_list_ptr** Tablica obiektów i skojarzonych z nimi wartości do dołączona do pułapki SNMP. Lista zostanie NX_NULL zakończona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie pułapki SNMP.
-- **NX_SNMP_ERROR** (0X100) błąd podczas wysyłania pułapki SNMP.
-- **NX_PTR_ERROR** (0X16) Nieprawidłowy wskaźnik agenta lub parametru SNMP.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy docelowy adres IP.
-- **NX_OPTION_ERROR** (0X0a) nieprawidłowy parametr.
+- **NX_SUCCESS** (0x00) Pomyślny wysyłanie pułapki SNMP.
+- **NX_SNMP_ERROR** (0x100) Błąd wysyłania pułapki SNMP.
+- **NX_PTR_ERROR** (0x16) Nieprawidłowy agent SNMP lub wskaźnik parametru.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy docelowy adres IP.
+- **NX_OPTION_ERROR** (0x0a) Nieprawidłowy parametr.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1656,15 +1656,15 @@ UINT nxd_snmp_agent_trapv3_send(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pułapkę SNMP do menedżera SNMP na określonym adresie IP. Ta Pułapka jest zasadniczo taka sama jak pułapka SNMP v2, z wyjątkiem tego, że format komunikatu pułapki jest zawarty w jednostce PDU protokołu SNMP v3.
+Ta usługa wysyła pułapkę SNMP do Menedżera SNMP pod określonym adresem IP. Ta pułapka jest zasadniczo taka sama jak pułapka SNMP v2, z tą różnicą, że format komunikatu pułapki jest zawarty w pdu SNMP v3.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **IP_address** Adres IP (IPv4 lub IPv6) menedżera SNMP.
-- **Nazwa użytkownika** Nazwa Wspólnoty (username).
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **ip_address** Adres IP (IPv4 lub IPv6) menedżera SNMP.
+- **nazwa** Community nazwa użytkownika (nazwa użytkownika).
 - **trap_type**  
-   Typ żądanego pułapki. Standardowe zdarzenia to:
+   Żądany typ pułapki. Zdarzenia standardowe to:
    - NX_SNMP_TRAP_COLDSTART (0)
    - NX_SNMP_TRAP_WARMSTART (1)
    - NX_SNMP_TRAP_LINKDOWN (2)
@@ -1672,18 +1672,18 @@ Ta usługa wysyła pułapkę SNMP do menedżera SNMP na określonym adresie IP. 
    - NX_SNMP_TRAP_AUTHENTICATE_FAILURE (4)
    - NX_SNMP_TRAP_EGPNEIGHBORLOSS (5)  
    W przypadku danych zastrzeżonych:
-   - NX_SNMP_TRAP_CUSTOM (0xFFFFFFFF) (zdefiniowane w *nxd_snmp. h*)
+   - NX_SNMP_TRAP_CUSTOM (0xFFFFFFFF) (zdefiniowane w *nxd_snmp.h*)
 
-- **elapsed_time** System czasu został osiągnięty (sysUpTime).
-- **object_list_ptr** Tablica obiektów i ich skojarzone wartości do uwzględnienia w pułapki SNMP. Lista została zakończona NX_NULL.
+- **elapsed_time** System czasu został w górę (sysUpTime).
+- **object_list_ptr** Tablica obiektów i skojarzonych z nimi wartości do dołączona do pułapki SNMP. Lista zostanie NX_NULL zakończona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie pułapki SNMP.
-- **NX_SNMP_ERROR** (0X100) błąd podczas wysyłania pułapki SNMP.
-- **NX_NOT_ENABLED** (0X14) SNMPv3 nie jest włączona.
-- **NX_SNMP_INVALID_IP_PROTOCOL_ERROR** (0x104) nieobsługiwana wersja protokołu IP
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Pomyślny wysyłanie pułapki SNMP.
+- **NX_SNMP_ERROR** (0x100) Błąd wysyłania pułapki SNMP.
+- **NX_NOT_ENABLED** (0x14) SNMPv3 nie jest włączony.
+- **NX_SNMP_INVALID_IP_PROTOCOL_ERROR** (0x104) Nieobsługiwana wersja adresu IP
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1714,7 +1714,7 @@ Status =  nxd_snmp_agent_trapv3_send(&my_agent, &dest_ip_address, "public",
 ```
 
 ## <a name="nxd_snmp_agent_trapv3_oid_send"></a>nxd_snmp_agent_trapv3_oid_send
-Wysyłanie pułapki SNMPv3 Określanie identyfikatora OID bezpośrednio 
+Wysyłanie pułapki SNMPv3 z bezpośrednim określeniem OID 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1728,23 +1728,23 @@ UINT nxd_snmp_agent_trapv3_oid_send(NX_SNMP_AGENT *agent_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła pułapki SNMPv3 do menedżera SNMP przy użyciu określonego adresu IP (IPv4/IPv6) i umożliwia obiektowi wywołującemu bezpośrednie określenie identyfikatora OID.
+Ta usługa wysyła pułapkę SNMPv3 do Menedżera SNMP pod określonym adresem IP (IPv4/IPv6) i umożliwia obiektowi wywołującemu bezpośrednie określenie OID.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP.
-- **IP_address** Wskaźnik na adres IP menedżera SNMP.
-- **Nazwa użytkownika** Nazwa użytkownika (nazwa Wspólnoty).
-- **Identyfikator OID** Wskaźnik do buforu zawierającego identyfikator OID.
-- **elapsed_time** System czasu został osiągnięty (sysUpTime).
-- **object_list_ptr** Tablica obiektów i ich skojarzone wartości do uwzględnienia w pułapki SNMP. Lista została zakończona NX_NULL.
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP.
+- **ip_address** Wskaźnik do adresu IP menedżera SNMP.
+- **nazwa użytkownika** Nazwa użytkownika (nazwa społeczności).
+- **oid** Wskaźnik do buforu zawierającego OID.
+- **elapsed_time** System czasu został w górę (sysUpTime).
+- **object_list_ptr** Tablica obiektów i skojarzonych z nimi wartości do dołączona do pułapki SNMP. Lista zostanie NX_NULL zakończona.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne wysłanie pułapki SNMP.
-- **NX_SNMP_ERROR** (0X100) błąd podczas wysyłania pułapki SNMP.
-- **NX_PTR_ERROR** (0X16) Nieprawidłowy wskaźnik agenta lub parametru SNMP.
-- **NX_IP_ADDRESS_ERROR** (0X21) nieprawidłowy docelowy adres IP.
+- **NX_SUCCESS** (0x00) Pomyślny wysyłanie pułapki SNMP.
+- **NX_SNMP_ERROR** (0x100) Błąd wysyłania pułapki SNMP.
+- **NX_PTR_ERROR** (0x16) Nieprawidłowy agent SNMP lub wskaźnik parametru.
+- **NX_IP_ADDRESS_ERROR** (0x21) Nieprawidłowy docelowy adres IP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1770,7 +1770,7 @@ Status =  nxd_snmp_agent_trapv3_oid_send(&my_agent, &ip_address,
 /* If status is NX_SUCCESS the SNMP trap has been sent.  */
 ```
 ## <a name="nx_snmp_agent_v3_context_boots_set"></a>nx_snmp_agent_v3_context_boots_set
-Ustaw liczbę ponownych uruchomień (Jeśli włączono funkcję SNMPv3)
+Ustaw liczbę ponownych uruchomień (jeśli włączono protokół SNMPv3)
 
 ### <a name="prototype"></a>Prototype
 
@@ -1781,22 +1781,22 @@ UINT nx_snmp_agent_v3_context_boots_set(NX_SNMP_AGENT *agent_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia liczbę ponownych uruchomień zarejestrowanych przez agenta SNMP. Ta usługa jest dostępna tylko wtedy, gdy dla agenta SNMP jest włączona funkcja SNMPv3, ponieważ liczba rozruchowych jest używana tylko w protokole SNMPv3.
+Ta usługa ustawia liczbę ponownych uruchomień zarejestrowanych przez agenta SNMP. Ta usługa jest dostępna tylko wtedy, gdy protokół SNMPv3 jest włączony dla agenta SNMP, ponieważ liczba rozruchów jest używana tylko w protokole SNMPv3.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **agent_ptr** Wskaźnik do bloku sterowania agentami SNMP
-- **rozruch** Wartość, dla której ma zostać ustawiona liczba rozruchowych agentów SNMP
+- **agent_ptr** Wskaźnik do bloku sterowania agenta SNMP
+- **boots (uruchamia się)** Wartość, na która ma być ustawiona liczba rozruchów agenta SNMP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawił liczbę rozruchów
-- **NX_SNMP_ERROR** (0x100) — Ustawianie błędu liczby rozruchowych
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Pomyślnie ustawiono liczbę rozruchów
+- **NX_SNMP_ERROR** (0x100) Liczba rozruchów ustawienia błędu
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -1813,7 +1813,7 @@ if (my_agent.nx_snmp_agent_v3_enabled == NX_TRUE)
 ```
 
 ## <a name="nx_snmp_object_compare"></a>nx_snmp_object_compare
-Porównaj dwa obiekty 
+Porównywanie dwóch obiektów 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1823,25 +1823,25 @@ UINT nx_snmp_object_compare(UCHAR *object, UCHAR *reference_object);
 
 ### <a name="description"></a>Opis
 
-Ta usługa porównuje podany identyfikator obiektu z IDENTYFIKATORem obiektu odwołania. Oba identyfikatory obiektów znajdują się w notacji typu ASCII SMI, np. oba obiekty muszą zaczynać się od ciągu ASCII "1.3.6".
+Ta usługa porównuje podany identyfikator obiektu z identyfikatorem obiektu referencyjnego. Oba identyfikatory obiektów znajdują się w notacji SMI ASCII, np. oba obiekty muszą zaczynać się ciągiem ASCII "1.3.6".
 
-Ta usługa jest przestarzała. Deweloperzy są zachęcani do migracji do *nx_snmp_object_compare_extended ().*
+Ta usługa jest przestarzała. Zachęcamy deweloperów do migracji do *nx_snmp_object_compare_extended().*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **obiekt** Wskaźnik do obiektu ID.
-- **reference_object** Wskaźnik na identyfikator obiektu odwołania.
+- **obiekt** Wskaźnik do identyfikatora obiektu.
+- **reference_object** Wskaźnik do identyfikatora obiektu odniesienia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt jest zgodny z obiektem Reference.
-- **NX_SNMP_NEXT_ENTRY** (0x101) obiekt jest mniejszy niż obiekt Reference.
-- **NX_SNMP_ERROR** (0x100) obiekt jest większy niż obiekt Reference.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Obiekt pasuje do obiektu odwołania.
+- **NX_SNMP_NEXT_ENTRY** (0x101) Obiekt jest mniejszy niż obiekt odwołania.
+- **NX_SNMP_ERROR** (0x100) Obiekt jest większy niż obiekt odwołania.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -1857,7 +1857,7 @@ Status =  nx_snmp_object_compare(requested_object, "1.3.6.1.2.1.1.1.0");
 ```
 
 ## <a name="nx_snmp_object_compare_extended"></a>nx_snmp_object_compare_extended
-Porównaj dwa obiekty 
+Porównywanie dwóch obiektów 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1869,27 +1869,27 @@ UINT nx_snmp_object_compare_extended(UCHAR *request_object,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa porównuje podany identyfikator obiektu z IDENTYFIKATORem obiektu odwołania. Oba identyfikatory obiektów znajdują się w notacji typu ASCII SMI, np. oba obiekty muszą zaczynać się od ciągu ASCII "1.3.6".
+Ta usługa porównuje podany identyfikator obiektu z identyfikatorem obiektu referencyjnego. Oba identyfikatory obiektów znajdują się w notacji SMI ASCII, np. oba obiekty muszą zaczynać się ciągiem ASCII "1.3.6".
 
-Ta usługa zastępuje *nx_snmp_object_compare ().* Ta wersja wymaga, aby wywołujący dostarczali informacje o długości.
+Ta usługa zastępuje *nx_snmp_object_compare().* Ta wersja wymaga, aby wywołujący podali informacje o długości.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **request_object** Wskaźnik do żądania identyfikatora obiektu.
 - **request_object_length** Długość identyfikatora obiektu żądania.
-- **reference_object** Wskaźnik na identyfikator obiektu odwołania.
-- **reference_object_length** Długość identyfikatora obiektu odwołania.
+- **reference_object** Wskaźnik do identyfikatora obiektu odniesienia.
+- **reference_object_length** Długość identyfikatora obiektu odniesienia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt jest zgodny z obiektem Reference.
-- **NX_SNMP_NEXT_ENTRY** (0x101) obiekt jest mniejszy niż obiekt Reference.
-- **NX_SNMP_ERROR** (0x100) obiekt jest większy niż obiekt Reference.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Obiekt pasuje do obiektu odwołania.
+- **NX_SNMP_NEXT_ENTRY** (0x101) Obiekt jest mniejszy niż obiekt odwołania.
+- **NX_SNMP_ERROR** (0x100) Obiekt jest większy niż obiekt odwołania.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -1916,22 +1916,22 @@ UINT  nx_snmp_object_copy(UCHAR *source_object_name,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa kopiuje obiekt źródłowy w notacji programu ASCII SIM do obiektu docelowego.
+Ta usługa kopiuje obiekt źródłowy w notacji SIM ASCII do obiektu docelowego.
 
-Ta usługa jest przestarzała. Deweloperzy są zachęcani do migracji do *nx_snmp_object_copy_extended ().*
+Ta usługa jest przestarzała. Zachęcamy deweloperów do migracji do *nx_snmp_object_copy_extended().*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **source_object_name** Wskaźnik na identyfikator obiektu źródłowego.
-- **destination_object_name** Wskaźnik do docelowego identyfikatora obiektu.
+- **source_object_name** Wskaźnik do identyfikatora obiektu źródłowego.
+- **destination_object_name** Wskaźnik do identyfikatora obiektu docelowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **rozmiar** Liczba bajtów skopiowanych do nazwy docelowej. Jeśli błąd, zwracana jest wartość zero.
+- **rozmiar** Liczba bajtów skopiowanych do nazwy docelowej. Jeśli wystąpi błąd, zwracane jest zero.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -1956,24 +1956,24 @@ UINT  nx_snmp_object_copy_extended(UCHAR *source_object_name,
 
 ### <a name="description"></a>Opis
 
-Ta usługa kopiuje obiekt źródłowy w notacji programu ASCII SIM do obiektu docelowego.
+Ta usługa kopiuje obiekt źródłowy w notacji SIM ASCII do obiektu docelowego.
 
-Ta usługa zastępuje *nx_snmp_object_copy ().* Ta wersja wymaga, aby wywołujący dostarczali informacje o długości.
+Ta usługa zastępuje *nx_snmp_object_copy().* Ta wersja wymaga, aby wywołujący podali informacje o długości.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **source_object_name** Wskaźnik na identyfikator obiektu źródłowego.
+- **source_object_name** Wskaźnik do identyfikatora obiektu źródłowego.
 - **source_object_name_length** Długość identyfikatora obiektu źródłowego.
-- **destination_object_name_buffer** Wskaźnik do buforu obiektów docelowych.
+- **destination_object_name_buffer** Wskaźnik do buforu obiektu docelowego.
 - **destination_object_name_buffer_size** Rozmiar buforu obiektu docelowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **rozmiar** Liczba bajtów skopiowanych do nazwy docelowej. Jeśli błąd, zwracana jest wartość zero.
+- **rozmiar** Liczba bajtów skopiowanych do nazwy docelowej. Jeśli wystąpi błąd, zwracane jest zero.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -1999,7 +1999,7 @@ UINT  nx_snmp_object_counter_get(VOID *source_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera obiekt licznika pod adresem określonym przez wskaźnik źródła i umieszcza go w strukturze danych obiektów NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa pobiera obiekt licznika pod adresem określonym przez wskaźnik źródłowy i umieszcza go w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -2008,12 +2008,12 @@ Ta usługa pobiera obiekt licznika pod adresem określonym przez wskaźnik źró
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt licznika został pomyślnie pobrany.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Obiekt licznika został pomyślnie pobrany.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2037,22 +2037,22 @@ UINT  nx_snmp_object_counter_set(VOID *destination_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia licznik na adres określony przez wskaźnik docelowy z wartością licznika w strukturze danych obiektów NetX. Ta procedura jest zazwyczaj wywoływana z procedury wywołania zwrotnego ustawiania aplikacji.
+Ta usługa ustawia licznik pod adresem określonym przez wskaźnik docelowy z wartością licznika w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji SET.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **destination_ptr** Wskaźnik do elementu docelowego licznika.
+- **destination_ptr** Wskaźnik do miejsca docelowego licznika.
 - **object_data** Wskaźnik do struktury obiektu źródłowego licznika.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt licznika został pomyślnie ustawiony.
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) Nieprawidłowy typ obiektu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Obiekt licznika został pomyślnie ustawiony.
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy typ obiektu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2066,7 +2066,7 @@ status =  nx_snmp_object_counter_set(&ifInOctets, my_object);
 ```
 
 ## <a name="nx_snmp_object_counter64_get"></a>nx_snmp_object_counter64_get
-Pobierz 64-bitowy obiekt licznika 
+Pobierz obiekt licznika 64-bitowego 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2077,7 +2077,7 @@ UINT  nx_snmp_object_counter64_get(VOID *source_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera 64-bitowy obiekt licznika pod adresem określonym przez wskaźnik źródła i umieszcza go w strukturze danych obiektów NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa pobiera 64-bitowy obiekt licznika pod adresem określonym przez wskaźnik źródłowy i umieszcza go w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -2086,12 +2086,12 @@ Ta usługa pobiera 64-bitowy obiekt licznika pod adresem określonym przez wska�
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt licznika został pomyślnie pobrany.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt licznika został pomyślnie pobrany.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2105,7 +2105,7 @@ status =  nx_snmp_object_counter64_get(&my_64_bit_counter, my_object);
 ```
 
 ## <a name="nx_snmp_object_counter64_set"></a>nx_snmp_object_counter64_set
-Ustaw 64-bitowy obiekt licznika 
+Ustaw obiekt licznika 64-bitowego 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2115,22 +2115,22 @@ UINT  nx_snmp_object_counter64_set(VOID *destination_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia 64-bitowy licznik na adres określony przez wskaźnik docelowy z wartością licznika w strukturze danych obiektów NetX. Ta procedura jest zazwyczaj wywoływana z procedury wywołania zwrotnego ustawiania aplikacji.
+Ta usługa ustawia licznik 64-bitowy pod adresem określonym przez wskaźnik docelowy z wartością licznika w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji SET.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **destination_ptr** Wskaźnik do elementu docelowego licznika.
+- **destination_ptr** Wskaźnik do miejsca docelowego licznika.
 - **object_data** Wskaźnik do struktury obiektu źródłowego licznika.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt licznika został pomyślnie ustawiony.
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) Nieprawidłowy typ obiektu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy.
+- **NX_SUCCESS** (0x00) Obiekt licznika został pomyślnie ustawiony.
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy typ obiektu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2143,7 +2143,7 @@ status =  nx_snmp_object_counter64_set(&my_64_bit_counter, my_object);
 ```
 
 ## <a name="nx_snmp_object_end_of_mib"></a>nx_snmp_object_end_of_mib
-Ustaw wartość końca MIB 
+Ustawianie wartości końca mib 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2154,7 +2154,7 @@ UINT  nx_snmp_object_end_of_mib(VOID *not_used_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy obiekt sygnalizujący koniec MIB i jest zazwyczaj wywoływany z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa tworzy obiekt sygnalizjący koniec mib i jest zwykle wywoływany z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -2163,12 +2163,12 @@ Ta usługa tworzy obiekt sygnalizujący koniec MIB i jest zazwyczaj wywoływany 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt końca bazy MIB został pomyślnie skompilowany.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt końca mib został pomyślnie sbudowaną.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2180,7 +2180,7 @@ status =  nx_snmp_object_end_of_mib(NX_NULL, my_object);
 ```
 
 ## <a name="nx_snmp_object_gauge_get"></a>nx_snmp_object_gauge_get
-Pobierz obiekt miernika 
+Uzyskiwanie obiektu miernika 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2191,7 +2191,7 @@ UINT  nx_snmp_object_gauge_get(VOID *source_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera obiekt miernika pod adresem określonym przez wskaźnik źródła i umieszcza go w strukturze danych obiektów NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa pobiera obiekt miernika pod adresem określonym przez wskaźnik źródłowy i umieszcza go w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -2200,12 +2200,12 @@ Ta usługa pobiera obiekt miernika pod adresem określonym przez wskaźnik źró
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt miernika został pomyślnie pobrany.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt miernika został pomyślnie pobrany.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2218,7 +2218,7 @@ status =  nx_snmp_object_gauge_get(&ifSpeed, my_object);
 ```
 
 ## <a name="nx_snmp_object_gauge_set"></a>nx_snmp_object_gauge_set
-Ustaw obiekt miernika 
+Ustawianie obiektu miernika 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2229,22 +2229,22 @@ UINT  nx_snmp_object_gauge_set(VOID *destination_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia miernik na adres określony przez wskaźnik docelowy z wartością miernika w strukturze danych obiektów NetX. Ta procedura jest zazwyczaj wywoływana z procedury wywołania zwrotnego ustawiania aplikacji.
+Ta usługa ustawia miernik pod adresem określonym przez wskaźnik docelowy przy użyciu wartości miernika w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji SET.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **destination_ptr** Wskaźnik do miejsca docelowego miernika.
-- **object_data** Wskaźnik do struktury obiektu źródłowego miernika.
+- **object_data** Wskaźnik do miernika struktury obiektu źródłowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt miernika został pomyślnie ustawiony.
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) Nieprawidłowy typ obiektu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt miernika został pomyślnie ustawiony.
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy typ obiektu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2256,7 +2256,7 @@ status =  nx_snmp_object_gauge_set(&my_gauge, my_object);
 ```
 
 ## <a name="nx_snmp_object_id_get"></a>nx_snmp_object_id_get
-Pobierz identyfikator obiektu 
+Uzyskiwanie identyfikatora obiektu 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2267,7 +2267,7 @@ UINT  nx_snmp_object_id_get(VOID *source_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera identyfikator obiektu (w notacji ASCII SIM) pod adresem określonym przez wskaźnik źródła i umieszcza go w strukturze danych obiektów NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa pobiera identyfikator obiektu (w notacji SIM ASCII) pod adresem określonym przez wskaźnik źródłowy i umieszcza go w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -2276,13 +2276,13 @@ Ta usługa Pobiera identyfikator obiektu (w notacji ASCII SIM) pod adresem okre�
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) identyfikator obiektu został pomyślnie pobrany.
-- **NX_SNMP_ERROR** (0X100) Nieprawidłowa długość obiektu
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Identyfikator obiektu został pomyślnie pobrany.
+- **NX_SNMP_ERROR** (0x100) Nieprawidłowa długość obiektu
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2295,7 +2295,7 @@ status =  nx_snmp_object_id_get(&sysObjectID, my_object);
 ```
 
 ## <a name="nx_snmp_object_id_set"></a>nx_snmp_object_id_set
-Ustaw identyfikator obiektu 
+Ustawianie identyfikatora obiektu 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2306,22 +2306,22 @@ UINT  nx_snmp_object_id_set(VOID *destination_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia identyfikator obiektu (w notacji XML SIM) na adres określony przez wskaźnik docelowy z IDENTYFIKATORem obiektu w strukturze danych obiektów NetX. Ta procedura jest zazwyczaj wywoływana z procedury wywołania zwrotnego ustawiania aplikacji.
+Ta usługa ustawia identyfikator obiektu (w notacji SIM ASCII) pod adresem określonym przez wskaźnik docelowy z identyfikatorem obiektu w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji SET.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **destination_ptr** Wskaźnik do obiektu docelowego o IDENTYFIKATORze.
+- **destination_ptr** Wskaźnik do miejsca docelowego identyfikatora obiektu.
 - **object_data** Wskaźnik do struktury obiektu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) identyfikator obiektu został pomyślnie ustawiony.
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) Nieprawidłowy typ obiektu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Identyfikator obiektu został pomyślnie ustawiony.
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy typ obiektu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2334,7 +2334,7 @@ status =  nx_snmp_object_id_set(my_object_id, my_object);
 ```
 
 ## <a name="nx_snmp_object_integer_get"></a>nx_snmp_object_integer_get
-Pobierz obiekt typu Integer 
+Uzyskiwanie obiektu liczby całkowitej 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2345,21 +2345,21 @@ UINT  nx_snmp_object_integer_get(VOID *source_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera obiekt liczby całkowitej na adres określony przez wskaźnik źródła i umieszcza go w strukturze danych obiektów NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa pobiera obiekt całkowity pod adresem określonym przez wskaźnik źródłowy i umieszcza go w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **source_ptr** Wskaźnik na źródło wartości całkowitej.
+- **source_ptr** Wskaźnik do źródła liczb całkowitych.
 - **object_data** Wskaźnik do struktury obiektu docelowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnie pobrano obiekt typu Integer.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt całkowity został pomyślnie pobrany.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2372,7 +2372,7 @@ status =  nx_snmp_object_integer_get(&sysServices, my_object);
 ```
 
 ## <a name="nx_snmp_object_integer_set"></a>nx_snmp_object_integer_set
-Ustaw obiekt liczb całkowitych 
+Ustawianie obiektu liczby całkowitej 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2383,22 +2383,22 @@ UINT  nx_snmp_object_integer_set(VOID *destination_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia liczbę całkowitą na adres określony przez wskaźnik docelowy za pomocą wartości całkowitej w strukturze danych obiektów NetX. Ta procedura jest zazwyczaj wywoływana z procedury wywołania zwrotnego ustawiania aplikacji.
+Ta usługa ustawia liczbę całkowitą pod adresem określonym przez wskaźnik docelowy przy użyciu wartości całkowitej w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji SET.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **destination_ptr** Wskaźnik na miejsce docelowe liczby całkowitej.
-- **object_data** Wskaźnik do struktury obiektów źródłowych w postaci liczby całkowitej.
+- **destination_ptr** Wskaźnik do miejsca docelowego liczby całkowitej.
+- **object_data** Wskaźnik do struktury obiektu źródłowego liczby całkowitej.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnie ustawiono obiekt typu Integer.
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) Nieprawidłowy typ obiektu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt całkowity został pomyślnie ustawiony.
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy typ obiektu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2410,7 +2410,7 @@ status =  nx_snmp_object_integer_set(&ifAdminStatus, my_object);
 ```
 
 ## <a name="nx_snmp_object_ip_address_get"></a>nx_snmp_object_ip_address_get
-Pobierz obiekt adresu IP (tylko IPv4)
+Uzyskiwanie obiektu adresu IP (tylko protokół IPv4)
 
 ### <a name="prototype"></a>Prototype
 
@@ -2421,21 +2421,21 @@ UINT  nx_snmp_object_ip_address_get(VOID *source_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera obiekt adresu IP pod adresem określonym przez wskaźnik źródła i umieszcza go w strukturze danych obiektów NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa pobiera obiekt adresu IP pod adresem określonym przez wskaźnik źródłowy i umieszcza go w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **source_ptr** Wskaźnik na źródło adresów IPv4.
+- **source_ptr** Wskaźnik do źródła adresu IPv4.
 - **object_data** Wskaźnik do struktury obiektu docelowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt adresu IP został pomyślnie pobrany.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt adresu IP został pomyślnie pobrany.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2448,7 +2448,7 @@ status =  nx_snmp_object_ip_address_get(&ipAdEntAddr, my_object);
 ```
 
 ## <a name="nx_snmp_object_ipv6_address_get"></a>nx_snmp_object_ipv6_address_get
-Pobieranie obiektu adresu IP (tylko protokół IPv6)
+Uzyskiwanie obiektu adresu IP (tylko protokół IPv6)
 
 ### <a name="prototype"></a>Prototype
 
@@ -2460,24 +2460,24 @@ UINT  nx_snmp_object_ipv6_address_get(VOID *source_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera obiekt adresu IPv6 pod adresem określonym przez wskaźnik źródła i umieszcza go w strukturze danych obiektów NetX.
-Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa pobiera obiekt adresu IPv6 pod adresem określonym przez wskaźnik źródłowy i umieszcza go w strukturze danych obiektu NetX.
+Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **source_ptr** Wskaźnik na źródło adresów IPv6.
+- **source_ptr** Wskaźnik do źródła adresu IPv6.
 - **object_data** Wskaźnik do struktury obiektu docelowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt adresu IP został pomyślnie pobrany.
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) nieprawidłowy wejściowy kod obiektu SNMP
-- **NX_NOT_ENABLED** (0X14) protokół IPv6 nie jest włączony
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt adresu IP został pomyślnie pobrany.
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy wejściowy kod obiektu SNMP
+- **NX_NOT_ENABLED** (0x14) protokół IPv6 nie jest włączony
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2501,22 +2501,22 @@ UINT  nx_snmp_object_ip_address_set(VOID *destination_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia adres IPv4 na adres określony przez wskaźnik docelowy przy użyciu adresu IP w strukturze danych obiektów NetX. Ta procedura jest zazwyczaj wywoływana z procedury wywołania zwrotnego ustawiania aplikacji.
+Ta usługa ustawia adres IPv4 pod adresem określonym przez wskaźnik docelowy przy użyciu adresu IP w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji SET.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **destination_ptr** Wskaźnik na adres IP, który ma zostać ustawiony.
-- **object_data** Wskaźnik do struktury obiektów adresów IP.
+- **destination_ptr** Wskaźnik do adresu IP do ustawienia.
+- **object_data** Wskaźnik do struktury obiektu adresu IP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt adresu IP został pomyślnie ustawiony.
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) Nieprawidłowy typ obiektu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt adresu IP został pomyślnie ustawiony.
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy typ obiektu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2540,23 +2540,23 @@ UINT  nx_snmp_object_ipv6_address_set(VOID *destination_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia adres IPv6 pod adresem wskazanym przez wskaźnik docelowy przy użyciu adresu IP w strukturze danych obiektów NetX. Ta procedura jest zazwyczaj wywoływana z procedury wywołania zwrotnego ustawiania aplikacji.
+Ta usługa ustawia adres IPv6 pod adresem określonym przez wskaźnik docelowy przy użyciu adresu IP w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji SET.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **destination_ptr** Wskaźnik na adres IP, który ma zostać ustawiony.
-- **object_data** Wskaźnik do struktury obiektów adresów IP.
+- **destination_ptr** Wskaźnik do adresu IP do ustawienia.
+- **object_data** Wskaźnik do struktury obiektu adresu IP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) adres IPv6 został pomyślnie ustawiony.
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) Nieprawidłowy typ obiektu.
-- **NX_NOT_ENABLED** (0X14) protokół IPv6 nie jest włączony
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Pomyślnie ustawiono adres IPv6.
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy typ obiektu.
+- **NX_NOT_ENABLED** (0x14) IPv6 nie jest włączony
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2568,7 +2568,7 @@ status =  nx_snmp_object_ipv6_address_set(&atNetworkAddress, my_object);
 ```
 
 ## <a name="nx_snmp_object_no_instance"></a>nx_snmp_object_no_instance
-Ustaw obiekt bez wystąpienia 
+Ustawianie obiektu bez wystąpienia 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2579,7 +2579,7 @@ UINT  nx_snmp_object_no_instance(VOID *not_used_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy obiekt sygnalizujący, że nie ma żadnego wystąpienia określonego obiektu i jest zazwyczaj wywoływany z procedury wywołania zwrotnego GET lub GetNext Application.
+Ta usługa tworzy obiekt sygnalizjący, że nie istnieje żadne wystąpienie określonego obiektu i jest zwykle wywoływany z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -2588,12 +2588,12 @@ Ta usługa tworzy obiekt sygnalizujący, że nie ma żadnego wystąpienia okreś
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt bez wystąpienia został pomyślnie skompilowany.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt no-instance został pomyślnie sbudowaną.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2605,7 +2605,7 @@ status =  nx_snmp_object_no_instance(NX_NULL, my_object);
 ```
 
 ## <a name="nx_snmp_object_not_found"></a>nx_snmp_object_not_found
-Nie znaleziono obiektu 
+Ustaw nie znaleziono obiektu 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2616,7 +2616,7 @@ UINT  nx_snmp_object_not_found(VOID *not_used_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy obiekt sygnalizujący, że obiekt nie został odnaleziony i jest zazwyczaj wywoływany z procedury wywołania zwrotnego GET lub GetNext Application.
+Ta usługa tworzy obiekt sygnalizjący, że obiekt nie został znaleziony i jest zwykle wywoływany z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -2625,12 +2625,12 @@ Ta usługa tworzy obiekt sygnalizujący, że obiekt nie został odnaleziony i je
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt, który nie został znaleziony, został pomyślnie skompilowany.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Nie znaleziono obiektu został pomyślnie s zbudowana.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2642,7 +2642,7 @@ status =  nx_snmp_object_not_found(NX_NULL, my_object);
 ```
 
 ## <a name="nx_snmp_object_octet_string_get"></a>nx_snmp_object_octet_string_get
-Pobieranie obiektu ciągu oktetowego 
+Pobierz obiekt ciągu oktetu 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2653,22 +2653,22 @@ UINT  nx_snmp_object_octet_string_get(VOID *source_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera ciąg oktetowy pod adresem określonym przez wskaźnik źródła i umieszcza go w strukturze danych obiektów NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa pobiera ciąg oktetu pod adresem określonym przez wskaźnik źródłowy i umieszcza go w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **source_ptr** Wskaźnik na źródło ciągu oktetowego.
+- **source_ptr** Wskaźnik do źródła ciągu oktetu.
 - **object_data** Wskaźnik do struktury obiektu docelowego.
-- **Długość** Liczba bajtów w ciągu oktetu.
+- **długość** Liczba bajtów w ciągu oktetu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt ciągu oktetowego został pomyślnie pobrany.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt ciągu oktetu został pomyślnie pobrany.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2681,7 +2681,7 @@ status =  nx_snmp_object_octet_string_get(ifPhysAddress, my_object, 6);
 ```
 
 ## <a name="nx_snmp_object_octet_string_set"></a>nx_snmp_object_octet_string_set
-Ustawianie obiektu ciągu oktetowego 
+Ustaw obiekt ciągu oktetu 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2692,22 +2692,22 @@ UINT  nx_snmp_object_octet_string_set(VOID *destination_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia ciąg oktetu na adres określony przez wskaźnik docelowy z ciągiem oktetu w strukturze danych obiektów NetX. Ta procedura jest zazwyczaj wywoływana z procedury wywołania zwrotnego ustawiania aplikacji.
+Ta usługa ustawia ciąg oktetu na adres określony przez wskaźnik docelowy z ciągiem oktetu w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji SET.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **destination_ptr** Wskaźnik na miejsce docelowe ciągu oktetowego.
-- **object_data** Wskaźnik na strukturę obiektu źródłowego ciągu oktetowego.
+- **destination_ptr** Wskaźnik do miejsca docelowego ciągu oktetu.
+- **object_data** Wskaźnik do struktury obiektu źródłowego ciągu oktetu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt ciągu oktetowego został pomyślnie ustawiony.
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) Nieprawidłowy typ obiektu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt ciągu oktetu został pomyślnie ustawiony.
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy typ obiektu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2731,7 +2731,7 @@ UINT  nx_snmp_object_string_get(VOID *source_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera ciąg ASCII pod adresem określonym przez wskaźnik źródła i umieszcza go w strukturze danych obiektów NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa pobiera ciąg ASCII pod adresem określonym przez wskaźnik źródłowy i umieszcza go w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -2740,13 +2740,13 @@ Ta usługa Pobiera ciąg ASCII pod adresem określonym przez wskaźnik źródła
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt ciągu ASCII został pomyślnie pobrany.
-- Ciąg **NX_SNMP_ERROR** (0x100) jest zbyt duży  
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt ciągu ASCII został pomyślnie pobrany.
+- **NX_SNMP_ERROR** (0x100) Ciąg jest zbyt duży  
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2759,7 +2759,7 @@ status =  nx_snmp_object_string_get(sysDescr, my_object);
 ```
 
 ## <a name="nx_snmp_object_string_set"></a>nx_snmp_object_string_set
-Ustaw obiekt ciągu ASCII 
+Ustawianie obiektu ciągu ASCII 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2770,7 +2770,7 @@ UINT  nx_snmp_object_string_set(VOID *destination_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia ciąg ASCII na adres określony przez wskaźnik docelowy z ciągiem ASCII w strukturze danych obiektów NetX. Ta procedura jest zazwyczaj wywoływana z procedury wywołania zwrotnego ustawiania aplikacji.
+Ta usługa ustawia ciąg ASCII pod adresem określonym przez wskaźnik docelowy przy użyciu ciągu ASCII w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji SET.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -2779,15 +2779,15 @@ Ta usługa ustawia ciąg ASCII na adres określony przez wskaźnik docelowy z ci
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) obiekt ciągu ASCII został pomyślnie ustawiony.
-- Ciąg **NX_SNMP_ERROR** (0x100) jest zbyt duży.
-- **NX_SNMP_ERROR_BADVALUE** (0X03) nieprawidłowy znak w ciągu
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) Nieprawidłowy typ obiektu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt ciągu ASCII został pomyślnie ustawiony.
+- **NX_SNMP_ERROR** (0x100) Ciąg jest zbyt duży.
+- **NX_SNMP_ERROR_BADVALUE** (0x03) Nieprawidłowy znak w ciągu
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy typ obiektu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2800,7 +2800,7 @@ status =  nx_snmp_object_string_set(sysContact, my_object);
 ```
 
 ## <a name="nx_snmp_object_timetics_get"></a>nx_snmp_object_timetics_get
-Pobierz obiekt timetics 
+Uzyskiwanie obiektu timetics 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2811,21 +2811,21 @@ UINT  nx_snmp_object_timetics_get(VOID *source_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera timetics pod adresem określonym przez wskaźnik źródła i umieszcza je w strukturze danych obiektów NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego GET lub GetNext aplikacji.
+Ta usługa pobiera czasy pod adresem określonym przez wskaźnik źródłowy i umieszcza je w strukturze danych obiektu NetX. Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji GET lub GETNEXT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **source_ptr** Wskaźnik do źródła timetics.
+- **source_ptr** Wskaźnik do źródła czasowego.
 - **object_data** Wskaźnik do struktury obiektu docelowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnie pobrano obiekt timetics.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt timetics został pomyślnie pobrany.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -2838,7 +2838,7 @@ status =  nx_snmp_object_timetics_get(sysUpTime, my_object);
 ```
 
 ## <a name="nx_snmp_object_timetics_set"></a>nx_snmp_object_timetics_set
-Ustaw obiekt timetics 
+Ustawianie obiektu timetics 
 
 ### <a name="prototype"></a>Prototype
 
@@ -2849,23 +2849,23 @@ UINT  nx_snmp_object_timetics_set(VOID *destination_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia zmienną timetics na adres określony przez wskaźnik docelowy z timetics w strukturze danych obiektów NetX.
-Ta procedura jest zazwyczaj wywoływana z procedury wywołania zwrotnego ustawiania aplikacji.
+Ta usługa ustawia zmienną czasową pod adresem określonym przez wskaźnik docelowy za pomocą timetics w strukturze danych obiektu NetX.
+Ta procedura jest zwykle wywoływana z procedury wywołania zwrotnego aplikacji SET.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **destination_ptr** Wskaźnik do lokalizacji docelowej timetics.
-- **object_data** Wskaźnik do timetics struktury obiektów źródłowych.
+- **destination_ptr** Wskaźnik do miejsca docelowego timetics.
+- **object_data** Wskaźnik do struktury obiektu źródłowego timetics.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnie ustawiono obiekt timetics.
-- **NX_SNMP_ERROR_WRONGTYPE** (0X07) Nieprawidłowy typ obiektu.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy
+- **NX_SUCCESS** (0x00) Obiekt timetics został pomyślnie ustawiony.
+- **NX_SNMP_ERROR_WRONGTYPE** (0x07) Nieprawidłowy typ obiektu.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 

@@ -6,23 +6,23 @@ ms.author: philmea
 ms.date: 07/09/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 89df0ab5f09be8ad50a27d23bae8b20d71caa0b4
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 6e37698ac6023b4cff6cb4fc05330a73b678ef3d2a813a706c9b821381e123db
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821822"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116797572"
 ---
 # <a name="chapter-4---description-of-mdns-services"></a>Rozdział 4 — Opis usług mDNS
 
 Ten rozdział zawiera opis wszystkich usług NetX mDNS (wymienionych poniżej).
 
 > [!NOTE]
-> W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+> W sekcji "Wartości zwracane" w poniższych  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości z pogrubieniem, a wartości bez pogrubienia są całkowicie wyłączone.
 
 ## <a name="nx_mdns_create"></a>nx_mdns_create
 
-Tworzenie wystąpienia mDNS
+Tworzenie wystąpienia sieci mDNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -41,7 +41,7 @@ UINT nx_mdns_create(NX_MDNS *mdns_ptr, NX_IP *ip_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wystąpienie mDNS dla określonego wystąpienia IP i skojarzonych zasobów. Tworzony jest również wątek do obsługi przychodzących komunikatów mDNS, reagowanie na zapytania i okresowe przesyłanie komunikatów zapytań.
+Ta usługa tworzy wystąpienie sieci mDNS dla określonego wystąpienia adresu IP i skojarzonych zasobów. Wątek jest również tworzony w celu obsługi przychodzących komunikatów mDNS, odpowiadania na zapytania i okresowego przesyłania komunikatów zapytań.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -51,16 +51,16 @@ Ta usługa tworzy wystąpienie mDNS dla określonego wystąpienia IP i skojarzon
 - **priorytet** Priorytet wątku mDNS.
 - **stack_ptr** Wskaźnik do obszaru stosu dla wątku mDNS
 - **stack_size** Rozmiar obszaru stosu.
-- **HOST_NAME** Nazwa hosta przypisana do tego węzła.
-- **local_service_cache** Miejsce do magazynowania lokalnych usług zarejestrowanych.
-- **local_service_cache_size** Rozmiar pamięci podręcznej usługi lokalnej.
-- **peer_service_cache** Odebrano miejsce do magazynowania informacji o usłudze
+- **host_name** Nazwa hosta przypisana do tego węzła.
+- **local_service_cache** Storage dla usług zarejestrowanych lokalnie.
+- **local_service_cache_size** Rozmiar lokalnej pamięci podręcznej usługi.
+- **peer_service_cache** Storage miejsca na odebrane informacje o usłudze
 - **peer_service_cache_size** Rozmiar pamięci podręcznej usługi równorzędnej
-- **probing_notify** Opcjonalna funkcja wywołania zwrotnego wywołana na końcu operacji sondowania. Powiadamia o tym, czy nazwa hosta (w przypadku włączania usługi mDNS w interfejsie lokalnym), czy nazwa usługi (po zarejestrowaniu usłudze) jest unikatowa.
+- **probing_notify** Opcjonalna funkcja wywołania zwrotnego wywoływana na końcu operacji sondowania. Powiadamia ona aplikację, czy nazwa hosta (podczas włączania sieci mDNS w interfejsie lokalnym) lub nazwa usługi (po zarejestrowaniu usługi) jest unikatowa.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie utworzył wystąpienie mDNS.
+- **NX_SUCCESS** (0x00) Pomyślnie utworzono wystąpienie sieci mDNS.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -86,7 +86,7 @@ status = nx_mdns_create(&my_mdns, &ip_0, &pool_0,
 
 ## <a name="nx_mdns_delete"></a>nx_mdns_delete
 
-Usuwanie wystąpienia programu mDNS
+Usuwanie wystąpienia sieci mDNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -96,15 +96,15 @@ UINT nx_mdns_delete(NX_MDNS *mdns_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wystąpienie usługi mDNS i zwalnia jego zasoby.
+Ta usługa usuwa wystąpienie sieci mDNS i usuwa jego zasoby.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
+- **mdns_ptr** Wskaźnik do bloku kontrolki mDNS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie usunął wystąpienie mDNS.
+- **NX_SUCCESS** (0x00) Pomyślnie usunięto wystąpienie sieci mDNS.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -122,7 +122,7 @@ status = nx_mdns_delete(&my_mdns);
 
 ## <a name="nx_mdns_enable"></a>nx_mdns_enable
 
-Uruchom usługę mDNS
+Uruchamianie usługi mDNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -132,16 +132,16 @@ UINT nx_mdns_enable(NX_MDNS *mdns_ptr, UINT interface_index);
 
 ### <a name="description"></a>Opis
 
-Ten interfejs API umożliwia włączenie usługi mDNS w określonym interfejsie fizycznym. Po włączeniu usługi moduł mDNS najpierw sonduje wszystkie unikatowe nazwy usług w sieci przed odpowiedzią na zapytania odebrane w interfejsie.
+Ten interfejs API umożliwia korzystanie z usługi mDNS w określonym interfejsie fizycznym. Po włączeniu usługi moduł mDNS najpierw sonduje wszystkie swoje unikatowe nazwy usług w sieci przed udzieleniem odpowiedzi na zapytania odebrane w interfejsie.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mdns_ptr** Wskaźnik do bloku sterowania wystąpieniem mDNS.
-- **interface_index** Indeksowanie do interfejsu, w którym usługa jest włączona
+- **mdns_ptr** Wskaźnik do bloku sterowania wystąpienia mDNS.
+- **interface_index** Indeksowanie do interfejsu, w którym ma być włączona usługa
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie włączył usługę.
+- **NX_SUCCESS** (0x00) Pomyślnie włączono usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -159,7 +159,7 @@ status = nx_mdns_enable(&my_mdns, 0);
 
 ## <a name="nx_mdns_disable"></a>nx_mdns_disable
 
-Wyłącz usługę mDNS
+Wyłączanie usługi mDNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -169,16 +169,16 @@ UINT nx_mdns_disable(NX_MDNS *mdns_ptr, UINT interface_index);
 
 ### <a name="description"></a>Opis
 
-Ten interfejs API powoduje wyłączenie usługi mDNS w określonym interfejsie fizycznym. Po wyłączeniu usługi Usługa mDNS wysyła komunikaty "pożegnania" dla każdej usługi lokalnej do sieci dołączonej do interfejsu, dzięki czemu węzły sąsiednie zostaną powiadomione.
+Ten interfejs API wyłącza usługę mDNS w określonym interfejsie fizycznym. Po wyłączeniu usługi sieci mDNS wysyłają komunikaty "do odień" dla każdej usługi lokalnej do sieci, która jest dołączona do interfejsu, dzięki czemu sąsiednie węzły są powiadamiane.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **interface_index** Indeksowanie do interfejsu, w którym usługa ma zostać wyłączona
+- **interface_index** Indeksowanie do interfejsu, w którym usługa ma być wyłączona
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie wyłączyła usługę.
+- **NX_SUCCESS** (0x00) Pomyślnie wyłączono usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -196,7 +196,7 @@ status = nx_mdns_disable(&my_mdns, 0);
 
 ## <a name="nx_mdns_cache_notify_set"></a>nx_mdns_cache_notify_set
 
-Instaluje funkcję pełnego powiadamiania pamięci podręcznej mDNS
+Instaluje funkcję pełnej powiadamiania pamięci podręcznej mDNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -208,15 +208,15 @@ UINT nx_mdns_cache_notify_set(NX_MDNS *mdns_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa instaluje funkcję wywołania zwrotnego, która jest wywoływana, gdy lokalna pamięć podręczna lub pamięć podręczna usługi równorzędnej staną się pełne. Gdy pamięć podręczna usługi jest pełna, nie można dodać więcej rekordów zasobów usług mDNS. Należy pamiętać, że pamięć podręczna usługi może stać się pełna w wyniku wewnętrznej fragmentacji, gdy zostaną dodane i usunięte usługi o różnych długościach ciągu. W przypadku odebrania pamięci podręcznej pełnych powiadomień w pamięci podręcznej usługi równorzędnej aplikacja może używać usługi "*nx_mdns_service_cache_clear"* do wymazywania wszystkich wpisów w pamięci podręcznej usługi równorzędnej.
+Ta usługa instaluje funkcję wywołania zwrotnego dostarczoną przez użytkownika, która jest wywoływana, gdy lokalna pamięć podręczna usługi lub pamięć podręczna usługi równorzędnej zostanie zapełniona. Gdy pamięć podręczna usługi jest pełna, nie można dodać już rekordu zasobu mDNS. Pamiętaj, że pamięć podręczna usługi może stać się pełna w wyniku fragmentacji wewnętrznej, gdy usługi o różnych długościach ciągów są dodawane i usuwane. Po otrzymaniu pełnego powiadomienia pamięci podręcznej w pamięci podręcznej usługi równorzędnej aplikacja może użyć usługi *"nx_mdns_service_cache_clear",* aby wymazać wszystkie wpisy z pamięci podręcznej usługi równorzędnej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
+- **mdns_ptr** Wskaźnik do bloku kontrolki mDNS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie zainstalował funkcję wywołania zwrotnego powiadomienia pamięci podręcznej mDNS.
+- **NX_SUCCESS** (0x00) Pomyślnie zainstalowano funkcję wywołania zwrotnego powiadamiania pamięci podręcznej mDNS.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -234,7 +234,7 @@ status = nx_mdns_cache_notify_set(&my_mdns, cache_full_nofiy_cb);
 
 ## <a name="nx_mdns_cache_notify_clear"></a>nx_mdns_cache_notify_clear
 
-Wyczyść funkcję pełnego powiadamiania pamięci podręcznej usługi mDNS
+Wyczyść funkcję pełnej powiadamiania pamięci podręcznej usługi mDNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -244,15 +244,15 @@ UINT nx_mdns_cache_notify_clear(NX_MDNS *mdns_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa czyści funkcję wywołania zwrotnego powiadomienia pamięci podręcznej usługi przez użytkownika.
+Ta usługa czyszczy funkcję powiadamiania zwrotnego pamięci podręcznej dostarczanej przez użytkownika.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
+- **mdns_ptr** Wskaźnik do bloku kontrolki mDNS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie wyczyścił funkcję wywołania zwrotnego powiadomienia pamięci podręcznej usługi mDNS.
+- **NX_SUCCESS** (0x00) Pomyślnie wyczyszczysz funkcję wywołania zwrotnego powiadamiania pamięci podręcznej usługi mDNS.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -280,16 +280,16 @@ UINT nx_mdns_domain_name_set(NX_MDNS *mdns_ptr, CHAR *domain_name);
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia domyślną nazwę domeny lokalnej. Po utworzeniu wystąpienia programu mDNS domyślna nazwa domeny lokalnej jest ustawiona na wartość ". local". Ten interfejs API umożliwia aplikacji zastąpienie domyślnej nazwy domeny lokalnej.
+Ta usługa konfiguruje domyślną nazwę domeny lokalnej. Po utworzeniu wystąpienia sieci mDNS domyślna nazwa domeny lokalnej jest ustawiana na ".local". Ten interfejs API umożliwia aplikacji zastąpienie domyślnej nazwy domeny lokalnej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **domain_name** Nazwa domeny, która ma zostać użyta.
+- **domain_name** Nazwa domeny, która ma być używana.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie skonfigurował domenę lokalną.
+- **NX_SUCCESS** (0x00) Pomyślnie skonfigurowano domenę lokalną.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -307,7 +307,7 @@ status = nx_mdns_domain_name_set(&my_mdns, “home”);
 
 ## <a name="nx_mdns_service_announcement_timing_set"></a>nx_mdns_service_announcement_timing_set
 
-Ustawia parametry czasu dla komunikatów anonsów usługi
+Ustawia parametry chronometrażu dla komunikatów o anonsach usług
 
 ### <a name="prototype"></a>Prototype
 
@@ -319,21 +319,21 @@ UINT nx_mdns_service_announcement_timing_set(NX_MDNS *mdns_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ponownie konfiguruje parametry chronometrażu wykorzystywane przez usługę mDNS podczas wysyłania anonsów usługi. Okres publikacji rozpoczyna się od *t* taktów i może być rozszerzony telescopically z 2 do potęgi współczynnika *k* . Liczba powtórzeń na anonsie to *p*, interwał między każdym powtarzanym anonsem to cykle *interwału* , a liczba okresów anonsu jest max_time. Domyślnie okres początkowy jest ustawiony na 1 sekundę, z k = 1 (okres podwaja się za każdym razem), *p = 1* (bez powtórzenia), retrans_interval = 0 (bez interwału czasu), Period_interval = 0xFFFFFFFF (interwał okresu maksymalnego) i max_time = 3 (liczba anonsów).
+Ta usługa ponownie konfiguruje parametry chronometrażu stosowane przez sieci mDNS podczas wysyłania powiadomień o usłudze. Okres publikowania rozpoczyna *się od t* takt i może być rozszerzany telecznie z 2 do potęgi współczynnika *k.* Liczba powtórzeń na anons wynosi *p*, interwał  między każdym powtórzeniem anonsu to takty interwału, a liczba okresów anonsowania wynosi max_time. Domyślnie początkowy okres jest ustawiony na 1 sekundę, z k = 1 (okres podwaja się za każdym razem), *p = 1* (brak powtórzenia), retrans_interval = 0 (brak interwału czasu), period_interval = 0xFFFFFFFF(maksymalny interwał okresu) i max_time = 3 (liczba anonsów).
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **Liczba** taktów dla okresu początkowego. Wartość domyślna to 100 Takty dla 1 sekundy.
-- **Liczba** powtórzeń. Wartość domyślna to 1.
-- **TELESCOPIC.** Wartość domyślna to 1.
-- **retrans_interval** Liczba taktów oczekiwania przed wysłaniem kolejnych komunikatów powiadomień. Wartość domyślna to 0.
-- **period_interval** Liczba znaczników między dwoma okresami anonsu. Wartość domyślna to 0xFFFFFFFF.
-- **max_time** Liczba okresów anonsów, które mają być używane w anonsie. Po upływie *max_time* okresy anonsów nie są wysyłane żadne komunikaty o anonsie. Wartość domyślna to 3.
+- **t** liczba takt dla początkowego okresu. Wartość domyślna to 100 takt na 1 sekundę.
+- **p** Liczba powtórzeń. Wartość domyślna to 1.
+- **k** Czynnik telegraficzny. Wartość domyślna to 1.
+- **retrans_interval** Liczba znaczników oczekiwania przed wysłaniem powtarzających się komunikatów o anonsach. Wartość domyślna to 0.
+- **period_interval** Liczba takt między dwoma okresami anonsu. Wartość domyślna to 0xFFFFFFFF.
+- **max_time** Liczba okresów anonsów do użycia na użytek anonsu. Po upływie *max_time* okresów anonsów nie są wysyłane żadne komunikaty z anonsami. Wartość domyślna to 3.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawia wartości chronometrażu.
+- **NX_SUCCESS** (0x00) Pomyślnie ustawia wartości chronometrażu.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -365,24 +365,24 @@ UINT nx_mdns_service_add(NX_MDNS *mdns_ptr, CHAR *instance,
 
 ### <a name="description"></a>Opis
 
-Ten interfejs API rejestruje usługę oferowaną przez aplikację. Jeśli flaga *is_unique* jest ustawiona, usługa mDNS sonduje nazwę usługi, aby upewnić się, że jest unikatowa w sieci lokalnej przed rozpoczęciem anonsowania usługi w sieci. *Wystąpienie* jest częścią nazwy usługi. *Usługa* jest częścią nazwy usługi. Na przykład "_http. _tcp" to usługa. Aby opisać usługę z podtypem, obiekt wywołujący musi używać parametru *podtypu* . Na przykład jeśli żądana usługa to "_PRINTER. _sub. _http. _tcp", pole usługi to "_http. _tcp:, a pole podtyp ma wartość" _PRINTER ".
+Ten interfejs API rejestruje usługę oferowaną przez aplikację. Jeśli *flaga is_unique* ustawiona, usługa mDNS sonduje nazwę usługi, aby upewnić się, że jest unikatowa w sieci lokalnej przed rozpoczęciem ogłaszania usługi w sieci. *Wystąpienie* jest częścią wystąpienia nazwy usługi. Usługa *jest* częścią nazwy usługi. Na przykład "_http._tcp" jest usługą. Aby opisać usługę z podtypem, wywołujący musi użyć *parametru podtypu.* Jeśli na przykład żądana usługa to "_printer._sub._http._tcp", pole usługi to "_http._tcp:, a pole podtypu to "_printer".
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **wystąpienie** Wskaźnik na nazwę wystąpienia usługi.
-- **Usługa** Wskaźnik do typu usługi mDNS, z wyłączeniem informacji o podtypie.
-- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma zastosowanie.
+- **wystąpienie** Wskaźnik do nazwy wystąpienia usługi.
+- **usługa** Wskaźnik do typu usługi mDNS, z wyłączeniem informacji o podtypie.
+- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma to zastosowanie.
 - **priorytet** Priorytet usługi
 - **waga** Waga usługi
-- **port** Numer portu TCP lub UDP używający usługi
-- **tekst** Dodatkowe informacje tekstowe
-- **is_unique** Flaga logiczna wskazująca, czy usługa jest udostępniona, czy unikatowa. W przypadku usług zarejestrowanych jako unikatowy usługa mDNS musi sondować usługę w sieci przed rozpoczęciem jej tworzenia.
-- **Interface_index** Interfejs fizyczny oferowany przez usługę. W przypadku usługi, która jest oferowana za pomocą dowolnych dołączonych usług, wartość *NX_MDNS_ALL_INTERFACES* jest używana.
+- **port** Numer portu TCP lub UDP używany przez usługę
+- **text (tekst)** Dodatkowe informacje tekstowe
+- **is_unique** Flaga logiczna wskazująca, czy usługa jest udostępniona, czy unikatowa. W przypadku usług zarejestrowanych jako unikatowe sieci mDNS muszą sondować usługę w sieci przed rozpoczęciem jej oferowania.
+- **Interface_index** Interfejs fizyczny, za pośrednictwem który jest oferowana usługa. W przypadku usługi oferowanej za pośrednictwem dowolnej z dołączonych usług używana jest wartość *NX_MDNS_ALL_INTERFACES* .
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie zarejestrowała usługę.
+- **NX_SUCCESS** (0x00) Pomyślnie zarejestrowano usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -414,18 +414,18 @@ UINT nx_mdns_service_delete(NX_MDNS *mdns_ptr,
 
 ### <a name="description"></a>Opis
 
-Ten interfejs API umożliwia usunięcie poprzedniej zarejestrowanej usługi. Po usunięciu usługi do sieci lokalnej są wysyłane komunikaty "pożegnania", dzięki czemu węzły sąsiednie zostaną powiadomione.
+Ten interfejs API usuwa wcześniej zarejestrowaną usługę. Gdy usługa zostanie usunięta, komunikaty "do widzenia" są wysyłane do sieci lokalnej, aby sąsiednie węzły były powiadamiane.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **wystąpienie** Wskaźnik na nazwę wystąpienia usługi.
-- **Usługa** Wskaźnik do typu usługi mDNS, z wyłączeniem informacji o podtypie.
-- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma zastosowanie.
+- **wystąpienie** Wskaźnik do nazwy wystąpienia usługi.
+- **usługa** Wskaźnik do typu usługi mDNS, z wyłączeniem informacji o podtypie.
+- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma to zastosowanie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie usunął usługę.
+- **NX_SUCCESS** (0x00) Pomyślnie usunięto usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -443,7 +443,7 @@ status = nx_mdns_service_delete(&my_mdns, “NETX-SERVICE”, “_http._tcp”, 
 
 ## <a name="nx_mdns_service_one_shot_query"></a>nx_mdns_service_one_shot_query
 
-Inicjowanie odnajdywania usługi w jednym zrzucie
+Inicjowanie odnajdywania usługi jedno zrzutu ekranu
 
 ### <a name="prototype"></a>Prototype
 
@@ -457,20 +457,20 @@ UINT nx_mdns_service_one_shot_query(NX_MDNS *mdns_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wykonuje jednorazowe zapytanie mDNS. Jeśli określona usługa zostanie znaleziona w pamięci podręcznej usługi równorzędnej, zostanie zwrócone pierwsze wystąpienie. Jeśli żadne usługi nie zostaną znalezione w lokalnej pamięci podręcznej usługi równorzędnej, moduł mDNS wystawia polecenie zapytania i poczeka na odpowiedź. Usługa jest blokowana do momentu odebrania pierwszej odpowiedzi lub przeprowadzenia zapytania.
+Ta usługa wykonuje jednostrzałowe zapytanie mDNS. Jeśli określona usługa zostanie znaleziona w pamięci podręcznej usługi równorzędnej, zwracane jest pierwsze wystąpienie. Jeśli w lokalnej pamięci podręcznej usługi równorzędnej nie zostaną znalezione żadne usługi, moduł mDNS wydaje polecenie zapytania i czeka na odpowiedź. Usługa jest blokowana do momentu, gdy zostanie odebrana pierwsza odpowiedź lub gdy zostanie umysz zapytanie.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **wystąpienie** Wskaźnik na nazwę wystąpienia usługi, jeśli ma zastosowanie.
-- **Usługa** Wskaźnik do typu usługi mDNS, z wyłączeniem informacji o podtypie. Aplikacja musi określić typ usługi.
-- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma zastosowanie.
-- **service_ptr** Wskaźnik podanego przez użytkownika do struktury NX_MDNS_SERVICE, która przechowuje wyniki zapytania.
-- **WAIT_OPTION** Ilość czasu (w taktach) oczekiwania na odpowiedź.
+- **wystąpienie** Wskaźnik do nazwy wystąpienia usługi, jeśli ma to zastosowanie.
+- **usługa** Wskaźnik do typu usługi mDNS, z wyłączeniem informacji o podtypie. Aplikacja musi określić typ usługi.
+- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma to zastosowanie.
+- **service_ptr** Użytkownik podał wskaźnik NX_MDNS_SERVICE struktury, która przechowuje wyniki zapytania.
+- **wait_option** Czas oczekiwania na odpowiedź w taktach.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie uzyskał informacje o usłudze.
+- **NX_SUCCESS** (0x00) Pomyślnie uzyskano informacje o usłudze.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -492,7 +492,7 @@ status = nx_mdns_service_one_shot_query(&my_mdns, “NETX-SERVICE”, “_http._
 
 ## <a name="nx_mdns_service_continuous_query"></a>nx_mdns_service_continuous_query
 
-Inicjowanie ciągłego odnajdowania usług
+Inicjowanie ciągłego odnajdywania usług
 
 ### <a name="prototype"></a>Prototype
 
@@ -503,18 +503,18 @@ UINT nx_mdns_service_continous_query(NX_MDNS *mdns_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa uruchamia ciągłe zapytanie. Należy pamiętać, że usługa wraca natychmiast. Po wydaniu ciągłego zapytania aplikacja może pobrać rekord usługi przy użyciu *nx_mdns_service_lookup* interfejsu API. Aby zatrzymać ciągłe zapytania, aplikacja może używać interfejsu API *nx_mdns_service_query_stop*
+Ta usługa uruchamia ciągłe zapytanie. Zwróć uwagę, że usługa natychmiast zwraca dane. Po wydaniu zapytania ciągłego aplikacja może pobrać rekord usługi przy użyciu interfejsu *API* nx_mdns_service_lookup . Aby zatrzymać ciągłe zapytanie, aplikacja może używać interfejsu API *nx_mdns_service_query_stop*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **wystąpienie** Wskaźnik na nazwę wystąpienia usługi, jeśli ma zastosowanie.
-- **Usługa** Wskaźnik do typu usługi mDNS, z wyłączeniem informacji o podtypie, jeśli ma zastosowanie.
-- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma zastosowanie.
+- **mdns_ptr** Wskaźnik do bloku kontrolki mDNS.
+- **wystąpienie** Wskaźnik do nazwy wystąpienia usługi, jeśli ma to zastosowanie.
+- **usługa** Wskaźnik do typu usługi mDNS z wyłączeniem informacji o podtypie, jeśli ma to zastosowanie.
+- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma to zastosowanie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie rozpoczęła zapytanie Kontynuuj.
+- **NX_SUCCESS** (0x00) Pomyślnie rozpoczęte kontynuuje zapytanie.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -536,7 +536,7 @@ status = nx_mdns_service_continuous_query(&my_mdns,
 
 ## <a name="nx_mdns_service_query_stop"></a>nx_mdns_service_query_stop
 
-Zaniechanie poprzednio wystawionego ciągłego odnajdowania usług
+Zaprzestanie wcześniej wystawionego ciągłego odnajdywania usług
 
 ### <a name="prototype"></a>Prototype
 
@@ -547,18 +547,18 @@ UINT nx_mdns_service_query_stop(NX_MDNS *mdns_ptr,
 
 ### <a name="description"></a>Opis
 
-Ten interfejs API kończy poprzednie wygenerowane ciągłe odnajdywanie usługi.
+Ten interfejs API kończy poprzednią wystawioną ciągłą odnajdywanie usług.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **wystąpienie** Wskaźnik na nazwę wystąpienia usługi.
-- **Usługa** Wskaźnik do typu usługi mDNS, informacje o podtypie.
-- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma zastosowanie.
+- **mdns_ptr** Wskaźnik do bloku kontrolki mDNS.
+- **wystąpienie** Wskaźnik do nazwy wystąpienia usługi.
+- **usługa** Wskaźnik do typu usługi mDNS, informacje o podtypie.
+- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma to zastosowanie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie zatrzymano zapytanie Kontynuuj.
+- **NX_SUCCESS** (0x00) Pomyślnie zatrzymane kontynuuje zapytanie.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -591,21 +591,21 @@ UINT nx_mdns_service_lookup(NXD_MDNS *mdns_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyszukuje usługi pasujące do nazwy wystąpienia (jeśli jest podany) i typu usługi w lokalnej pamięci podręcznej usługi równorzędnej. Aplikacja uruchamia wyszukiwanie usługi z *instance_index* ustawiona na zero dla pierwszej usługi w pamięci podręcznej, która jest zgodna z opisem. Aplikacja utrzymuje korzystanie z tej usługi z rosnącą *instance_index* wartością dla dodatkowych usług znalezionych w pamięci podręcznej, aż usługa zwróci *NX_NO_MORE_ENTRIES*, co wskazuje na koniec pamięci podręcznej.
+Ta usługa wyszukuje usługi zgodne z nazwą wystąpienia (jeśli podano) i typem usługi w lokalnej pamięci podręcznej usługi równorzędnej. Aplikacja musi uruchomić wyszukiwania usługi z *wartością instance_index* ustawioną na zero dla pierwszej usługi w pamięci podręcznej, która odpowiada opisowi. Aplikacja powinna nadal korzystać  z tej usługi wraz instance_index wartością dodatkowych usług znalezionych w pamięci podręcznej, dopóki usługa nie zwróci wartości *NX_NO_MORE_ENTRIES*, która wskazuje koniec pamięci podręcznej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **wystąpienie** Wskaźnik na nazwę wystąpienia usługi, jeśli ma zastosowanie.
-- **Usługa** Wskaźnik do typu usługi mDNS, z wyłączeniem informacji o podtypie, jeśli ma zastosowanie.
-- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma zastosowanie.
-- **Instance_index** Numer indeksu do wystąpienia, które ma zostać zwrócone.
-- **service_ptr** Wskaźnik podanego przez użytkownika do struktury NX_MDNS_SERVICE, która przechowuje wyniki wyszukiwania.
+- **mdns_ptr** Wskaźnik do bloku kontrolki mDNS.
+- **wystąpienie** Wskaźnik do nazwy wystąpienia usługi, jeśli ma to zastosowanie.
+- **usługa** Wskaźnik do typu usługi mDNS z wyłączeniem informacji o podtypie, jeśli ma to zastosowanie.
+- **podtyp** Wskaźnik do części podtypu usługi mDNS, jeśli ma to zastosowanie.
+- **Instance_index** Numer indeksu wystąpienia, które ma zostać zwrócone.
+- **service_ptr** Użytkownik podał wskaźnik do NX_MDNS_SERVICE, która przechowuje wyniki wyszukiwania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie pobrała usługę
-- **NX_NO_MORE_ENTRIES** (0X17) nie znaleziono wpisu usługi o określonym numerze indeksu. Ten kod błędu wskazuje koniec wyszukiwania.
+- **NX_SUCCESS** (0x00) Pomyślnie pobrano usługę
+- **NX_NO_MORE_ENTRIES** (0x17) Nie znaleziono wpisu usługi pod określonym numerem indeksu. Ten kod błędu wskazuje koniec wyszukiwania.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -635,16 +635,16 @@ UINT nx_mdns_service_ignore_set(NX_MDNS *mdns_ptr, ULONG service_mask);
 
 ### <a name="description"></a>Opis
 
-Ten interfejs API konfiguruje maskę w celu ignorowania usług określonych przez *service_maską* maskę bitów. Użytkownik może opcjonalnie użyć service_mask, aby wybrać typy usług, które nie mają być buforowane. Lista usług jest definiowana w tabeli *nx_mdns_service_types* w *nxd_mdns. c.* Odpowiednia maska pierwszego typu usługi w nx_mdns_service_types [] jest 0x00000001, maska drugiego typu usługi to 0x00000002 itd.
+Ten interfejs API konfiguruje maskę tak, aby ignorować usługi *określone przez service_mask* bitmask. Użytkownik może opcjonalnie użyć service_mask, aby wybrać typy usług, które nie mają być buforowane. Lista usług jest zdefiniowana w tabeli *nx_mdns_service_types* w *nxd_mdns.c.* Odpowiadająca maska pierwszego typu usługi w nx_mdns_service_types[] jest 0x00000001, maska drugiego typu usługi jest 0x00000002 i tak dalej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **service_mask** Typy usług zdefiniowane przez użytkownika do ignorowania. Maska jest 32-bitowym typem ULONG. Każdy bit reprezentuje wpis w tablicy *nx_mdns_service_types* zdefiniowanej przez użytkownika. Jeśli ustawiono bit, odpowiedni typ usługi określony w tablicy *nx_mdns_service_type* nie będzie przechowywany w pamięci podręcznej usługi równorzędnej.
+- **mdns_ptr** Wskaźnik do bloku kontrolki mDNS.
+- **service_mask** Zdefiniowane przez użytkownika typy usług do zignorowania. Maska jest 32-bitowym typem ULONG. Każdy bit reprezentuje wpis w zdefiniowanej przez użytkownika *tablicy nx_mdns_service_types* tablicy. Jeśli bit jest ustawiony, odpowiedni typ usługi określony w tablicy *nx_mdns_service_type* nie będzie zapisywany w pamięci podręcznej usługi równorzędnej.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie Ustawia maskę ignorowania usługi.
+- **NX_SUCCESS** (0x00) Pomyślnie ustawia usługę ignoruj maskę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -663,7 +663,7 @@ status = nx_mdns_service_ignore_set(&my_mdns, 0x00000003);
 
 ## <a name="nx_mdns_service_notify_set"></a>nx_mdns_service_notify_set
 
-Konfiguruje funkcję wywołania zwrotnego powiadomienia o zmianie usługi
+Konfiguruje funkcję wywołania zwrotnego powiadamiania o zmianie usługi
 
 ### <a name="prototype"></a>Prototype
 
@@ -675,19 +675,19 @@ UINT nx_mdns_service_notify_set(NX_MDNS *mdns_ptr, ULONG service_mask,
 
 ### <a name="description"></a>Opis
 
-Ten interfejs API umożliwia skonfigurowanie funkcji wywołania zwrotnego powiadomienia o zmianie usługi. Ta funkcja wywołania zwrotnego jest wywoływana, gdy usługa oferowana przez inne węzły w sieci zostanie dodana, zmieniona lub nie jest już dostępna. Użytkownik może opcjonalnie użyć service_mask, aby wybrać typy usług, które chcą monitorować. Lista monitorowanych usług jest trwale kodowana w tabeli *nx_mdns_service_types* w *nxd_mdns. c.*
+Ten interfejs API konfiguruje funkcję wywołania zwrotnego powiadamiania o zmianie usługi. Ta funkcja wywołania zwrotnego jest wywoływana, gdy usługa oferowana przez inne węzły w sieci jest dodawana, zmieniana lub nie jest już dostępna. Użytkownik może opcjonalnie użyć service_mask, aby wybrać typy usług, które chce monitorować. Lista monitorowanych usług jest zakodowana w tabeli nx_mdns_service_types *w* *nxd_mdns.c.*
 
-Odpowiednia maska pierwszego typu usługi w nx_mdns_service_types [] jest 0x00000001, maska drugiego typu usługi to 0x00000002 itd.
+Odpowiadająca maska pierwszego typu usługi w nx_mdns_service_types[] jest 0x00000001, maska drugiego typu usługi jest 0x00000002 i tak dalej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **service_mask** Zdefiniowane przez użytkownika typy usługi do monitorowania. Maska jest 32-bitowym typem ULONG. Każdy bit reprezentuje wpis w tablicy *nx_mdns_service_types* .
-- **service_change_notify** Funkcja wywołania zwrotnego do wywołania, gdy określona usługa zostanie zmieniona. Szczegółowe informacje o usłudze są zwracane w pamięci wskazywanej przez *service_ptr.* Należy zauważyć, że zawartość pamięci jest nieprawidłowa po powrocie z funkcji powiadamiania zwrotnego.
+- **mdns_ptr** Wskaźnik do bloku kontrolki mDNS.
+- **service_mask** Zdefiniowane przez użytkownika typy usług do monitorowania. Maska jest 32-bitowym typem ULONG. Każdy bit reprezentuje wpis w *tablicy nx_mdns_service_types* tablicy.
+- **service_change_notify** Funkcja wywołania zwrotnego, która ma zostać wywołana po zmianie określonej usługi. Szczegółowe informacje o usłudze są zwracane w pamięci wskazywanej przez *service_ptr.* Należy pamiętać, że zawartość w pamięci jest nieprawidłowa po zwróceniu z funkcji wywołania zwrotnego powiadomienia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie zainstalował funkcję wywołania zwrotnego.
+- **NX_SUCCESS** (0x00) Pomyślnie zainstalowano funkcję wywołania zwrotnego.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -706,7 +706,7 @@ status = nx_mdns_service_notify_set(&my_mdns, 0x00000002, service_change_notify)
 
 ## <a name="nx_mdns_service_notify_clear"></a>nx_mdns_service_notify_clear
 
-Wyczyść funkcję wywołania zwrotnego powiadomienia o zmianie usługi
+Wyczyść funkcję wywołania zwrotnego powiadamiania o zmianie usługi
 
 ### <a name="prototype"></a>Prototype
 
@@ -716,15 +716,15 @@ UINT nx_mdns_service_notify_clear(NX_MDNS *mdns_ptr);
 
 ### <a name="description"></a>Opis
 
-Ten interfejs API czyści funkcję wywołania zwrotnego powiadomienia o zmianie usługi i.
+Ten interfejs API umożliwia wyczyszczenie funkcji wywołania zwrotnego powiadamiania o zmianie usługi i funkcji .
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **mdns_ptr** Wskaźnik do bloku sterowania mDNS...
+- **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie wyczyścił funkcję wywołania zwrotnego.
+- **NX_SUCCESS** (0x00) Pomyślnie wyczyszczysz funkcję wywołania zwrotnego.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -742,7 +742,7 @@ status = nx_mdns_service_notify_clear(&my_mdns);
 
 ## <a name="nx_mdns_host_address_get"></a>nx_mdns_host_address_get
 
-Pobierz adres hosta
+Uzyskiwanie adresu hosta
 
 ### <a name="prototype"></a>Prototype
 
@@ -754,19 +754,19 @@ UINT nx_mdns_host_address_get(NX_MDNS *mdns_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wykonuje zapytanie mDNS dotyczące adresów IPv4 hosta i IPv6. Jeśli adres określonej nazwy hosta zostanie znaleziony w pamięci podręcznej usługi równorzędnej, zostanie zwrócony adres. Jeśli żaden adres nie zostanie znaleziony w pamięci podręcznej usługi równorzędnej, moduł mDNS wystawia zapytania typu AAAA i i poczeka na odpowiedź. Ten interfejs API blokuje do momentu odebrania odpowiedzi lub przełączenia zapytania.
+Ta usługa wykonuje zapytanie mDNS na adresach IPv4 i IPv6 hosta. Jeśli adres określonej nazwy hosta zostanie znaleziony w pamięci podręcznej usługi równorzędnej, adres zostanie zwrócony. Jeśli w pamięci podręcznej usługi równorzędnej nie zostanie znaleziony żaden adres, moduł mDNS wysyła zapytania typu A i AAAA i czeka na odpowiedź. Ten interfejs API blokuje dostęp do momentu, gdy zostanie odebrana odpowiedź lub zostanie przeo jej czas.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **mdns_ptr** Wskaźnik do bloku sterowania mDNS.
-- **HOST_NAME** Wskaźnik na nazwę hosta.
-- **ipv4_address** Wskaźnik na adres 4-bajtowy wyrównany do miejsca do magazynowania adresów IPv4. Użytkownik przydziela 4 bajty miejsca na adres IPv4. Adres NX_NULL można przesłać do tego interfejsu API, jeśli aplikacja nie musi pobrać adresu IPv4.
-- **ipv6_address** Wskaźnik na adres IPv6 dla miejsca do magazynowania. Użytkownik przydziela 16-bajtowe miejsce dla adresu IPv6. Adres NX_NULL można przesłać do tego interfejsu API, jeśli aplikacja nie musi pobrać adresu IPv6.
-- **WAIT_OPTION** Ilość czasu (w taktach) oczekiwania na odpowiedź.
+- **host_name** Wskaźnik do nazwy hosta.
+- **ipv4_address** Wskaźnik na 4-bajtowy adres wyrównany dla przestrzeni dyskowej adresów IPv4. Użytkownik musi przydzielić 4 bajty miejsca dla adresu IPv4. NX_NULL może zostać przekazany do tego interfejsu API, jeśli aplikacja nie musi pobierać adresu IPv4.
+- **ipv6_address** Wskaźnik do wyrównanych 4-bajtowych adresów dla przestrzeni dyskowej adresów IPv6. Użytkownik musi przydzielić 16 bajtów miejsca dla adresu IPv6. NX_NULL może zostać przekazany do tego interfejsu API, jeśli aplikacja nie musi pobierać adresu IPv6.
+- **wait_option** Czas oczekiwania na odpowiedź w takt.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie uzyskał adres hosta.
+- **NX_SUCCESS** (0x00) Pomyślnie uzyskany adres hosta.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -786,7 +786,7 @@ status = nx_mdns_host_address_get(&my_mdns, “MDNS-Host”, &ipv4_address, ipv6
 
 ## <a name="nx_mdns_local_cache_clear"></a>nx_mdns_local_cache_clear
 
-Wymaż wszystkie usługi lokalne
+Wymazywanie wszystkich usług lokalnych
 
 ### <a name="prototype"></a>Prototype
 
@@ -796,7 +796,7 @@ UINT nx_mdns_local_cache_clear(NX_MDNS *mdns_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa czyści wszystkie wpisy w lokalnej pamięci podręcznej usługi po wysłaniu wiadomości do pożegnania.
+Ta usługa wyczyści wszystkie wpisy w lokalnej pamięci podręcznej usługi po wysłaniu komunikatu Żegnanie.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -804,7 +804,7 @@ Ta usługa czyści wszystkie wpisy w lokalnej pamięci podręcznej usługi po wy
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie wymazuje wszystkie wpisy w pamięci podręcznej.
+- **NX_SUCCESS** (0x00) Pomyślnie wymazane wszystkie wpisy w pamięci podręcznej.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -822,7 +822,7 @@ status = nx_mdns_local_cache_clear(&my_mdns);
 
 ## <a name="nx_mdns_peer_cache_clear"></a>nx_mdns_peer_cache_clear
 
-Wymaż wszystkie odnalezione usługi
+Wymazywanie wszystkich odnalezionych usług
 
 ### <a name="prototype"></a>Prototype
 
@@ -832,7 +832,7 @@ UINT nx_mdns_peer_cache_clear(NX_MDNS *mdns_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa czyści wszystkie wpisy w pamięci podręcznej usługi równorzędnej.
+Ta usługa wyczyści wszystkie wpisy w pamięci podręcznej usługi równorzędnej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -840,7 +840,7 @@ Ta usługa czyści wszystkie wpisy w pamięci podręcznej usługi równorzędnej
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie wymazuje wszystkie wpisy w pamięci podręcznej.
+- **NX_SUCCESS** (0x00) Pomyślnie wymazane wszystkie wpisy w pamięci podręcznej.
 
 ### <a name="allowed-from"></a>Dozwolone z
 

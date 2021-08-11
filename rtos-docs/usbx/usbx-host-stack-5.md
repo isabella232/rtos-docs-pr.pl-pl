@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: 2e9e2e0286300b3f79f7f9e6ad2d7fab96ba7337
-ms.sourcegitcommit: 62cfdf02628530807f4d9c390d6ab623e2973fee
+ms.openlocfilehash: 62750ab4a5540b243665a7a7d9000a0d60c4435313b6de2e1579ae7f1c20fe55
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 08/05/2021
-ms.locfileid: "115177749"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790670"
 ---
 # <a name="chapter-5---usbx-host-classes-api"></a>Rozdział 5 — interfejs API klas hostów USBX
 
@@ -37,7 +37,7 @@ UINT ux_host_class_hid_client_register(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do rejestrowania klienta HID w klasie HID. Klasa HID musi znaleźć dopasowanie między urządzeniem HID i klientem HID przed zażądaniem danych z tego urządzenia.
+Ta funkcja służy do rejestrowania klienta HID w klasie HID. Klasa HID musi znaleźć dopasowanie między urządzeniem HID i klientem HID przed żądaniem danych z tego urządzenia.
 
 > [!NOTE]
 > Ciąg języka C hid_client_name musi mieć wartość NULL, a długość tego ciągu (bez samego terminatora NULL) nie może być większa **niż UX_HOST_CLASS_HID_MAX_CLIENT_NAME_LENGTH**.
@@ -127,11 +127,11 @@ UINT ux_host_class_hid_periodic_report_start(UX_HOST_CLASS_HID *hid);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja służy do uruchamiania okresowego (przerwania) punktu końcowego dla wystąpienia klasy HID powiązanej z tym klientem HID. Klasa HID nie może uruchomić okresowego punktu końcowego, dopóki klient HID nie zostanie aktywowany i w związku z tym zostanie pozostawiony klientowi HID w celu uruchomienia tego punktu końcowego w celu odbierania raportów.
+Ta funkcja służy do uruchamiania okresowego (przerwania) punktu końcowego dla wystąpienia klasy HID powiązanej z tym klientem HID. Klasa HID nie może uruchomić okresowego punktu końcowego, dopóki klient HID nie zostanie aktywowany i dlatego do klienta HID zostanie pozostawione uruchomienie tego punktu końcowego w celu odbierania raportów.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **hid** Wskaźnik do wystąpienia klasy HID.
+- **Hid** Wskaźnik do wystąpienia klasy HID.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -168,7 +168,7 @@ Ta funkcja służy do zatrzymania okresowego (przerwania) punktu końcowego dla 
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **hid** Wskaźnik do wystąpienia klasy HID.
+- **Hid** Wskaźnik do wystąpienia klasy HID.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -206,7 +206,7 @@ Ta funkcja służy do odbierania raportu bezpośrednio z urządzenia bez koniecz
 
 ### <a name="parameters"></a>Parametry
 
-- **hid** Wskaźnik do wystąpienia klasy HID.
+- **Hid** Wskaźnik do wystąpienia klasy HID.
 - **client_report** Wskaźnik do raportu klienta HID.
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -214,7 +214,7 @@ Ta funkcja służy do odbierania raportu bezpośrednio z urządzenia bez koniecz
 - **UX_SUCCESS** (0x00) Raport został pomyślnie odebrany.
 - **UX_HOST_CLASS_HID_REPORT_ERROR** (0x70) Raport klienta był nieprawidłowy lub wystąpił błąd podczas transferu.
 - **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) klasy HID nie istnieje.
-- **UX_BUFFER_OVERFLOW** (0x5d) Dostarczony bufor nie jest wystarczająco duży, aby pomieścić nieskompresowany raport.
+- **UX_BUFFER_OVERFLOW** (0x5d) Podany bufor nie jest wystarczająco duży, aby pomieścić nieskompresowany raport.
 
 ### <a name="example"></a>Przykład
 
@@ -253,7 +253,7 @@ Ta funkcja służy do wysyłania raportu bezpośrednio do urządzenia.
 
 ### <a name="parameters"></a>Parametry
 
-- **hid** Wskaźnik do wystąpienia klasy HID.
+- **Hid** Wskaźnik do wystąpienia klasy HID.
 - **client_report** Wskaźnik do raportu klienta HID.
 
 ### <a name="return-values"></a>Wartości zwrócone
@@ -731,7 +731,7 @@ UINT ux_host_class_cdc_acm_write(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja zapisuje w interfejsie cdc_acm. Wywołanie jest blokujące i zwracane tylko wtedy, gdy wystąpi błąd lub gdy transfer zostanie ukończony.
+Ta funkcja zapisuje w interfejsie cdc_acm interfejsie. Wywołanie jest blokujące i zwracane tylko wtedy, gdy wystąpi błąd lub gdy transfer zostanie ukończony.
 
 ### <a name="parameters"></a>Parametry
 

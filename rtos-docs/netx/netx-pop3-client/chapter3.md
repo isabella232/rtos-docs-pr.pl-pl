@@ -1,31 +1,31 @@
 ---
-title: Rozdział 3 — Opis usług klienta POP3 usługi Azure RTO NetX
-description: Ten rozdział zawiera opis wszystkich usług klienta POP3 usługi Azure RTO NetX (wymienionych poniżej) w kolejności alfabetycznej.
+title: Rozdział 3 — opis Azure RTOS klienta NetX POP3
+description: Ten rozdział zawiera opis wszystkich usług Azure RTOS NetX POP3 (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 1a0ab96a454bea9f56ced0d7aa8de5d481b284e9
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: f68d6ac942c829dbf6eb9be334328b1b58a47ea370a73d37f471ec32cd46a360
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822566"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116782391"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-pop3-client-services"></a>Rozdział 3 — Opis usług klienta POP3 usługi Azure RTO NetX
+# <a name="chapter-3---description-of-azure-rtos-netx-pop3-client-services"></a>Rozdział 3 — opis Azure RTOS klienta NetX POP3
 
-Ten rozdział zawiera opis wszystkich usług klienta POP3 usługi Azure RTO NetX (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług Azure RTOS NetX POP3 (wymienionych poniżej) w kolejności alfabetycznej.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w następujących  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości pogrubione, a wartości bez pogrubienia są całkowicie wyłączone.
 
-- nx_pop3_client_create: *Tworzenie wystąpienia klienta POP3*
-- nx_pop3_client_delete: *usuwanie wystąpienia klienta POP3*
-- nx_pop3_client_ mail_item_get: *usuwanie elementu poczty klienta z serwera maildrop*
-- nx_pop3_client_mail_item_get: *pobieranie określonego rozmiaru wiadomości e-mail*
-- nx_pop3_client_mail_items_get: *Uzyskaj liczbę elementów poczty w maildrop*
-- nx_pop3_client_mail_item_message _get: *Pobierz określoną wiadomość e-mail*
-- nx_pop3_client_mail_item_size_get: *Uzyskaj rozmiar określonego elementu poczty*
+- nx_pop3_client_create: tworzenie *wystąpienia klienta POP3*
+- nx_pop3_client_delete: *Usuwanie wystąpienia klienta POP3*
+- nx_pop3_client_ mail_item_get: *Usuwanie elementu poczty klienta z usługi Poczta serwera*
+- nx_pop3_client_mail_item_get: pobieranie *określonego rozmiaru wiadomości e-mail*
+- nx_pop3_client_mail_items_get: Uzyskiwanie *liczby elementów poczty e-mail w wiadomości e-mail*
+- nx_pop3_client_mail_item_message _get: pobieranie *określonej wiadomości e-mail*
+- nx_pop3_client_mail_item_size_get: uzyskiwanie *rozmiaru określonego elementu poczty e-mail*
 
 ## <a name="nx_pop3_client_create"></a>nx_pop3_client_create
 
@@ -48,21 +48,21 @@ Ta usługa tworzy wystąpienie klienta POP3 i konfiguruje jego konfigurację prz
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr**: wskaźnik do klienta do utworzenia
-- **APOP_authentication**: Włączanie uwierzytelniania APOP
-- **ip_ptr**: wskaźnik do wystąpienia adresu IP
-- **packet_pool_ptr**: wskaźnik do puli pakietów klienta
-- **server_ip_address**: adres serwera POP3
-- **SERVER_PORT**: Port serwera POP3
-- **CLIENT_NAME**: wskaźnik do nazwy klienta
-- **client_password**: wskaźnik do hasła klienta
+- **client_ptr:** Wskaźnik do klienta do utworzenia
+- **APOP_authentication:** Włączanie uwierzytelniania APOP
+- **ip_ptr:** wskaźnik do wystąpienia adresu IP
+- **packet_pool_ptr:** Wskaźnik do puli pakietów klienta
+- **server_ip_address:** adres serwera POP3
+- **server_port:** port serwera POP3
+- **client_name:** Wskaźnik do nazwy klienta
+- **client_password:** Wskaźnik do hasła klienta
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślnie utworzono klienta
-- **stan**: zapełnianie stanu dla wywołań usługi NetX i ThreadX
-- NX_PTR_ERROR: (0x07) nieprawidłowy parametr wskaźnika wejściowego
-- NX_POP3_PARAM_ERROR: (0xB1) nieprawidłowe dane wejściowe bez wskaźnika
+- **NX_SUCCESS:**(0x00) Pomyślnie utworzono klienta
+- **status:** Uzupełnianie stanu wywołań usług NetX i ThreadX
+- NX_PTR_ERROR: (0x07) Nieprawidłowy parametr wskaźnika wejściowego
+- NX_POP3_PARAM_ERROR: (0xB1) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -102,16 +102,16 @@ UINT nx_pop3_client_delete(NX_POP3_CLIENT *client_ptr)
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wcześniej utworzony klient POP3. Nie jest to usługa, która nie usuwa puli pakietów klienta POP3. Aplikacja urządzenia musi usunąć ten zasób oddzielnie, jeśli nie ma już zastosowania do puli pakietów.
+Ta usługa usuwa wcześniej utworzonego klienta POP3. Nie oznacza to, że ta usługa nie usuwa puli pakietów klienta POP3. Aplikacja urządzenia musi usunąć ten zasób oddzielnie, jeśli nie ma już użycia dla puli pakietów.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr**: wskaźnik do klienta do usunięcia
+- **client_ptr:** Wskaźnik do klienta do usunięcia
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślnie usunięto klienta
-- NX_PTR_ERROR: (0x07) nieprawidłowy parametr wskaźnika wejściowego
+- **NX_SUCCESS:**(0x00) Klient został pomyślnie usunięty
+- NX_PTR_ERROR: (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -128,7 +128,7 @@ status = nx_pop3_client_delete (&demo_client);
 
 ## <a name="nx_pop3_client_mail_item_delete"></a>nx_pop3_client_mail_item_delete
 
-Usuwanie określonego elementu poczty z maildrop klienta
+Usuwanie określonego elementu poczty e-mail z listy maildrop klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -139,21 +139,21 @@ UINT nx_pop3_client_mail_items_delete(NX_POP3_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa określony element poczty z maildrop klienta. Jest on przeznaczony dla programu po pobraniu elementu poczty, chociaż niektóre serwery POP3 mogą automatycznie usuwać elementy poczty po zażądaniu przez klienta.
+Ta usługa usuwa określony element poczty e-mail z listy maildrop klienta. Jest on przeznaczony do użytku po pobraniu elementu poczty e-mail, chociaż niektóre serwery POP3 mogą automatycznie usuwać elementy poczty po zażądaniu przez klienta.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr**: wskaźnik do wystąpienia klienta
-- **mail_index**: Indeksuj do maildrop klienta
+- **client_ptr:** Wskaźnik do wystąpienia klienta
+- **mail_index:** Indeksowanie do poczty klienta
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Żądanie usunięcia **NX_SUCCESS**: (0x00) powiodło się
-- **NX_POP3_INVALID_MAIL_ITEM**: (0XB2) Nieprawidłowy indeks elementu poczty
-- **NX_POP3_INSUFFICIENT_PACKET_PAYLOAD**: (0xB6) pakiet klienta jest za mały dla żądania POP3.
-- **NX_POP3_SERVER_ERROR_STATUS**: (0xB4) — odpowiedzi serwera ze stanem błędu
-- NX_POP3_CLIENT_INVALID_INDEX: (0xB8) nieprawidłowe dane wejściowe indeksu poczty
-- NX_PTR_ERROR: (0x07) nieprawidłowy parametr wskaźnika wejściowego
+- **NX_SUCCESS:**(0x00) Żądanie usunięcia powiodło się
+- **NX_POP3_INVALID_MAIL_ITEM:**(0xB2) Nieprawidłowy indeks elementów poczty
+- **NX_POP3_INSUFFICIENT_PACKET_PAYLOAD:**(0xB6) Ładunek pakietu klienta jest zbyt mały dla żądania POP3.
+- **NX_POP3_SERVER_ERROR_STATUS:**(0xB4) Serwer odpowiada ze stanem błędu
+- NX_POP3_CLIENT_INVALID_INDEX: (0xB8) Nieprawidłowe dane wejściowe indeksu poczty
+- NX_PTR_ERROR: (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -173,7 +173,7 @@ status = nx_pop3_client_mail_item_delete(&demo_client, item_index);
 
 ## <a name="nx_pop3_client_mail_item_get"></a>nx_pop3_client_mail_item_get
 
-Pobieranie określonego elementu poczty
+Pobieranie określonego elementu poczty e-mail
 
 ### <a name="prototype"></a>Prototype
 
@@ -184,22 +184,22 @@ UINT nx_pop3_client_mail_item_get(NX_POP3_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła żądanie RETR do pobrania elementu poczty z maildrop klienta określonego przez indeks mail_item. Po wykonaniu żądania RETR i otrzymaniu pozytywnej odpowiedzi z serwera klient może rozpocząć pobieranie wiadomości e-mail przy użyciu usługi *nx_pop3_client_mail_item_message_get* . Należy pamiętać, że usługa udostępnia również rozmiar żądanego elementu poczty wyodrębnionego z odpowiedzi serwera.
+Ta usługa wysyła żądanie RETR w celu pobrania elementu poczty z adresu e-mail klienta określonego przez indeks mail_item. Po otrzymaniu żądania RETR i otrzymaniu pozytywnej odpowiedzi z serwera klient może rozpocząć pobieranie wiadomości e-mail przy użyciu *nx_pop3_client_mail_item_message_get* usługi. Należy pamiętać, że usługa dostarcza również rozmiar żądanego elementu poczty wyodrębniony z odpowiedzi serwera.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr**: wskaźnik do wystąpienia klienta
-- **mail_item**: Indeksuj do maildrop klienta
-- **item_size**: wskaźnik do rozmiaru wiadomości e-mail
+- **client_ptr:** Wskaźnik do wystąpienia klienta
+- **mail_item:** indeksowanie do poczty klienta
+- **item_size:** Wskaźnik do rozmiaru wiadomości e-mail
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślnie pobrano element poczty
-- **NX_POP3_INVALID_MAIL_ITEM**: (0XB2) Nieprawidłowy indeks elementu poczty
-- **NX_POP3_INSUFFICIENT_PACKET_PAYLOAD**: (0xB6) pakiet klienta jest za mały dla żądania POP3.
-- **NX_POP3_SERVER_ERROR_STATUS**: (0xB4) — odpowiedzi serwera ze stanem błędu
-- NX_POP3_CLIENT_INVALID_INDEX: (0xB8) nieprawidłowe dane wejściowe indeksu poczty
-- NX_PTR_ERROR: (0x07) nieprawidłowy parametr wskaźnika wejściowego
+- **NX_SUCCESS:**(0x00) Element poczty został pomyślnie pobrany
+- **NX_POP3_INVALID_MAIL_ITEM:**(0xB2) Nieprawidłowy indeks elementów poczty
+- **NX_POP3_INSUFFICIENT_PACKET_PAYLOAD:**(0xB6) Ładunek pakietu klienta jest zbyt mały dla żądania POP3.
+- **NX_POP3_SERVER_ERROR_STATUS:**(0xB4) Serwer odpowiada ze stanem błędu
+- NX_POP3_CLIENT_INVALID_INDEX: (0xB8) Nieprawidłowe dane wejściowe indeksu poczty
+- NX_PTR_ERROR: (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -218,7 +218,7 @@ status = nx_pop3_client_mail_item_get (&demo_client, 1, &item_size);
 
 ## <a name="nx_pop3_client_mail_items_get"></a>nx_pop3_client_mail_items_get
 
-Pobieranie liczby elementów poczty w maildrop
+Pobieranie liczby elementów poczty e-mail w wiadomości e-mail
 
 ### <a name="prototype"></a>Prototype
 
@@ -230,21 +230,21 @@ UINT nx_pop3_client_mail_items_get(NX_POP3_CLIENT *client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa udostępnia żądanie STATnia, aby pobrać liczbę elementów poczty i łączny rozmiar danych wiadomości e-mail z maildrop klienta.
+Ta usługa wysyła żądanie STAT w celu pobrania liczby elementów poczty e-mail i całkowitego rozmiaru danych wiadomości e-mail z usługi maildrop klienta.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr**: wskaźnik do wystąpienia klienta
-- **number_mail_item**: liczba wiadomości w maildrop klienta
-- **maildrop_total_size**: wskaźnik do rozmiaru całej wiadomości e-mail
+- **client_ptr:** Wskaźnik do wystąpienia klienta
+- **number_mail_item:** Liczba wiadomości e-mail w maildrop klienta
+- **maildrop_total_size:** Wskaźnik do rozmiaru całej wiadomości e-mail
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślnie pobrano element poczty
-- **NX_POP3_INVALID_MAIL_ITEM**: (0XB2) Nieprawidłowy indeks elementu poczty
-- **NX_POP3_INSUFFICIENT_PACKET_PAYLOAD**: (0xB6) pakiet klienta jest za mały dla żądania POP3.
-- **NX_POP3_SERVER_ERROR_STATUS**: (0xB4) — odpowiedzi serwera ze stanem błędu 
-- NX_PTR_ERROR: (0x07) nieprawidłowy parametr wskaźnika wejściowego
+- **NX_SUCCESS:**(0x00) Element poczty został pomyślnie pobrany
+- **NX_POP3_INVALID_MAIL_ITEM:**(0xB2) Nieprawidłowy indeks elementów poczty
+- **NX_POP3_INSUFFICIENT_PACKET_PAYLOAD:**(0xB6) Ładunek pakietu klienta jest zbyt mały dla żądania POP3.
+- **NX_POP3_SERVER_ERROR_STATUS:**(0xB4) Serwer odpowiada ze stanem błędu 
+- NX_PTR_ERROR: (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -265,7 +265,7 @@ status = nx_pop3_client_mail_item_get (&demo_client, 1, &number_mail_items,
 
 ## <a name="nx_pop3_client_mail_item_message_get"></a>nx_pop3_client_mail_item_message_get
 
-Pobieranie wiadomości określonego elementu poczty
+Pobieranie określonej wiadomości e-mail elementu
 
 ### <a name="prototype"></a>Prototype
 
@@ -279,20 +279,20 @@ UINT nx_pop3_client_mail_item_message_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera komunikat elementu poczty, rozmiar wiadomości e-mail i, jeśli jest to ostatni pakiet wiadomości e-mail. Jeśli `final_packet` jest NX_TRUE pakiet wskazywany przez `recv_packet_ptr` jest pakietem końcowym w wiadomości elementu poczty.
+Ta usługa pobiera wiadomość e-mail, rozmiar wiadomości e-mail oraz informacje o tym, czy jest to ostatni pakiet wiadomości e-mail. Jeśli `final_packet` jest NX_TRUE wskazywany przez pakiet jest ostatnim `recv_packet_ptr` pakietem w wiadomości e-mail elementu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr**: wskaźnik do wystąpienia klienta
-- **recv_packet_ptr**: Odebrano pakiet danych komunikatów
-- **number_mail_item**: liczba wiadomości w maildrop klienta
-- **maildrop_total_size**: wskaźnik do rozmiaru całej wiadomości e-mail
+- **client_ptr:** Wskaźnik do wystąpienia klienta
+- **recv_packet_ptr:** Odebrano pakiet danych komunikatów
+- **number_mail_item:** Liczba wiadomości e-mail w maildrop klienta
+- **maildrop_total_size:** Wskaźnik do rozmiaru całej wiadomości e-mail
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślnie pobrano element poczty
-- **NX_POP3_CLIENT_INVALID_STATE**: (0xB7) pakiet klienta jest za mały dla żądania POP3.
-- NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+- **NX_SUCCESS:**(0x00) Element poczty został pomyślnie pobrany
+- **NX_POP3_CLIENT_INVALID_STATE:**(0xB7) Ładunek pakietu klienta jest zbyt mały dla żądania POP3.
+- NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -314,7 +314,7 @@ status = nx_pop3_client_mail_item_message_get (&demo_client, &recv_packet_ptr,
 
 ## <a name="nx_pop3_client_mail_item_size_get"></a>nx_pop3_client_mail_item_size_get
 
-Pobierz rozmiar określonego elementu poczty
+Pobieranie rozmiaru określonego elementu poczty e-mail
 
 ### <a name="prototype"></a>Prototype
 
@@ -326,22 +326,22 @@ UINT nx_pop3_client_mail_item_size_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy żądanie listy w celu uzyskania rozmiaru określonego elementu poczty.
+Ta usługa wysyła żądanie LIST w celu uzyskania rozmiaru określonego elementu poczty e-mail.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **client_ptr**: wskaźnik do wystąpienia klienta
-- **mail_item**: Indeksuj do maildrop klienta
-- **rozmiar**: wskaźnik do rozmiaru wiadomości e-mail
+- **client_ptr:** Wskaźnik do wystąpienia klienta
+- **mail_item:** indeksowanie do poczty klienta
+- **rozmiar:** wskaźnik do rozmiaru wiadomości e-mail
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślnie pobrano element poczty
-- **NX_POP3_INVALID_MAIL_ITEM**: (0XB2) Nieprawidłowy indeks elementu poczty
-- **NX_POP3_INSUFFICIENT_PACKET_PAYLOAD**: (0xB6) pakiet klienta jest za mały dla żądania POP3.
-- **NX_POP3_SERVER_ERROR_STATUS**: (0xB4) — odpowiedzi serwera ze stanem błędu
-- NX_POP3_CLIENT_INVALID_INDEX: (0xB8) nieprawidłowe dane wejściowe indeksu poczty
-- NX_PTR_ERROR: (0x07) nieprawidłowy parametr wskaźnika wejściowego
+- **NX_SUCCESS:**(0x00) Element poczty został pomyślnie pobrany
+- **NX_POP3_INVALID_MAIL_ITEM:**(0xB2) Nieprawidłowy indeks elementów poczty
+- **NX_POP3_INSUFFICIENT_PACKET_PAYLOAD:**(0xB6) Ładunek pakietu klienta jest zbyt mały dla żądania POP3.
+- **NX_POP3_SERVER_ERROR_STATUS:**(0xB4) Serwer odpowiada ze stanem błędu
+- NX_POP3_CLIENT_INVALID_INDEX: (0xB8) Nieprawidłowe dane wejściowe indeksu poczty
+- NX_PTR_ERROR: (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 

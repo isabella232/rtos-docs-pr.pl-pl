@@ -1,89 +1,89 @@
 ---
-title: Rozdział 4 — usługi klienta DHCPv6 platformy Azure RTO NetX Duo
-description: Ten rozdział zawiera opis wszystkich usług klienta DHCPv6 usługi Azure RTO NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+title: Rozdział 4 — Azure RTOS klienta DhCPv6 NetX Duo
+description: Ten rozdział zawiera opis wszystkich usług klienta Azure RTOS NetX Duo DHCPv6 (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 40fbfa7319ca95af65c92b12582d4bbb05005dc0
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 6caf943f990f8fe5cbd2cd6139a1253fcaf47dc207141963e31a9e31864ef839
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821978"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116791741"
 ---
-# <a name="chapter-4---azure-rtos-netx-duo-dhcpv6-client-services"></a>Rozdział 4 — usługi klienta DHCPv6 platformy Azure RTO NetX Duo
+# <a name="chapter-4---azure-rtos-netx-duo-dhcpv6-client-services"></a>Rozdział 4 — Azure RTOS klienta DhCPv6 NetX Duo
 
-Ten rozdział zawiera opis wszystkich usług klienta DHCPv6 usługi Azure RTO NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług klienta Azure RTOS NetX Duo DHCPv6 (wymienionych poniżej) w kolejności alfabetycznej.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w poniższych  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości z pogrubieniem, a wartości bez pogrubienia są całkowicie wyłączone.
 
-- **nx_dhcpv6_client_create:** *Tworzenie wystąpienia klienta DHCPv6* 
+- **nx_dhcpv6_client_create: tworzenie** *wystąpienia klienta DHCPv6* 
 
 - **nx_dhcpv6_client_delete:** *usuwanie wystąpienia klienta DHCPv6* 
 
-- **nx_dhcpv6_create_ client_duid:** *Tworzenie identyfikatora DUID klienta DHCPv6* 
+- **nx_dhcpv6_create_ client_duid: tworzenie** *duidu klienta DHCPv6* 
 
-- **nx_dhcpv6 _add_client_ia:** *Dodawanie adresu tożsamości klienta DHCPv6 (IA)* 
+- **nx_dhcpv6 _add_client_ia:** dodawanie adresu tożsamości klienta *(IA) DHCPv6* 
 
-- **nx_dhcpv6 _create_client_ia:** (*starsze Dodawanie adresu tożsamości klienta DHCPv6 (IA))* 
+- **nx_dhcpv6 _create_client_ia:** ( Starsza wersja dodawania adresu tożsamości klienta *DHCPv6 (IA))* 
 
-- **nx_dhcpv6_create_client_iana:** *Utwórz skojarzenie tożsamości klienta Dhcpv6 dla adresów innych niż tymczasowe (IANA)* 
+- **nx_dhcpv6_create_client_iana: tworzenie** *skojarzenia tożsamości klienta DHCPv6 dla adresów nie tymczasowych (IANA)* 
 
-- **nx_dhcpv6_get_client_duid_time_id:** *Pobierz identyfikator czasu z identyfikatora DUID klienta DHCPv6* 
+- **nx_dhcpv6_get_client_duid_time_id:** pobierz identyfikator czasu z identyfikatora DUID klienta *DHCPv6* 
 
-- **nx_dhcpv6_client_set_interface:** *Ustaw interfejs sieciowy klienta na potrzeby komunikacji z serwerem DHCPv6* 
+- **nx_dhcpv6_client_set_interface: ustaw** *interfejs sieciowy klienta na komunikację z serwerem DHCPv6* 
 
-- **nx_dhcpv6_get_IP_address:** *pobieranie globalnego adresu IPv6 przypisanego do klienta DHCPv6* 
+- **nx_dhcpv6_get_IP_address:** *uzyskiwanie globalnego adresu IPv6 przypisanego do klienta DHCPv6* 
 
-- **nx_dhcpv6_get_lease_time_data:** *Pobierz T1, T2, prawidłowych i preferowanych okresów istnienia dla globalnego adresu IPv6 klienta*
+- **nx_dhcpv6_get_lease_time_data: Uzyskiwanie** *T1, T2, prawidłowych* i preferowanych okresów istnienia dla globalnego adresu IPv6 klienta
 
-- **nx_dhcpv6_get_valid_ip_address_lease_time:** *Uzyskaj T1, T2, prawidłowy i preferowany okres istnienia dla adresu IPv6 klienta DHCPv6 według indeksu adresu* 
+- **nx_dhcpv6_get_valid_ip_address_lease_time:** *uzyskiwanie T1, T2,* prawidłowych i preferowanych okresów istnienia dla adresu IPv6 klienta DHCPv6 według indeksu adresów 
 
-- **nx_dhcpv6_get_iana_lease_time:** *Pobierz T1 i T2 w ramach SKOJARZENIA tożsamości (IANA) z klientem DHCPv6* 
+- **nx_dhcpv6_get_iana_lease_time: uzyskiwanie** T1 i T2 w skojarzenia tożsamości (IANA) dzierżawionych *do klienta DHCPv6* 
 
-- **nx_dhcpv6_get_other_option_data:** *Pobierz określone dane opcji, np. nazwę domeny lub serwer strefy czasowej* 
+- **nx_dhcpv6_get_other_option_data:** *Pobierz dane określonej opcji, np.* nazwę domeny lub serwer strefy czasowej 
 
-- **nx_dhcpv6_get_DNS_server_address:** *Pobierz adres serwera DNS z określonym indeksem na listę serwerów DNS klienta protokołu DHCPv6* 
+- **nx_dhcpv6_get_DNS_server_address:** *pobierz adres serwera DNS o określonym indeksie do listy serwerów DNS klienta DHCPv6* 
 
-- **nx_dhcpv6_get_time_accrued:** *uzyskaj czas naliczania dzierżawy globalnego adresu IPv6 został powiązany z klientem DHCPv6* 
+- **nx_dhcpv6_get_time_accrued:** Uzyskiwanie czasu, przez który globalna dzierżawa adresu IPv6 została powiązana *z klientem DHCPv6* 
 
-- **nx_dhcpv6_get_time_server_address:** *Pobierz adres serwera czasu o określonym indeksie na listę serwerów czasu klienta DHCPv6*
+- **nx_dhcpv6_get_time_server_address:** pobierz adres serwera czasu w określonym indeksie na listę serwerów czasu klienta *DHCPv6*
 
-- **nx_dhcpv6_get_valid_ip_address_count:** *pobieranie liczby adresów IPv6 przypisanych do klienta DHCPv6* 
+- **nx_dhcpv6_get_valid_ip_address_count:** *uzyskiwanie liczby adresów IPv6 przypisanych do klienta DHCPv6* 
 
-- **nx_dhcpv6_reinitialize:** *zainicjuj ponownie protokół DHCPv6 w celu ponownego uruchomienia komputera stanu klienta DHCPv6 i uruchomienia protokołu DHCPv6* 
+- **nx_dhcpv6_reinitialize:** ponowne zainicjowanie protokołu DHCPv6 w celu ponownego uruchomienia maszyny stanu klienta DHCPv6 i ponownego uruchomienia protokołu *DHCPv6* 
 
-- **nx_dhcpv6_request_confirm:** *Wyślij żądanie potwierdzenia do serwera* 
+- **nx_dhcpv6_request_confirm:** *Wyślij żądanie POTWIERDŹ do serwera* 
 
-- **nx_dhcpv6_request_inform_request:** S *Zakończ komunikat żądania inform na serwerze* 
+- **nx_dhcpv6_request_inform_request:** Zakończ *komunikat INFORM REQUEST na serwerze* 
 
-- **nx_dhcpv6_request_release:** *Wyślij żądanie wydania do serwera* 
+- **nx_dhcpv6_request_release:** *Wyślij żądanie RELEASE do serwera* 
 
-- **nx_dhcpv6_request_option_DNS_server:** *Dodaj opcję serwer DNS do żądania opcji klienta dane w żądaniach wysyłanych do serwera* 
+- **nx_dhcpv6_request_option_DNS_server:** *Dodaj opcję serwera DNS* do opcji Klient żądaj danych w komunikatach żądań do serwera 
 
-- **nx_dhcpv6_request_option_FQDN:** *Dodaj opcję FQDN do żądania opcji klienta dane w żądaniach wysyłanych do serwera* 
+- **nx_dhcpv6_request_option_FQDN:** *Dodaj opcję FQDN* do opcji Klient żądaj danych w komunikatach żądań do serwera 
 
-- **nx_dhcpv6_request_option_domain_name:** *Dodaj opcję nazwy domeny do żądania opcji klienta dane w żądaniach wysyłanych do serwera* 
+- **nx_dhcpv6_request_option_domain_name:** Dodaj opcję nazwy domeny do opcji Klient żądaj *danych w komunikatach żądań do serwera* 
 
-- **nx_dhcpv6_request_option_time_server:** *Dodaj opcję serwer czasu do żądania opcji klienta dane w żądaniach wysyłanych do serwera* 
+- **nx_dhcpv6_request_option_time_server:** Dodaj opcję serwera czasu do opcji *Klient żądaj danych w komunikatach żądań do serwera* 
 
-- **nx_dhcpv6_request_option_timezone:** *Dodaj opcję strefy czasowej do żądania opcji klienta dane w żądaniach wysyłanych do serwera* 
+- **nx_dhcpv6_request_option_timezone:** Dodaj opcję strefy czasowej do opcji *Klient żądaj danych w komunikatach żądań do serwera* 
 
-- **nx_dhcpv6_request_solicit:** *Wyślij żądanie protokołu Dhcpv6 do dowolnego serwera w sieci klienta (emisja)* 
+- **nx_dhcpv6_request_solicit: Wyślij** *żądanie DHCPv6 SOLICIT do dowolnego serwera w sieci klienta (emisji)* 
 
-- **nx_dhcpv6_request_solicit_rapid:** *Wyślij żądanie protokołu Dhcpv6 do dowolnego serwera w sieci klienta (emisji) z ustawioną opcją szybkiego zatwierdzania* 
+- **nx_dhcpv6_request_solicit_rapid: Wyślij** *żądanie SOLICIT DHCPv6* do dowolnego serwera w sieci klienta (emisji) z zestawu opcji szybkie zatwierdzanie 
 
-- **nx_dhcpv6_resume:** *Wznów przetwarzanie klienta DHCPv6* 
+- **nx_dhcpv6_resume: Wznawianie** *przetwarzania klienta DHCPv6* 
 
-- **nx_dhcpv6_start:** *Uruchom zadanie wątku klienta DHCPv6. Zwróć uwagę, że nie jest to równoznaczne z uruchomieniem komputera stanu DHCPv6 i nie wysyła żądania żądanie* 
+- **nx_dhcpv6_start:** *Uruchom zadanie wątku klienta DHCPv6. Należy zauważyć, że nie jest to równoważne uruchamianiu maszyny stanu DHCPv6* i nie wysyła żądania SOLICIT 
 
-- **nx_dhcpv6_stop:** *Zatrzymaj zadanie wątku klienta DHCPv6* 
+- **nx_dhcpv6_stop: Zatrzymaj** *zadanie wątku klienta DHCPv6* 
 
 - **nx_dhcpv6_suspend:** *Wstrzymywanie zadania wątku klienta DHCPv6* 
 
-- **nx_dhcpv6_set_time_accrued:** *Ustaw czas naliczania dla dzierżawy globalnego adresu IPv6 klienta w rekordzie klienta.*
+- **nx_dhcpv6_set_time_accrued:** ustaw czas naliczany w globalnej dzierżawie adresu *IPv6 klienta w rekordzie Klient.*
 
 ## <a name="nx_dhcpv6_client_create"></a>nx_dhcpv6_client_create
 
@@ -115,7 +115,7 @@ Ta usługa tworzy wystąpienie klienta DHCPv6, w tym funkcje wywołania zwrotneg
 
 - **ip_ptr** Wskaźnik do wystąpienia adresu IP klienta  
 
-- **name_ptr** Wskaźnik do nazwy dla wystąpienia DHCPv6
+- **name_ptr** Wskaźnik do nazwy wystąpienia DHCPv6
 
 - **packet_pool_ptr** Wskaźnik do puli pakietów klienta
 
@@ -123,17 +123,17 @@ Ta usługa tworzy wystąpienie klienta DHCPv6, w tym funkcje wywołania zwrotneg
 
 - **stack_size** Rozmiar pamięci stosu klienta
 
-- **dhcpv6_state_change_notify** Wskaźnik do funkcji wywołania zwrotnego wywoływany, gdy klient inicjuje nowe żądanie DHCPv6 na serwerze
+- **dhcpv6_state_change_notify** Wskaźnik do funkcji wywołania zwrotnego wywoływanej, gdy klient inicjuje nowe żądanie DHCPv6 do serwera
 
-- **dhcpv6_server_error_handler** Wskaźnik do funkcji wywołania zwrotnego wywoływany, gdy klient otrzymuje stan błędu z serwera
+- **dhcpv6_server_error_handler** Wskaźnik do funkcji wywołania zwrotnego wywoływanej, gdy klient otrzymuje stan błędu z serwera
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — pomyślne utworzenie klienta
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie klienta
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -177,11 +177,11 @@ Ta usługa usuwa wcześniej utworzone wystąpienie klienta DHCPv6.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne usunięcie DHCPv6
+- **NX_SUCCESS** (0x00) Pomyślne usunięcie protokołu DHCPv6
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -203,7 +203,7 @@ status =  nx_dhcpv6_client_delete(&my_dhcp);
 
 ## <a name="nx_dhcpv6_client_set_interface"></a>nx_dhcpv6_client_set_interface
 
-Ustawia interfejs sieciowy klienta dla protokołu DHCPv6
+Zestawy interfejsu sieciowego klienta dla DHCPv6
 
 ### <a name="prototype"></a>Prototype
 
@@ -214,7 +214,7 @@ UINT    nx_dhcpv6_client_set_interface(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia interfejs sieciowy klienta na potrzeby komunikacji z serwerami DHCPv6 do określonego indeksu interfejsu wejściowego.
+Ta usługa ustawia interfejs sieciowy klienta do komunikacji z serwerami DHCPv6 na określony indeks interfejsu wejściowego.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -224,11 +224,11 @@ Ta usługa ustawia interfejs sieciowy klienta na potrzeby komunikacji z serweram
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Interfejs **NX_SUCCESS** (0x00) został pomyślnie ustawiony
+- **NX_SUCCESS** (0x00) Interface successfully set
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_INVALID_INTERFACE (0x4C) nieprawidłowe dane wejściowe indeksu interfejsu
+- NX_INVALID_INTERFACE (0x4C) Nieprawidłowe dane wejściowe indeksu interfejsu
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -254,7 +254,7 @@ status = nx_dhcpv6_client_set_interface(&dhcp_0, index);
 
 ## <a name="nx_dhcpv6_client_set_destination_address"></a>nx_dhcpv6_client_set_destination_address
 
-Ustawia adres docelowy, na który powinien zostać wysłany komunikat protokołu DHCPv6
+Ustawia adres docelowy, do którego ma zostać wysłany komunikat DHCPv6
 
 ### <a name="prototype"></a>Prototype
 
@@ -265,7 +265,7 @@ UINT nx_dhcpv6_client_set_destination_address(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia adres docelowy, na który powinien zostać wysłany komunikat protokołu DHCPv6. Domyślnie jest ALL_DHCP_Relay_Agents_and_Servers (FF02:: 1:2).
+Ta usługa ustawia adres docelowy, do którego ma zostać wysłany komunikat DHCPv6. Domyślnie jest to ALL_DHCP_Relay_Agents_and_Servers(FF02::1:2).
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -275,11 +275,11 @@ Ta usługa ustawia adres docelowy, na który powinien zostać wysłany komunikat
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Interfejs **NX_SUCCESS** (0x00) został pomyślnie ustawiony
+- **NX_SUCCESS** (0x00) Interfejs został pomyślnie ustawiony
 
-- NX_PTR_ERROR (0x07) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x07) Nieprawidłowy wskaźnik wejściowy
 
-- Błąd akapitu NX_DHCPV6_PARAM_ERROR (0xE93)
+- NX_DHCPV6_PARAM_ERROR (0xE93) Parament
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -304,7 +304,7 @@ status = nx_dhcpv6_client_set_destination_address(&dhcp_0, &dest_address);
 
 ## <a name="nx_dhcpv6_create_client_duid"></a>nx_dhcpv6_create_client_duid
 
-Utwórz obiekt identyfikatora DUID klienta
+Tworzenie obiektu DUID klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -316,29 +316,29 @@ UINT nx_dhcpv6_create_client_duid(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy identyfikator DUID klienta z parametrami wejściowymi. Jeśli dane wejściowe czasu nie zostaną podane, a Typ identyfikatora DUID wskazuje warstwę łącza z czasem, ta funkcja będzie dostarczać czas, który zawiera losowy współczynnik unikatowości. Typy identyfikatora DUID przypisane przez dostawcę (Enterprise) nie są obsługiwane.
+Ta usługa tworzy duid klienta z parametrami wejściowymi. Jeśli dane wejściowe czasu nie zostaną podane, a typ duid wskazuje warstwę łącza z czasem, ta funkcja będzie dostarczać czas, który zawiera współczynnik losowania dla unikatowości. Typy duid przypisane do dostawcy (enterprise) nie są obsługiwane.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **duid_type** Typ identyfikatora DUID (sprzęt, przedsiębiorstwo itp.)
+- **duid_type** Typ duidu (sprzęt, przedsiębiorstwo itp.)
 
 - **hardware_type** Sprzęt sieciowy, np. IEEE 802
 
-- **czas** Wartość używana podczas tworzenia unikatowego identyfikatora
+- **czas** Wartość używana do tworzenia unikatowego identyfikatora
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie utworzono identyfikator DUID klienta
+- **NX_SUCCESS** (0x00) Pomyślnie utworzono duid klienta
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowe dane wejściowe bez wskaźnika
 
-- Typ identyfikatora DUID NX_DHCPV6_UNSUPPORTED_DUID_TYPE (0xE98) nieznany lub nieobsługiwany 
+- NX_DHCPV6_UNSUPPORTED_DUID_TYPE (0xE98) DUID nieznany lub nie jest obsługiwany 
 
-- NX_DHCPV6_UNSUPPORTED_DUID_HW_TYPE (0xE99) identyfikator DUID typu sprzętu nieznany lub nieobsługiwany
+- NX_DHCPV6_UNSUPPORTED_DUID_HW_TYPE (0xE99) DUID nieznany lub nie jest obsługiwany
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -376,7 +376,7 @@ UINT nx_dhcpv6_create_client_ia(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa jest taka sama jak usługa *nx_dhcpv6_add_client_ia* . Dodaje skojarzenie tożsamości klienta, wypełniając rekord klienta podanymi parametrami. Aby zażądać maksymalnych preferowanych i prawidłowych okresów istnienia, ustaw dla tych parametrów nieskończoność. Aby dodać więcej niż jeden element IA do klienta DHCPv6, należy ustawić NX_DHCPV6_MAX_IA_ADDRESS wartość wyższą niż domyślna wartość 1.
+Ta usługa jest taka sama jak *nx_dhcpv6_add_client_ia* usługi. Dodaje on skojarzenie tożsamości klienta, wypełniając rekord Client dostarczonymi parametrami. Aby zażądać maksymalnej liczby preferowanych i prawidłowych okresów istnienia, ustaw te parametry na nieskończoność. Aby dodać więcej niż jedno IA do klienta DHCPv6, NX_DHCPV6_MAX_IA_ADDRESS wartość wyższa niż wartość domyślna 1.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -384,23 +384,23 @@ Ta usługa jest taka sama jak usługa *nx_dhcpv6_add_client_ia* . Dodaje skojarz
 
 - **ipv6_address** Wskaźnik do bloku adresów IP NetX Duo
 
-- **preferred_lifetime** Długość czasu przed przestarzałym adresem IP
+- **preferred_lifetime** Czas, po który adres IP jest przestarzały
 
-- **valid_lifetime** Długość czasu przed wygaśnięciem adresu IP
+- **valid_lifetime** Czas przed wygaśnięciem adresu IP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne dodanie klienta IA
+- **NX_SUCCESS** (0x00) Dodano pomyślne we/wy klienta
 
-- **NX_DHCPV6_IA_ADDRESS_ALREADY_EXIST** (0XEAF) zduplikowany adres IA 
+- **NX_DHCPV6_IA_ADDRESS_ALREADY_EXIST** (0xEAF) Zduplikowany adres IA 
 
-- **NX_DHCPV6_REACHED_MAX_IA_ADDRESS** (0XEAE) IA przekracza maksymalny klient IAs może przechowywać
+- **NX_DHCPV6_REACHED_MAX_IA_ADDRESS** (0xEAE) IA przekracza maksymalną wartość, z których może przechowywać klient IAS
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_DHCPV6_INVALID_IA_ADDRESS (0xEA4) nieprawidłowy adres (np. null) IA w IA
+- NX_DHCPV6_INVALID_IA_ADDRESS (0xEA4) Nieprawidłowy (np. null) adres IA w IA
 
-- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowe dane wejściowe bez wskaźnika
 
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -425,7 +425,7 @@ NX_DHCPV6_PREFERRED_LIFETIME, NX_DHCPV6_VALID_LIFETIME);
 
 ## <a name="nx_dhcpv6_create_client_iana"></a>nx_dhcpv6_create_client_iana
 
-Utwórz skojarzenie tożsamości (nietymczasowe) dla klienta
+Tworzenie skojarzenia tożsamości (nie tymczasowego) dla klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -436,10 +436,10 @@ UINT nx_dhcpv6_create_client_iana(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy nietymczasowym skojarzeniem tożsamości (IANA) klienta z podanych parametrów. Aby ustawić czas T1 i T2 na maksymalny (nieskończoność) w żądaniach klientów DHCPv6, ustaw te parametry na NX_DHCPV6_INFINITE_LEASE. 
+Ta usługa tworzy skojarzenie IANA (Non Temporary Identity Association) klienta z podanych parametrów. Aby ustawić maksymalny czas T1 i T2 (nieskończoność) w żądaniach klienta DHCPv6, ustaw te parametry na wartość NX_DHCPV6_INFINITE_LEASE. 
 
 > [!NOTE]
-> Klient ma tylko jednego organizację IANA.
+> Klient ma tylko jedną usługę IANA.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -447,17 +447,17 @@ Ta usługa tworzy nietymczasowym skojarzeniem tożsamości (IANA) klienta z poda
 
 - **IA_ident** Unikatowy identyfikator skojarzenia tożsamości
 
-- **T1** Gdy klient musi uruchomić Odnawianie adresu IPv6
+- **T1** Kiedy klient musi uruchomić odnawianie adresu IPv6
 
-- **T2** Gdy klient musi uruchomić ponowne wiązanie adresu theIPv6
+- **T2** Kiedy klient musi uruchomić ponowne powiązycie adresu IPv6
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie utworzył organizację IANA
+- **NX_SUCCESS** (0x00) Pomyślnie utworzono IANA
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -494,7 +494,7 @@ UINT nx_dhcpv6_add_client_ia(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa dodaje skojarzenie tożsamości klienta, wypełniając rekord klienta podanymi parametrami. Aby zażądać maksymalnych preferowanych i prawidłowych okresów istnienia, ustaw dla tych parametrów nieskończoność. Aby dodać więcej niż jeden element IA do klienta DHCPv6, należy ustawić NX_DHCPV6_MAX_IA_ADDRESS wartość wyższą niż domyślna wartość 1.
+Ta usługa dodaje skojarzenie tożsamości klienta, wypełniając rekord Client dostarczonymi parametrami. Aby zażądać maksymalnej liczby preferowanych i prawidłowych okresów istnienia, ustaw te parametry na nieskończoność. Aby dodać więcej niż jedno IA do klienta DHCPv6, NX_DHCPV6_MAX_IA_ADDRESS wartość wyższa niż wartość domyślna 1.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -502,23 +502,23 @@ Ta usługa dodaje skojarzenie tożsamości klienta, wypełniając rekord klienta
 
 - **ipv6_address** Wskaźnik do bloku adresów IP NetX Duo
 
-- **preferred_lifetime** Długość czasu przed przestarzałym adresem IP
+- **preferred_lifetime** Czas, po który adres IP jest przestarzały
 
-- **valid_lifetime** Długość czasu przed wygaśnięciem adresu IP 
+- **valid_lifetime** Czas przed wygaśnięciem adresu IP 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne dodanie klienta IA
+- **NX_SUCCESS** (0x00) Dodano pomyślne we/wy klienta
 
-- **NX_DHCPV6_IA_ADDRESS_ALREADY_EXIST** (0XEAF) zduplikowany adres IA 
+- **NX_DHCPV6_IA_ADDRESS_ALREADY_EXIST** (0xEAF) Zduplikowany adres IA 
 
-- **NX_DHCPV6_REACHED_MAX_IA_ADDRESS** (0XEAE) IA przekracza maksymalny klient IAs może przechowywać
+- **NX_DHCPV6_REACHED_MAX_IA_ADDRESS** (0xEAE) IA przekracza maksymalną wartość, która może przechowywać klient IAS
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_DHCPV6_INVALID_IA_ADDRESS (0xEA4) nieprawidłowy adres (np. null) IA w IA
+- NX_DHCPV6_INVALID_IA_ADDRESS (0xEA4) Nieprawidłowy (np. null) adres IA w IA
 
-- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowe dane wejściowe bez wskaźnika
 
  
 ### <a name="allowed-from"></a>Dozwolone z
@@ -554,21 +554,21 @@ UINT nx_dhcpv6_get_client_duid_time_id(NX_DHCPV6 *dhcpv6_ptr, ULONG *time_id);
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera pole identyfikatora czasu z identyfikatora DUID klienta. Jeśli aplikacja musi najpierw wywołać *nx_dhcpv6_create_client_duid*, aby wypełnić identyfikator DUID klienta w wystąpieniu klienta DHCPv6 lub będzie mieć wartość null dla tego pola. Celem jest zapisanie tych danych przez aplikację i zaprezentowanie tego samego identyfikatora DUID klienta na serwerze, w tym pola czasowego, w przypadku ponownego uruchomienia.
+Ta usługa pobiera pole identyfikatora czasu z identyfikatora DUID klienta. Jeśli aplikacja musi najpierw wywołać nx_dhcpv6_create_client_duid *,* aby wypełnić identyfikator DUID klienta w wystąpieniu klienta DHCPv6, lub będzie mieć wartość null dla tego pola. Intencją aplikacji jest zapisanie tych danych i przedstawienie na serwerze tego samego wartości DUID klienta, w tym pola czasu, po ponownym uruchomieniu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **TIME_ID** Wskaźnik do pola czasu identyfikatora DUID klienta
+- **time_id** Wskaźnik do pola czasu DUID klienta
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie pobrano dane dzierżawy IP **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) adresu IP zostały pomyślnie pobrane
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -609,17 +609,17 @@ Ta usługa pobiera globalny adres IPv6 klienta. Jeśli klient nie ma prawidłowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **IP_address** Wskaźnik na adres IPv6
+- **ip_address** Wskaźnik do adresu IPv6
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Adres IPv6 **NX_SUCCESS** (0x00) został pomyślnie przypisany
+- **NX_SUCCESS** (0x00) adres IPv6 został pomyślnie przypisany
 
-- Adres IPv6 **NX_DHCPV6_IA_ADDRESS_NOT_VALID** (0xEAD) jest nieprawidłowy
+- **NX_DHCPV6_IA_ADDRESS_NOT_VALID** (0xEAD) IPv6 jest nieprawidłowy
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -649,7 +649,7 @@ status = nxd_ipv6_address_set(&ip_0, 0, &ipv6_address, 64, &address_index);
 
 ## <a name="nx_dhcpv6_get_lease_time_data"></a>nx_dhcpv6_get_lease_time_data
 
-Pobiera dane czasu dzierżawy adresu (IA) klienta
+Pobiera dane czasu dzierżawy adresu IA klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -661,27 +661,27 @@ UINT nx_dhcpv6_get_lease_time_data(NX_DHCPV6 *dhcpv6_ptr, ULONG *T1,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera dane o globalnym czasie adresu klienta. Jeśli stan adresu klienta IA jest nieprawidłowy, dane czasu są ustawiane na zero i zwracany jest stan pomyślnego zakończenia. Jeśli klient ma więcej niż jeden globalny adres IPv6, zwracane są dane podstawowych adresów IA.
+Ta usługa pobiera globalne dane czasu IA klienta. Jeśli stan adresu IA klienta jest nieprawidłowy, dane czasu są ustawione na zero i zwracany jest stan pomyślnego ukończenia. Jeśli klient ma więcej niż jeden globalny adres IPv6, zwracane są dane podstawowego adresu IA.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **T1** Wskaźnik na czas odnowienia adresu (IA)
+- **T1** Wskaźnik do czasu odnowienia adresu IA
 
-- **T2** Wskaźnik do ponownego powiązania adresu IA
+- **T2** Wskaźnik do czasu ponownego wiązania adresu IA
 
-- **preferred_lifetime** Wskaźnik do czasu, gdy adres IA jest przestarzały
+- **preferred_lifetime** Wskaźnik czasu, gdy adres IA jest przestarzały
 
-- **valid_lifetime** Wskaźnik do czasu wygaśnięcia okresu IA
+- **valid_lifetime** Wskaźnik czasu wygaśnięcia adresu IA
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) pomyślnie pobrano dane DZIERŻAWy IA
+- **NX_SUCCESS** (0x00) Dane dzierżawy IA zostały pomyślnie pobrane
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -707,7 +707,7 @@ status = nx_dhcpv6_get_lease_time_data(&dhcp_0, &T1, &T2, &preferred_lifetime,
 
 ## <a name="nx_dhcpv6_get_iana-lease_time"></a>nx_dhcpv6_get_iana lease_time
 
-Pobieranie danych czasu dzierżawy organizacji klienta
+Pobieranie danych czasu dzierżawy IANA klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -718,23 +718,23 @@ UINT nx_dhcpv6_get_iana_lease_time(NX_DHCPV6 *dhcpv6_ptr, ULONG *T1,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera dane globalne czasu dzierżawy (T1 i T2) klienta. Jeśli żaden z adresów klienta IA-NA nie ma prawidłowego stanu adresu, dane czasu są ustawione na zero i zwracany jest stan pomyślnego zakończenia. Jeśli klient ma więcej niż jeden globalny adres IPv6, zwracane są dane podstawowych adresów IA.
+Ta usługa pobiera globalne dane czasu dzierżawy IA-NA klienta (T1 i T2). Jeśli żaden z adresów IA-NA klienta nie ma prawidłowego stanu adresu, dane czasu są ustawione na zero i zwracany jest stan pomyślnego ukończenia. Jeśli klient ma więcej niż jeden globalny adres IPv6, zwracane są dane podstawowego adresu IA.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **T1** Wskaźnik do momentu rozpoczęcia odnawiania dzierżawy
+- **T1** Wskaźnik czasu do rozpoczęcia odnawiania dzierżawy
 
-- **T2** Wskaźnik do czasu rozpoczęcia ponownego powiązania dzierżawy
+- **T2** Wskaźnik czasu do ponownego wiązania dzierżawy
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) dane dzierżawy organizacji Iana zostały pomyślnie pobrane
+- **NX_SUCCESS** (0x00) IANA lease data successfully retrieved (Pomyślnie pobrano dane dzierżawy IANA)
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -759,7 +759,7 @@ status = nx_dhcpv6_get_iana_lease_time(&dhcp_0, &T1, &T2);
 
 ## <a name="nx_dhcpv6_get_valid_ip_address_count"></a>nx_dhcpv6_get_valid_ip_address_count
 
-Pobierz liczbę prawidłowych adresów (IA) klienta
+Pobieranie liczby prawidłowych adresów IA klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -770,7 +770,7 @@ UINT nx_dhcpv6_get_valid_ip_address_count(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera liczbę prawidłowych adresów IPv6 klienta. Prawidłowy adres IPv6 jest powiązany (przypisany) do klienta i zarejestrowany w wystąpieniu adresu IP.
+Ta usługa pobiera liczbę prawidłowych adresów IPv6 klienta. Prawidłowy adres IPv6 jest powiązany (przypisany) do klienta i zarejestrowany w wystąpieniu adresu IP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -780,11 +780,11 @@ Ta usługa Pobiera liczbę prawidłowych adresów IPv6 klienta. Prawidłowy adre
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) dane dzierżawy organizacji Iana zostały pomyślnie pobrane
+- **NX_SUCCESS** (0x00) IANA lease data successfully retrieved (Pomyślnie pobrano dane dzierżawy IANA)
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -803,7 +803,7 @@ status = nx_dhcpv6_get_valid_ip_address_count(&dhcp_0, &address_count);
 
 ## <a name="nx_dhcpv6_get_valid_ip_address_lease_time"></a>nx_dhcpv6_get_valid_ip_address_lease_time
 
-Pobieranie danych klienta IA przez indeks adresu
+Pobieranie danych IA klienta według indeksu adresów
 
 ### <a name="prototype"></a>Prototype
 
@@ -817,29 +817,29 @@ UINT nx_dhcpv6_get_valid_ip_address_lease_time(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera adres IA klienta i dane dzierżawy według indeksu adresu. Jeśli podano nieprawidłowy indeks lub adres IPv6 w tym indeksie jest nieprawidłowy, usługa zwróci NX_DHCPV6_IA_ADDRESS_NOT_VALID stanu błędu.
+Ta usługa pobiera adres IA klienta i dane dzierżawy według indeksu adresów. Jeśli zostanie podany nieprawidłowy indeks lub adres IPv6 w tym indeksie jest nieprawidłowy, usługa zwraca stan NX_DHCPV6_IA_ADDRESS_NOT_VALID błędu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **address_index** Indeksowanie w tabeli protokołu DHCPv6 IA
+- **address_index** Indeksowanie w tabeli IA protokołu DHCPv6
 
-- **IP_address** Wskaźnik na adres IPv6 do pobrania
+- **ip_address** Wskaźnik do adresu IPv6 do pobrania
 
-- **preferred_lifetime** Wskaźnik do czasu, gdy adres IA jest przestarzały
+- **preferred_lifetime** Wskaźnik czasu, gdy adres IA jest przestarzały
 
-- **valid_lifetime** Wskaźnik do czasu wygaśnięcia okresu IA
+- **valid_lifetime** Wskaźnik czasu wygaśnięcia adresu IA
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Dane dotyczące **NX_SUCCESS** (0X00) Iana zostały pomyślnie pobrane
+- **NX_SUCCESS** (0x00) IANA pomyślnie pobrano
 
-- **NX_DHCPV6_IA_ADDRESS_NOT_VALID** (0xEAD) Nieprawidłowy indeks lub nie ma prawidłowego adresu IPv6 pod podanym indeksem 
+- **NX_DHCPV6_IA_ADDRESS_NOT_VALID** (0xEAD) Nieprawidłowy indeks lub brak prawidłowego adresu IPv6 w dostarczonym indeksie 
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -880,23 +880,23 @@ UINT nx_dhcpv6_get_DNS_server_address(NX_DHCPV6 *dhcpv6_ptr, UINT index,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera dane adresów IPv6 serwera DNS z określonym indeksem na liście klientów. Jeśli lista nie zawiera adresu serwera w indeksie, zwracany jest błąd. Indeks nie może przekroczyć rozmiaru listy serwerów DNS zdefiniowanej przez użytkownika NX_DHCPV6_NUM_DNS_SERVERS opcję konfigurowalną.
+Ta usługa pobiera dane adresu IPv6 serwera DNS w określonym indeksie na liście klient. Jeśli lista nie zawiera adresu serwera w indeksie, zwracany jest błąd. Indeks nie może przekraczać rozmiaru listy serwerów DNS jest określony przez użytkownika konfigurowalne NX_DHCPV6_NUM_DNS_SERVERS.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **indeks** Indeksuj na listę serwerów DNS
+- **indeks** Indeksowanie na liście serwerów DNS
 
-- **server_address** Wskaźnik do buforu adresów serwera
+- **server_address** Wskaźnik do bufora adresów serwera
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie pobrano adres **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Adres został pomyślnie pobrany
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -924,7 +924,7 @@ NXD_ADDRESS server_address;
 
 ## <a name="nx_dhcpv6_get_other_option_data"></a>nx_dhcpv6_get_other_option_data
 
-Pobiera dane opcji protokołu DHCPv6 
+Pobiera dane opcji DHCPv6 
 
 ### <a name="prototype"></a>Prototype
 
@@ -935,27 +935,27 @@ UINT  nx_dhcpv6_get_other_option_data(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera dane z opcji DHCPv6 z komunikatu protokołu DHCPv6 dla określonego kodu opcji.
+Ta usługa pobiera dane opcji DHCPv6 z komunikatu DHCPv6 dla określonego kodu opcji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **kod opcji kodu opcji** , dla którego dane mają zostać pobrane
+- **kod** opcji Kod opcji, dla którego dane mają zostać pobrane
 
-- **bufor** Wskaźnik do buforu, do którego mają zostać skopiowane dane 
+- **bufor** Wskaźnik do buforu, do których mają być kopiowane dane 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie pobrano dane opcji **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Dane opcji zostały pomyślnie pobrane
 
-- **NX_DHCPV6_UNKNOWN_OPTION** (0XEAB) nieznany/nieobsługiwany kod opcji
+- **NX_DHCPV6_UNKNOWN_OPTION** (0xEAB) Nieznany/nieobsługiwany kod opcji
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_DHCPV6_PARAM_ERROR (0xE93) Nieprawidłowe dane wejściowe bez wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -978,7 +978,7 @@ status = nx_dhcpv6_get_other_option_data(&dhcp_0, option_code, buffer);
 
 ## <a name="nx_dhcpv6_get_time_accrued"></a>nx_dhcpv6_get_time_accrued
 
-Pobiera czas naliczany przez dzierżawę adresu IP klienta
+Pobiera czas naliczony dla dzierżawy adresu IP klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -988,21 +988,21 @@ UINT nx_dhcpv6_get_time_accrued(NX_DHCPV6 *dhcpv6_ptr, ULONG *time_accrued);
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera czas naliczony przez dzierżawę adresu IPv6 klienta. Funkcja sprawdza wszystkie adresy IPv6 przypisane do klienta pod kątem pierwszego prawidłowego adresu. Jeśli nie zostanie znaleziony prawidłowy adres, zwracana jest wartość zero dla naliczonego czasu.
+Ta usługa pobiera czas naliczany w dzierżawie adresu IPv6 klienta. Funkcja sprawdza wszystkie adresy IPv6 przypisane do klienta dla pierwszego prawidłowego adresu. Jeśli nie znaleziono prawidłowych adresów, zwracana jest wartość zero dla czasu naliczania.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **time_accrued** Wskaźnik na czas naliczany w dzierżawie IP
+- **time_accrued** Wskaźnik do czasu naliczonego w dzierżawie ip
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie pobrano naliczony czas **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Czas naliczony został pomyślnie pobrany
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1038,23 +1038,23 @@ UINT  nx_dhcpv6_get_time_server_address(NX_DHCPV6 *dhcpv6_ptr, UINT index,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera dane adresów IPv6 serwera czasu o określonym indeksie na liście klientów. Jeśli lista nie zawiera adresu serwera w indeksie, zwracany jest błąd. Indeks nie może przekroczyć rozmiaru listy serwerów czasu określonego przez użytkownika NX_DHCPV6_NUM_TIME_SERVERS opcji konfigurowalnej.
+Ta usługa pobiera dane adresu IPv6 serwera czasu w określonym indeksie na liście klient. Jeśli lista nie zawiera adresu serwera w indeksie, zwracany jest błąd. Indeks nie może przekraczać rozmiaru listy Serwer czasu jest określony przez konfigurowalna opcja NX_DHCPV6_NUM_TIME_SERVERS.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **indeks** Indeksuj na listę serwerów czasu
+- **indeks** Indeksowanie na liście serwera czasu
 
-- **server_address** Wskaźnik do buforu adresów serwera
+- **server_address** Wskaźnik do bufora adresów serwera
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie pobrano adres **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** adres (0x00) został pomyślnie pobrany
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1083,7 +1083,7 @@ NXD_ADDRESS server_address;
 
 ## <a name="nx_dhcpv6_reinitialize"></a>nx_dhcpv6_reinitialize
 
-Usuń adres IP klienta z tabeli IP
+Usuń adres IP klienta z tabeli ADRESÓW IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -1093,10 +1093,10 @@ UINT nx_dhcpv6_reinitialize(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa ponownie inicjuje klienta programu w celu ponownego uruchomienia komputera stanu DHCPv6 i ponownego uruchomienia protokołu DHCPv6. Nie jest to konieczne, jeśli klient nie uruchomił wcześniej DHPCv6 stanu komputera ani nie przypisał żadnego adresu IPv6. Adresy zapisane na kliencie DHCPv6 oraz zarejestrowane z wystąpieniem IP są wyczyszczone.
+Ta usługa ponownie inicjalizuje klienta w celu ponownego uruchomienia maszyny stanu DHCPv6 i ponownego uruchomienia protokołu DHCPv6. Nie jest to konieczne, jeśli klient nie uruchomił wcześniej maszyny stanu DHPCv6 lub nie przypisano żadnych adresów IPv6. Adresy zapisane w kliencie DHCPv6, a także zarejestrowane w wystąpieniu adresu IP, zostaną wyczyszone.
 
 > [!NOTE]
-> Aplikacja musi nadal uruchamiać klienta DHCPv6 przy użyciu *usługi nx_dhcpv6_start* i rozpocząć żądanie przypisywania adresów IPv6 przez wywołanie *nx_dhcpv6_request_solicit*.
+> Aplikacja musi nadal uruchomić klienta DHCPv6 przy użyciu usługi *nx_dhcpv6_start* i rozpocząć żądanie przypisania adresu IPv6, *wywołując* nx_dhcpv6_request_solicit .
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1104,13 +1104,13 @@ Ta usługa ponownie inicjuje klienta programu w celu ponownego uruchomienia komp
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie usunięto adres **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Adres został pomyślnie usunięty
 
-- **NX_DHCPV6_ALREADY_STARTED** (0XE91) klient DHCPv6 jest już uruchomiony
+- **NX_DHCPV6_ALREADY_STARTED** (0xE91) DHCPv6 jest już uruchomiony
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1132,7 +1132,7 @@ status = nx_dhcpv6_reinitialize(&dhcp_0);
 
 ## <a name="nx_dhcpv6_request_confirm"></a>nx_dhcpv6_request_confirm
 
-Przetwórz stan potwierdzenia klienta
+Przetwarzanie stanu POTWIERDŹ klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -1142,7 +1142,7 @@ UINT nx_dhcpv6_request_confirm(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła żądanie potwierdzenia. W przypadku otrzymania odpowiedzi z serwera klient DHCPv6 aktualizuje swoje parametry dzierżawy o odebranych danych.
+Ta usługa wysyła żądanie POTWIERDŹ. Jeśli serwer otrzyma odpowiedź, klient DHCPv6 aktualizuje parametry dzierżawy przy użyciu odebranych danych.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1150,11 +1150,11 @@ Ta usługa wysyła żądanie potwierdzenia. W przypadku otrzymania odpowiedzi z 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Komunikat POTWIERDZAjący **NX_SUCCESS** (0x00) został pomyślnie wysłany i przetworzony
+- **NX_SUCCESS** (0x00) POTWIERDZENIE pomyślnego wysłania i przetworzenia komunikatu
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1178,7 +1178,7 @@ status = nx_dhcpv6_request_confirm(&dhcp_0);
 
 ## <a name="nx_dhcpv6_request_inform_request"></a>nx_dhcpv6_request_inform_request
 
-Przetwarzaj stan żądania poinformowania klienta
+Przetwarzanie stanu ŻĄDANIA INFORM klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -1188,7 +1188,7 @@ UINT nx_dhcpv6_request_inform_request(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła komunikat z PROŚBą o powiadomienie. W przypadku odebrania odpowiedzi, gdy zostanie odebrana, odpowiedź jest przetwarzana w celu ustalenia, czy serwer udzielił żądania. Wystąpienie klienta zostaje następnie zaktualizowane informacjami o serwerze zgodnie z wymaganiami.
+Ta usługa wysyła komunikat INFORM REQUEST. Jeśli zostanie odebrana odpowiedź, po jej otrzymaniu odpowiedź jest przetwarzana w celu ustalenia, czy jest prawidłowa, a serwer przyznał żądanie. Następnie wystąpienie klienta jest aktualizowane przy użyciu informacji o serwerze zgodnie z potrzebami.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1196,11 +1196,11 @@ Ta usługa wysyła komunikat z PROŚBą o powiadomienie. W przypadku odebrania o
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) komunikat żądania inform został pomyślnie utworzony i przetworzony
+- **NX_SUCCESS** (0x00) Informuj o żądaniu pomyślnie utworzony i przetworzony
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1222,7 +1222,7 @@ status = nx_dhcpv6_request_inform_request(&dhcp_0);
 
 ## <a name="nx_dhcpv6_request_option_dns_server"></a>nx_dhcpv6_request_option_DNS_server
 
-Dodaj serwer DNS do żądania opcji protokołu DHCPv6
+Dodawanie serwera DNS do żądania opcji DHCPv6
 
 ### <a name="prototype"></a>Prototype
 
@@ -1232,7 +1232,7 @@ UINT nx_dhcpv6_request_option_DNS_server(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa dodaje opcję żądania informacji o serwerze DNS do żądania opcji protokołu DHCPv6. Jeśli odpowiedź serwera zawiera dane serwera DNS, klient będzie przechowywał serwer DNS, jeśli ma to miejsce. Liczba serwerów DNS, które mogą być przechowywane przez klienta, zależy od konfigurowalnej opcji NX_DHCPV6_NUM_DNS_SERVERS której wartość domyślna to 2.
+Ta usługa dodaje opcję żądania informacji o serwerze DNS do żądania opcji DHCPv6. Jeśli odpowiedź serwera zawiera dane serwera DNS, klient będzie przechowywać serwer DNS, jeśli ma do tego miejsce. Liczba serwerów DNS, które klient może przechowywać, zależy od konfigurowalnej opcji, NX_DHCPV6_NUM_DNS_SERVERS której wartość domyślna to 2.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1240,11 +1240,11 @@ Ta usługa dodaje opcję żądania informacji o serwerze DNS do żądania opcji 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Opcja serwera DNS **NX_SUCCESS** (0x00) jest dołączona
+- **NX_SUCCESS** (0x00) serwera DNS jest uwzględniona
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1265,7 +1265,7 @@ nx_dhcpv6_request_option_DNS_server(&dhcp_0, NX_TRUE);
 
 ## <a name="nx_dhcpv6_request_option_fqdn"></a>nx_dhcpv6_request_option_FQDN
 
-Dodaj w pełni kwalifikowaną opcję nazwy domeny do listy żądań opcji
+Dodawanie opcji W pełni kwalifikowana nazwa domeny do listy żądań opcji
 
 ### <a name="prototype"></a>Prototype
 
@@ -1276,29 +1276,29 @@ UINT op);
 
 ### <a name="description"></a>Opis
 
-Ta usługa dodaje opcję dodawania w pełni kwalifikowanej nazwy domeny klienta do żądania opcji protokołu DHCPv6. Dostępne są trzy opcje dla opcji FQDN:
+Ta usługa dodaje opcję dodawania w pełni kwalifikowanej nazwy domeny klienta do żądania opcji DHCPv6. Istnieją trzy opcje dla opcji FQDN:
 
-- NX_DHCPV6_CLIENT_DESIRES_UPDATE_AAAA_RR 0 Aktualizowanie mapowania adresów FQDN-IPv6 dla nazwy FQDN i adresów używanych przez klienta.
+- NX_DHCPV6_CLIENT_DESIRES_UPDATE_AAAA_RR 0 Zaktualizuj mapowanie adresów FQDN na IPv6 dla nazw FQDN i adresów używanych przez klienta.
 
-- NX_DHCPV6_CLIENT_DESIRES_SERVER_DO_DNS_UPDATE 1 zaktualizuj mapowanie adresów FQDN-IPv6 dla nazwy FQDN i adresów używanych przez klienta na serwerze programu.
+- NX_DHCPV6_CLIENT_DESIRES_SERVER_DO_DNS_UPDATE 1 Zaktualizuj mapowanie adresów FQDN na IPv6 dla nazw FQDN i adresów używanych przez klienta na serwerze.
 
-- NX_DHCPV6_CLIENT_DESIRES_NO_SERVER_DNS_UPDATE 2 Zażądaj, aby serwer nie wykonywał aktualizacji DNS w imieniu klienta.
+- NX_DHCPV6_CLIENT_DESIRES_NO_SERVER_DNS_UPDATE 2 Zażądaj, aby serwer nie przeprowadzał żadnych aktualizacji DNS w imieniu klienta.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **domain_name** Ciąg przechowujący nazwę domeny
+- **domain_name** Ciąg zawierający nazwę domeny
 
-- **operacja** Typ opcji FQDN do zastosowania (patrz lista powyżej)
+- **op (op)** Typ opcji WQDN do zastosowania (zobacz listę powyżej)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Opcja nazwy FQDN **NX_SUCCESS** (0x00) jest uwzględniona
+- **NX_SUCCESS** (0x00) jest uwzględniona opcja WQDN
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1320,7 +1320,7 @@ nx_dhcpv6_request_option_FQDN(&dhcp_0, “DHCPv6_Client”,
 
 ## <a name="nx_dhcpv6_request_option_domain_name"></a>nx_dhcpv6_request_option_domain_name
 
-Dodaj opcję nazwy domeny do żądania opcji protokołu DHCPv6
+Dodawanie opcji nazwy domeny do żądania opcji DHCPv6
 
 ### <a name="prototype"></a>Prototype
 
@@ -1330,7 +1330,7 @@ UINT nx_dhcpv6_request_option_domain_name(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa dodaje opcję nazwy domeny do żądania opcji w komunikatach żądania klienta. Jeśli odpowiedź serwera zawiera dane nazwy domeny, klient będzie przechowywał informacje o nazwie domeny, jeśli rozmiar nazwy domeny mieści się w rozmiarze buforu na potrzeby przechowywania nazwy domeny. Ten rozmiar buforu jest konfigurowalną opcją (NX_DHCPV6_DOMAIN_NAME_BUFFER_SIZE) o wartości domyślnej 30 bajtów.
+Ta usługa dodaje opcję nazwy domeny do żądania opcji w komunikatach żądania klienta. Jeśli odpowiedź serwera zawiera dane nazwy domeny, klient będzie przechowywać informacje o nazwie domeny, jeśli rozmiar nazwy domeny znajduje się w rozmiarze buforu do przechowywania nazwy domeny. Ten rozmiar buforu jest konfigurowalna opcja (NX_DHCPV6_DOMAIN_NAME_BUFFER_SIZE) z wartością domyślną 30 bajtów.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1338,11 +1338,11 @@ Ta usługa dodaje opcję nazwy domeny do żądania opcji w komunikatach żądani
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) ustawienie opcji nazwy domeny
+- **NX_SUCCESS** (0x00) Nazwa domeny zestaw opcji
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1363,7 +1363,7 @@ nx_dhcpv6_request_option_domain_name(&dhcp_0, NX_TRUE);
 
 ## <a name="nx_dhcpv6_request_option_time_server"></a>nx_dhcpv6_request_option_time_server
 
-Ustaw dane serwera jako opcjonalne żądanie
+Ustawianie danych serwera czasu jako żądania opcjonalnego
 
 ### <a name="prototype"></a>Prototype
 
@@ -1373,9 +1373,9 @@ UINT nx_dhcpv6_request_option_time_server(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa dodaje opcję Informacje o serwerze czasu do żądania opcji komunikatów żądania klienta. Jeśli odpowiedź serwera zawiera dane serwera Tim, klient będzie przechowywał serwer czasu, jeśli ma to miejsce. Liczba serwerów, które mogą być przechowywane przez klienta, zależy od opcji konfigurowalnej
+Ta usługa dodaje opcję informacji o serwerze czasu do żądania opcji komunikatów żądania klienta. Jeśli odpowiedź serwera zawiera dane serwera tim, klient będzie przechowywać serwer czasu, jeśli ma do tego miejsce. Liczba serwerów czasu, które klient może przechowywać, zależy od konfigurowalnej opcji
 
-NX_DHCPV6_NUM_TIME _SERVERS których wartość domyślna to 1.
+NX_DHCPV6_NUM_TIME _SERVERS której wartość domyślna to 1.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1383,11 +1383,11 @@ NX_DHCPV6_NUM_TIME _SERVERS których wartość domyślna to 1.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Dodano opcję serwera czasu **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Serwer czasu dodana
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1408,7 +1408,7 @@ nx_dhcpv6_request_option_time_server(&dhcp_0, NX_TRUE);
 
 ## <a name="nx_dhcpv6_request_option_timezone"></a>nx_dhcpv6_request_option_timezone
 
-Ustaw dane strefy czasowej jako opcjonalne żądanie
+Ustawianie danych strefy czasowej jako żądania opcjonalnego
 
 ### <a name="prototype"></a>Prototype
 
@@ -1418,7 +1418,7 @@ UINT nx_dhcpv6_request_option_timezone(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa dodaje opcję żądania informacji o strefie czasowej do żądania opcji klienta. Jeśli odpowiedź serwera zawiera dane strefy czasowej, klient będzie przechowywał informacje o strefie czasowej, jeśli rozmiar strefy czasowej mieści się w rozmiarze buforu do przechowywania strefy czasowej. Ten rozmiar buforu jest konfigurowalną opcją (NX_DHCPV6_ TIME_ZONE _BUFFER_SIZE) o wartości domyślnej 10 bajtów.
+Ta usługa dodaje opcję żądania informacji o strefie czasowej do żądania opcji Klient. Jeśli odpowiedź serwera zawiera dane strefy czasowej, klient będzie przechowywać informacje o strefie czasowej, jeśli rozmiar strefy czasowej znajduje się w rozmiarze buforu do przechowywania strefy czasowej. Ten rozmiar buforu jest konfigurowalna opcja (NX_DHCPV6_ TIME_ZONE _BUFFER_SIZE) z wartością domyślną 10 bajtów.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1426,11 +1426,11 @@ Ta usługa dodaje opcję żądania informacji o strefie czasowej do żądania op
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Dodano opcję strefy czasowej **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Dodano opcję Strefa czasowa
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1451,7 +1451,7 @@ nx_dhcpv6_request_option_timezone(&dhcp_0, NX_TRUE);
 
 ## <a name="nx_dhcpv6_request_release"></a>nx_dhcpv6_request_release
 
-Wysyłanie komunikatu o ZWOLNIeniu protokołu DHCPv6
+Wysyłanie komunikatu o wydaniu protokołu DHCPv6
 
 ### <a name="prototype"></a>Prototype
 
@@ -1461,7 +1461,7 @@ UINT nx_dhcpv6_request_release(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła komunikat o wersji w sieci klienta. Jeśli komunikat został pomyślnie wysłany, zwracany jest stan "powodzenie". Pomyślne zakończenie nie oznacza, że klient otrzymał odpowiedź lub że został jeszcze przydzielony adres IPv6. Zadanie wątku klienta DHCPv6 czeka na odpowiedź z serwera DHCPv6. Jeśli zostanie odebrana, sprawdza, czy odpowiedź jest prawidłowa i zapisuje dane w rekordzie klienta.
+Ta usługa wysyła komunikat RELEASE w sieci klienta. Jeśli komunikat zostanie pomyślnie wysłany, zostanie zwrócony stan powodzenia. Pomyślne ukończenie nie oznacza, że klient otrzymał odpowiedź lub ma jeszcze udzielony adres IPv6. Zadanie wątku klienta DHCPv6 czeka na odpowiedź z serwera DHCPv6. Jeśli zostanie odebrany, sprawdza, czy odpowiedź jest prawidłowa, i zapisuje dane w rekordzie Client.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1469,17 +1469,17 @@ Ta usługa wysyła komunikat o wersji w sieci klienta. Jeśli komunikat został 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Komunikat o wersji **NX_SUCCESS** (0x00) został pomyślnie wysłany
+- **NX_SUCCESS** (0x00) RELEASE został pomyślnie wysłany
 
-- **NX_DHCPV6_NOT_STARTED** (0xE92) nie uruchomiono zadania klienta protokołu DHCPv6
+- **NX_DHCPV6_NOT_STARTED** (0xE92) DHCPv6 Client nie zostało uruchomione
 
-- Adres **NX_DHCPV6_IA_ADDRESS_NOT_VALID** (0xEAD) nie jest powiązany z klientem
+- **NX_DHCPV6_IA_ADDRESS_NOT_VALID** (0xEAD) nie jest powiązany z klientem
 
-- Nie znaleziono **NX_INVALID_INTERFACE** (0x4C) w tabeli adresów IP
+- **NX_INVALID_INTERFACE** (0x4C) Nie znaleziono w tabeli adresów IP
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1502,7 +1502,7 @@ status = nx_dhcpv6_request_release(&dhcp_0);
 
 ## <a name="nx_dhcpv6_request_solicit"></a>nx_dhcpv6_request_solicit
 
-Wyślij komunikat żądania
+Wysyłanie komunikatu SOLICIT
 
 ### <a name="prototype"></a>Prototype
 
@@ -1512,10 +1512,10 @@ UINT nx_dhcpv6_request_solicit(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła komunikat żądania w sieci. Jeśli komunikat został pomyślnie wysłany, zwracany jest stan "powodzenie". Pomyślne zakończenie nie oznacza, że klient otrzymał odpowiedź lub że został jeszcze przydzielony adres IPv6. Zadanie wątku klienta DHCPv6 czeka na odpowiedź (komunikat ADVERTISE) z serwera DHCPv6. Jeśli zostanie on odebrany, sprawdza, czy odpowiedź jest prawidłowa, przechowuje dane w rekordzie klienta i promuje klienta do stanu żądania.
+Ta usługa wysyła komunikat SOLICIT do sieci. Jeśli komunikat zostanie pomyślnie wysłany, zostanie zwrócony stan powodzenia. Pomyślne ukończenie nie oznacza, że klient otrzymał odpowiedź lub ma jeszcze udzielony adres IPv6. Zadanie wątku klienta DHCPv6 czeka na odpowiedź (komunikat ANONS) z serwera DHCPv6. Jeśli zostanie odebrany, sprawdza, czy odpowiedź jest prawidłowa, zapisuje dane w rekordzie Client i podniesie klienta do stanu REQUEST.
 
 > [!NOTE] 
-> Jeśli opcja szybkie zatwierdzanie zostanie ustawiona, klient DHCPv6 przejdzie bezpośrednio do stanu powiązanego, Jeśli odbierze prawidłowy komunikat ANONSowania serwera. Aby uzyskać więcej informacji, zobacz Opis usługi dla *nx_dhcpv6_request_solicit_rapid* .
+> Jeśli opcja szybkiego zatwierdzania jest ustawiona, klient DHCPv6 zostanie przejść bezpośrednio do powiązanego stanu, jeśli odbiera prawidłowy komunikat ANONS SERWERA. Aby uzyskać więcej informacji, *zobacz opis nx_dhcpv6_request_solicit_rapid* usługi.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1523,11 +1523,11 @@ Ta usługa wysyła komunikat żądania w sieci. Jeśli komunikat został pomyśl
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Komunikat żądania **NX_SUCCESS** (0x00) został pomyślnie wysłany
+- **NX_SUCCESS** (0x00) SOLICIT został pomyślnie wysłany
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1544,7 +1544,7 @@ status = nx_dhcpv6_request_solicit(&dhcp_0);
 
 ## <a name="nx_dhcpv6_request_solicit_rapid"></a>nx_dhcpv6_request_solicit_rapid
 
-Wyślij komunikat z PROŚBą o opcję szybkiego zatwierdzania
+Wysyłanie komunikatu SOLICIT z opcją szybkiego zatwierdzania
 
 ### <a name="prototype"></a>Prototype
 
@@ -1554,7 +1554,7 @@ UINT nx_dhcpv6_request_solicit_rapid(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła komunikat żądania w sieci z ustawioną opcją szybkiego zatwierdzania. Jeśli komunikat został pomyślnie wysłany, zwracany jest stan "powodzenie". Pomyślne zakończenie nie oznacza, że klient otrzymał odpowiedź lub że został jeszcze przydzielony adres IPv6. Zadanie wątku klienta DHCPv6 czeka na odpowiedź (komunikat ADVERTISE) z serwera DHCPv6. Jeśli zostanie on odebrany, sprawdza, czy odpowiedź jest prawidłowa, przechowuje dane w rekordzie klienta i promuje klienta do stanu POWIĄZANEgo.
+Ta usługa wysyła komunikat SOLICIT w sieci z ustawioną opcją szybkiego zatwierdzania. Jeśli komunikat zostanie pomyślnie wysłany, zostanie zwrócony stan powodzenia. Pomyślne ukończenie nie oznacza, że klient otrzymał odpowiedź lub ma jeszcze udzielony adres IPv6. Zadanie wątku klienta DHCPv6 czeka na odpowiedź (komunikat ANONS) z serwera DHCPv6. Jeśli zostanie odebrany, sprawdza, czy odpowiedź jest prawidłowa, zapisuje dane w rekordzie Client i podniesie klienta do stanu BOUND.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1562,11 +1562,11 @@ Ta usługa wysyła komunikat żądania w sieci z ustawioną opcją szybkiego zat
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Komunikat żądania **NX_SUCCESS** (0x00) został pomyślnie wysłany
+- **NX_SUCCESS** (0x00) SOLICIT został pomyślnie wysłany
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1590,7 +1590,7 @@ status = nx_dhcpv6_request_solicit_rapid(&dhcp_0);
 
 ## <a name="nx_dhcpv6_resume"></a>nx_dhcpv6_resume
 
-Wznów zadanie klienta DHCPv6 
+Wznawianie zadania klienta DHCPv6 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1600,7 +1600,7 @@ UINT nx_dhcpv6_resume(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wznawia zadanie wątku klienta protokołu DHCPv6. Bieżący stan klienta DHCPv6 zostanie przetworzony (np. powiązano, żądanie)
+Ta usługa wznawia zadanie wątku klienta DHCPv6. Zostanie przetworzony bieżący stan klienta DHCPv6 (np. Bound, Solicit)
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1608,11 +1608,11 @@ Ta usługa wznawia zadanie wątku klienta protokołu DHCPv6. Bieżący stan klie
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie wznowiono działanie klienta **NX_SUCCESS** (0x00)
+- NX_SUCCESS (0x00) client successfully resumed (Klient usługi **0x00)** został pomyślnie wznowiony
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1635,7 +1635,7 @@ status = nx_dhcpv6_resume(&dhcp_0);
 
 ## <a name="nx_dhcpv6_set_-time_accrued"></a>nx_dhcpv6_set_ time_accrued
 
-Ustawia czas naliczania w dzierżawie adresu IP klienta
+Ustawia czas naliczany w dzierżawie adresu IP klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -1646,19 +1646,19 @@ UINT nx_dhcpv6_set_time_accrued(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia czas naliczania na globalny adres IP klienta, ponieważ został przypisany przez serwer. Tego elementu należy używać tylko w przypadku, gdy klient jest aktualnie powiązany z przypisanym adresem IPv6.
+Ta usługa ustawia czas naliczany na globalny adres IP klienta, ponieważ został on przypisany przez serwer. Tej wartości należy używać tylko wtedy, gdy klient jest obecnie powiązany z przypisanym adresem IPv6.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcpv6_ptr** Wskaźnik do wystąpienia klienta DHCPv6
 
-- **time_accrued** Czas naliczania dzierżawy adresów IP
+- **time_accrued** Czas naliczony w dzierżawie adresu IP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Czas **NX_SUCCESS** (0x00) został pomyślnie ustawiony
+- **NX_SUCCESS** (0x00) Czas naliczony pomyślnie
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1683,7 +1683,7 @@ status = nx_dhcpv6_set_time_accrued(&dhcp_0, time_accrued);
 
 ## <a name="nx_dhcpv6_start"></a>nx_dhcpv6_start
 
-Uruchom zadanie klienta DHCPv6 
+Uruchamianie zadania klienta DHCPv6 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1693,7 +1693,7 @@ UINT nx_dhcpv6_start(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa uruchamia zadanie klienta DHCPv6 i przygotowuje klienta do uruchomienia protokołu DHCPv6. Sprawdza, czy wystąpienie klienta ma wystarczające informacje (na przykład identyfikator DUID klienta), tworzy i wiąże gniazdo UDP do wysyłania i otrzymywania komunikatów DHCPv6 oraz uaktywnia czasomierze w celu śledzenia czasu sesji i wygaśnięcia bieżącej dzierżawy protokołu IPv6.
+Ta usługa uruchamia zadanie klienta DHCPv6 i przygotowuje klienta do uruchomienia protokołu DHCPv6. Sprawdza, czy wystąpienie klienta ma wystarczającą ilość informacji (takich jak identyfikator DUID klienta), tworzy i wiąże gniazda UDP do wysyłania i odbierania komunikatów DHCPv6 i aktywuje czasomierze do śledzenia czasu sesji i po wygaśnięciu bieżącej dzierżawy IPv6.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1701,13 +1701,13 @@ Ta usługa uruchamia zadanie klienta DHCPv6 i przygotowuje klienta do uruchomien
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) — pomyślnie uruchomiono klienta
+- **NX_SUCCESS** (0x00) Client successfully started
 
-- Klient **NX_DHCPV6_MISSING_REQUIRED_OPTIONS** (0xEA9) nie ma wymaganych opcji
+- **NX_DHCPV6_MISSING_REQUIRED_OPTIONS** (0xEA9) Brak wymaganych opcji klienta
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1731,7 +1731,7 @@ status = nx_dhcpv6_start(&dhcp_0);
 
 ## <a name="nx_dhcpv6_stop"></a>nx_dhcpv6_stop
 
-Zatrzymaj zadanie klienta DHCPv6 
+Zatrzymywanie zadania klienta DHCPv6 
 
 ### <a name="prototype"></a>Prototype
 
@@ -1741,7 +1741,7 @@ UINT nx_dhcpv6_stop(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa przerywa zadanie klienta protokołu DHCPv6 i czyści liczbę ponownych transmisji, maksymalne interwały retransmisji, wyłącza sesje i czasomierze wygaśnięcia dzierżawy oraz usuwa powiązanie portu gniazda klienta DHCPv6. Aby ponownie uruchomić klienta, należy najpierw zatrzymać i opcjonalnie zainicjować klienta przed rozpoczęciem kolejnej sesji z dowolnym serwerem DHCPv6. Więcej informacji można znaleźć w sekcji małego przykładu.
+Ta usługa zatrzymuje zadanie klienta DHCPv6 i czyszczy liczbę ponownych transmisji, maksymalne interwały retransmisji, dezaktywuje czasomierze wygaśnięcia sesji i dzierżawy oraz odłącza port gniazda klienta DHCPv6. Aby ponownie uruchomić klienta, należy najpierw zatrzymać i opcjonalnie ponownie zainicjować klienta przed rozpoczęciem innej sesji z dowolnym serwerem DHCPv6. Aby uzyskać więcej informacji, zobacz sekcję Mały przykład.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1749,13 +1749,13 @@ Ta usługa przerywa zadanie klienta protokołu DHCPv6 i czyści liczbę ponownyc
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) klient został pomyślnie zatrzymany
+- **NX_SUCCESS** (0x00) Client successfully stopped (Klient usługi 0x00) został pomyślnie zatrzymany
 
-- Wątek klienta **NX_DHCPV6_NOT_STARTED** (0xE92) nie został uruchomiony
+- **NX_DHCPV6_NOT_STARTED** (0xE92) Wątek klienta nie został uruchomiony
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -1790,7 +1790,7 @@ UINT nx_dhcpv6_suspend(NX_DHCPV6 *dhcpv6_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zawiesza zadanie klienta DHCPv6 i wszystkie żądania, które były w trakcie przetwarzania. Czasomierze są dezaktywowane i stan klienta jest ustawiony na Nieuruchomiony.
+Ta usługa wstrzymuje zadanie klienta DHCPv6 i wszelkie żądania, które były w trakcie przetwarzania. Czasomierze są dezaktywowane, a stan klienta jest ustawiony na nieak uruchomiony.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -1798,13 +1798,13 @@ Ta usługa zawiesza zadanie klienta DHCPv6 i wszystkie żądania, które były w
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Klient **NX_SUCCESS** (0x00) pomyślnie zawiesił
+- **NX_SUCCESS** (0x00) Klient został pomyślnie zawieszony
 
-- Klient **NX_DHCPV6_NOT_STARTED** (0XE92) nie działa, więc nie można go wstrzymać
+- **NX_DHCPV6_NOT_STARTED** (0XE92) Klient nie jest uruchomiony, więc nie można go zawiesić
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
-- NX_CALLER_ERROR (0x11) musi zostać wywołana z wątku
+- NX_CALLER_ERROR (0x11) musi być wywoływana z wątku
 
 ### <a name="allowed-from"></a>Dozwolone z
 

@@ -1,24 +1,24 @@
 ---
-title: Rozdział 4 — Opis usług translatora adresów sieciowych
+title: Rozdział 4 — Opis usług NAT
 description: Ten rozdział zawiera opis wszystkich usług interfejsu API NAT NetX Duo w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 07/14/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 8bdbdfcb2da6425fb99cadc7b2f6815dedc12953
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: dbe2cb25607162b62b048251927bdc7671c5884d2a3b45b6b24bae539e08d24a
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821756"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116797299"
 ---
-# <a name="chapter-4---description-of-nat-services"></a>Rozdział 4 — Opis usług translatora adresów sieciowych
+# <a name="chapter-4---description-of-nat-services"></a>Rozdział 4 — Opis usług NAT
 
-Ten rozdział zawiera opis wszystkich usług interfejsu API translacji adresów sieciowych NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług interfejsu API NAT NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
 
 > [!NOTE]
-> W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+> W sekcji "Wartości zwracane" w następujących  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości pogrubione, a wartości bez pogrubienia są całkowicie wyłączone.
 
 ## <a name="nx_nat_create"></a>nx_nat_create
 
@@ -39,18 +39,18 @@ Ta usługa tworzy wystąpienie serwera NAT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nat_ptr** Wskaźnik do wystąpienia translatora adresów sieciowych do utworzenia
-- **Ip_ptr wskaźnika** do wystąpienia adresu IP
+- **nat_ptr** Wskaźnik do wystąpienia nat do utworzenia
+- **ip_ptr wskaźnik do** wystąpienia adresu IP
 - **global_interface_index** Indeksowanie do globalnego interfejsu sieciowego
-- **dynamic_cache_memory** Wskaźnik obszaru pamięci na tabelę NAT
-- **dynamic_cache_size** Rozmiar obszaru pamięci dla tabeli NAT
+- **dynamic_cache_memory** Obszar pamięci wskaźnika do tabeli NAT
+- **dynamic_cache_size** Rozmiar obszaru pamięci dla tabeli nat
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) serwer NAT został pomyślnie utworzony
-- NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
-- NX_NAT_PARAM_ERROR (0xD01) Nieprawidłowa wejściowa niebędąca wskaźnikiem
-- NX_NAT_CACHE_ERROR (0xD02) Nieprawidłowa wejściowa wskaźnik pamięci podręcznej
+- **NX_SUCCESS** (0x00) nat został pomyślnie utworzony
+- NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
+- NX_NAT_PARAM_ERROR (0xD01) Nieprawidłowe dane wejściowe bez wskaźnika
+- NX_NAT_CACHE_ERROR (0xD02) Nieprawidłowe dane wejściowe wskaźnika pamięci podręcznej
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -88,12 +88,12 @@ Ta usługa usuwa wcześniej utworzony serwer NAT.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nat_ptr** Wskaźnik do wystąpienia translatora adresów sieciowych do usunięcia
+- **nat_ptr** Wskaźnik do wystąpienia nat do usunięcia
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie usunięto translator adresów sieciowych **NX_SUCCESS** (0x00)
-- NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+- **NX_SUCCESS** (0x00) nat został pomyślnie usunięty
+- NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -110,7 +110,7 @@ status = nx_nat_delete (nat_ptr);
 
 ## <a name="nx_nat_enable"></a>nx_nat_enable
 
-Włącz wystąpienie protokołu IP dla translatora adresów sieciowych
+Włączanie wystąpienia adresu IP dla nat
 
 ### <a name="prototype"></a>Prototype
 
@@ -120,16 +120,16 @@ UINT nx_nat_enable(NX_NAT_DEVICE *nat_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa włącza wystąpienie protokołu IP dla translatora adresów sieciowych (np. pakiety odebrane dalej do serwera NAT).
+Ta usługa umożliwia wystąpienie adresu IP dla nat (np. przekazywanie odebranych pakietów do serwera NAT).
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nat_ptr** Wskaźnik do wystąpienia translatora adresów sieciowych
+- **nat_ptr** Wskaźnik do wystąpienia nat
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) translator adresów sieciowych został pomyślnie włączony
-- NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+- **NX_SUCCESS** (0x00) NAT zostało pomyślnie włączone
+- NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -146,7 +146,7 @@ status = nx_nat_enable (nat_ptr);
 
 ## <a name="nx_nat_disable"></a>nx_nat_disable
 
-Wyłącz wystąpienie protokołu IP dla translatora adresów sieciowych
+Wyłączanie wystąpienia adresu IP dla nat
 
 ### <a name="prototype"></a>Prototype
 
@@ -156,16 +156,16 @@ UINT nx_nat_disable(NX_NAT_DEVICE *nat_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyłącza translator adresów sieciowych w wystąpieniu IP.
+Ta usługa wyłącza nat w wystąpieniu adresu IP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nat_ptr** Wskaźnik do wystąpienia translatora adresów sieciowych
+- **nat_ptr** Wskaźnik do wystąpienia nat
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) translator adresów sieciowych został pomyślnie wyłączony
-- NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+- **NX_SUCCESS** (0x00) NAT zostało pomyślnie wyłączone
+- NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -182,7 +182,7 @@ status = nx_nat_disable (nat_ptr);
 
 ## <a name="nx_nat_cache_notify_set"></a>nx_nat_cache_notify_set
 
-Ustawianie funkcji wywołania zwrotnego pełnych powiadomień pamięci podręcznej
+Ustawianie funkcji wywołania zwrotnego powiadamiania o pełnej pamięci podręcznej
 
 ### <a name="prototype"></a>Prototype
 
@@ -194,18 +194,18 @@ UINT nx_nat_cache_notify_set(NX_NAT_DEVICE *nat_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje pełne wywołanie zwrotne pamięci podręcznej za pomocą wskaźnika funkcji wejściowej cache_full_notify_cb, który wskazuje na zdefiniowaną przez użytkownika funkcję pełnego powiadamiania pamięci podręcznej.
+Ta usługa rejestruje pełne wywołanie zwrotne pamięci podręcznej za pomocą wskaźnika funkcji wejściowej cache_full_notify_cb który wskazuje funkcję powiadamiania pełną pamięć podręczną zdefiniowaną przez użytkownika.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nat_ptr** Wskaźnik do wystąpienia translatora adresów sieciowych
-- **cache_full_notify_cb** Wskaźnik do funkcji pełnego powiadamiania pamięci podręcznej
+- **nat_ptr** Wskaźnik do wystąpienia nat
+- **cache_full_notify_cb** Wskaźnik do buforowania pełnej funkcji powiadamiania
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie ustawiono pełną funkcję powiadamiania pamięci podręcznej **NX_SUCCESS** (0x00)
-- NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
-- NX_NAT_PARAM_ERROR (0xD01) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- **NX_SUCCESS** (0x00) Funkcja powiadamiania o pełnej pamięci podręcznej została pomyślnie ustawiona
+- NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
+- NX_NAT_PARAM_ERROR (0xD01) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -222,7 +222,7 @@ status = nx_nat_cache_notify_set(nat_ptr, cache_full_notify_cb);
 
 ## <a name="nx_nat_inbound_entry_create"></a>nx_nat_inbound_entry_create
 
-Tworzenie wpisu przychodzącego w tabeli translacji NAT
+Tworzenie wpisu przychodzącego w tabeli translacji translatora translatora nat
 
 ### <a name="prototype"></a>Prototype
 
@@ -236,23 +236,23 @@ UINT nx_nat_inbound_entry_create(NX_NAT_DEVICE *nat_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wpis przychodzący jako statyczny (trwały wpis, nigdy nie wygasa) i dodaje go do tabeli translacji NAT. Te wpisy są zwykle tworzone dla serwerów hosta lokalnego, w których połączenie jest inicjowane z hosta w sieci zewnętrznej. Serwer NAT sprawdza, czy port zewnętrzny nie jest już używany w tabeli translacji lub jest powiązany przez wcześniej istniejące gniazdo NetX Duo tego samego protokołu.
+Ta usługa tworzy wpis dla ruchu przychodzącego jako statyczny (wpis trwały, nigdy nie wygasa) i dodaje go do tabeli translacji translatora nat. Te wpisy są zwykle tworzone dla lokalnych serwerów hostów, na których połączenie jest inicjowane z hosta w sieci zewnętrznej. Serwer NAT sprawdza, czy port zewnętrzny nie jest jeszcze używany w tabeli translacji ani powiązany przez istniejące wcześniej gniazdo NetX Duo tego samego protokołu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nat_ptr** Wskaźnik do wystąpienia translatora adresów sieciowych
+- **nat_ptr** Wskaźnik do wystąpienia nat
 - **entry_ptr** Wskaźnik do wpisu tłumaczenia
 - **local_ip_address** Adres IP hosta lokalnego
 - **external_port** Port docelowy w sieci zewnętrznej
 - **local_port** Port źródłowy (hosta lokalnego)
-- **Protokół** Protokół pakietów (np. TCP)
+- **protokół** Protokół pakietów (np. TCP)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie utworzono wpis **NX_SUCCESS** (0x00)
-- **NX_NAT_PORT_UNAVAILABLE** (0XD0D) nieprawidłowy port zewnętrzny
-- NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
-- NX_NAT_PARAM_ERROR (0xD01) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- **NX_SUCCESS** (0x00) Wpis został pomyślnie utworzony
+- **NX_NAT_PORT_UNAVAILABLE** (0xD0D) Nieprawidłowy port zewnętrzny
+- NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
+- NX_NAT_PARAM_ERROR (0xD01) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -271,7 +271,7 @@ status = nx_nat_inbound_entry_create(nat_ptr, entry_ptr,
 
 ## <a name="nx_nat_inbound_entry_delete"></a>nx_nat_inbound_entry_delete
 
-Usuwanie wpisu przychodzącego w tabeli translacji NAT
+Usuwanie wpisu ruchu przychodzącego w tabeli translacji translatora nat
 
 ### <a name="prototype"></a>Prototype
 
@@ -282,18 +282,18 @@ UINT nx_nat_inbound_entry_delete(NX_NAT_DEVICE *nat_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa określony wpis przychodzący z tabeli translacji.
+Ta usługa usuwa określony wpis ruchu przychodzącego z tabeli tłumaczenia.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nat_ptr** Wskaźnik do wystąpienia translatora adresów sieciowych
-- **delete_entry_ptr** Wskaźnik do wpisu translacji NAT
+- **nat_ptr** Wskaźnik do wystąpienia nat
+- **delete_entry_ptr** Wskaźnik do wpisu tłumaczenia translatora nat
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie usunięto wpis **NX_SUCCESS** (0x00)
-- Nie znaleziono wpisu **NX_NAT_ENTRY_NOT_FOUND** (0xD04)
-- NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+- **NX_SUCCESS** (0x00) Wpis został pomyślnie usunięty
+- **NX_NAT_ENTRY_NOT_FOUND** (0xD04) Nie znaleziono wpisu
+- NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 - NX_NAT_ENTRY_TYPE_ERROR (0xD0C) Nieprawidłowy typ tłumaczenia
 
 ### <a name="allowed-from"></a>Dozwolone z

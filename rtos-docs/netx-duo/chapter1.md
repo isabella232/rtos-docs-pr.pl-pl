@@ -1,139 +1,139 @@
 ---
-title: Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Duo
-description: Ten rozdział zawiera wprowadzenie do usługi Azure RTO NetX Duo oraz opis jej aplikacji i korzyści.
+title: Rozdział 1 — Wprowadzenie do Azure RTOS NetX Duo
+description: Ten rozdział zawiera wprowadzenie do Azure RTOS NetX Duo oraz opis jego aplikacji i korzyści.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 91dfd0e62cb565f677faa7d52fe22abc1f0e19a1
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: c9b5e0ea82319bd369318cca753cf1db222ca29b0b4db3da150642ca007f1191
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822128"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116789869"
 ---
-# <a name="chapter-1---introduction-to-azure-rtos-netx-duo"></a>Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Duo
+# <a name="chapter-1---introduction-to-azure-rtos-netx-duo"></a>Rozdział 1 — Wprowadzenie do Azure RTOS NetX Duo
 
-Usługa Azure RTO NetX Duo jest implementacją standardów TCP/IP o wysokiej wydajności w czasie rzeczywistym, które są przeznaczone wyłącznie dla osadzonych aplikacji opartych na platformie Azure RTO ThreadX. Ten rozdział zawiera wprowadzenie do NetX Duo oraz opis jego aplikacji i korzyści. 
+Azure RTOS NetX Duo to implementacja w czasie rzeczywistym o wysokiej wydajności standardów TCP/IP przeznaczona wyłącznie dla aplikacji osadzonych Azure RTOS opartych na ThreadX. Ten rozdział zawiera wprowadzenie do aplikacji NetX Duo oraz opis jej aplikacji i korzyści. 
 
-## <a name="netx-duo-unique-features"></a>Unikatowe funkcje NetX Duo
+## <a name="netx-duo-unique-features"></a>NetX Duo Unique Features
 
-W przeciwieństwie do innych implementacji protokołu TCP/IP, NetX Duo została zaprojektowana jako uniwersalna — łatwe skalowanie z małych aplikacji opartych na kontrolerach do tych, które używają zaawansowanych procesorów RISC i DSP. Jest to bardzo zróżnicowane dla domeny publicznej lub innych implementacji komercyjnych pierwotnie przeznaczonych dla środowisk stacji roboczych, ale a następnie zostały podzielone na osadzone projekty.
+W przeciwieństwie do innych implementacji TCP/IP netX Duo zaprojektowano tak, aby był wszechstronny — łatwe skalowanie od małych aplikacji opartych na mikrokontrolerach do tych, które korzystają z zaawansowanych procesorów RISC i DSP. Jest to w dużym przeciwieństwie do domeny publicznej lub innych implementacji komercyjnych pierwotnie przeznaczonych dla środowisk stacji roboczych, ale następnie przechowane w osadzonych projektach.
 
-### <a name="piconettrade-architecture"></a>&trade;Architektura Piconet
+### <a name="piconettrade-architecture"></a>Piconet &trade; Architecture (Architektura Piconet)
 
-Podstawową skalowalnością i wydajnością NetX Duo jest <em>Piconet</em>, architektury oprogramowania specjalnie zaprojektowanej dla systemów osadzonych. Architektura Piconet maksymalizuje skalowalność przez implementację usług NetX Duo jako biblioteki języka C. W ten sposób tylko te usługi, które są używane przez aplikację, są umieszczane w końcowym obrazie środowiska uruchomieniowego. W związku z tym rzeczywisty rozmiar NetX Duo jest określany przez aplikację. W przypadku większości aplikacji wymagania dotyczące obrazów w programie NetX Duo mają zakres od 5 kilobajtów do 30 kilobajtów. W przypadku protokołu IPv6 i ICMPv6 włączonego dla konfiguracji adresów IPv6 i protokołów Neighbor Discovery zakresy NetX Duo mają rozmiar od 30 KB do 45 kilobajtów.
+Bazą najwyższej skalowalności i wydajności netX Duo jest <em>Piconet</em>, architektura oprogramowania zaprojektowana specjalnie dla systemów osadzonych. Architektura Piconet maksymalizuje skalowalność, implementując usługi NetX Duo jako bibliotekę języka C. W ten sposób tylko te usługi używane przez aplikację są przeniesiene do obrazu końcowego środowiska uruchomieniowego. W związku z tym rzeczywisty rozmiar netx duo jest określany przez aplikację. W przypadku większości aplikacji wymagania dotyczące obrazów instrukcji aplikacji NetX Duo mają rozmiar od 5 KB do 30 KB. Po włączeniu protokołów IPv6 i ICMPv6 konfiguracji adresów IPv6 i protokołów odnajdywania sąsiadów netX Duo ma rozmiar od 30 kb do 45 kb.
 
-Program NetX Duo zapewnia wyższą wydajność sieci przez równoległe wywołania funkcji składników wewnętrznych tylko wtedy, gdy jest to konieczne. Ponadto wiele NetX Duo jest wykonywane bezpośrednio w trybie online, co spowodowało znakomite wykorzystanie wydajności przez oprogramowanie sieciowe stacji roboczej używane w osadzonych projektach w przeszłości.
+NetX Duo osiąga najwyższą wydajność sieci, nakładając warstwy na wewnętrzne wywołania funkcji składników tylko wtedy, gdy jest to konieczne. Ponadto większość przetwarzania NetX Duo jest wykonywana bezpośrednio w wierszu, co w przeszłości osiągło niesłychanące korzyści z wydajności niż oprogramowanie sieciowe stacji roboczych używane w osadzonych projektach.
 
-### <a name="zero-copy-implementation"></a>Implementacja kopiowania zerowego
+### <a name="zero-copy-implementation"></a>Implementacja bez kopiowania
 
-NetX Duo zapewnia implementację protokołu TCP/IP bazującą na pakietach. Kopia zerowa oznacza, że dane w buforze pakietów aplikacji nigdy nie są kopiowane w NetX Duo. Znacznie poprawia to wydajność i zwalnia cenne cykle procesora dla aplikacji, co jest ważne w aplikacjach osadzonych.
+NetX Duo zapewnia opartą na pakietach implementację protokołu TCP/IP bez kopiowania. Zerowy kopiowanie oznacza, że dane w buforze pakietów aplikacji nigdy nie są kopiowane wewnątrz netx duo. Znacznie zwiększa to wydajność i pozwala na wolnej aplikacji cenne cykle procesora, co jest ważne w aplikacjach osadzonych.
 
-### <a name="udp-fast-pathtrade-technology"></a>Technologia szybkiego ścieżki UDP &trade;
+### <a name="udp-fast-pathtrade-technology"></a>Technologia szybkiej ścieżki UDP &trade;
 
-Dzięki <em>technologii UDP Fast Path</em>NetX Duo zapewnia najszybszy możliwy do przetworzenia UDP. Po stronie wysyłającej, przetwarzanie UDP — łącznie z opcjonalną sumą kontrolną UDP — jest zawarty w ramach usługi <em>**nx_udp_socket_send**</em> . Żadne dodatkowe wywołania funkcji nie są wykonywane, dopóki pakiet nie zostanie gotowy do wysłania za pośrednictwem procedury wysyłania protokołu IP wewnętrznej NetX Duo. Ta procedura jest również płaska (to oznacza, że funkcja zagnieżdżania wywołań funkcji jest minimalna), dzięki czemu pakiet jest szybko wysyłany do sterownika sieci aplikacji. Po odebraniu pakietu UDP proces odbierania pakietów NetX Duo umieszcza pakiet bezpośrednio w odpowiedniej kolejce odbieranych gniazd UDP lub przekazuje go do pierwszego wątku, oczekując na odebranie pakietu z kolejki odbierania w gnieździe UDP. Nie są wymagane żadne dodatkowe przełączniki kontekstu ThreadX.
+Dzięki <em>technologii UDP Fast Path</em>netX Duo zapewnia najszybsze możliwe przetwarzanie UDP. Po stronie wysyłającej przetwarzanie UDP — w tym opcjonalną podsumę kontrolną UDP — jest zawarte w <em>**nx_udp_socket_send**</em> usługi. Żadne dodatkowe wywołania funkcji nie są dokonywane, dopóki pakiet nie jest gotowy do wysłania za pośrednictwem wewnętrznej procedury wysyłania adresów IP NetX Duo. Ta procedura jest również płaska (oznacza to, że zagnieżdżanie wywołań funkcji jest minimalne), więc pakiet jest szybko wysyłany do sterownika sieciowego aplikacji. Po otrzymaniu pakietu UDP przetwarzanie odbierania pakietów NetX Duo umieszcza pakiet bezpośrednio w kolejce odbierania odpowiedniego gniazda UDP lub przekazuje go do pierwszego wątku wstrzymanego w oczekiwaniu na pakiet odbierania z kolejki odbierania gniazda UDP. Nie są wymagane żadne dodatkowe przełączniki kontekstu ThreadX.
 
-### <a name="ansi-c-source-cod"></a>Źródło danych dorsza ANSI C
+### <a name="ansi-c-source-cod"></a>ANSI C Source Cod
 
-NetX Duo jest zapisywana całkowicie w standardzie ANSI C i jest natychmiast przenośny do praktycznie dowolnej architektury procesora, która ma kompilator ANSI C i obsługę ThreadX. 
+NetX Duo jest napisany całkowicie w języku ANSI C i jest od razu przenośny do praktycznie dowolnej architektury procesora, która ma kompilator ANSI C i obsługę ThreadX. 
 
-### <a name="not-a-black-box"></a>To nie jest czarne pole
+### <a name="not-a-black-box"></a>Nie jest czarną skrzynką
 
-Większość dystrybucji NetX Duo obejmuje pełny kod źródłowy języka C. Eliminuje to problemy "z czarnym pudełkem" występujące w wielu stosach sieci komercyjnych. Korzystając z NetX Duo, deweloperzy aplikacji mogą zobaczyć dokładnie, co robi stos sieciowy — nie ma Mysteries!
+Większość dystrybucji netX Duo zawiera kompletny kod źródłowy języka C. Eliminuje to problemy "czarnej skrzynki", które występują w przypadku wielu komercyjnych stosów sieciowych. Korzystając z netx duo, deweloperzy aplikacji mogą zobaczyć dokładnie, co robi stos sieciowy — nie ma żadnych wytłoków!
 
 Kod źródłowy umożliwia również modyfikacje specyficzne dla aplikacji. Chociaż nie jest to zalecane, korzystne jest, aby mieć możliwość modyfikowania stosu sieciowego, jeśli jest to wymagane.
 
-Te funkcje są szczególnie wygodne dla deweloperów przyzwyczajonych do pracy z stosami sieci w domu lub w domenie publicznej. Powinny one mieć kod źródłowy i możliwość jego modyfikacji. NetX Duo to ostateczne oprogramowanie sieciowe dla takich deweloperów.
+Te funkcje są szczególnie wygodne dla deweloperów, którzy są przywykli do pracy ze stosami sieci domeny lokalnej lub publicznej. Oczekują oni kodu źródłowego i możliwości jego modyfikowania. NetX Duo to ostateczne oprogramowanie sieciowe dla takich deweloperów.
 
-### <a name="bsd-compatible-socket-api"></a>Interfejs API usługi BSD-Compatible Socket
+### <a name="bsd-compatible-socket-api"></a>interfejs API BSD-Compatible Socket
 
-W przypadku starszych aplikacji NetX Duo zapewnia również interfejs gniazda zgodny z systemem BSD, który umożliwia nawiązywanie połączeń z interfejsem API o wysokiej wydajności NetX Duo poniżej. Ułatwia to Migrowanie istniejącego kodu aplikacji sieciowej do NetX Duo.
+W przypadku starszych aplikacji NetX Duo udostępnia również interfejs gniazd zgodny z BSD, który wykonuje wywołania interfejsu API NetX Duo o wysokiej wydajności poniżej. Ułatwia to migrowanie istniejącego kodu aplikacji sieciowej do netx duo.
 
-## <a name="rfcs-supported-by-netx-duo"></a>Specyfikacje RFC obsługiwane przez NetX Duo
+## <a name="rfcs-supported-by-netx-duo"></a>RFC obsługiwane przez NetX Duo
 
-NetX Duo obsługuje specyfikacje RFC opisujące podstawowe protokoły sieciowe, ale nie są ograniczone do następujących protokołów sieciowych. NetX Duo stosuje się do wszystkich ogólnych zaleceń i podstawowych wymagań w ramach ograniczeń systemu operacyjnego w czasie rzeczywistym z małą ilością pamięci i wydajnym wykonaniem.
+Obsługa interfejsów RFC w netX Duo opisujących podstawowe protokoły sieciowe obejmuje między innymi następujące protokoły sieciowe. NetX Duo jest zgodny ze wszystkimi ogólnymi zaleceniami i podstawowymi wymaganiami w ramach ograniczeń systemu operacyjnego w czasie rzeczywistym, z małym zużyciem pamięci i wydajnym wykonywaniem.
 
 | **RFC**  | **Opis**                                        |
 | -------- | ------------------------------------------------------ |
-|RFC 1112 | Rozszerzenia hosta do multiemisji IP (IGMPv1)           |
-|RFC 1122 | Wymagania dotyczące hostów internetowych — warstwy komunikacji |
-|RFC 2236 | Protokół zarządzania grupami internetowymi, wersja 2          |
-|RFC 768  | User Datagram Protocol (UDP)                           |
+|RFC 1112 | Rozszerzenia hosta dla multiemisji IP (IGMPv1)           |
+|RFC 1122 | Wymagania dotyczące hostów internetowych — warstwy komunikacyjne |
+|RFC 2236 | Protokół zarządzania grupą internetową, wersja 2          |
+|RFC 768  | Protokół UDP (User Datagram Protocol)                           |
 |RFC 791  | Protokół internetowy (IP)                                 |
 |RFC 792  | Protokół ICMP (Internet Control Message Protocol)               |
 |RFC 793  | Transmission Control Protocol (TCP)                    |
 |RFC 826  | Protokół ARP (Ethernet Address Resolution Protocol) |
-|RFC 903  | Protokół odwrotnego rozpoznawania adresów (RARP) |
-|RFC 5681 | Kontrola przeciążenia TCP                     |
+|RFC 903  | Protokół RARP (Reverse Address Resolution Protocol) |
+|RFC 5681 | Kontrola przeciążenia protokołu TCP                     |
 
-Poniżej przedstawiono specyfikacje RFC powiązane z protokołem IPv6 obsługiwane przez program NetX Duo.
+Poniżej przedstawiono RFC związane z IPv6 obsługiwane przez NetX Duo.
 
 |**RFC** |**Opis**|
 -------- | ------------------------------------------ |
-|RFC 1981 |Odnajdowanie MTU ścieżki dla protokołu internetowego w wersji 6 (IPv6)|
+|RFC 1981 |Odnajdywanie mtu ścieżki dla protokołu internetowego w wersji 6 (IPv6)|
 |RFC 2460 | Specyfikacja protokołu internetowego w wersji 6 (IPv6)|
-|RFC 2464 |Przesyłanie pakietów IPv6 za pośrednictwem sieci Ethernet|
-|RFC 4291 |Architektura adresów protokołu internetowego w wersji 6 (IPv6)|
-|RFC 4443 |Protokół komunikatów sterowania Internetem (ICMPv6) dla specyfikacji protokołu internetowego w wersji 6 (IPv6)|
-|RFC 4861 |Odnajdywanie sąsiadów dla protokołu IP w wersji 6|
-|RFC 4862 |Konfiguracja automatycznej bezstanowych adresów IPv6|
+|RFC 2464 |Transmisja pakietów IPv6 za pośrednictwem sieci Ethernet|
+|RFC 4291 |Architektura adresowania protokołu IPv6 (Internet Protocol v6)|
+|RFC 4443 |Protokół ICMPv6 (Internet Control Message Protocol) dla specyfikacji protokołu internetowego w wersji 6 (IPv6)|
+|RFC 4861 |Odnajdywanie sąsiadów dla adresu IP w wersji 6|
+|RFC 4862 |Automatyczna konfiguracja bez stanowego adresu IPv6|
 
 ## <a name="embedded-network-applications"></a>Osadzone aplikacje sieciowe
 
-Osadzone aplikacje sieciowe to aplikacje, które wymagają dostępu do sieci i działają w mikroprocesorach ukrytych w produktach, takich jak telefony komórkowe, sprzęt komunikacyjny, silniki motoryzacyjne, drukarki laserowe, urządzenia medyczne itd. Takie aplikacje prawie zawsze mają pewne ograniczenia dotyczące pamięci i wydajności. Innym rozróżnianie osadzonych aplikacji sieciowych polega na tym, że ich oprogramowanie i sprzęt mają dedykowany cel.
+Osadzone aplikacje sieciowe to aplikacje, które wymagają dostępu do sieci i są wykonywane na mikroprocesorach ukrytych wewnątrz produktów, takich jak telefony komórkowe, sprzęt komunikacyjny, aparaty samochodowy, drukarki laserowe, urządzenia medyczne itd. Takie aplikacje prawie zawsze mają pewne ograniczenia dotyczące pamięci i wydajności. Innym rozróżnieniem aplikacji sieciowych osadzonych jest to, że ich oprogramowanie i sprzęt mają specjalne przeznaczenie.
 
-Oprogramowanie sieciowe, które musi wykonać przetwarzanie w określonym czasie, jest nazywane oprogramowaniem *sieci* w czasie *rzeczywistym* , a w przypadku wystąpienia ograniczeń czasowych w aplikacjach sieciowych są one klasyfikowane jako aplikacje w czasie rzeczywistym. Aplikacje sieci osadzone są prawie zawsze w czasie rzeczywistym ze względu na ich nieodłączną współpracę z zewnętrznym światem.
+Oprogramowanie sieciowe, które musi wykonać przetwarzanie w   dokładnym czasie, jest nazywane oprogramowaniem sieciowym w czasie rzeczywistym, a w przypadku narzucania ograniczeń czasu na aplikacje sieciowe są one klasyfikowane jako aplikacje w czasie rzeczywistym. Osadzone aplikacje sieciowe prawie zawsze są w czasie rzeczywistym ze względu na ich naturalną interakcję ze światem zewnętrznym.
 
-## <a name="netx-duo-benefits"></a>Zalety rozwiązania NetX Duo
+## <a name="netx-duo-benefits"></a>Korzyści z netx duo
 
-Główną zaletą korzystania z NetX Duo dla aplikacji osadzonych są szybkie połączenia z Internetem i wymagania dotyczące małych ilości pamięci. Program NetX Duo jest również zintegrowany z wysoką wydajnością i ThreadX systemem operacyjnym w czasie rzeczywistym.
+Głównymi zaletami korzystania z netX Duo w aplikacjach osadzonych są szybkie połączenia z Internetem i małe wymagania dotyczące pamięci. NetX Duo jest również zintegrowany z wysokowydajnym, wielozadaniowym systemem operacyjnym ThreadX w czasie rzeczywistym.
 
-### <a name="improved-responsiveness"></a>Zwiększona czas odpowiedzi
+### <a name="improved-responsiveness"></a>Udoskonalony czas odpowiedzi
 
-Stos protokołu o wysokiej wydajności NetX Duo umożliwia aplikacjom osadzonym w sieci szybsze reagowanie niż kiedykolwiek wcześniej. Jest to szczególnie ważne w przypadku aplikacji osadzonych, które mają znaczną ilość ruchu sieciowego lub rygorystyczne wymagania dotyczące przetwarzania w pojedynczym pakiecie.
+Stos protokołu NetX Duo o wysokiej wydajności umożliwia aplikacjom sieci osadzonej szybsze reagowanie niż kiedykolwiek wcześniej. Jest to szczególnie ważne w przypadku aplikacji osadzonych, które mają znaczną ilość ruchu sieciowego lub rygorystyczne wymagania dotyczące przetwarzania pojedynczego pakietu.
 
 ### <a name="software-maintenance"></a>Konserwacja oprogramowania
 
-Korzystanie z programu NetX Duo pozwala deweloperom łatwo podzielić na siebie aspekty sieci aplikacji osadzonej. Takie partycjonowanie sprawia, że cały proces tworzenia oprogramowania jest łatwy i znacząco ulepsza konserwację w przyszłości.
+Korzystanie z netX Duo umożliwia deweloperom łatwe partycjonowanie aspektów sieciowych osadzonej aplikacji. Dzięki takiemu partycjonowania cały proces tworzenia oprogramowania jest łatwy i znacząco usprawnia przyszłą konserwację oprogramowania.
 
 ### <a name="increased-throughput"></a>Zwiększona przepływność
 
-NetX Duo zapewnia dostęp do najwyższej wydajności sieci, która jest osiągana w minimalnym obciążeniu przetwarzania pakietów. Zapewnia to również zwiększoną przepływność.
+NetX Duo zapewnia dostępną sieć o najwyższej wydajności, która jest osiągana przez minimalne obciążenie związane z przetwarzaniem pakietów. Umożliwia to również zwiększenie przepływności.
 
 ### <a name="processor-isolation"></a>Izolacja procesora
 
-NetX Duo zapewnia niezawodny, niezależny od procesora interfejs między aplikacją a podstawowym procesorem i sprzętem sieciowym. Pozwala to deweloperom skoncentrować się na aspektach sieci aplikacji, a nie poświęcać dodatkowego czasu na problemy ze sprzętem bezpośrednio wpływające na sieć.
+NetX Duo zapewnia niezawodny, niezależny od procesora interfejs między aplikacją a bazowym procesorem i sprzętem sieciowym. Dzięki temu deweloperzy mogą skoncentrować się na aspektach sieciowych aplikacji, zamiast poświęcać dodatkowy czas na radzenie sobie ze sprzętem, które bezpośrednio wpływają na sieć.
 
 ### <a name="ease-of-use"></a>Łatwość użycia
 
-NetX Duo został zaprojektowany z myślą o deweloperu aplikacji. Architektura NetX Duo i interfejs wywołania usługi są łatwe do zrozumienia. W efekcie deweloperzy rozwiązań NetX Duo mogą szybko korzystać z zaawansowanych funkcji.
+Aplikacja NetX Duo została zaprojektowana z myślą o deweloperach aplikacji. Architektura NetX Duo i interfejs wywołania usługi są łatwe do zrozumienia. W związku z tym deweloperzy netX Duo mogą szybko korzystać ze swoich zaawansowanych funkcji.
 
-### <a name="improve-time-to-market"></a>Popraw czas wprowadzenia na rynek
+### <a name="improve-time-to-market"></a>Poprawianie czasu na rynek
 
-Zaawansowane funkcje NetX Duo przyspieszają proces tworzenia oprogramowania. NetX Duo stanowi streszczenie większości problemów sprzętowych procesora i sieci, usuwając te problemy z większości obszarów specyficznych dla sieci aplikacji. W związku z tym łatwość użycia i zaawansowanego zestawu funkcji powstaje szybszy czas wprowadzenia na rynek.
+Zaawansowane funkcje narzędzia NetX Duo przyspieszają proces tworzenia oprogramowania. NetX Duo stanowi abstrakcję większości problemów ze sprzętem procesora i sieci, co usuwa te problemy z większości obszarów specyficznych dla sieci aplikacji. W połączeniu z łatwością użycia i zaawansowanym zestawem funkcji pozwala to przyspieszyć rynek.
 
 ### <a name="protecting-the-software-investment"></a>Ochrona inwestycji w oprogramowanie
 
-NetX Duo jest zapisywana wyłącznie w standardzie ANSI C i jest w pełni zintegrowana z systemem operacyjnym ThreadX w czasie rzeczywistym. Oznacza to, że aplikacje NetX Duo są natychmiast przenośne do wszystkich obsługiwanych procesorów ThreadX. Jeszcze lepszym rozwiązaniem może być obsługa nowej architektury procesora z ThreadX w ciągu kilku tygodni. W efekcie korzystanie z programu NetX Duo gwarantuje ścieżkę migracji aplikacji i chroni pierwotne inwestycje rozwojowe.
+NetX Duo jest napisany wyłącznie w języku ANSI C i jest w pełni zintegrowany z systemem operacyjnym ThreadX w czasie rzeczywistym. Oznacza to, że aplikacje NetX Duo są natychmiast przenośne na wszystkie procesory obsługiwane przez ThreadX. Co więcej, nowa architektura procesora może być obsługiwana za pomocą threadX w ciągu kilku tygodni. W związku z tym użycie narzędzia NetX Duo zapewnia ścieżkę migracji aplikacji i chroni oryginalną inwestycję deweloperską.
 
-## <a name="ipv6-ready-logo-certification"></a>Certyfikacja logo gotowego do protokołu IPv6
+## <a name="ipv6-ready-logo-certification"></a>Certyfikacja gotowego logo IPv6
 
-Certyfikat "IPv6 Read" NetX Duo został uzyskany za pośrednictwem "samotestowego protokołu IPv6 Core (faza 2)" dostępnego w organizacji z przygotowaną obsługą protokołu IPv6. Aby uzyskać więcej informacji na temat platformy testów i przypadków testowych, zobacz następujące IPv6-Ready witryny sieci Web projektu.[**https://www.ipv6ready.org/**](https://www.ipv6ready.org/)
+Certyfikat NetX Duo "IPv6 Ready" został uzyskany za pośrednictwem pakietu "IPv6 Core Protocol (Phase 2) Self Test" dostępnego w organizacji gotowej do użycia w protokole IPv6. Zapoznaj się z następującymi witrynami IPv6-Ready projektu, aby uzyskać więcej informacji na temat platformy testowej i przypadków testowych:[**https://www.ipv6ready.org/**](https://www.ipv6ready.org/)
 
-Pakiet fazy 2 jądra Core protokołu samotestów sprawdza, czy stos IPv6 spełnia wymagania opisane w poniższych dokumentach RFC z rozbudowanym testowaniem:  
+Pakiet testów self-test protokołu IPv6 Core Protocol (Faza 2) sprawdza, czy stos IPv6 spełnia wymagania określone w następujących RFC z obszernym testowaniem:  
 Sekcja 1: RFC 2460  
 Sekcja 2: RFC 4861  
 Sekcja 3: RFC 4862  
 Sekcja 4: RFC 1981  
 Sekcja 5: RFC 4443  
 
-## <a name="ixanvl-test"></a>Test IxANVL
+## <a name="ixanvl-test"></a>IxANVL Test
 
-NetX Duo jest testowany z IxANVL z IXIA. IxANVL to standardowy branża do zautomatyzowanego sprawdzania poprawności sieci i protokołu. Więcej informacji na temat IxANVL można znaleźć pod adresem: [**https://www.ixiacom.com/products/ixanvl**](https://www.ipv6ready.org/)
+NetX Duo jest testowany z IxANVL firmy IOWANO. IxANVL to branżowy standard zautomatyzowanej weryfikacji sieci i protokołu. Więcej informacji na temat IxANVL można znaleźć na stronie: [**https://www.ixiacom.com/products/ixanvl**](https://www.ipv6ready.org/)
 
-W szczególności następujące moduły NetX Duo są testowane z IxANVL:
+W szczególności następujące moduły NetX Duo są testowane z programem IxANVL:
 
 |**Moduł** | **Standardowa** |
 | --------- | ------------ |
@@ -146,29 +146,29 @@ W szczególności następujące moduły NetX Duo są testowane z IxANVL:
 
 ## <a name="safety-certifications"></a>Certyfikaty bezpieczeństwa
 
-### <a name="tv-certification"></a>Certyfikat TÜV  
+### <a name="tv-certification"></a>Certyfikacja TÜV  
 
-NetX Duo został certyfikowany przez moimi-TÜV Saar do użytku w systemach krytycznych dla bezpieczeństwa, zgodnie z IEC61508 i IEC-62304. Certyfikat potwierdza, że NetX Duo może być używany w opracowaniu oprogramowania związanego z bezpieczeństwem w celu uzyskania najwyższych poziomów integralności bezpieczeństwa Międzynarodowa Komisja Elektrotechniczna (IEC) 61508 i IEC 62304 dla "bezpieczeństwa funkcjonalnego, elektronicznego i programowalnego elektronicznego systemów związanych z bezpieczeństwem". MOIMI-TÜV Saar, utworzone za pomocą wspólnego przedsiębiorstwa z Niemiec SGSGroup i TÜV Saarland, stał się wiodącą, niezależną firmą do testowania, inspekcji, sprawdzania i certyfikowania oprogramowania osadzonego dla systemów związanych z bezpieczeństwem na całym świecie. Standard bezpieczeństwa przemysłowego IEC 61508 i wszystkie standardy, które są od niego pochodzące, w tym IEC 62304, są używane do zapewnienia bezpieczeństwa funkcjonalnego, elektronicznego i programowalnego elektronicznego sprzętu medycznego, systemów kontroli procesów, maszyn przemysłowych i systemów kontroli szynowej. 
+Zgodnie z normami IEC61508 i IEC-62304 system NetX Duo został certyfikowany przez firmę SGS-TÜV Saar do użytku w systemach o krytycznym znaczeniu dla bezpieczeństwa. Certyfikat potwierdza, że netx duo może być używany do opracowywania oprogramowania związanego z bezpieczeństwem na najwyższym poziomie integralności bezpieczeństwa systemów Międzynarodowa Komisja Elektrotechniczna (IEC) 61508 i IEC 62304 w ramach "Bezpieczeństwa funkcjonalnego systemów elektronicznych, elektronicznych i programowalnych systemów związanych z bezpieczeństwem elektronicznym". SGS-TÜV Saar, utworzone za pośrednictwem wspólnej osady niemieckich firm SGSGroup i TÜV Saarland, stała się wiodącą akredytowaną, niezależną firmą do testowania, inspekcji, weryfikowania i certyfikowania osadzonego oprogramowania dla systemów powiązanych z bezpieczeństwem na całym świecie. Standard bezpieczeństwa przemysłowego IEC 61508 i wszystkie standardy, które z niego pochodzą, w tym IEC 62304, są używane w celu zapewnienia bezpieczeństwa funkcjonalnego urządzeń elektronicznych, elektronicznych i programowalnych urządzeń medycznych związanych z bezpieczeństwem, systemów sterowania procesami, maszyn przemysłowych i systemów sterowania węzłem. 
 
-MOIMI-TÜV Saar ma certyfikowane NetX Duo, które mają być używane w systemach samochodowych o krytycznym znaczeniu dla bezpieczeństwa, zgodnie ze standardem ISO 26262. Ponadto NetX Duo są certyfikowane na poziomie integralności infrastruktury bezpieczeństwa motoryzacyjnego (ASIL), który reprezentuje najwyższy poziom certyfikacji ISO 26262. 
+Firma SGS-TÜV Saar ma certyfikat NetX Duo do stosowania w krytycznych dla bezpieczeństwa systemach samochodowych zgodnie ze standardem ISO 26262. Ponadto NetX Duo ma certyfikat ASIL D (Safety Integrity Level) dla branży samochodów, który reprezentuje najwyższy poziom certyfikacji ISO 26262. 
 
-Ponadto moimi-TÜV Saar ma certyfikowane NetX Duo, które mają być używane w kluczowych dla bezpieczeństwa aplikacjach związanych z bezpieczeństwem, ze standardem 50128 do SW-SIL 4.
+Ponadto firma SGS-TÜV Saar ma certyfikat NetX Duo, który ma być używany w aplikacjach do ochrony przed krytycznym bezpieczeństwem, zgodnie ze standardem EN 50128, aż do programu SW-SIL 4.
 
-![Diagram logo certyfikatu moimi-TÜV Saar.](./media/user-guide/sgs-tuv-saar-logo.png)
+![Diagram logo certyfikacji Saar SGS-TÜV.](./media/user-guide/sgs-tuv-saar-logo.png)
 
 IEC 61508 do SIL 4  
-IEC 62304 do klasy bezpieczeństwa oprogramowania SW ISO 26262 ASIL D EN 50128 SW-SIL 4
+IEC 62304 do bezpieczeństwa SW Klasa C ISO 26262 ASIL D EN 50128 SW-SIL 4
 
 > [!IMPORTANT]
-> *Skontaktuj się z firmą Microsoft, aby uzyskać więcej informacji na temat wersji NetX Duo z certyfikatem TÜV lub dostępności raportów testowych, certyfikatów i powiązanej dokumentacji.*
+> *Skontaktuj się z firmą Microsoft, aby uzyskać więcej informacji na temat wersji aplikacji NetX Duo certyfikowanych przez firmę TÜV lub dostępności raportów testowych, certyfikatów i powiązanej dokumentacji.*
 
-### <a name="ul-certification"></a>Certyfikat UL
+### <a name="ul-certification"></a>Certyfikacja UL
 
-NetX Duo został certyfikowany przez UL w celu zapewnienia zgodności z metodą UL 60730-1 w załączniku h, CSA E60730-1 załącznik H, IEC 60730-1 w załączniku H, UL 60335-1 załączniku R, IEC 60335-1 w załączniku R i standardami bezpieczeństwa UL 1998 dla oprogramowania w składnikach programowalnych. Wraz z IEC/UL 60730-1, które mają wymagania dotyczące "kontrolek wykorzystujących oprogramowanie" w załączniku H, standard IEC 60335-1 opisuje wymagania dotyczące "programowalnych obwodów elektronicznych" w załączniku R. IEC 60730 załącznik H i IEC 60335-1 Załącznik R dotyczy bezpieczeństwa sprzętu i oprogramowania używanego w urządzeniach, takich jak pralki, zmywarki, Dryers, chłodziarks, zamrażarki i Piece.
+Firma NetX Duo ma certyfikat zgodności z przepisami UL 60730-1, CsA E60730-1, H, IEC 60730-1, H, UL 60335-1; IEC 60335-1; standardy bezpieczeństwa oprogramowania w programowalnych elementach. Wraz z IEC/UL 60730-1 który ma wymagania dotyczące "kontrolek korzystających z oprogramowania" w załączniku H, standard IEC 60335-1 opisuje wymagania dotyczące "programowalnych obwodów elektronicznych" w załączniku R. IEC 60730, załącznik H i IEC 60335-1 Dokument R dotyczy bezpieczeństwa sprzętu i oprogramowania MCU używanego w urządzeniach, takich jak maszyny nagie, nagie, lodówki, chłodziarki i pąki.
 
 ![Diagram logo certyfikacji UL.](./media/user-guide/c-ru-us-logo.png)
 
 *UL/IEC 60730, UL/IEC 60335, UL 1998*
 
 > [!IMPORTANT]  
-> *Skontaktuj się z firmą Microsoft, aby uzyskać więcej informacji na temat wersji programu NetX Duo zakwalifikowanych przez UL lub na potrzeby dostępności raportów testowych, certyfikatów i powiązanej dokumentacji.*
+> *Skontaktuj się z firmą Microsoft, aby uzyskać więcej informacji na temat wersji oprogramowania NetX Duo, które zostały certyfikowane przez firmę UL, lub w celu dostępności raportów testowych, certyfikatów i skojarzonej dokumentacji.*

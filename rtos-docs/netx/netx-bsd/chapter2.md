@@ -1,64 +1,64 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX BSD
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika usługi Azure RTO NetX BSD.
+title: Rozdział 2 — Instalowanie i używanie Azure RTOS NetX BSD
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem Azure RTOS NetX BSD.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 7539565ccd4956c5354be45000efab8318dc606c
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: c04175ec18dff160faf853d675c9c85c9a0c6fbc5e834c410a7cb97a739c69f8
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822747"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116796705"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-bsd"></a>Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX BSD
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-bsd"></a>Rozdział 2 — Instalowanie i używanie Azure RTOS NetX BSD
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika usługi Azure RTO NetX BSD.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem Azure RTOS NetX BSD.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Usługę Azure RTO NetX BSD można uzyskać z naszego publicznego repozytorium kodu źródłowego w lokalizacji [https://github.com/azure-rtos/netx/](https://github.com/azure-rtos/netx/) . Pakiet zawiera dwa pliki źródłowe i plik PDF, który zawiera ten dokument, w następujący sposób:
+Azure RTOS NetX BSD można uzyskać z naszego publicznego repozytorium kodu źródłowego na stronie [https://github.com/azure-rtos/netx/](https://github.com/azure-rtos/netx/) . Pakiet zawiera dwa pliki źródłowe i plik PDF zawierający ten dokument w następujący sposób:
 
-- **nx_bsd. h**: plik nagłówkowy dla NetX BSD
-- plik źródłowy **nx_bsd. c**: c dla NetX BSD
-- **nx_bsd.pdf**: Podręcznik użytkownika dotyczący NetX BSD
+- **nx_bsd.h:** plik nagłówka dla NetX BSD
+- **nx_bsd.c:** plik źródłowy C dla NetX BSD
+- **nx_bsd.pdf:** Podręcznik użytkownika dotyczący usługi NetX BSD
 
 Pliki demonstracyjne:
-- **bsd_demo_tcp. c**
-- **bsd_demo_udp. c**
+- **bsd_demo_tcp.c**
+- **bsd_demo_udp.c**
 
-## <a name="netx-bsd-installation"></a>NetX instalacji BSD
+## <a name="netx-bsd-installation"></a>Instalacja netx BSD
 
-Aby można było korzystać z NetX BSD, cała wspomniana wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX. Na przykład jeśli NetX jest zainstalowana w katalogu "*\threadx\arm7\green*", wówczas pliki *nx_bsd. h* i *nx_bsd. c* powinny zostać skopiowane do tego katalogu.
+Aby można było korzystać z netX BSD, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX. Jeśli na przykład netx jest zainstalowany w katalogu *"\threadx\arm7\green",* do tego katalogu powinny zostać skopiowane pliki *nx_bsd.h* i *nx_bsd.c.*
 
-## <a name="building-the-threadx-and-netx-components-of-a-bsd-application"></a>Kompilowanie składników ThreadX i NetX aplikacji BSD
+## <a name="building-the-threadx-and-netx-components-of-a-bsd-application"></a>Tworzenie składników ThreadX i NetX aplikacji BSD
 
 ### <a name="threadx"></a>ThreadX
 
-Biblioteka ThreadX musi definiować *bsd_errno* w lokalnym magazynie wątków. Zalecamy wykonanie następującej procedury:
+Biblioteka ThreadX musi *definiować bsd_errno* w lokalnym magazynie wątku. Zalecamy następującą procedurę:
 
-1. W *tx_port. h* Ustaw jeden z TX_THREAD_EXTENSION makr w następujący sposób:
+1. W *tx_port.h* ustaw jedno z TX_THREAD_EXTENSION w następujący sposób:
 
   ```c
   #define TX_THREAD_EXTENSION_3     int bsd_errno
   ```
 
-2. Skompiluj ponownie bibliotekę ThreadX.
+2. Ponownie skompilować bibliotekę ThreadX.
 
 > [!NOTE]
-> Jeśli TX_THREAD_EXTENSION_3 jest już używany, użytkownik może korzystać z jednego z innych TX_THREAD_EXTENSION makr.
+> Jeśli TX_THREAD_EXTENSION_3 jest już używany, użytkownik może używać jednego z innych makr TX_THREAD_EXTENSION danych.
 
 ### <a name="netx"></a>NetX
 
-Przed rozpoczęciem korzystania z usług NetX BSD należy utworzyć bibliotekę NetX z definicją NX_ENABLE_EXTENDED_NOTIFY_SUPPORT (np. w *nx_user. h*). Domyślnie nie jest on zdefiniowany.
+Przed rozpoczęciem korzystania z usług NetX BSD bibliotekę NetX należy sbudowaną przy użyciu NX_ENABLE_EXTENDED_NOTIFY_SUPPORT (np. w *programie nx_user.h).* Domyślnie nie jest zdefiniowana.
 
-## <a name="using-netx-bsd"></a>Korzystanie z NetX BSD
+## <a name="using-netx-bsd"></a>Korzystanie z narzędzia NetX BSD
 
-Korzystanie z narzędzia BSD for NetX jest łatwe. W zasadzie kod aplikacji musi zawierać *nx_bsd. h* po zawiera *tx_api. h* i *nx_api. h*, aby użyć odpowiednio ThreadX i NetX. Po dołączeniu *nx_bsd. h* kod aplikacji może korzystać z usług BSD określonych w dalszej części tego przewodnika. Aplikacja musi również zawierać *nx_bsd. c* w procesie kompilacji. Ten plik musi być skompilowany w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do korzystania z NetX BSD.
+Korzystanie z BSD dla NetX jest łatwe. Zasadniczo kod aplikacji musi zawierać kod *nx_bsd.h* po dojecheniu do niego plików *tx_api.h* i *nx_api.h,* aby można było używać odpowiednio threadX i NetX. Po *nx_bsd.h* kod aplikacji będzie mógł korzystać z usług BSD określonych w dalszej części tego przewodnika. Aplikacja musi również *uwzględniać nx_bsd.c* w procesie kompilacji. Ten plik musi zostać skompilowany w taki sam sposób, jak inne pliki aplikacji, a jego formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z NetX BSD.
 
-Aby korzystać z usług NetX BSD, aplikacja musi utworzyć wystąpienie IP, pulę pakietów i zainicjować usługi BSD przez wywołanie *bsd_initialize.* Jest to zademonstrowane w sekcji "mały przykład" w dalszej części tego przewodnika. Poniżej przedstawiono prototyp:
+Aby korzystać z usług NetX BSD, aplikacja musi utworzyć wystąpienie adresu IP, pulę pakietów i zainicjować usługi BSD przez wywołanie *bsd_initialize.* Jest to zademonstrowane w sekcji "Mały przykład" w dalszej części tego przewodnika. Prototyp przedstawiono poniżej:
 
 ```c
 INT bsd_initialize(NX_IP *default_ip, NX_PACKET_POOL *default_pool,
@@ -66,22 +66,22 @@ INT bsd_initialize(NX_IP *default_ip, NX_PACKET_POOL *default_pool,
                   UINT bsd_thread_priority);
 ```
 
-Ostatnie trzy parametry są używane do tworzenia wątku do wykonywania zadań okresowych, takich jak sprawdzanie zdarzeń TCP i Definiowanie przestrzeni stosu wątków.
+Ostatnie trzy parametry są używane do tworzenia wątku do wykonywania okresowych zadań, takich jak sprawdzanie zdarzeń TCP i definiowanie przestrzeni stosu wątku.
 
 > [!NOTE]
-> W przeciwieństwie do gniazd BSD, które działają w kolejności bye w sieci, NetX działa w kolejności bajtów hosta procesora hosta. Ze względu na zgodność ze źródłami makra htons (), ntohs (), htonl (), ntohl () zostały zdefiniowane, ale nie modyfikują podanego argumentu.
+> W przeciwieństwie do gniazd BSD, które działają w sieci według kolejności, NetX działa w kolejności bajtów hosta procesora hosta. Ze względu na zgodność źródła zdefiniowano makra htons(), ntelements(), htonl(), ntohl(), ale nie modyfikują przekazanego argumentu.
 
-## <a name="netx-bsd-limitations"></a>Ograniczenia NetX BSD
+## <a name="netx-bsd-limitations"></a>Ograniczenia netx BSD
 
-Ze względu na problemy z wydajnością i architekturą NetX BSD nie obsługuje wszystkich funkcji gniazda BSD 4,3:
+Ze względu na problemy z wydajnością i architekturą program NetX BSD nie obsługuje wszystkich funkcji gniazd BSD 4.3:
 
-Flagi INT nie są obsługiwane dla wywołań *send, recv, SendTo* i *recvfrom* .
+Flagi INT nie są obsługiwane w przypadku *wywołań wysyłania, recv, sendto* *i recvom.*
 
 ## <a name="netx-bsd-with-dns-support"></a>NetX BSD z obsługą systemu DNS
 
-Jeśli NX_BSD_ENABLE_DNS jest zdefiniowany, NetX BSD może wysyłać zapytania DNS w celu uzyskania informacji o nazwie hosta lub adresie IP hosta. Ta funkcja wymaga, aby klient NetX DNS był wcześniej tworzony przy użyciu usługi *nx_dns_create* . Co najmniej jeden znany adres IP serwera DNS musi być zarejestrowany w wystąpieniu usługi DNS przy użyciu *nx_dns_server_add* do dodawania adresów serwerów.
+Jeśli NX_BSD_ENABLE_DNS, usługa NetX BSD może wysyłać zapytania DNS w celu uzyskania informacji o nazwie hosta lub adresie IP hosta. Ta funkcja wymaga, aby klient DNS NetX został wcześniej utworzony przy użyciu *nx_dns_create* usługi. Co najmniej jeden znany adres IP serwera DNS musi być zarejestrowany w wystąpieniu DNS przy użyciu nx_dns_server_add *dodawania* adresów serwera.
 
-Usługi systemu DNS i alokacja pamięci są używane przez usługi *Getaddrinfo* i *getnameinfo* :
+Usługi DNS i alokacja pamięci są używane przez *usługi getaddrinfo* *i getnameinfo:*
 
 ```c
 INT getaddrinfo(const CHAR *node, const CHAR *service,
@@ -91,44 +91,44 @@ INT getnameinfo(const struct sockaddr *sa, socklen_t salen,
               char *host, size_t hostlen, char *serv, size_t servlen, int flags)
 ```
 
-Gdy aplikacja BSD wywołuje *Getaddrinfo* z nazwą hosta, NetX BSD wywoła następujące usługi, aby uzyskać adres IP:
+Gdy aplikacja BSD wywołuje *polecenie getaddrinfo* z nazwą hosta, netX BSD wywoła dowolną z poniższych usług, aby uzyskać adres IP:
 
 - nx_dns_ipv4_address_by_name_get
 - nx_dns_cname_get
 
-W przypadku *nx_dns_ipv4_address_by_name_get* NetX BSD używa obszarów pamięci ipv4_addr_buffer. Rozmiar tych buforów jest definiowany przez ( `NX_BSD_IPV4_ADDR_PER_HOST * 4` ).
+Na *nx_dns_ipv4_address_by_name_get* program NetX BSD używa ipv4_addr_buffer pamięci. Rozmiar tych buforów jest definiowany przez ( `NX_BSD_IPV4_ADDR_PER_HOST * 4` ).
 
-W przypadku zwracania informacji o adresie z *Getaddrinfo*, NetX BSD używa tabeli pamięci blokowej ThreadX *nx_bsd_addrinfo_pool_memory*, której obszar pamięci jest zdefiniowany przez inny zestaw konfigurowalnych opcji, *NX_BSD_IPV4_ADDR_MAX_NUM*.
+W przypadku zwracania informacji o adresie z polecenia *getaddrinfo* program NetX BSD używa tabeli pamięci blokowej ThreadX *nx_bsd_addrinfo_pool_memory,* której obszar pamięci jest definiowany przez inny zestaw konfigurowalnych *opcji, NX_BSD_IPV4_ADDR_MAX_NUM*.
 
-Zobacz **Opcje konfiguracji** , aby uzyskać szczegółowe informacje na temat powyższych opcji konfiguracji.
+Zobacz **Opcje konfiguracji,** aby uzyskać więcej informacji na temat powyższych opcji konfiguracji.
 
-Ponadto jeśli NX_DNS_ENABLE_EXTENDED_RR_TYPES jest zdefiniowana, a dane wejściowe hosta są nazwą kanoniczną, NetX BSD przydzieli pamięć dynamicznie z wcześniej utworzonej puli bloków *_nx_bsd_cname_block_pool*
+Ponadto jeśli NX_DNS_ENABLE_EXTENDED_RR_TYPES, a dane wejściowe hosta są nazwą kanoniczną, netx BSD dynamicznie przydzieli pamięć z wcześniej utworzonej puli *bloków _nx_bsd_cname_block_pool*
 
 > [!NOTE]
-> Po wywołaniu *Getaddrinfo* aplikacja BSD jest odpowiedzialna za zwolnienie pamięci wskazywanej przez argument res z powrotem do tabeli blokowej przy użyciu usługi *freeaddrinfo* .
+> Po *wywołaniu getaddrinfo* aplikacja BSD jest odpowiedzialna za zwolnienie pamięci wskazywanej przez argument res z powrotem do tabeli blokowej przy użyciu *usługi freeaddrinfo.*
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Opcje konfigurowalne przez użytkownika w *nx_bsd. h* pozwalają aplikacji dostroić NetX BSD do określonych wymagań. Poniżej znajduje się lista tych parametrów:
+Opcje konfigurowalne przez użytkownika *w programie nx_bsd.h* umożliwiają aplikacji dostosowanie gniazd NetX BSD do konkretnych wymagań. Poniżej znajduje się lista tych parametrów:
 
-- **NX_BSD_TCP_WINDOW**: używany w wywołaniach tworzenia gniazda TCP. 65535 to typowy rozmiar okna dla 100 MB sieci Ethernet. Wartość domyślna to 65535.
-- **NX_BSD_SOCKFD_START** Jest to logiczny indeks wartości początkowej deskryptora pliku gniazda BSD. Domyślnie ta opcja to 32.
-- **NX_BSD_MAX_SOCKETS** Określa maksymalną liczbę gniazd dostępnych w warstwie BSD i musi być wielokrotnością 32. wartość domyślna to 32.
-- **NX_BSD_SOCKET_QUEUE_MAX** Określa maksymalną liczbę pakietów UDP przechowywanych w kolejce odbierania. Wartość jest domyślnie równa 5.
-- **NX_BSD_MAX_LISTEN_BACKLOG** Określa rozmiar kolejki nasłuchu ("zaległości") dla gniazd TCP BSD. Wartość domyślna to 5.
+- **NX_BSD_TCP_WINDOW:** używana w wywołaniach tworzenia gniazd TCP. 65535 to typowy rozmiar okna dla sieci Ethernet 100 Mb. Wartość domyślna to 65535.
+- **NX_BSD_SOCKFD_START** Jest to indeks logiczny dla wartości startowej deskryptora pliku gniazda BSD. Domyślnie ta opcja to 32.
+- **NX_BSD_MAX_SOCKETS** Określa maksymalną liczbę gniazd dostępnych w warstwie BSD i musi być wielokrotnością 32. Wartość domyślna to 32.
+- **NX_BSD_SOCKET_QUEUE_MAX** Określa maksymalną liczbę pakietów UDP przechowywanych w kolejce gniazd odbioru. Wartość domyślna to 5.
+- **NX_BSD_MAX_LISTEN_BACKLOG** Określa rozmiar kolejki nasłuchiwać ("listy prac") dla gniazd TCP BSD. Wartość domyślna to 5.
 - **NX_MICROSECOND_PER_CPU_TICK** Określa liczbę mikrosekund na przerwanie czasomierza
-- **NX_BSD_TIMEOUT** Określa limit czasu w taktach czasomierza na wywołaniach wewnętrznych NetX wymaganych przez BSD. Wartość domyślna to 20 * NX_IP_PERIODIC_RATE.
-- **NX_BSD_TCP_SOCKET_DISCONNECT_TIMEOUT**: określa limit czasu w taktach czasomierza w wywołaniu NetX Disconnect. Wartość domyślna to 1.
-- **NX_BSD_PRINT_ERRORS** Jeśli ta wartość jest ustawiona, zwracany stan błędu funkcji BSD zwraca numer wiersza i typ błędu, np. NX_SOC_ERROR gdzie wystąpi błąd. Wymaga to od deweloperów aplikacji zdefiniowania danych wyjściowych debugowania. Ustawienie domyślne jest wyłączone i nie określono danych wyjściowych debugowania w *nx_bsd. h*
-- **NX_BSD_TIMER_RATE** Interwał, po którym uruchamiane jest zadanie okresowego czasomierza BSD. Wartość domyślna to 1 sekunda (1 * NX_IP_PERIODIC_RATE).
-- **NX_BSD_TIMEOUT_PROCESS_IN_TIMER** W przypadku ustawienia ta opcja umożliwia wykonanie procesu limitu czasu BSD w kontekście czasomierza systemu. Zachowanie domyślne jest wyłączone. Ta funkcja została szczegółowo opisana w rozdziale 2 "Instalacja i korzystanie z NetX BSD".
-- **NX_BSD_ENABLE_DNS** Jeśli ta funkcja jest włączona, NetX BSD wyśle zapytanie DNS dla nazwy hosta lub adresu IP hosta. Wymaga wcześniejszego utworzenia i uruchomienia wystąpienia klienta DNS. Domyślnie nie jest włączona.
-- **NX_BSD_IPV4_ADDR_MAX_NUM** Maksymalna liczba adresów IPv4 zwróconych przez *Getaddrinfo*. Dzięki NX_BSD_IPV4_ADDR_MAX_NUM definiuje rozmiar puli bloku NetX BSD nx_bsd_addrinfo_block_pool do dynamicznego przydzielania pamięci do przechowywania informacji w *Getaddrinfo*. Wartość domyślna to 5.
-- **NX_BSD_IPV4_ADDR_PER_HOST**: określa maksymalną liczbę adresów IPv4 przechowywanych dla kwerendy DNS. Wartość domyślna to 5.
+- **NX_BSD_TIMEOUT** Określa limit czasu w taktach czasomierza w wewnętrznych wywołaniach NetX wymaganych przez BSD. Wartość domyślna to 20*NX_IP_PERIODIC_RATE.
+- **NX_BSD_TCP_SOCKET_DISCONNECT_TIMEOUT:** określa limit czasu w taktach czasomierza w wywołaniu rozłączenia NetX. Wartość domyślna to 1.
+- **NX_BSD_PRINT_ERRORS** Jeśli to ustawienie jest ustawione, zwracany stan błędu funkcji BSD zwraca numer wiersza i typ błędu, np. NX_SOC_ERROR gdzie wystąpił błąd. Wymaga to zdefiniowania danych wyjściowych debugowania przez dewelopera aplikacji. Ustawienie domyślne jest wyłączone i w pliku *nx_bsd.h nie określono żadnych danych wyjściowych debugowania*
+- **NX_BSD_TIMER_RATE** Interwał, po którym jest uruchamiane okresowe zadanie czasomierza BSD. Wartość domyślna to 1 sekunda (1 * NX_IP_PERIODIC_RATE).
+- **NX_BSD_TIMEOUT_PROCESS_IN_TIMER** Jeśli to ustawienie jest ustawione, ta opcja umożliwia wykonanie procesu limitu czasu usługi BSD w kontekście czasomierza systemu. Domyślne zachowanie jest wyłączone. Ta funkcja została opisana bardziej szczegółowo w rozdziale 2 "Instalacja i używanie netX BSD".
+- **NX_BSD_ENABLE_DNS** Jeśli ta opcja jest włączona, usługa NetX BSD wyśle zapytanie DNS dotyczące nazwy hosta lub adresu IP hosta. Wymaga, aby wystąpienie klienta DNS zostało wcześniej utworzone i uruchomione. Domyślnie nie jest on włączony.
+- **NX_BSD_IPV4_ADDR_MAX_NUM** Maksymalna liczba adresów IPv4 zwracanych przez *polecenie getaddrinfo.* Wraz z NX_BSD_IPV4_ADDR_MAX_NUM określa rozmiar puli bloków NetX BSD nx_bsd_addrinfo_block_pool dynamicznego przydzielania pamięci w celu adresowania magazynu informacji w pliku *getaddrinfo.* Wartość domyślna to 5.
+- **NX_BSD_IPV4_ADDR_PER_HOST:** definiuje maksymalną liczbę adresów IPv4 przechowywanych na zapytanie DNS. Wartość domyślna to 5.
 
-## <a name="bsd-socket-options"></a>Opcje gniazda BSD
+## <a name="bsd-socket-options"></a>Opcje gniazd BSD
 
-Poniższa lista opcji NetX w gnieździe BSD można włączyć (lub wyłączyć) w czasie wykonywania dla poszczególnych gniazd przy użyciu usługi *SetSockOpt* :
+Następującą listę opcji gniazd NetX BSD można włączyć (lub wyłączyć) w czasie uruchamiania na podstawie gniazda za pomocą *usługi setsockopt:*
 
 ```c
 INT setsockopt(INT sockID, INT option_level, INT option_name, const
@@ -137,38 +137,38 @@ INT setsockopt(INT sockID, INT option_level, INT option_name, const
 
 Istnieją dwa różne ustawienia dla *option_level*.
 
-Pierwszy typ opcji gniazda czasu wykonywania jest SOL_SOCKET dla opcji poziomu gniazda. Aby włączyć opcję poziomu gniazda, należy wywołać *setsockopt* option_level z ustawionym na SOL_SOCKET, a option_name ustawić dla konkretnej opcji, np. SO_BROADCAST. Aby pobrać ustawienie opcji, wywołaj *getsockopt* dla option_name z option_level ponownie ustawiona na SOL_SOCKET.
+Pierwszy typ opcji gniazd czasu uruchamiania jest SOL_SOCKET dla opcji poziomu gniazda. Aby włączyć opcję na poziomie gniazda, wywołaj *setsockopt* z option_level ustawioną na SOL_SOCKET i option_name na konkretną opcję, np. SO_BROADCAST. Aby pobrać ustawienie opcji, wywołaj element *getsockopt* dla option_name z option_level ponownie ustawioną na SOL_SOCKET.
 
-Zostanie wyświetlona lista opcji poziomu gniazda w czasie wykonywania poniżej.
+Poniżej przedstawiono listę opcji poziomu gniazd czasu uruchamiania.
 
-- **SO_BROADCAST**: ustawienie umożliwia wysyłanie i otrzymywanie pakietów emisji z gniazd NetX. Jest to domyślne zachowanie dla NetX. Wszystkie gniazda mają tę możliwość.
-- **SO_ERROR**: służy do uzyskiwania stanu gniazda dla operacji poprzedniej gniazda określonego gniazda przy użyciu usługi *getsockopt* . Wszystkie gniazda mają tę możliwość.
-- **SO_KEEPALIVE**: ustawienie powoduje włączenie funkcji utrzymywania aktywności protokołu TCP. Wymaga to, aby Biblioteka NetX była skompilowana przy użyciu NX_TCP_ENABLE_KEEPALIVE zdefiniowanej w *nx_user. h*. Domyślnie ta funkcja jest wyłączona.
-- **SO_RCVTIMEO**: to ustawienie opcji oczekiwania (w sekundach) dla pakietów odbieranych w NetX BSD. Wartość domyślna to NX_WAIT_FOREVER (0xFFFFFFFF) lub, jeśli jest włączony bez blokowania, NX_NO_WAIT (0x0).
-- **SO_RCVBUF**: Określa rozmiar okna gniazda TCP. Wartość domyślna NX_BSD_TCP_WINDOW jest ustawiona na 64 KB w przypadku pakietów BSD TCP Sockets. Aby ustawić rozmiar ponad 65535, należy utworzyć bibliotekę NetX z zdefiniowanym NX_TCP_ENABLE_WINDOW_SCALING.
-- **SO_REUSEADDR**: ustawienie umożliwia zmapowanie wielu gniazd na jeden port. Typowy sposób użycia dotyczy gniazda serwera TCP. Jest to domyślne zachowanie NetX Sockets.
+- **SO_BROADCAST:** jeśli to ustawienie jest ustawione, umożliwia wysyłanie i odbieranie pakietów emisji z gniazd Netx. Jest to domyślne zachowanie dla netx. Wszystkie gniazda mają tę możliwość.
+- **SO_ERROR:** służy do uzyskiwania stanu gniazda dla poprzedniej operacji gniazda określonego gniazda przy użyciu *usługi getsockopt.* Wszystkie gniazda mają tę możliwość.
+- **SO_KEEPALIVE:** w przypadku ustawienia tej opcji włączana jest funkcja utrzymania aktywności protokołu TCP. Wymaga to s zbudowanie biblioteki NetX z NX_TCP_ENABLE_KEEPALIVE w *programie nx_user.h.* Domyślnie ta funkcja jest wyłączona.
+- **SO_RCVTIMEO:** powoduje ustawienie opcji oczekiwania w sekundach na odbieranie pakietów na gniazdach NetX BSD. Wartość domyślna to NX_WAIT_FOREVER (0xFFFFFFFF) lub, jeśli nieblokowanie jest włączone, NX_NO_WAIT (0x0).
+- **SO_RCVBUF:** określa rozmiar okna gniazda TCP. Wartość domyślna, NX_BSD_TCP_WINDOW, jest ustawiona na 64k dla gniazd TCP BSD. Aby ustawić rozmiar ponad 65535, biblioteka NetX musi zostać s zbudowana z NX_TCP_ENABLE_WINDOW_SCALING zdefiniowane.
+- **SO_REUSEADDR:** jeśli to ustawienie jest ustawione, umożliwia mapować wiele gniazd na jeden port. Typowe zastosowanie jest dla gniazda serwera TCP. Jest to domyślne zachowanie gniazd NetX.
 
-Drugim typem opcji gniazda czasu wykonywania jest poziom opcji IP. Aby włączyć opcję poziomu IP, należy wywołać *setsockopt* option_level z ustawionym na IP_PROTO, a option_name ustawić opcję na np. IP_MULTICAST_TTL. Aby pobrać ustawienie opcji, wywołaj *getsockopt* dla option_name z option_level ponownie ustawiona na IP_PROTO.
+Drugi typ opcji gniazda czasu uruchamiania to poziom opcji adresu IP. Aby włączyć opcję poziomu adresu IP, zestawy *wywołańz* option_level ustawioną na IP_PROTO, a option_name na opcję , np. IP_MULTICAST_TTL. Aby pobrać ustawienie opcji, wywołaj obiekt *getsockopt* dla option_name z option_level ponownie ustawioną na IP_PROTO.
 
-Zostanie wyświetlona lista opcji poziomu adresu IP czasu wykonywania poniżej.
+Poniżej przedstawiono listę opcji poziomu adresów IP czasu uruchamiania.
 
-- **IP_MULTICAST_TTL**: służy do ustawiania czasu wygaśnięcia dla gniazd UDP. Wartość domyślna to NX_IP_TIME_TO_LIVE (0x80) podczas tworzenia gniazda. Tę wartość można zastąpić, wywołując *SetSockOpt* z tą opcją gniazda.
-- **IP_ADD_MEMBERSHIP**: Jeśli ta opcja jest ustawiona, w celu przyłączenia do określonej grupy IGMP gniazdo BSD (dotyczy tylko gniazd UDP).
-- **IP_DROP_MEMBERSHIP**: w przypadku ustawienia, ta opcja włącza gniazdo BSD (dotyczy tylko gniazd UDP), aby opuścić określoną grupę IGMP.
+- **IP_MULTICAST_TTL:** ustawia czas na żywo dla gniazd UDP. Wartość domyślna to NX_IP_TIME_TO_LIVE (0x80) podczas tworzenia gniazda. Tę wartość można przesłonić przez wywołanie *metody setsockopt z* tą opcją gniazda.
+- **IP_ADD_MEMBERSHIP:** jeśli to ustawienie jest ustawione, ta opcja umożliwia dołączenie gniazda BSD (dotyczy tylko gniazd UDP) do określonej grupy IGMP.
+- **IP_DROP_MEMBERSHIP:** jeśli to ustawienie jest ustawione, ta opcja umożliwia gniazdu BSD (dotyczy tylko gniazd UDP) pozostawienie określonej grupy IGMP.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykład użycia NetX BSD przedstawiono na rysunku 1,0 poniżej. W tym przykładzie plik dołączany *nx_bsd. h* jest wprowadzany w wierszu 7. Następnie *bsd_pool* *bsd_ip* wystąpienia adresu IP i puli pakietów są tworzone jako zmienne globalne w wierszu 20 i 21. Należy zauważyć, że w tej wersji demonstracyjnej jest stosowany sterownik sieciowy pamięci RAM (linia 41). Klient i serwer będą współużytkować ten sam adres IP na pojedynczym wystąpieniu IP w tym przykładzie.
+Przykład sposobu korzystania z NetX BSD przedstawiono na rysunku 1.0 poniżej. W tym przykładzie plik dołączany *nx_bsd.h* jest przekierowyny w wierszu 7. Następnie wystąpienie adresu IP *bsd_ip* pulę pakietów *bsd_pool* jako zmienne globalne w wierszach 20 i 21. Należy pamiętać, że w tym pokazie jest używany sterownik sieciowy pamięci RAM (wirtualny) (wiersz 41). W tym przykładzie klient i serwer będą współużytkowały ten sam adres IP w pojedynczym wystąpieniu adresu IP.
 
-Wątki klienta i serwera są tworzone w wierszach 303 i 309 w *tx_application_define* , które konfigurują aplikację i są zdefiniowane w wierszach 293-361. Po pomyślnym utworzeniu wystąpienia adresu IP w wierszu 327 wystąpienie protokołu IP jest włączone dla usług TCP w wierszu 350. Ostatnim wymaganiem przed użyciem usług BSD jest wywołanie *bsd_initialize* w wierszu 360 w celu skonfigurowania wszystkich struktur danych i NetX oraz zasobów ThreadX wymaganych przez BSD.
+Wątki klienta i serwera są tworzone w wierszach 303 i 309 w wierszu *tx_application_define* które konfigurują aplikację i są definiowane w wierszach 293–361. Po pomyślnym utworzeniu wystąpienia adresu IP w wierszu 327 wystąpienie adresu IP jest włączone dla usług TCP w wierszu 350. Ostatnim wymaganiem przed rozpoczęciem pracy z usługami BSD jest wywołanie usługi *bsd_initialize* w wierszu 360 w celu skonfigurowania wszystkich struktur danych i netx oraz zasobów ThreadX wymaganych przez usługę BSD.
 
-W funkcji wprowadzania wątku serwera *thread_1_entry,* która jest zdefiniowana w wierszach 381-397, aplikacja oczekuje na zainicjowanie przez sterownik NetX z parametrami sieci. Gdy to zrobisz, wywoła *tcpServer* zdefiniowane w wierszach 146-253, aby obsłużyć szczegółowe informacje dotyczące konfigurowania gniazda serwera TCP.
+W funkcji wpisu wątku serwera *thread_1_entry,* która jest zdefiniowana w wierszach 381–397, aplikacja czeka na zainicjowanie NetX za pomocą parametrów sieciowych przez sterownik. Po zakończeniu wywołuje on protokół *tcpServer zdefiniowany* w wierszach 146–253 w celu obsługi szczegółów konfigurowania gniazda serwera TCP.
 
-*tcpServer* tworzy gniazdo główne przez wywołanie usługi *socket* w wierszu 159 i wiąże ją z gniazdem nasłuchiwania przy użyciu wywołania *bind* w wierszu 176. Następnie jest skonfigurowany do nasłuchiwania żądań połączeń w wierszu 191. Należy zauważyć, że gniazdo główne nie akceptuje żądania połączenia. Działa w pętli ciągłej, *która wywołuje się* za każdym razem, aby wykryć żądania połączenia. Dodatkowe gniazdo BSD wybrane z tablicy usługi BSD Sockets jest przypisane do żądania połączenia po wywołaniu usługi *Accept* w wierszu 218.
+*TcpServer* tworzy gniazdo główne  przez wywołanie usługi gniazda w wierszu 159 i  wiąże je z gniazdem nasłuchiwania przy użyciu wywołania powiązania w wierszu 176. Następnie jest on konfigurowany do nasłuchiwania żądań połączenia w wierszu 191. Należy pamiętać, że gniazdo główne nie akceptuje żądania połączenia. Jest on uruchamiany w pętli ciągłej, która wywołuje *polecenie select* za każdym razem w celu wykrywania żądań połączenia. Pomocnicze gniazdo BSD wybrane z tablicy gniazd BSD jest przypisywane do żądania połączenia po wywołaniu usługi *accept* w wierszu 218.
 
-Po stronie klienta funkcja wprowadzania wątku klienta *thread_0_entry* zdefiniowana w wierszach 366-377 powinna również oczekiwać na zainicjowanie NetX przez sterownik. W tym miejscu po prostu poczekamy na wykonanie tej czynności po stronie serwera. Następnie wywołuje *tcpClient* zdefiniowane w wierszu 54-142, aby obsłużyć szczegółowe informacje dotyczące konfigurowania gniazda klienta TCP i żądania połączenia TCP.
+Po stronie klienta funkcja wpisu wątku klienta, *thread_0_entry*, zdefiniowana w wierszach 366–377, powinna również czekać na zainicjowanie NetX przez sterownik. W tym miejscu po prostu zaczekamy na to po stronie serwera. Następnie wywołuje *klienta tcpClient* zdefiniowanego w wierszu 54-142 w celu obsługi szczegółów konfigurowania gniazda klienta TCP i żądania połączenia TCP.
 
-Gniazdo klienta TCP jest tworzone w wierszu 68. Gniazdo jest powiązane z określonym adresem IP i próbuje połączyć się z serwerem TCP przez wywołanie metody *Connect* on line 84. Teraz można zacząć wysyłać i odbierać pakiety.
+Gniazdo klienta TCP jest tworzone w wierszu 68. Gniazdo jest powiązane z określonym adresem IP i próbuje nawiązać połączenie z serwerem TCP przez wywołanie *połączenia* w wierszu 84. Teraz jest gotowy do rozpoczęcia wysyłania i odbierania pakietów.
 
 ```c
 1 /*  This is a small demo of BSD Wrapper for the high-performance NetX TCP/IP stack.

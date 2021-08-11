@@ -1,19 +1,19 @@
 ---
-title: Dodatek C — typy danych usługi Azure RTO NetX Duo
-description: Dowiedz się więcej o typach danych usługi Azure RTO NetX Duo.
+title: Dodatek C — Azure RTOS danych NetX Duo
+description: Dowiedz się więcej o Azure RTOS danych NetX Duo.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 8673e4522239848c2bd5097d99ad819e8e6a79b2
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 9b771e83a270f91b55ba4d11d0edb33dea1e62c27f8c8641cd40982fd415750e
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822945"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116789769"
 ---
-# <a name="appendix-c---azure-rtos-snetx-duo-data-types"></a>Dodatek C — typy danych usługi Azure RTO sNetX Duo
+# <a name="appendix-c---azure-rtos-snetx-duo-data-types"></a>Dodatek C — Azure RTOS danych sNetX Duo
 
 ## <a name="nx_arp"></a>NX_ARP
 

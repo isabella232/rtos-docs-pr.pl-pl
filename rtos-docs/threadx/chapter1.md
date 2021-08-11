@@ -1,174 +1,174 @@
 ---
-title: Rozdział 1 — wprowadzenie do usługi Azure RTO ThreadX
-description: Ten rozdział zawiera wprowadzenie do usługi Azure RTO ThreadX oraz opis jej aplikacji i korzyści.
+title: Rozdział 1 — Wprowadzenie do Azure RTOS ThreadX
+description: Ten rozdział zawiera wprowadzenie do Azure RTOS ThreadX oraz opis jego aplikacji i korzyści.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 83718ddf5469238e2429855908be2ea5d405f874
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 536b2d59bf9f2cf15d320b91277f0efc7bf96097329f690b0849b2145c5a3abc
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822483"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116802065"
 ---
-# <a name="chapter-1---introduction-to-azure-rtos-threadx"></a>Rozdział 1 — wprowadzenie do usługi Azure RTO ThreadX
+# <a name="chapter-1---introduction-to-azure-rtos-threadx"></a>Rozdział 1 — Wprowadzenie do Azure RTOS ThreadX
 
-Azure RTO ThreadX to jądro w czasie rzeczywistym o wysokiej wydajności zaprojektowane specjalnie dla aplikacji osadzonych. Ten rozdział zawiera wprowadzenie do produktu oraz opis jego aplikacji i korzyści.
+Azure RTOS ThreadX jest jądrem w czasie rzeczywistym o wysokiej wydajności zaprojektowanym specjalnie dla aplikacji osadzonych. Ten rozdział zawiera wprowadzenie do produktu oraz opis jego aplikacji i korzyści.
 
-## <a name="threadx-unique-features"></a>ThreadX unikatowe funkcje
+## <a name="threadx-unique-features"></a>Unikatowe funkcje ThreadX
 
-W przeciwieństwie do innych jądra w czasie rzeczywistym, ThreadX został zaprojektowany jako uniwersalny — można łatwo skalować między aplikacjami opartymi na mikrokontrolerach, korzystając z zaawansowanych procesorów CISC, RISC i DSP.
+W przeciwieństwie do innych jąder czasu rzeczywistego threadX został zaprojektowany tak, aby był uniwersalny — łatwo skalować między małymi aplikacjami opartymi na mikrokontrolerach za pośrednictwem tych, które korzystają z zaawansowanych procesorów CISC, RISC i DSP.
 
-ThreadX jest skalowalna w oparciu o jego podstawową architekturę. Ponieważ usługi ThreadX są implementowane jako biblioteka C, tylko te usługi, które są używane przez aplikację, są umieszczane w obrazie w czasie wykonywania. W związku z tym rzeczywisty rozmiar ThreadX jest całkowicie określony przez aplikację. W przypadku większości aplikacji obraz instrukcji ThreadX mieści się w zakresie od 2 KB do 15 kilobajtów.
+ThreadX jest skalowalny w oparciu o jego podstawową architekturę. Ponieważ usługi ThreadX są implementowane jako biblioteka języka C, tylko te usługi faktycznie używane przez aplikację są wprowadzane do obrazu w czasie uruchamiania. W związku z tym rzeczywisty rozmiar ThreadX jest całkowicie określany przez aplikację. W przypadku większości aplikacji obraz instrukcji ThreadX ma rozmiar od 2 KB do 15 KB.
 
-### <a name="picokerneltrade-architecture"></a>*&trade;Architektura picokernel*
+### <a name="picokerneltrade-architecture"></a>*picokernel Architecture (Architektura picokernel) &trade;*
 
-Zamiast nakładania się warstwowych funkcji jądra na siebie, takich jak tradycyjne architektury *mikrojądra* , usługa ThreadX Services bezpośrednio do jej rdzenia. Powoduje to najszybsze możliwe przełączenie kontekstu i wydajność wywołania usługi. Nazywamy ten projekt nieoparty na warstwach *picokernel* architekturę.
+Zamiast nakładać na siebie funkcje jądra, takie jak tradycyjne architektury *mikrokernel,* usługi ThreadX są podłączane bezpośrednio do jej rdzeni. Skutkuje to najszybszą możliwą wydajnością przełączania kontekstu i wywołania usługi. Nazywamy ten projekt niewarstwowy *architekturą picokernel.*
 
 ### <a name="ansi-c-source-code"></a>Kod źródłowy ANSI C
 
-ThreadX jest zapisywana głównie w standardzie ANSI C. Do dostosowywania jądra do bazowego procesora docelowego potrzeba niewielkiej ilości języka asemblera. Dzięki temu projektowi można przenieść ThreadX do nowej rodziny procesorów w bardzo krótkim czasie — zwykle w ciągu kilku tygodni.
+ThreadX jest napisany głównie w języku ANSI C. Aby dostosować jądro do podstawowego procesora docelowego, potrzebna jest niewielka ilość języka zestawu. Ten projekt umożliwia przenoszenie threadX do nowej rodziny procesorów w bardzo krótkim czasie — zwykle w ciągu tygodni!
 
-### <a name="advanced-technology"></a>Technologia zaawansowana
+### <a name="advanced-technology"></a>Zaawansowana technologia
 
-Poniżej przedstawiono najważniejsze informacje o technologii ThreadX Advanced.
-- Prosta architektura *picokernel*
-- Skalowanie automatyczne (małe rozmiary)
-- Deterministyczne przetwarzanie
+Poniżej przedstawiono najważniejsze funkcje zaawansowanej technologii ThreadX.
+- Prosta *architektura picokernel*
+- Automatyczne skalowanie (małe zużycie)
+- Przetwarzanie deterministyczne
 - Szybka wydajność w czasie rzeczywistym
-- Planowanie zastępujące i wspólne
+- Planowanie wywłaszcze i kooperatywne
 - Elastyczna obsługa priorytetów wątków
-- Tworzenie dynamicznego obiektu systemowego
+- Dynamiczne tworzenie obiektów systemowych
 - Nieograniczona liczba obiektów systemowych
 - Zoptymalizowana obsługa przerwań
-- Zastępujący — próg&trade;
+- Próg wywłaszczenia&trade;
 - Dziedziczenie priorytetów
 - Łańcuch zdarzeń&trade;
 - Szybkie czasomierze oprogramowania
-- Zarządzanie pamięcią w czasie wykonywania
+- Zarządzanie pamięcią w czasie rzeczywistym
 - Monitorowanie wydajności w czasie wykonywania
-- Analiza stosu czasu wykonywania
+- Analiza stosu w czasie rzeczywistym
 - Wbudowane śledzenie systemu
-- Ogromne wsparcie dla procesorów
-- Obsługa ogromnych narzędzi programistycznych
-- Całkowicie endian neutral
+- Obsługa ogromnych procesorów
+- Ogromna obsługa narzędzi dewelopera
+- Całkowicie neutralna endian
 
-### <a name="not-a-black-box"></a>To nie jest czarne pole
+### <a name="not-a-black-box"></a>Nie jest czarną skrzynką
 
-Większość rozkładów ThreadX obejmuje kompletny kod źródłowy C, a także język zestawu specyficzny dla procesora. Eliminuje to problemy "z czarnym pudełkem" występujące z wieloma jądrami komercyjnymi. Dzięki ThreadX, deweloperzy aplikacji mogą zobaczyć dokładnie, co robi jądro — nie ma Mysteries!
+Większość dystrybucji ThreadX obejmuje pełny kod źródłowy C, a także język zestawu specyficzny dla procesora. Eliminuje to problemy "czarnej skrzynki", które występują w przypadku wielu jąder komercyjnych. Dzięki threadX deweloperzy aplikacji mogą zobaczyć dokładnie, co robi jądro — nie ma żadnych odmów!
 
-Kod źródłowy umożliwia również modyfikacje specyficzne dla aplikacji. Chociaż nie jest to zalecane, korzystne jest, aby mieć możliwość modyfikacji jądra, jeśli jest to absolutnie wymagane.
+Kod źródłowy umożliwia również modyfikacje specyficzne dla aplikacji. Chociaż nie jest to zalecane, na pewno korzystne jest, aby mieć możliwość modyfikowania jądra, jeśli jest to absolutnie wymagane.
 
-Te funkcje są szczególnie wygodne dla deweloperów przyzwyczajonych do pracy z własnymi *jądrami* wewnętrznymi. Oczekują one, że kod źródłowy i możliwość modyfikowania jądra. ThreadX to Ultimate jądro dla deweloperów.
+Te funkcje są szczególnie wygodne dla deweloperów, którzy są przywykli do pracy z własnymi *jądrami.* Oczekują oni kodu źródłowego i możliwości modyfikowania jądra. ThreadX jest ostatecznym jądrem dla takich deweloperów.
 
-### <a name="the-rtos-standard"></a>Standard RTO
+### <a name="the-rtos-standard"></a>The RTOS Standard
 
-Ze względu na uniwersalność, wysoką wydajną architekturę *picokernel* , zaawansowaną technologię i zapewnianie przenośności, ThreadX jest wdrażany na ponad 2 000 000 000 urządzeniach. Dzięki temu ThreadX Standard RTO dla głęboko osadzonych aplikacji.
+Ze względu na ich niezawodność, wysoką wydajność, architekturę *rozwiązania Picokernel,* zaawansowaną technologię i zademonstrowany przenośność, threadX jest obecnie wdrażany na ponad dwóch miliardach urządzeń. Dzięki temu ThreadX jest standardem RTOS dla aplikacji głęboko osadzonych.
 
 ## <a name="safety-certifications"></a>Certyfikaty bezpieczeństwa
 
-### <a name="tv-certification"></a>Certyfikat TÜV
+### <a name="tv-certification"></a>Certyfikacja TÜV
 
-ThreadX został certyfikowany przez moimi-TÜV Saar do użytku w systemach krytycznych dla bezpieczeństwa, zgodnie z IEC61508 i IEC-62304. Certyfikat potwierdza, że ThreadX może być używany w rozwoju oprogramowania związanego z bezpieczeństwem w celu uzyskania najwyższych poziomów integralności bezpieczeństwa Międzynarodowa Komisja Elektrotechniczna (IEC) 61508 i IEC 62304 dla "bezpieczeństwa funkcjonalnego, elektronicznego i programowalnego elektronicznego systemów związanych z bezpieczeństwem". MOIMI-TÜV Saar, utworzone za pomocą wspólnego przedsiębiorstwa z Niemiec SGSGroup i TÜV Saarland, stał się wiodącą, niezależną firmą do testowania, inspekcji, sprawdzania i certyfikowania oprogramowania osadzonego dla systemów związanych z bezpieczeństwem na całym świecie. Standard bezpieczeństwa przemysłowego IEC 61508 i wszystkie standardy, które są od niego pochodzące, w tym IEC 62304, są używane do zapewnienia bezpieczeństwa funkcjonalnego, elektronicznego i programowalnego elektronicznego sprzętu medycznego, systemów kontroli procesów, maszyn przemysłowych i systemów kontroli szynowej.
+ThreadX ma certyfikat SGS-TÜV Saar do użycia w systemach o krytycznym znaczeniu dla bezpieczeństwa, zgodnie z normami IEC61508 i IEC-62304. Certyfikat potwierdza, że ThreadX może być używany do opracowywania oprogramowania związanego z bezpieczeństwem dla najwyższych poziomów integralności bezpieczeństwa systemów Międzynarodowa Komisja Elektrotechniczna (IEC) 61508 i IEC 62304 dla "bezpieczeństwa funkcjonalnego systemów elektronicznych, elektronicznych i programowalnych systemów związanych z bezpieczeństwem". SGS-TÜV Saar, utworzone za pośrednictwem wspólnej osady niemieckich firm SGSGroup i TÜV Saarland, stała się wiodącą akredytowaną, niezależną firmą do testowania, inspekcji, weryfikowania i certyfikowania osadzonego oprogramowania dla systemów powiązanych z bezpieczeństwem na całym świecie. Standard bezpieczeństwa przemysłowego IEC 61508 i wszystkie standardy, które z niego pochodzą, w tym IEC 62304, są używane w celu zapewnienia bezpieczeństwa funkcjonalnego urządzeń elektronicznych, elektronicznych i programowalnych urządzeń medycznych związanych z bezpieczeństwem, systemów sterowania procesami, maszyn przemysłowych i systemów sterowania węzłem.
 
-MOIMI-TÜV Saar ma certyfikowane ThreadX do użycia w systemach samochodowych o krytycznym znaczeniu dla bezpieczeństwa, zgodnie ze standardem ISO 26262. Ponadto ThreadX jest certyfikowany na poziomie integralności infrastruktury bezpieczeństwa motoryzacyjnego (ASIL), który reprezentuje najwyższy poziom certyfikacji ISO 26262.
+SGS-TÜV Saar ma certyfikat ThreadX, który może być używany w krytycznych dla bezpieczeństwa systemach samochodowych zgodnie ze standardem ISO 26262. Ponadto ThreadX ma certyfikat ASIL D (Safety Integrity Level) dla samochodów, który reprezentuje najwyższy poziom certyfikacji ISO 26262.
 
-Dodatkowo moimi-TÜV Saar ma certyfikowane ThreadX, które mają być używane w kluczowych dla bezpieczeństwa aplikacjach szynowych, ze względu na Standard 50128 do SW-SIL 4.
+Ponadto firma SGS-TÜV Saar ma certyfikat ThreadX, który może być używany w aplikacjach do kluczowych dla bezpieczeństwa, zgodnie ze standardem EN 50128 i zgodnie ze standardem SW-SIL 4.
 
-![Certyfikat TÜV](./media/overview-threadx/partener-logo-sgs-tuv-saar-2.png)
+![Certyfikacja TÜV](./media/overview-threadx/partener-logo-sgs-tuv-saar-2.png)
 
 * IEC 61508 do SIL 4
 
-* IEC 62304 do klasy bezpieczeństwa oprogramowania SW (C)
+* IEC 62304 do bezpieczeństwa SW, klasa C
 
 * ISO 26262 ASIL D
 
-* EN 50128 SW — SIL 4
+* EN 50128 SW-SIL 4
 
 > [!NOTE]
-> *Skontaktuj się z nami, aby uzyskać więcej informacji na temat wersji ThreadX certyfikowanych przez TÜV lub do dostępności raportów testowych, certyfikatów i powiązanej dokumentacji.*
+> *Skontaktuj się z nami, aby uzyskać więcej informacji o wersjach threadX, które zostały certyfikowane przez TÜV, lub o dostępności raportów testowych, certyfikatów i skojarzonej dokumentacji.*
 
-### <a name="misra-c-compliant"></a>Zgodne z MISRA C
+### <a name="misra-c-compliant"></a>Zgodne ze standardem MISRA C
 
-MISRA C to zestaw wytycznych programistycznych dotyczących krytycznych systemów przy użyciu języka programowania C. Oryginalne wytyczne dotyczące języka MISRA C były głównie przeznaczone do aplikacji motoryzacyjnych; jednak MISRA C jest teraz szeroko uznawany za mające zastosowanie do wszystkich aplikacji o krytycznym znaczeniu dla bezpieczeństwa. ThreadX jest zgodna ze wszystkimi regułami "Required" i "obowiązkowy" w przypadku MISRA-C:2004 i MISRA C:2012. ThreadX jest również zgodna ze wszystkimi regułami "doradczym". Aby uzyskać więcej informacji, zapoznaj się z dokumentem ***ThreadX_MISRA_Compliance.pdf*** .
+MISRA C to zestaw wytycznych programowania dla systemów krytycznych korzystających z języka programowania C. Oryginalne wytyczne MISRA C były przeznaczone głównie dla aplikacji samochodowych. Jednak język MISRA C jest teraz powszechnie uznawany za stosowany do wszystkich aplikacji o krytycznym znaczeniu dla bezpieczeństwa. ThreadX jest zgodny ze wszystkimi "wymaganymi" i "obowiązkowymi" regułami MISRA-C:2004 i MISRA C:2012. ThreadX jest również zgodny ze wszystkimi poza trzema regułami "porad". Zapoznaj się z ***ThreadX_MISRA_Compliance.pdf,*** aby uzyskać więcej szczegółów.
 
-### <a name="ul-certification"></a>Certyfikat UL
+### <a name="ul-certification"></a>Certyfikacja UL
 
-ThreadX został certyfikowany przez UL w celu zapewnienia zgodności z metodą UL 60730-1 w załączniku H, CSA E60730-1 załącznik H, IEC 60730-1 w załączniku H, UL 60335-1 Załącznik R, IEC 60335-1 w załączniku R, 1998 a w przypadku oprogramowania w składnikach programowalnych. Wraz z IEC/UL 60730-1, które mają wymagania dotyczące "kontrolek wykorzystujących oprogramowanie" w załączniku H, standard IEC 60335-1 opisuje wymagania dotyczące "programowalnych obwodów elektronicznych" w załączniku R. IEC 60730 załącznik H i IEC 60335-1 Załącznik R dotyczy bezpieczeństwa sprzętu i oprogramowania używanego w urządzeniach, takich jak pralki, zmywarki, Dryers, chłodziarks, zamrażarki i Piece.
+ThreadX ma certyfikat zgodności z ul 60730-1,H, CSA E60730-1, h, IEC 60730-1, h, ul 60335-1, część R, IEC 60335-1 i standardy bezpieczeństwa UL 1998 dla oprogramowania w programowalnych elementach. Wraz z IEC/UL 60730-1 który ma wymagania dotyczące "kontrolek korzystających z oprogramowania" w załączniku H, standard IEC 60335-1 opisuje wymagania dotyczące "programowalnych obwodów elektronicznych" w załączniku R. IEC 60730, załącznik H i IEC 60335-1 Dokument R dotyczy bezpieczeństwa sprzętu i oprogramowania MCU używanego w urządzeniach, takich jak maszyny nagie, nagie, lodówki, chłodziarki i pąki.
 
-![Certyfikat UL](./media/overview-threadx/partener-logo-c-ru-us-2.png)
+![Certyfikacja UL](./media/overview-threadx/partener-logo-c-ru-us-2.png)
 
 *UL/IEC 60730, UL/IEC 60335, UL 1998*
 
 > [!NOTE]
-> *Skontaktuj się z firmą Microsoft, aby uzyskać więcej informacji na temat wersji ThreadXch certyfikowanych przez TÜV lub do dostępności raportów testowych, certyfikatów i powiązanej dokumentacji.*
+> *Skontaktuj się z firmą Microsoft, aby uzyskać więcej informacji o wersjach threadX, które zostały certyfikowane przez TÜV, lub o dostępności raportów testowych, certyfikatów i skojarzonej dokumentacji.*
 
 ### <a name="certification-pack"></a>Pakiet certyfikacji
 
-Pakiet certyfikacji ThreadX &trade; to 100% całości, gotowe, specyficzny dla branży pakiet autonomiczny, który zapewnia wszystkie dowody ThreadX wymagane do certyfikowania lub pomyślnego przesłania produktu opartego na ThreadX do najwyższej niezawodności i poziomu krytycznego wymaganych dla lotnictwa krytycznego, medycznego i przemysłowego. Obsługiwane certyfikaty obejmują DO-178B, ED-12B, DO-278, FDA510 (k), IEC62304, IEC-60601, ISO-14971, UL-1998, IEC-61508, CENELEC EN50128, BS50128 i 49CFR236. Aby uzyskać więcej informacji na temat pakietu certyfikacji, skontaktuj się z firmą Microsoft.
+Pakiet certyfikacji ThreadX jest w 100% kompletnym, gotowego do zastosowania, specyficznym dla branży pakietem autonomicznym, który zapewnia wszystkie dowód ThreadX potrzebne do certyfikowania lub pomyślnego przesyłania produktu opartego na threadX na najwyższy poziom niezawodności i krytyczności wymagany dla systemów informatycznych, medycznych i przemysłowych o krytycznym znaczeniu dla &trade; bezpieczeństwa. Obsługiwane certyfikaty to DO-178B, ED-12B, DO-278, TEŻ510(k), IEC62304, IEC-60601, ISO-14971, UL-1998, IEC-61508, CENELEC EN50128, BS50128 i 49CFR236. Aby uzyskać więcej informacji na temat pakietu certyfikacji, skontaktuj się z firmą Microsoft.
 
 ## <a name="embedded-applications"></a>Aplikacje osadzone
 
-Aplikacje osadzone są wykonywane na mikroprocesorach, które są objęte produktami, takimi jak urządzenia komunikacyjne sieci bezprzewodowej, aparaty samochodów, drukarki laserowe, urządzenia medyczne itp. Innym rozróżnieniem aplikacji osadzonych jest to, że oprogramowanie i sprzęt mają dedykowany cel.
+Aplikacje osadzone są wykonywane na mikroprocesorach w produktach, takich jak urządzenia do komunikacji bezprzewodowej, aparaty samochodowy, drukarki laserowe, urządzenia medyczne itp. Innym rozróżnieniem aplikacji osadzonych jest to, że ich oprogramowanie i sprzęt mają specjalne przeznaczenie.
 
 ### <a name="real-time-software"></a>Oprogramowanie w czasie rzeczywistym
 
-Po nałożeniu ograniczeń czasowych na oprogramowanie aplikacji jest ono nazywane oprogramowaniem w *czasie rzeczywistym* . Aplikacje osadzone są prawie zawsze w czasie rzeczywistym ze względu na ich nieodłączną interakcję ze zdarzeniami zewnętrznymi.
+Gdy na oprogramowanie aplikacji nakładane są ograniczenia czasowe, jest ono nazywane oprogramowaniem *w czasie* rzeczywistym. Aplikacje osadzone prawie zawsze są w czasie rzeczywistym ze względu na ich naturalną interakcję ze zdarzeniami zewnętrznymi.
 
 ### <a name="multitasking"></a>Wielozadaniowość
 
-Jak wspomniano, aplikacje osadzone mają dedykowany cel. Aby zrealizować ten cel, oprogramowanie musi wykonać rozmaite *zadania*. Zadanie to częściowo niezależna część aplikacji, która wykonuje określone cło. Jest to również sytuacja, w której niektóre zadania są ważniejsze niż inne. Jednym z głównych trudności w aplikacji osadzonej jest alokacja procesora między różnymi zadaniami aplikacji. Ta alokacja przetwarzania między zadaniami konkurującymi jest głównym celem ThreadX.
+Jak wspomniano wcześniej, aplikacje osadzone mają specjalne przeznaczenie. Aby zrealizować ten cel, oprogramowanie musi wykonywać różne *zadania.* Zadanie to częściowo niezależna część aplikacji, która wykonuje określone obowiązki. Jest również tak, że niektóre zadania są ważniejsze niż inne. Jedną z głównych trudności w aplikacji osadzonej jest alokacja procesora między różnymi zadaniami aplikacji. Ta alokacja przetwarzania między konkurującymi zadaniami jest głównym celem threadX.
 
 ### <a name="tasks-vs-threads"></a>Zadania a wątki
 
-Inną rozróżnienie zadań polega na tym, że termin *zadanie* jest używany na wiele sposobów. Czasami oznacza to, że program może być ładowany osobno. W innych przypadkach może odnosić się do wewnętrznego segmentu programu. W związku z tym w współczesnych systemach operacyjnych istnieją dwa warunki, które nie zastąpią użycia zadania: *proces* i *wątek*. *Proces* jest całkowicie niezależnym programem, który ma własną przestrzeń adresową, a *wątek* jest segmentem programu niezależnym, który jest wykonywany w ramach procesu. Wątki współużytkują tę samą przestrzeń adresową procesu. Obciążenie związane z zarządzaniem wątkami jest minimalne.
+Inne rozróżnienie dotyczące zadań polega na tym, że termin *zadanie* jest używany na różne sposoby. Czasami oznacza to oddzielnie ładowalny program. W innych przypadkach może odwoływać się do wewnętrznego segmentu programu. W związku z tym w nowoczesnych systemach operacyjnych istnieją dwa terminy, które w mniejszym lub mniejszym stopniu zastępują użycie zadania: *proces* i *wątek*. Proces *jest* całkowicie niezależnym programem, który ma własną przestrzeń adresową, *podczas* gdy wątek jest częściowo niezależnym segmentem programu, który jest wykonywany w ramach procesu. Wątki współdzielą tę samą przestrzeń adresową procesu. Obciążenie związane z zarządzaniem wątkami jest minimalne.
 
-Większość aplikacji osadzonych nie może zapewnić obciążenia (zarówno pamięci, jak i wydajności) związanego z pełnym rozwiniętą systemem operacyjnym opartym na procesie. Ponadto mniejsze mikroprocesory nie mają architektury sprzętu do obsługi prawdziwego systemu operacyjnego zorientowanego na procesy. Z tego względu ThreadX implementuje model wątku, który jest zarówno niezwykle wydajny, jak i praktyczny w przypadku większości aplikacji osadzonych w czasie rzeczywistym.
+Większość aplikacji osadzonych nie może pozwolić sobie na obciążenie (zarówno pamięć, jak i wydajność) związane z w pełni zorientowanym na proces systemem operacyjnym. Ponadto mniejsze mikroprocesory nie mają architektury sprzętowej do obsługi prawdziwego systemu operacyjnego zorientowanego na proces. Z tego powodu ThreadX implementuje model wątków, który jest bardzo wydajny i praktyczny w przypadku większości aplikacji osadzonych w czasie rzeczywistym.
 
-Aby uniknąć nieporozumień, ThreadX nie używa *zadania* warunkowego. Zamiast tego jest używany bardziej opisowy i współczesny *wątek* nazw.
+Aby uniknąć nieporozumień, ThreadX nie używa terminu *zadanie*. Zamiast tego jest używany bardziej opisowy i bardziej *opisowy wątek* nazwy.
 
-## <a name="threadx-benefits"></a>Korzyści z ThreadX
+## <a name="threadx-benefits"></a>Korzyści związane z ThreadX
 
-Korzystanie z usługi ThreadX zapewnia wiele korzyści dla aplikacji osadzonych. Oczywiście podstawową korzyścią jest zapełnienie czasu przetwarzania wątków aplikacji osadzonych.
+Korzystanie z ThreadX zapewnia wiele korzyści dla aplikacji osadzonych. Oczywiście główną korzyścią jest przydzielanie czasu przetwarzania osadzonych wątków aplikacji.
 
-### <a name="improved-responsiveness"></a>Zwiększona czas odpowiedzi
+### <a name="improved-responsiveness"></a>Ulepszone reagowanie
 
-Przed jądrami w czasie rzeczywistym, takimi jak ThreadX, większość osadzonych aplikacji przydzieliła czas przetwarzania z prostą pętlą kontroli, zazwyczaj z poziomu *głównej* funkcji języka C. To podejście jest nadal używane w bardzo małych lub prostych aplikacjach. Jednak w dużych lub złożonych aplikacjach nie jest to praktyczne, ponieważ czas odpowiedzi dla każdego zdarzenia jest funkcją czasu przetwarzania w przypadku najgorszego przechodzenia przez pętlę kontroli. 
+Przed jądrami czasu rzeczywistego, takich jak ThreadX, większość osadzonych aplikacji przydzielała czas przetwarzania przy użyciu prostej pętli sterowania, zazwyczaj z poziomu funkcji *głównej języka* C. To podejście jest nadal stosowane w bardzo małych lub prostych aplikacjach. Jednak w dużych lub złożonych aplikacjach nie jest to praktyczne, ponieważ czas odpowiedzi na dowolne zdarzenie jest funkcją najgorszego czasu przetwarzania jednego przebiegu przez pętlę sterowania. 
 
-W kwestiach niepotrzebnych, charakterystyk chronometrażu aplikacji jest zmieniana za każdym razem, gdy wprowadzane są modyfikacje w pętli kontroli. Sprawia to, że aplikacja jest niestabilna i trudno ją obsługiwać i ulepszać.
+Co gorsza, charakterystyka chronometrażu aplikacji zmienia się za każdym razem, gdy w pętli sterowania zostaną wprowadzone modyfikacje. Sprawia to, że aplikacja jest z założenia niestabilna i trudna w konserwacji oraz ulepszana.
 
-ThreadX zapewnia szybkie i deterministyczne czasy odpowiedzi na ważne zdarzenia zewnętrzne. ThreadX wykonuje tę procedurę za pośrednictwem jego przechodzenia, opartego na priorytetach algorytmem planowania, który pozwala na przechodzenie przez wątek o wyższym priorytecie o niższym priorytecie. W efekcie czas odpowiedzi na najgorszy przypadek zbliża się do czasu wymaganego do wykonania przełączenia kontekstu. Jest to nie tylko deterministyczne, ale jest również niezwykle szybka.
+ThreadX zapewnia szybkie i deterministyczne czasy odpowiedzi na ważne zdarzenia zewnętrzne. ThreadX realizuje to za pomocą swojego wywłaszczaczego algorytmu planowania opartego na priorytetach, który umożliwia wątkowi o wyższym priorytecie wywłaszczanie wykonywania wątku o niższym priorytecie. W związku z tym czas odpowiedzi w najgorszym przypadku zbliża się do czasu wymaganego do przełączenia kontekstu. Jest to nie tylko deterministyczne, ale również niezwykle szybkie.
 
 ### <a name="software-maintenance"></a>Konserwacja oprogramowania
 
-Jądro ThreadX umożliwia deweloperom aplikacji skoncentrowanie się na określonych wymaganiach ich wątków aplikacji bez konieczności zajmowania się zmianami chronometrażu innych obszarów aplikacji. Ta funkcja znacznie ułatwia naprawianie lub ulepszanie aplikacji wykorzystującej ThreadX.
+Jądro ThreadX umożliwia deweloperom aplikacji skoncentrowanie się na określonych wymaganiach swoich wątków aplikacji bez konieczności martwienia się o zmianę czasu innych obszarów aplikacji. Ta funkcja znacznie ułatwia również naprawę lub ulepszanie aplikacji, która korzysta z ThreadX.
 
 ### <a name="increased-throughput"></a>Zwiększona przepływność
 
-Możliwe jest obejście problemu dotyczącego czasu odpowiedzi pętli kontroli w celu dodania większej liczby sondowań. Pozwala to zwiększyć czas odpowiedzi, ale nadal nie gwarantuje stałego czasu reakcji na najgorszą wielkość liter i nie robi nic, aby zwiększyć przyszłą modyfikację aplikacji. Ponadto procesor wykonuje teraz jeszcze więcej niepotrzebnych operacji przetwarzania z powodu dodatkowej sondowania. Wszystkie te niepotrzebne przetwarzanie zmniejsza ogólną przepływność systemu.
+Możliwe rozwiązanie problemu czasu odpowiedzi pętli sterowania polega na dodaniu większej liczby sondowania. Poprawia to czas odpowiedzi, ale nadal nie gwarantuje stałego czasu odpowiedzi w najgorszym przypadku i nie robi nic, aby poprawić przyszłe modyfikacje aplikacji. Ponadto procesor wykonuje teraz jeszcze bardziej niepotrzebne przetwarzanie ze względu na dodatkowe sondowanie. Wszystkie te niepotrzebne przetwarzanie zmniejsza ogólną przepływność systemu.
 
-Interesujący punkt dotyczący narzutu polega na tym, że wielu deweloperów zakłada, że środowiska wielowątkowe, takie jak ThreadX zwiększają obciążenie i mają negatywny wpływ na łączną przepływność systemu. Jednak w niektórych przypadkach wielowątkowość w rzeczywistości zmniejsza obciążenie, eliminując wszystkie nadmiarowe sondy występujące w środowiskach pętli kontroli. Obciążenie związane z jądrami wielowątkowymi jest zazwyczaj funkcją czasu wymaganego do przełączenia kontekstu. Jeśli czas przełączenia kontekstu jest krótszy niż proces sondowania, ThreadX zapewnia rozwiązanie o możliwości mniejszego obciążenia i większej przepływności. Dzięki temu ThreadX oczywisty wybór dla aplikacji, które mają dowolny stopień złożoności lub rozmiaru.
+Interesujące jest to, że wielu deweloperów zakłada, że środowiska wielowątkowe, takie jak ThreadX, zwiększają narzut i mają negatywny wpływ na łączną przepływność systemu. Jednak w niektórych przypadkach wielowątkowanie faktycznie zmniejsza obciążenie, eliminując całe nadmiarowe sondowanie, które występuje w środowiskach pętli sterowania. Obciążenie związane z jądrami wielowątkowych jest zwykle funkcją czasu wymaganą do przełączania kontekstu. Jeśli czas przełączania kontekstu jest krótszy niż proces sondowania, threadX zapewnia rozwiązanie z potencjalnym mniejszym obciążeniem i większą przepływnością. Dzięki temu ThreadX jest oczywistym wyborem dla aplikacji, które mają dowolny stopień złożoności lub rozmiaru.
 
 ### <a name="processor-isolation"></a>Izolacja procesora
 
-ThreadX zapewnia niezawodny interfejs niezależny od procesora między aplikacją a podstawowym procesorem. Pozwala to deweloperom skoncentrować się na aplikacji, a nie poświęcać znacznej ilości informacji o sprzęcie.
+ThreadX zapewnia niezawodny interfejs niezależny od procesora między aplikacją a bazowym procesorem. Dzięki temu deweloperzy mogą skoncentrować się na aplikacji, zamiast poświęcać znaczną ilość czasu na uczenie się szczegółów sprzętu.
 
 ### <a name="dividing-the-application"></a>Dzielenie aplikacji
 
-W przypadku aplikacji opartych na pętli kontroli każdy Deweloper musi mieć intimateą wiedzę o zachowaniu i wymaganiach dotyczących całej aplikacji. Wynika to z faktu, że logika alokacji procesora jest rozproszeni w całej aplikacji. W miarę zwiększania rozmiaru lub złożoności aplikacji nie jest możliwe, że wszyscy deweloperzy zapamiętają precyzyjne wymagania dotyczące przetwarzania całej aplikacji.
+W aplikacjach opartych na pętli sterowania każdy deweloper musi mieć pełną wiedzę na temat zachowania i wymagań całej aplikacji w czasie działania. Jest to spowodowane rozproszeniem logiki alokacji procesora w całej aplikacji. Wraz ze wzrostem rozmiaru lub złożoności aplikacji wszyscy deweloperzy nie będą w stanie zapamiętać dokładnych wymagań dotyczących przetwarzania całej aplikacji.
 
-ThreadX zwalnia każdego dewelopera z martw skojarzonego z alokacją procesora i umożliwia im skoncentrowanie się na określonej części aplikacji osadzonej. Ponadto ThreadX wymusza poddzielenie aplikacji na jasno zdefiniowane wątki. Ten podział aplikacji na wątki sprawia, że programowanie znacznie prostsze.
+ThreadX pozwala każdemu deweloperowi nie martwić się o alokację procesora i pozwala mu skoncentrować się na konkretnym elementie osadzonej aplikacji. Ponadto ThreadX wymusza podzieloną aplikację na jasno zdefiniowane wątki. Sam ten podział aplikacji na wątki sprawia, że opracowywanie jest znacznie prostsze.
 
-### <a name="ease-of-use"></a>Łatwość użycia
+### <a name="ease-of-use"></a>Łatwość obsługi
 
-ThreadX jest zaprojektowana z myślą o deweloperu aplikacji. Architektura ThreadX i interfejs wywołania usługi zostały zaprojektowane tak, aby można je było łatwo zrozumieć. W związku z tym ThreadX deweloperzy mogą szybko korzystać z zaawansowanych funkcji.
+ThreadX został zaprojektowany z myślą o deweloperze aplikacji. Architektura ThreadX i interfejs wywołania usługi zostały zaprojektowane tak, aby można je było łatwo zrozumieć. Dzięki temu deweloperzy ThreadX mogą szybko korzystać z jej zaawansowanych funkcji.
 
-### <a name="improve-time-to-market"></a>Popraw czas wprowadzenia na rynek
+### <a name="improve-time-to-market"></a>Poprawianie czasu przedsieć na rynek
 
-Wszystkie zalety ThreadX przyspieszają proces tworzenia oprogramowania. ThreadX zajmuje się większością problemów z procesorami i najbardziej typowymi certyfikatami bezpieczeństwa, a tym samym usunięciem tego wysiłku z harmonogramu opracowywania. Wszystkie te wyniki są krótszym czasem wprowadzenia na rynek.
+Wszystkie zalety technologii ThreadX przyspieszają proces tworzenia oprogramowania. ThreadX zajmuje się większość problemów z procesorem i najbardziej powszechnymi certyfikatami bezpieczeństwa, co pozwala usunąć ten nakład pracy z harmonogramu projektowania. Wszystko to powoduje szybsze wyekserowania!
 
 ### <a name="protecting-the-software-investment"></a>Ochrona inwestycji w oprogramowanie
 
-Ze względu na jego architekturę ThreadX można łatwo przenieść do nowych środowisk procesora i/lub narzędzi programistycznych. Dzięki temu w połączeniu z faktem, że ThreadX izolowanie aplikacji od szczegółów podstawowych procesorów, sprawia, że aplikacje ThreadX są wysoce przenośne. W związku z tym zagwarantujesz ścieżkę migracji aplikacji, a oryginalne inwestycje programistyczne są chronione.
+Ze względu na swoją architekturę ThreadX jest łatwo przenoszony do nowych procesorów i/lub środowisk narzędzi deweloperskich. W połączeniu z tym, że ThreadX odizoluje aplikacje od szczegółów bazowych procesorów, sprawia, że aplikacje ThreadX są wysoce przenośne. W związku z tym ścieżka migracji aplikacji jest gwarantowana, a pierwotna inwestycja w tworzenie aplikacji jest chroniona.

@@ -1,58 +1,58 @@
 ---
-title: Rozdział 1 — wprowadzenie do usługi Azure RTO USBX Stack
-description: USBX to w pełni funkcjonalny stos USB dla głęboko osadzonych aplikacji. W tym rozdziale wprowadzono USBX, opisując jego zalety i aplikację.
+title: Rozdział 1 — Wprowadzenie do Azure RTOS stosu urządzeń USBX
+description: USBX to w pełni funkcjonalny stos USB do aplikacji z głębokiego osadzoną pamięcią. W tym rozdziale oprowadzono usbx opisujący jego zalety i zastosowanie.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: 8b1e08130d4531fd82629378761cd5b1752f0a07
-ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
+ms.openlocfilehash: 0ec49e88c8dcb8ca200bc376da2f33eb5ddac340bf3693368dc3508f68220765
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 04/07/2021
-ms.locfileid: "106550290"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116791469"
 ---
-# <a name="chapter-1---introduction-to-azure-rtos-usbx-device-stack"></a>Rozdział 1 — wprowadzenie do usługi Azure RTO USBX Stack
+# <a name="chapter-1---introduction-to-azure-rtos-usbx-device-stack"></a>Rozdział 1 — Wprowadzenie do Azure RTOS stosu urządzeń USBX
 
-USBX to w pełni funkcjonalny stos USB dla głęboko osadzonych aplikacji. W tym rozdziale wprowadzono USBX opisujące swoje aplikacje i korzyści 
+USBX to w pełni funkcjonalny stos USB do aplikacji z głębokiego osadzoną pamięcią. W tym rozdziale oprowadzono usbx, opisując jego aplikacje i korzyści 
 
 ## <a name="usbx-features"></a>Funkcje USBX
 
-USBX obsługuje trzy istniejące specyfikacje USB: 1,1, 2,0 i OTG. Jest ona przeznaczona do skalowalności i będzie obsługiwać proste topologie USB z tylko jednym podłączonym urządzeniem, a także złożonymi topologiami z wieloma urządzeniami i kaskadowymi centrami. USBX obsługuje wszystkie typy transferu danych protokołów USB: Control, bulk, interrupt i Isochronous.
+UsbX obsługuje trzy istniejące specyfikacje USB: 1.1, 2.0 i OTG. Została zaprojektowana tak, aby była skalowalna i zawiera proste topologie USB z tylko jednym połączonym urządzeniem, a także złożone topologie z wieloma urządzeniami i kaskadami. UsbX obsługuje wszystkie typy transferu danych protokołów USB: sterowanie, zbiorcze, przerywanie i izochroniczne.
 
-USBX obsługuje zarówno po stronie hosta, jak i po stronie urządzenia. Każda strona składa się z trzech warstw.
+Dysk USBX obsługuje zarówno stronę hosta, jak i stronę urządzenia. Każda strona składa się z trzech warstw.
 
 - Warstwa kontrolera
 - Warstwa stosu
 - Warstwa klasy
 
-Relacje między warstwami USB są następujące:
+Relacja między warstwami USB jest następująca:
 
 ![Warstwy USB](media/usbx-device-stack/usb-layers.png)
 
 ## <a name="product-highlights"></a>Najważniejsze informacje o produkcie
 
-- Ukończ obsługę procesora ThreadX
-- Bez opłat
-- Pełny kod źródłowy ANSI C
+- Pełna obsługa procesora ThreadX
+- Brak tantiemów
+- Uzupełnij kod źródłowy ANSI C
 - Wydajność w czasie rzeczywistym
-- Reagowanie na pomoc techniczną
+- Elastyczna pomoc techniczna
 - Obsługa wielu klas
-- Wiele wystąpień klasy
+- Wiele wystąpień klas
 - Integracja klas z ThreadX, FileX i NetX
 - Obsługa urządzeń USB z wieloma konfiguracjami
-- Obsługa urządzeń złożonych USB
-- Obsługa zarządzania mocą USB
-- Obsługa OTG USB
-- Eksportuj zdarzenia śledzenia dla TraceX
+- Obsługa złożonych urządzeń USB
+- Obsługa zarządzania energią USB
+- Obsługa portu USB OTG
+- Eksportowanie zdarzeń śledzenia dla traceX
 
 ## <a name="powerful-services-of-usbx"></a>Zaawansowane usługi USBX
 
-### <a name="complete-usb-device-framework-support"></a>Pełna obsługa platformy USB
+### <a name="complete-usb-device-framework-support"></a>Pełna obsługa struktury urządzeń USB
 
-USBX może obsługiwać najbardziej wymagające urządzenia USB, w tym wiele konfiguracji, wiele interfejsów i wiele ustawień alternatywnych.
+UsbX może obsługiwać najbardziej wymagające urządzenia USB, w tym wiele konfiguracji, wiele interfejsów i wiele ustawień alternatywnych.
 
 ### <a name="easy-to-use-apis"></a>Łatwe w użyciu interfejsy API
 
-USBX zapewnia najlepszy, głęboko osadzony stos USB w sposób, który jest łatwy do zrozumienia i użycia. Interfejs API USBX zapewnia intuicyjną i spójność usług. Korzystając z dostarczonych interfejsów API klasy USBX, aplikacja użytkownika nie musi zrozumieć złożoności protokołów USB.
+USBX zapewnia najlepszy głęboko osadzony stos USB w sposób łatwy do zrozumienia i użycia. Interfejs API USBX sprawia, że usługi są intuicyjne i spójne. Korzystając z dostarczonych interfejsów API klasy USBX, aplikacja użytkownika nie musi rozumieć złożoności protokołów USB.

@@ -1,31 +1,31 @@
 ---
-title: Opis usługi Azure RTO TraceX
-description: Azure RTO TraceX to narzędzie do analizy oparte na hoście firmy Microsoft, które udostępnia deweloperom widok graficzny zdarzeń systemu w czasie rzeczywistym i pozwala im wizualizować i lepiej zrozumieć zachowanie ich systemów w czasie rzeczywistym.
+title: Opis Azure RTOS TraceX
+description: Azure RTOS TraceX to oparte na hoście narzędzie do analizy firmy Microsoft, które udostępnia deweloperom graficzny widok zdarzeń systemowych w czasie rzeczywistym oraz umożliwia im wizualizowanie i lepsze zrozumienie zachowania systemów czasu rzeczywistego.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: overview
-ms.openlocfilehash: 9fd33eec6da69e6dda421a125a2dde5eae93b46d
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 966f3be5ebe34e006067175e422480fbf1ab664bb0ff627d7b01e71036dc5e82
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104824529"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116792184"
 ---
-# <a name="overview-of-azure-rtos-tracex"></a>Omówienie usługi Azure RTO TraceX
+# <a name="overview-of-azure-rtos-tracex"></a>Omówienie Azure RTOS TraceX
 
-Azure RTO TraceX to narzędzie do analizy oparte na hoście firmy Microsoft, które udostępnia deweloperom widok graficzny zdarzeń systemu w czasie rzeczywistym i pozwala im wizualizować i lepiej zrozumieć zachowanie ich systemów w czasie rzeczywistym. Dzięki usłudze Azure RTO TraceX deweloperzy mogą jasno widzieć wystąpienia zdarzeń systemowych, takich jak przerwania i przełączenia kontekstu, które wystąpiły z powodu standardowych narzędzi do debugowania. Możliwość identyfikowania i badania tych zdarzeń oraz do lokalizowania czasu ich występowania w kontekście ogólnej operacji systemu umożliwia deweloperom Rozwiązywanie problemów programistycznych przez znalezienie nieoczekiwanego zachowania i umożliwienie im zbadania określonych obszarów dalsze informacje śledzenia są przechowywane w buforze w systemie docelowym z lokalizacją buforu i rozmiarem określonym przez aplikację w czasie wykonywania. Usługa Azure RTO TraceX może przetwarzać dowolny bufor skonstruowany w odpowiedni sposób, a nie tylko z platformy Azure RTO ThreadX, ale z dowolnej aplikacji lub RTO. Informacje o śledzeniu mogą być przekazywane do hosta na potrzeby analizy w dowolnym momencie — albo w punkcie przerwania. Usługa Azure RTO ThreadX implementuje bufor cykliczny, który umożliwia dostęp do najnowszych zdarzeń "N" do inspekcji w przypadku awarii systemu lub innego istotnego zdarzenia.
+Azure RTOS TraceX to oparte na hoście narzędzie do analizy firmy Microsoft, które udostępnia deweloperom graficzny widok zdarzeń systemowych w czasie rzeczywistym oraz umożliwia im wizualizowanie i lepsze zrozumienie zachowania systemów czasu rzeczywistego. Dzięki Azure RTOS TraceX deweloperzy mogą wyraźnie zobaczyć wystąpienia zdarzeń systemowych, takich jak przerwania i przełączniki kontekstu, które występują poza widokiem standardowych narzędzi debugowania. Możliwość identyfikowania i badania tych zdarzeń oraz określania harmonogramu ich wystąpienia w kontekście ogólnej operacji systemu umożliwia deweloperom rozwiązywanie problemów programistycznych przez znalezienie nieoczekiwanego zachowania i umożliwienie im badania określonych obszarów Dalsze informacje śledzenia są przechowywane w buforze w systemie docelowym z lokalizacją buforu i rozmiarem określonym przez aplikację w czasie wykonywania. Azure RTOS TraceX może przetworzyć dowolny bufor skonstruowany w odpowiedni sposób, nie tylko z Azure RTOS ThreadX, ale również z dowolnej aplikacji lub systemu RTOS. Informacje śledzenia można przekazać do hosta w celu analizy w dowolnym momencie — po zakończeniu analizy lub w punkcie przerwania. Azure RTOS ThreadX implementuje bufor cykliczny, który umożliwia dostęp do najnowszych zdarzeń "N" do inspekcji w przypadku awarii systemu lub innego istotnego zdarzenia.
 
-![RTO TraceX Single-Core platformy Azure](./media/user-guide/screen_shot_33.png)
+![Azure RTOS ekranu Single-Core TraceX](./media/user-guide/screen_shot_33.png)
 
-**TraceX wyświetlania Single-Core**
+**Ekran Single-Core TraceX**
 
-## <a name="key-capabilites"></a>Możliwości Key
+## <a name="key-capabilites"></a>Kluczowe możliwości
 
-### <a name="azure-rtos-tracex-built-in-system-analysis"></a>Wbudowana analiza systemu Azure RTO TraceX
+### <a name="azure-rtos-tracex-built-in-system-analysis"></a>Azure RTOS wbudowanej analizy systemu TraceX
 
-Usługa Azure RTO TraceX udostępnia wbudowane raporty analityczne systemu, które są dostępne za pośrednictwem jednego przycisku na pasku narzędzi TraceX. Te przyciski i raporty obejmują:
+Azure RTOS TraceX udostępnia wbudowane raporty analizy systemu, które są dostępne za pośrednictwem pojedynczego kliknięcia przycisku na pasku narzędzi TraceX. Te przyciski i raporty obejmują:
 
 ![Generowanie raportu profilu wykonywania](./media/overview-tracex/execution-profile-report-button.jpg) Generowanie raportu profilu wykonywania
 
@@ -33,141 +33,141 @@ Usługa Azure RTO TraceX udostępnia wbudowane raporty analityczne systemu, któ
 
 ![Generowanie raportu użycia stosu wątków](./media/overview-tracex/thread-stack-usage-report-button.jpg) Generowanie raportu użycia stosu wątków
 
-### <a name="trace-data-collected-by-azure-rtos-threadx"></a>Dane śledzenia zebrane przez usługę Azure RTO ThreadX
+### <a name="trace-data-collected-by-azure-rtos-threadx"></a>Dane śledzenia zebrane przez Azure RTOS ThreadX
 
-Usługa Azure RTO TraceX została zaprojektowana tak, aby działała z platformą Azure RTO ThreadX, która konstruuje bazę danych "zdarzenia" systemu i aplikacji w systemie docelowym w czasie wykonywania. Te zdarzenia obejmują:
+Azure RTOS TraceX jest przeznaczony do pracy z platformą Azure RTOS ThreadX, która tworzy bazę danych "zdarzeń" systemu i aplikacji w systemie docelowym w czasie działania. Zdarzenia te obejmują:
 
-* przełączanie kontekstu wątku
-* zastępujące
-* zawieszeniach
-* zakończenia działania
-* przerwania systemowe
+* przełączniki kontekstu wątku
+* wywłaszcze
+* Zawieszenia
+* Końcówki
+* przerwań systemowych
 * zdarzenia specyficzne dla aplikacji
-* wszystkie wywołania interfejsu API usługi Azure RTO ThreadX
-* wszystkie wywołania interfejsu API usługi Azure RTO NetX
-* wszystkie wywołania interfejsu API usługi Azure RTO FileX
-* wszystkie wywołania interfejsu API usługi Azure RTO USBX
-* ikony i informacje zdefiniowane przez aplikację
+* wszystkie Azure RTOS interfejsu API ThreadX
+* wszystkie Azure RTOS interfejsu API NetX
+* wszystkie Azure RTOS api FileX
+* wszystkie Azure RTOS interfejsu API USBX
+* Ikony i informacje zdefiniowane przez aplikację
 
-Zdarzenia są rejestrowane w obszarze kontrola programu, z sygnaturami czasowymi i aktywnymi identyfikatorami wątków, dzięki czemu mogą być wyświetlane później w odpowiedniej sekwencji czasowej i skojarzone z odpowiednim wątkiem. Rejestrowanie zdarzeń może zostać zatrzymane i ponownie uruchomione przez program aplikacji, na przykład w przypadku napotkania obszaru zainteresowania. Pozwala to uniknąć bałaganu bazy danych i użycie pamięci docelowej, gdy system działa poprawnie.
+Zdarzenia są rejestrowane pod kontrolą programu ze znacznikami czasu i aktywną identyfikacją wątku, dzięki czemu mogą być wyświetlane później w odpowiedniej sekwencji czasu i skojarzone z odpowiednim wątkiem. Rejestrowanie zdarzeń może zostać dynamicznie zatrzymane i ponownie uruchomione przez program aplikacji, na przykład po napotkaniu obszaru zainteresowania. Pozwala to uniknąć zaśmiecania bazy danych i używania pamięci docelowej, gdy system działa prawidłowo.
 
-### <a name="azure-rtos-tracex-is-like-a-software-logic-analyzer"></a>Usługa Azure RTO TraceX przypomina Analizator logiki oprogramowania
+### <a name="azure-rtos-tracex-is-like-a-software-logic-analyzer"></a>Azure RTOS TraceX jest jak programowy analizator logiki
 
-Po przekazaniu dziennika zdarzeń z pamięci docelowej do hosta usługa Azure RTO TraceX wyświetla zdarzenia graficznie na osi poziomej, z różnymi wątkami aplikacji i procedurami systemowymi, do których są powiązane zdarzenia na osi pionowej. Usługa Azure RTO TraceX tworzy na hoście "Analizator logiki oprogramowania", co sprawia, że zdarzenia systemowe są widoczne. Zdarzenia są reprezentowane przez ikony oznaczone kolorami, które znajdują się w punkcie wystąpienia wzdłuż osi czasu po prawej stronie odpowiedniego wątku lub procedury systemowej. Po wybraniu ikony zdarzenia są wyświetlane odpowiednie informacje dla tego zdarzenia, a także informacje dotyczące dwóch poprzednich i dwóch kolejnych zdarzeń. Dzięki temu można szybko uzyskać dostęp do najbardziej natychmiastowych informacji o zdarzeniu i jego bezpośrednio otaczających zdarzeniach. Usługa Azure RTO TraceX udostępnia widok "Podsumowanie" pokazujący wszystkie zdarzenia systemowe w pojedynczej linii poziomej, aby uprościć analizę systemów z wieloma wątkami.
+Po przesłaniu dziennika zdarzeń z pamięci docelowej do hosta narzędzie Azure RTOS TraceX wyświetla zdarzenia graficznie na osi poziomej reprezentującej czas, z różnymi wątkami aplikacji i procedurami systemowym, z którymi zdarzenia są powiązane wzdłuż osi pionowej. Azure RTOS TraceX tworzy na hoście "programowy analizator logiki", dzięki czemu zdarzenia systemowe są wyraźnie widoczne. Zdarzenia są reprezentowane przez zakodowane kolorami ikony znajdujące się w punkcie wystąpienia wzdłuż poziomej osi czasu po prawej stronie odpowiedniego wątku lub procedury systemowej. Po wybraniu ikony zdarzenia zostaną wyświetlone odpowiednie informacje dotyczące tego zdarzenia, a także informacje dotyczące dwóch poprzednich i dwóch kolejnych zdarzeń. Zapewnia to szybki dostęp jednym kliknięciem do najbardziej natychmiastowych informacji o zdarzeniu i jego natychmiast otaczających zdarzeniach. Azure RTOS TraceX zawiera ekran "Podsumowanie", który pokazuje wszystkie zdarzenia systemowe w pojedynczej linii poziomej, aby uprościć analizę systemów z wieloma wątkami.
 
-### <a name="sequential-view-mode"></a>Tryb widoku sekwencyjnego
+### <a name="sequential-view-mode"></a>Sekwencyjny tryb widoku
 
-Tryb widoku sekwencyjnego jest wybierany przez kliknięcie karty "widok sekwencyjny". Jest to tryb domyślny. W tym trybie zdarzenia są wyświetlane bezpośrednio po sobie — niezależnie od czasu, jaki upłynął. Zwróć uwagę również na linijkę powyżej obszaru wyświetlania. Pokazuje względny numer zdarzenia od początku śledzenia. Ten tryb jest trybem domyślnym i jest szczególnie przydatny w Poznaniu tego, co się dzieje w systemie.
+Tryb widoku sekwencyjnego jest wybierany przez kliknięcie karty "Widok sekwencyjny". Jest to tryb domyślny. W tym trybie zdarzenia są wyświetlane bezpośrednio po sobie — niezależnie od czasu, który upłynął między nimi. Zwróć również uwagę na linijkę nad obszarem wyświetlania. Pokazuje względny numer zdarzenia od początku śledzenia. Ten tryb jest trybem domyślnym i jest szczególnie przydatny podczas uzyskiwania dobrego przeglądu tego, co dzieje się w systemie.
 
-![Tryb widoku sekwencyjnego](./media/user-guide/screen_shot_10.png)
+![Sekwencyjny tryb widoku](./media/user-guide/screen_shot_10.png)
 
-**Tryb widoku sekwencyjnego**
+**Sekwencyjny tryb widoku**
 
 ### <a name="time-view-mode"></a>Tryb widoku czasu
 
-W tym trybie zdarzenia są wyświetlane w sposób relatywnie — z pełnym zielonym paskiem używanym do wyświetlania wykonywania między zdarzeniami. Ten tryb jest szczególnie przydatny do sprawdzenia, gdzie odbywa się przetwarzanie zbiorcze w systemie, co może ułatwić deweloperom dostrajanie systemu w celu zwiększenia wydajności i/lub czasu reakcji.
+W tym trybie zdarzenia są wyświetlane w sposób względny w czasie — pełny zielony pasek służy do pokazywania wykonywania między zdarzeniami. Ten tryb jest szczególnie przydatny do zobaczenia, gdzie odbywa się większość przetwarzania w systemie, co może ułatwić deweloperom dostrojenie systemu w celu zwiększenia wydajności i/lub czasu odpowiedzi.
 
-Zanotuj również linijkę powyżej wyświetlania zdarzeń. Ta linijka pokazuje względne Takty od początku śledzenia, jak wynika z sygnatury czasowej przystosowanej do rejestrowania śledzenia zdarzeń w usłudze Azure RTO ThreadX. Jeśli sygnatury czasowe są zbyt blisko (czasomierz niskiej częstotliwości), zdarzenia zostaną uruchomione razem. Odwrotnie, jeśli sygnatury czasowe są zbyt daleko od siebie (czasomierz o wysokiej częstotliwości), zdarzenia będą zbyt daleko od siebie. Wybór sygnatury czasowej właściwej częstotliwości jest ważnym zagadnieniem w przypadku, gdy widok względny czasowo ma znaczenie.
+Zwróć również uwagę na linijkę nad ekranem zdarzenia. Ten linijka pokazuje względne takty od początku śledzenia, pochodzące od sygnatury czasowej instrumentowane w rejestrowaniu śledzenia zdarzeń wewnątrz Azure RTOS ThreadX. Jeśli sygnatury czasowe są zbyt blisko (czasomierz o niskiej częstotliwości), zdarzenia będą uruchamiane razem. Z kolei jeśli sygnatury czasowe są zbyt duże (czasomierz o wysokiej częstotliwości), zdarzenia będą zbyt duże. Wybór odpowiedniej sygnatury czasowej częstotliwości jest ważną kwestią podczas tworzenia zrozumiałego widoku względnego czasu.
 
 ![Tryb widoku czasu](./media/user-guide/screen_shot_31.png)
 
 ### <a name="system-summary-line"></a>Wiersz podsumowania systemu
 
-Usługa Azure RTO TraceX udostępnia również jedną linię podsumowania, która obejmuje wszystkie zdarzenia w tym samym wierszu. Wiersz podsumowania zawiera podsumowanie kontekstu oraz odpowiednie podsumowanie zdarzeń poniżej. Dzięki temu można łatwo zapoznać się z omówieniem złożonego systemu. Pasek podsumowania jest szczególnie przydatny w systemach, które mają doskonałą liczbę wątków. Bez tego wiersza podsumowania użytkownik będzie musiał wykonać złożone interakcje systemowe przy użyciu pionowego paska przewijania, aby postępować zgodnie z kontekstem wykonania.
+Azure RTOS TraceX udostępnia również pojedynczy wiersz podsumowania, który zawiera wszystkie zdarzenia w tym samym wierszu. Wiersz podsumowania zawiera podsumowanie kontekstu oraz odpowiednie podsumowanie zdarzeń poniżej. Dzięki temu można łatwo zobaczyć przegląd złożonego systemu. Pasek podsumowania jest szczególnie korzystny w systemach, które mają dużą liczbę wątków. Bez takiego wiersza podsumowania użytkownik musiałby śledzić złożone interakcje systemowe przy użyciu pionowego paska przewijania, aby śledzić kontekst wykonywania.
 
-Usługa Azure RTO TraceX wyświetla konteksty systemowe po lewej stronie ekranu.
-Zdarzenia, które wystąpiły w określonym kontekście, są wyświetlane w linii poziomej z prawej strony tego kontekstu. W ten sposób użytkownik może łatwo ustalić, który kontekst wystąpił zdarzenie, a także śledzić wszystkie zdarzenia, które wystąpiły w określonym kontekście.
+Azure RTOS TraceX wyświetla konteksty systemowe po lewej stronie ekranu.
+Zdarzenia występujące w określonym kontekście są wyświetlane na poziomej linii z prawej strony tego kontekstu. W ten sposób użytkownik może łatwo ustalić, w którym kontekście wystąpiło zdarzenie, a także postępować zgodnie z tym wierszem kontekstu, aby wyświetlić wszystkie zdarzenia, które wystąpiły w określonym kontekście.
 
 ![Wiersz podsumowania systemu](./media/user-guide/screen_shot_32.png)
 
 **Wiersz podsumowania systemu**
 
-Pierwsze dwa wpisy kontekstu są zawsze kontekstami "Interrupt" i "Initialize/Idle". Kontekst "przerwania" reprezentuje wszystkie zdarzenia systemowe wykonane z procedur usługi przerwania (procedury ISR). Kontekst "Initialize/Idle" reprezentuje dwa konteksty w usłudze Azure RTO ThreadX. Zdarzenia, które wystąpiły podczas tx_application_define, są zdarzeniami "Initialize" i są wyświetlane w kontekście "Initialize/Idle". Jeśli system jest bezczynny i w związku z tym nie są wykonywane żadne zdarzenia, zielony pasek reprezentujący "uruchomiony" w widoku Time jest rysowany w kontekście "Inicjowanie/bezczynne".
+Pierwsze dwa wpisy kontekstu to zawsze konteksty "Przerwań" i "Inicjowanie/bezczynność". Kontekst "Przerwań" reprezentuje wszystkie zdarzenia systemowe wykonane z procedur usługi przerwań (ISR). Kontekst "Inicjowanie/bezczynność" reprezentuje dwa konteksty w Azure RTOS ThreadX. Zdarzenia występujące podczas tx_application_define są zdarzeniami "Inicjowanie" i są wyświetlane w kontekście "Inicjowanie/bezczynność". Jeśli system jest bezczynny i w związku z tym nie występują żadne zdarzenia, zielony pasek reprezentujący "Running" (Uruchomiony) w widoku czasu jest rysowany w kontekście "Inicjowanie/bezczynność".
 
 ## <a name="methods-of-navigation"></a>Metody nawigacji
 
-Usługa Azure RTO TraceX umożliwia deweloperowi określenie, jak działają przyciski nawigacyjne "dalej" i "poprzednie".
+Azure RTOS TraceX umożliwia deweloperowi określenie sposobu działania przycisków nawigacji "Dalej" i "Poprzedni".
 
 ![Przyciski nawigacji](./media/user-guide/event.png)
 
-Jeśli wybrano opcję "zdarzenie", nawigowanie odbywa się na następnym lub poprzednim zdarzeniu. Jeśli wybrano opcję "kontekst", Nawigacja odbywa się na następnym lub poprzednim zdarzeniu w tym samym kontekście. Jeśli wybrano opcję "obiekt", Nawigacja odbywa się na następnym lub poprzednim zdarzeniu bieżącego obiektu, np. zdarzeniach skojarzonych z określoną kolejką. W przypadku wybrania opcji "przełączniki" Nawigacja jest wykonywana na przełączniku następnego/poprzedniego kontekstu. Jeśli wybrano opcję "ten sam identyfikator", Nawigacja odbywa się na następnym/powyższym zdarzeniu dla tego samego identyfikatora zdarzenia.
+Jeśli wybrano opcję "Zdarzenie", nawigacja odbywa się w przypadku następnego/poprzedniego zdarzenia. Jeśli wybrano opcję "Kontekst", nawigacja jest wykonywana dla następnego/poprzedniego zdarzenia w tym samym kontekście. Jeśli wybrano opcję "Obiekt", nawigacja odbywa się przy następnym/poprzednim zdarzeniu bieżącego obiektu, np. zdarzeniach skojarzonych z określoną kolejką. Jeśli wybrano opcję "Przełączniki", nawigacja odbywa się przy następnym/poprzednim przełączniku kontekstu. Jeśli wybrano opcję "Ten sam identyfikator", nawigacja zostanie wykonana dla następnego/poprzedniego zdarzenia dla tego samego identyfikatora zdarzenia.
 
-### <a name="event-information-display"></a>Wyświetlanie informacji o zdarzeniach
+### <a name="event-information-display"></a>Wyświetlanie informacji o zdarzeniu
 
-Usługa Azure RTO TraceX zawiera szczegółowe informacje dotyczące niektórych zdarzeń 300. Obejmują one sześć wewnętrznych zdarzeń usługi Azure RTO ThreadX, dwa zdarzenia ISR (wejście i wyjście), 14 wewnętrznych zdarzeń FileX platformy Azure RTO, 42 wewnętrzne zdarzenia platformy Azure RTO NetX i jedno zdarzenie zdefiniowane przez użytkownika. Pozostałe zdarzenia odpowiadają bezpośrednio na usługę Azure RTO ThreadX, Azure RTO FileX i Azure RTO NetX API Services.
-Bez względu na to, czy jest zaznaczony tryb wyświetlania sekwencyjne i czasowe, wskaźnik myszy nad dowolnym zdarzeniem w obszarze wyświetlania powoduje wyświetlenie szczegółowych informacji o zdarzeniu wyświetlanych blisko zdarzenia. Wskaźnik myszy nad wydarzeniem 494 w demonstracyjnej demo_threadx. TRX plik śledzenia jest przedstawiony tutaj:
+Azure RTOS TraceX zawiera szczegółowe informacje na temat niektórych 300 zdarzeń. Obejmują one sześć wewnętrznych zdarzeń Azure RTOS ThreadX, dwa zdarzenia ISR (wejście i wyjście), 14 wewnętrznych zdarzeń Azure RTOS FileX, 42 zdarzenia wewnętrzne Azure RTOS NetX i jedno zdarzenie zdefiniowane przez użytkownika. Pozostałe zdarzenia odpowiadają bezpośrednio Azure RTOS ThreadX, Azure RTOS FileX i Azure RTOS api NetX.
+Niezależnie od tego, czy jest wybrany tryb wyświetlania sekwencyjnego czy czasowego, kliknięcie kursorem myszy na dowolne zdarzenie w obszarze wyświetlania powoduje wyświetlenie szczegółowych informacji o zdarzeniu w pobliżu zdarzenia. Wskaźnik myszy dla zdarzenia 494 w pliku śledzenia demo_threadx.trx pokazu jest pokazany poniżej:
 
-![Mouse-Over Wyświetla więcej informacji](./media/user-guide/screen_shot_37.png)
+![Mouse-Over wyświetla więcej informacji](./media/user-guide/screen_shot_37.png)
 
-**Wskaźnik myszy — Wyświetla więcej informacji**
+**Wskaźnik myszy wyświetla więcej informacji**
 
-Każde wyświetlane zdarzenie zawiera informacje standardowe dotyczące kontekstu oraz sygnatury czas względny i czas. Pole kontekstowe pokazuje, jakiego kontekstu miało miejsce zdarzenie. Istnieje dokładnie cztery konteksty: wątek, bezczynny, ISR i Inicjalizacja. Po umieszczeniu zdarzenia w kontekście wątku nazwa wątku i jego priorytet w tym czasie są zbierane i wyświetlane, jak pokazano powyżej. Czas względny pokazuje względną liczbę cykli czasomierza od początku śledzenia. Pierwotna sygnatura czasowa wyświetla źródło danych czasu. Na koniec zostaną wyświetlone wszystkie informacje specyficzne dla zdarzenia.
+Każde wyświetlane zdarzenie zawiera standardowe informacje o kontekście oraz o czasie względnym i sygnaturze czasowej. Pole Kontekst pokazuje kontekst, w którym miało miejsce zdarzenie. Istnieją dokładnie cztery konteksty: wątek, bezczynny, ISR i inicjalizacja. Gdy zdarzenie ma miejsce w kontekście wątku, nazwa wątku i jego priorytet w tym czasie są zbierane i wyświetlane, jak pokazano powyżej. Pole Czas względny pokazuje względną liczbę takt czasomierzy od początku śledzenia. Nieprzetworzone sygnatury czasowe wyświetla nieprzetworzone źródło czasu zdarzenia. Na koniec zostaną wyświetlone wszystkie informacje specyficzne dla zdarzenia.
 
 ### <a name="zooming-in-and-out"></a>Powiększanie i pomniejszanie
 
-Domyślnie usługa Azure RTO TraceX wyświetla zdarzenia w łatwym do wyświetlenia rozmiarze z mapowaniem 1:1 pikseli: taktu. Użytkownik może powiększyć lub pomniejszyć. Powiększanie do 100% jest przydatne, aby zobaczyć cały ślad w bieżącym widoku wyświetlania, podczas gdy powiększanie jest przydatne w warunkach, w których nakładają się zdarzenia z powodu rozpoznania źródła sygnatury czasowej.
+Domyślnie program Azure RTOS TraceX wyświetla zdarzenia w łatwym do wyświetlenia rozmiarze z mapowaniem 1:1 piksela:znacznika. Użytkownik może powiększać lub pomniejszać w razie potrzeby. Pomniejszenie do 100% przydaje się do wyświetlenia całego śladu w bieżącym widoku wyświetlania, natomiast powiększanie jest przydatne w warunkach, w których zdarzenia nakładają się ze względu na rozdzielczość źródła sygnatury czasowej.
 
-![Aby uzyskać szczegółowe informacje, Zoom-Out widoku do 100% lub Powiększ](./media/user-guide/screen_shot_41.png)
+![Zoom-Out do 100% wyświetl lub powiększ w celu wyświetlenia szczegółów](./media/user-guide/screen_shot_41.png)
 
-**Powiększ do 100% widoku lub Powiększ, aby uzyskać szczegółowe informacje**
+**Pomniejszanie do 100% widoku lub powiększanie w celu wyświetlenia szczegółów**
 
-W przypadku powiększania o 100% — Wyświetlanie całego śladu w obrębie bieżącej strony wyświetlania — łatwo jest zobaczyć wszystkie uruchomienia kontekstu przechwycone w ślad, a także ogólne zdarzenia występujące w tych kontekstach. Zauważ, że "Thread 1" i "Thread 2" są wykonywane najczęściej. Niebieskie kolorowanie swoich zdarzeń sugeruje również, że te wątki powodują wywołania usługi kolejki (zdarzenia w kolejce są niebieskie w kolorze).
+Po pomniejszeniu o 100% — pokazując cały ślad na bieżącej stronie wyświetlania — można łatwo zobaczyć wszystkie wykonania kontekstu przechwycone w śladach, a także ogólne zdarzenia występujące w tych kontekstach. Zauważ, że "wątek 1" i "wątek 2" są wykonywane najczęściej. Niebieskie kolorowanie ich zdarzeń sugeruje również, że te wątki są wywołaniami usługi kolejki (zdarzenia kolejki mają kolor niebieski).
 
-Przywracanie do widoku pełnej ikony jest równie proste; Przycisk powiększania może być wybierany wielokrotnie lub może zostać wprowadzony jakiś współczynnik 100.
+Przywracanie do pełnego widoku ikony jest równie proste. Przycisk powiększania może być wybierany wielokrotnie lub może zostać wprowadzony współczynnik 100.
 
-### <a name="delta-ticks-between-events"></a>Takty różnic między zdarzeniami
+### <a name="delta-ticks-between-events"></a>Takty różnicowe między zdarzeniami
 
-Określanie liczby taktów między różnymi zdarzeniami w usłudze Azure RTO TraceX jest proste — wystarczy kliknąć zdarzenie początkowe i przeciągnąć wskaźnik myszy do końcowego zdarzenia.
-Liczba różnic między zdarzeniami zostanie wyświetlona w prawym górnym rogu ekranu.
+Określanie liczby takt między różnymi zdarzeniami w programie Azure RTOS TraceX jest łatwe — wystarczy kliknąć zdarzenie początkowe i przeciągnąć myszą do zdarzenia końcowego.
+Liczba różnicowa takt między zdarzeniami będzie wyświetlana w prawym górnym rogu ekranu.
 
-![Takty różnicowe](./media/user-guide/screen_shot_42.png)
+![Delta Ticks](./media/user-guide/screen_shot_42.png)
 
-**Takty różnicowe**
+**Delta Ticks**
 
-Cykle Delta pokazują, że 5032 Takty upłynęło między zdarzenie 494 a zdarzenie 496. Można to również obliczyć ręcznie, sprawdzając względne sygnatury czasowe w każdym zdarzeniu i odejmując, ale przy użyciu graficznego interfejsu użytkownika jest to proste i natychmiastowe.
+Takty różnicowe pokazują, że upłynął czas 5032 taktów między zdarzeniem 494 a zdarzeniem 496. Można to również obliczyć ręcznie, analizując względne sygnatury czasowe w każdym zdarzeniu i odejmując, ale korzystanie z graficznego interfejsu użytkownika jest łatwe i natychmiastowe.
 
-### <a name="priority-inversions"></a>Priorytetowe wersje
+### <a name="priority-inversions"></a>Inversions priorytetu
 
-Usługa Azure RTO TraceX automatycznie wyświetla w pliku śledzenia wykrytych wersji priorytetu. Priorytetowe wersje są definiowane jako warunki, w których wątek o wyższym priorytecie jest blokowany, próbując uzyskać element mutex, który jest obecnie własnością wątku o niższym priorytecie. Ten warunek jest określany jako deterministyczny, ponieważ system został skonfigurowany do działania w ten sposób. W celu poinformowania użytkownika usługa Azure RTO TraceX wyświetla "deterministyczne" priorytetowe zakresy niewersji w postaci jasnego koloru łososia.
+Azure RTOS TraceX automatycznie wyświetla inversions priorytet wykryte w pliku śledzenia. Wywłaszczenia priorytetów są definiowane jako warunki, w których wątek o wyższym priorytecie jest blokowany, próbując uzyskać mutex, który jest obecnie własnością wątku o niższym priorytecie. Ten warunek jest terminem "deterministyczny", ponieważ system był konfigurowany do działania w ten sposób. Aby poinformować użytkownika, Azure RTOS TraceX pokazuje zakresy odwrócenia priorytetu "deterministyczne" jako jasny kolor koloru.
 
-W usłudze Azure RTO TraceX są również wyświetlane "niedeterministyczne" priorytety. Te wersje priorytetowe różnią się od "deterministycznych" priorytetów w tym, że inny wątek o różnym priorytecie został wykonany w połowie wersji "deterministycznej" priorytetowej, co sprawia, że czas w nieoczekiwanym wykorzystaniu priorytetu jest nieco Niedeterministyczny. Ten stan jest często nieznany dla użytkownika i może być bardzo istotny. Aby ostrzec użytkownika o tym stanie, usługa Azure RTO TraceX wyświetla "niedeterministycznych" priorytetów jako jaśniejszy kolor łososia.
+Azure RTOS TraceX wyświetla również "nie deterministyczne" inversions priorytetu. Te inwersje priorytetu różnią się od "deterministycznych" wywłaszczeń priorytetów tym, że inny wątek innego poziomu priorytetu został wykonany w trakcie co było "deterministyczną" odwróceniem priorytetu, dzięki czemu czas w ramach priorytetu inversion nieco "un-deterministic". Ten warunek jest często nieznany użytkownikowi i może być bardzo poważny. Aby zaalarmować użytkownika o tym stanie, Azure RTOS TraceX wyświetla "nie deterministyczne" inwersje priorytetu jako jaśniejszy kolor cyka.
 
-![Deterministyczna i niedeterministyczna wersja priorytetu](./media/user-guide/screen_shot_43.png)
+![Deterministyczna i nie deterministyczna inwersja priorytetu](./media/user-guide/screen_shot_43.png)
 
-**Deterministyczna i niedeterministyczna wersja priorytetu**
+**Deterministyczna i nie deterministyczna inwersja priorytetu**
 
 ### <a name="execution-profile"></a>Profil wykonywania
 
-Usługa Azure RTO TraceX udostępnia wbudowany raport profilu wykonywania dla wszystkich kontekstów wykonywania w ramach obecnie załadowanego pliku śledzenia.
+Azure RTOS TraceX udostępnia wbudowany raport profilu wykonywania dla wszystkich kontekstów wykonywania w ramach aktualnie załadowanego pliku śledzenia.
 
 ![Profil wykonywania](./media/user-guide/execution_profile.png)
 
-### <a name="performance-statistics"></a>Statystyka wydajności
+### <a name="performance-statistics"></a>Statystyki wydajności
 
-Usługa Azure RTO TraceX udostępnia wbudowany raport statystyk wydajności dla aktualnie załadowanego pliku śledzenia.
+Azure RTOS TraceX udostępnia wbudowany raport statystyk wydajności dla aktualnie załadowanego pliku śledzenia.
 
-![Statystyka wydajności](./media/user-guide/performance_statistics.png)
+![Statystyki wydajności](./media/user-guide/performance_statistics.png)
 
 ### <a name="thread-stack-usage"></a>Użycie stosu wątków
 
-Usługa Azure RTO TraceX udostępnia wbudowany raport użycia stosu dla wszystkich wątków wykonywanych w ramach obecnie załadowanego pliku śledzenia.
+Azure RTOS TraceX udostępnia wbudowany raport użycia stosu dla wszystkich wątków wykonywanych w ramach aktualnie załadowanego pliku śledzenia.
 
 ![Użycie stosu](./media/user-guide/thread_stack_usage.png)
 
-Usługa Azure RTO TraceX przedstawia statystyki wydajności usługi Azure RTO FileX aktualnie załadowanego pliku śledzenia. Te informacje są wyświetlane dla całego systemu — dla wszystkich otwartych obiektów multimedialnych.
+Azure RTOS TraceX przedstawia Azure RTOS wydajności pliku śledzenia aktualnie załadowanego pliku FileX. Te informacje są wyświetlane dla całego systemu — na wszystkich otwartych obiektach nośników.
 
-![Statystyka FileX](./media/user-guide/filex_statistics.png)
+![Statystyki FileX](./media/user-guide/filex_statistics.png)
 
-### <a name="azure-rtos-netx-statistics"></a>Statystyka usługi Azure RTO NetX
+### <a name="azure-rtos-netx-statistics"></a>Azure RTOS statystyk NetX
 
-Usługa Azure RTO TraceX przedstawia także statystyki wydajności NetX aktualnie załadowanego pliku śledzenia. Te informacje są wyświetlane dla całego systemu.
+Azure RTOS TraceX przedstawia również statystyki wydajności NetX aktualnie załadowanego pliku śledzenia. Te informacje są wyświetlane dla całego systemu.
 
-![Statystyka NetX](./media/user-guide/netx_statistics.png)
+![Statystyki NetX](./media/user-guide/netx_statistics.png)
 
-### <a name="raw-trace-dump"></a>Nieprzetworzony zrzut śledzenia
+### <a name="raw-trace-dump"></a>Nieprzetworzone zrzuty śledzenia
 
-Usługa Azure RTO TraceX może utworzyć Nieprzetworzony plik śledzenia w formacie tekstowym i uruchomić Notatnik, aby go wyświetlić.
+Azure RTOS TraceX może utworzyć nieprzetworzone pliki śledzenia w formacie tekstowym i uruchomić Notatnik, aby go wyświetlić.
 
-![Nieprzetworzony zrzut śledzenia](./media/user-guide/raw_trace_dump.png)
+![Nieprzetworzone zrzuty śledzenia](./media/user-guide/raw_trace_dump.png)
 
-Należy pamiętać, że wszystkie dane o chronometrażu i rozmiarze na liście są szacunkowe i mogą być inne na platformie deweloperskiej
+Należy pamiętać, że wszystkie wartości chronometrażu i rozmiaru na liście są szacowane i mogą się różnić na platformie dewelopera

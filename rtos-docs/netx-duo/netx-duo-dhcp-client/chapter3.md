@@ -1,72 +1,72 @@
 ---
-title: Rozdział 3 — Opis usług klienta DHCP w systemie Azure RTO NetX Duo
-description: Ten rozdział zawiera opis wszystkich usług klienta DHCP usługi Azure RTO NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+title: Rozdział 3 — Opis Azure RTOS klienta DHCP NetX Duo
+description: Ten rozdział zawiera opis wszystkich usług klienta DHCP Azure RTOS NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: f143a443221ae08848316a458a630a0790108198
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 9c678772b6e6160dba9929af41e76c2580c06fb163bfccfdb6fcc46fa42ade82
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822021"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790347"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-duo-dhcp-client-services"></a>Rozdział 3 — Opis usług klienta DHCP w systemie Azure RTO NetX Duo
+# <a name="chapter-3---description-of-azure-rtos-netx-duo-dhcp-client-services"></a>Rozdział 3 — Opis Azure RTOS klienta DHCP NetX Duo
 
-Ten rozdział zawiera opis wszystkich usług klienta DHCP usługi Azure RTO NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług klienta DHCP Azure RTOS NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w poniższych  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości z pogrubieniem, a wartości bez pogrubienia są całkowicie wyłączone.
 
-- **nx_dhcp_create**: *Tworzenie wystąpienia DHCP*
-- **nx_dhcp_clear_broadcast_flag**: *Wyczyść flagę emisji na komunikatach klienta*
-- **nx_dhcp_delete**: *usuwanie wystąpienia DHCP*
-- **nx_dhcp_force_renew**: *Wyślij komunikat o wymuszeniu odnowienia*
-- **nx_dhcp_packet_pool_set**: *Ustaw pulę pakietów klienta DHCP*
-- **nx_dhcp_decline**: Wyślij *komunikat odrzucania do serwera*
-- **nx_dhcp_release**: Wyślij *komunikat o zwolnieniu do serwera*
-- **nx_dhcp_reinitialize**: *Wyczyść parametry sieciowe klienta DHCP*
-- **nx_dhcp_request_client_ip**: *Określ konkretny adres IP*
-- **nx_dhcp_send_request**: *Wyślij komunikat DHCP do serwera*
-- **nx_dhcp_start**: *Uruchamianie przetwarzania klienta DHCP*
-- **nx_dhcp_stop**: *Zatrzymywanie przetwarzania klienta DHCP*
-- **nx_dhcp_set_interface_index**: *Ustaw interfejs do uruchamiania klienta DHCP*
-- **nx_dhcp_server_address_get**: *Pobierz adres IP serwera DHCP*
-- **nx_dhcp_state_change_notify**: *Ustaw funkcję wywołania zwrotnego w przypadku zmiany stanu DHCP*
-- **nx_dhcp_user_option_retrieve**: *Pobierz określoną opcję DHCP*
-- **nx_dhcp_user_option_convert**: *przekonwertuj cztery BAJTy na ULONG*
+- **nx_dhcp_create:** *tworzenie wystąpienia DHCP*
+- **nx_dhcp_clear_broadcast_flag:** wyczyść *flagę emisji dla komunikatów klienta*
+- **nx_dhcp_delete:** usuwanie *wystąpienia DHCP*
+- **nx_dhcp_force_renew:** *Wyślij wiadomość o wymuś odnowienie*
+- **nx_dhcp_packet_pool_set:** *ustawianie puli pakietów klienta DHCP*
+- **nx_dhcp_decline:** Wyślij komunikat *o odmówienie na serwer*
+- **nx_dhcp_release:** Wyślij *komunikat o wydaniu na serwer*
+- **nx_dhcp_reinitialize:** wyczyść *parametry sieci klienta DHCP*
+- **nx_dhcp_request_client_ip:** Określ *określony adres IP*
+- **nx_dhcp_send_request:** wysyłanie *komunikatu DHCP do serwera*
+- **nx_dhcp_start:** uruchamianie *przetwarzania klienta DHCP*
+- **nx_dhcp_stop:** *zatrzymaj przetwarzanie klienta DHCP*
+- **nx_dhcp_set_interface_index:** ustaw *interfejs tak, aby uruchamiał klienta DHCP*
+- **nx_dhcp_server_address_get:** *uzyskiwanie adresu IP serwera DHCP*
+- **nx_dhcp_state_change_notify:** ustaw *funkcję wywołania zwrotnego po zmianie stanu protokołu DHCP*
+- **nx_dhcp_user_option_retrieve:** pobieranie *określonej opcji DHCP*
+- **nx_dhcp_user_option_convert:** *przekonwertuj cztery bajty na ULONG*
 
 Usługi klienta DHCP specyficzne dla interfejsu:
  
-- **nx_dhcp_interface_clear_broadcast_flag**: *Wyczyść flagę emisji na komunikatach klienta w określonym interfejsie*
-- **nx_dhcp_interface_enable**: *Włącz interfejs do uruchamiania protokołu DHCP w określonym interfejsie*
-- **nx_dhcp_interface_disable**: *Wyłącz interfejs do uruchamiania protokołu DHCP w określonym interfejsie*
-- **nx_dhcp_interface_decline**: *Wyślij komunikat odrzucania do serwera w określonym interfejsie*
-- **nx_dhcp_interface_force_renew**: *Wyślij komunikat wymuszania odnowienia w określonym interfejsie*
-- **nx_dhcp_interface_reinitialize**: *Wyczyść parametry sieciowe klienta DHCP w określonym interfejsie*
-- **nx_dhcp_interface_release**: *wysyła komunikat o zwolnieniu do serwera w określonym interfejsie*
-- **nx_dhcp_interface_request_client_ip**: *Określ konkretny adres IP w określonym interfejsie*
-- **nx_dhcp_interface_send_request**: *Wyślij komunikat DHCP do serwera w określonym interfejsie*
-- **nx_dhcp_interface_server_address_get**: *Pobierz adres IP serwera DHCP w określonym interfejsie*
-- **nx_dhcp_interface_start**: *Uruchamianie przetwarzania klienta DHCP w określonym interfejsie*
-- **nx_dhcp_interface_stop**: *Zatrzymywanie przetwarzania klienta DHCP w określonym interfejsie*
-- **nx_dhcp_interface_state_change_notify**: *Ustaw funkcję wywołania zwrotnego, gdy stan DHCP zostanie zmieniony w określonym interfejsie*
-- **nx_dhcp_interface_user_option_retrieve**: *Pobierz określoną opcję DHCP w określonym interfejsie*
+- **nx_dhcp_interface_clear_broadcast_flag:** wyczyść *flagę emisji w komunikatach klienta w określonym interfejsie*
+- **nx_dhcp_interface_enable:** włącz *interfejs do uruchamiania protokołu DHCP na określonym interfejsie*
+- **nx_dhcp_interface_disable:** wyłącz *interfejs, aby uruchamiać protokół DHCP na określonym interfejsie*
+- **nx_dhcp_interface_decline:** *wyślij komunikat o odmówienie na serwer w określonym interfejsie*
+- **nx_dhcp_interface_force_renew:** Wyślij *wiadomość o wymuś odnowienie w określonym interfejsie*
+- **nx_dhcp_interface_reinitialize:** wyczyść *parametry sieci klienta DHCP w określonym interfejsie*
+- **nx_dhcp_interface_release:** *wyślij komunikat o wydaniu na serwer w określonym interfejsie*
+- **nx_dhcp_interface_request_client_ip:** Określ *określony adres IP w określonym interfejsie*
+- **nx_dhcp_interface_send_request:** *wyślij komunikat DHCP do serwera w określonym interfejsie*
+- **nx_dhcp_interface_server_address_get:** uzyskiwanie *adresu IP serwera DHCP w określonym interfejsie*
+- **nx_dhcp_interface_start:** uruchom *przetwarzanie klienta DHCP w określonym interfejsie*
+- **nx_dhcp_interface_stop:** *zatrzymaj przetwarzanie klienta DHCP w określonym interfejsie*
+- **nx_dhcp_interface_state_change_notify:** *ustaw funkcję wywołania zwrotnego, gdy stan PROTOKOŁU DHCP zmieni się w określonym interfejsie*
+- **nx_dhcp_interface_user_option_retrieve:** *pobieranie określonej opcji DHCP w określonym interfejsie*
 
-Usługi klienta DHCP, jeśli NX_DHCP_CLIENT_RESORE_STATE jest zdefiniowany:
+Usługi klienta DHCP, NX_DHCP_CLIENT_RESORE_STATE są zdefiniowane:
 
-- **nx_dhcp_resume**: *Wznów poprzednio ustanowiony stan klienta DHCP*
-- **nx_dhcp_suspend**: *wstrzymywanie przetwarzania stanu klienta DHCP*
-- **nx_dhcp_client_get_record**: *Utwórz rekord stanu klienta DHCP*
-- **nx_dhcp_client_restore_record**: *przywracanie wcześniej zapisanego rekordu do klienta DHCP*
-- **nx_dhcp_client_update_time_remaining**: *zaktualizuj pozostały czas w bieżącym stanie DHCP*
+- **nx_dhcp_resume:** *Wznów wcześniej ustalony stan klienta DHCP*
+- **nx_dhcp_suspend:** *wstrzymywanie przetwarzania stanu klienta DHCP*
+- **nx_dhcp_client_get_record:** utwórz *rekord stanu klienta DHCP*
+- **nx_dhcp_client_restore_record:** przywracanie *wcześniej zapisanego rekordu do klienta DHCP*
+- **nx_dhcp_client_update_time_remaining:** *zaktualizuj czas pozostały w bieżącym stanie DHCP*
 
-Specyficzne dla interfejsu usługi klienta DHCP, jeśli NX_DHCP_CLIENT_RESORE_STATE jest zdefiniowany:
+Usługi klienta DHCP specyficzne dla interfejsu, NX_DHCP_CLIENT_RESORE_STATE są zdefiniowane:
 
-- **nx_dhcp_client_interface_get_record**: *Utwórz rekord stanu klienta DHCP w określonym interfejsie*
-- **nx_dhcp_client_interface_restore_record**: *przywracanie wcześniej zapisanego rekordu do klienta DHCP w określonym interfejsie*
-- **nx_dhcp_client_interface_update_time_remaining**: *zaktualizuj pozostały czas w bieżącym stanie DHCP w określonym interfejsie*
+- **nx_dhcp_client_interface_get_record:** utwórz *rekord stanu klienta DHCP w określonym interfejsie*
+- **nx_dhcp_client_interface_restore_record:** przywracanie *wcześniej zapisanego rekordu do klienta DHCP w określonym interfejsie*
+- **nx_dhcp_client_interface_update_time_remaining:** zaktualizuj czas pozostały w bieżącym *stanie DHCP w określonym interfejsie*
 
 ## <a name="nx_dhcp_create"></a>nx_dhcp_create
 
@@ -80,29 +80,29 @@ UINT nx_dhcp_create(NX_DHCP *dhcp_ptr, NX_IP *ip_ptr, CHAR *name_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wystąpienie DHCP dla utworzonego wcześniej wystąpienia adresu IP. Domyślnie interfejs podstawowy jest włączony do uruchamiania protokołu DHCP. Nazwy wejściowe, które nie są używane w implementacji NetX Duo klienta DHCP, muszą być zgodne z kryteriami RFC 1035 dla nazw hostów. Łączna długość nie może przekraczać 255 znaków, etykiety oddzielone kropkami muszą zaczynać się literą i kończyć literą lub cyfrą i mogą zawierać łączniki, ale nie inny znak inny niż alfanumeryczny.
+Ta usługa tworzy wystąpienie protokołu DHCP dla wcześniej utworzonego wystąpienia adresu IP. Domyślnie podstawowy interfejs jest włączony do uruchamiania protokołu DHCP. Nazwa wejściowa, która nie jest używana w implementacji klienta DHCP NetX Duo, musi spełniać kryteria RFC 1035 dotyczące nazw hostów. Całkowita długość nie może przekraczać 255 znaków, etykiety oddzielone kropkami muszą zaczynać się od litery i kończyć się literą lub liczbą i mogą zawierać łączniki, ale nie mogą zawierać znaków innych niż alfanumeryczne.
 
-Jeśli aplikacja ma uruchamiać inne interfejsy zarejestrowane przy użyciu wystąpienia protokołu IP (przy użyciu *nx_ip_interface_attach*), aplikacja może wywoływać *nx_dhcp_set_interface_index* , aby uruchomić usługę DHCP tylko na tym interfejsie, lub *nx_dhcp_interface_enable* do uruchamiania protokołu DHCP również w tym interfejsie. Aby uzyskać więcej informacji, zobacz opis tych usług.
+Jeśli aplikacja chce uruchomić protokół DHCP inny interfejs zarejestrowany w wystąpieniu adresu IP (przy użyciu usługi nx_ip_interface_attach), aplikacja może  wywołać usługę *nx_dhcp_set_interface_index,* aby uruchomić protokół DHCP tylko na tym interfejsie, lub nx_dhcp_interface_enable w celu uruchomienia protokołu DHCP w tym interfejsie.  Zobacz opis tych usług, aby uzyskać więcej szczegółów.
 
 >[!NOTE]
-> Aplikacja musi upewnić się, że ładunek puli pakietów klienta DHCP może obsługiwać minimalny rozmiar komunikatu DHCP określony w sekcji RFC 2131 (548 bajtów danych komunikatów DHCP oraz nagłówków protokołu UDP, adresu IP i ramki sieci fizycznej).
+> Aplikacja musi upewnić się, że ładunek puli pakietów klienta DHCP może obsługiwać minimalny rozmiar komunikatu DHCP określony przez sekcję 2 dokumentu RFC 2131 (548 bajtów danych komunikatów DHCP oraz nagłówki UDP, IP i fizycznej ramki sieci).
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP. 
-- **ip_ptr**: wskaźnik do wcześniej utworzonego wystąpienia adresu IP.  
-- **name_ptr**: wskaźnik do nazwy hosta dla wystąpienia usługi DHCP.
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP. 
+- **ip_ptr:** wskaźnik do wcześniej utworzonego wystąpienia adresu IP.  
+- **name_ptr:** wskaźnik do nazwy hosta dla wystąpienia DHCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) POMYŚLNE utworzenie DHCP
-- **NX_DHCP_INVALID_NAME**: (0XA8) Nieprawidłowa nazwa hosta
-- **NX_DHCP_INVALID_PAYLOAD**: (0x9C) jest za mały dla komunikatu DHCP
-- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik adresu IP lub protokołu DHCP
+- **NX_SUCCESS:**(0x00) Pomyślne utworzenie protokołu DHCP
+- **NX_DHCP_INVALID_NAME:**(0xA8) Nieprawidłowa nazwa hosta
+- **NX_DHCP_INVALID_PAYLOAD:**(0x9C) Ładunek jest zbyt mały dla komunikatu DHCP
+- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik IP lub DHCP
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki, Inicjalizacja
+Wątki, inicjowanie
 
 ### <a name="example"></a>Przykład
 
@@ -115,7 +115,7 @@ status =  nx_dhcp_create(&my_dhcp, &my_ip, "My-DHCP");
 
 ## <a name="nx_dhcp_interface_enable"></a>nx_dhcp_interface_enable
 
-Włącz określony interfejs do uruchamiania protokołu DHCP 
+Włączanie uruchamiania protokołu DHCP przez określony interfejs 
 
 ### <a name="prototype"></a>Prototype
 
@@ -125,35 +125,35 @@ UINT nx_dhcp_interface_enable(NX_DHCP *dhcp_ptr, UINT interface_index);
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia określony interfejs do uruchamiania protokołu DHCP. Domyślnie interfejs podstawowy jest włączony dla klienta DHCP. W tym momencie można uruchomić protokół DHCP w tym interfejsie przez wywołanie *nx_dhcp_interface_start* lub uruchomienie protokołu DHCP we wszystkich włączonych interfejsach *nx_dhcp_start*.
+Ta usługa umożliwia uruchomienie protokołu DHCP przez określony interfejs. Domyślnie interfejs podstawowy jest włączony dla klienta DHCP. W tym momencie protokół DHCP można uruchomić w tym interfejsie, wywołując protokół *nx_dhcp_interface_start* lub uruchamiając protokół DHCP we wszystkich włączonych *interfejsach nx_dhcp_start*.
 
 >[!NOTE] 
-> Aplikacja musi najpierw zarejestrować ten interfejs z wystąpieniem IP przy użyciu *nx_ip_interface_attach.*
+> Aplikacja musi najpierw zarejestrować ten interfejs w wystąpieniu adresu IP przy użyciu *nx_ip_interface_attach.*
 
-Ponadto w celu dodania tego interfejsu do listy włączonych interfejsów musi istnieć dostępny interfejs klienta DHCP "rekord". Domyślnie NX_DHCP_CLIENT_MAX_RECORDS jest zdefiniowana na 1. Ustaw tę opcję na maksymalną liczbę interfejsów oczekiwanych na równoczesne uruchomienie klienta DHCP. Zwykle NX_DHCP_CLIENT_MAX_RECORDS będzie równa NX_MAX_PHYSICAL_INTERFACES; Jeśli jednak urządzenie ma więcej interfejsów fizycznych niż oczekuje na uruchomienie klienta DHCP, może zaoszczędzić pamięć przez ustawienie NX_DHCP_CLIENT_MAX_RECORDS na mniejszą niż ten numer. Nie istnieje jeden do jednego mapowanie interfejsów fizycznych z rekordami interfejsu klienta DHCP.
+Ponadto musi być dostępny "rekord" interfejsu klienta DHCP, aby dodać ten interfejs do listy włączonych interfejsów. Domyślnie wartość NX_DHCP_CLIENT_MAX_RECORDS jest zdefiniowana na 1. Ustaw tę opcję na maksymalną liczbę interfejsów, które będą jednocześnie uruchamiać klienta DHCP. Zazwyczaj NX_DHCP_CLIENT_MAX_RECORDS będzie równa NX_MAX_PHYSICAL_INTERFACES; Jeśli jednak urządzenie ma więcej interfejsów fizycznych niż oczekuje uruchomienia klienta DHCP, może zaoszczędzić pamięć, ustawiając dla NX_DHCP_CLIENT_MAX_RECORDS mniejszą liczbę. Nie ma jednego mapowania interfejsów fizycznych z rekordami interfejsu klienta DHCP.
 
-Różnica między tą usługą a *nx_dhcp_set_interface_index* to ta, która powoduje, że tylko jeden interfejs do uruchamiania protokołu DHCP, podczas gdy ta usługa po prostu dodaje określony interfejs do listy interfejsów klienta włączonych dla protokołu DHCP.
+Różnica między tą usługą a usługą *nx_dhcp_set_interface_index* polega na tym, że ustawiany jest tylko jeden interfejs do uruchamiania protokołu DHCP, natomiast ta usługa po prostu dodaje określony interfejs do listy interfejsów klienta włączonych dla protokołu DHCP.
 
-Aby wyłączyć interfejs dla protokołu DHCP, aplikacja może wywołać
+Aby wyłączyć interfejs protokołu DHCP, aplikacja może wywołać
 
-Usługa *nx_dhcp_interface_disable* .
+*nx_dhcp_interface_disable* usługi.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP.  
-- **interface_index**: indeks interfejsu umożliwiającego włączenie protokołu DHCP
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP.  
+- **interface_index:** indeks interfejsu umożliwiający włączenie protokołu DHCP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne włączenie protokołu DHCP
-- **NX_DHCP_NO_RECORDS_AVAILABLE**: (0XA7) Brak dostępnego rekordu dla innego interfejsu, który ma zostać włączony dla protokołu DHCP
-- **NX_DHCP_INTERFACE_ALREADY_ENABLED**: (0xA3) włączono interfejs dla protokołu DHCP
-- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik adresu IP lub protokołu DHCP
+- **NX_SUCCESS:**(0x00) Pomyślne włączenie protokołu DHCP
+- **NX_DHCP_NO_RECORDS_AVAILABLE:**(0xA7) Brak dostępnych rekordów dla innego interfejsu, który ma być włączony dla protokołu DHCP
+- **NX_DHCP_INTERFACE_ALREADY_ENABLED:** interfejs (0xA3) włączony dla protokołu DHCP
+- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik IP lub DHCP
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki, Inicjalizacja
+Wątki, inicjowanie
 
 ### <a name="example"></a>Przykład
 
@@ -171,7 +171,7 @@ status = nx_dhcp_start(&my_dhcp);
 
 ## <a name="nx_dhcp_interface_disable"></a>nx_dhcp_interface_disable
 
-Wyłączenie określonego interfejsu w celu uruchomienia protokołu DHCP 
+Wyłączanie określonego interfejsu w celu uruchomienia protokołu DHCP 
 
 ### <a name="prototype"></a>Prototype
 
@@ -183,21 +183,21 @@ UINT nx_dhcp_interface_disable(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wyłącza określony interfejs na potrzeby uruchamiania protokołu DHCP. Ponownie inicjuje klienta DHCP w tym interfejsie.
+Ta usługa wyłącza określony interfejs do uruchamiania protokołu DHCP. Ponownie inicjalizuje klienta DHCP w tym interfejsie.
 
-Aby ponownie uruchomić klienta DHCP, aplikacja musi ponownie włączyć interfejs przy użyciu *nx_dhcp_interface_enable* i ponownie uruchomić usługę DHCP, wywołując *nx_dhcp_interface_start*.
+Aby ponownie uruchomić klienta DHCP, aplikacja musi ponownie włączyć interfejs przy użyciu nx_dhcp_interface_enable *i* ponownie uruchomić protokół DHCP, wywołując *nx_dhcp_interface_start*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP.  
-- **interface_index**: indeks interfejsu, na którym ma zostać wyłączona usługa DHCP
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP.  
+- **interface_index:** indeks interfejsu do wyłączania protokołu DHCP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) POMYŚLNE utworzenie DHCP
-- **NX_DHCP_INTERFACE_NOT_ENABLED**: interfejs (0xA4) nie jest włączony dla protokołu DHCP
-- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik adresu IP lub protokołu DHCP
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_SUCCESS:**(0x00) Pomyślne utworzenie protokołu DHCP
+- **NX_DHCP_INTERFACE_NOT_ENABLED:** interfejs (0xA4) nie jest włączony dla protokołu DHCP
+- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik IP lub DHCP
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -214,7 +214,7 @@ status =  nx_dhcp_interface_disable(&my_dhcp, 1);
 ```
 ## <a name="nx_dhcp_clear_broadcast_flag"></a>nx_dhcp_clear_broadcast_flag
 
-Ustaw flagę emisji DHCP
+Ustawianie flagi emisji DHCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -224,28 +224,28 @@ UINT nx_dhcp_clear_broadcast_flag(NX_DHCP *dhcp_ptr, UINT clear_flag);
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia lub czyści flagę emisji w nagłówku komunikatu DHCP dla wszystkich interfejsów włączonych dla protokołu DHCP. W przypadku niektórych komunikatów DHCP (np. DISCOVER) flaga emisji jest ustawiona na emisję, ponieważ klient nie ma adresu IP.
+Ta usługa ustawia lub czyszczy flagę emisji nagłówka komunikatu DHCP dla wszystkich interfejsów włączonych dla protokołu DHCP. W przypadku niektórych komunikatów DHCP (np. ODNAJDYWANIE) flaga emisji jest ustawiona na emisję, ponieważ klient nie ma adresu IP.
 
-wartości clear_flag: 
+clear_flag wartości: 
 
-- **NX_TRUE**: Flaga emisji została wyczyszczona (Żądaj odpowiedzi emisji pojedynczej)
-- **NX_FALSE**: ustawiono flagę emisji (odpowiedź na żądanie emisji)
+- **NX_TRUE:** flaga emisji jest czyszona (żądanie odpowiedzi emisji pojedynczej)
+- **NX_FALSE:** ustawiono flagę emisji (żądanie odpowiedzi emisji)
 
-Ta usługa jest przeznaczona dla klientów DHCP, którzy muszą przejść przez router, aby uzyskać dostęp do serwera DHCP, gdzie router odrzuca komunikaty emisji przesyłania dalej.
+Ta usługa jest przeznaczona dla klientów DHCP, którzy muszą przejść przez router, aby uzyskać dostęp do serwera DHCP, gdzie router odrzuca przekazywanie komunikatów emisji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP  
-- **clear_flag**: wartość, do której ma zostać ustawiona flaga emisji
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP  
+- **clear_flag:** wartość, na która należy ustawić flagę emisji
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie ustawiono flagę
-- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik adresu IP lub protokołu DHCP
+- **NX_SUCCESS:**(0x00) Pomyślnie ustawiono flagę
+- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik IP lub DHCP
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki, Inicjalizacja
+Wątki, inicjowanie
 
 ### <a name="example"></a>Przykład
 
@@ -259,7 +259,7 @@ status =  nx_dhcp_clear_broadcast_flag(&my_dhcp, NX_TRUE);
 
 ## <a name="nx_dhcp_interface_clear_broadcast_flag"></a>nx_dhcp_interface_clear_broadcast_flag
 
-Ustaw lub wyczyść flagę emisji w określonym interfejsie
+Ustawianie lub wyczyszczenie flagi emisji w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -271,24 +271,24 @@ UINT nx_dhcp_interface_clear_broadcast_flag(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia aplikacji hosta klienta DHCP Ustawianie lub czyszczenie flagi emisji w komunikatach klienta DHCP na serwerze DHCP w określonym interfejsie. Aby uzyskać więcej informacji, zobacz **nx_dhcp_clear_broadcast_flag**.
+Ta usługa umożliwia aplikacji hosta klienta DHCP ustawienie lub wyczyszczenie flagi emisji w komunikatach klienta DHCP do serwera DHCP w określonym interfejsie. Aby uzyskać więcej informacji, **zobacz nx_dhcp_clear_broadcast_flag**.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP
-- **interface_index**: indeks interfejsu służący do ustawiania flagi emisji
-- **clear_flag**: wartość, do której ma zostać ustawiona flaga emisji
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP
+- **interface_index:** Indeks interfejsu do ustawienia flagi emisji
+- **clear_flag:** wartość, na która należy ustawić flagę emisji
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie ustawiono flagę
-- **NX_DHCP_INTERFACE_NOT_ENABLED**: interfejs (0xA4) nie jest włączony dla protokołu DHCP
-- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik adresu IP lub protokołu DHCP
+- **NX_SUCCESS:**(0x00) Pomyślnie ustawiono flagę
+- **NX_DHCP_INTERFACE_NOT_ENABLED:** interfejs (0xA4) nie jest włączony dla protokołu DHCP
+- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik IP lub DHCP
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki, Inicjalizacja
+Wątki, inicjowanie
 
 ### <a name="example"></a>Przykład
 
@@ -315,17 +315,17 @@ UINT nx_dhcp_delete(NX_DHCP *dhcp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wcześniej utworzone wystąpienie usługi DHCP.
+Ta usługa usuwa utworzone wcześniej wystąpienie DHCP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne usunięcie protokołu DHCP.
+- **NX_SUCCESS:**(0x00) Pomyślne usunięcie protokołu DHCP.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -342,7 +342,7 @@ status =  nx_dhcp_delete(&my_dhcp);
 
 ## <a name="nx_dhcp_-force_renew"></a>nx_dhcp_ force_renew
 
-Wyślij komunikat Force o odnowieniu 
+Wysyłanie wiadomości wymuś odnowienie 
 
 ### <a name="prototype"></a>Prototype
 
@@ -352,20 +352,20 @@ UINT nx_dhcp force_renew(NX_DHCP *dhcp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia aplikacji hosta wysyłanie komunikatów Force w celu odnowienia na wszystkich interfejsach włączonych dla protokołu DHCP. Klient DHCP musi być w stanie powiązanym. Ta funkcja ustawia stan do ODNOWIENIa, aby klient DHCP próbował odnowić działanie przed upływem limitu czasu T1.
+Ta usługa umożliwia aplikacji hosta wysyłanie wymuś odnowienie komunikatu we wszystkich interfejsach z włączoną obsługą protokołu DHCP. Klient DHCP musi być w stanie BOUND. Ta funkcja ustawia stan RENEW w taki sposób, że klient DHCP spróbuje odnowić przed upływem limitu czasu T1.
 
-Aby wysłać Force w określonym interfejsie, gdy jest włączona obsługa protokołu DHCP w wielu interfejsach, użyj *nx_dhcp_interface_force_renew*.
+Aby wysłać wymuś odnowienie określonego interfejsu, gdy wiele interfejsów jest włączonych przy użyciu protokołu DHCP, użyj *nx_dhcp_interface_force_renew*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie wysłano wymuszenie odnowienia.
-- **NX_DHCP_NOT_BOUND**: (0x94) adres IP klienta nie jest powiązany.  
+- **NX_SUCCESS:**(0x00) Pomyślnie wysłano wymusz odnowienie.
+- **NX_DHCP_NOT_BOUND:**(0x94) Adres IP klienta nie jest powiązany.  
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -383,7 +383,7 @@ status =  nx_dhcp_force_renew(&my_dhcp);
 
 ## <a name="nx_dhcp_interface_force_renew"></a>nx_dhcp_interface_force_renew
 
-Wyślij komunikat Wymuś odnowienie w określonym interfejsie
+Wysyłanie wymuś odnowienie komunikatu na określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -394,17 +394,17 @@ UINT nx_dhcp_interface_force_renew(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia aplikacji hosta wysyłanie komunikatów Force (Wymuś odnowienie) w interfejsie wejściowym, o ile ten interfejs został włączony dla protokołu DHCP (zobacz *nx_dhcp_interface_enable*). Klient DHCP w określonym interfejsie musi być w stanie powiązanym. Ta funkcja ustawia stan do ODNOWIENIa, aby klient DHCP próbował odnowić działanie przed upływem limitu czasu T1.
+Ta usługa umożliwia aplikacji hosta wysyłanie wymuś odnowienie komunikatu w interfejsie wejściowym, o ile ten interfejs został włączony dla protokołu DHCP (zobacz *nx_dhcp_interface_enable*). Klient DHCP w określonym interfejsie musi być w stanie BOUND. Ta funkcja ustawia stan RENEW w taki sposób, że klient DHCP spróbuje odnowić przed upływem limitu czasu T1.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie wysłano wymuszenie odnowienia.  
-- **NX_DHCP_INTERFACE_NOT_ENABLED**: interfejs (0xA4) nie jest włączony dla protokołu DHCP
-- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik adresu IP lub protokołu DHCP
+- **NX_SUCCESS:**(0x00) Pomyślnie wysłano wymusz odnowienie.  
+- **NX_DHCP_INTERFACE_NOT_ENABLED:** interfejs (0xA4) nie jest włączony dla protokołu DHCP
+- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik IP lub DHCP
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -434,22 +434,22 @@ UINT nx_dhcp_packet_pool_set(NX_DHCP *dhcp_ptr, NX_PACKET_POOL *packet_pool_ptr)
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia aplikacji utworzenie puli pakietów klienta DHCP, przekazując wskaźnik do wcześniej utworzonej puli pakietów w ramach tego wywołania usługi. Aby można było użyć tej funkcji, aplikacja hosta musi definiować NX_DHCP_CLIENT_USER_CREATE_PACKET_POOL. Po zdefiniowaniu usługa *nx_dhcp_create* nie utworzy puli pakietów klienta. 
+Ta usługa umożliwia aplikacji utworzenie puli pakietów klienta DHCP przez przekazanie wskaźnika do wcześniej utworzonej puli pakietów w tym wywołaniu usługi. Aby korzystać z tej funkcji, aplikacja hosta musi definiować NX_DHCP_CLIENT_USER_CREATE_PACKET_POOL. W przypadku nx_dhcp_create *usługa* nie utworzy puli pakietów klienta. 
 
 >[!NOTE] 
-> Aplikacja jest zalecana do używania wartości domyślnych dla ładunku puli pakietów klienta DHCP zdefiniowanego jako NX_DHCP_PACKET_PAYLOAD w *nxd_dhcp_client. h* podczas tworzenia puli pakietów.
+> Podczas tworzenia puli pakietów zaleca się używanie wartości domyślnych ładunku puli pakietów klienta DHCP zdefiniowanego jako NX_DHCP_PACKET_PAYLOAD w pliku *nxd_dhcp_client.h.*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP.  
-- **packet_pool_ptr**: wskaźnik do wcześniej utworzonej puli pakietów
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP.  
+- **packet_pool_ptr:** Wskaźnik do wcześniej utworzonej puli pakietów
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) Pula pakietów klienta DHCP jest ustawiona
-- **NX_NOT_ENABLED**: usługa (0x14) nie jest włączona
+- **NX_SUCCESS:** ustawiono pulę pakietów klienta DHCP (0x00)
+- **NX_NOT_ENABLED:** usługa (0x14) nie jest włączona
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP
-- Ładunek NX_DHCP_INVALID_PAYLOAD: (0x9C) jest za mały
+- NX_DHCP_INVALID_PAYLOAD: (0x9C) Ładunek jest za mały
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -474,7 +474,7 @@ status =  nx_dhcp_packet_pool_set(&my_dhcp, packet_pool_ptr);
 
 ## <a name="nx_dhcp_request_client_ip"></a>nx_dhcp_request_client_ip
 
-Ustaw żądany adres IP dla wystąpienia DHCP
+Ustawianie żądanego adresu IP dla wystąpienia DHCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -486,23 +486,23 @@ UINT nx_dhcp_request_client_ip(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia adres IP klienta DHCP na żądanie z serwera DHCP przy pierwszym interfejsie włączonym dla protokołu DHCP w rekordzie klienta DHCP. Jeśli flaga *skip_discover_message* jest ustawiona, klient DHCP pomija komunikat odnajdywania i wysyła komunikat żądania.
+Ta usługa ustawia adres IP klienta DHCP na żądanie z serwera DHCP na pierwszym interfejsie włączonym dla protokołu DHCP w rekordzie klienta DHCP. Jeśli *flaga skip_discover_message* ustawiona, klient DHCP pomija komunikat Odnajdywanie i wysyła komunikat Żądanie.
 
-Aby ustawić żądanie dla określonego adresu IP dla komunikatów DHCP w określonym interfejsie, Użyj usługi *nx_dhcp_interface_request_client_ip* .
+Aby ustawić żądanie określonego adresu IP dla komunikatów DHCP w określonym interfejsie, użyj *nx_dhcp_interface_request_client_ip* ip.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP.  
-- **client_ip_address**: adres IP do żądania z serwera DHCP
-- **skip_discover_message**: 
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP.  
+- **client_ip_address:** adres IP do żądania z serwera DHCP
+- **skip_discover_message:** 
     - W przypadku wartości true klient DHCP wysyła komunikat żądania
-    - W przypadku wartości false wysyła komunikat odnajdywania.
+    - Jeśli wartość false, wysyła komunikat Odnajdywanie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) żądany adres IP jest ustawiony.
+- **NX_SUCCESS:**(0x00) Ustawiono żądany adres IP.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP
-- NX_DHCP_INVALID_IP_REQUEST: (0x9D) żądanie ZEROWEgo adresu IP
+- NX_DHCP_INVALID_IP_REQUEST: (0x9D) żądany adres IP o wartości NULL
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -521,7 +521,7 @@ status =  nx_dhcp_request_client_ip(&my_dhcp, IP(192,168,0,6), NX_TRUE);
 
 ## <a name="nx_dhcp_interface_request_client_ip"></a>nx_dhcp_interface_request_client_ip
 
-Ustaw żądany adres IP dla wystąpienia DHCP w określonym interfejsie
+Ustawianie żądanego adresu IP dla wystąpienia DHCP w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -532,20 +532,20 @@ UINT nx_dhcp_interface_request_client_ip(NX_DHCP *dhcp_ptr, UINT  interface_inde
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia adres IP klienta DHCP na żądanie z serwera DHCP w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP (zobacz *nx_dhcp_interface_enable*). Jeśli flaga *skip_discover_message* jest ustawiona, klient DHCP pomija komunikat odnajdywania i wysyła komunikat żądania.
+Ta usługa ustawia adres IP klienta DHCP na żądanie z serwera DHCP w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP (zobacz *nx_dhcp_interface_enable*). Jeśli *flaga skip_discover_message* ustawiona, klient DHCP pomija komunikat Odnajdywanie i wysyła komunikat Żądanie.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP.
-- **Interface_index**: indeks interfejsu do żądania adresu IP
-- **client_ip_address**: adres IP do żądania z serwera DHCP
-- **skip_discover_message**: w przypadku wartości true klient DHCP wysyła komunikat żądania; w przeciwnym razie zostanie wysłany komunikat odnajdywania.
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP.
+- **Interface_index:** Indeks interfejsu do żądania adresu IP
+- **client_ip_address:** adres IP do żądania z serwera DHCP
+- **skip_discover_message:** w przypadku wartości true klient DHCP wysyła komunikat żądania; w innym przypadku wysyła komunikat Odnajdywanie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) żądany adres IP jest ustawiony.
-- **NX_DHCP_INTERFACE_NOT_ENABLED**: interfejs (0xA4) nie jest włączony dla protokołu DHCP
-- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik adresu IP lub protokołu DHCP
+- **NX_SUCCESS:**(0x00) Ustawiono żądany adres IP.
+- **NX_DHCP_INTERFACE_NOT_ENABLED:** interfejs (0xA4) nie jest włączony dla protokołu DHCP
+- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik IP lub DHCP
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -574,7 +574,7 @@ UINT nx_dhcp_reinitialize(NX_DHCP *dhcp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa czyści parametry sieciowe aplikacji hosta (adres IP, adres sieciowy i maska sieci), a następnie czyści stan klienta DHCP we wszystkich interfejsach włączonych dla protokołu DHCP. Jest on używany w połączeniu z *nx_dhcp_stop* i *nx_dhcp_start* do "ponownego uruchomienia" komputera stanu DHCP:
+Ta usługa wyczyści parametry sieci aplikacji hosta (adres IP, adres sieciowy i maskę sieci) i wyczyści stan klienta DHCP we wszystkich interfejsach włączonych dla protokołu DHCP. Jest on używany w połączeniu z *nx_dhcp_stop* i *nx_dhcp_start* do "ponownego uruchomienia" maszyny stanu DHCP:
 
 ```c
 nx_dhcp_stop(&my_dhcp);
@@ -582,15 +582,15 @@ nx_dhcp_reinitialize(&my_dhcp);
 nx_dhcp_start(&my_dhcp);
 ```
 
-Aby ponownie zainicjować klienta DHCP w określonym interfejsie, gdy na serwerze DHCP włączono wiele interfejsów, Użyj usługi *nx_dhcp_interface_reinitialize* .
+Aby ponownie zainicjować klienta DHCP na określonym interfejsie, gdy dla protokołu DHCP jest włączonych wiele interfejsów, użyj *nx_dhcp_interface_reinitialize* usługi.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślnie zainicjowano serwer DHCP 
+- **NX_SUCCESS:**(0x00) DHCP successfully reinitialized 
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -608,7 +608,7 @@ status =  nx_dhcp_reinitialize(&my_dhcp);
 
 ## <a name="nx_dhcp_interface_reinitialize"></a>nx_dhcp_interface_reinitialize
 
-Wyczyść parametry sieciowe klienta DHCP w określonym interfejsie 
+Wyczyść parametry sieci klienta DHCP dla określonego interfejsu 
 
 ### <a name="prototype"></a>Prototype
 
@@ -619,19 +619,19 @@ UINT nx_dhcp_interface_reinitialize(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa czyści parametry sieci (adres IP, adres sieciowy i maska sieci) w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP (zobacz *nx_dhcp_interface_enable*). Aby uzyskać więcej informacji, zobacz *nx_dhcp_reinitialize* .
+Ta usługa wyczyści parametry sieci (adres IP, adres sieciowy i maskę sieci) w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP (zobacz *nx_dhcp_interface_enable*). Zobacz *nx_dhcp_reinitialize,* aby uzyskać więcej informacji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia usługi DHCP
-- **interface_index**: indeks interfejsu do ponownego zainicjowania
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP
+- **interface_index:** Indeks interfejsu do ponownego zainicjowania
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) interfejs został pomyślnie zainicjowany ponownie
-- **NX_DHCP_INTERFACE_NOT_ENABLED**: interfejs (0xA4) nie jest włączony dla protokołu DHCP
+- **NX_SUCCESS:**(0x00) Interface successfully reinitialized (Interfejs interfejsu 0x00) został pomyślnie ponownie zaim iniekcją
+- **NX_DHCP_INTERFACE_NOT_ENABLED:** interfejs (0xA4) nie jest włączony dla protokołu DHCP
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -649,7 +649,7 @@ status =  nx_dhcp_interface_reinitialize(&my_dhcp, 1);
 
 ## <a name="nx_dhcp_release"></a>nx_dhcp_release
 
-Zwolnij adres IP dzierżawy
+Dzierżawiony adres IP wydania
 
 ### <a name="prototype"></a>Prototype
 
@@ -659,22 +659,22 @@ UINT nx_dhcp_release(NX_DHCP *dhcp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwalnia adres IP uzyskany z serwera DHCP, wysyłając do niego komunikat o wersji. Następnie ponownie inicjuje klienta DHCP. Ta usługa jest stosowana do wszystkich interfejsów włączonych dla protokołu DHCP.
+Ta usługa zwalnia adres IP uzyskany z serwera DHCP, wysyłając komunikat RELEASE do tego serwera. Następnie ponownie inicjalizuje klienta DHCP. Ta usługa jest stosowana do wszystkich interfejsów włączonych dla protokołu DHCP.
 
 Aplikacja może ponownie uruchomić klienta DHCP, wywołując *nx_dhcp_start*.
 
-Aby zwolnić adres z powrotem do serwera DHCP w określonym interfejsie, Użyj usługi *nx_dhcp_interface_release*
+Aby zwolnić adres z powrotem na serwerze DHCP w określonym interfejsie, użyj *nx_dhcp_interface_release* interfejsu
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne wydanie protokołu DHCP.  
-- **NX_DHCP_NOT_BOUND**: (0x94) adres IP nie został wydzierżawiony, dlatego nie można go zwolnić.
+- **NX_SUCCESS:**(0x00) Pomyślne wydanie protokołu DHCP.  
+- **NX_DHCP_NOT_BOUND:**(0x94) Adres IP nie został wydzierżawiony, więc nie można go zwolnić.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -701,19 +701,19 @@ UINT nx_dhcp_interface_release(NX_DHCP *dhcp_ptr, UINT interface_index);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwalnia adres IP uzyskany z serwera DHCP w określonym interfejsie i ponownie inicjuje klienta DHCP. Klienta DHCP można uruchomić ponownie, wywołując *nx_dhcp_start*.
+Ta usługa zwalnia adres IP uzyskany z serwera DHCP w określonym interfejsie i ponownie inicjalizuje klienta DHCP. Klienta DHCP można uruchomić ponownie, *wywołując* nx_dhcp_start .
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne wydanie protokołu DHCP.
-- **NX_DHCP_INTERFACE_NOT_ENABLED**: interfejs (0xA4) nie jest włączony dla protokołu DHCP
-- **NX_DHCP_NOT_BOUND**: (0x94) adres IP nie został wydzierżawiony, dlatego nie można go zwolnić.
+- **NX_SUCCESS:**(0x00) Pomyślne wydanie protokołu DHCP.
+- **NX_DHCP_INTERFACE_NOT_ENABLED:** interfejs (0xA4) nie jest włączony dla protokołu DHCP
+- **NX_DHCP_NOT_BOUND:**(0x94) Adres IP nie został wydzierżawiony, więc nie można go zwolnić.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -731,7 +731,7 @@ status =  nx_dhcp_interface_release(&my_dhcp, 1);
 
 ## <a name="nx_dhcp_decline"></a>nx_dhcp_decline
 
-Odrzuć adres IP z serwera DHCP
+Odrzucanie adresu IP z serwera DHCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -741,22 +741,22 @@ UINT nx_dhcp_decline(NX_DHCP *dhcp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa odrzuca adres IP dzierżawiony z serwera DHCP na wszystkich interfejsach włączonych dla protokołu DHCP. W przypadku zdefiniowania NX_DHCP_CLIENT_ SEND_ ARP_PROBE klient DHCP wyśle komunikat o ODRZUCENIu, jeśli wykryje, że adres IP jest już używany. Zobacz **sondy protokołu ARP** w rozdziale 1, aby uzyskać więcej informacji na temat konfiguracji sondowania ARP w kliencie DHCP NetX Duo.
+Ta usługa odrzuca adres IP dzierżawiony z serwera DHCP we wszystkich interfejsach włączonych dla protokołu DHCP. Jeśli NX_DHCP_CLIENT_ SEND_ ARP_PROBE, klient DHCP wyśle komunikat ODRZUĆ, jeśli wykryje, że adres IP jest już w użyciu. Zobacz **Sondy ARP w** rozdziale 1, aby uzyskać więcej informacji na temat konfiguracji sondy ARP w kliencie DHCP NetX Duo.
 
-Aplikacja może korzystać z tej usługi, aby odrzucić swój adres IP, jeśli odnajdzie adres jest używany w inny sposób.
+Aplikacja może użyć tej usługi, aby odrzucić swój adres IP, jeśli odkryje, że adres jest w użyciu w inny sposób.
 
-Ta usługa ponownie inicjalizuje klienta DHCP, aby mógł on zostać oduruchamiany przez wywołanie *nx_dhcp_start*.
+Ta usługa ponownie inicjalizuje klienta DHCP, aby można go było uruchomić ponownie, wywołując *nx_dhcp_start*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) odrzucanie zostało pomyślnie wysłane  
-- **NX_DHCP_NOT_BOUND**: (0X94) klient DHCP nie jest powiązany
+- **NX_SUCCESS:**(0x00) Pomyślnie wysłano odrzuć  
+- **NX_DHCP_NOT_BOUND:**(0x94) Klient DHCP nie jest powiązany
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -774,7 +774,7 @@ status =  nx_dhcp_decline(&my_dhcp);
 
 ## <a name="nx_dhcp_interface_decline"></a>nx_dhcp_interface_decline
 
-Odrzuć adres IP z serwera DHCP w określonym interfejsie
+Odrzucanie adresu IP z serwera DHCP w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -785,20 +785,20 @@ UINT nx_dhcp_interface_decline(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła do serwera komunikat o ODRZUCENIu, aby odrzucić adres IP przypisany przez serwer DHCP. Powoduje również ponowne zainicjowanie klienta DHCP. Aby uzyskać więcej informacji, zobacz *nx_dhcp_decline* .
+Ta usługa wysyła komunikat ODRZUĆ do serwera w celu odrzucenia adresu IP przypisanego przez serwer DHCP. Ponownie inicjalizuje również klienta DHCP. Zobacz *nx_dhcp_decline,* aby uzyskać więcej informacji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
-- **Interface_index**: indeks interfejsu do odrzucania adresu IP
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
+- **Interface_index:** Indeks interfejsu odrzucania adresu IP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) wysłany komunikat o ODRZUCENIu DHCP  
-- **NX_DHCP_NOT_BOUND**: (0X94) klient DHCP nie jest powiązany
-- **NX_DHCP_INTERFACE_NOT_ENABLED**: interfejs (0xA4) nie jest włączony dla protokołu DHCP
+- **NX_SUCCESS:**(0x00) komunikat o odmówienie protokołu DHCP  
+- **NX_DHCP_NOT_BOUND:**(0x94) Klient DHCP nie jest powiązany
+- **NX_DHCP_INTERFACE_NOT_ENABLED:** interfejs (0xA4) nie jest włączony dla protokołu DHCP
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -815,7 +815,7 @@ status =  nx_dhcp_interface_decline(&my_dhcp, 2);
 ```
 ## <a name="nx_dhcp_send_request"></a>nx_dhcp_send_request
 
-Wyślij komunikat DHCP do serwera
+Wysyłanie komunikatu DHCP do serwera
 
 ### <a name="prototype"></a>Prototype
 
@@ -826,24 +826,24 @@ UINT nx_dhcp_send_request(NX_DHCP *dhcp_ptr, UINT dhcp_message_type);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła określony komunikat DHCP do serwera DHCP przy pierwszym interfejsie z włączonym protokołem DHCP znalezionym w rekordzie klienta DHCP. Aby wysłać wiadomość wydania lub odrzucić, aplikacja musi odpowiednio używać *nx_dhcp [_interface] _release*() lub *nx_dhcp_interface_decline ()* .
+Ta usługa wysyła określony komunikat DHCP do serwera DHCP na pierwszym interfejsie włączonym dla protokołu DHCP znalezionego w rekordzie klienta DHCP. Aby wysłać komunikat RELEASE lub DECLINE, aplikacja musi używać usług *nx_dhcp[_interface]_release*() *lub nx_dhcp_interface_decline().*
 
-Aby można było używać tej usługi, należy uruchomić klienta DHCP, z wyjątkiem wysyłania komunikatu INFORM_REQUEST typu.
+Klient DHCP musi być uruchomiony do korzystania z tej usługi z wyjątkiem wysyłania INFORM_REQUEST typu komunikatu.
 
 >[!NOTE]
-> Ta usługa nie jest przeznaczona dla aplikacji hosta na dysk, na którym znajduje się komputer stanu klienta DHCP.
+> Ta usługa nie jest przeznaczona dla aplikacji hosta do "dysku" komputera stanu klienta DHCP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP.  
-- **dhcp_message_type**: żądanie komunikatu (zdefiniowane w *nxd_dhcp_client. h*)
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP.  
+- **dhcp_message_type:** Żądanie komunikatu (zdefiniowane w *nxd_dhcp_client.h*)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) wysłano komunikat DHCP  
-- **NX_DHCP_NOT_STARTED**: (0X96) Nieprawidłowy indeks interfejsu
-- **NX_DHCP_INVALID_MESSAGE**: (0X9B) Nieprawidłowy typ komunikatu do wysłania
-- NX_PTR_ERROR: (0x16) nieprawidłowe dane wejściowe wskaźnika
+- **NX_SUCCESS:**(0x00) komunikat DHCP  
+- **NX_DHCP_NOT_STARTED:**(0x96) Nieprawidłowy indeks interfejsu
+- **NX_DHCP_INVALID_MESSAGE:**(0x9B) Nieprawidłowy typ komunikatu do wysłania
+- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -860,7 +860,7 @@ status =  nx_dhcp_send_request(&my_dhcp, NX_DHCP_TYPE_DHCPINFORM);
 
 ## <a name="nx_dhcp_interface_send_request"></a>nx_dhcp_interface_send_request
 
-Wyślij komunikat DHCP do serwera w określonym interfejsie
+Wysyłanie komunikatu DHCP do serwera w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -872,26 +872,26 @@ UINT nx_dhcp_interface_send_request(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła komunikat do serwera DHCP w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP. Aby wysłać wiadomość wydania lub odrzucić, aplikacja musi odpowiednio używać *nx_dhcp [_interface] _release*() lub *nx_dhcp_interface_decline ()* .
+Ta usługa wysyła komunikat do serwera DHCP w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP. Aby wysłać komunikat RELEASE lub DECLINE, aplikacja musi używać usług *nx_dhcp[_interface]_release*() *lub nx_dhcp_interface_decline().*
 
-Aby korzystać z tej usługi, należy uruchomić klienta DHCP, z wyjątkiem wysyłania komunikatu żądania INFORM protokołu DHCP.
+Klient DHCP musi być uruchomiony do korzystania z tej usługi z wyjątkiem wysyłania DHCP INFORM REQUEST typ komunikatu.
 
-Ta usługa nie jest przeznaczona dla aplikacji hosta na dysk, na którym znajduje się komputer stanu klienta DHCP.
+Ta usługa nie jest przeznaczona dla aplikacji hosta do "dysku" komputera stanu klienta DHCP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP.
-- **Interface_index**: indeks interfejsu, na którym ma zostać wysłany komunikat
-- **dhcp_message_type**: żądanie komunikatu (zdefiniowane w nxd_dhcp_client. h)
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP.
+- **Interface_index:** Indeks interfejsu do wysyłania komunikatów
+- **dhcp_message_type:** Żądanie komunikatu (zdefiniowane w nxd_dhcp_client.h)
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) wysłano komunikat DHCP  
-- **NX_DHCP_NOT_STARTED**: (0X96) Nieprawidłowy indeks interfejsu
-- **NX_DHCP_INVALID_MESSAGE**: (0X9B) Nieprawidłowy typ komunikatu do wysłania
-- **NX_DHCP_INTERFACE_NOT_ENABLED**: interfejs (0xA4) nie jest włączony dla protokołu DHCP
+- **NX_SUCCESS:**(0x00) wysłany komunikat DHCP  
+- **NX_DHCP_NOT_STARTED:**(0x96) Nieprawidłowy indeks interfejsu
+- **NX_DHCP_INVALID_MESSAGE:**(0x9B) Nieprawidłowy typ komunikatu do wysłania
+- **NX_DHCP_INTERFACE_NOT_ENABLED:** interfejs (0xA4) nie jest włączony dla protokołu DHCP
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -909,7 +909,7 @@ status =  nx_dhcp_interface_send_request(&my_dhcp, 0, NX_DHCP_TYPE_DHCPINFORM);
 
 ## <a name="nx_dhcp_server_address_get"></a>nx_dhcp_server_address_get
 
-Pobierz adres IP serwera DHCP klienta DHCP
+Uzyskiwanie adresu IP serwera DHCP klienta DHCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -920,21 +920,21 @@ UINT nx_dhcp_server_address_get(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera adres IP serwera DHCP klienta DHCP na pierwszym interfejsie z włączonym protokołem DHCP znalezionym w rekordzie klienta DHCP. Obiekt wywołujący może korzystać tylko z tej usługi po powiązaniu klienta DHCP z adresem IP przydzielonym przez serwer DHCP. Aplikacja hosta może użyć usługi *nx_ip_status_check* , aby sprawdzić, czy adres IP jest ustawiony, lub użyć *_dhcp_state_change_notify* NX i zbadać stan klienta DHCP, NX_DHCP_STATE_BOUND. Zobacz *nx_dhcp_state_change_notify* , aby uzyskać więcej informacji na temat ustawiania funkcji wywołania zwrotnego zmiany stanu.
+Ta usługa pobiera adres IP serwera DHCP klienta DHCP w pierwszym interfejsie włączonym dla protokołu DHCP znaleziony w rekordzie klienta DHCP. Element wywołujący może korzystać z tej usługi tylko wtedy, gdy klient DHCP jest powiązany z adresem IP przypisanym przez serwer DHCP. Aplikacja hosta może użyć usługi *nx_ip_status_check,* aby sprawdzić, czy adres IP został ustawiony, lub może użyć funkcji nx *_dhcp_state_change_notify* i wysyłać zapytania o stan klienta DHCP NX_DHCP_STATE_BOUND. Zobacz *nx_dhcp_state_change_notify,* aby uzyskać więcej informacji na temat ustawiania funkcji wywołania zwrotnego zmiany stanu.
 
-Aby znaleźć serwer DHCP w określonym interfejsie, gdy dla klienta DHCP włączono wiele interfejsów, Użyj usługi *nx_dhcp_interface_server_address_get*
+Aby znaleźć serwer DHCP w określonym interfejsie, gdy dla klienta DHCP jest włączonych wiele interfejsów, użyj *nx_dhcp_interface_server_address_get* usługi
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP.
-- **server_address**: wskaźnik do adresu IP serwera
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP.
+- **server_address:** wskaźnik do adresu IP serwera
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) zwrócony adres serwera DHCP
-- **NX_DHCP_NO_INTERFACES_ENABLED**: (0XA5) brak włączonych interfejsów dla protokołu DHCP
+- **NX_SUCCESS:**(0x00) zwrócony adres serwera DHCP
+- **NX_DHCP_NO_INTERFACES_ENABLED:**(0xA5) Brak włączonych interfejsów dla protokołu DHCP
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik wejściowy
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -963,7 +963,7 @@ if (dhcp_0.nx_dhcp_state == NX_DHCP_STATE_BOUND)
 
 ## <a name="nx_dhcp_interface_server_address_get"></a>nx_dhcp_interface_server_address_get
 
-Pobierz adres IP serwera DHCP klienta DHCP w określonym interfejsie
+Uzyskiwanie adresu IP serwera DHCP klienta DHCP w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -975,21 +975,21 @@ UINT nx_dhcp_interface_server_address_get(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera adres IP serwera DHCP klienta DHCP w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP. Klient DHCP musi znajdować się w stanie związanym. Po uruchomieniu klienta DHCP w tym interfejsie aplikacja hosta może użyć usługi *nx_ip_status_check* do sprawdzenia, czy adres IP jest ustawiony, lub może użyć wywołania zwrotnego zmiany stanu klienta DHCP i wysłać zapytanie o stan klienta dhcp, NX_DHCP_STATE_BOUND. Zobacz *nx_dhcp_state_change_notify* , aby uzyskać więcej informacji na temat ustawiania funkcji wywołania zwrotnego zmiany stanu.
+Ta usługa pobiera adres IP serwera DHCP klienta DHCP w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP. Klient DHCP musi być w stanie Powiązana. Po uruchomieniu klienta DHCP w tym interfejsie aplikacja hosta może użyć usługi *nx_ip_status_check* do sprawdzenia, czy adres IP został ustawiony, lub użyć wywołania zwrotnego zmiany stanu klienta DHCP i zapytania o stan klienta DHCP jest NX_DHCP_STATE_BOUND. Zobacz *nx_dhcp_state_change_notify,* aby uzyskać więcej informacji na temat ustawiania funkcji wywołania zwrotnego zmiany stanu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP.
-- **Interface_index**: indeks interfejsu w celu uzyskania adresu IP
-- **server_address**: wskaźnik do adresu IP serwera
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP.
+- **Interface_index:** Indeks interfejsu w celu uzyskania adresu IP
+- **server_address:** wskaźnik do adresu IP serwera
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) zwrócony adres serwera DHCP
-- **NX_DHCP_NO_INTERFACES_ENABLED**: (0XA5) brak włączonych interfejsów dla protokołu DHCP
-- **NX_DHCP_NOT_BOUND**: (0X94) klient DHCP nie jest powiązany
+- **NX_SUCCESS:**(0x00) zwrócony adres serwera DHCP
+- **NX_DHCP_NO_INTERFACES_ENABLED:**(0xA5) Brak włączonych interfejsów dla protokołu DHCP
+- **NX_DHCP_NOT_BOUND:** klient DHCP 0x94 (0x94) nie jest powiązany
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -1022,7 +1022,7 @@ if (dhcp_0.nx_dhcp_state == NX_DHCP_STATE_BOUND)
 
 ## <a name="nx_dhcp_set_interface_index"></a>nx_dhcp_set_interface_index
 
-Ustaw interfejs sieciowy dla wystąpienia DHCP
+Ustawianie interfejsu sieciowego dla wystąpienia dhcp
 
 ### <a name="prototype"></a>Prototype
 
@@ -1032,24 +1032,24 @@ UINT nx_dhcp_set_interface_index(NX_DHCP *dhcp_ptr, UINT index);
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia interfejs sieciowy dla wystąpienia DHCP, aby połączyć się z serwerem DHCP w przypadku uruchamiania klienta DHCP skonfigurowanego dla jednego interfejsu sieciowego.
+Ta usługa ustawia interfejs sieciowy dla wystąpienia DHCP w celu nawiązania połączenia z serwerem DHCP w programie podczas uruchamiania klienta DHCP skonfigurowanego dla jednego interfejsu sieciowego.
 
-Domyślnie klient DHCP jest uruchamiany w interfejsie podstawowym. Aby uruchomić protokół DHCP w usłudze dodatkowej, Użyj tej usługi, aby ustawić interfejs pomocniczy jako interfejs klienta DHCP. Aplikacja musi wcześniej zarejestrować określony interfejs w wystąpieniu IP przy użyciu usługi *nx_ip_interface_attach* .
+Domyślnie klient DHCP jest uruchamiany w interfejsie podstawowym. Aby uruchomić protokół DHCP w usłudze pomocniczej, użyj tej usługi, aby ustawić interfejs pomocniczy jako interfejs klienta DHCP. Aplikacja musi wcześniej zarejestrować określony interfejs w wystąpieniu adresu IP przy użyciu *nx_ip_interface_attach* usługi.
 
 >[!NOTE]
-> Ta usługa jest przeznaczona dla aplikacji, które zamierzają uruchamiać klienta DHCP tylko na jednym interfejsie. Aby uruchomić protokół DHCP na wielu interfejsach, zobacz *nx_dhcp_interface_enable* , aby uzyskać więcej szczegółów.
+> Ta usługa jest przeznaczona dla aplikacji, które mają uruchamiać klienta DHCP tylko na jednym interfejsie. Aby uruchomić protokół DHCP na wielu interfejsach, *zobacz nx_dhcp_interface_enable* aby uzyskać więcej informacji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do bloku sterowania DHCP.  
-- **indeks**: indeks interfejsu sieciowego urządzenia
+- **dhcp_ptr:** wskaźnik do bloku sterowania DHCP.  
+- **index:** Indeks interfejsu sieciowego urządzenia
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) interfejs został pomyślnie ustawiony.
-- **NX_INVALID_INTERFACE**: (0X4C) Nieprawidłowy interfejs sieciowy
-- **NX_DHCP_INTERFACE_ALREADY_ENABLED**: (0xA3) włączono interfejs dla protokołu DHCP
-- **NX_DHCP_NO_RECORDS_AVAILABLE**: (0XA7) Brak dostępnego rekordu dla innego 
+- **NX_SUCCESS:** interfejs (0x00) został pomyślnie ustawiony.
+- **NX_INVALID_INTERFACE:**(0x4C) Nieprawidłowy interfejs sieciowy
+- **NX_DHCP_INTERFACE_ALREADY_ENABLED:** interfejs (0xA3) włączony dla protokołu DHCP
+- **NX_DHCP_NO_RECORDS_AVAILABLE:**(0xA7) Brak dostępnego rekordu dla innego 
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -1076,24 +1076,24 @@ UINT nx_dhcp_start(NX_DHCP *dhcp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa uruchamia przetwarzanie DHCP na wszystkich interfejsach włączonych dla protokołu DHCP. Domyślnie interfejs podstawowy jest włączony dla protokołu DHCP, gdy aplikacja wywołuje *nx_dhcp_create.*
+Ta usługa rozpoczyna przetwarzanie DHCP na wszystkich interfejsach włączonych dla protokołu DHCP. Domyślnie interfejs podstawowy jest włączony dla protokołu DHCP, gdy aplikacja wywołuje *nx_dhcp_create.*
 
-Aby sprawdzić, kiedy wystąpienie protokołu IP jest powiązane z adresem IP w interfejsie klienta DHCP, należy użyć *nx_ip_status_check* , aby sprawdzić, czy adres IP jest prawidłowy.
+Aby sprawdzić, kiedy wystąpienie adresu IP jest powiązane z  adresem IP w interfejsie klienta DHCP, użyj nx_ip_status_check , aby sprawdzić, czy adres IP jest prawidłowy.
 
-Jeśli istnieją inne interfejsy, na których jest już uruchomiony protokół DHCP, ta usługa nie będzie mieć na nie wpływu.
+Jeśli istnieją inne interfejsy, na które już działa protokół DHCP, ta usługa nie wpłynie na nie.
 
-Aby uruchomić protokół DHCP w określonym interfejsie, jeśli włączono wiele interfejsów, Użyj usługi *nx_dhcp_interface_start* .
+Aby uruchomić protokół DHCP na określonym interfejsie, gdy jest włączonych wiele interfejsów, użyj *nx_dhcp_interface_start* usługi.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne uruchomienie usługi DHCP.  
-- **NX_DHCP_ALREADY_STARTED**: (0X93) usługa DHCP jest już uruchomiona.
+- **NX_SUCCESS:**(0x00) Pomyślne uruchomienie protokołu DHCP.  
+- **NX_DHCP_ALREADY_STARTED:** usługa DHCP (0x93) została już uruchomiona.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1110,7 +1110,7 @@ status =  nx_dhcp_start(&my_dhcp);
 
 ## <a name="nx_dhcp_interface_start"></a>nx_dhcp_interface_start
 
-Uruchom przetwarzanie DHCP w określonym interfejsie
+Uruchamianie przetwarzania DHCP w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -1120,23 +1120,23 @@ UINT nx_dhcp_interface_start(NX_DHCP *dhcp_ptr, UINT interface_index);
 
 ### <a name="description"></a>Opis
 
-Ta usługa uruchamia przetwarzanie DHCP w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP. Aby uzyskać więcej informacji na temat włączania interfejsu protokołu DHCP, zobacz *nx_dhcp_interface_enable*(). Domyślnie interfejs podstawowy jest włączony dla protokołu DHCP, gdy aplikacja wywołuje *nx_dhcp_create.*
+Ta usługa uruchamia przetwarzanie DHCP na określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP. Zobacz *nx_dhcp_interface_enable*(), aby uzyskać więcej informacji na temat włączania interfejsu dla protokołu DHCP. Domyślnie interfejs podstawowy jest włączony dla protokołu DHCP, gdy aplikacja wywołuje *nx_dhcp_create.*
 
-Jeśli nie ma innych interfejsów z uruchomionym klientem DHCP, ta usługa uruchomi/wznowi wątek klienta DHCP i (ponownie) uaktywni czasomierz klienta DHCP.  
+Jeśli nie ma innych interfejsów z uruchomionym klientem DHCP, ta usługa uruchomi/wznowi wątek klienta DHCP i (ponownie) aktywuje czasomierz klienta DHCP.  
   
-Aplikacja powinna używać *nx_ip_status_check* , aby sprawdzić, czy uzyskano adres IP.
+Aplikacja powinna użyć *nx_ip_status_check,* aby sprawdzić, czy adres IP został uzyskany.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
-- **Interface_index**: indeks, na którym ma zostać uruchomiony klient DHCP
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
+- **Interface_index:** indeks, na którym ma być uruchamiany klient DHCP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne uruchomienie usługi DHCP. 
-- **NX_DHCP_ALREADY_STARTED**: (0X93) usługa DHCP jest już uruchomiona.
+- **NX_SUCCESS:**(0x00) Pomyślne uruchomienie protokołu DHCP. 
+- **NX_DHCP_ALREADY_STARTED:**(0x93) DHCP już uruchomiony.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący usługę.
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -1165,7 +1165,7 @@ UINT nx_dhcp_state_change_notify(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje określoną funkcję wywołania zwrotnego dhcp_state_change_notify w celu powiadomienia aplikacji o zmianach stanu protokołu DHCP. Funkcja wywołania zwrotnego dostarcza stan, do którego przeszedł klient DHCP.
+Ta usługa rejestruje określoną funkcję wywołania zwrotnego dhcp_state_change_notify powiadamiania aplikacji o zmianach stanu PROTOKOŁU DHCP. Funkcja wywołania zwrotnego dostarcza stan, do który został przenoszony klient DHCP.
 
 Poniżej przedstawiono wartości skojarzone z różnymi stanami DHCP:
 
@@ -1181,18 +1181,18 @@ Poniżej przedstawiono wartości skojarzone z różnymi stanami DHCP:
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
-- **dhcp_state_change_notify**: wskaźnik funkcji wywołania zwrotnego zmiany stanu
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
+- **dhcp_state_change_notify:** Wskaźnik funkcji wywołania zwrotnego zmiany stanu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne ustawienie wywołania zwrotnego.  
+- **NX_SUCCESS:**(0x00) Zestaw pomyślnych wywołań zwrotnych.  
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki, Inicjalizacja
+Wątki, inicjowanie
 
 ### <a name="example"></a>Przykład
 
@@ -1206,7 +1206,7 @@ status =  nx_dhcp_state_change_notify(&my_dhcp, my_state_change);
 
 ## <a name="nx_dhcp_interface_state_change_notify"></a>nx_dhcp_interface_state_change_notify
 
-Ustaw funkcję wywołania zwrotnego zmiany stanu DHCP w określonym interfejsie
+Ustawianie funkcji wywołania zwrotnego zmiany stanu protokołu DHCP dla określonego interfejsu
 
 ### <a name="prototype"></a>Prototype
 
@@ -1219,23 +1219,23 @@ UINT nx_dhcp_interface_state_change_notify(NX_DHCP *dhcp_ptr, UINT interface_ind
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje określoną funkcję wywołania zwrotnego w celu powiadomienia aplikacji o zmianach stanu protokołu DHCP. Argumenty wejściowe ATANH wywołania zwrotnego są indeksem interfejsu i stanem, w którym klient DHCP przeszedł w tym interfejsie.
+Ta usługa rejestruje określoną funkcję wywołania zwrotnego w celu powiadamiania aplikacji o zmianach stanu PROTOKOŁU DHCP. Argumenty wejściowe funciton wywołania zwrotnego są indeksem interfejsu i stanem, w którym klient DHCP został przenoszony do tego interfejsu.
 
-Aby uzyskać więcej informacji na temat funkcji zmiany stanu, zobacz *nx_dhcp_state_change_notify*().
+Aby uzyskać więcej informacji na temat funkcji zmiany stanu, *zobacz nx_dhcp_state_change_notify*().
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
-- **dhcp_interface_state_change_notify**: wskaźnik funkcji wywołania zwrotnego aplikacji
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
+- **dhcp_interface_state_change_notify:** Wskaźnik funkcji wywołania zwrotnego aplikacji
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne ustawienie wywołania zwrotnego.  
+- **NX_SUCCESS:**(0x00) Zestaw pomyślnych wywołań zwrotnych.  
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki, Inicjalizacja
+Wątki, inicjowanie
 
 ### <a name="example"></a>Przykład
 
@@ -1256,7 +1256,7 @@ status =  nx_dhcp_interstate_state_change_notify(&my_dhcp,
 
 ## <a name="nx_dhcp_stop"></a>nx_dhcp_stop
 
-Powoduje zatrzymanie przetwarzania protokołu DHCP
+Zatrzymuje przetwarzanie DHCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -1266,20 +1266,20 @@ UINT nx_dhcp_stop(NX_DHCP *dhcp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa powoduje zatrzymanie przetwarzania protokołu DHCP na wszystkich interfejsach, które uruchomiły przetwarzanie DHCP. Jeśli nie ma żadnych interfejsów przetwarzających protokół DHCP, ta usługa zawiesza wątek klienta DHCP i dezaktywuje czasomierz klienta DHCP.
+Ta usługa zatrzymuje przetwarzanie DHCP na wszystkich interfejsach, które zostały uruchomione przetwarzanie DHCP. Jeśli nie ma interfejsów przetwarzanych przez protokół DHCP, ta usługa wstrzymuje wątek klienta DHCP i aktywuje czasomierz klienta DHCP.
 
-Aby zatrzymać usługę DHCP w określonym interfejsie, jeśli dla usługi DHCP włączono wiele interfejsów, Użyj usługi *nx_dhcp_interface_stop* .
+Aby zatrzymać protokół DHCP na określonym interfejsie, jeśli dla protokołu DHCP jest włączonych wiele interfejsów, użyj *nx_dhcp_interface_stop* usługi.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) POMYŚLNE zatrzymanie DHCP
-- **NX_DHCP_NOT_STARTED**: (0x96) wystąpienie DHCP nie zostało uruchomione.
+- **NX_SUCCESS:**(0x00) Pomyślne zatrzymanie protokołu DHCP
+- **NX_DHCP_NOT_STARTED:**(0x96) Wystąpienie DHCP nie jest uruchomione.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1296,7 +1296,7 @@ status =  nx_dhcp_stop(&my_dhcp);
 
 ## <a name="nx_dhcp_interface_stop"></a>nx_dhcp_interface_stop
 
-Zatrzymaj przetwarzanie DHCP w określonym interfejsie
+Zatrzymywanie przetwarzania DHCP w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -1306,19 +1306,19 @@ UINT nx_dhcp_interface_stop(NX_DHCP *dhcp_ptr, UINT interface_index);
 
 ### <a name="description"></a>Opis
 
-Ta usługa powoduje zatrzymanie przetwarzania DHCP w określonym interfejsie, jeśli usługa DHCP jest już uruchomiona. Jeśli nie ma innych interfejsów z uruchomionym protokołem DHCP, wątek i czasomierz DHCP są wstrzymywane.
+Ta usługa zatrzymuje przetwarzanie DHCP na określonym interfejsie, jeśli protokół DHCP jest już uruchomiony. Jeśli nie ma innych interfejsów z systemem DHCP, wątek DHCP i czasomierz zostaną wstrzymane.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
-- **Interface_index**: interfejs, w którym ma zostać zatrzymane przetwarzanie DHCP
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
+- **Interface_index:** interfejs, na którym ma zatrzymać przetwarzanie DHCP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) POMYŚLNE zatrzymanie DHCP
-- **NX_DHCP_NOT_STARTED**: (0X96) serwer DHCP nie został uruchomiony.
+- **NX_SUCCESS:**(0x00) Pomyślne zatrzymanie protokołu DHCP
+- **NX_DHCP_NOT_STARTED:**(0x96) DHCP nie został uruchomiony.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący usługę.
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -1336,7 +1336,7 @@ status =  nx_dhcp_interface_stop(&my_dhcp, 1);
 
 ## <a name="nx_dhcp_user_option_retrieve"></a>nx_dhcp_user_option_retrieve
 
-Pobierz opcję DHCP z ostatniej odpowiedzi serwera
+Pobieranie opcji DHCP z ostatniej odpowiedzi serwera
 
 ### <a name="prototype"></a>Prototype
 
@@ -1347,24 +1347,24 @@ UINT nx_dhcp_user_option_retrieve(NX_DHCP *dhcp_ptr, UINT request_option,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera określoną opcję DHCP z bufora opcji DHCP pierwszego interfejsu z włączonym protokołem DHCP znalezionym w rekordzie klienta DHCP. Jeśli to się powiedzie, dane opcji są kopiowane do określonego buforu.
+Ta usługa pobiera określoną opcję DHCP z buforu opcji DHCP dla pierwszego interfejsu włączonego dla protokołu DHCP znalezionego w rekordzie klienta DHCP. W przypadku powodzenia dane opcji są kopiowane do określonego buforu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.  
-- **request_option**: opcja DHCP, zgodnie z opisem w specyfikacjach RFC. Zobacz opcję NX_DHCP_OPTION w *nxd_dhcp_client. h*.
-- **destination_ptr**: wskaźnik do miejsca docelowego dla ciągu odpowiedzi.  
-- **destination_size**: wskaźnik do rozmiaru miejsca docelowego i na Return, miejsce docelowe, do którego zostanie umieszczona liczba zwracanych bajtów.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.  
+- **request_option:** opcja DHCP określona przez RFC. Zobacz opcję NX_DHCP_OPTION w *nxd_dhcp_client.h.*
+- **destination_ptr:** wskaźnik do miejsca docelowego dla ciągu odpowiedzi.  
+- **destination_size:** wskaźnik do rozmiaru miejsca docelowego i miejsca docelowego, w którym ma być umieszczana liczba zwracanych bajtów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pobieranie opcji powiodło się.  
-- **NX_DHCP_NOT_BOUND**: (0X94) klient DHCP nie jest powiązany.
-- **NX_DHCP_NO_INTERFACES_ENABLED**: (0XA5) brak włączonych interfejsów dla protokołu DHCP
-- **NX_DHCP_DEST_TO_SMALL**: (0X95) miejsce docelowe jest zbyt małe, aby można było przetrzymać odpowiedź.
-- W odpowiedzi serwera nie znaleziono opcji **NX_DHCP_PARSE_ERROR**: (0x97).
+- **NX_SUCCESS:**(0x00) Pobieranie opcji powiodło się.  
+- **NX_DHCP_NOT_BOUND:**(0x94) klient DHCP nie jest powiązany.
+- **NX_DHCP_NO_INTERFACES_ENABLED:**(0xA5) Brak włączonych interfejsów dla protokołu DHCP
+- **NX_DHCP_DEST_TO_SMALL:**(0x95) Miejsce docelowe jest zbyt małe, aby można było przechowywać odpowiedź.
+- **NX_DHCP_PARSE_ERROR:**(0x97) Nie znaleziono opcji w odpowiedzi serwera.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik wejściowy.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1386,7 +1386,7 @@ status =  nx_dhcp_user_option_retrieve(&my_dhcp, NX_DHCP_OPTION_DNS_SVR,
 
 ## <a name="nx_dhcp_interface_user_option_retrieve"></a>nx_dhcp_interface_user_option_retrieve
 
-Pobierz opcję DHCP z ostatniej odpowiedzi serwera w określonym interfejsie
+Pobieranie opcji DHCP z ostatniej odpowiedzi serwera w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -1399,24 +1399,24 @@ UINT nx_dhcp_interface_user_option_retrieve(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera określoną opcję DHCP z bufora opcji DHCP w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP. Jeśli to się powiedzie, dane opcji są kopiowane do określonego buforu.
+Ta usługa pobiera określoną opcję DHCP z buforu opcji DHCP w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP. Jeśli to się powiedzie, dane opcji zostaną skopiowane do określonego buforu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
-- **Interface_index**: indeks, na którym ma zostać pobrana określona opcja
-- **request_option**: opcja DHCP, zgodnie z opisem w specyfikacjach RFC. Zobacz NX_DHCP_OPTION opcji: w *nxd_dhcp_client. h*.  
-- **destination_ptr**: wskaźnik do miejsca docelowego dla ciągu odpowiedzi.  
-- **destination_size**: wskaźnik do rozmiaru miejsca docelowego i na Return, miejsce docelowe, do którego zostanie umieszczona liczba zwracanych bajtów.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
+- **Interface_index:** indeks, na którym ma zostać pobrana określona opcja
+- **request_option:** opcja DHCP określona przez RFC. Zobacz NX_DHCP_OPTION opcji: w *nxd_dhcp_client.h.*  
+- **destination_ptr:** wskaźnik do miejsca docelowego dla ciągu odpowiedzi.  
+- **destination_size:** wskaźnik do rozmiaru miejsca docelowego i miejsca docelowego, w którym ma być umieszczana liczba zwracanych bajtów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pobieranie opcji powiodło się.  
-- **NX_DHCP_NOT_BOUND**: (0x94) nie przypisano adresu IP
-- Bufor **NX_DHCP_DEST_TO_SMALL**: (0x95) jest za mały
-- **NX_DHCP_PARSE_ERROR**: w odpowiedzi serwera nie znaleziono opcji DHCP (0x97).
+- **NX_SUCCESS:**(0x00) Pobieranie opcji powiodło się.  
+- **NX_DHCP_NOT_BOUND:**(0x94) adres IP nie jest przypisany
+- **NX_DHCP_DEST_TO_SMALL:**(0x95) Bufor jest za mały
+- **NX_DHCP_PARSE_ERROR:**(0x97) nie można znaleźć opcji DHCP w odpowiedzi serwera.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik DHCP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący usługę.
 - NX_INVALID_INTERFACE: (0x4C) Nieprawidłowy interfejs sieciowy
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -1439,7 +1439,7 @@ status =  nx_dhcp_interface_user_option_retrieve(&my_dhcp, 0, NX_DHCP_OPTION_DNS
 
 ## <a name="nx_dhcp_user_option_convert"></a>nx_dhcp_user_option_convert
 
-Konwertuj cztery bajty na ULONG
+Konwertowanie czterech bajtów na ULONG
 
 ### <a name="prototype"></a>Prototype
 
@@ -1449,16 +1449,16 @@ ULONG nx_dhcp_user_option_convert(UCHAR *option_string_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa konwertuje cztery znaki wskazywane przez "option_string_ptr" na wartość długą bez znaku. Jest to szczególnie przydatne, gdy adresy IP są  
-aktualny.
+Ta usługa konwertuje cztery znaki wskazywane przez "option_string_ptr" na niepodpisaną wartość długą. Jest to szczególnie przydatne, gdy adresy IP są  
+Obecny.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **option_string_ptr**: wskaźnik do wcześniej pobranego ciągu opcji.
+- **option_string_ptr:** Wskaźnik do wcześniej pobranego ciągu opcji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **Wartość**: wartość pierwszych czterech bajtów.
+- **Wartość:** wartość pierwszych czterech bajtów.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1479,7 +1479,7 @@ dns_ip=  nx_dhcp_user_option_convert(dns_ip_string);
 
 ## <a name="nx_dhcp_user_option_add_callback_set"></a>nx_dhcp_user_option_add_callback_set
 
-Ustaw funkcję wywołania zwrotnego w celu dodania opcji dostarczonych przez użytkownika
+Ustawianie funkcji wywołania zwrotnego w celu dodawania opcji podanych przez użytkownika
 
 ### <a name="prototype"></a>Prototype
 
@@ -1494,21 +1494,21 @@ ULONG nx_dhcp_user_option_add_callbcak_set(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje określoną funkcję wywołania zwrotnego w celu dodania opcji dostarczonych przez użytkownika.
+Ta usługa rejestruje określoną funkcję wywołania zwrotnego w celu dodania opcji podanych przez użytkownika.
 
-Jeśli określono funkcję wywołania zwrotnego, aplikacje mogą dodać opcje dostarczone przez użytkownika do pakietu, iface_index i message_type.
+Jeśli określona funkcja wywołania zwrotnego, aplikacje mogą dodać do pakietu opcje podane przez użytkownika, iface_index i message_type.
 
 >[!NOTE] 
-> W procedurze użytkownika. W przypadku dodawania opcji dostarczonych przez użytkownika aplikacje muszą być zgodne z formatem opcji DHCP. Łączny rozmiar opcji użytkownika musi być mniejszy lub równy user_option_length i aktualizować user_option_length jako rzeczywistą długość opcji. Zwróć NX_TRUE w przypadku pomyślnego dodania opcji, w przeciwnym razie Zwróć NX_FALSE.
+> W procedurach użytkownika. Aplikacje muszą postępować zgodnie z formatem opcji DHCP podczas dodawania opcji podanych przez użytkownika. Łączny rozmiar opcji użytkownika musi być mniejszy lub równy user_option_length i aktualizować user_option_length jako rzeczywistą długość opcji. Jeśli NX_TRUE pomyślnie dodasz opcje, w innym przypadku zwróć NX_FALSE.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **dhcp_ptr**: wskaźnik do wcześniej utworzonego wystąpienia serwera DHCP.
-- **dhcp_user_option_add**: wskaźnik do opcji użytkownika Dodaj funkcję.
+- **dhcp_ptr:** wskaźnik do wcześniej utworzonego wystąpienia DHCP.
+- **dhcp_user_option_add:** Wskaźnik do opcji użytkownika dodaj funkcję.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne ustawienie wywołania zwrotnego.
+- **NX_SUCCESS:**(0x00) Zestaw pomyślnych wywołań zwrotnych.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik.
 
 ### <a name="allowed-from"></a>Dozwolone z

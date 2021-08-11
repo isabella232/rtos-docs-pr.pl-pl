@@ -1,46 +1,46 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z serwera DHCP usługi Azure RTO NetX Duo
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika DHCP NetX Duo.
+title: Rozdział 2 — Instalowanie i używanie serwera DHCP Azure RTOS NetX Duo
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika DHCP NetX Duo.
 author: philmea
 ms.author: philmea
 ms.date: 06/08/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 201e8b7e245539c1780ace4c3af4bc063a8485b3
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: aed0b61e595666e834a269911a261b36d10f46069d587ee1be1ec64e143360e9
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822015"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790330"
 ---
-# <a name="chapter-2---installation-and-use-of-the-azure-rtos-netx-duo-dhcp-server"></a>Rozdział 2 — Instalowanie i korzystanie z serwera DHCP usługi Azure RTO NetX Duo
+# <a name="chapter-2---installation-and-use-of-the-azure-rtos-netx-duo-dhcp-server"></a>Rozdział 2 — Instalowanie i używanie serwera DHCP Azure RTOS NetX Duo
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika DHCP NetX Duo.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika DHCP NetX Duo.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Serwer DHCP NetX Duo jest dostępny pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera dwa pliki źródłowe i plik PDF, który zawiera ten dokument, w następujący sposób:
+Serwer DHCP NetX Duo jest dostępny pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera dwa pliki źródłowe i plik PDF zawierający ten dokument w następujący sposób:
 
-- **nxd_dhcp_server. h** Plik nagłówkowy serwera DHCP z NetX Duo
-- **nxd_dhcp_server. c** Plik źródłowy C dla serwera DHCP z NetX Duo
-- **nxd_dhcp_server.pdf** Podręcznik użytkownika dla serwera DHCP NetX Duo
-- **demo_netxduo_dhcp. c** Demonstracja serwera DHCP NetX Duo
+- **nxd_dhcp_server.h** Plik nagłówkowy serwera DHCP NetX Duo
+- **nxd_dhcp_server.c** Plik źródłowy języka C dla serwera DHCP NetX Duo
+- **nxd_dhcp_server.pdf** Podręcznik użytkownika serwera DHCP NetX Duo
+- **demo_netxduo_dhcp.c** Pokaz serwera DHCP NetX Duo
 
-## <a name="dhcp-installation"></a>Instalacja DHCP
+## <a name="dhcp-installation"></a>Instalacja protokołu DHCP
 
-Aby można było korzystać z serwera DHCP z systemem NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowana w katalogu "*\threadx\arm7\green*", wówczas pliki *nxd_dhcp_server. h* i *nxd_dhpc_server. c* powinny zostać skopiowane do tego katalogu.
+Aby można było korzystać z serwera DHCP NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX Duo. Jeśli na przykład program NetX Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* do tego katalogu powinny zostać skopiowane pliki *nxd_dhcp_server.h* i *nxd_dhpc_server.c.*
 
-## <a name="using-netx-duo-dhcp-server"></a>Korzystanie z serwera DHCP z NetX Duo
+## <a name="using-netx-duo-dhcp-server"></a>Korzystanie z serwera DHCP NetX Duo
 
-Korzystanie z serwera DHCP z NetX Duo jest proste. Zasadniczo kod aplikacji musi zawierać *nx_dhcp_server. h* , po uwzględnieniu *tx_api. h* i *nx_api. h*, aby użyć odpowiednio ThreadX i NetX Duo. Po dołączeniu *nxd_dhcp_server. h* kod aplikacji będzie następnie mógł określić wywołania funkcji DHCP w dalszej części tego przewodnika. Aplikacja musi również zawierać *nxd_dhcp_server. c* w procesie kompilacji. Ten plik musi być skompilowany w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. Aby uzyskać więcej informacji na temat korzystania z serwera DHCP z systemem NetX Duo, zobacz poniższe sekcje wymagania dotyczące **serwera** DHCP **w systemie NetX Duo** i ograniczeń serwera DHCP z systemem **NetX Duo**.
+Korzystanie z serwera DHCP NetX Duo jest łatwe. Zasadniczo kod aplikacji musi zawierać kod *nx_dhcp_server.h,* gdy zawiera on elementy *tx_api.h* i *nx_api.h,* aby można było używać odpowiednio threadx i NetX Duo. Po *nxd_dhcp_server.h* kod aplikacji może następnie wykonać wywołania funkcji DHCP określone w dalszej części tego przewodnika. Aplikacja musi również *uwzględniać nxd_dhcp_server.c* w procesie kompilacji. Ten plik musi zostać skompilowany w taki sam sposób, jak inne pliki aplikacji, a jego formularz obiektu musi być połączony z plikami aplikacji. Aby uzyskać więcej informacji na temat korzystania z serwera DHCP NetX Duo, zobacz następujące sekcje Wymagania dotyczące serwera **DHCP NetX Duo**  i ograniczeń serwera **DHCP NetX Duo.**
 
-Należy pamiętać, że ponieważ protokół DHCP korzysta z usług UDP NetX Duo, należy włączyć protokół UDP przy użyciu wywołania *nx_udp_enable* przed użyciem protokołu DHCP.
+Należy pamiętać, że ponieważ protokół DHCP korzysta z usług NetX Duo UDP, należy włączyć protokół UDP za pomocą *wywołania nx_udp_enable* przed użyciem protokołu DHCP.
 
-## <a name="requirements-of-the-netx-duo-dhcp-server"></a>Wymagania dotyczące serwera DHCP z NetX Duo
+## <a name="requirements-of-the-netx-duo-dhcp-server"></a>Wymagania serwera DHCP NetX Duo
 
-Serwer DHCP NetX Duo wymaga, aby port gniazda UDP został przypisany do dobrze znanego portu DHCP 67. Aby utworzyć serwer DHCP, aplikacja musi utworzyć pulę pakietów z ładunkiem pakietu o co najmniej 548 bajtach, a także nagłówkiem IP, UDP i Ethernet (łącznie 44 bajtów z 4 bajtem).
+Serwer DHCP NetX Duo wymaga portu gniazda UDP przypisanego do dobrze znanego portu DHCP 67. Aby utworzyć serwer DHCP, aplikacja musi utworzyć pulę pakietów z ładunkiem pakietów o rozmiarze co najmniej 548 bajtów oraz nagłówkami adresów IP, UDP i Ethernet (które łącznie 44 bajty z wyrównaniem 4 bajtów).
 
-Przyjęto założenie, że serwer i klient używają ustawień adresu sprzętowego sieci Ethernet:
+Zakłada się, że zarówno serwer, jak i klient, korzysta z ustawień adresu sprzętowego sieci Ethernet:
 
 - Typ sprzętu 1
 - Długość sprzętu 6
@@ -48,67 +48,67 @@ Przyjęto założenie, że serwer i klient używają ustawień adresu sprzętowe
 
 ### <a name="multiple-client-sessions"></a>Wiele sesji klienta
 
-Serwer DHCP z systemem NetX Duo może obsługiwać wiele sesji klientów, zachowując tabelę aktywnych klientów DHCP i jakie "Stany" klient znajduje się na liście. Stany DHCP INICJUJą, URUCHAMIAją, WYBIERAją, ŻĄDAją, ODNAWIAnia itp. Jeśli limit czasu sesji upływa przed odebraniem następnego komunikatu klienta, o ile ten klient nie jest powiązany z dzierżawą IP, serwer wyczyści dane sesji klienta i zwróci przypisany adres IP z powrotem do dostępnej puli. Jeśli serwer odbierze wiele komunikatów ODNAJDYWAnia z tego samego klienta, serwer resetuje limit czasu sesji i utrzymuje adres IP zarezerwowany dla klienta w kolejnych komunikatach żądania.
+Serwer DHCP NetX Duo może obsługuje wiele sesji klientów, zachowując tabelę aktywnych klientów DHCP i "stan" klienta, np. INIT stanu DHCP, ROZRUCHU, WYBIERANIA, ŻĄDANIA, ODNAWIANIA itp. Jeśli upłynie czas sesji przed odebraniem następnego komunikatu klient, chyba że klient jest powiązany z dzierżawą ip, serwer wyczyści dane sesji klienta i zwróci przypisany adres IP z powrotem do dostępnej puli. Jeśli serwer odbiera wiele komunikatów ODNAJDYWANIA od tego samego klienta, serwer resetuje czas sesji i zachowuje adres IP zarezerwowany dla klienta do zaakceptowania w kolejnym komunikacie REQUEST.
 
-Serwer DHCP NetX Duo akceptuje również żądanie DHCP klienta pojedynczego stanu, np. klient wysyła tylko komunikat żądania. Przyjęto założenie, że klientowi przypisano wcześniej dzierżawę adresu IP z serwera DHCP.
+Serwer DHCP NetX Duo akceptuje również jedno stanowe żądanie DHCP klienta, na przykład klient wysyła tylko komunikat REQUEST. Przyjęto założenie, że klientowi wcześniej przypisano dzierżawę adresu IP z serwera DHCP.
 
-### <a name="setting-interface-specific-network-parameters-server-responses"></a>Ustawianie specyficznych dla interfejsu parametrów sieciowych odpowiedzi serwera
+### <a name="setting-interface-specific-network-parameters-server-responses"></a>Ustawianie odpowiedzi serwera parametrów sieci specyficznych dla interfejsu
 
-Aplikacja może ustawić router, maskę podsieci i parametry serwera DNS dla każdego interfejsu, który obsługuje żądania klientów DHCP przy użyciu usługi *nx_dhcp_set_interface_network_parameters* . W przeciwnym razie te parametry są domyślnie przypisane do bramy IP w interfejsie głównym serwera, jego podsieci sieciowej DHCP i adresu IP serwera DHCP.
+Aplikacja może ustawić router, maskę podsieci i parametry serwera DNS dla każdego interfejsu, który obsługuje żądania klienta DHCP, przy *użyciu nx_dhcp_set_interface_network_parameters* usługi. W przeciwnym razie te parametry są domyślnie bramy IP w interfejsie podstawowym serwera, jego podsieci sieci DHCP i adres IP serwera DHCP, odpowiednio.
 
 Serwer DHCP zawiera te parametry w danych opcji komunikatów DHCP wysyłanych do klientów DHCP.
 
 ### <a name="assigning-ip-addresses-to-the-client"></a>Przypisywanie adresów IP do klienta
 
-Jeśli komunikat ODNAJDYWAnia klienta nie określa żądanego adresu IP, serwer DHCP może użyć jednego z jego własnej puli. Jeśli serwer nie ma dostępnych adresów IP, wyśle klientowi komunikat NACK.
+Jeśli komunikat ODNAJDYWANIE klienta nie określa żądanego adresu IP, serwer DHCP może użyć go z własnej puli. Jeśli serwer nie ma dostępnych adresów IP, wyśle klientowi komunikat NACK.
 
-Serwer DHCP NetX Duo przydzieli żądany adres IP w komunikacie żądania klienta, o ile adres IP jest dostępny i znajduje się w bazie danych adresów IP serwera. Aplikacja tworzy listę dostępnych adresów IP serwera na potrzeby przypisywania do klientów DHCP przy użyciu usługi *nx_dhcp_create_server_ip_address_list* . Jeśli serwer nie ma żądanych adresów IP lub jest przypisany do innego hosta, wyśle klientowi komunikat NACK.
+Serwer DHCP NetX Duo udzieli żądanego adresu IP w komunikacie ŻĄDANIE klienta, o ile adres IP jest dostępny i można go znaleźć w bazie danych adresów IP serwera. Aplikacja tworzy listę dostępnych adresów IP serwera na potrzeby przypisywania do klientów DHCP przy użyciu *nx_dhcp_create_server_ip_address_list* usługi. Jeśli serwer nie ma żądanych adresów IP lub zostanie przypisany do innego hosta, wyśle klientowi komunikat NACK.
 
-Gdy serwer DHCP odbiera żądanie klienta, identyfikuje tego klienta w sposób unikatowy przy użyciu adresu MAC klienta w polu adres MAC klienta w komunikacie DHCP. Jeśli klient zmieni adres MAC lub zostanie przeniesiony w innym miejscu do innej podsieci, powinien wysłać komunikat o ZWOLNIeniu do serwera w celu zwrócenia adresu IP z powrotem do dostępnej puli i zażądać nowego adresu IP w stanie inicjowania.
+Gdy serwer DHCP odbiera żądanie klienta, identyfikuje go jednoznacznie przy użyciu adresu MAC klienta w polu Adres MAC klienta w komunikacie DHCP. Jeśli klient zmieni adres MAC lub zostanie przeniesiony w innym miejscu do innej podsieci, powinien wysłać do serwera komunikat RELEASE w celu zwrócenia adresu IP z powrotem do dostępnej puli i zażądać nowego adresu IP w stanie INIT.
 
-Szczegóły można znaleźć na rysunku 1,1 w **małej sekcji systemowej** . Liczba adresów IP zapisanych w wystąpieniu serwera DHCP jest ograniczona do rozmiaru tablicy adresów serwera w bloku kontroli serwera DHCP i jest definiowana przez konfigurowalną NX_DHCP_IP_ADDRESS_MAX_LIST_SIZE opcji.
+Aby uzyskać szczegółowe informacje, zobacz rysunek 1.1 w sekcji **Small Example System (Mały** przykładowy system). Liczba adresów IP zapisanych w wystąpieniu serwera DHCP jest ograniczona do rozmiaru tablicy adresów serwera w bloku sterowania serwera DHCP i definiowana przez konfigurowalna opcja NX_DHCP_IP_ADDRESS_MAX_LIST_SIZE.
 
 ### <a name="ip-address-lease-times"></a>Czasy dzierżawy adresów IP
 
-Serwer DHCP również akceptuje czas dzierżawy klienta żądania, jeśli czas dzierżawy jest krótszy niż domyślny czas dzierżawy serwera, który jest zdefiniowany w opcji konfigurowalne NX_DHCP_DEFAULT_LEASE_TIME. Odnawianie i ponowne wiązanie czasów przypisanych do klienta wynosi odpowiednio 50% i 85% czasu dzierżawy, chyba że czas dzierżawy jest nieskończony (0xFFFFFFFF), w którym przypadku odnowienie i ponowne wiązanie czasu są również ustawione na nieskończoność.
+Serwer DHCP będzie również akceptował czas dzierżawy klienta żądania, jeśli czas dzierżawy jest krótszy niż domyślny czas dzierżawy serwera, który jest zdefiniowany w konfigurowalnej opcji NX_DHCP_DEFAULT_LEASE_TIME. Czasy odnawiania i ponownego wiązania przypisane do klienta to odpowiednio 50% i 85% czasu dzierżawy, chyba że czas dzierżawy to nieskończoność (0xFFFFFFFF), w którym to przypadku czas odnowienia i ponownego wiązania jest również ustawiony na nieskończoność.
 
 ### <a name="dhcp-server-timeouts"></a>Limity czasu serwera DHCP
 
-Serwer DHCP ma konfigurowalny limit czasu sesji użytkownika, NX_DHCP_CLIENT_SESSION_TIMEOUT w celu oczekiwania na następny komunikat klienta DHCP, chyba że sesja zostanie ukończona. Limit czasu jest resetowany, gdy serwer odbierze następny komunikat od klienta, niezależnie od tego, czy wiadomość została wcześniej wysłana.
+Serwer DHCP ma konfigurowalny przez użytkownika limit czasu sesji NX_DHCP_CLIENT_SESSION_TIMEOUT do oczekiwania na następny komunikat klienta DHCP, chyba że sesja została ukończona. Ten czas jest resetowany, gdy serwer odbiera następny komunikat od klienta, niezależnie od tego, czy jest to ten sam komunikat, który został wcześniej wysłany.
 
 ### <a name="internal-error-handling"></a>Wewnętrzna obsługa błędów
 
-Serwer DHCP odbiera i przetwarza pakiety klienta DHCP w funkcji *nx_dhcp_listen_for_messages* . Ta funkcja nie będzie kontynuować przetwarzania bieżącego pakietu klienta DHCP, jeśli pakiet jest nieprawidłowy lub wystąpił błąd wewnętrzny serwera DHCP. n *x_dhcp_listen_for_messages* zwraca stanu błędu. Wątek serwera DHCP zrzeka się krótkiej kontroli harmonogramu ThreadX przed wywołaniem tej funkcji, aby otrzymać następny komunikat klienta DHCP. W bieżącej wersji nie ma obsługi rejestrowania dla stanu błędu zwraca z *nx_dhcp_listen_for_messages.*
+Serwer DHCP odbiera i przetwarza pakiety klienta DHCP w nx_dhcp_listen_for_messages *funkcji.* Ta funkcja zakończy przetwarzanie bieżącego pakietu klienta DHCP, jeśli pakiet jest nieprawidłowy lub serwer DHCP napotka błąd wewnętrzny. n *x_dhcp_listen_for_messages* zwraca stan błędu. Wątek serwera DHCP relinquishes kontroli przez krótki czas harmonogramu ThreadX przed wywołaniem tej funkcji do odbierania następnego komunikatu klienta DHCP. W bieżącej wersji nie ma obsługi rejestrowania dla powrotu stanu błędu z *nx_dhcp_listen_for_messages.*
 
-### <a name="option-55-parameter-request-list"></a>Opcja 55: Lista żądań parametrów
+### <a name="option-55-parameter-request-list"></a>Opcja 55. Lista żądań parametrów
 
-Serwer DHCP NetX Duo musi być skonfigurowany z zestawem opcji do załadowania do parametru opcja żądania (55) w komunikatach oferta i DHCPACK przesyłanych z powrotem do klienta. Te opcje powinny obejmować dane konfiguracji krytycznej sieci dla sieci klienta i domyślnie zdefiniowane jako adres IP routera, maska podsieci i serwer DNS. Lista opcji jest listą rozdzielaną spacjami i zdefiniowaną w NX_DHCP_DEFAULT_SERVER_OPTION_LIST konfigurowanym przez użytkownika. Zwróć uwagę, że liczba opcji określona na tej liście musi być równa NX_DHCP_DEFAULT_OPTION_LIST_SIZE, która również jest zdefiniowana przez użytkownika.
+Serwer DHCP NetX Duo musi być skonfigurowany z zestawem opcji ładowania do listy opcji żądania parametru (55) w komunikatach OFFER i DHCPACK, które są wysyłane z powrotem do klienta. Te opcje powinny zawierać dane konfiguracji o krytycznym znaczeniu dla sieci klienta i domyślnie są zdefiniowane jako adres IP routera, maska podsieci i serwer DNS. Lista opcji jest listą rozdzielonych spacjami i zdefiniowaną w konfigurowalnym przez użytkownika NX_DHCP_DEFAULT_SERVER_OPTION_LIST. Należy pamiętać, że liczba opcji określona na tej liście musi być równa NX_DHCP_DEFAULT_OPTION_LIST_SIZE która jest również zdefiniowana przez użytkownika.
 
-## <a name="constraints-of-the-netx-duo-dhcp-server"></a>Ograniczenia serwera DHCP z NetX Duo
+## <a name="constraints-of-the-netx-duo-dhcp-server"></a>Ograniczenia serwera DHCP NetX Duo
 
 ### <a name="dhcp-messages"></a>Komunikaty DHCP
 
-Serwer DHCP NetX Duo nie sprawdza, czy adres IP nie został przypisany w innym miejscu w sieci przed przydzieleniem adresu IP klientowi. Jeśli istnieje wiele serwerów DHCP, może to być w rzeczywistości. *Zgodnie z dokumentem RFC 2131, jest odpowiedzialny za sprawdzenie, czy adres IP jest unikatowy w sieci* (np. pingowanie adresu). Jeśli tak nie jest, serwer powinien odebrać komunikat o ODRZUCENIu o adresie IP, aby zaktualizować jego bazę danych od klienta.
+Serwer DHCP NetX Duo nie weryfikuje, czy adres IP nie został przypisany w innym miejscu w sieci przed udzieleniem adresu IP klientowi. Jeśli istnieje wiele serwerów DHCP, może tak być w rzeczywistości. *Zgodnie z RFC 2131* klient jest odpowiedzialny za sprawdzenie, czy adres IP jest unikatowy w jego sieci (np. wyślij polecenie ping do adresu). Jeśli tak nie jest, serwer powinien otrzymać komunikat ODRZUĆ z adresem IP, aby zaktualizować swoją bazę danych z klienta.
 
-Serwer DHCP NetX Duo nie wydaje komunikatów FORCE_RENEW. Klient DHCP może odnowić dzierżawę adresów IP. Jednak serwer DHCP monitoruje pozostały czas dla wszystkich przypisanych adresów IP w swojej bazie danych. Gdy dzierżawa adresu IP wygaśnie, ten adres IP jest zwracany do puli dostępnych adresów IP. W związku z tym klient może aktywnie odnowić/ponownie powiązać dzierżawę adresów IP.
+Serwer DHCP NetX Duo nie wysyła FORCE_RENEW komunikatów. To klient DHCP musi odnowić dzierżawę adresu IP. Serwer DHCP monitoruje jednak czas pozostały na wszystkich przypisanych adresach IP w swojej bazie danych. Po wygaśnięciu dzierżawy adresu IP ten adres IP jest zwracany do puli dostępnych adresów IP. W związku z tym klient musi aktywnie odnowić/ponownie powiązyć swoją dzierżawę adresu IP.
 
-Dane sesji są wyczyszczone, gdy tylko klient zostanie przydzielony ("powiązany") do dzierżawy IP (lub jest odnawiany istniejący). Jeśli pakiet klienta pozostanie nieprawdziwy lub klient przekroczy limit czasu między odpowiedziami, dane sesji są usuwane.
+Dane sesji są czyszowane natychmiast po przyznaeniu klientowi ("powiązanej") dzierżawy adresu IP (lub odnowieniu istniejącej dzierżawy). Jeśli pakiet klienta zostanie udowodniony lub klient utracą czas między odpowiedziami, dane sesji są czyszowane.
 
 ### <a name="saving-data-between-reboots"></a>Zapisywanie danych między ponownymi uruchomieniami
 
-Serwer DHCP NetX Duo zapisuje dane klienta, w tym parametry żądania DHCP w tabeli rekordu klienta. Ta tabela nie jest przechowywana w pamięci nieulotnej, dlatego jeśli Host serwera DHCP musi ponownie uruchomić te informacje nie zostaną zapisane między ponownymi uruchomieniami.
+Serwer DHCP NetX Duo zapisuje dane klienta, w tym parametry żądania DHCP w tabeli rekordów klienta. Ta tabela nie jest przechowywana w pamięci trwałej, więc jeśli host serwera DHCP musi ponownie uruchomić te informacje nie są zapisywane między ponownymi uruchomieniami.
 
-Serwer DHCP NetX Duo zapisuje dane dzierżawy adresów IP w tabeli adresów IP. Ta tabela nie jest przechowywana w pamięci nieulotnej, dlatego jeśli Host serwera DHCP musi ponownie uruchomić te informacje nie zostaną zapisane między ponownymi uruchomieniami.
+Serwer DHCP NetX Duo zapisuje dane dzierżawy adresów IP w tabeli adresów IP. Ta tabela nie jest przechowywana w pamięci trwałej, więc jeśli host serwera DHCP musi ponownie uruchomić te informacje nie są zapisywane między ponownymi uruchomieniami.
 
-### <a name="relay-agents"></a>Agenci przekazywania
+### <a name="relay-agents"></a>Agenci przekaźnika
 
-Serwer DHCP NetX Duo jest skonfigurowany z zerowym adresem IP dla pola "Agent przekazywania", ponieważ nie obsługuje żądań DHCP w sieci.
+Serwer DHCP NetX Duo jest skonfigurowany z zerowym adresem IP dla pola "Agent przekaźnika", ponieważ nie obsługuje żądań DHCP poza siecią.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykładem prostej metody korzystania z serwera DHCP z systemem NetX Duo jest opisany poniżej rysunek 1,1. W tym przykładzie plik dołączania DHCP *nxd_dhcp_server. h* jest wprowadzony w wierszu 5. Wszystkie linie są zdefiniowane w wierszach 7-13 dla rozmiaru stosu wątków serwera DHCP, rozmiaru stosu wątku IP i rozmiaru stosu wątku testu.
+Przykład łatwego korzystania z serwera DHCP NetX Duo opisano na rysunku 1.1, który znajduje się poniżej. W tym przykładzie plik dołączania DHCP *nxd_dhcp_server.h* jest dostępny w wierszu 5. Rozmiar stosu wątku serwera DHCP, rozmiar stosu wątku IP i rozmiar stosu wątku testowego są zdefiniowane w wierszach 7–13.
 
-Pierwsze zadanie wątku testu opcjonalne do zatrzymywania, ponownego uruchamiania i ostatecznie usuwania serwera DHCP jest tworzone z użyciem funkcji "*test_thread_entry*" w wierszu 57. Blok kontroli serwera DHCP "*dhcp_server*" jest zdefiniowany jako zmienna globalna w wierszu 20. Należy zauważyć, że Pula pakietów serwera jest tworzona z pakietami o co najmniej tyle jak standardowy komunikat DHCP (548 bajtów Plus bajty nagłówka IP i UDP). Po pomyślnym utworzeniu wystąpienia IP dla serwera DHCP aplikacja utworzy serwer DHCP w wierszu 96. Następnie aplikacja włącza wystąpienie protokołu IP serwera do włączenia protokołu UDP. Przed uruchomieniem serwera DHCP, lista dostępnych adresów IP zostanie utworzona w wierszu 137 przy użyciu usługi **nx_dhcp_create_server_ip_address_list** . Parametry konfiguracji sieci są ustawiane w następującym wierszu 138 przy użyciu usługi **nx_dhcp_set_interface_network_parameters** . usługi serwera DHCP stają się dostępne, gdy aplikacja wywoła *nx_dhcp_server_start* w wierszu 141. Zadanie wątku testowego ilustruje użycie zatrzymywania i ponownego uruchamiania serwera DHCP.
+Najpierw za pomocą funkcji "*test_thread_entry"* w wierszu 57 jest tworzone opcjonalne zadanie wątku testowego służące do zatrzymywania, ponownego uruchamiania i ostatecznie usuwania serwera DHCP. Blok sterowania serwera DHCP "*dhcp_server*" jest zdefiniowany jako zmienna globalna w wierszu 20. Należy pamiętać, że pula pakietów serwera jest tworzona z pakietami o ładunku co najmniej tak dużym jak standardowy komunikat DHCP (548 bajtów plus bajty nagłówka IP i UDP). Po pomyślnym utworzeniu wystąpienia adresu IP dla serwera DHCP aplikacja tworzy serwer DHCP w wierszu 96. Następnie aplikacja umożliwia włączenie protokołu UDP dla wystąpienia adresu IP serwera. Przed uruchomieniem serwera DHCP lista dostępnych adresów IP jest tworzona w wierszu 137 przy użyciu **nx_dhcp_create_server_ip_address_list** usługi. Parametry konfiguracji sieci są ustawiane w poniższym wierszu 138 przy użyciu usługi **nx_dhcp_set_interface_network_parameters,**  usługi serwera DHCP stają się dostępne, gdy aplikacja wywołuje nx_dhcp_server_start wierszu 141. Zadanie wątku testowego demonstruje sposób zatrzymywania i ponownego uruchamiania serwera DHCP.
 
 ```C
 /* This is a small demo of NetX Duo DHCP Server for the high-performance NetX Duo TCP/IP stack.  */
@@ -317,28 +317,28 @@ void    test_thread_entry(ULONG thread_input)
 
 ```
 
-**Rysunek 1,1 przykład aplikacji serwera DHCP NetX Duo**
+**Rysunek 1.1 Przykładowa aplikacja serwera DHCP NetX Duo**
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Istnieje kilka opcji konfiguracji do kompilowania serwera DHCP z NetX Duo. Poniższa lista zawiera szczegółowy opis:
+Istnieje kilka opcji konfiguracji do tworzenia serwera DHCP NetX Duo. Na poniższej liście szczegółowo opisano poszczególne z nich:
 
-- **NX_DISABLE_ERROR_CHECKING**: Ta opcja usuwa podstawowe sprawdzanie błędów serwera DHCP. Jest on zazwyczaj używany po debugowaniu aplikacji.
-- **NX_DHCP_SERVER_THREAD_PRIORITY**: Ta opcja określa priorytet wątku serwera DHCP. Domyślnie ta wartość określa, że wątek DHCP działa z priorytetem 2.
-- **NX_DHCP_TYPE_OF_SERVICE**: Ta opcja określa typ usługi wymaganej przez żądania UDP protokołu DHCP. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL w celu wskazania normalnej usługi pakietów IP.
-- **NX_DHCP_FRAGMENT_OPTION**: włączono fragment dla żądań UDP protokołu DHCP. Domyślnie ta wartość jest ustawiona na NX_DONT_FRAGMENT, aby wyłączyć fragmentację protokołu UDP.
-- **NX_DHCP_TIME_TO_LIVE**: określa liczbę routerów, które może przekazać pakiet, zanim zostanie on odrzucony. Wartość domyślna to 0x80.
-- **NX_DHCP_QUEUE_DEPTH**: określa liczbę pakietów, które przechowuje gniazdo serwera DHCP przed przystąpieniem do opróżniania kolejki. Wartość domyślna to 5.
-- **NX_DHCP_PACKET_ALLOCATE_TIMEOUT**: określa limit czasu w taktach czasomierza dla serwera DHCP NetX, aby oczekiwać na przydzielenie pakietu z jego puli pakietów. Wartość domyślna to NX_IP_PERIODIC_RATE.
-- **NX_DHCP_SUBNET_MASK** Jest to maska podsieci, z którą klient DHCP powinien być skonfigurowany. Wartość domyślna to 0xFFFFFF00.
-- **NX_DHCP_FAST_PERIODIC_TIME_INTERVAL**: ten limit czasu jest określany w taktach czasomierza dla szybkiego czasomierza serwera DHCP do sprawdzania pozostałego czasu sesji i obsługi sesji, które przekroczyły limit czasu.
-- **NX_DHCP_SLOW_PERIODIC_TIME_INTERVAL**: ten limit czasu jest określany w taktach czasomierza serwera DHCP wolne czasomierz, aby sprawdzić pozostały czas dzierżawy adresu IP i obsłużyć dzierżawę, która przekroczyła limit czasu.
-- **NX_DHCP_CLIENT_SESSION_TIMEOUT**: to jest limit czasu czasomierza w taktach, gdy serwer DHCP będzie czekać na następny komunikat klienta DHCP.
-- **NX_DHCP_DEFAULT_LEASE_TIME**: jest to czas dzierżawy adresów IP (w sekundach) przypisany do klienta DHCP, a także podstawą obliczeń i czasów ponownego powiązania do klienta. Wartość domyślna to 0xFFFFFFFF (nieskończoność).
-- **NX_DHCP_IP_ADDRESS_MAX_LIST_SIZE**: rozmiar tablicy serwerów DHCP do przechowywania dostępnych adresów IP na potrzeby przypisywania do klienta. Wartość domyślna to 20.
-- **NX_DHCP_CLIENT_RECORD_TABLE_SIZE**: rozmiar tablicy serwera DHCP do przechowywania rekordów klientów. Wartość domyślna to 50.
-- **NX_DHCP_CLIENT_OPTIONS_MAX**: rozmiar tablicy w wystąpieniu klienta DHCP w celu przechowywania wszystkich żądanych opcji na liście żądań parametrów w bieżącej sesji. Wartość domyślna to 12.
-- **NX_DHCP_OPTIONAL_SERVER_OPTION_LIST**: jest to bufor zawierający domyślną listę opcji do dostarczenia do bieżącego klienta DHCP na liście żądań parametrów. Wartość domyślna to "1 3 6".
-- **NX_DHCP_OPTIONAL_SERVER_OPTION_SIZE**: jest to rozmiar tablicy przechowującej domyślną listę opcji serwera DHCP. Wartość domyślna to 3.
-- **NX_DHCP_SERVER_HOSTNAME_MAX**: rozmiar buforu do przechowywania nazwy hosta serwera. Wartość domyślna to 32.
-- **NX_DHCP_CLIENT_HOSTNAME_MAX**: rozmiar buforu do przechowywania nazwy hosta klienta w bieżącej sesji klienta serwera DHCP. Wartość domyślna to 32.
+- **NX_DISABLE_ERROR_CHECKING:** ta opcja usuwa podstawowe sprawdzanie błędów DHCP. Jest on zwykle używany po debugowaniu aplikacji.
+- **NX_DHCP_SERVER_THREAD_PRIORITY:** ta opcja określa priorytet wątku serwera DHCP. Domyślnie ta wartość określa, że wątek DHCP jest uruchamiany z priorytetem 2.
+- **NX_DHCP_TYPE_OF_SERVICE:** ta opcja określa typ usługi wymagany dla żądań protokołu UDP protokołu DHCP. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL, aby wskazać normalną usługę pakietów IP.
+- **NX_DHCP_FRAGMENT_OPTION:** włącz fragment dla żądań protokołu UDP protokołu DHCP. Domyślnie ta wartość jest ustawiona na wartość NX_DONT_FRAGMENT, aby wyłączyć fragmentowanie UDP.
+- **NX_DHCP_TIME_TO_LIVE:** określa liczbę routerów, które pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
+- **NX_DHCP_QUEUE_DEPTH:** określa liczbę pakietów, które gniazdo serwera DHCP przechowuje przed opróżnienie kolejki. Wartość domyślna to 5.
+- **NX_DHCP_PACKET_ALLOCATE_TIMEOUT:** określa limit czasu w taktach czasomierza dla serwera DHCP NetX do oczekiwania na przydzielenie pakietu z puli pakietów. Wartość domyślna to NX_IP_PERIODIC_RATE.
+- **NX_DHCP_SUBNET_MASK** Jest to maska podsieci, przy użyciu których powinien być skonfigurowany klient DHCP. Wartość domyślna to 0xFFFFFF00.
+- **NX_DHCP_FAST_PERIODIC_TIME_INTERVAL:** jest to okres limitu czasu w taktach czasomierza dla czasomierza szybkiego serwera DHCP, aby sprawdzić pozostały czas sesji i obsługiwać sesje, dla których udano limit czasu.
+- **NX_DHCP_SLOW_PERIODIC_TIME_INTERVAL:** jest to okres limitu czasu w taktach czasomierza, aby czasomierz serwera DHCP powolny sprawdzał pozostały czas dzierżawy adresu IP i obsługi dzierżawy, dla których udano limit czasu.
+- **NX_DHCP_CLIENT_SESSION_TIMEOUT:** jest to limit czasu w taktach czasomierza serwer DHCP będzie czekać na otrzymanie następnego komunikatu klienta DHCP.
+- **NX_DHCP_DEFAULT_LEASE_TIME:** jest to czas dzierżawy adresu IP (w sekundach) przypisany do klienta DHCP, a podstawą do obliczania czasu odnowienia i ponownego wiązania jest również przypisana do klienta. Wartość domyślna to 0xFFFFFFFF (nieskończoność).
+- **NX_DHCP_IP_ADDRESS_MAX_LIST_SIZE:** jest to rozmiar macierzy serwera DHCP do przechowywania dostępnych adresów IP do przypisania do klienta. Wartość domyślna to 20.
+- **NX_DHCP_CLIENT_RECORD_TABLE_SIZE:** jest to rozmiar macierzy serwera DHCP do przechowywania rekordów klienta. Wartość domyślna to 50.
+- **NX_DHCP_CLIENT_OPTIONS_MAX:** jest to rozmiar tablicy w wystąpieniu klienta DHCP do przechowywania wszystkich żądanych opcji na liście żądań parametrów w bieżącej sesji. Wartość domyślna to 12.
+- **NX_DHCP_OPTIONAL_SERVER_OPTION_LIST:** jest to bufor, który zawiera domyślną listę opcji serwera DHCP do dostarczania bieżącego klienta DHCP na liście żądań parametrów. Wartość domyślna to "1 3 6".
+- **NX_DHCP_OPTIONAL_SERVER_OPTION_SIZE:** jest to rozmiar tablicy do przechowywania domyślnej listy opcji serwera DHCP. Wartość domyślna to 3.
+- **NX_DHCP_SERVER_HOSTNAME_MAX:** jest to rozmiar buforu do przechowywania nazwy hosta serwera. Wartość domyślna to 32.
+- **NX_DHCP_CLIENT_HOSTNAME_MAX:** jest to rozmiar buforu do przechowywania nazwy hosta klienta w bieżącej sesji klienta serwera DHCP. Wartość domyślna to 32.

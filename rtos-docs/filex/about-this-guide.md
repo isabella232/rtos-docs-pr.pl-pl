@@ -1,80 +1,80 @@
 ---
-title: Podręcznik użytkownika usługi Azure RTO FileX
-description: Ten przewodnik zawiera wyczerpujące informacje na temat usługi Azure RTO FileX, systemu plików o wysokiej wydajności w czasie rzeczywistym firmy Microsoft.
+title: Azure RTOS użytkownika pliku FileX
+description: Ten przewodnik zawiera kompleksowe informacje o Azure RTOS FileX, wysokowydajnego systemu plików w czasie rzeczywistym firmy Microsoft.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 640d9ed4c8037d3af6c5f45158c9496ad1258a3c
-ms.sourcegitcommit: 60ad844b58639d88830f2660ab0c4ff86b92c10f
+ms.openlocfilehash: 48fe70fc3cff6e656328d38b2583116e58a6c98510d5f0554f81a7b728f95457
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 04/07/2021
-ms.locfileid: "106550103"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116782408"
 ---
-# <a name="about-this-filex-user-guide"></a>Informacje o tym podręczniku użytkownika FileX
+# <a name="about-this-filex-user-guide"></a>Informacje o tym podręczniku użytkownika pliku FileX
 
-Ten przewodnik zawiera wyczerpujące informacje na temat usługi Azure RTO FileX, systemu plików o wysokiej wydajności w czasie rzeczywistym od firmy Microsoft. Aby najlepiej wykorzystać ten przewodnik, należy zapoznać się ze standardowymi funkcjami systemu operacyjnego w czasie rzeczywistym, usługami systemu plików FAT i językiem programowania C.
+Ten przewodnik zawiera kompleksowe informacje o Azure RTOS FileX, wysokowydajnego, osadzonego systemu plików w czasie rzeczywistym firmy Microsoft. Aby jak najlepiej zapoznać się z tym przewodnikiem, należy zapoznać się ze standardowymi funkcjami systemu operacyjnego w czasie rzeczywistym, usługami systemu plików FAT i językiem programowania C.
 
 ## <a name="organization"></a>Organizacja
 
-[Rozdział 1](chapter1.md) — wprowadzenie do usługi Azure RTO FileX
+[Rozdział 1](chapter1.md) — Wprowadzenie Azure RTOS FileX
 
-[Rozdział 2](chapter2.md) — zawiera podstawowe kroki instalacji i używania usługi Azure RTO FileX z aplikacją Azure RTO ThreadX
+[Rozdział 2](chapter2.md) . Zawiera podstawowe instrukcje dotyczące instalowania i używania Azure RTOS FileX z aplikacją Azure RTOS ThreadX
 
-[Rozdział 3](chapter3.md) — zawiera przegląd funkcjonalny systemu Azure RTO FileX i podstawowe informacje na temat formatów systemu plików FAT
+[Rozdział 3](chapter3.md) — omówienie funkcjonalne systemu plików Azure RTOS FileX oraz podstawowe informacje na temat formatów systemu plików FAT
 
-[Rozdział 4](chapter4.md) — szczegółowe informacje o interfejsie aplikacji do usługi Azure RTO FileX
+[Rozdział 4](chapter4.md) . Szczegóły interfejsu aplikacji do Azure RTOS FileX
 
-[Rozdział 5](chapter5.md) — opis dostarczonego sterownika ram usługi Azure RTO FileX i sposobu pisania własnych niestandardowych sterowników usługi Azure RTO FileX
+[Rozdział 5](chapter5.md) — opis dostarczonego sterownika Azure RTOS RAM FileX oraz sposobu pisania własnych niestandardowych sterowników Azure RTOS FileX
 
-[Rozdział 6](chapter6.md) — Opis modułu odpornego na błędy usługi Azure RTO FileX
+[Rozdział 6](chapter6.md) — Opis Azure RTOS odporności na błędy FileX
 
-[Dodatek A](appendix-a.md) — Azure RTO FileX Services
+[Dodatek A](appendix-a.md) — Azure RTOS FileX Services
 
-[Dodatek B](appendix-b.md) — stałe usługi Azure RTO FileX
+[Dodatek B](appendix-b.md) — Azure RTOS FileX, stałe
 
-[Dodatek C](appendix-c.md) — typy danych usługi Azure RTO FileX
+[Dodatek C](appendix-c.md) — Azure RTOS typów danych FileX
 
 [Dodatek D](appendix-d.md) — wykres ASCII
 
-## <a name="guide-conventions"></a>Konwencje przewodnika
+## <a name="guide-conventions"></a>Konwencje przewodników
 
-*Kursywa* — oznacza tytuły książek, wyróżnia ważne słowa i określa zmienne.
+*Kursywa —* element Typeface oznacza tytuły książek, podkreśla ważne słowa i wskazuje zmienne.
 
-**Pogrubiona** — kroje liter oznacza nazwy plików, słowa kluczowe i bardziej podkreśla ważne słowa i zmienne.
+**Boldface** — element Typeface oznacza nazwy plików, słowa kluczowe i dodatkowo podkreśla ważne słowa i zmienne.
 
 > [!NOTE]
-> Symbole informacji zwracają uwagę na ważne lub dodatkowe informacje, które mogą mieć wpływ na wydajność lub funkcję.
+> Symbole informacyjne zwracają uwagę na ważne lub dodatkowe informacje, które mogą mieć wpływ na wydajność lub funkcję.
 
 > [!IMPORTANT]
-> Symbole ostrzegawcze zwracają uwagę na sytuacje, w których deweloperzy powinni unikać, ponieważ mogą spowodować błędy krytyczne.
+> Symbole ostrzegawcze zwracają uwagę na sytuacje, których deweloperzy powinni unikać, ponieważ mogą powodować błędy krytyczne.
 
-## <a name="filex-data-types"></a>FileX — typy danych
+## <a name="filex-data-types"></a>Typy danych FileX
 
-Oprócz niestandardowych typów danych struktury formantu FileX usługi Azure RTO istnieje szereg specjalnych typów danych, które są używane w interfejsie wywołań usługi Azure RTO FileX. Te specjalne typy danych są mapowane bezpośrednio na typy danych podstawowego kompilatora języka C. Jest to realizowane w celu zapewnienia przenośności między różnymi kompilatorami języka C. Dokładna implementacja jest dziedziczona z usługi Azure RTO ThreadX i można ją znaleźć w pliku tx_port. h zawartym w dystrybucji usługi Azure RTO ThreadX.
+Oprócz niestandardowych typów danych struktury Azure RTOS FileX istnieje szereg specjalnych typów danych, które są używane w interfejsach wywołań usługi Azure RTOS FileX. Te specjalne typy danych są mapowe bezpośrednio na typy danych podstawowego kompilatora języka C. Ma to na celu zapewnienie przenośności między różnymi kompilatorami języka C. Dokładna implementacja jest dziedziczona z Azure RTOS ThreadX i znajduje się w pliku tx_port.h dołączonym do dystrybucji Azure RTOS ThreadX.
 
-Poniżej znajduje się lista typów danych wywołań usługi Azure RTO FileX i skojarzonych z nimi znaczenia.
+Poniżej znajduje się lista typów danych wywołań usługi Azure RTOS FileX oraz powiązanych z nimi znaczenia.
 
 | Typ  | Opis  |
 |---|---|
-| **UINT** | Podstawowa niepodpisana liczba całkowita. Ten typ musi obsługiwać 8-bitowe dane niepodpisane; Jednak jest on mapowany na najbardziej wygodny typ danych bez znaku. |
-| **ULONG** | Typ Long unsigned. Ten typ musi obsługiwać 32-bitowe dane niepodpisane. |
-| **POZYCJĘ** | Prawie zawsze jest równoważne z typem void kompilatora. |
-| **DELIKATN** | Najczęściej jest to standardowy 8-bitowy typ znaku. |
-| **ULONG64** | 64-bitowy typ danych Liczba całkowita bez znaku. |
+| **Uint** | Podstawowa liczba całkowita bez znaku. Ten typ musi obsługiwać 8-bitowe niepodpisane dane; Jest on jednak mapowany na najbardziej wygodny typ danych bez podpisów. |
+| **Ulong** | Niepodpisane typy długie. Ten typ musi obsługiwać 32-bitowe niepodpisane dane. |
+| **Void** | Prawie zawsze odpowiada typowi void kompilatora. |
+| **Char** | Najczęściej standardowy 8-bitowy typ znaku. |
+| **ULONG64** | 64-bitowy typ danych liczb całkowitych bez znaku. |
 
-W źródle FileX są używane dodatkowe typy danych. Znajdują się one w plikach ***tx_port. h** _ lub _ *_fx_port. h_**.
+Dodatkowe typy danych są używane w źródle FileX. Znajdują się one w plikach ***tx_port.h** _ lub _ *_fx_port.h_**.
 
-## <a name="customer-support-center"></a>Centrum pomocy technicznej
+## <a name="customer-support-center"></a>Centrum obsługi klienta
 
-Prosimy o przesłanie biletu pomocy technicznej za pośrednictwem witryny Azure Portal w celu uzyskania pytań lub pomocy przy korzystaniu z tych kroków. Przekaż nam następujące informacje w wiadomości e-mail, aby skuteczniej rozwiązywać Twoje żądanie pomocy technicznej.
+Prześlij bilet pomocy technicznej za pośrednictwem witryny Azure Portal, aby uzyskać pytania lub pomoc, korzystając z kroków tutaj. Podaj następujące informacje w wiadomości e-mail, abyśmy w bardziej wydajny sposób rozwiązali Twój wniosek o pomoc techniczną.
 
-1. Szczegółowy opis problemu, w tym częstotliwość występowania i tego, czy może być niezawodnie odtwarzany.
-2. Szczegółowy opis wszelkich zmian w aplikacji i/lub FileX, które poprzedzają problem.
-3. Zawartość _tx_version_id i _fx_version_id ciągów znalezionych w plikach ***tx_port. h**_ i _ *_fx_port. h_** dystrybucji. Te ciągi dostarczają nam cenne informacje dotyczące środowiska czasu wykonywania.
-4. Zawartość w pamięci RAM następujących zmiennych **ULONG** . Te zmienne zawierają informacje o sposobie kompilowania bibliotek ThreadX i FileX:
+1. Szczegółowy opis problemu, w tym częstotliwość występowania i możliwość jego niezawodnego odtworzenia.
+2. Szczegółowy opis wszelkich zmian w aplikacji i/lub PlikuX, które poprzedzały problem.
+3. Zawartość _tx_version_id i fx_version_id w plikach _***tx_port.h**_ i _ *_fx_port.h_** dystrybucji. Te ciągi dostarczają nam cennych informacji dotyczących środowiska uruchomieniowego.
+4. Zawartość w pamięci RAM następujących zmiennych **ULONG.** Te zmienne zawierają informacje na temat sposobu budów bibliotek ThreadX i FileX:
 
     **_tx_build_options**
 

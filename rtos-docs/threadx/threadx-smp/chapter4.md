@@ -1,112 +1,112 @@
 ---
-title: Rozdział 4 — Opis usług SMP usługi Azure RTO ThreadX
-description: Ten rozdział zawiera opis wszystkich usług SMP usługi Azure RTO ThreadX w porządku alfabetycznym.
+title: Rozdział 4 — Opis Azure RTOS SMP ThreadX
+description: Ten rozdział zawiera opis wszystkich usług SMP Azure RTOS ThreadX w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 4432001b773b4ef4f99b1b34193e90863966aad4
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 71b964963968b0ec6fa3c8cc70cc46576e8ff33e2cfad0315182afe1f1afcc5b
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823928"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116802162"
 ---
-# <a name="chapter-4---description-of-azure-rtos-threadx-smp-services"></a>Rozdział 4 — Opis usług SMP usługi Azure RTO ThreadX
+# <a name="chapter-4---description-of-azure-rtos-threadx-smp-services"></a>Rozdział 4 — Opis Azure RTOS SMP ThreadX
 
-Ten rozdział zawiera opis wszystkich usług SMP usługi Azure RTO ThreadX w porządku alfabetycznym. Ich nazwy są zaprojektowane tak, aby wszystkie podobne usługi zostały zgrupowane razem. W sekcji "wartości zwracane" w następujących opisach wartości **pogrubienia** nie mają wpływać na **TX_DISABLE_ERROR_CHECKING** Definiowanie używane do wyłączania sprawdzania błędów interfejsu API; podczas gdy wartości wyświetlane w trybie niepogrubionym są całkowicie wyłączone. Ponadto słowo "**Yes**" wymienione w nagłówku "**możliwe** przeprowadzenie" wskazuje, że wywołanie usługi może wznowić wątek o wyższym priorytecie, w rezultacie przeszedł wątek wywołujący.
+Ten rozdział zawiera opis wszystkich usług SMP Azure RTOS ThreadX w kolejności alfabetycznej. Ich nazwy zostały zaprojektowane tak, aby wszystkie podobne usługi zostały zgrupowane razem. W sekcji "Wartości zwracane" w poniższych  opisach wartości  z poGRUBIENIEM nie mają wpływu na wartość zdefiniowaną przez TX_DISABLE_ERROR_CHECKING używaną do wyłączania sprawdzania błędów interfejsu API; Wartość jest całkowicie wyłączona, natomiast wartości wyświetlane w wartościach innych niżbold. Ponadto "**Tak**" wymieniony w nagłówku **"Możliwe** wywłaszcz" wskazuje, że wywołanie usługi może wznowić wątek o wyższym priorytecie, w ten sposób wywłaszając wątek wywołujący.
 
-- **tx_block_allocate**: *przydzielanie bloku o stałym rozmiarze pamięci* 
-- **tx_block_pool_create**: *Utwórz pulę bloków pamięci o stałym rozmiarze* 
-- **tx_block_pool_delete**: *Usuwanie puli bloków pamięci* 
-- **tx_block_pool_info_get**: *pobieranie informacji o puli blokowej* 
-- **tx_block_pool_performance_info_get**: *Uzyskiwanie informacji o wydajności puli bloku* 
-- **tx_block_pool_performance_system_info_get**: *Uzyskaj informacje o wydajności systemu puli blokowej* 
-- **tx_block_pool_prioritize**: *określanie priorytetów listy zawieszania puli bloków* 
-- **tx_block_release**: *Zwolnij blok pamięci o stałym rozmiarze*
-- **tx_byte_allocate**: *Przydziel bajty pamięci* 
-- **tx_byte_pool_create**: *Utwórz pulę pamięci bajtów* 
-- **tx_byte_pool_delete**: *Usuwanie puli bajtów pamięci* 
-- **tx_byte_pool_info_get**: *pobieranie informacji o puli bajtów* 
-- **tx_byte_pool_performance_info_get**: *pobieranie informacji o wydajności puli bajtów* 
-- **tx_byte_pool_performance_system_info_get**: *pobieranie informacji o wydajności systemu puli bajtów* 
-- **tx_byte_pool_prioritize**: *priorytetyzacja listy zawieszania puli bajtów* 
-- **tx_byte_release**: *wydawanie bajtów z powrotem do puli pamięci* 
-- **tx_event_flags_create**: *Utwórz grupę flag zdarzeń* 
-- **tx_event_flags_delete**: *Usuwanie grupy flag zdarzeń* 
-- **tx_event_flags_get**: *Pobierz flagi zdarzeń z grupy flag zdarzeń* 
-- **tx_event_flags_info_get**: *Pobierz informacje o grupie flag zdarzeń* 
-- **tx_event_flags_performance_info_get**: *Uzyskiwanie informacji o wydajności grupy flag zdarzeń* 
-- **tx_event_flags_performance_system_info_get**: *pobieranie informacji o systemie wydajności* 
-- **tx_event_flags_set**: *Ustaw flagi zdarzeń w grupie flag zdarzeń* 
-- **tx_event_flags_set_notify**: *Powiadamiaj aplikację, gdy są ustawione flagi zdarzeń*
-- **tx_interrupt_control**: *włączać i wyłączać przerwania* 
-- **tx_mutex_create**: *Utwórz element mutex wzajemnego wykluczania* 
-- **tx_mutex_delete**: *usuwanie obiektu mutex wzajemnego wykluczania* 
-- **tx_mutex_get**: *Uzyskaj własność obiektu mutex* 
-- **tx_mutex_info_get**: *Pobierz informacje o muteksie* 
-- **tx_mutex_performance_info_get**: *pobieranie informacji o wydajności muteksu* 
-- **tx_mutex_performance_system_info_get**: *pobieranie informacji o wydajności systemu muteksu* 
-- **tx_mutex_prioritize**: *określanie priorytetów listy zawieszeń muteksu* 
-- **tx_mutex_put**: *Zwolnij własność elementu mutex* 
-- **tx_queue_create**: *Tworzenie kolejki komunikatów* 
-- **tx_queue_delete**: *usuwanie kolejki komunikatów* 
-- **tx_queue_flush**: *puste wiadomości w kolejce komunikatów* 
-- **tx_queue_front_send**: *Wyślij komunikat z przodu kolejki* 
-- **tx_queue_info_get**: *pobieranie informacji o kolejce* 
-- **tx_queue_performance_info_get**: *Uzyskiwanie informacji o wydajności kolejki* 
-- **tx_queue_performance_system_info_get**: *pobieranie informacji o wydajności systemu kolejkowania*
-- **tx_queue_prioritize**: *priorytetyzacja listy zawieszania kolejki* 
-- **tx_queue_receive**: *Pobierz komunikat z kolejki komunikatów* 
-- **tx_queue_send**: *Wyślij komunikat do kolejki komunikatów* 
-- **tx_queue_send_notify**: *Powiadamiaj aplikację, gdy wiadomość jest wysyłana do kolejki* 
-- **tx_semaphore_ceiling_put**: *Umieść wystąpienie w zliczaniu semafora z pułapem* 
-- **tx_semaphore_create**: *Tworzenie semafora zliczania* 
-- **tx_semaphore_delete**: *usuwanie semafora zliczania* 
-- **tx_semaphore_get**: *Pobieranie wystąpienia z zliczania semafora* 
-- **tx_semaphore_info_get**: *pobieranie informacji na temat semafora* 
-- **tx_semaphore_performance_info_get**: *Uzyskiwanie informacji o wydajności semaforów* 
-- **tx_semaphore_performance_system_info_get**: *Uzyskiwanie informacji o wydajności systemu semaforów* 
-- **tx_semaphore_prioritize**: *określanie priorytetów listy zawieszania semafora* 
-- **tx_semaphore_put**: *Umieść wystąpienie w zliczaniu semafora* 
-- **tx_semaphore_put_notify**: *Powiadamiaj aplikację, gdy zostanie umieszczony semafor* 
-- **tx_thread_create**: *Utwórz wątek aplikacji* 
-- **tx_thread_delete**: *usuwanie wątku aplikacji*
-- **tx_thread_entry_exit_notify**: *Powiadamiaj aplikację przy wejściu i wyjściu wątku* 
-- **tx_thread_identify**: *Pobiera wskaźnik do aktualnie wykonywanego wątku* 
-- **tx_thread_info_get**: *pobieranie informacji o wątku* 
-- **tx_thread_performance_info_get**: *Uzyskiwanie informacji o wydajności wątków* 
-- **tx_thread_performance_system_info_get**: *pobieranie informacji o wydajności systemu wątków* 
-- **tx_thread_preemption_change**: zmiana przekroczenia *— próg wątku aplikacji* 
-- **tx_thread_priority_change**: *Zmień priorytet wątku aplikacji* 
-- **tx_thread_relinquish**: *zwalnianie kontroli do innych wątków aplikacji* 
-- **tx_thread_reset**: *Resetowanie wątku* 
-- **tx_thread_resume**: *Wznów wątek zawieszonej aplikacji* 
-- **tx_thread_sleep**: *Zawieś bieżący wątek dla określonego czasu* 
-- **tx_thread_smp_core_exclude**: *wykluczanie wykonywania wątku na zestawie rdzeni* 
-- **tx_thread_smp_core_exclude_get**: *Pobiera bieżące wykluczenie rdzenia wątku* 
-- **tx_thread_smp_core_get**: *Pobierz aktualnie wykonywany rdzeń elementu wywołującego* 
-- **tx_thread_stack_error_notify**: *Rejestrowanie wywołania zwrotnego powiadomień o błędzie stosu wątku* 
-- **tx_thread_suspend**: *wstrzymywanie wątku aplikacji*
-- **tx_thread_terminate**: *przerywa wątek aplikacji* 
-- **tx_thread_time_slice_change**: *zmienia czas wycinka wątku aplikacji* 
-- **tx_thread_wait_abort**: *Przerwij zawieszenie określonego wątku* 
-- **tx_time_get**: *Pobiera bieżący czas* 
-- **tx_time_set**: *ustawia bieżącą godzinę* 
-- **tx_timer_activate**: *Aktywuj czasomierz aplikacji* 
-- **tx_timer_change**: *Zmień czasomierz aplikacji* 
-- **tx_timer_create**: *Utwórz czasomierz aplikacji* 
-- **tx_timer_deactivate**: *Dezaktywuj czasomierz aplikacji* 
-- **tx_timer_delete**: *usuwanie czasomierza aplikacji* 
-- **tx_timer_info_get**: *pobieranie informacji o czasomierzu aplikacji* 
-- **tx_timer_performance_info_get**: *Uzyskiwanie informacji o wydajności czasomierza* 
-- **tx_timer_performance_system_info_get**: *Uzyskiwanie informacji o wydajności systemu czasomierza* 
-- **tx_timer_smp_core_exclude**: *wykluczanie wykonywania czasomierza na zestawie rdzeni* 
-- **tx_timer_smp_core_exclude_get**: *Pobiera bieżące wykluczenie rdzenia czasomierza*
+- **tx_block_allocate:** *przydzielanie bloku pamięci o stałym rozmiarze* 
+- **tx_block_pool_create:** Tworzenie *puli bloków pamięci o stałym rozmiarze* 
+- **tx_block_pool_delete:** Usuwanie *puli bloków pamięci* 
+- **tx_block_pool_info_get:** Pobieranie *informacji o puli bloków* 
+- **tx_block_pool_performance_info_get:** Uzyskiwanie *informacji o wydajności puli bloków* 
+- **tx_block_pool_performance_system_info_get:** Uzyskiwanie *informacji o wydajności systemu puli bloków* 
+- **tx_block_pool_prioritize:** Określanie *priorytetów listy wstrzymania puli bloków* 
+- **tx_block_release:** *zwolnij blok pamięci o stałym rozmiarze*
+- **tx_byte_allocate:** *przydzielanie bajtów pamięci* 
+- **tx_byte_pool_create:** tworzenie *puli pamięci bajtów* 
+- **tx_byte_pool_delete:** Usuwanie *puli bajtów pamięci* 
+- **tx_byte_pool_info_get:** pobieranie *informacji o puli bajtów* 
+- **tx_byte_pool_performance_info_get:** uzyskiwanie *informacji o wydajności puli bajtów* 
+- **tx_byte_pool_performance_system_info_get:** uzyskiwanie *informacji o wydajności systemu puli bajtów* 
+- **tx_byte_pool_prioritize:** Określanie *priorytetów listy wstrzymania puli bajtów* 
+- **tx_byte_release:** *Zwolnij bajty z powrotem do puli pamięci* 
+- **tx_event_flags_create:** *tworzenie grupy flag zdarzeń* 
+- **tx_event_flags_delete:** Usuwanie *grupy flag zdarzeń* 
+- **tx_event_flags_get:** pobierz *flagi zdarzeń z grupy flag zdarzeń* 
+- **tx_event_flags_info_get:** pobieranie *informacji o grupie flag zdarzeń* 
+- **tx_event_flags_performance_info_get:** Uzyskiwanie *informacji o wydajności grupy flag zdarzeń* 
+- **tx_event_flags_performance_system_info_get:** pobieranie *informacji o systemie wydajności* 
+- **tx_event_flags_set:** ustaw *flagi zdarzeń w grupie flag zdarzeń* 
+- **tx_event_flags_set_notify:** *powiadamianie aplikacji o ustawionych flagach zdarzeń*
+- **tx_interrupt_control:** Włączanie *i wyłączanie przerwań* 
+- **tx_mutex_create:** *Tworzenie wzajemnego wykluczania mutex* 
+- **tx_mutex_delete:** Usuwanie *wzajemnego wykluczania mutex* 
+- **tx_mutex_get:** Uzyskiwanie *własności obiektu mutex* 
+- **tx_mutex_info_get:** *pobieranie informacji o mutex* 
+- **tx_mutex_performance_info_get:** Uzyskiwanie *informacji o wydajności obiektu mutex* 
+- **tx_mutex_performance_system_info_get:** Uzyskiwanie *informacji o wydajności systemu mutex* 
+- **tx_mutex_prioritize:** Określanie *priorytetów listy zawieszenia mutex* 
+- **tx_mutex_put:** *Zwolnij własność obiektu mutex* 
+- **tx_queue_create:** Tworzenie *kolejki komunikatów* 
+- **tx_queue_delete:** Usuwanie *kolejki komunikatów* 
+- **tx_queue_flush:** Puste *komunikaty w kolejce komunikatów* 
+- **tx_queue_front_send:** Wysyłanie *komunikatu na przód kolejki* 
+- **tx_queue_info_get:** pobieranie *informacji o kolejce* 
+- **tx_queue_performance_info_get:** uzyskiwanie *informacji o wydajności kolejki* 
+- **tx_queue_performance_system_info_get:** Uzyskiwanie *informacji o wydajności systemu kolejek*
+- **tx_queue_prioritize:** Określanie *priorytetów listy wstrzymania kolejki* 
+- **tx_queue_receive:** Uzyskiwanie *komunikatu z kolejki komunikatów* 
+- **tx_queue_send:** Wysyłanie *komunikatu do kolejki komunikatów* 
+- **tx_queue_send_notify:** *powiadamianie aplikacji o wysłaniu komunikatu do kolejki* 
+- **tx_semaphore_ceiling_put:** *Umieść wystąpienie w zliczeniu semafora z limitem* 
+- **tx_semaphore_create:** Tworzenie *zliczania semafora* 
+- **tx_semaphore_delete:** Usuwanie *zliczania semafora* 
+- **tx_semaphore_get:** *uzyskiwanie wystąpienia z zliczania semafora* 
+- **tx_semaphore_info_get:** pobieranie *informacji o semaforze* 
+- **tx_semaphore_performance_info_get:** Uzyskiwanie *informacji o wydajności semafora* 
+- **tx_semaphore_performance_system_info_get:** Uzyskiwanie *informacji o wydajności systemu semaforów* 
+- **tx_semaphore_prioritize:** Określanie *priorytetów listy zawieszenia semafora* 
+- **tx_semaphore_put:** Umieść *wystąpienie w zliczeniu semafora* 
+- **tx_semaphore_put_notify:** *powiadamianie aplikacji o zastosowaniu semafora* 
+- **tx_thread_create:** Tworzenie *wątku aplikacji* 
+- **tx_thread_delete:** Usuwanie *wątku aplikacji*
+- **tx_thread_entry_exit_notify:** *Powiadom aplikację przy wejściu wątku i zakończeniu* 
+- **tx_thread_identify:** *pobiera wskaźnik do aktualnie wykonywanego wątku* 
+- **tx_thread_info_get:** pobieranie *informacji o wątku* 
+- **tx_thread_performance_info_get:** *uzyskiwanie informacji o wydajności wątku* 
+- **tx_thread_performance_system_info_get:** Uzyskiwanie *informacji o wydajności systemu wątków* 
+- **tx_thread_preemption_change:** Zmiana *progu wywłaszczenia wątku aplikacji* 
+- **tx_thread_priority_change:** *zmiana priorytetu wątku aplikacji* 
+- **tx_thread_relinquish:** *Wywłaszczaj kontrolkę do innych wątków aplikacji* 
+- **tx_thread_reset:** *Resetowanie wątku* 
+- **tx_thread_resume:** *Wznawianie zawieszonego wątku aplikacji* 
+- **tx_thread_sleep:** *Wstrzymywanie bieżącego wątku na określony czas* 
+- **tx_thread_smp_core_exclude:** *Wykluczanie wykonywania wątków na zestawie rdzeni* 
+- **tx_thread_smp_core_exclude_get:** pobiera *bieżące wykluczenie podstawowe wątku* 
+- **tx_thread_smp_core_get:** *pobieranie aktualnie wykonywanego rdzenia wywołującego* 
+- **tx_thread_stack_error_notify:** rejestrowanie *wywołania zwrotnego powiadomienia o błędzie stosu wątków* 
+- **tx_thread_suspend:** *Wstrzymywanie wątku aplikacji*
+- **tx_thread_terminate:** *kończy wątek aplikacji* 
+- **tx_thread_time_slice_change:** *zmienia wycinek czasu wątku aplikacji* 
+- **tx_thread_wait_abort:** przerwać *zawieszenie określonego wątku* 
+- **tx_time_get:** pobiera *bieżący czas* 
+- **tx_time_set:** ustawia *bieżący czas* 
+- **tx_timer_activate:** *Aktywowanie czasomierza aplikacji* 
+- **tx_timer_change:** Zmiana *czasomierza aplikacji* 
+- **tx_timer_create:** Tworzenie *czasomierza aplikacji* 
+- **tx_timer_deactivate:** *Dezaktywacja czasomierza aplikacji* 
+- **tx_timer_delete:** Usuwanie *czasomierza aplikacji* 
+- **tx_timer_info_get:** pobieranie *informacji o czasomierzu aplikacji* 
+- **tx_timer_performance_info_get:** *uzyskiwanie informacji o wydajności czasomierza* 
+- **tx_timer_performance_system_info_get:** *uzyskiwanie informacji o wydajności systemu czasomierza* 
+- **tx_timer_smp_core_exclude:** *Wykluczanie wykonywania czasomierza na zestawie rdzeni* 
+- **tx_timer_smp_core_exclude_get:** pobiera *bieżące wykluczenie podstawowe czasomierza*
 
 ## <a name="tx_block_allocate"></a>tx_block_allocate
-Przydzielanie bloku o ustalonym rozmiarze pamięci
+Przydzielanie bloku pamięci o stałym rozmiarze
 
 ### <a name="prototype"></a>Prototype
 
@@ -123,34 +123,34 @@ Ta usługa przydziela blok pamięci o stałym rozmiarze z określonej puli pami�
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr**: wskaźnik do wcześniej utworzonej puli bloków pamięci.
-- **block_ptr**: wskaźnik do docelowego wskaźnika bloku. Po pomyślnym przydzieleniu adres przydzielonego bloku pamięci jest umieszczany w miejscu, w którym wskazuje ten parametr.
-- **WAIT_OPTION**: określa, w jaki sposób działa usługa, jeśli nie ma dostępnych bloków pamięci. Opcje oczekiwania są zdefiniowane w następujący sposób:
-    - **TX_NO_WAIT**: (0x00000000)
-    - **TX_WAIT_FOREVER**: (0xffffffff)
-    - wartość limitu czasu: (od 0x00000001 do 0xFFFFFFFE)  
+- **pool_ptr:** wskaźnik do wcześniej utworzonej puli bloków pamięci.
+- **block_ptr:** wskaźnik do docelowego wskaźnika bloku. Po pomyślnej alokacji adres przydzielonego bloku pamięci jest umieszczany w miejscu, w którym wskazuje ten parametr.
+- **wait_option:** definiuje sposób zachowania usługi w przypadku braku dostępnych bloków pamięci. Opcje oczekiwania są zdefiniowane w następujący sposób:
+    - **TX_NO_WAIT:**(0x00000000)
+    - **TX_WAIT_FOREVER:**(0xFFFFFFFF)
+    - wartość limitu czasu: (0x00000001 do 0xFFFFFFFE)  
     
-    Wybranie TX_NO_WAIT powoduje natychmiastowe zwrócenie z tej usługi niezależnie od tego, czy zakończyło się pomyślnie, czy nie. Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z niewątku; np. Inicjalizacja, czasomierz lub ISR.
+    Wybranie TX_NO_WAIT powoduje natychmiastowy zwrot z tej usługi niezależnie od tego, czy została ona pomyślna, czy nie. Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z nie wątku; np. inicjalizacja, czasomierz lub ISR.
 
-    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu udostępnienia bloku pamięci.
+    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony do momentu, aż blok pamięci będzie dostępny.
 
-    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na blok pamięci.
+    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na blok pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna alokacja bloku pamięci.
-- **TX_DELETED**: (0x01) Pula bloków pamięci została usunięta podczas wstrzymania wątku.
-- **TX_NO_MEMORY**: usługa (0x10) nie może przydzielić bloku pamięci w określonym czasie, aby oczekiwania.
-- Zawieszanie **TX_WAIT_ABORTED**: (0x1A) zostało przerwane przez inny wątek, CZASOMIERZ lub ISR.
+- **TX_SUCCESS:**(0x00) Pomyślna alokacja bloku pamięci.
+- **TX_DELETED:**(0x01) Pula bloków pamięci została usunięta, gdy wątek został zawieszony.
+- **TX_NO_MEMORY:**(0x10) Usługa nie mogła przydzielić bloku pamięci w określonym czasie oczekiwania.
+- **TX_WAIT_ABORTED:**(0x1A) Zawieszenie zostało przerwane przez inny wątek, czasomierz lub isr.
 - TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli bloków pamięci.
 - TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik do wskaźnika docelowego.
-- TX_WAIT_ERROR: (0x04) opcja oczekiwania inna niż TX_NO_WAIT została określona w wywołaniu z niewątku.
+- TX_WAIT_ERROR: (0x04) Opcja oczekiwania inna niż TX_NO_WAIT została określona dla wywołania z nieprzeczytanego.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -182,7 +182,7 @@ status = tx_block_allocate(&my_pool, (VOID **) &memory_ptr,
 - tx_block_release
 
 ## <a name="tx_block_pool_create"></a>tx_block_pool_create
-Utwórz pulę bloków pamięci o stałym rozmiarze
+Tworzenie puli bloków pamięci o stałym rozmiarze
 
 ### <a name="prototype"></a>Prototype
 
@@ -193,33 +193,33 @@ UINT tx_block_pool_create(TX_BLOCK_POOL *pool_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy pulę bloków pamięci o stałym rozmiarze. Określony obszar pamięci jest podzielony na tyle bloków pamięci o stałym rozmiarze, jak to możliwe, przy użyciu formuły:    
-**łączna liczba bloków** = (**całkowita liczba bajtów**)/(**rozmiar bloku** + sizeof (void *))
+Ta usługa tworzy pulę bloków pamięci o stałym rozmiarze. Określony obszar pamięci jest podzielony na jak najwięcej bloków pamięci o stałym rozmiarze przy użyciu formuły:    
+**total blocks** = (**total bytes**) / (**block size** + sizeof(void *))
 
 > [!IMPORTANT]
-> Każdy blok pamięci zawiera jeden wskaźnik obciążenia, który jest niewidoczny dla użytkownika i jest reprezentowany przez "sizeof (void *)" w poprzedniej formule.
+> Każdy blok pamięci zawiera jeden wskaźnik obciążenia, który jest niewidoczny dla użytkownika i jest reprezentowany przez "sizeof(void *)" w poprzedniej formule.
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr**: wskaźnik do bloku sterującego puli blok pamięci.
-- **name_ptr**: wskaźnik do nazwy puli bloków pamięci.
-- **block_size**: liczba bajtów w każdym bloku pamięci.
-- **pool_start**: adres początkowy puli bloków pamięci. Adres początkowy musi być wyrównany do rozmiaru typu danych ULONG.
-- **pool_size**: całkowita liczba bajtów dostępnych dla puli bloków pamięci.
+- **pool_ptr:** Wskaźnik do bloku sterowania puli bloków pamięci.
+- **name_ptr:** wskaźnik do nazwy puli bloków pamięci.
+- **block_size:** liczba bajtów w każdym bloku pamięci.
+- **pool_start:** początkowy adres puli bloków pamięci. Adres początkowy musi być wyrównany do rozmiaru typu danych ULONG.
+- **pool_size:** łączna liczba bajtów dostępnych dla puli bloków pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślnie utworzono pulę bloków pamięci.
-- TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli bloków pamięci. Wskaźnik ma wartość NULL lub pula została już utworzona.
-- TX_PTR_ERROR: (0x03) nieprawidłowy adres początkowy puli.
-- TX_SIZE_ERROR: (0x05) rozmiar puli jest nieprawidłowy.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- **TX_SUCCESS:**(0x00) Pomyślne utworzenie puli bloków pamięci.
+- TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli bloków pamięci. Wskaźnik ma wartość NULL lub pula jest już utworzona.
+- TX_PTR_ERROR: (0x03) Nieprawidłowy adres początkowy puli.
+- TX_SIZE_ERROR: (0x05) Rozmiar puli jest nieprawidłowy.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -253,7 +253,7 @@ status = tx_block_pool_create(&my_pool, "my_pool_name",
 
 ## <a name="tx_block_pool_delete"></a>tx_block_pool_delete
 
-Usuń pulę bloków pamięci
+Usuwanie puli bloków pamięci
 
 ### <a name="prototype"></a>Prototype
 
@@ -262,26 +262,26 @@ UINT tx_block_pool_delete(TX_BLOCK_POOL *pool_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa określoną pulę bloków pamięci. Wszystkie wątki zawieszają się, czekając na wznowienie bloku pamięci z tej puli i z uwzględnieniem TX_DELETED stanu powrotu.
+Ta usługa usuwa określoną pulę blokowej pamięci. Wszystkie wątki wstrzymane w oczekiwaniu na blok pamięci z tej puli są wznawiane i TX_DELETED zwracany stan.
 
 > [!IMPORTANT]
-> Jest on odpowiedzialny za zarządzanie obszarem pamięci skojarzonym z pulą, która jest dostępna po zakończeniu tej usługi. Ponadto aplikacja musi uniemożliwić korzystanie z usuniętej puli lub jej poprzednich bloków pamięci.
+> Aplikacja odpowiada za zarządzanie obszarem pamięci skojarzonym z pulą, który jest dostępny po zakończeniu tej usługi. Ponadto aplikacja musi uniemożliwić korzystanie z usuniętej puli lub jej bloków pamięci.
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr**: wskaźnik do wcześniej utworzonej puli bloków pamięci.
+- **pool_ptr:** wskaźnik do wcześniej utworzonej puli bloków pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślnie usunięto pulę bloków pamięci.
+- **TX_SUCCESS:**(0x00) Pomyślne usunięcie puli bloków pamięci.
 - TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli bloków pamięci.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -311,7 +311,7 @@ UINT           status;
 
 ## <a name="tx_block_pool_info_get"></a>tx_block_pool_info_get
 
-Pobierz informacje o puli blokowej
+Pobieranie informacji o puli bloków
 
 ### <a name="prototype"></a>Prototype
 
@@ -328,25 +328,25 @@ Ta usługa pobiera informacje o określonej puli pamięci blokowej.
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr**: wskaźnik do wcześniej utworzonej puli bloków pamięci.
-- **name**: wskaźnik do miejsca docelowego dla wskaźnika do nazwy puli blokowej.
-- **dostępne**: wskaźnik do miejsca docelowego dla liczby dostępnych bloków w puli blokowej.
-- **total_blocks**: wskaźnik do miejsca docelowego dla łącznej liczby bloków w puli bloków.
-- **first_suspended**: wskaźnik do miejsca docelowego dla wskaźnika do wątku, który jest pierwszy na liście zawieszeń tej puli blokowej.
-- **suspended_count**: wskaźnik do miejsca docelowego dla liczby wątków, które są obecnie zawieszone w tej puli blokowej.
-- **next_pool**: wskaźnik do miejsca docelowego dla wskaźnika następnej utworzonej puli blokowej.
+- **pool_ptr:** wskaźnik do wcześniej utworzonej puli bloków pamięci.
+- **name**: Wskaźnik do miejsca docelowego dla wskaźnika do nazwy puli bloków.
+- **dostępne:** wskaźnik do miejsca docelowego dla liczby dostępnych bloków w puli bloków.
+- **total_blocks:** wskaźnik do miejsca docelowego dla łącznej liczby bloków w puli bloków.
+- **first_suspended:** Wskaźnik do miejsca docelowego dla wskaźnika do wątku, który jest pierwszy na liście zawieszenia tej puli bloków.
+- **suspended_count:** Wskaźnik do miejsca docelowego dla liczby wątków aktualnie zawieszonych w tej puli bloków.
+- **next_pool:** Wskaźnik do miejsca docelowego dla wskaźnika następnej utworzonej puli bloków.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie parametru TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobranie informacji o puli blokowych.
+- **TX_SUCCESS:**(0x00) Pobieranie informacji o puli bloków powiodło się.
 - TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli bloków pamięci.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
 ### <a name="example"></a>Przykład
 
@@ -383,7 +383,7 @@ status = tx_block_pool_info_get(&my_pool, &name,
 
 ## <a name="tx_block_pool_performance_info_get"></a>tx_block_pool_performance_info_get
 
-Uzyskaj informacje o wydajności puli bloku
+Uzyskiwanie informacji o wydajności puli bloków
 
 ### <a name="prototype"></a>Prototype
 
@@ -395,31 +395,31 @@ UINT tx_block_pool_performance_info_get(TX_BLOCK_POOL *pool_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o wydajności dotyczące określonej puli bloków pamięci.
+Ta usługa pobiera informacje o wydajności określonej puli bloków pamięci.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_BLOCK_POOL_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o wydajności, biblioteka i aplikacja ThreadX SMP muszą **TX_BLOCK_POOL_ENABLE_PERFORMANCE_INFO** z definicją.
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr**: wskaźnik do wcześniej utworzonej puli bloków pamięci.
-- **przypisuje**: wskaźnik do miejsca docelowego dla liczby żądań przydzielenia wykonanych w tej puli.
-- **wersje**: wskaźnik do miejsca docelowego dla liczby żądań wydania wykonanych w tej puli.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla liczby zawieszeń alokacji wątku w tej puli.
-- **limity czasu**: wskaźnik do miejsca docelowego dla liczby limitów przydziału zawieszeń w tej puli.
+- **pool_ptr:** wskaźnik do wcześniej utworzonej puli bloków pamięci.
+- **allocates**: wskaźnik do miejsca docelowego dla liczby żądań alokacji wykonanych w tej puli.
+- **releases:** wskaźnik do miejsca docelowego dla liczby żądań wydania wykonanych w tej puli.
+- **suspensions**: wskaźnik do miejsca docelowego dla liczby zawieszenia alokacji wątku w tej puli.
+- **limity czasu:** wskaźnik do miejsca docelowego dla liczby limitów czasu wstrzymania przydziału w tej puli.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobieranie wydajności puli blokowych.
-- **TX_PTR_ERROR**: (0X03) Nieprawidłowy wskaźnik puli bloku.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności puli bloków.
+- **TX_PTR_ERROR:**(0x03) Nieprawidłowy wskaźnik puli bloków.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
 ### <a name="example"></a>Przykład
 
@@ -452,7 +452,7 @@ status = tx_block_pool_performance_info_get(&my_pool, &allocates,
 
 ## <a name="tx_block_pool_performance_system_info_get"></a>tx_block_pool_performance_system_info_get
 
-Uzyskaj informacje o wydajności systemu puli blokowej
+Uzyskiwanie informacji o wydajności systemu puli bloków
 
 ### <a name="prototype"></a>Prototype
 
@@ -465,26 +465,26 @@ UINT tx_block_pool_performance_system_info_get(ULONG *allocates,
 Ta usługa pobiera informacje o wydajności wszystkich pul bloków pamięci w aplikacji.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_BLOCK_POOL_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o wydajności, biblioteka i aplikacja ThreadX SMP muszą **TX_BLOCK_POOL_ENABLE_PERFORMANCE_INFO** z definicją.
 
 ### <a name="parameters"></a>Parametry
 
-- **przypisuje**: wskaźnik do miejsca docelowego dla łącznej liczby żądań alokacji wykonanych dla wszystkich pul bloku.
-- **wersje**: wskaźnik do miejsca docelowego dla łącznej liczby żądań zwolnienia wykonanych na wszystkich pulach bloku.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla łącznej liczby zawieszeń alokacji wątku dla wszystkich pul bloku.
-- **limity czasu**: wskaźnik do miejsca docelowego dla łącznej liczby limitów czasu zawieszenia przydziału dla wszystkich pul bloku.
+- **allocates**: wskaźnik do miejsca docelowego dla łącznej liczby żądań alokacji wykonanych we wszystkich pulach bloków.
+- **releases:** wskaźnik do miejsca docelowego dla łącznej liczby żądań wydania wykonanych na wszystkich pulach bloków.
+- **suspensions**:Wskaźnik do miejsca docelowego dla całkowitej liczby zawieszenia alokacji wątku we wszystkich pulach bloków.
+- **limity czasu:** wskaźnik do miejsca docelowego dla całkowitej liczby limitów czasu wstrzymania przydziału we wszystkich pulach bloków.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne zablokowanie wydajności systemu puli.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności systemu puli bloków.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
 ### <a name="example"></a>Przykład
 
@@ -514,7 +514,7 @@ status = tx_block_pool_performance_system_info_get(&allocates,
 
 ## <a name="tx_block_pool_prioritize"></a>tx_block_pool_prioritize
 
-Ustawianie priorytetu listy zawieszania puli bloków
+Określanie priorytetów listy wstrzymania puli bloków
 
 ### <a name="prototype"></a>Prototype
 
@@ -523,22 +523,22 @@ UINT tx_block_pool_prioritize(TX_BLOCK_POOL *pool_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa umieszcza wątek o najwyższym priorytecie dla bloku pamięci w tej puli na początku listy zawieszeń. Wszystkie pozostałe wątki pozostają w tej samej kolejności FIFO, w której zostały zawieszone.
+Ta usługa umieszcza wątek o najwyższym priorytecie zawieszony dla bloku pamięci w tej puli na początku listy zawieszenia. Wszystkie inne wątki pozostają w tej samej kolejności FIFO, w których zostały wstrzymane.
 
 ### <a name="parameters"></a>Parametry 
 
-- **pool_ptr**: wskaźnik do bloku sterującego puli blok pamięci.
+- **pool_ptr:** Wskaźnik do bloku sterowania puli bloków pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna priorytetyzacja puli zablokowanych.
+- **TX_SUCCESS:**(0x00) Pomyślne określanie priorytetów puli bloków.
 - TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli bloków pamięci.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -577,25 +577,25 @@ UINT tx_block_release(VOID *block_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa zwalnia wcześniej przydzieloną blokadę z powrotem do skojarzonej puli pamięci. Jeśli istnieje co najmniej jeden wątek, który zawiesił oczekiwanie na bloki pamięci z tej puli, ten blok pamięci zostanie zawieszony i wznowiony.
+Ta usługa zwalnia wcześniej przydzielony blok z powrotem do skojarzonej puli pamięci. Jeśli co najmniej jeden wątek jest zawieszony w oczekiwaniu na bloki pamięci z tej puli, pierwszy wątek jest zawieszony i wznawiany.
 
 > [!IMPORTANT]
-> Aplikacja musi uniemożliwić korzystanie z obszaru blokowego pamięci po jego wydaniu z powrotem do puli.
+> Aplikacja musi uniemożliwić korzystanie z obszaru bloku pamięci po zwolnieniu go z powrotem do puli.
 
 ### <a name="parameters"></a>Parametry
 
-- **block_ptr**: wskaźnik do wcześniej przydzielony blok pamięci.
+- **block_ptr:** wskaźnik do wcześniej przydzielonego bloku pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna wersja bloku pamięci.
+- **TX_SUCCESS:**(0x00) Pomyślne wydanie bloku pamięci.
 - TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik do bloku pamięci.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -626,7 +626,7 @@ status = tx_block_release((VOID *) memory_ptr);
 
 ## <a name="tx_byte_allocate"></a>tx_byte_allocate
 
-Przydziel bajty pamięci
+Przydzielanie bajtów pamięci
 
 ### <a name="prototype"></a>Prototype
 
@@ -643,41 +643,41 @@ Ta usługa przydziela określoną liczbę bajtów z określonej puli bajtów pam
 > Ważne jest, aby upewnić się, że kod aplikacji nie zapisuje poza przydzielonym blokiem pamięci. W takim przypadku uszkodzenie występuje w sąsiednim (zazwyczaj kolejnym) bloku pamięci. Wyniki są nieprzewidywalne i często są krytyczne!
 
 > [!IMPORTANT]
-> Wydajność tej usługi jest funkcją rozmiaru bloku i ilością fragmentacji w puli. W związku z tym ta usługa nie powinna być używana w wątkach o krytycznym czasie wykonywania.
+> Wydajność tej usługi jest funkcją rozmiaru bloku i wielkości fragmentacji w puli. W związku z tym ta usługa nie powinna być używana podczas wykonywania wątków krytycznych dla czasu.
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr**: wskaźnik do wcześniej utworzonej puli pamięci.
-- **memory_ptr**: wskaźnik do wskaźnika pamięci docelowej. Po pomyślnym przydzieleniu adres przydzielonego obszaru pamięci jest umieszczany w miejscu, do którego wskazuje ten parametr.
-- **memory_size**: Liczba żądanych bajtów.
-- **WAIT_OPTION**: określa, w jaki sposób działa usługa, jeśli nie jest dostępna wystarczająca ilość pamięci. Opcje oczekiwania są zdefiniowane w następujący sposób:
-    - **TX_NO_WAIT**: (0x00000000)
-    - **TX_WAIT_FOREVER**: (0xffffffff)
-    - wartość limitu czasu: (od 0x00000001 do 0xFFFFFFFE)
+- **pool_ptr:** wskaźnik do wcześniej utworzonej puli pamięci.
+- **memory_ptr:** wskaźnik do docelowego wskaźnika pamięci. Po pomyślnej alokacji adres przydzielonego obszaru pamięci jest umieszczany w miejscu, na który wskazuje ten parametr.
+- **memory_size:** liczba żądanych bajtów.
+- **wait_option:** definiuje sposób zachowania usługi w przypadku braku wystarczającej ilości pamięci. Opcje oczekiwania są zdefiniowane w następujący sposób:
+    - **TX_NO_WAIT:**(0x00000000)
+    - **TX_WAIT_FOREVER:**(0xFFFFFFFF)
+    - wartość limitu czasu: (0x00000001 do 0xFFFFFFFE)
 
-    Wybranie TX_NO_WAIT powoduje natychmiastowe zwrócenie z tej usługi niezależnie od tego, czy zakończyło się powodzeniem. *Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z inicjacji.*
+    Wybranie TX_NO_WAIT powoduje natychmiastowy zwrot z tej usługi niezależnie od tego, czy to się powiodło. *Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z inicjowania.*
 
-    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu udostępnienia wystarczającej ilości pamięci.
+    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony do momentu, gdy dostępna będzie wystarczająca ilość pamięci.
 
-    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na pamięć.
+    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na pamięć.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna alokacja pamięci.
-- **TX_DELETED**: (0x01) Pula pamięci została usunięta podczas wstrzymania wątku.
-- **TX_NO_MEMORY**: usługa (0x10) nie może przydzielić pamięci w określonym czasie, aby czekać.
-- **TX_WAIT_ABORTED**: (0x1A) zostało przerwane przez inny wątek, czasomierz lub proces ISR.
+- **TX_SUCCESS:**(0x00) Pomyślna alokacja pamięci.
+- **TX_DELETED:**(0x01) Pula pamięci została usunięta, gdy wątek został zawieszony.
+- **TX_NO_MEMORY:**(0x10) Usługa nie mogła przydzielić pamięci w określonym czasie oczekiwania.
+- **TX_WAIT_ABORTED:**(0x1A) Zawieszenie zostało przerwane przez inny wątek, czasomierz lub isr.
 - TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli pamięci.
 - TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik do wskaźnika docelowego.
-- TX_SIZE_ERROR: (0X05) żądany rozmiar jest równy zero lub większy niż Pula.
-- TX_WAIT_ERROR: (0x04) opcja oczekiwania inna niż TX_NO_WAIT została określona w wywołaniu z niewątku.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_SIZE_ERROR: (0X05) Żądany rozmiar jest zero lub większy niż pula.
+- TX_WAIT_ERROR: (0x04) Opcja oczekiwania inna niż TX_NO_WAIT została określona dla wywołania z niewątkowego.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -709,7 +709,7 @@ status =  tx_byte_allocate(&my_pool, (VOID **) &memory_ptr,
 
 ## <a name="tx_byte_pool_create"></a>tx_byte_pool_create
 
-Utwórz pulę pamięci bajtów
+Tworzenie puli pamięci bajtów
 
 ### <a name="prototype"></a>Prototype
 
@@ -720,28 +720,28 @@ UINT tx_byte_pool_create(TX_BYTE_POOL *pool_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy pulę bajtów pamięci w określonym obszarze. Początkowo Pula składa się z zasadniczo jednego bardzo dużego bezpłatnego bloku. Jednak Pula jest dzielona na mniejsze bloki w miarę dokonywania alokacji.
+Ta usługa tworzy pulę bajtów pamięci w określonym obszarze. Początkowo pula składa się z jednego bardzo dużego wolnego bloku. Jednak pula jest dzielana na mniejsze bloki w przypadku alokacji.
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr**: wskaźnik do bloku kontroli puli pamięci.
-- **name_ptr**: wskaźnik do nazwy puli pamięci.
-- **pool_start**: początkowy adres puli pamięci. Adres początkowy musi być wyrównany do rozmiaru typu danych ULONG.
-- **pool_size**: Łączna liczba bajtów dostępnych dla puli pamięci.
+- **pool_ptr:** wskaźnik do bloku sterowania puli pamięci.
+- **name_ptr:** Wskaźnik do nazwy puli pamięci.
+- **pool_start:** początkowy adres puli pamięci. Adres początkowy musi być dopasowany do rozmiaru typu danych ULONG.
+- **pool_size:** łączna liczba bajtów dostępnych dla puli pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne utworzenie puli pamięci.
+- **TX_SUCCESS:**(0x00) Pomyślne utworzenie puli pamięci.
 - TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli pamięci. Wskaźnik ma wartość NULL lub pula została już utworzona.
-- TX_PTR_ERROR: (0x03) nieprawidłowy adres początkowy puli.
-- TX_SIZE_ERROR: (0x05) rozmiar puli jest nieprawidłowy.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_PTR_ERROR: (0x03) Nieprawidłowy adres początkowy puli.
+- TX_SIZE_ERROR: (0x05) Rozmiar puli jest nieprawidłowy.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -780,26 +780,26 @@ UINT tx_byte_pool_delete(TX_BYTE_POOL *pool_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa określoną pulę bajtów pamięci. Wszystkie wątki zostały zawieszone, oczekując na wznowienie pamięci z tej puli i z uwzględnieniem TX_DELETED stanu powrotu.
+Ta usługa usuwa określoną pulę bajtów pamięci. Wszystkie wątki wstrzymane w oczekiwaniu na pamięć z tej puli są wznawiane i nadaj TX_DELETED zwracany stan.
 
 > [!IMPORTANT]
-> Jest on odpowiedzialny za zarządzanie obszarem pamięci skojarzonym z pulą, która jest dostępna po zakończeniu tej usługi. Ponadto aplikacja musi uniemożliwić korzystanie z usuniętej puli lub pamięci, która została wcześniej przypisana.
+> Aplikacja odpowiada za zarządzanie obszarem pamięci skojarzonym z pulą, który jest dostępny po zakończeniu pracy tej usługi. Ponadto aplikacja musi uniemożliwić korzystanie z wcześniej przydzielonej puli lub pamięci.
 
 ### <a name="parameters"></a>Parametry 
 
-- **pool_ptr**: wskaźnik do wcześniej utworzonej puli pamięci.
+- **pool_ptr:** wskaźnik do wcześniej utworzonej puli pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne usunięcie puli pamięci.
+- **TX_SUCCESS:**(0x00) Pomyślne usunięcie puli pamięci.
 - TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli pamięci.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -827,7 +827,7 @@ status =   tx_byte_pool_delete(&my_pool);
 
 ## <a name="tx_byte_pool_info_get"></a>tx_byte_pool_info_get
 
-Pobierz informacje o puli bajtów
+Pobieranie informacji o puli bajtów
 
 ### <a name="prototype"></a>Prototype
 
@@ -844,27 +844,27 @@ Ta usługa pobiera informacje o określonej puli bajtów pamięci.
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr**: wskaźnik do wcześniej utworzonej puli pamięci.
-- **name**: wskaźnik do miejsca docelowego dla wskaźnika do nazwy puli bajtów.
-- **dostępne**: wskaźnik do miejsca docelowego dla liczby dostępnych bajtów w puli.
-- **fragmenty**: wskaźnik do miejsca docelowego dla łącznej liczby fragmentów pamięci w puli bajtów.
-- **first_suspended**: wskaźnik do miejsca docelowego dla wskaźnika do wątku, który najpierw znajduje się na liście zawieszeń tej puli bajtów.
-- **suspended_count**: wskaźnik do miejsca docelowego dla liczby wątków, które są obecnie zawieszone w tej puli bajtów.
-- **next_pool**: wskaźnik do miejsca docelowego dla wskaźnika następnej utworzonej puli bajtów.
+- **pool_ptr:** Wskaźnik do wcześniej utworzonej puli pamięci.
+- **name**: Wskaźnik do miejsca docelowego dla wskaźnika do nazwy puli bajtów.
+- **dostępne:** wskaźnik do miejsca docelowego dla liczby dostępnych bajtów w puli.
+- **fragmentów:** wskaźnik do miejsca docelowego całkowitej liczby fragmentów pamięci w puli bajtów.
+- **first_suspended:** Wskaźnik do miejsca docelowego dla wskaźnika do wątku, który jest pierwszy na liście zawieszenia tej puli bajtów.
+- **suspended_count:** wskaźnik do miejsca docelowego dla liczby wątków aktualnie zawieszonych w tej puli bajtów.
+- **next_pool:** wskaźnik do miejsca docelowego dla wskaźnika następnej utworzonej puli bajtów.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobranie informacji o puli.
+- **TX_SUCCESS:**(0x00) Pobieranie informacji o puli pomyślnych.
 - TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli pamięci.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -902,7 +902,7 @@ status =  tx_byte_pool_info_get(&my_pool, &name,
 
 ## <a name="tx_byte_pool_performance_info_get"></a>tx_byte_pool_performance_info_get
 
-Pobierz informacje o wydajności puli bajtów
+Uzyskiwanie informacji o wydajności puli bajtów
 
 ### <a name="prototype"></a>Prototype
 
@@ -914,34 +914,34 @@ UINT tx_byte_pool_performance_info_get(TX_BYTE_POOL *pool_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o wydajności dotyczące określonej puli bajtów pamięci.
+Ta usługa pobiera informacje o wydajności określonej puli bajtów pamięci.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_BYTE_POOL_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o  wydajności, biblioteka i aplikacja ThreadX SMP TX_BYTE_POOL_ENABLE_PERFORMANCE_INFO muszą być sbudowaną za pomocą zdefiniowanej biblioteki SMP ThreadX.
 
 ### <a name="parameters"></a>Parametry
 
-- **pool_ptr**: wskaźnik do wcześniej utworzonej puli bajtów pamięci.
-- **przypisuje**: wskaźnik do miejsca docelowego dla liczby żądań przydzielenia wykonanych w tej puli.
-- **wersje**: wskaźnik do miejsca docelowego dla liczby żądań wydania wykonanych w tej puli.
-- **fragments_searched**: wskaźnik do miejsca docelowego dla liczby fragmentów pamięci wewnętrznej przeszukanych podczas żądania alokacji w tej puli.
-- **scalenia**: wskaźnik do miejsca docelowego dla liczby wewnętrznych bloków pamięci scalonych podczas żądań alokacji w tej puli.
-- **Splits**: wskaźnik do miejsca docelowego dla liczby wewnętrznych bloków pamięci podzielonej (fragmenty) utworzonych podczas żądania alokacji w tej puli.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla liczby zawieszeń alokacji wątku w tej puli.
-- **limity czasu**: wskaźnik do miejsca docelowego dla liczby limitów przydziału zawieszeń w tej puli.
+- **pool_ptr:** wskaźnik do wcześniej utworzonej puli bajtów pamięci.
+- **allocates**: wskaźnik do miejsca docelowego dla liczby żądań alokacji wykonanych w tej puli.
+- **releases:** wskaźnik do miejsca docelowego dla liczby żądań wydania wykonanych w tej puli.
+- **fragments_searched:** wskaźnik do miejsca docelowego dla liczby fragmentów pamięci wewnętrznej przeszukiwanych podczas żądań alokacji w tej puli.
+- **merges:** wskaźnik do miejsca docelowego dla liczby bloków pamięci wewnętrznej scalonych podczas żądań alokacji w tej puli.
+- **splits**: wskaźnik do miejsca docelowego dla liczby podziałów (fragmentów) bloków pamięci wewnętrznej podczas żądań alokacji w tej puli.
+- **suspensions**: wskaźnik do miejsca docelowego dla liczby zawieszenia alokacji wątku w tej puli.
+- **limity czasu:** wskaźnik do miejsca docelowego dla liczby limitów czasu wstrzymania przydziału w tej puli.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- TX_SUCCESS: (0x00) pomyślne pobieranie wydajności puli bajtów.
-- **TX_PTR_ERROR**: (0X03) Nieprawidłowy wskaźnik puli bajtów.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- TX_SUCCESS: (0x00) Pomyślne uzyskiwanie wydajności puli bajtów.
+- **TX_PTR_ERROR:**(0x03) Nieprawidłowy wskaźnik puli bajtów.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -978,7 +978,7 @@ status =  tx_byte_pool_performance_info_get(&my_pool,
 
 ## <a name="tx_byte_pool_performance_system_info_get"></a>tx_byte_pool_performance_system_info_get
 
-Pobierz informacje o wydajności systemu puli bajtów
+Uzyskiwanie informacji o wydajności systemu puli bajtów
 
 ### <a name="prototype"></a>Prototype
 
@@ -992,29 +992,29 @@ UINT  tx_byte_pool_performance_system_info_get(ULONG *allocates,
 Ta usługa pobiera informacje o wydajności wszystkich pul bajtów pamięci w systemie.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_BYTE_POOL_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o wydajności, biblioteka i aplikacja SMP **ThreadX** muszą TX_BYTE_POOL_ENABLE_PERFORMANCE_INFO za pomocą zdefiniowanej definicji.
 
 ### <a name="parameters"></a>Parametry
 
-- **przypisuje**: wskaźnik do miejsca docelowego dla liczby żądań przydzielenia wykonanych w tej puli.
-- **wersje**: wskaźnik do miejsca docelowego dla liczby żądań wydania wykonanych w tej puli.
-- **fragments_searched**: wskaźnik do miejsca docelowego dla łącznej liczby fragmentów pamięci wewnętrznej przeszukanych podczas żądania alokacji we wszystkich pulach bajtów.
-- **scalenia**: wskaźnik do miejsca docelowego dla łącznej liczby bloków pamięci wewnętrznej scalonych podczas żądania alokacji we wszystkich pulach bajtów.
-- **Splits**: wskaźnik do miejsca docelowego dla łącznej liczby bloków pamięci wewnętrznej Split (fragmenty) utworzonych podczas żądania alokacji dla wszystkich pul bajtów.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla łącznej liczby zawieszeń alokacji wątku dla wszystkich pul bajtów.
-- **limity czasu**: wskaźnik do miejsca docelowego dla łącznej liczby limitów czasu zawieszenia przydziału dla wszystkich pul bajtów.
+- **allocates**: wskaźnik do miejsca docelowego dla liczby żądań alokacji wykonanych w tej puli.
+- **releases:** wskaźnik do miejsca docelowego dla liczby żądań wydania wykonanych w tej puli.
+- **fragments_searched:** wskaźnik do miejsca docelowego dla łącznej liczby fragmentów pamięci wewnętrznej przeszukiwanych podczas żądań alokacji we wszystkich pulach bajtów.
+- **merges**: wskaźnik do miejsca docelowego dla całkowitej liczby wewnętrznych bloków pamięci scalonych podczas żądań alokacji we wszystkich pulach bajtów.
+- **splits**: wskaźnik do miejsca docelowego dla całkowitej liczby podziałów (fragmentów) bloków pamięci wewnętrznej utworzonych podczas żądań alokacji we wszystkich pulach bajtów.
+- **suspensions**: wskaźnik do miejsca docelowego dla całkowitej liczby zawieszeń alokacji wątków we wszystkich pulach bajtów.
+- **limity czasu:** wskaźnik do miejsca docelowego dla całkowitej liczby limitów czasu wstrzymania przydziału we wszystkich pulach bajtów.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie parametru TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobieranie wydajności puli bajtów.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności puli bajtów.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -1049,7 +1049,7 @@ tx_byte_pool_performance_system_info_get(&fragments_searched,
 
 ## <a name="tx_byte_pool_prioritize"></a>tx_byte_pool_prioritize
 
-Ustawianie priorytetu listy zawieszania puli bajtów
+Określanie priorytetów listy zawieszenia puli bajtów
 
 ### <a name="prototype"></a>Prototype
 
@@ -1058,22 +1058,22 @@ UINT tx_byte_pool_prioritize(TX_BYTE_POOL *pool_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa umieszcza wątek o najwyższym priorytecie dla pamięci w tej puli na początku listy zawieszeń. Wszystkie pozostałe wątki pozostają w tej samej kolejności FIFO, w której zostały zawieszone.
+Ta usługa umieszcza wątek o najwyższym priorytecie zawieszony dla pamięci w tej puli na początku listy zawieszenia. Wszystkie inne wątki pozostają w tej samej kolejności FIFO, w których zostały wstrzymane.
 
 ### <a name="parameters"></a>Parametry 
 
-- **pool_ptr**: wskaźnik do bloku kontroli puli pamięci.
+- **pool_ptr:** wskaźnik do bloku sterowania puli pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna priorytetyzacja puli pamięci.
+- **TX_SUCCESS:**(0x00) Priorytet puli pamięci powodzenie.
 - TX_POOL_ERROR: (0x02) Nieprawidłowy wskaźnik puli pamięci.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1104,7 +1104,7 @@ status = tx_byte_pool_prioritize(&my_pool);
 
 ## <a name="tx_byte_release"></a>tx_byte_release
 
-Wydawanie bajtów z powrotem do puli pamięci
+Zwalnianie bajtów z powrotem do puli pamięci
 
 ### <a name="prototype"></a>Prototype
 
@@ -1113,26 +1113,26 @@ UINT tx_byte_release(VOID *memory_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa zwalnia wcześniej przydzieloną przestrzeń pamięci z powrotem do skojarzonej puli. Jeśli istnieje co najmniej jeden wątek, który wstrzymał oczekiwanie na pamięć z tej puli, przybierana jest pamięć i wznawiana do momentu wyczerpania pamięci lub do momentu, gdy nie będzie już można wstrzymać wątków. Ten proces przydzielania pamięci do zawieszonych wątków zawsze zaczyna się od pierwszego wątku zawieszonego.
+Ta usługa zwalnia wcześniej przydzielony obszar pamięci z powrotem do skojarzonej puli. Jeśli co najmniej jeden wątek jest zawieszony w oczekiwaniu na pamięć z tej puli, każdy zawieszony wątek ma nadaną pamięć i jest wznawiany do momentu wyczerpania pamięci lub do momentu, gdy nie będzie już wstrzymanych wątków. Ten proces przydzielania pamięci do zawieszonych wątków zawsze rozpoczyna się od pierwszego wstrzymanego wątku.
 
 > [!IMPORTANT]
-> Aplikacja musi uniemożliwić korzystanie z obszaru pamięci po jego udostępnieniu.
+> Aplikacja musi uniemożliwić korzystanie z obszaru pamięci po jego zwolnieniu.
 
 ### <a name="parameters"></a>Parametry
 
-- **memory_ptr**: wskaźnik do wcześniej przydzieloną obszaru pamięci.
+- **memory_ptr:** wskaźnik do poprzednio przydzielonego obszaru pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne wydanie pamięci.
+- **TX_SUCCESS:**(0x00) Pomyślne wydanie pamięci.
 - TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik obszaru pamięci.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -1161,7 +1161,7 @@ status =  tx_byte_release((VOID *) memory_ptr);
 
 ## <a name="tx_event_flags_create"></a>tx_event_flags_create
 
-Utwórz grupę flag zdarzeń
+Tworzenie grupy flag zdarzeń
 
 ### <a name="prototype"></a>Prototype
 
@@ -1171,24 +1171,24 @@ UINT tx_event_flags_create(TX_EVENT_FLAGS_GROUP *group_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy grupę flag zdarzeń 32. Wszystkie flagi zdarzeń 32 w grupie są inicjowane na zero. Każda flaga zdarzenia jest reprezentowana przez jeden bit.
+Ta usługa tworzy grupę 32 flag zdarzeń. Wszystkie 32 flagi zdarzeń w grupie są inicjowane do zera. Każda flaga zdarzenia jest reprezentowana przez pojedynczy bit.
 
 ### <a name="parameters"></a>Parametry
 
-- **group_ptr**: wskaźnik do bloku sterowania grupą flag zdarzeń. 
-- **name_ptr**: wskaźnik do nazwy grupy flag zdarzeń.
+- **group_ptr:** wskaźnik do bloku sterowania grupy flag zdarzeń. 
+- **name_ptr:** wskaźnik do nazwy grupy flag zdarzeń.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne utworzenie grupy zdarzeń.
+- **TX_SUCCESS:**(0x00) Pomyślne utworzenie grupy zdarzeń.
 - TX_GROUP_ERROR: (0x06) Nieprawidłowy wskaźnik grupy zdarzeń. Wskaźnik ma wartość NULL lub grupa zdarzeń została już utworzona.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1217,7 +1217,7 @@ status = tx_event_flags_create(&my_event_group,
 
 ## <a name="tx_event_flags_delete"></a>tx_event_flags_delete
 
-Usuń grupę flag zdarzeń
+Usuwanie grupy flag zdarzeń
 
 ### <a name="prototype"></a>Prototype
 
@@ -1226,26 +1226,26 @@ UINT tx_event_flags_delete(TX_EVENT_FLAGS_GROUP *group_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa określoną grupę flag zdarzeń. Wszystkie wątki zawieszone w trakcie oczekiwania na zdarzenia z tej grupy są wznawiane i mają TX_DELETED stanu powrotu.
+Ta usługa usuwa określoną grupę flag zdarzeń. Wszystkie wątki wstrzymane w oczekiwaniu na zdarzenia z tej grupy są wznawiane i nadaj TX_DELETED zwracany stan.
 
 > [!IMPORTANT]
-> Aplikacja musi upewnić się, że ustawione wywołanie zwrotne powiadomień dla tej grupy flag zdarzeń zostanie ukończone (lub wyłączone) przed usunięciem grupy flag zdarzeń. Ponadto aplikacja musi uniemożliwić wszystkie przyszłe użycie grupy flag zdarzeń usuniętych.
+> Aplikacja musi upewnić się, że wywołanie zwrotne powiadomienia zestawu dla tej grupy flag zdarzeń zostało ukończone (lub wyłączone) przed usunięciem grupy flag zdarzeń. Ponadto aplikacja musi uniemożliwić w przyszłości korzystanie z usuniętej grupy flag zdarzeń.
 
 ### <a name="parameters"></a>Parametry 
 
-- **group_ptr**: wskaźnik do wcześniej utworzonej grupy flag zdarzeń.
+- **group_ptr:** wskaźnik do wcześniej utworzonej grupy flag zdarzeń.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) usunięcie grupy flag zdarzeń zakończonych powodzeniem.
+- **TX_SUCCESS:**(0x00) Pomyślne usunięcie grupy flag zdarzeń.
 - TX_GROUP_ERROR: (0x06) Nieprawidłowy wskaźnik grupy flag zdarzeń.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -1286,48 +1286,48 @@ UINT tx_event_flags_get(TX_EVENT_FLAGS_GROUP *group_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera flagi zdarzeń z określonej grupy flag zdarzeń. Każda grupa flag zdarzeń zawiera 32 flag zdarzeń. Każda flaga jest reprezentowana przez jeden bit. Ta usługa może pobrać różne kombinacje flag zdarzeń wybrane przez parametry wejściowe.
+Ta usługa pobiera flagi zdarzeń z określonej grupy flag zdarzeń. Każda grupa flag zdarzeń zawiera 32 flagi zdarzeń. Każda flaga jest reprezentowana przez pojedynczy bit. Ta usługa może pobrać różne kombinacje flag zdarzeń wybrane przez parametry wejściowe.
 
 ### <a name="parameters"></a>Parametry
 
-- **group_ptr**: wskaźnik do wcześniej utworzonej grupy flag zdarzeń.
-- **requested_flags**: 32-bitowa zmienna bez znaku reprezentująca żądane flagi zdarzeń.
-- **get_option**: określa, czy są wymagane wszystkie lub wszystkie wymagane flagi zdarzeń. Następujące opcje są prawidłowe:
-    - **TX_AND**: (0x02)
-    - **TX_AND_CLEAR**: (0x03)
-    - **TX_OR**: (0x00)
-    - **TX_OR_CLEAR**: (0x01)
+- **group_ptr:** wskaźnik do wcześniej utworzonej grupy flag zdarzeń.
+- **requested_flags:** 32-bitowa zmienna bez nazwy reprezentująca żądane flagi zdarzeń.
+- **get_option:** Określa, czy wymagane są wszystkie lub dowolne z żądanych flag zdarzeń. Poniżej przedstawiono prawidłowe opcje wyboru:
+    - **TX_AND:**(0x02)
+    - **TX_AND_CLEAR:**(0x03)
+    - **TX_OR:**(0x00)
+    - **TX_OR_CLEAR:**(0x01)
 
-    Wybranie opcji TX_AND lub TX_AND_CLEAR określa, że wszystkie flagi zdarzeń muszą znajdować się w grupie. Wybór TX_OR lub TX_OR_CLEAR określa, że każda flaga zdarzenia jest zadowalająca. Flagi zdarzeń, które spełniają żądanie, są wyczyszczone (Ustaw wartość zero), jeśli określono TX_AND_CLEAR lub TX_OR_CLEAR.
+    Wybranie TX_AND lub TX_AND_CLEAR określa, że wszystkie flagi zdarzeń muszą być obecne w grupie. Wybranie TX_OR lub TX_OR_CLEAR określa, że każda flaga zdarzenia jest zadowalająca. Flagi zdarzeń spełniające żądanie są czyszowane (ustawione na zero), jeśli TX_AND_CLEAR lub TX_OR_CLEAR są określone.
 
-- **actual_flags_ptr**: wskaźnik do lokalizacji docelowej, do której są umieszczone pobrane flagi zdarzeń. Należy zauważyć, że uzyskane bieżące flagi mogą zawierać flagi, które nie zostały zażądane.
-- **WAIT_OPTION**: określa, w jaki sposób działa usługa, jeśli wybrane flagi zdarzeń nie są ustawione. Opcje oczekiwania są zdefiniowane w następujący sposób:
-    - **TX_NO_WAIT**: (0x00000000)
-    - **TX_WAIT_FOREVER**: (0xffffffff)
-    - wartość limitu czasu: (od 0x00000001 do 0xFFFFFFFE)
+- **actual_flags_ptr:** wskaźnik do miejsca docelowego, w którym znajdują się pobrane flagi zdarzeń. Należy pamiętać, że rzeczywiste uzyskane flagi mogą zawierać flagi, których nie zażądano.
+- **wait_option:** definiuje sposób zachowania usługi, jeśli wybrane flagi zdarzeń nie są ustawione. Opcje oczekiwania są zdefiniowane w następujący sposób:
+    - **TX_NO_WAIT:**(0x00000000)
+    - **TX_WAIT_FOREVER:**(0xFFFFFFFF)
+    - wartość limitu czasu: (0x00000001 do 0xFFFFFFFE)
 
-    Wybranie TX_NO_WAIT powoduje natychmiastowe zwrócenie z tej usługi niezależnie od tego, czy zakończyło się powodzeniem. Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z niewątku; np. Inicjalizacja, czasomierz lub ISR.
+    Wybranie TX_NO_WAIT powoduje natychmiastowy zwrot z tej usługi niezależnie od tego, czy to się powiodło. Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z niewątkowego; np. inicjalizacja, czasomierz lub ISR.
 
-    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez nieograniczony czas do momentu udostępnienia flag zdarzeń.
+    Wybranie TX_WAIT_FOREVER powoduje zawieszanie wątku wywołującego na czas nieokreślony do momentu, gdy flagi zdarzeń będą dostępne.
 
-    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać zawieszona podczas oczekiwania na flagi zdarzeń.
+    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na flagi zdarzeń.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne flagi zdarzeń get.
-- Grupa flag zdarzeń **TX_DELETED**: (0x01) została usunięta podczas wstrzymania wątku.
-- **TX_NO_EVENTS**: usługa (0x07) nie może pobrać określonych zdarzeń w określonym czasie oczekiwania.
-- **TX_WAIT_ABORTED**: (0x1A) zostało przerwane przez inny wątek, czasomierz lub proces ISR.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie flag zdarzeń.
+- **TX_DELETED:**(0x01) Grupa flag zdarzeń została usunięta, gdy wątek został zawieszony.
+- **TX_NO_EVENTS:**(0x07) Usługa nie mogła pobrać określonych zdarzeń w określonym czasie oczekiwania.
+- **TX_WAIT_ABORTED:**(0x1A) Zawieszenie zostało przerwane przez inny wątek, czasomierz lub isr.
 - TX_GROUP_ERROR: (0x06) Nieprawidłowy wskaźnik grupy flag zdarzeń.
 - TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik dla rzeczywistych flag zdarzeń.
-- TX_WAIT_ERROR: (0x04) opcja oczekiwania inna niż TX_NO_WAIT została określona w wywołaniu z niewątku.
-- TX_OPTION_ERROR: (0x08) określono nieprawidłową opcję Get-Option.
+- TX_WAIT_ERROR: (0x04) Opcja oczekiwania inna niż TX_NO_WAIT została określona dla wywołania z niewątkowego.
+- TX_OPTION_ERROR: (0x08) Określono nieprawidłową opcję get-option.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -1360,7 +1360,7 @@ status = tx_event_flags_get(&my_event_flags_group, 0x111,
 
 ## <a name="tx_event_flags_info_get"></a>tx_event_flags_info_get
 
-Pobierz informacje o grupie flag zdarzeń
+Pobieranie informacji o grupie flag zdarzeń
 
 ### <a name="prototype"></a>Prototype
 
@@ -1377,26 +1377,26 @@ Ta usługa pobiera informacje o określonej grupie flag zdarzeń.
 
 ### <a name="parameters"></a>Parametry
 
-- **group_ptr**: wskaźnik do bloku sterowania grupą flag zdarzeń.
+- **group_ptr:** wskaźnik do bloku sterowania grupy flag zdarzeń.
 - **name**: wskaźnik do miejsca docelowego dla wskaźnika do nazwy grupy flag zdarzeń.
-- **current_flags**: wskaźnik do miejsca docelowego dla bieżących flag ustawionych w grupie flag zdarzeń.
-- **first_suspended**: wskaźnik do elementu docelowego dla wskaźnika do wątku, który jest pierwszy na liście zawieszeń tej grupy flag zdarzeń.
-- **suspended_count**: wskaźnik do miejsca docelowego dla liczby wątków, które są obecnie zawieszone w tej grupie flag zdarzeń.
-- **next_group**: wskaźnik do miejsca docelowego dla wskaźnika następnej utworzonej grupy flag zdarzeń.
+- **current_flags:** wskaźnik do miejsca docelowego dla bieżących flag zestawu w grupie flag zdarzeń.
+- **first_suspended:** wskaźnik do miejsca docelowego dla wskaźnika do wątku, który znajduje się jako pierwszy na liście zawieszania tej grupy flag zdarzeń.
+- **suspended_count:** wskaźnik do miejsca docelowego dla liczby wątków aktualnie zawieszonych w tej grupie flag zdarzeń.
+- **next_group:** wskaźnik do miejsca docelowego dla wskaźnika następnej utworzonej grupy flag zdarzeń.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie parametru TX_NULL parametru oznacza, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobieranie informacji o grupie zdarzeń.
+- **TX_SUCCESS:**(0x00) Pobieranie informacji o grupie zdarzeń powiodło się.
 - TX_GROUP_ERROR: (0x06) Nieprawidłowy wskaźnik grupy zdarzeń.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1433,7 +1433,7 @@ status =  tx_event_flags_info_get(&my_event_group, &name,
 
 ## <a name="tx_event_flags_performance-info_get"></a>tx_event_flags_performance info_get
 
-Pobierz informacje o wydajności grupy flag zdarzeń
+Uzyskiwanie informacji o wydajności grupy flag zdarzeń
 
 ### <a name="prototype"></a>Prototype
 
@@ -1444,31 +1444,31 @@ UINT tx_event_flags_performance_info_get(TX_EVENT_FLAGS_GROUP
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o wydajności dotyczące określonej grupy flag zdarzeń.
+Ta usługa pobiera informacje o wydajności określonej grupy flag zdarzeń.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_EVENT_FLAGS_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o wydajności, biblioteka i aplikacja SMP ThreadX muszą **TX_EVENT_FLAGS_ENABLE_PERFORMANCE_INFO** z definicją.
 
 ### <a name="parameters"></a>Parametry
 
-- **group_ptr**: wskaźnik do wcześniej utworzonej grupy flag zdarzeń.
-- **zestawy**: wskaźnik do miejsca docelowego dla liczby flag zdarzeń ustawia żądania wykonane dla tej grupy.
-- **Pobiera**: wskaźnik do miejsca docelowego dla liczby flag zdarzeń Pobiera żądania wykonane dla tej grupy.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla liczby flag zdarzeń wątku uzyskuje zawieszenie dla tej grupy.
-- **limity czasu**: wskaźnik do miejsca docelowego dla liczby flag zdarzeń uzyskuje limity czasu zawieszenia dla tej grupy.
+- **group_ptr:** wskaźnik do wcześniej utworzonej grupy flag zdarzeń.
+- **sets**: wskaźnik do miejsca docelowego dla liczby żądań zestawu flag zdarzeń wykonanych dla tej grupy.
+- **pobiera**: wskaźnik do miejsca docelowego dla liczby flag zdarzeń get żądań wykonywanych w tej grupie.
+- **suspensions**: wskaźnik do miejsca docelowego dla liczby flag zdarzeń wątku jest zawieszany w tej grupie.
+- **limity czasu:** wskaźnik do miejsca docelowego dla liczby flag zdarzeń ma limity czasu wstrzymania w tej grupie.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie parametru TX_NULL parametru oznacza, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne flagi zdarzeń grupy get.
-- **TX_PTR_ERROR**: (0X03) Nieprawidłowy wskaźnik grupy flag zdarzeń.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne flagi zdarzeń, uzyskiwanie wydajności grupy.
+- **TX_PTR_ERROR:**(0x03) Nieprawidłowy wskaźnik grupy flag zdarzeń.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -1500,7 +1500,7 @@ status =  tx_event_flags_performance_info_get(&my_event_flag_group,
 
 ## <a name="tx_event_flags_performance_system_info_get"></a>tx_event_flags_performance_system_info_get
 
-Pobierz informacje o systemie wydajności
+Pobieranie informacji o systemie wydajności
 
 ### <a name="prototype"></a>Prototype
 
@@ -1510,29 +1510,29 @@ UINT  tx_event_flags_performance_system_info_get(ULONG *sets,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o wydajności wszystkich grup flag zdarzeń w systemie.
+Ta usługa pobiera informacje o wydajności dotyczące wszystkich grup flag zdarzeń w systemie.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_EVENT_FLAGS_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o wydajności, biblioteka i aplikacja SMP ThreadX muszą **TX_EVENT_FLAGS_ENABLE_PERFORMANCE_INFO** z definicją.
 
 ### <a name="parameters"></a>Parametry
 
-- **zestawy**: wskaźnik do miejsca docelowego dla łącznej liczby flag zdarzeń ustawionych żądania dla wszystkich grup.
-- **Pobiera**: wskaźnik do miejsca docelowego dla łącznej liczby flag zdarzeń pobieranie żądań wykonanych dla wszystkich grup.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla łącznej liczby flag zdarzeń wątku uzyskuje zawieszenie dla wszystkich grup.
-- **limity czasu**: wskaźnik do miejsca docelowego dla łącznej liczby flag zdarzeń pobieranie limitów czasu zawieszenia dla wszystkich grup.
+- **sets:** wskaźnik do miejsca docelowego dla łącznej liczby żądań zestawu flag zdarzeń wykonanych dla wszystkich grup.
+- **pobiera**: wskaźnik do miejsca docelowego dla całkowitej liczby flag zdarzeń, które pobierają żądania wykonywane dla wszystkich grup.
+- **suspensions**: wskaźnik do miejsca docelowego dla całkowitej liczby flag zdarzeń wątku jest zawieszany we wszystkich grupach.
+- **limity czasu:** wskaźnik do miejsca docelowego dla łącznej liczby flag zdarzeń otrzyma limity czasu wstrzymania dla wszystkich grup.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie parametru TX_NULL parametru oznacza, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne flagi zdarzeń wydajność systemu.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne zdarzenie flaguje wydajność systemu.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -1572,27 +1572,27 @@ UINT tx_event_flags_set(TX_EVENT_FLAGS_GROUP *group_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia lub czyści flagi zdarzeń w grupie flag zdarzeń, w zależności od określonego zestawu opcji. Wszystkie zawieszone wątki, których żądanie flag zdarzeń jest teraz spełnione, są wznawiane.
+Ta usługa ustawia lub czyszczy flagi zdarzeń w grupie flag zdarzeń, w zależności od określonej opcji set-option. Wszystkie wstrzymane wątki, których żądanie flag zdarzeń jest teraz spełnione, zostaną wznowione.
 
 ### <a name="parameters"></a>Parametry
 
-- **group_ptr**: wskaźnik do wcześniej utworzonego bloku kontroli grupy flag zdarzeń.
-- **flags_to_set**: określa flagi zdarzeń do ustawienia lub wyczyszczenia w zależności od wybranej opcji zestawu.
-- **set_option**: określa, czy określone flagi zdarzeń są ANDed lub logicznie do bieżących flag zdarzenia w grupie. Następujące opcje są prawidłowe:
-    - **TX_AND**: (0x02)
-    - **TX_OR**: (0X00) wybranie pozycji TX_AND określa, że określone flagi zdarzeń są **i** są wbudowane w bieżące flagi zdarzenia w grupie. Ta opcja jest często używana do czyszczenia flag zdarzeń w grupie. W przeciwnym razie, jeśli określono TX_OR, określone flagi zdarzeń są **lub** Ed bieżącym zdarzeniem w grupie.
+- **group_ptr:** wskaźnik do wcześniej utworzonego bloku sterowania grupy flag zdarzeń.
+- **flags_to_set:** określa flagi zdarzeń do ustawienia lub wyczyszczenia na podstawie wybranej opcji zestawu.
+- **set_option:** Określa, czy określone flagi zdarzeń są ANDed lub ORed do bieżących flag zdarzeń grupy. Poniżej przedstawiono prawidłowe opcje wyboru:
+    - **TX_AND:**(0x02)
+    - **TX_OR:**(0x00) Wybranie TX_AND określa, że określone flagi zdarzeń są i **są** ed do bieżących flag zdarzeń w grupie. Ta opcja jest często używana do wyczyszczenia flag zdarzeń w grupie. W przeciwnym razie TX_OR, określone flagi zdarzeń są **LUB** ed z bieżącym zdarzeniem w grupie.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) ustawiono flag zdarzeń zakończonych powodzeniem.
+- **TX_SUCCESS:**(0x00) Zestaw flag zdarzeń pomyślnych.
 - TX_GROUP_ERROR: (0x06) Nieprawidłowy wskaźnik do grupy flag zdarzeń.
-- TX_OPTION_ERROR: (0x08) określono nieprawidłową opcję Set.
+- TX_OPTION_ERROR: (0x08) Określona nieprawidłowa opcja zestawu.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -1622,7 +1622,7 @@ status =  tx_event_flags_set(&my_event_flags_group,
 
 ## <a name="tx_event_flags_set_notify"></a>tx_event_flags_set_notify
 
-Powiadamiaj aplikację, gdy są ustawione flagi zdarzeń
+Powiadamianie aplikacji o ustawionych flagach zdarzeń
 
 ### <a name="prototype"></a>Prototype
 
@@ -1632,24 +1632,24 @@ UINT tx_event_flags_set_notify(TX_EVENT_FLAGS_GROUP *group_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego powiadomienia, która jest wywoływana za każdym razem, gdy jedna lub więcej flag zdarzeń jest ustawionych w określonej grupie flag zdarzeń. Przetwarzanie wywołania zwrotnego powiadomienia jest definiowane przez aplikację.
+Ta usługa rejestruje funkcję wywołania zwrotnego powiadomień, która jest wywoływana za każdym razem, gdy co najmniej jedna flaga zdarzenia jest ustawiona w określonej grupie flag zdarzeń. Przetwarzanie wywołania zwrotnego powiadomień jest definiowane przez aplikację.
 
 > [!NOTE]
-> Flagi zdarzeń aplikacji ustawiające wywołanie zwrotne powiadomienia nie mogą wywoływać żadnego interfejsu API SMP ThreadX z opcją zawieszenia.
+> Wywołanie zwrotne powiadomień zestawu flag zdarzeń aplikacji nie może wywołać żadnego interfejsu API SMP ThreadX z opcją zawieszenia.
 
 ### <a name="parameters"></a>Parametry 
-- **group_ptr**: wskaźnik do wcześniej utworzonej grupy flag zdarzeń.
-- **events_set_notify**: wskaźnik do flag zdarzeń aplikacji ustawia funkcję powiadomień. Jeśli ta wartość jest TX_NULL, powiadomienie jest wyłączone.
+- **group_ptr:** wskaźnik do wcześniej utworzonej grupy flag zdarzeń.
+- **events_set_notify:** wskaźnik do funkcji powiadomień zestawu flag zdarzeń aplikacji. Jeśli ta wartość jest TX_NULL, powiadomienie jest wyłączone.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna Rejestracja flag zdarzeń ustawionych dla powiadomienia.
+- **TX_SUCCESS:**(0x00) Pomyślna rejestracja powiadomienia zestawu flag zdarzeń.
 - TX_GROUP_ERROR: (0x06) Nieprawidłowy wskaźnik grupy flag zdarzeń.
-- TX_FEATURE_NOT_ENABLED: (0xFF) system został skompilowany z wyłączonymi funkcjami powiadomień.
+- TX_FEATURE_NOT_ENABLED: (0xFF) System został skompilowany z wyłączonymi możliwościami powiadomień.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
 ### <a name="example"></a>Przykład
 
@@ -1691,24 +1691,24 @@ UINT tx_interrupt_control(UINT new_posture);
 Ta usługa włącza lub wyłącza przerwania określone przez parametr wejściowy **new_posture**.
 
 > [!IMPORTANT]
-> Jeśli ta usługa jest wywoływana z wątku aplikacji, przerwa stan pozostaje częścią kontekstu tego wątku. Na przykład jeśli wątek wywołuje tę procedurę w celu wyłączenia przerwań, a następnie zawiesza się po wznowieniu, przerwania zostaną wyłączone ponownie.
+> Jeśli ta usługa jest wywoływana z wątku aplikacji, czas przerwania pozostaje częścią kontekstu tego wątku. Jeśli na przykład wątek wywołuje tę procedurę w celu wyłączenia przerwań, a następnie wstrzymuje działanie, po wznowieniu przerwania zostaną ponownie wyłączone.
 
 > [!WARNING]
-> Ta usługa nie powinna być używana do włączania przerwań podczas inicjacji. Wykonanie tej operacji może spowodować nieprzewidywalne wyniki.
+> Tej usługi nie należy używać do włączania przerwań podczas inicjowania. Może to spowodować nieprzewidywalne wyniki.
 
 ### <a name="parameters"></a>Parametry
 
-- **new_posture**: ten parametr określa, czy przerwania są wyłączone czy włączone. Wartości prawne obejmują **TX_INT_DISABLE i TX_INT_ENABLE.** Rzeczywiste wartości tych parametrów są specyficzne dla portów. Ponadto niektóre architektury przetwarzania mogą obsługiwać dodatkowe przerwania postures. Aby uzyskać więcej informacji, zapoznaj się z informacjami dotyczącymi **_readme_threadx.txt_** na dysku dystrybucyjnym.
+- **new_posture:** ten parametr określa, czy przerwania są wyłączone, czy włączone. Wartości prawne obejmują **TX_INT_DISABLE i TX_INT_ENABLE.** Rzeczywiste wartości tych parametrów są specyficzne dla portu. Ponadto niektóre architektury przetwarzania mogą obsługiwać dodatkowe przerwania, które wyłączą możliwości. Aby uzyskać więcej **_informacji,readme_threadx.txt_** uzyskać więcej informacji na temat awarii podanych na dysku dystrybucji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Poprzedni stan: Ta usługa zwraca poprzednie przerwanie stan do obiektu wywołującego. Dzięki temu użytkownicy usługi mogą przywrócić poprzednią stan po wyłączeniu przerwań.
+- poprzednia postawa: Ta usługa zwraca poprzednią postawę przerwania do wywołującego. Dzięki temu użytkownicy usługi mogą przywrócić poprzednią postawę po wyłączeniu przerwań.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki, czasomierze i procedury ISR
+Wątki, czasomierze i isr
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1732,7 +1732,7 @@ Brak
 
 ## <a name="tx_mutex_create"></a>tx_mutex_create
 
-Utwórz element mutex wzajemnego wykluczania
+Tworzenie wzajemnego wykluczania mutex
 
 ### <a name="prototype"></a>Prototype
 
@@ -1742,26 +1742,26 @@ UINT tx_mutex_create(TX_MUTEX *mutex_ptr,
 ```
 ### <a name="description"></a>Opis
     
-Ta usługa tworzy element mutex do wzajemnego wykluczania między wątkami na potrzeby ochrony zasobów.
+Ta usługa tworzy wierzchołek dla wzajemnego wykluczania międzywątkowego w celu ochrony zasobów.
 
 ### <a name="parameters"></a>Parametry
 
-- **mutex_ptr**: wskaźnik do bloku sterowania muteksem.
-- **name_ptr**: wskaźnik do nazwy obiektu mutex.
-- **priority_inherit**: określa, czy ten element mutex obsługuje dziedziczenie priorytetów. Jeśli ta wartość jest TX_INHERIT, jest obsługiwane dziedziczenie priorytetu. Jeśli jednak określono TX_NO_INHERIT, dziedziczenie priorytetu nie jest obsługiwane przez ten mutex.
+- **mutex_ptr:** wskaźnik do bloku sterowania mutex.
+- **name_ptr:** Wskaźnik do nazwy mutex.
+- **priority_inherit:** określa, czy ten wierzchołek obsługuje dziedziczenie priorytetów. Jeśli ta wartość jest TX_INHERIT, obsługiwane jest dziedziczenie priorytetów. Jeśli jednak określono TX_NO_INHERIT, dziedziczenie priorytetów nie jest obsługiwane przez ten wierzchołek mutex.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne utworzenie obiektu mutex.
-- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik muteksu. Wskaźnik ma wartość NULL lub element mutex został już utworzony.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
-- TX_INHERIT_ERROR: (0x1F) nieprawidłowy priorytet dziedziczenia parametru.
+- **TX_SUCCESS:**(0x00) Pomyślne utworzenie obiektu mutex.
+- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik mutex. Wskaźnik ma wartość NULL lub już utworzono mutex.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
+- TX_INHERIT_ERROR: (0x1F) Nieprawidłowy priorytet dziedziczy parametr.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1791,7 +1791,7 @@ status =  tx_mutex_create(&my_mutex,"my_mutex_name",
 
 ## <a name="tx_mutex_delete"></a>tx_mutex_delete
 
-Usuń element mutex wzajemnego wykluczania
+Usuwanie wzajemnego wykluczania mutex
 
 ### <a name="prototype"></a>Prototype
 
@@ -1800,26 +1800,26 @@ UINT tx_mutex_delete(TX_MUTEX *mutex_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa określony element mutex. Wszystkie wątki zawieszone w trakcie oczekiwania na element mutex są wznawiane i nadano TX_DELETED stanu powrotu.
+Ta usługa usuwa określony mutex. Wszystkie wątki wstrzymane w oczekiwaniu na mutex są wznawiane i nadaj TX_DELETED stanu powrotu.
 
 > [!IMPORTANT]
-> Jest to odpowiedzialność aplikacji, aby uniemożliwić korzystanie z usuniętego obiektu mutex.
+> Aplikacja odpowiada za zapobieganie używaniu usuniętego mutexu.
 
 ### <a name="parameters"></a>Parametry
 
-- **mutex_ptr**: wskaźnik do wcześniej utworzonego obiektu mutex.
+- **mutex_ptr:** wskaźnik do wcześniej utworzonego obiektu mutex.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne usunięcie obiektu mutex.
-- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik muteksu.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- **TX_SUCCESS:**(0x00) Pomyślne usunięcie elementów mutex.
+- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik mutex.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -1848,7 +1848,7 @@ status =  tx_mutex_delete(&my_mutex);
 
 ## <a name="tx_mutex_get"></a>tx_mutex_get
 
-Uzyskaj własność obiektu mutex
+Uzyskiwanie własności obiektu mutex
 
 ### <a name="prototype"></a>Prototype
 
@@ -1857,42 +1857,42 @@ UINT tx_mutex_get(TX_MUTEX *mutex_ptr, ULONG wait_option);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa próbuje uzyskać wyłączną własność określonego obiektu mutex. Jeśli wątek wywołujący jest już właścicielem obiektu mutex, licznik wewnętrzny jest zwiększany i zwracany jest stan pomyślny.
+Ta usługa próbuje uzyskać wyłączną własność określonego mutex. Jeśli wątek wywołujący jest już właścicielem obiektu mutex, zwiększa się licznik wewnętrzny i jest zwracany stan powodzenia.
 
-Jeśli element mutex jest własnością innego wątku, a ten wątek ma wyższy priorytet, a dziedziczenie priorytetów zostało określone w elemencie mutex Create, priorytet wątku o niższym priorytecie zostanie tymczasowo podniesiony do tego wątku wywołującego.
+Jeśli mutex jest własnością innego wątku i ten wątek ma wyższy priorytet, a dziedziczenie priorytetu zostało określone podczas tworzenia mutex, priorytet wątku o niższym priorytecie zostanie tymczasowo podniesiony do tego wątku wywołującego.
 
 > [!IMPORTANT]
-> Priorytet wątku o niższym priorytecie będącego właścicielem obiektu mutex z priorityinheritance nigdy nie powinien być modyfikowany przez wątek zewnętrzny podczas własności obiektu mutex.
+> Priorytet wątku o niższym priorytecie, który jest właścicielem mutex o priorytecie, nigdy nie powinien być modyfikowany przez wątek zewnętrzny podczas własności mutex.
 
 ### <a name="parameters"></a>Parametry
 
-- **mutex_ptr**: wskaźnik do wcześniej utworzonego obiektu mutex.
-- **WAIT_OPTION**: określa, jak działa usługa, jeśli element mutex jest już własnością innego wątku. Opcje oczekiwania są zdefiniowane w następujący sposób:
-    - **TX_NO_WAIT**: (0x00000000)
-    - **TX_WAIT_FOREVER**: (0xffffffff)
-    - wartość limitu czasu: (od 0x00000001 do 0xFFFFFFFE)
+- **mutex_ptr:** wskaźnik do wcześniej utworzonego obiektu mutex.
+- **wait_option:** definiuje sposób zachowania usługi, jeśli mutex jest już własnością innego wątku. Opcje oczekiwania są zdefiniowane w następujący sposób:
+    - **TX_NO_WAIT:**(0x00000000)
+    - **TX_WAIT_FOREVER:**(0xFFFFFFFF)
+    - wartość limitu czasu: (0x00000001 do 0xFFFFFFFE)
 
-    Wybranie TX_NO_WAIT powoduje natychmiastowe zwrócenie z tej usługi niezależnie od tego, czy zakończyło się powodzeniem. *Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z inicjacji.*
+    Wybranie TX_NO_WAIT powoduje natychmiastowy zwrot z tej usługi, niezależnie od tego, czy to się powiodło. *Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z inicjowania.*
 
-    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu udostępnienia elementu mutex.
+    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony do momentu, gdy będzie dostępny mutex.
 
-    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać zawieszona podczas oczekiwania na mutex.
+    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na wierzchołek.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna operacja pobrania obiektu mutex.
-- **TX_DELETED**: (0x01) element mutex został usunięty podczas wstrzymania wątku.
-- **TX_NOT_AVAILABLE**: usługa (0x1D) nie może pobrać własności obiektu mutex w określonym czasie w celu oczekiwania.
-- **TX_WAIT_ABORTED**: (0x1A) zostało przerwane przez inny wątek, czasomierz lub proces ISR.
-- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik muteksu.
-- TX_WAIT_ERROR: (0x04) opcja oczekiwania inna niż TX_NO_WAIT została określona w wywołaniu z niewątku.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- **TX_SUCCESS:**(0x00) Pomyślna operacja mutex get.
+- **TX_DELETED:**(0x01) Mutex został usunięty, gdy wątek został zawieszony.
+- **TX_NOT_AVAILABLE:**(0x1D) Usługa nie mogła uzyskać własności obiektu mutex w określonym czasie oczekiwania.
+- **TX_WAIT_ABORTED:**(0x1A) Zawieszenie zostało przerwane przez inny wątek, czasomierz lub ISR.
+- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik mutex.
+- TX_WAIT_ERROR: (0x04) Opcja oczekiwania inna niż TX_NO_WAIT została określona dla wywołania z nieprzeczytanego.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjowanie i wątki oraz czasomierze
+Inicjowanie oraz wątki i czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -1919,7 +1919,7 @@ status =  tx_mutex_get(&my_mutex, TX_WAIT_FOREVER);
 
 ## <a name="tx_mutex_info_get"></a>tx_mutex_info_get
 
-Pobierz informacje o muteksie
+Pobieranie informacji o mutex
 
 ### <a name="prototype"></a>Prototype
 
@@ -1931,31 +1931,31 @@ UINT tx_mutex_info_get(TX_MUTEX *mutex_ptr, CHAR **name,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje z określonego obiektu mutex.
+Ta usługa pobiera informacje z określonego mutex.
 
 ### <a name="parameters"></a>Parametry
 
-- **mutex_ptr**: wskaźnik do bloku sterowania muteksem.
-- **name**: wskaźnik do miejsca docelowego dla wskaźnika do nazwy obiektu mutex.
-- **Count**: wskaźnik do miejsca docelowego dla liczby własności obiektu mutex.
-- **Owner**: wskaźnik do miejsca docelowego dla wskaźnika wątku będącego właścicielem.
-- **first_suspended**: wskaźnik do elementu docelowego dla wskaźnika do wątku, który jest pierwszy na liście zawieszeń tego obiektu mutex.
-- **suspended_count**: wskaźnik do miejsca docelowego dla liczby wątków, które są obecnie zawieszone w tym elemencie mutex.
-- **next_mutex**: wskaźnik do miejsca docelowego dla wskaźnika następnego utworzonego obiektu mutex.
+- **mutex_ptr:** Wskaźnik do bloku sterowania mutex.
+- **name**: Wskaźnik do miejsca docelowego dla wskaźnika do nazwy mutex.
+- **count:** wskaźnik do miejsca docelowego dla liczby własności mutex.
+- **owner:** wskaźnik do miejsca docelowego dla wskaźnika wątku, który jest właścicielem.
+- **first_suspended:** Wskaźnik do miejsca docelowego dla wskaźnika do wątku, który jest pierwszy na liście zawieszenia tego obiektu mutex.
+- **suspended_count:** wskaźnik do miejsca docelowego dla liczby wątków aktualnie zawieszonych na tym mutexie.
+- **next_mutex:** Wskaźnik do miejsca docelowego dla wskaźnika następnego utworzonego obiektu mutex.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobieranie informacji o muteksie.
-- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik muteksu.
+- **TX_SUCCESS:**(0x00) Pomyślne pobieranie informacji o mutex.
+- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik mutex.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -1993,7 +1993,7 @@ status =  tx_mutex_info_get(&my_mutex, &name,
 
 ## <a name="tx_mutex_performance_info_get"></a>tx_mutex_performance_info_get
 
-Pobierz informacje o wydajności muteksu
+Uzyskiwanie informacji o wydajności obiektu mutex
 
 ### <a name="prototype"></a>Prototype
 
@@ -2004,33 +2004,33 @@ UINT tx_mutex_performance_info_get(TX_MUTEX *mutex_ptr, ULONG *puts,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o wydajności dotyczące określonego obiektu mutex.
+Ta usługa pobiera informacje o wydajności określonego mutex.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_MUTEX_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o  wydajności, biblioteka i aplikacja ThreadX SMP TX_MUTEX_ENABLE_PERFORMANCE_INFO muszą zostać sbudowaną za pomocą zdefiniowanej biblioteki SMP ThreadX.
 
 ### <a name="parameters"></a>Parametry
 
-- **mutex_ptr**: wskaźnik do wcześniej utworzonego obiektu mutex.
-- Put **: wskaźnik** do miejsca docelowego dla liczby żądań PUT wykonanych dla tego obiektu mutex.
-- **Pobiera**: wskaźnik do miejsca docelowego dla liczby żądań GET wykonanych dla tego obiektu mutex.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla liczby elementów mutex wątku dla tego obiektu mutex.
-- **limity czasu**: wskaźnik do miejsca docelowego dla liczby przekroczeń limitu czasu zawieszenia dla tego obiektu mutex.
-- **Inversions**: wskaźnik do miejsca docelowego dla liczby wersji priorytetu wątku dla tego obiektu mutex.
-- **dziedziczenia**: wskaźnik do miejsca docelowego dla liczby operacji dziedziczenia priorytetu wątku dla tego obiektu mutex.
+- **mutex_ptr:** wskaźnik do wcześniej utworzonego obiektu mutex.
+- **puts:** wskaźnik do miejsca docelowego dla liczby żądań put wykonanych na tym mutexie.
+- **pobiera**: wskaźnik do miejsca docelowego dla liczby żądań get wykonanych dla tego obiektu mutex.
+- **suspensions**: wskaźnik do miejsca docelowego dla liczby wątków, w których są zawieszane elementy mutex.
+- **limity czasu:** wskaźnik do miejsca docelowego dla liczby limitów czasu zawieszenia get mutex w tym mutex.
+- **inversions:** wskaźnik do miejsca docelowego dla liczby inversions priorytetów wątku w tym mutex.
+- **inheritances:** wskaźnik do miejsca docelowego dla liczby operacji dziedziczenia priorytetu wątku w tym mutex.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pobieranie pomyślnej wydajności obiektu mutex. 
-- **TX_PTR_ERROR**: (0X03) Nieprawidłowy wskaźnik muteksu.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności mutex. 
+- **TX_PTR_ERROR:**(0x03) Nieprawidłowy wskaźnik mutex.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
 ### <a name="example"></a>Przykład
 
@@ -2064,7 +2064,7 @@ status =  tx_mutex_performance_info_get(&my_mutex_ptr, &puts, &gets,
 
 ## <a name="tx_mutex_performance_system_info_get"></a>tx_mutex_performance_system_info_get
 
-Pobierz informacje o wydajności systemu muteksu
+Uzyskiwanie informacji o wydajności systemu mutex
 
 ### <a name="prototype"></a>Prototype
 
@@ -2075,31 +2075,31 @@ UINT  tx_mutex_performance_system_info_get(ULONG *puts, ULONG *gets,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o wydajności wszystkich muteksów w systemie.
+Ta usługa pobiera informacje o wydajności dotyczące wszystkich mutex w systemie.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_MUTEX_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o wydajności, biblioteka i aplikacja SMP **ThreadX** muszą TX_MUTEX_ENABLE_PERFORMANCE_INFO z definicją.
 
 ### <a name="parameters"></a>Parametry
 
-- Put **: wskaźnik** do miejsca docelowego dla łącznej liczby żądań PUT wykonanych dla wszystkich muteksów.
-- **Pobiera**: wskaźnik do miejsca docelowego dla łącznej liczby żądań GET wykonanych dla wszystkich muteksów.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla łącznej liczby zawieszeń elementu mutex wątku dla wszystkich muteksów.
-- **limity czasu**: wskaźnik do miejsca docelowego dla łącznej liczby limitów czasu zawieszenia dla wszystkich muteksów.
-- **Inversions**: wskaźnik do miejsca docelowego dla łącznej liczby wersji priorytetu wątku dla wszystkich muteksów.
-- **dziedziczenia**: wskaźnik do miejsca docelowego dla łącznej liczby operacji dziedziczenia priorytetu wątku dla wszystkich muteksów.
+- **puts:** wskaźnik do miejsca docelowego dla łącznej liczby żądań put wykonanych na wszystkich mutexes.
+- **pobiera**: wskaźnik do miejsca docelowego dla łącznej liczby żądań get wykonanych na wszystkich mutexes.
+- **suspensions**: wskaźnik do miejsca docelowego dla całkowitej liczby wątków mutex uzyskać zawieszenie na wszystkich mutexes.
+- **limity czasu:** wskaźnik do miejsca docelowego dla łącznej liczby mutex get limity czasu zawieszenia na wszystkich mutexes.
+- **inversions**: wskaźnik do miejsca docelowego dla całkowitej liczby inversions priorytetów wątku we wszystkich mutexes.
+- **inheritances:** wskaźnik do miejsca docelowego dla łącznej liczby operacji dziedziczenia priorytetu wątku we wszystkich mutexach.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie parametru TX_NULL parametru oznacza, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobieranie wydajności systemu muteksu.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności systemu mutex.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -2132,7 +2132,7 @@ status = tx_mutex_performance_system_info_get(&puts, &gets,
 
 ## <a name="tx_mutex_prioritize"></a>tx_mutex_prioritize
 
-Ustawianie priorytetów listy zawieszeń muteksu
+Określanie priorytetów listy zawieszenia mutex
 
 ### <a name="prototype"></a>Prototype
 
@@ -2141,22 +2141,22 @@ UINT tx_mutex_prioritize(TX_MUTEX *mutex_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa umieszcza wątek o najwyższym priorytecie na własność obiektu mutex na początku listy zawieszeń. Wszystkie pozostałe wątki pozostają w tej samej kolejności FIFO, w której zostały zawieszone.
+Ta usługa umieszcza wątek o najwyższym priorytecie zawieszony na własność mutex na początku listy zawieszenia. Wszystkie inne wątki pozostają w tej samej kolejności FIFO, w których zostały wstrzymane.
 
 ### <a name="parameters"></a>Parametry 
 
-- **mutex_ptr**: wskaźnik do wcześniej utworzonego obiektu mutex.
+- **mutex_ptr:** wskaźnik do wcześniej utworzonego obiektu mutex.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna priorytetyzacja obiektu mutex.
-- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik muteksu.
+- **TX_SUCCESS:**(0x00) Pomyślne określanie priorytetów mutex.
+- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik mutex.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2188,7 +2188,7 @@ status = tx_mutex_prioritize(&my_mutex);
 
 ## <a name="tx_mutex_put"></a>tx_mutex_put
 
-Zwolnij własność elementu mutex
+Zwolnij własność obiektu mutex
 
 ### <a name="prototype"></a>Prototype
 
@@ -2197,27 +2197,27 @@ UINT tx_mutex_put(TX_MUTEX *mutex_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa zmniejsza liczbę własności określonego obiektu mutex. Jeśli liczba własności wynosi zero, element mutex zostanie udostępniony.
+Ta usługa zmniejsza liczbę własności określonego obiektu mutex. Jeśli liczba własności wynosi zero, zostanie udostępnione mutex.
 
 > [!IMPORTANT]
-> W przypadku wybrania dziedziczenia priorytetu podczas tworzenia obiektu mutex priorytet zwalnianego wątku zostanie przywrócony do priorytetu, który miał po raz pierwszy uzyskać własność obiektu mutex. Wszystkie inne zmiany priorytetu w wątku zwalniania mogą być cofnięte.
+> Jeśli podczas tworzenia mutex wybrano dziedziczenie priorytetu, priorytet zwalniającego wątku zostanie przywrócony do priorytetu, który miał, gdy pierwotnie uzyskał własność mutex. Wszelkie inne zmiany priorytetu wprowadzone do zwalniającego wątku podczas własności obiektu mutex mogą zostać cofnięte.
 
 ### <a name="parameters"></a>Parametry
 
-- **mutex_ptr**: wskaźnik do wcześniej utworzonego obiektu mutex.
+- **mutex_ptr:** wskaźnik do wcześniej utworzonego obiektu mutex.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne wydanie muteksu.
-- **TX_NOT_OWNED**: (0X1E) mutex nie należy do obiektu wywołującego.
-- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik do elementu MUTEX.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- **TX_SUCCESS:**(0x00) Pomyślne wydanie mutex.
+- **TX_NOT_OWNED:**(0x1E) Mutex nie jest własnością obiektu wywołującego.
+- TX_MUTEX_ERROR: (0x1C) Nieprawidłowy wskaźnik do mutex.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjowanie i wątki oraz czasomierze
+Inicjowanie oraz wątki i czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -2244,7 +2244,7 @@ status =  tx_mutex_put(&my_mutex);
 
 ## <a name="tx_queue_create"></a>tx_queue_create
 
-Utwórz kolejkę komunikatów
+Tworzenie kolejki komunikatów
 
 ### <a name="prototype"></a>Prototype
 
@@ -2255,32 +2255,32 @@ UINT tx_queue_create(TX_QUEUE *queue_ptr, CHAR *name_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy kolejkę komunikatów, która jest zwykle używana do komunikacji międzywątkowej. Całkowita liczba komunikatów jest obliczana na podstawie określonego rozmiaru komunikatu i całkowitej liczby bajtów w kolejce.
+Ta usługa tworzy kolejkę komunikatów, która jest zwykle używana do komunikacji międzywątkowej. Łączna liczba komunikatów jest obliczana na podstawie określonego rozmiaru komunikatu i całkowitej liczby bajtów w kolejce.
 
 > [!IMPORTANT]
-> Jeśli łączna liczba bajtów określona w obszarze pamięci kolejki nie jest równo podzielna przez określony rozmiar komunikatu, pozostałe bajty w obszarze pamięci nie są używane.
+> Jeśli całkowita liczba bajtów określona w obszarze pamięci kolejki nie jest równomiernie podzielna przez określony rozmiar komunikatu, pozostałe bajty w obszarze pamięci nie są używane.
 
 ### <a name="parameters"></a>Parametry
 
-- **queue_ptr**: wskaźnik do bloku sterowania kolejki komunikatów.
-- **name_ptr**: wskaźnik na nazwę kolejki komunikatów.
-- **message_size**: Określa rozmiar każdej wiadomości w kolejce. Rozmiary komunikatów mieszczą się w zakresie od 1 32-bitowego wyrazu do 16 32-bitowych wyrazów. Prawidłowe opcje rozmiaru komunikatu to wartości numeryczne z przestawu od 1 do 16 włącznie.
-- **queue_start**: adres początkowy kolejki komunikatów. Adres początkowy musi być wyrównany do rozmiaru typu danych ULONG.
-- **queue_size**: całkowita liczba bajtów dostępnych dla kolejki komunikatów.
+- **queue_ptr:** wskaźnik do bloku sterowania kolejki komunikatów.
+- **name_ptr:** Wskaźnik do nazwy kolejki komunikatów.
+- **message_size:** określa rozmiar każdego komunikatu w kolejce. Rozmiary komunikatów to od 1 słowa 32-bitowego do 16 słów 32-bitowych. Prawidłowe opcje rozmiaru komunikatu to wartości liczbowe od 1 do 16 włącznie.
+- **queue_start:** początkowy adres kolejki komunikatów. Adres początkowy musi być dopasowany do rozmiaru typu danych ULONG.
+- **queue_size:** łączna liczba bajtów dostępnych dla kolejki komunikatów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne utworzenie kolejki komunikatów.
+- **TX_SUCCESS:**(0x00) Pomyślne utworzenie kolejki komunikatów.
 - TX_QUEUE_ERROR: (0x09) Nieprawidłowy wskaźnik kolejki komunikatów. Wskaźnik ma wartość NULL lub kolejka została już utworzona.
-- TX_PTR_ERROR: (0x03) nieprawidłowy adres początkowy kolejki komunikatów.
-- TX_SIZE_ERROR: (0x05) rozmiar kolejki komunikatów jest nieprawidłowy.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_PTR_ERROR: (0x03) Nieprawidłowy adres początkowy kolejki komunikatów.
+- TX_SIZE_ERROR: (0x05) Rozmiar kolejki komunikatów jest nieprawidłowy.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2315,7 +2315,7 @@ status = tx_queue_create(&my_queue, "my_queue_name",
 
 ## <a name="tx_queue_delete"></a>tx_queue_delete
 
-Usuń kolejkę komunikatów
+Usuwanie kolejki komunikatów
 
 ### <a name="prototype"></a>Prototype
 
@@ -2324,28 +2324,28 @@ UINT tx_queue_delete(TX_QUEUE *queue_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa określoną kolejkę komunikatów. Wszystkie wątki zawieszają się, dopóki komunikat z tej kolejki zostanie wznowiony i nastąpi TX_DELETED stanu powrotu.
+Ta usługa usuwa określoną kolejkę komunikatów. Wszystkie wątki wstrzymane w oczekiwaniu na komunikat z tej kolejki są wznawiane i na TX_DELETED zwracany stan.
 
 > [!IMPORTANT]
-> Aplikacja musi upewnić się, że wszystkie wywołania zwrotne powiadomień o wysłaniu dla tej kolejki zostaną zakończone (lub wyłączone) przed usunięciem kolejki. Ponadto aplikacja musi uniemożliwić wszelkie przyszłe użycie usuniętej kolejki.
+> Aplikacja musi upewnić się, że każde wywołanie zwrotne powiadomienia o wysłaniu dla tej kolejki zostało ukończone (lub wyłączone) przed usunięciem kolejki. Ponadto aplikacja musi uniemożliwić korzystanie z usuniętej kolejki w przyszłości.
 
-*Jest również odpowiedzialna za zarządzanie obszarem pamięci skojarzonym z kolejką, która jest dostępna po zakończeniu tej usługi.*
+*Aplikacja jest również odpowiedzialna za zarządzanie obszarem pamięci skojarzonym z kolejką, który jest dostępny po zakończeniu tej usługi.*
 
 ### <a name="parameters"></a>Parametry 
 
-- **queue_ptr**: wskaźnik do wcześniej utworzonej kolejki komunikatów.
+- **queue_ptr:** Wskaźnik do wcześniej utworzonej kolejki komunikatów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne usunięcie kolejki komunikatów.
+- **TX_SUCCESS:**(0x00) Pomyślne usunięcie kolejki komunikatów.
 - TX_QUEUE_ERROR: (0x09) Nieprawidłowy wskaźnik kolejki komunikatów.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -2378,7 +2378,7 @@ status = tx_queue_delete(&my_queue);
 
 ## <a name="tx_queue_flush"></a>tx_queue_flush
 
-Puste wiadomości w kolejce komunikatów
+Puste komunikaty w kolejce komunikatów
 
 ### <a name="prototype"></a>Prototype
 
@@ -2387,22 +2387,22 @@ UINT tx_queue_flush(TX_QUEUE *queue_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wszystkie komunikaty przechowywane w określonej kolejce komunikatów. Jeśli kolejka jest pełna, komunikaty wszystkich zawieszonych wątków są odrzucane. Każdy zawieszony wątek zostanie wznowiony ze stanem powrotu, który wskazuje, że wiadomość została wysłana pomyślnie. Jeśli kolejka jest pusta, ta usługa nie robi nic.
+Ta usługa usuwa wszystkie komunikaty przechowywane w określonej kolejce komunikatów. Jeśli kolejka jest pełna, komunikaty wszystkich zawieszonych wątków są odrzucane. Każdy zawieszony wątek jest następnie wznawiany ze stanem powrotu wskazującym, że wysyłanie komunikatu powiodło się. Jeśli kolejka jest pusta, ta usługa nic nie robi.
 
 ### <a name="parameters"></a>Parametry 
 
-- **queue_ptr**: wskaźnik do wcześniej utworzonej kolejki komunikatów.
+- **queue_ptr:** Wskaźnik do wcześniej utworzonej kolejki komunikatów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne Opróżnianie kolejki komunikatów.
+- **TX_SUCCESS:**(0x00) Pomyślne opróżnienie kolejki komunikatów.
 - TX_QUEUE_ERROR: (0x09) Nieprawidłowy wskaźnik kolejki komunikatów.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -2435,7 +2435,7 @@ status =  tx_queue_flush(&my_queue);
 
 ## <a name="tx_queue_front_send"></a>tx_queue_front_send
 
-Wyślij wiadomość na przednią kolejkę
+Wysyłanie komunikatu na przód kolejki
 
 ### <a name="prototype"></a>Prototype
 
@@ -2445,38 +2445,38 @@ UINT tx_queue_front_send(TX_QUEUE *queue_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła komunikat do lokalizacji frontonu określonej kolejki komunikatów. Wiadomość jest **kopiowana** na przód kolejki z obszaru pamięci określonego przez wskaźnik źródła.
+Ta usługa wysyła komunikat do lokalizacji frontowej określonej kolejki komunikatów. Komunikat jest **kopiowany na** przód kolejki z obszaru pamięci określonego przez wskaźnik źródłowy.
 
 ### <a name="parameters"></a>Parametry
 
-- **queue_ptr**: wskaźnik do bloku sterowania kolejki komunikatów.
-- **source_ptr**: wskaźnik do komunikatu.
-- **WAIT_OPTION**: określa, w jaki sposób działa usługa, jeśli kolejka komunikatów jest pełna. Opcje oczekiwania są zdefiniowane w następujący sposób:
-    - **TX_NO_WAIT**: (0x00000000)
-    - **TX_WAIT_FOREVER**: (0xffffffff)
-    - wartość limitu czasu: (od 0x00000001 do 0xFFFFFFFE)
+- **queue_ptr:** wskaźnik do bloku sterowania kolejki komunikatów.
+- **source_ptr:** wskaźnik do komunikatu.
+- **wait_option:** definiuje sposób zachowania usługi, jeśli kolejka komunikatów jest pełna. Opcje oczekiwania są zdefiniowane w następujący sposób:
+    - **TX_NO_WAIT:**(0x00000000)
+    - **TX_WAIT_FOREVER:**(0xFFFFFFFF)
+    - wartość limitu czasu: (0x00000001 do 0xFFFFFFFE)
 
-    Wybranie TX_NO_WAIT powoduje natychmiastowe zwrócenie z tej usługi niezależnie od tego, czy zakończyło się powodzeniem. *Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z niewątku; np. Inicjalizacja, czasomierz lub ISR.*
+    Wybranie TX_NO_WAIT skutkuje natychmiastowym zwrotem z tej usługi niezależnie od tego, czy to się powiodło. *Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z nie wątku; np. inicjalizacja, czasomierz lub isr.*
 
-    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, w którym znajduje się w kolejce.
+    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki nie będzie miejsca w kolejce.
 
-    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać zawieszona podczas oczekiwania na pokój w kolejce.
+    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na miejsce w kolejce.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne wysłanie komunikatu.
-- **TX_DELETED**: (0x01) Kolejka komunikatów została usunięta podczas wstrzymania wątku.
-- **TX_QUEUE_FULL**: usługa (0x0B) nie może wysłać komunikatu, ponieważ kolejka była zapełniona przez czas oczekiwania przez określony czas.
-- **TX_WAIT_ABORTED**: (0x1A) zostało przerwane przez inny wątek, czasomierz lub proces ISR.
+- **TX_SUCCESS:**(0x00) Pomyślne wysłanie komunikatu.
+- **TX_DELETED:**(0x01) Kolejka komunikatów została usunięta, gdy wątek został zawieszony.
+- **TX_QUEUE_FULL:**(0x0B) Usługa nie mogła wysłać komunikatu, ponieważ kolejka była pełna przez określony czas oczekiwania.
+- **TX_WAIT_ABORTED:**(0x1A) Zawieszenie zostało przerwane przez inny wątek, czasomierz lub ISR.
 - TX_QUEUE_ERROR: (0x09) Nieprawidłowy wskaźnik kolejki komunikatów.
 - TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik źródła komunikatu.
-- TX_WAIT_ERROR: (0x04) opcja oczekiwania inna niż TX_NO_WAIT została określona w wywołaniu z niewątku.
+- TX_WAIT_ERROR: (0x04) Opcja oczekiwania inna niż TX_NO_WAIT została określona dla wywołania z nieprzeczytanego.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -2512,7 +2512,7 @@ status = tx_queue_front_send(&my_queue, my_message,
 
 ## <a name="tx_queue_info_get"></a>tx_queue_info_get
 
-Pobierz informacje o kolejce
+Pobieranie informacji o kolejce
 
 ### <a name="prototype"></a>Prototype
 
@@ -2528,27 +2528,27 @@ Ta usługa pobiera informacje o określonej kolejce komunikatów.
 
 ### <a name="parameters"></a>Parametry
 
-- **queue_ptr**: wskaźnik do wcześniej utworzonej kolejki komunikatów.
-- **name**: wskaźnik do miejsca docelowego dla wskaźnika do nazwy kolejki.
-- w **kolejce**: wskaźnik do miejsca docelowego dla liczby komunikatów znajdujących się obecnie w kolejce.
-- **available_storage**: wskaźnik do miejsca docelowego dla liczby komunikatów, dla których w kolejce znajduje się obecnie miejsce.
-- **first_suspended**: wskaźnik do elementu docelowego dla wskaźnika do wątku, który jest pierwszy na liście zawieszeń tej kolejki.
-- **suspended_count**: wskaźnik do miejsca docelowego dla liczby wątków, które są obecnie zawieszone w tej kolejce.
-- **next_queue**: wskaźnik do miejsca docelowego dla wskaźnika następnej utworzonej kolejki.
+- **queue_ptr:** Wskaźnik do wcześniej utworzonej kolejki komunikatów.
+- **name:** Wskaźnik do miejsca docelowego dla wskaźnika do nazwy kolejki.
+- **enqueued:** wskaźnik do miejsca docelowego dla liczby komunikatów aktualnie w kolejce.
+- **available_storage:** Wskaźnik do miejsca docelowego dla liczby komunikatów, dla których kolejka aktualnie ma miejsce.
+- **first_suspended:** Wskaźnik do miejsca docelowego dla wskaźnika do wątku, który jest pierwszy na liście zawieszenia tej kolejki.
+- **suspended_count:** Wskaźnik do miejsca docelowego dla liczby wątków aktualnie zawieszonych w tej kolejce.
+- **next_queue:** Wskaźnik do miejsca docelowego dla wskaźnika następnej utworzonej kolejki.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) informacje o kolejce zakończone powodzeniem.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie informacji o kolejce.
 - TX_QUEUE_ERROR: (0x09) Nieprawidłowy wskaźnik kolejki komunikatów.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2589,7 +2589,7 @@ status = tx_queue_info_get(&my_queue, &name,
 
 ## <a name="tx_queue_performance_info_get"></a>tx_queue_performance_info_get
 
-Pobierz informacje o wydajności kolejki
+Uzyskiwanie informacji o wydajności kolejki
 
 ### <a name="prototype"></a>Prototype
 
@@ -2604,30 +2604,30 @@ UINT  tx_queue_performance_info_get(TX_QUEUE *queue_ptr,
 Ta usługa pobiera informacje o wydajności określonej kolejki.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_QUEUE_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o  wydajności, biblioteka i aplikacja ThreadX SMP TX_QUEUE_ENABLE_PERFORMANCE_INFO muszą zostać sbudowaną za pomocą zdefiniowanej biblioteki SMP ThreadX.
 
 ### <a name="parameters"></a>Parametry
 
-- **queue_ptr**: wskaźnik do wcześniej utworzonej kolejki.
-- **messages_sent**: wskaźnik do miejsca docelowego dla liczby żądań wysłania wykonanych dla tej kolejki.
-- **messages_received**: wskaźnik do miejsca docelowego dla liczby żądań odbioru wykonanych dla tej kolejki.
-- **empty_suspensions**: wskaźnik do miejsca docelowego dla liczby pustych zawieszeń kolejki w tej kolejce.
-- **full_suspensions**: wskaźnik do miejsca docelowego dla liczby pełnych zawieszeń kolejki w tej kolejce.
-- **full_errors**: wskaźnik do miejsca docelowego dla liczby pełnych błędów kolejki w tej kolejce.
-- **limity czasu**: wskaźnik do miejsca docelowego dla liczby limitów czasu zawieszenia wątku w tej kolejce.
+- **queue_ptr:** wskaźnik do wcześniej utworzonej kolejki.
+- **messages_sent:** wskaźnik do miejsca docelowego dla liczby żądań wysyłania wykonanych w tej kolejce.
+- **messages_received:** wskaźnik do miejsca docelowego dla liczby żądań odbierania wykonanych w tej kolejce.
+- **empty_suspensions:** Wskaźnik do miejsca docelowego dla liczby pustych zawieszenia kolejki w tej kolejce.
+- **full_suspensions:** Wskaźnik do miejsca docelowego dla liczby pełnych zawieszenia kolejki w tej kolejce.
+- **full_errors:** Wskaźnik do miejsca docelowego dla liczby pełnych błędów kolejki w tej kolejce.
+- **limity czasu:** wskaźnik do miejsca docelowego dla liczby limitów czasu wstrzymania wątku w tej kolejce.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobieranie wydajności kolejki.
-- **TX_PTR_ERROR**: (0X03) Nieprawidłowy wskaźnik kolejki.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności kolejki.
+- **TX_PTR_ERROR:**(0x03) Nieprawidłowy wskaźnik kolejki.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -2664,7 +2664,7 @@ status = tx_queue_performance_info_get(&my_queue, &messages_sent,
 
 ## <a name="tx_queue_performance_system_info_get"></a>tx_queue_performance_system_info_get
 
-Pobierz informacje o wydajności systemu kolejkowania
+Uzyskiwanie informacji o wydajności systemu kolejek
 
 ### <a name="prototype"></a>Prototype
 
@@ -2679,28 +2679,28 @@ UINT  tx_queue_performance_system_info_get(ULONG *messages_sent,
 Ta usługa pobiera informacje o wydajności wszystkich kolejek w systemie.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_QUEUE_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o  wydajności, biblioteka i aplikacja ThreadX SMP TX_QUEUE_ENABLE_PERFORMANCE_INFO muszą zostać sbudowaną za pomocą zdefiniowanej biblioteki SMP ThreadX.
 
 ### <a name="parameters"></a>Parametry
 
-- **messages_sent**: wskaźnik do miejsca docelowego dla łącznej liczby żądań wysłania wykonanych na wszystkich kolejkach.
-- **messages_received**: wskaźnik do miejsca docelowego dla łącznej liczby żądań odbioru wykonanych dla wszystkich kolejek.
-- **empty_suspensions**: wskaźnik do miejsca docelowego dla łącznej liczby pustych zawieszeń kolejki we wszystkich kolejkach.
-- **full_suspensions**: wskaźnik do miejsca docelowego dla łącznej liczby pełnych zawieszeń kolejki we wszystkich kolejkach.
-- **full_errors**: wskaźnik do miejsca docelowego dla łącznej liczby pełnych błędów kolejki dla wszystkich kolejek.
-- **limity czasu**: wskaźnik do miejsca docelowego dla łącznej liczby limitów czasu zawieszenia wątku we wszystkich kolejkach.
+- **messages_sent:** wskaźnik do miejsca docelowego dla łącznej liczby żądań wysyłania wykonanych we wszystkich kolejkach.
+- **messages_received:** wskaźnik do miejsca docelowego dla łącznej liczby żądań odbierania wykonanych we wszystkich kolejkach.
+- **empty_suspensions:** Wskaźnik do miejsca docelowego dla całkowitej liczby pustych zawieszenia kolejki we wszystkich kolejkach.
+- **full_suspensions:** Wskaźnik do miejsca docelowego dla całkowitej liczby pełnych zawieszenia kolejki we wszystkich kolejkach.
+- **full_errors:** Wskaźnik do miejsca docelowego dla łącznej liczby pełnych błędów kolejki we wszystkich kolejkach.
+- **limity czasu:** wskaźnik do miejsca docelowego dla całkowitej liczby limitów czasu wstrzymania wątku we wszystkich kolejkach.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna Kolejka wydajności systemu get.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności systemu kolejek.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -2736,7 +2736,7 @@ status = tx_queue_performance_system_info_get(&messages_sent,
 
 ## <a name="tx_queue_prioritize"></a>tx_queue_prioritize
 
-Ustawianie priorytetu listy zawieszania kolejki
+Określanie priorytetów listy wstrzymania kolejki
 
 ### <a name="prototype"></a>Prototype
 
@@ -2746,22 +2746,22 @@ UINT tx_queue_prioritize(TX_QUEUE *queue_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa umieszcza wątek o najwyższym priorytecie dla komunikatu (lub umieszcza komunikat) w tej kolejce na początku listy zawieszeń. Wszystkie pozostałe wątki pozostają w tej samej kolejności FIFO, w której zostały zawieszone.
+Ta usługa umieszcza wątek o najwyższym priorytecie zawieszony dla komunikatu (lub umieścić komunikat) w tej kolejce na początku listy zawieszenia. Wszystkie inne wątki pozostają w tej samej kolejności FIFO, w których zostały wstrzymane.
 
 ### <a name="parameters"></a>Parametry 
 
-- **queue_ptr**: wskaźnik do wcześniej utworzonej kolejki komunikatów.
+- **queue_ptr:** Wskaźnik do wcześniej utworzonej kolejki komunikatów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna priorytetyzacja kolejki.
+- **TX_SUCCESS:**(0x00) Pomyślne określanie priorytetów kolejki.
 - TX_QUEUE_ERROR: (0x09) Nieprawidłowy wskaźnik kolejki komunikatów.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -2795,7 +2795,7 @@ status = tx_queue_prioritize(&my_queue);
 
 ## <a name="tx_queue_receive"></a>tx_queue_receive
 
-Pobierz komunikat z kolejki komunikatów
+Uzyskiwanie komunikatu z kolejki komunikatów
 
 ### <a name="prototype"></a>Prototype
 
@@ -2805,41 +2805,41 @@ UINT tx_queue_receive(TX_QUEUE *queue_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera komunikat z określonej kolejki komunikatów. Pobrany komunikat jest **kopiowany** z kolejki do obszaru pamięci określonego przez wskaźnik docelowy. Ten komunikat zostanie następnie usunięty z kolejki.
+Ta usługa pobiera komunikat z określonej kolejki komunikatów. Pobrany komunikat jest **kopiowany** z kolejki do obszaru pamięci określonego przez wskaźnik docelowy. Ten komunikat jest następnie usuwany z kolejki.
 
 > [!WARNING]
-> Określony obszar pamięci docelowej musi być wystarczająco duży, aby pomieścić komunikat; oznacza to, że miejsce docelowe komunikatu wskazywane przez **destination_ptr** musi być co najmniej tak duże, jak rozmiar komunikatu dla tej kolejki. W przeciwnym razie, jeśli miejsce docelowe nie jest wystarczająco duże, uszkodzenie pamięci występuje w następującym obszarze pamięci.
+> Określony docelowy obszar pamięci musi być wystarczająco duży, aby można było przechowywać komunikat. oznacza to, że miejsce docelowe  komunikatu wskazywane przez destination_ptr musi być co najmniej tak duże, jak rozmiar komunikatu dla tej kolejki. W przeciwnym razie, jeśli miejsce docelowe nie jest wystarczająco duże, uszkodzenie pamięci występuje w następującym obszarze pamięci.
 
 ### <a name="parameters"></a>Parametry
 
-- **queue_ptr**: wskaźnik do wcześniej utworzonej kolejki komunikatów.
-- **destination_ptr**: Lokalizacja lokalizacji, w której ma zostać skopiowana wiadomość.
-- **WAIT_OPTION**: określa, w jaki sposób działa usługa, jeśli kolejka komunikatów jest pusta. Opcje oczekiwania są zdefiniowane w następujący sposób:
-    - **TX_NO_WAIT**: (0x00000000) 
-    - **TX_WAIT_FOREVER**: (0xffffffff) 
-    - wartość limitu czasu: (od 0x00000001 do 0xFFFFFFFE)
+- **queue_ptr:** Wskaźnik do wcześniej utworzonej kolejki komunikatów.
+- **destination_ptr:** lokalizacja miejsca kopiowania komunikatu.
+- **wait_option:** definiuje sposób zachowania usługi, jeśli kolejka komunikatów jest pusta. Opcje oczekiwania są zdefiniowane w następujący sposób:
+    - **TX_NO_WAIT:**(0x00000000) 
+    - **TX_WAIT_FOREVER:**(0xFFFFFFFF) 
+    - wartość limitu czasu: (0x00000001 do 0xFFFFFFFE)
 
-    Wybranie TX_NO_WAIT powoduje natychmiastowe zwrócenie z tej usługi niezależnie od tego, czy zakończyło się powodzeniem. Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z niewątku; np. Inicjalizacja, czasomierz lub ISR.
+    Wybranie TX_NO_WAIT powoduje natychmiastowy zwrot z tej usługi, niezależnie od tego, czy to się powiodło. Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z nie wątku; np. inicjalizacja, czasomierz lub ISR.
 
-    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez nieograniczony czas do momentu udostępnienia komunikatu.
+    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się na czas nieokreślony do momentu, gdy komunikat będzie dostępny.
 
-    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać zawieszona podczas oczekiwania na komunikat.
+    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na komunikat.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobranie komunikatu.
-- **TX_DELETED**: (0x01) Kolejka komunikatów została usunięta podczas wstrzymania wątku.
-- **TX_QUEUE_EMPTY**: (0X0a) usługa nie mogła pobrać komunikatu, ponieważ kolejka była pusta przez czas oczekiwania przez określony czas.
-- **TX_WAIT_ABORTED**: (0x1A) zostało przerwane przez inny wątek, czasomierz lub proces ISR.
+- **TX_SUCCESS:**(0x00) Pomyślne pobranie komunikatu.
+- **TX_DELETED:**(0x01) Kolejka komunikatów została usunięta, gdy wątek został zawieszony.
+- **TX_QUEUE_EMPTY:**(0x0A) Usługa nie mogła pobrać komunikatu, ponieważ kolejka była pusta przez czas oczekiwania przez określony czas.
+- **TX_WAIT_ABORTED:**(0x1A) Zawieszenie zostało przerwane przez inny wątek, czasomierz lub ISR.
 - TX_QUEUE_ERROR: (0x09) Nieprawidłowy wskaźnik kolejki komunikatów.
-- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik docelowy dla komunikatu.
-- TX_WAIT_ERROR: (0x04) opcja oczekiwania inna niż TX_NO_WAIT została określona w wywołaniu z niewątku.
+- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik docelowy komunikatu.
+- TX_WAIT_ERROR: (0x04) Opcja oczekiwania inna niż TX_NO_WAIT została określona dla wywołania z nieprzeczytanego.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -2875,7 +2875,7 @@ status =  tx_queue_receive(&my_queue, my_message,
 
 ## <a name="tx_queue_send"></a>tx_queue_send
 
-Wyślij komunikat do kolejki komunikatów
+Wysyłanie komunikatu do kolejki komunikatów
 
 ### <a name="prototype"></a>Prototype
 
@@ -2885,38 +2885,38 @@ UINT tx_queue_send(TX_QUEUE *queue_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła komunikat do określonej kolejki komunikatów. Wysłany komunikat jest **kopiowany** do kolejki z obszaru pamięci określonego przez wskaźnik źródła.
+Ta usługa wysyła komunikat do określonej kolejki komunikatów. Wysłany komunikat jest **kopiowany do** kolejki z obszaru pamięci określonego przez wskaźnik źródłowy.
 
 ### <a name="parameters"></a>Parametry
 
-- **queue_ptr**: wskaźnik do wcześniej utworzonej kolejki komunikatów.
-- **source_ptr**: wskaźnik do komunikatu.
-- **WAIT_OPTION**: określa, w jaki sposób działa usługa, jeśli kolejka komunikatów jest pełna. Opcje oczekiwania są zdefiniowane w następujący sposób:
-    - **TX_NO_WAIT**: (0x00000000)
-    - **TX_WAIT_FOREVER**: (0xffffffff)
-    - wartość limitu czasu: (od 0x00000001 do 0xFFFFFFFE)
+- **queue_ptr:** Wskaźnik do wcześniej utworzonej kolejki komunikatów.
+- **source_ptr:** Wskaźnik do komunikatu.
+- **wait_option:** definiuje sposób zachowania usługi, jeśli kolejka komunikatów jest pełna. Opcje oczekiwania są zdefiniowane w następujący sposób:
+    - **TX_NO_WAIT:**(0x00000000)
+    - **TX_WAIT_FOREVER:**(0xFFFFFFFF)
+    - wartość limitu czasu: (0x00000001 do 0xFFFFFFFE)
 
-    Wybranie TX_NO_WAIT powoduje natychmiastowe zwrócenie z tej usługi niezależnie od tego, czy zakończyło się powodzeniem. *Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z niewątku; np. Inicjalizacja, czasomierz lub ISR.*
+    Wybranie TX_NO_WAIT powoduje natychmiastowy zwrot z tej usługi, niezależnie od tego, czy to się powiodło. *Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z nie wątku; np. inicjalizacja, czasomierz lub ISR.*
 
-    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, w którym znajduje się w kolejce.
+    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki nie będzie miejsca w kolejce.
 
-    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać zawieszona podczas oczekiwania na pokój w kolejce.
+    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na miejsce w kolejce.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne wysłanie komunikatu.
-- **TX_DELETED**: (0x01) Kolejka komunikatów została usunięta podczas wstrzymania wątku.
-- **TX_QUEUE_FULL**: usługa (0x0B) nie może wysłać komunikatu, ponieważ kolejka była zapełniona przez czas oczekiwania przez określony czas.
-- **TX_WAIT_ABORTED**: (0x1A) zostało przerwane przez inny wątek, czasomierz lub proces ISR.
+- **TX_SUCCESS:**(0x00) Pomyślne wysłanie komunikatu.
+- **TX_DELETED:**(0x01) Kolejka komunikatów została usunięta, gdy wątek został zawieszony.
+- **TX_QUEUE_FULL:**(0x0B) Usługa nie mogła wysłać komunikatu, ponieważ kolejka była pełna przez określony czas oczekiwania.
+- **TX_WAIT_ABORTED:**(0x1A) Zawieszenie zostało przerwane przez inny wątek, czasomierz lub ISR.
 - TX_QUEUE_ERROR: (0x09) Nieprawidłowy wskaźnik kolejki komunikatów.
 - TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik źródła komunikatu.
-- TX_WAIT_ERROR: (0x04) opcja oczekiwania inna niż TX_NO_WAIT została określona w wywołaniu z niewątku.
+- TX_WAIT_ERROR: (0x04) Opcja oczekiwania inna niż TX_NO_WAIT została określona dla wywołania z nieprzeczytanego.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -2950,7 +2950,7 @@ status =  tx_queue_send(&my_queue, my_message, TX_NO_WAIT);
 
 ## <a name="tx_queue_send_notify"></a>tx_queue_send_notify 
 
-Powiadamiaj aplikację, gdy wiadomość jest wysyłana do kolejki
+Powiadamianie aplikacji o wysłaniu komunikatu do kolejki
 
 ### <a name="prototype"></a>Prototype
 
@@ -2960,25 +2960,25 @@ UINT  tx_queue_send_notify(TX_QUEUE *queue_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego powiadomienia, która jest wywoływana za każdym razem, gdy komunikat zostanie wysłany do określonej kolejki. Przetwarzanie wywołania zwrotnego powiadomienia jest definiowane przez aplikację.
+Ta usługa rejestruje funkcję wywołania zwrotnego powiadomień, która jest wywoływana za każdym razem, gdy komunikat jest wysyłany do określonej kolejki. Przetwarzanie wywołania zwrotnego powiadomień jest definiowane przez aplikację.
 
 > [!NOTE]
-> Wywołanie zwrotne powiadomienia o wysłaniu kolejki aplikacji nie może wywołać żadnego ThreadX interfejsu API SMP z opcją zawieszenia.
+> Wywołanie zwrotne powiadomienia o wysłaniu w kolejce aplikacji nie może wywołać żadnego interfejsu API SMP ThreadX z opcją zawieszenia.
 
 ### <a name="parameters"></a>Parametry 
 
-- **queue_ptr**: wskaźnik do wcześniej utworzonej kolejki.
-- **queue_send_notify**: wskaźnik do funkcji powiadomień o wysyłaniu do kolejki aplikacji. Jeśli ta wartość jest TX_NULL, powiadomienie jest wyłączone.
+- **queue_ptr:** wskaźnik do wcześniej utworzonej kolejki.
+- **queue_send_notify:** wskaźnik do funkcji wysyłania powiadomień w kolejce aplikacji. Jeśli ta wartość jest TX_NULL, powiadomienie jest wyłączone.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna Rejestracja powiadomienia o wysłaniu kolejki.
+- **TX_SUCCESS:**(0x00) Pomyślna rejestracja powiadomienia o wysłaniu kolejki.
 - TX_QUEUE_ERROR: (0x09) Nieprawidłowy wskaźnik kolejki.
-- TX_FEATURE_NOT_ENABLED: (0xFF) system został skompilowany z wyłączonymi funkcjami powiadomień.
+- TX_FEATURE_NOT_ENABLED: (0xFF) System został skompilowany z wyłączonymi możliwościami powiadomień.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -3011,7 +3011,7 @@ void my_queue_send_notify(TX_QUEUE *queue_ptr)
 
 ## <a name="tx_semaphore_ceiling_put"></a>tx_semaphore_ceiling_put 
 
-Umieść wystąpienie w zliczaniu semafora z pułapem
+Umieść wystąpienie w zliczeniu semafora za pomocą limitu
 
 ### <a name="prototype"></a>Prototype
 
@@ -3021,23 +3021,23 @@ UINT  tx_semaphore_ceiling_put(TX_SEMAPHORE *semaphore_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa umieszcza wystąpienie w określonym semaforze zliczania, który w rzeczywistości zwiększa semafor zliczania o jeden. Jeśli bieżąca wartość semafora zliczania jest większa lub równa określonej granicy, wystąpienie nie zostanie umieszczone i zostanie zwrócony błąd TX_CEILING_EXCEEDED.
+Ta usługa umieszcza wystąpienie w określonym zliczeniu semafora, który w rzeczywistości zwiększa zliczanie semafora o jeden. Jeśli bieżąca wartość zliczania semafora jest większa lub równa określonej wartości limitu, wystąpienie nie zostanie wprowadzone i zostanie TX_CEILING_EXCEEDED błąd.
 
 ### <a name="parameters"></a>Parametry 
 
-- **semaphore_ptr**: wskaźnik do wcześniej utworzonego semafora.
-- **granica**: maksymalny limit dozwolony dla semafora (wartości z zakresu od 1 do 0xffffffff).
+- **semaphore_ptr:** Wskaźnik do wcześniej utworzonego semafora.
+- **ceiling:** maksymalny limit dozwolony dla semafora (prawidłowe wartości z zakresu od 1 do 0xFFFFFFFF).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślny pułap semafora.
-- **TX_CEILING_EXCEEDED**: (0x21) żądanie Put przekracza limit.
-- TX_INVALID_CEILING: (0x22) podano nieprawidłową wartość zero dla pułapu.
+- **TX_SUCCESS:**(0x00) Successful semaphore ceiling put (Pomyślny limit semafora).
+- **TX_CEILING_EXCEEDED:**(0x21) Żądanie put przekracza limit.
+- TX_INVALID_CEILING: (0x22) Dla limitu podano nieprawidłową wartość zero.
 - TX_SEMAPHORE_ERROR: (0x0C) Nieprawidłowy wskaźnik semafora.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -3074,25 +3074,25 @@ UINT tx_semaphore_create(TX_SEMAPHORE *semaphore_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy semafor zliczania dla synchronizacji między wątkami. Początkowa liczba semaforów jest określana jako parametr wejściowy.
+Ta usługa tworzy semafor zliczania dla synchronizacji międzywątkowej. Początkowa liczba semaforów jest określana jako parametr wejściowy.
 
 ### <a name="parameters"></a>Parametry 
 
-- **semaphore_ptr**: wskaźnik do bloku sterowania semaforem. 
-- **name_ptr**: wskaźnik do nazwy semafora.
-- **initial_count**: określa początkową liczbę dla tego semafora. Wartości prawne mieszczą się w zakresie od 0x00000000 do 0xFFFFFFFF.
+- **semaphore_ptr:** Wskaźnik do bloku sterowania semafora. 
+- **name_ptr:** Wskaźnik do nazwy semafora.
+- **initial_count:** określa początkową liczbę dla tego semafora. Wartości prawne mogą być różne 0x00000000 do 0xFFFFFFFF.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne utworzenie semafora.
+- **TX_SUCCESS:**(0x00) Pomyślne utworzenie semafora.
 - TX_SEMAPHORE_ERROR: (0x0C) Nieprawidłowy wskaźnik semafora. Wskaźnik ma wartość NULL lub semafor został już utworzony.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3126,7 +3126,7 @@ status = tx_semaphore_create(&my_semaphore,
 
 ## <a name="tx_semaphore_delete"></a>tx_semaphore_delete
 
-Usuń semafor zliczania
+Usuwanie semafora zliczania
 
 ### <a name="prototype"></a>Prototype
 
@@ -3135,26 +3135,26 @@ UINT tx_semaphore_delete(TX_SEMAPHORE *semaphore_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa określony semafor zliczania. Wszystkie wątki zawieszone w trakcie oczekiwania na wystąpienie semafora są wznawiane i nadawane TX_DELETED stanie powrotu.
+Ta usługa usuwa określony semafor zliczania. Wszystkie wątki wstrzymane w oczekiwaniu na wystąpienie semafora są wznawiane i mają TX_DELETED zwracany stan.
 
 > [!IMPORTANT]
-> Aplikacja musi zapewnić ukończenie wywołania zwrotnego powiadomienia dla tego semafora (lub wyłączone) przed usunięciem semafora. Ponadto aplikacja musi uniemożliwić wszystkie przyszłe użycie usuniętego semafora.
+> Aplikacja musi upewnić się, że wywołanie zwrotne powiadomienia put dla tego semafora zostało ukończone (lub wyłączone) przed usunięciem semafora. Ponadto aplikacja musi zapobiegać wszystkiemu przyszłemu użyciu usuniętego semafora.
 
 ### <a name="parameters"></a>Parametry 
 
-- **semaphore_ptr**: wskaźnik do wcześniej utworzonego semafora.
+- **semaphore_ptr:** wskaźnik do wcześniej utworzonego semafora.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne zliczanie usunięcia semafora.
+- **TX_SUCCESS:**(0x00) Pomyślne zliczanie usunięcia semafora.
 - TX_SEMAPHORE_ERROR: (0x0C) Nieprawidłowy wskaźnik zliczania semafora.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -3185,7 +3185,7 @@ status = tx_semaphore_delete(&my_semaphore);
 
 ## <a name="tx_semaphore_get"></a>tx_semaphore_get
 
-Pobierz wystąpienie z zliczania semafora
+Uzyskiwanie wystąpienia z zliczania semafora
 
 ### <a name="prototype"></a>Prototype
 
@@ -3195,36 +3195,36 @@ UINT tx_semaphore_get(TX_SEMAPHORE *semaphore_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera wystąpienie (pojedyncza liczba) z określonego semafora zliczania. W związku z tym liczba określonych semaforów zostanie zmniejszona o jeden.
+Ta usługa pobiera wystąpienie (pojedynczą liczbę) z określonego zliczania semafora. W związku z tym liczba określonego semafora jest zmniejszana o jeden.
 
 ### <a name="parameters"></a>Parametry
 
-- **semaphore_ptr**: wskaźnik do wcześniej utworzonego semafora zliczania.
-- **WAIT_OPTION**: określa, w jaki sposób działa usługa, jeśli nie ma dostępnych wystąpień semafora; oznacza to, że liczba semaforów jest równa zero. Opcje oczekiwania są zdefiniowane w następujący sposób:
-    - **TX_NO_WAIT**: (0x00000000)
-    - **TX_WAIT_FOREVER**: (0xffffffff)
-    - wartość limitu czasu: (od 0x00000001 do 0xFFFFFFFE)
+- **semaphore_ptr:** Wskaźnik do utworzonego wcześniej zliczania semafora.
+- **wait_option:** definiuje sposób zachowania usługi, jeśli nie ma dostępnych wystąpień semafora; tj. liczba semaforów wynosi zero. Opcje oczekiwania są zdefiniowane w następujący sposób:
+    - **TX_NO_WAIT:**(0x00000000)
+    - **TX_WAIT_FOREVER:**(0xFFFFFFFF)
+    - wartość limitu czasu: (0x00000001 do 0xFFFFFFFE)
 
-    Wybranie TX_NO_WAIT powoduje natychmiastowe zwrócenie z tej usługi niezależnie od tego, czy zakończyło się powodzeniem. *Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z niewątku; np. Inicjalizacja, czasomierz lub ISR.*
+    Wybranie TX_NO_WAIT powoduje natychmiastowy zwrot z tej usługi, niezależnie od tego, czy to się powiodło. *Jest to jedyna prawidłowa opcja, jeśli usługa jest wywoływana z nie wątku; np. inicjalizacja, czasomierz lub isr.*
 
-    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu dostępności wystąpienia semafora. 
+    Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony do momentu, aż wystąpienie semafora będzie dostępne. 
 
-    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na wystąpienie semafora.
+    Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na wystąpienie semafora.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobranie wystąpienia semafora.
-- **TX_DELETED**: (0X01) zliczanie semafora został usunięty, gdy wątek został wstrzymany.
-- **TX_NO_INSTANCE**: usługa (0x0D) nie może pobrać wystąpienia semafora zliczania (liczba semaforów wynosi zero w określonym czasie oczekiwania).
-- **TX_WAIT_ABORTED**: (0x1A) zostało przerwane przez inny wątek, czasomierz lub proces ISR.
+- **TX_SUCCESS:**(0x00) Pomyślne pobranie wystąpienia semafora.
+- **TX_DELETED:**(0x01) Zliczanie semafora zostało usunięte, gdy wątek został zawieszony.
+- **TX_NO_INSTANCE:**(0x0D) Usługa nie mogła pobrać wystąpienia zliczania semafora (liczba semaforów wynosi zero w określonym czasie oczekiwania).
+- **TX_WAIT_ABORTED:**(0x1A) Zawieszenie zostało przerwane przez inny wątek, czasomierz lub ISR.
 - TX_SEMAPHORE_ERROR: (0x0C) Nieprawidłowy wskaźnik zliczania semafora.
-- TX_WAIT_ERROR: (0x04) opcja oczekiwania inna niż TX_NO_WAIT została określona w wywołaniu z niewątku.
+- TX_WAIT_ERROR: (0x04) Opcja oczekiwania inna niż TX_NO_WAIT została określona dla wywołania z niewątkowej.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -3257,7 +3257,7 @@ status =  tx_semaphore_get(&my_semaphore, TX_WAIT_FOREVER);
 
 ## <a name="tx_semaphore_info_get"></a>tx_semaphore_info_get
 
-Pobierz informacje o semaforze
+Pobieranie informacji o semaforze
 
 ### <a name="prototype"></a>Prototype
 
@@ -3274,26 +3274,26 @@ Ta usługa pobiera informacje o określonym semaforze.
 
 ### <a name="parameters"></a>Parametry
 
-- **semaphore_ptr**: wskaźnik do bloku sterowania semaforem.
-- **name**: wskaźnik do miejsca docelowego dla wskaźnika do nazwy semafora.
-- **current_value**: wskaźnik do miejsca docelowego dla licznika bieżącego semafora.
-- **first_suspended**: wskaźnik do elementu docelowego dla wskaźnika do wątku, który jest pierwszy na liście zawieszeń tego semafora.
-- **suspended_count**: wskaźnik do miejsca docelowego dla liczby wątków, które są obecnie zawieszone w tym semaforze.
-- **next_semaphore**: wskaźnik do miejsca docelowego dla wskaźnika następnego utworzonego semafora.
+- **semaphore_ptr:** Wskaźnik do bloku sterowania semafora.
+- **name**: Wskaźnik do miejsca docelowego dla wskaźnika do nazwy semafora.
+- **current_value:** Wskaźnik do miejsca docelowego dla bieżącej liczby semaforów.
+- **first_suspended:** Wskaźnik do miejsca docelowego dla wskaźnika do wątku, który jest pierwszy na liście zawieszenia tego semafora.
+- **suspended_count:** wskaźnik do miejsca docelowego dla liczby wątków aktualnie zawieszonych na tym semaforze.
+- **next_semaphore:** Wskaźnik do miejsca docelowego wskaźnika następnego utworzonego semafora.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobranie informacji semafora.
+- **TX_SUCCESS:**(0x00) Pomyślne pobieranie informacji o semaforach.
 - TX_SEMAPHORE_ERROR: (0x0C) Nieprawidłowy wskaźnik semafora.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3332,7 +3332,7 @@ status =  tx_semaphore_info_get(&my_semaphore, &name,
 
 ## <a name="tx_semaphore_performance_info_get"></a>tx_semaphore_performance_info_get 
 
-Pobierz informacje o wydajności semafora
+Uzyskiwanie informacji o wydajności semafora
 
 ### <a name="prototype"></a>Prototype
 
@@ -3343,31 +3343,31 @@ UINT  tx_semaphore_performance_info_get(TX_SEMAPHORE *semaphore_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o wydajności dotyczące określonego semafora.
+Ta usługa pobiera informacje o wydajności określonego semafora.
 
 > [!NOTE]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_SEMAPHORE_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o wydajności, biblioteka i aplikacja ThreadX SMP muszą **TX_SEMAPHORE_ENABLE_PERFORMANCE_INFO** z definicją.
 
 ### <a name="parameters"></a>Parametry
 
-- **semaphore_ptr**: wskaźnik do wcześniej utworzonego semafora.
-- Put **: wskaźnik** do miejsca docelowego dla liczby żądań PUT wykonanych dla tego semafora.
-- **Pobiera**: wskaźnik do miejsca docelowego dla liczby żądań GET wykonanych dla tego semafora.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla liczby zawieszeń wątku w tym semaforze.
-- **limity czasu**: wskaźnik do miejsca docelowego dla liczby limitów czasu zawieszenia wątku dla tego semafora.
+- **semaphore_ptr:** Wskaźnik do wcześniej utworzonego semafora.
+- **puts:** wskaźnik do miejsca docelowego dla liczby żądań put wykonanych na tym semaforze.
+- **pobiera**: wskaźnik do miejsca docelowego dla liczby żądań get wykonanych na tym semaforze.
+- **suspensions**: wskaźnik do miejsca docelowego dla liczby zawieszenia wątków na tym semaforze.
+- **limity czasu:** wskaźnik do miejsca docelowego dla liczby limitów czasu wstrzymania wątku w tym semaforze.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobieranie wydajności semafora.
-- **TX_PTR_ERROR**: (0X03) Nieprawidłowy wskaźnik semafora.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności semafora.
+- **TX_PTR_ERROR:**(0x03) Nieprawidłowy wskaźnik semafora.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -3400,7 +3400,7 @@ status =  tx_semaphore_performance_info_get(&my_semaphore, &puts,
 
 ## <a name="tx_semaphore_performance_system_info_get"></a>tx_semaphore_performance_system_info_get 
 
-Pobierz informacje o wydajności systemu semafora
+Uzyskiwanie informacji o wydajności systemu semafora
 
 ### <a name="prototype"></a>Prototype
 
@@ -3410,29 +3410,29 @@ UINT tx_semaphore_performance_system_info_get(ULONG *puts,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o wydajności dotyczące wszystkich semaforów w systemie.
+Ta usługa pobiera informacje o wydajności wszystkich semaforów w systemie.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_SEMAPHORE_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o wydajności, biblioteka i aplikacja ThreadX SMP muszą **TX_SEMAPHORE_ENABLE_PERFORMANCE_INFO** z definicją.
 
 ### <a name="parameters"></a>Parametry
 
-- Put **: wskaźnik** do miejsca docelowego dla łącznej liczby żądań PUT wykonanych na wszystkich semaforach.
-- **Pobiera**: wskaźnik do miejsca docelowego dla łącznej liczby żądań GET wykonanych na wszystkich semaforach.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla łącznej liczby zawieszeń wątku na wszystkich semaforach.
-- **limity czasu**: wskaźnik do miejsca docelowego dla łącznej liczby limitów czasu zawieszenia wątku dla wszystkich semaforów.
+- **puts:** wskaźnik do miejsca docelowego całkowitej liczby żądań put wykonanych na wszystkich semaforach.
+- **pobiera**: wskaźnik do miejsca docelowego dla łącznej liczby żądań get wykonanych na wszystkich semaforach.
+- **suspensions**: wskaźnik do miejsca docelowego całkowitej liczby zawieszenia wątków na wszystkich semaforach.
+- **limity czasu:** wskaźnik do miejsca docelowego dla całkowitej liczby limitów czasu wstrzymania wątku we wszystkich semaforach.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- TX_SUCCESS: (0x00) pomyślne pobieranie wydajności systemu semafora.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- TX_SUCCESS: (0x00) Pomyślne uzyskiwanie wydajności systemu semaforów.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -3464,7 +3464,7 @@ status = tx_semaphore_performance_system_info_get(&puts, &gets,
 
 ## <a name="tx_semaphore_prioritize"></a>tx_semaphore_prioritize
 
-Ustawianie priorytetu listy zawieszania semafora
+Określanie priorytetów listy zawieszenia semafora
 
 ### <a name="prototype"></a>Prototype
 
@@ -3473,22 +3473,22 @@ UINT tx_semaphore_prioritize(TX_SEMAPHORE *semaphore_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa umieszcza wątek o najwyższym priorytecie w przypadku wystąpienia semafora na początku listy zawieszeń. Wszystkie pozostałe wątki pozostają w tej samej kolejności FIFO, w której zostały zawieszone.
+Ta usługa umieszcza wątek o najwyższym priorytecie zawieszony dla wystąpienia semafora na początku listy zawieszenia. Wszystkie inne wątki pozostają w tej samej kolejności FIFO, w których zostały wstrzymane.
 
 ### <a name="parameters"></a>Parametry 
 
-- **semaphore_ptr**: wskaźnik do wcześniej utworzonego semafora.
+- **semaphore_ptr:** Wskaźnik do wcześniej utworzonego semafora.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna priorytetyzacja semafora.
+- **TX_SUCCESS:**(0x00) Priorytetyzowanie pomyślnych semaforów.
 - TX_SEMAPHORE_ERROR: (0x0C) Nieprawidłowy wskaźnik zliczania semafora.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3517,7 +3517,7 @@ status =  tx_semaphore_prioritize(&my_semaphore);
 
 ## <a name="tx_semaphore_put"></a>tx_semaphore_put
 
-Umieść wystąpienie w zliczaniu semafora
+Umieść wystąpienie w zliczeniu semafora
 
 ### <a name="prototype"></a>Prototype
 
@@ -3526,25 +3526,25 @@ UINT tx_semaphore_put(TX_SEMAPHORE *semaphore_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa umieszcza wystąpienie w określonym semaforze zliczania, który w rzeczywistości zwiększa semafor zliczania o jeden.
+Ta usługa umieszcza wystąpienie w określonym zliczeniu semafora, który w rzeczywistości zwiększa zliczanie semafora o jeden.
 
 > [!IMPORTANT]
-> Jeśli ta usługa jest wywoływana, gdy semafor ma wszystkie (OxFFFFFFFF), Nowa operacja Put spowoduje, że semafor zostanie zresetowany do zera.
+> Jeśli ta usługa jest wywoływana, gdy semafor to wszystkie jedynki (OxFFFFFFFF), nowa operacja put spowoduje zresetowanie semafora do zera.
 
 ### <a name="parameters"></a>Parametry
 
-- **semaphore_ptr**: wskaźnik do wcześniej utworzonego bloku sterowania semaforem zliczania.
+- **semaphore_ptr:** wskaźnik do wcześniej utworzonego bloku sterowania zliczanych semaforów.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne umieszczenie semafora.
+- **TX_SUCCESS:**(0x00) Successful semaphore put (Pomyślne put semafora).
 - TX_SEMAPHORE_ERROR: (0x0C) Nieprawidłowy wskaźnik do zliczania semafora.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -3575,7 +3575,7 @@ status =  tx_semaphore_put(&my_semaphore);
 
 ## <a name="tx_semaphore_put_notify"></a>tx_semaphore_put_notify
 
-Powiadamiaj aplikację po umieszczeniu semafora
+Powiadamianie aplikacji o zastosowaniu semafora
 
 ### <a name="prototype"></a>Prototype
 
@@ -3585,25 +3585,25 @@ UINT  tx_semaphore_put_notify(TX_SEMAPHORE *semaphore_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego powiadomienia, która jest wywoływana za każdym razem, gdy określony semafor jest umieszczony. Przetwarzanie wywołania zwrotnego powiadomienia jest definiowane przez aplikację.
+Ta usługa rejestruje funkcję wywołania zwrotnego powiadomień, która jest wywoływana za każdym razem, gdy jest umieszczany określony semafor. Przetwarzanie wywołania zwrotnego powiadomień jest definiowane przez aplikację.
 
 > [!NOTE]
-> Wywołanie zwrotne powiadomienia semafora aplikacji nie może wywołać żadnego ThreadXego interfejsu API SMP z opcją zawieszenia.
+> Wywołanie zwrotne powiadomienia semafora aplikacji nie może wywołać żadnego interfejsu API SMP ThreadX z opcją zawieszenia.
 
 ### <a name="parameters"></a>Parametry 
 
-- **semaphore_ptr**: wskaźnik do wcześniej utworzonego semafora.
-- **semaphore_put_notify**: wskaźnik do funkcji powiadamiania o wykorzystaniu semafora aplikacji. Jeśli ta wartość jest TX_NULL, powiadomienie jest wyłączone.
+- **semaphore_ptr:** Wskaźnik do wcześniej utworzonego semafora.
+- **semaphore_put_notify:** Wskaźnik do funkcji powiadamiania put put aplikacji. Jeśli ta wartość jest TX_NULL, powiadomienie jest wyłączone.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna Rejestracja powiadomienia o wprowadzeniu semafora.
+- **TX_SUCCESS:**(0x00) Pomyślna rejestracja powiadomienia put semafora.
 - TX_SEMAPHORE_ERROR: (0x0C) Nieprawidłowy wskaźnik semafora.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system został skompilowany z wyłączonymi funkcjami powiadomień.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System został skompilowany z wyłączonymi możliwościami powiadomień.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -3637,7 +3637,7 @@ void my_semaphore_put_notify(TX_SEMAPHORE *semaphore_ptr)
 
 ## <a name="tx_thread_create"></a>tx_thread_create
 
-Utwórz wątek aplikacji
+Tworzenie wątku aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -3651,41 +3651,41 @@ UINT tx_thread_create(TX_THREAD *thread_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wątek aplikacji, który uruchamia wykonywanie w określonej funkcji wprowadzania zadań. Stos, priorytet, wartość progowa i wycinek czasu są wśród atrybutów określonych przez parametry wejściowe. Ponadto jest również określony początkowy stan wykonywania wątku.
+Ta usługa tworzy wątek aplikacji, który rozpoczyna wykonywanie w określonej funkcji wpisu zadania. Stos, priorytet, próg wywłaszczenia i wycinek czasu należą do atrybutów określonych przez parametry wejściowe. Ponadto określono również początkowy stan wykonywania wątku.
 
 ### <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do bloku sterującego wątku.
-- **name_ptr**: wskaźnik do nazwy wątku.
-- **entry_function**: określa początkową funkcję C do wykonania wątku. Gdy wątek wraca z tej funkcji wejścia, jest on umieszczany w stanie ukończenia i zawieszony czasowo.
-- **entry_input**: wartość 32-bitowa, która jest przesyłana do funkcji wejścia wątku podczas pierwszego wykonania. Użycie tego danych wejściowych jest określane wyłącznie przez aplikację.
-- **stack_start**: adres początkowy obszaru pamięci stosu. 
-- **stack_size**: liczba bajtów w obszarze pamięci stosu. Obszar stosu wątku musi być wystarczająco duży, aby obsługiwał jego najgorszą metodę użycia.
-- **priorytet**: liczbowy priorytet wątku. Wartości prawne mieszczą się w zakresie od 0 do (TX_MAX_PRIORITES-1), gdzie wartość 0 reprezentuje najwyższy priorytet.
-- **preempt_threshold**: najwyższy poziom priorytetu (od 0 do (TX_MAX_PRIORITIES-1)) wyłączono przechodzenie. Tylko priorytety wyższe niż ten poziom mogą przewagę tego wątku. Ta wartość nie może być większa niż określony priorytet. Wartość równa priorytetu wątku powoduje wyłączenie progu zastępujący.
-- **time_slice**: liczba czasomierzy, przez jaką ten wątek może działać, zanim inne gotowe wątki o takim samym priorytecie mają szansę uruchomienia. Należy pamiętać, że użycie wartości progowej przekroczenia powoduje wyłączenie tworzenia wycinków czasu. Dozwolone wartości wycinków czasu mieszczą się w zakresie od 1 do 0xFFFFFFFF (włącznie). Wartość **TX_NO_TIME_SLICE** (wartość 0) powoduje wyłączenie wycinka czasu dla tego wątku.
+- **thread_ptr:** wskaźnik do bloku sterowania wątku.
+- **name_ptr:** Wskaźnik do nazwy wątku.
+- **entry_function:** określa początkową funkcję języka C do wykonywania wątku. Gdy wątek wraca z tej funkcji wpisu, jest umieszczany w stanie ukończonym i zawieszony na czas nieokreślony.
+- **entry_input:** wartość 32-bitowa, która jest przekazywana do funkcji wpisu wątku podczas jego pierwszego wykonania. Użycie tych danych wejściowych jest określane wyłącznie przez aplikację.
+- **stack_start:** początkowy adres obszaru pamięci stosu. 
+- **stack_size:** liczba bajtów w obszarze pamięci stosu. Obszar stosu wątku musi być wystarczająco duży, aby obsłużyć zagnieżdżanie wywołań funkcji najgorszego przypadku i użycie zmiennych lokalnych.
+- **priority:** priorytet numeryczny wątku. Wartości prawne wahają się od 0 do (TX_MAX_PRIORITES-1), gdzie wartość 0 reprezentuje najwyższy priorytet.
+- **preempt_threshold:** najwyższy poziom priorytetu (od 0 do (TX_MAX_PRIORITIES-1)) wyłączonego wywłaszenia. Tylko priorytety wyższe niż ten poziom mogą wywłaszczeć ten wątek. Ta wartość musi być mniejsza lub równa podanej wartości priorytetu. Wartość równa priorytetowi wątku wyłącza próg wywłaszczenia.
+- **time_slice:** Liczba znaczników czasomierza, które może uruchomić ten wątek, zanim inne gotowe wątki o tym samym priorytecie będą mogły uruchomić. Należy pamiętać, że użycie progu wywłaszczenia wyłącza próg czasu. Prawne wartości przedziału czasu mogą być od 1 do 0xFFFFFFFF (włącznie). Wartość TX_NO_TIME_SLICE **(wartość** 0) wyłącza czas cing tego wątku.
 
     > [!IMPORTANT]
-    > Korzystanie z wycinków czasu powoduje niewielkie obciążenie systemu. Ponieważ podział czasu jest przydatny tylko w przypadkach, gdy wiele wątków ma ten sam priorytet, wątki mające unikatowy priorytet nie powinny mieć przypisanego wycinka czasowego.
+    > Użycie funkcji licowania w czasie powoduje niewielkie obciążenie systemu. Ponieważ fragmentowanie czasu jest przydatne tylko w przypadkach, gdy wiele wątków ma ten sam priorytet, wątki o unikatowym priorytecie nie powinny mieć przypisanego fragmentu czasu.
 
-- **auto_start**: określa, czy wątek zaczyna się od razu czy jest umieszczony w stanie wstrzymania. Opcje prawne są **TX_AUTO_START** (0x01) i **TX_DONT_START** (0x00). Jeśli TX_DONT_START jest określony, aplikacja musi później wywołać tx_thread_resume w celu uruchomienia wątku.
+- **auto_start:** Określa, czy wątek rozpoczyna się natychmiast, czy jest umieszczany w stanie zawieszenia. Opcje prawne to **TX_AUTO_START** (0x01) **i TX_DONT_START** (0x00). Jeśli TX_DONT_START, aplikacja musi później wywołać tx_thread_resume, aby wątek został uruchomiony.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne utworzenie wątku.
-- TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik kontrolny wątku. Wskaźnik ma wartość NULL lub wątek został już utworzony.
-- TX_PTR_ERROR: (0x03) nieprawidłowy adres początkowy punktu wejścia lub obszar stosu jest nieprawidłowy, zazwyczaj ma wartość NULL.
-- TX_SIZE_ERROR: (0x05) rozmiar obszaru stosu jest nieprawidłowy. Wątki muszą mieć co najmniej **TX_MINIMUM_STACK** bajtów do wykonania.
-- TX_PRIORITY_ERROR: (0x0F) nieprawidłowy priorytet wątku, który jest wartością spoza zakresu (od 0 do (TX_MAX_PRIORITIES-1)).
-- TX_THRESH_ERROR: (0x18) określono nieprawidłowy preemptionthreshold. Ta wartość musi być prawidłowym priorytetem nie większym niż początkowy priorytet wątku.
-- TX_START_ERROR: (0x10) nieprawidłowy wybór autostartu.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- **TX_SUCCESS:**(0x00) Pomyślne utworzenie wątku.
+- TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik sterowania wątkami. Wskaźnik ma wartość NULL lub wątek został już utworzony.
+- TX_PTR_ERROR: (0x03) Nieprawidłowy adres początkowy punktu wejścia lub obszar stosu jest nieprawidłowy, zazwyczaj null.
+- TX_SIZE_ERROR: (0x05) Rozmiar obszaru stosu jest nieprawidłowy. Wątki muszą mieć co najmniej **TX_MINIMUM_STACK** bajtów do wykonania.
+- TX_PRIORITY_ERROR: (0x0F) Nieprawidłowy priorytet wątku, który jest wartością spoza zakresu od (od 0 do (TX_MAX_PRIORITIES-1)).
+- TX_THRESH_ERROR: (0x18) Określono nieprawidłowy wywłaszczyn. Ta wartość musi być prawidłowym priorytetem mniejszym lub równym początkowego priorytetu wątku.
+- TX_START_ERROR: (0x10) Nieprawidłowy wybór automatycznego uruchamiania.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -3751,7 +3751,7 @@ VOID my_thread_entry (ULONG initial_input)
 
 ## <a name="tx_thread_delete"></a>tx_thread_delete
 
-Usuń wątek aplikacji
+Usuwanie wątku aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -3760,27 +3760,27 @@ UINT tx_thread_delete(TX_THREAD *thread_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa określony wątek aplikacji. Ponieważ określony wątek musi być w stanie zakończony lub zakończony, ta usługa nie może zostać wywołana z wątku próbującego usunąć sam siebie.
+Ta usługa usuwa określony wątek aplikacji. Ponieważ określony wątek musi być w stanie zakończonym lub zakończonym, nie można wywołać tej usługi z wątku próbującego usunąć samą siebie.
 
 > [!IMPORTANT]
-> Jest on odpowiedzialny za zarządzanie obszarem pamięci skojarzonym ze stosem wątku, który jest dostępny po zakończeniu tej usługi. Ponadto aplikacja musi uniemożliwić korzystanie z usuniętego wątku.
+> Aplikacja odpowiada za zarządzanie obszarem pamięci skojarzonym ze stosem wątku, który jest dostępny po zakończeniu tej usługi. Ponadto aplikacja musi uniemożliwić korzystanie z usuniętego wątku.
 
 ### <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do wcześniej utworzonego wątku aplikacji.
+- **thread_ptr:** wskaźnik do wcześniej utworzonego wątku aplikacji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne usunięcie wątku.
+- **TX_SUCCESS:**(0x00) Pomyślne usunięcie wątku.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku aplikacji.
-- **TX_DELETE_ERROR**: (0X11) określony wątek nie jest w stanie przerwania lub zakończenia.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- **TX_DELETE_ERROR:**(0x11) Określony wątek nie jest w stanie zakończenia lub zakończenia.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki i czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3820,7 +3820,7 @@ status =  tx_thread_delete(&my_thread);
 
 ## <a name="tx_thread_entry_exit_notify"></a>tx_thread_entry_exit_notify
 
-Powiadamiaj aplikację przy wejściu i wyjściu wątku
+Powiadamianie aplikacji o wejściu i zakończeniu wątku
 
 ### <a name="prototype"></a>Prototype
 
@@ -3830,25 +3830,25 @@ UINT  tx_thread_entry_exit_notify(TX_THREAD *thread_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego powiadomienia, która jest wywoływana za każdym razem, gdy określony wątek zostanie wprowadzony lub zostanie zakończony. Przetwarzanie wywołania zwrotnego powiadomienia jest definiowane przez aplikację.
+Ta usługa rejestruje funkcję wywołania zwrotnego powiadomień, która jest wywoływana za każdym razem, gdy określony wątek jest wprowadzany lub kończy działanie. Przetwarzanie wywołania zwrotnego powiadomień jest definiowane przez aplikację.
 
 > [!NOTE]
-> Wywołanie zwrotne powiadomienia o wejściu/wyjściu dla aplikacji nie może wywołać żadnego ThreadXego interfejsu API SMP z opcją zawieszenia.
+> Wywołanie zwrotne powiadomień o wątkowym wejściu/wyjściu aplikacji nie może wywołać żadnego interfejsu API SMP ThreadX z opcją zawieszenia.
 
 ### <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do wcześniej utworzonego wątku.
-- **entry_exit_notify**: wskaźnik do funkcji powiadomienia o wejściu/wyjściu wątku aplikacji. Drugi parametr funkcji powiadomień o wejściu/wyjściu określa, czy jest obecny wpis lub wyjście. Wartość TX_THREAD_ENTRY (0x00) wskazuje, że wątek został wprowadzony, podczas gdy wartość TX_THREAD_EXIT (0x01) wskazuje, że wątek został zakończony. Jeśli ta wartość jest TX_NULL, powiadomienie jest wyłączone.
+- **thread_ptr:** Wskaźnik do wcześniej utworzonego wątku.
+- **entry_exit_notify:** wskaźnik do funkcji powiadamiania o wątkowym wejściu/wyjściu aplikacji. Drugi parametr funkcji powiadamiania o wejściu/wyjściu wyznacza, jeśli istnieje wpis lub wyjście. Wartość TX_THREAD_ENTRY (0x00) wskazuje, że wątek został wprowadzony, a wartość TX_THREAD_EXIT (0x01) wskazuje, że wątek został exited. Jeśli ta wartość jest TX_NULL, powiadomienie jest wyłączone.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna Rejestracja funkcji powiadomień o wejściu/wyjściu wątku.
+- **TX_SUCCESS:**(0x00) Pomyślna rejestracja funkcji powiadamiania o wejściu/wyjściu wątku.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku.
-- **TX_FEATURE_NOT_ENABLED (0xFF)** System został skompilowany z wyłączonymi funkcjami powiadomień.
+- **TX_FEATURE_NOT_ENABLED(0xFF)** System został skompilowany z wyłączonymi możliwościami powiadomień.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -3908,7 +3908,7 @@ TX_THREAD* tx_thread_identify(VOID);
 Ta usługa zwraca wskaźnik do aktualnie wykonywanego wątku. Jeśli żaden wątek nie jest wykonywany, ta usługa zwraca wskaźnik o wartości null.
 
 > [!IMPORTANT]
-> Jeśli ta usługa jest wywoływana przez funkcję ISR, wartość zwracana reprezentuje wątek uruchomiony przed wykonaniem procedury obsługi przerwań.
+> Jeśli ta usługa jest wywoływana z isr, wartość zwracana reprezentuje wątek uruchomiony przed wykonywaniem procedury obsługi przerwań.
 
 ### <a name="parameters"></a>Parametry
 
@@ -3916,13 +3916,13 @@ Brak
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- wskaźnik wątku: wskaźnik do aktualnie wykonywanego wątku. Jeśli żaden wątek nie jest wykonywany, wartość zwracana jest TX_NULL.
+- wskaźnik wątku: wskaźnik do aktualnie wykonującego wątku. Jeśli żaden wątek nie jest wykonywany, zwracana wartość jest TX_NULL.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki i procedury ISR
+Wątki i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -3962,7 +3962,7 @@ my_thread_ptr =  tx_thread_identify();
 
 ## <a name="tx_thread_info_get"></a>tx_thread_info_get
 
-Pobierz informacje o wątku
+Pobieranie informacji o wątku
 
 ### <a name="prototype"></a>Prototype
 
@@ -3981,41 +3981,41 @@ Ta usługa pobiera informacje o określonym wątku.
 
 ### <a name="parameters"></a>Parametry 
 
-- **thread_ptr**: wskaźnik do bloku sterowania wątkiem.
-- **name**: wskaźnik do miejsca docelowego dla wskaźnika do nazwy wątku.
-- **State**: wskaźnik do miejsca docelowego dla bieżącego stanu wykonywania wątku. Dopuszczalne są następujące wartości:
-    - **TX_READY**: (0x00)
-    - **TX_COMPLETED**: (0x01)
-    - **TX_TERMINATED**: (0x02)
-    - **TX_SUSPENDED**: (0x03)
-    - **TX_SLEEP**: (0x04)
-    - **TX_QUEUE_SUSP**: (0x05)
-    - **TX_SEMAPHORE_SUSP**: (0x06)
-    - **TX_EVENT_FLAG**: (0x07)
-    - **TX_BLOCK_MEMORY**: (0x08)
-    - **TX_BYTE_MEMORY**: (0x09)
-    - **TX_MUTEX_SUSP**: (0x0D)
+- **thread_ptr:** Wskaźnik do bloku sterowania wątkami.
+- **name:** wskaźnik do miejsca docelowego dla wskaźnika do nazwy wątku.
+- **state:** wskaźnik do miejsca docelowego dla bieżącego stanu wykonywania wątku. Dopuszczalne są następujące wartości:
+    - **TX_READY:**(0x00)
+    - **TX_COMPLETED:**(0x01)
+    - **TX_TERMINATED:**(0x02)
+    - **TX_SUSPENDED:**(0x03)
+    - **TX_SLEEP:**(0x04)
+    - **TX_QUEUE_SUSP:**(0x05)
+    - **TX_SEMAPHORE_SUSP:**(0x06)
+    - **TX_EVENT_FLAG:**(0x07)
+    - **TX_BLOCK_MEMORY:**(0x08)
+    - **TX_BYTE_MEMORY:**(0x09)
+    - **TX_MUTEX_SUSP:**(0x0D)
 
-- **run_count**: wskaźnik do miejsca docelowego dla liczby uruchomień wątku. 
-- **priorytet**: wskaźnik do miejsca docelowego dla priorytetu wątku.
-- **preemption_threshold**: wskaźnik do miejsca docelowego dla progu zastępujący wątek.
-- **time_slice**: wskaźnik do miejsca docelowego dla wycinka czasu wątku. 
-- **next_thread**: wskaźnik do miejsca docelowego dla następnego utworzonego wskaźnika wątku.
-- **suspended_thread**: wskaźnik do miejsca docelowego dla wskaźnika do następnego wątku na liście zawieszeń.
+- **run_count:** wskaźnik do miejsca docelowego dla liczby przebiegów wątku. 
+- **priority:** wskaźnik do miejsca docelowego priorytetu wątku.
+- **preemption_threshold:** wskaźnik do miejsca docelowego dla progu wywłaszczenia wątku.
+- **time_slice:** wskaźnik do miejsca docelowego dla wycinka czasu wątku. 
+- **next_thread:** Wskaźnik do miejsca docelowego dla następnego utworzonego wskaźnika wątku.
+- **suspended_thread:** Wskaźnik do miejsca docelowego dla wskaźnika do następnego wątku na liście zawieszenia.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie parametru TX_NULL parametru oznacza, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobranie informacji wątku.
-- TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik kontrolny wątku.
+- **TX_SUCCESS:**(0x00) Pomyślne pobieranie informacji o wątku.
+- TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik sterowania wątkami.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -4064,7 +4064,7 @@ status =  tx_thread_info_get(&my_thread, &name,
 
 ## <a name="tx_thread_performance_info_get"></a>tx_thread_performance_info_get 
 
-Pobierz informacje o wydajności wątków
+Uzyskiwanie informacji o wydajności wątku
 
 ### <a name="prototype"></a>Prototype
 
@@ -4078,37 +4078,37 @@ UINT  tx_thread_performance_info_get(TX_THREAD *thread_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o wydajności dotyczące określonego wątku.
+Ta usługa pobiera informacje o wydajności określonego wątku.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_THREAD_ENABLE_PERFORMANCE_INFO** zdefiniowanych w celu zwrócenia informacji o wydajności przez tę usługę.
+> Aby ta usługa zwracała informacje o  wydajności, biblioteka i aplikacja SMP ThreadX muszą być TX_THREAD_ENABLE_PERFORMANCE_INFO zdefiniowane za pomocą zdefiniowanej biblioteki SMP ThreadX.
 
 ### <a name="parameters"></a>Parametry 
 
-- **thread_ptr**: wskaźnik do wcześniej utworzonego wątku.
-- **wznawiania**: wskaźnik do miejsca docelowego dla liczby wznowień tego wątku.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla liczby zawieszeń tego wątku.
-- **solicited_preemptions**: wskaźnik do miejsca docelowego dla liczby przeniesień w wyniku wywołania usługi API ThreadX wykonanego przez ten wątek.
-- **interrupt_preemptions**: wskaźnik do miejsca docelowego dla liczby przeniesień tego wątku w wyniku przetwarzania przerwań.
-- **priority_inversions**: wskaźnik do miejsca docelowego dla liczby niewersji priorytetu tego wątku.
-- **time_slices**: wskaźnik do miejsca docelowego dla liczby timeslices tego wątku.
-- **zwalnia**: wskaźnik do miejsca docelowego dla liczby operacji zwalniania wątku wykonywanych przez ten wątek.
-- **limity czasu**: wskaźnik do miejsca docelowego dla liczby limitów czasu zawieszenia dla tego wątku.
-- **wait_aborts**: wskaźnik do miejsca docelowego dla liczby przerwań oczekiwania wykonanych w tym wątku.
-- **last_preempted_by**: wskaźnik do miejsca docelowego dla wskaźnika wątku, który ostatnio zastępują ten wątek.
+- **thread_ptr:** wskaźnik do wcześniej utworzonego wątku.
+- **resumptions:** wskaźnik do miejsca docelowego dla liczby wznowień tego wątku.
+- **suspensions**(zawieszenie): wskaźnik do miejsca docelowego dla liczby zawieszenia tego wątku.
+- **solicited_preemptions:** wskaźnik do miejsca docelowego dla liczby wywłaszczeń w wyniku wywołania usługi interfejsu API ThreadX wykonanego przez ten wątek.
+- **interrupt_preemptions:** wskaźnik do miejsca docelowego dla liczby wywłaszczeń tego wątku w wyniku przetwarzania przerwań.
+- **priority_inversions:** wskaźnik do miejsca docelowego dla liczby inwersji priorytetów tego wątku.
+- **time_slices:** wskaźnik do miejsca docelowego dla liczby razy tego wątku.
+- **relinquishes:** Wskaźnik do miejsca docelowego dla liczby wątków wywłaszczanych przez ten wątek.
+- **limity czasu:** wskaźnik do miejsca docelowego dla liczby limitów czasu wstrzymania w tym wątku.
+- **wait_aborts:** Wskaźnik do miejsca docelowego dla liczby przerywań oczekiwania wykonanych w tym wątku.
+- **last_preempted_by:** wskaźnik do miejsca docelowego wskaźnika wątku, który ostatnio wywłaszował ten wątek.
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobieranie wydajności wątku.
-- **TX_PTR_ERROR**: (0X03) Nieprawidłowy wskaźnik wątku.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności wątku.
+- **TX_PTR_ERROR:**(0x03) Nieprawidłowy wskaźnik wątku.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
 ### <a name="example"></a>Przykład
 
@@ -4159,7 +4159,7 @@ status = tx_thread_performance_info_get(&my_thread, &resumptions,
 
 ## <a name="tx_thread_performance_system_info_get"></a>tx_thread_performance_system_info_get 
 
-Pobierz informacje o wydajności systemu wątków
+Uzyskiwanie informacji o wydajności systemu wątków
 
 ### <a name="prototype"></a>Prototype
 
@@ -4176,33 +4176,33 @@ UINT tx_thread_performance_system_info_get(ULONG *resumptions,
 Ta usługa pobiera informacje o wydajności wszystkich wątków w systemie.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_THREAD_ENABLE_PERFORMANCE_INFO** zdefiniowanych w celu zwrócenia informacji o wydajności przez tę usługę.
+> Aby ta usługa zwracała informacje o  wydajności, biblioteka i aplikacja ThreadX SMP muszą TX_THREAD_ENABLE_PERFORMANCE_INFO z definicją.
 
 ### <a name="parameters"></a>Parametry
 
-- **wznawiania**: wskaźnik do miejsca docelowego dla łącznej liczby wznowień wątków.
-- **zawieszenia**: wskaźnik do miejsca docelowego dla łącznej liczby zawieszeń wątku.
-- **solicited_preemptions**: wskaźnik do miejsca docelowego dla łącznej liczby zastępujący wątków w wyniku wątku wywołującego usługę interfejsu API ThreadX.
-- **interrupt_preemptions**: wskaźnik do miejsca docelowego dla łącznej liczby przeniesień wątków w wyniku przetwarzania przerwań.
-- **priority_inversions**: wskaźnik do miejsca docelowego dla łącznej liczby niewersji priorytetu wątku.
-- **time_slices**: wskaźnik do miejsca docelowego dla łącznej liczby wycinków czasu wątku.
-- **zwalnia**: wskaźnik do miejsca docelowego dla łącznej liczby wyniesień wątków.
-- **limity czasu**: wskaźnik do miejsca docelowego dla łącznej liczby limitów czasu zawieszenia wątku.
-- **wait_aborts**: wskaźnik do miejsca docelowego dla łącznej liczby przerwań oczekiwania wątku. 
-- **non_idle_returns**: wskaźnik do miejsca docelowego dla czasu, przez który wątek wraca do systemu, gdy inny wątek jest gotowy do wykonania. 
-- **idle_returns**: wskaźnik do miejsca docelowego dla czasu, przez który wątek wraca do systemu, gdy żaden inny wątek nie jest gotowy do wykonania (bezczynny system).
+- **resumptions:** wskaźnik do miejsca docelowego dla całkowitej liczby wznowień wątków.
+- **suspensions (zawieszenie):** wskaźnik do miejsca docelowego całkowitej liczby zawieszenia wątków.
+- **solicited_preemptions:** wskaźnik do miejsca docelowego całkowitej liczby wywłaszczeń wątków w wyniku wywołania przez wątek usługi interfejsu API ThreadX.
+- **interrupt_preemptions:** wskaźnik do miejsca docelowego całkowitej liczby wywłaszczeń wątków w wyniku przetwarzania przerwań.
+- **priority_inversions:** wskaźnik do miejsca docelowego dla całkowitej liczby inversions priorytetów wątku.
+- **time_slices:** wskaźnik do miejsca docelowego dla całkowitej liczby wycinków czasu wątku.
+- **relinquishes:** Wskaźnik do miejsca docelowego dla całkowitej liczby wątków wywłaszcza.
+- **limity czasu:** wskaźnik do miejsca docelowego dla całkowitej liczby limitów czasu wstrzymania wątku.
+- **wait_aborts:** wskaźnik do miejsca docelowego dla całkowitej liczby przerywanych oczekiwania wątku. 
+- **non_idle_returns:** wskaźnik do miejsca docelowego dla liczby powrotów wątku do systemu, gdy inny wątek jest gotowy do wykonania. 
+- **idle_returns:** wskaźnik do miejsca docelowego dla liczby powrotów wątku do systemu, gdy żaden inny wątek nie jest gotowy do wykonania (system bezczynny).
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobieranie wydajności systemu wątku.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności systemu wątków.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
 ### <a name="example"></a>Przykład
 
@@ -4253,7 +4253,7 @@ status = tx_thread_performance_system_info_get(&resumptions,
 
 ## <a name="tx_thread_preemption_change"></a>tx_thread_preemption_change
 
-Zmiana zastępujący — próg wątku aplikacji
+Zmiana progu wywłaszczenia wątku aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -4263,30 +4263,30 @@ UINT tx_thread_preemption_change(TX_THREAD *thread_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa zmienia próg przekroczenia określonego wątku. Próg zastępujący uniemożliwia przestawianie określonego wątku przez wątki równe lub mniejsze od wartości progowej przekroczenia.
+Ta usługa zmienia próg wywłaszczenia określonego wątku. Próg wywłaszczenia zapobiega wywłaszczeniu określonego wątku przez wątki równe lub mniejsze niż wartość progowa wywłaszczenia.
 
 > [!IMPORTANT]
-> Użycie wartości progowej przekroczenia powoduje wyłączenie wycinka czasu dla określonego wątku.
+> Użycie progu wywłaszczenia powoduje wyłączenie czasowego cing dla określonego wątku.
 
 ### <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do wcześniej utworzonego wątku aplikacji.
-- **new_threshold**: nowy przekroczenie — poziom priorytetu progu (od 0 do (TX_MAX_PRIORITIES-1)).
-- **old_threshold**: wskaźnik do lokalizacji, aby przywrócić poprzedni próg zastępujący.
+- **thread_ptr:** wskaźnik do wcześniej utworzonego wątku aplikacji.
+- **new_threshold:** nowy poziom priorytetu progu wywłaszczenia (od 0 do (TX_MAX_PRIORITIES-1)).
+- **old_threshold:** Wskaźnik do lokalizacji, aby zwrócić poprzedni próg wywłaszczenia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne przekroczenie — zmiana progowa.
+- **TX_SUCCESS:**(0x00) Pomyślna zmiana progu wywłaszczenia.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku aplikacji.
-- **TX_THRESH_ERROR**: (0X18) określony nowy próg przechodzenia nie jest prawidłowym priorytetem wątku (wartość inna niż (od 0 do (TX_MAX_PRIORITIES-1)) lub jest większa niż (niższy priorytet) niż bieżący priorytet wątku.
-- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik do poprzedniej lokalizacji magazynu preemptionthreshold.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- **TX_THRESH_ERROR:**(0x18) Określony nowy próg wywłaszczenia nie jest prawidłowym priorytetem wątku (wartość inną niż (od 0 do (TX_MAX_PRIORITIES-1)) lub jest większa niż (niższy priorytet) niż bieżący priorytet wątku.
+- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik do poprzedniej wywłaszczeniowej lokalizacji przechowywania.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki i czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -4330,7 +4330,7 @@ status = tx_thread_preemption_change(&my_thread,
 
 ## <a name="tx_thread_priority_change"></a>tx_thread_priority_change
 
-Zmień priorytet wątku aplikacji
+Zmienianie priorytetu wątku aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -4340,30 +4340,30 @@ UINT tx_thread_priority_change(TX_THREAD *thread_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa zmienia priorytet określonego wątku. Prawidłowy zakres priorytetów należy do zakresu od 0 do (TX_MAX_PRIORITES-1), gdzie 0 oznacza najwyższy poziom priorytetu.
+Ta usługa zmienia priorytet określonego wątku. Prawidłowe priorytety z zakresu od 0 do (TX_MAX_PRIORITES-1), gdzie 0 reprezentuje najwyższy poziom priorytetu.
 
 > [!IMPORTANT]
-> Próg przekroczenia określonego wątku jest automatycznie ustawiany na nowy priorytet. W przypadku pożądanego nowego progu należy użyć usługi **tx_thread_preemption_change** po tym wywołaniu.
+> Próg wywłaszczenia określonego wątku jest automatycznie ustawiany na nowy priorytet. Jeśli jest wymagany nowy próg, **tx_thread_preemption_change** musi być używana po tym wywołaniu.
 
 ### <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do wcześniej utworzonego wątku aplikacji.
-- **new_priority**: nowy poziom priorytetu wątku (od 0 do (TX_MAX_PRIORITIES-1)).
-- **old_priority**: wskaźnik do lokalizacji, aby przywrócić poprzedni priorytet wątku.
+- **thread_ptr:** wskaźnik do wcześniej utworzonego wątku aplikacji.
+- **new_priority:** nowy poziom priorytetu wątku (od 0 do (TX_MAX_PRIORITIES-1)).
+- **old_priority:** wskaźnik do lokalizacji, aby zwrócić poprzedni priorytet wątku.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna zmiana priorytetu.
+- **TX_SUCCESS:**(0x00) Pomyślna zmiana priorytetu.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku aplikacji.
-- TX_PRIORITY_ERROR: (0x0F) określony nowy priorytet jest nieprawidłowy (wartość inna niż (od 0 do (TX_MAX_PRIORITIES-1)).
-- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik do lokalizacji magazynu o poprzednim priorytecie.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_PRIORITY_ERROR: (0x0F) Określony nowy priorytet jest nieprawidłowy (wartość inna niż (od 0 do (TX_MAX_PRIORITIES-1)).
+- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik do poprzedniej lokalizacji przechowywania o priorytecie.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki i czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -4404,7 +4404,7 @@ status = tx_thread_priority_change(&my_thread,
 
 ## <a name="tx_thread_relinquish"></a>tx_thread_relinquish
 
-Zwalnianie kontroli do innych wątków aplikacji
+Ponowne wymaganie kontrolki do innych wątków aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -4413,10 +4413,10 @@ VOID tx_thread_relinquish(VOID);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa zrzeka kontrolę procesora do innych gotowych do uruchomienia wątków o tym samym lub wyższym priorytecie.
+Ta usługa zapewnia kontrolę procesora innym gotowym do uruchomienia wątkom o tym samym lub wyższym priorytecie.
 
 > [!IMPORTANT]
-> Oprócz przepisywania kontroli do wątków o takim samym priorytecie, ta usługa również zwalnia z wykonywania kontroli nad wątkiem o najwyższym priorytecie z powodu ustawienia progu przekroczenia bieżącego wątku.
+> Oprócz rezygnacji z kontroli dla wątków o tym samym priorytecie, ta usługa również zwalnia kontrolę z wątku o najwyższym priorytecie, który nie może być wykonywania z powodu ustawienia progu wywłaszczania bieżącego wątku.
 
 ### <a name="parameters"></a>Parametry
 
@@ -4430,7 +4430,7 @@ Brak
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -4495,7 +4495,7 @@ VOID my_second_thread(ULONG thread_input)
 
 ## <a name="tx_thread_reset"></a>tx_thread_reset
 
-Zresetuj wątek
+Resetowanie wątku
 
 ### <a name="prototype"></a>Prototype
 
@@ -4504,21 +4504,21 @@ UINT tx_thread_reset(TX_THREAD *thread_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa resetuje określony wątek do wykonania w punkcie wejścia zdefiniowanym podczas tworzenia wątku. Aby można było zresetować wątek, musi on być w stanie **TX_COMPLETED** lub **TX_TERMINATED**
+Ta usługa resetuje określony wątek do wykonania w punkcie wejścia zdefiniowanym podczas tworzenia wątku. Wątek musi być w stanie **TX_COMPLETED** **lub TX_TERMINATED,** aby można go było zresetować
 
 > [!IMPORTANT]
-> Wątek należy wznowić, aby można było wykonać operację ponownie.
+> Aby wątek został ponownie wykonany, należy go wznowić.
 
 ### <a name="parameters"></a>Parametry 
 
-- **thread_ptr**: wskaźnik do wcześniej utworzonego wątku.
+- **thread_ptr:** wskaźnik do wcześniej utworzonego wątku.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne zresetowanie wątku.
-- **TX_NOT_DONE**: (0X20) określony wątek nie jest w stanie TX_COMPLETED lub TX_TERMINATED.
+- **TX_SUCCESS:**(0x00) Pomyślne zresetowanie wątku.
+- **TX_NOT_DONE:**(0x20) Określony wątek nie jest w stanie TX_COMPLETED lub TX_TERMINATED.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -4556,7 +4556,7 @@ status = tx_thread_reset(&my_thread);
 
 ## <a name="tx_thread_resume"></a>tx_thread_resume
 
-Wznów zawieszony wątek aplikacji
+Wznawianie wstrzymanego wątku aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -4565,24 +4565,24 @@ UINT tx_thread_resume(TX_THREAD *thread_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wznawia lub przygotowuje do wykonania wątek, który został wcześniej zawieszony przez wywołanie ***tx_thread_suspend*** . Ponadto ta usługa wznawia wątki, które zostały utworzone bez automatycznego uruchamiania.
+Ta usługa wznawia lub przygotowuje do wykonania wątek, który został wcześniej wstrzymany przez ***tx_thread_suspend*** wywołania. Ponadto ta usługa wznawia wątki, które zostały utworzone bez automatycznego uruchamiania.
 
 ### <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do zawieszonego wątku aplikacji.
+- **thread_ptr:** Wskaźnik do zawieszonego wątku aplikacji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne wznowienie wątku.
-- **TX_SUSPEND_LIFTED**: (0X19) poprzednio ustawione opóźnione zawieszenie zostało zniesione.
+- **TX_SUCCESS:**(0x00) Pomyślne wznowienie wątku.
+- **TX_SUSPEND_LIFTED:**(0x19) Wcześniej ustawione opóźnione zawieszenie zostało podniesione.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku aplikacji.
-- **TX_RESUME_ERROR**: (0X12) określony wątek nie jest wstrzymany lub został wcześniej zawieszony przez usługę inną niż **_tx_thread_suspend_**.
+- **TX_RESUME_ERROR:**(0x12) Określony wątek nie jest wstrzymany lub został wcześniej wstrzymany przez usługę inną **_niż tx_thread_suspend_**.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -4620,7 +4620,7 @@ status =  tx_thread_resume(&my_thread);
 
 ## <a name="tx_thread_sleep"></a>tx_thread_sleep
 
-Zawieś bieżący wątek przez określony czas
+Wstrzymywanie bieżącego wątku na określony czas
 
 ### <a name="prototype"></a>Prototype
 
@@ -4629,23 +4629,23 @@ UINT tx_thread_sleep(ULONG timer_ticks);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa powoduje zawieszenie wątku wywołującego dla określonej liczby taktów czasomierza. Czas fizyczny skojarzony z cyklem czasomierza jest specyficzny dla aplikacji. Ta usługa może być wywoływana tylko z wątku aplikacji.
+Ta usługa powoduje wstrzymanie wątku wywołującego dla określonej liczby takt czasomierza. Czas fizyczny skojarzony z taktą czasomierza jest specyficzny dla aplikacji. Ta usługa może być wywoływana tylko z wątku aplikacji.
 
 ### <a name="parameters"></a>Parametry
 
-- **timer_ticks**: liczba cykli czasomierza wstrzymania wątku aplikacji wywołującej, od 0 do 0xffffffff. Jeśli określono wartość 0, usługa wraca natychmiast.
+- **timer_ticks:** liczba takt czasomierzy w celu wstrzymania wywołującego wątku aplikacji, od 0 do 0xFFFFFFFF. Jeśli określono wartość 0, usługa natychmiast zwraca wartość .
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) powodzenie uśpienia wątku.
-- **TX_WAIT_ABORTED**: (0x1A) zostało przerwane przez inny wątek, czasomierz lub proces ISR.
-- **TX_CALLER_ERROR**: (0x13) wywołana z niewątku.
+- **TX_SUCCESS:**(0x00) Pomyślne uśpienie wątku.
+- **TX_WAIT_ABORTED:**(0x1A) Zawieszenie zostało przerwane przez inny wątek, czasomierz lub isr.
+- **TX_CALLER_ERROR:**(0x13) Wywoływana z niewątkowego.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -4684,7 +4684,7 @@ status = tx_thread_sleep(100);
 
 ## <a name="tx_thread_smp_core_exclude"></a>tx_thread_smp_core_exclude
 
-Wyklucz wykonywanie wątku na zestawie rdzeni
+Wykluczanie wykonywania wątku na zestawie rdzeni
 
 ### <a name="prototype"></a>Prototype
 
@@ -4694,24 +4694,24 @@ UINT  tx_thread_smp_core_exclude(TX_THREAD *thread_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta funkcja wyklucza określony wątek z wykonywania na rdzeniach określonych w mapie bitowej o nazwie "*exclusion_map*". Każdy bit w "*exclusion_map*" reprezentuje rdzeń (bit 0 reprezentuje rdzeń 0 itd.). Jeśli bit jest ustawiony, odpowiadający rdzeń jest wykluczony z wykonywania określonego wątku.
+Ta funkcja wyklucza określony wątek z wykonywania na rdzeniach określonych w mapie bitów o nazwie "*exclusion_map."* Każdy bit w "*exclusion_map*" reprezentuje rdzeń (bit 0 reprezentuje rdzeń 0 itp.). Jeśli bit jest ustawiony, odpowiedni rdzeń jest wykluczony z wykonywania określonego wątku.
 
 > [!IMPORTANT]
-> Użycie wykluczenia procesora może spowodować dodatkowe przetwarzanie w wątku do podstawowej logiki mapowania, aby znaleźć optymalne dopasowanie. To przetwarzanie jest ograniczone przez liczbę gotowych wątków.
+> Użycie wykluczenia procesora może spowodować dodatkowe przetwarzanie w logice mapowania wątku do rdzenia w celu znalezienia optymalnego dopasowania. To przetwarzanie jest ograniczone przez liczbę gotowych wątków.
 
 ### <a name="parameters"></a>Parametry 
 
-- **thread_ptr**: wskaźnik do wątku, aby zmienić wykluczenia rdzenia.
-- **exclusion_map**: Mapa bitowa, gdzie bit Sit wskazuje, że rdzeń jest wykluczony. Dostarczenie wartości 0 powoduje, że wątek będzie wykonywany na dowolnym rdzeń (domyślnie).
+- **thread_ptr:** Wskaźnik do wątku, aby zmienić podstawowe wykluczenie.
+- **exclusion_map:** mapa bitowa, na której bit sytowy wskazuje, że rdzeń jest wykluczony. Po podaniem wartości 0 wątek może być wykonywany na dowolnym rdzeniu (ustawienie domyślne).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- TX_SUCCESS: (0x00) pomyślne wykluczenie rdzenia.
+- TX_SUCCESS: (0x00) Pomyślne wykluczenie podstawowe.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, procedury ISR, wątki i czasomierze
+Inicjowanie, isr, wątki i czasomierze
 
 ### <a name="example"></a>Przykład
 
@@ -4727,7 +4727,7 @@ tx_thread_smp_core_exclude(&thread_0, 0x01);
 
 ## <a name="tx_thread_smp_core_exclude_get"></a>tx_thread_smp_core_exclude_get
 
-Pobiera wykluczenie rdzenia bieżącego wątku
+Pobiera bieżące wykluczenie podstawowe wątku
 
 ### <a name="prototype"></a>Prototype
 
@@ -4737,22 +4737,22 @@ UINT tx_thread_smp_core_exclude_get(TX_THREAD *thread_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta funkcja zwraca bieżącą listę wykluczeń rdzeni.
+Ta funkcja zwraca bieżącą listę wykluczeń podstawowych.
 
 ### <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do wątku, z którego ma zostać pobrany rdzeń wykluczenia.
-- **exclusion_map_ptr**: miejsce docelowe dla bieżącej mapy bitowej wykluczeń podstawowych.
+- **thread_ptr:** wskaźnik do wątku, z którego ma zostać pobrane wykluczenie podstawowe.
+- **exclusion_map_ptr:** miejsce docelowe dla bieżącej mapy bitów wykluczenia podstawowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- TX_SUCCESS: (0x00) pomyślne pobranie wykluczenia rdzenia wątku.
+- TX_SUCCESS: (0x00) Pomyślne pobieranie wykluczenia podstawowego wątku.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku.
-- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik docelowy wykluczenia.
+- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik miejsca docelowego wykluczenia.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, procedury ISR, wątki i czasomierze
+Inicjowanie, isr, wątki i czasomierze
 
 ### <a name="example"></a>Przykład
 
@@ -4769,7 +4769,7 @@ tx_thread_smp_core_exclude_get(&thread_0, &excluded_cores);
 
 ## <a name="tx_thread_smp_core_get"></a>tx_thread_smp_core_get
 
-Pobierz aktualnie wykonywane rdzeń obiektu wywołującego
+Pobieranie aktualnie wykonywanego rdzenia wywołującego
 
 ### <a name="prototype"></a>Prototype
 
@@ -4786,11 +4786,11 @@ Brak
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- core_id: Identyfikator aktualnie wykonywanej klasy rdzeń (od 0 do TX_THREAD_SMP_MAX_CORES-1)
+- core_id: identyfikator aktualnie wykonywanego rdzenia (od 0 do TX_THREAD_SMP_MAX_CORES-1)
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, procedury ISR, wątki i czasomierze
+Inicjowanie, isr, wątki i czasomierze
 
 ### <a name="example"></a>Przykład
 
@@ -4808,7 +4808,7 @@ core = tx_thread_smp_core_get();
 
 ## <a name="tx_thread_stack_error_notify"></a>tx_thread_stack_error_notify
 
-Wywołanie zwrotne powiadomienia o błędzie stosu rejestracji
+Rejestrowanie wywołania zwrotnego powiadomienia o błędzie stosu wątków
 
 ### <a name="prototype"></a>Prototype
 
@@ -4817,23 +4817,23 @@ UINT tx_thread_stack_error_notify(VOID (*error_handler)(TX_THREAD *));
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje funkcję wywołania zwrotnego powiadomienia do obsługi błędów stosu wątków. Gdy ThreadX SMP wykryje błąd stosu wątku podczas wykonywania, wywoła tę funkcję powiadamiania w celu przetworzenia błędu. Przetwarzanie błędu jest całkowicie zdefiniowane przez aplikację. Wszystkie elementy od zawieszenia naruszenia wątku w celu zresetowania całego systemu mogą zostać wykonane.
+Ta usługa rejestruje funkcję wywołania zwrotnego powiadomień do obsługi błędów stosu wątków. Gdy threadX SMP wykryje błąd stosu wątku podczas wykonywania, wywoła tę funkcję powiadomienia, aby przetworzyć błąd. Przetwarzanie błędu jest całkowicie zdefiniowane przez aplikację. Może zostać wykonane cokolwiek, od wstrzymania wątku naruszającego prawo do zresetowania całego systemu.
 
 > [!IMPORTANT]
-> Biblioteka SMP ThreadX musi być skompilowana przy użyciu **TX_ENABLE_STACK_CHECKING** zdefiniowanej w celu zwrócenia informacji o wydajności przez tę usługę.
+> Aby ta usługa zwracała informacje  o wydajności, biblioteka SMP ThreadX musi TX_ENABLE_STACK_CHECKING z definicją.
 
 ### <a name="parameters"></a>Parametry
 
-- **error_handler**: wskaźnik do funkcji obsługi błędów stosu aplikacji. Jeśli ta wartość jest TX_NULL, powiadomienie jest wyłączone.
+- **error_handler:** Wskaźnik do funkcji obsługi błędów stosu aplikacji. Jeśli ta wartość jest TX_NULL, powiadomienie zostanie wyłączone.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne zresetowanie wątku.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne zresetowanie wątku.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -4877,29 +4877,29 @@ UINT tx_thread_suspend(TX_THREAD *thread_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wstrzymuje określony wątek aplikacji. Wątek może wywołać tę usługę, aby zawiesić się.
+Ta usługa wstrzymuje określony wątek aplikacji. Wątek może wywołać tę usługę, aby samodzielnie wstrzymać.
 
 > [!IMPORTANT]
-> Jeśli określony wątek został już zawieszony z innego powodu, to zawieszenie jest przechowywane wewnętrznie do momentu zniesienia wcześniejszego zawieszenia. W takim przypadku wykonywane jest niewarunkowe zawieszenie określonego wątku. Dalsze niewarunkowe żądania zawieszenia nie mają żadnego wpływu.
+> Jeśli określony wątek jest już zawieszony z innego powodu, to zawieszenie jest przechowywane wewnętrznie do momentu uniesienia wcześniejszego zawieszenia. W takim przypadku jest wykonywane to bezwarunkowe zawieszenie określonego wątku. Dalsze żądania wstrzymania bezwarunkowego nie mają żadnego efektu.
 
-Po wstrzymaniu wątek musi zostać wznowiony przez ***tx_thread_resume*** , aby wykonać operację ponownie.
+Po wstrzymaniu wątek musi zostać wznowiony przez ***tx_thread_resume*** do wykonania ponownie.
 
 ## <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do wątku aplikacji.
+- **thread_ptr:** wskaźnik do wątku aplikacji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne wstrzymanie wątku.
+- **TX_SUCCESS:**(0x00) Pomyślne wstrzymanie wątku.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku aplikacji.
-- **TX_SUSPEND_ERROR**: (0X14) określony wątek jest w stanie przerwana lub ukończona.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- **TX_SUSPEND_ERROR:**(0x14) Określony wątek jest w stanie zakończenia lub zakończenia.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isr
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -4946,29 +4946,29 @@ UINT tx_thread_terminate(TX_THREAD *thread_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa przerywa określony wątek aplikacji niezależnie od tego, czy wątek jest wstrzymany, czy nie. Wątek może wywoływać tę usługę, aby zakończyć działanie.
+Ta usługa kończy określony wątek aplikacji niezależnie od tego, czy wątek jest wstrzymany, czy nie. Wątek może wywołać tę usługę, aby zakończyć działanie.
 
 > [!IMPORTANT]
-> Po zakończeniu należy zresetować wątek, aby można było wykonać operację ponownie.
+> Po zakończeniu wątek musi zostać zresetowany, aby został ponownie wykonany.
 
 > [!WARNING]
-> Jest on odpowiedzialny za zapewnienie, że wątek jest w stanie odpowiednim do zakończenia. Na przykład wątek nie powinien być zakończony podczas krytycznego przetwarzania aplikacji lub wewnątrz innych składników oprogramowania pośredniczącego, w którym może to spowodować, że przetwarzanie jest nieznane.
+> Aplikacja odpowiada za zapewnienie, że wątek jest w stanie odpowiednim do zakończenia. Na przykład wątek nie powinien być przerywany podczas krytycznego przetwarzania aplikacji lub wewnątrz innych składników oprogramowania pośredniczącego, gdzie takie przetwarzanie może pozostawić w nieznanym stanie.
 
 ### <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do wątku aplikacji.
+- **thread_ptr:** Wskaźnik do wątku aplikacji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne zakończenie wątku.
+- **TX_SUCCESS:**(0x00) Pomyślne zakończenie wątku.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku aplikacji.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki i czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -5006,7 +5006,7 @@ status =  tx_thread_terminate(&my_thread);
 
 ## <a name="tx_thread_time_slice_change"></a>tx_thread_time_slice_change
 
-Zmienia czas wycinka wątku aplikacji
+Zmienia fragment czasu wątku aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -5016,29 +5016,29 @@ UINT tx_thread_time_slice_change(TX_THREAD *thread_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa zmienia wycinek czasu określonego wątku aplikacji. Wybranie wycinka czasu dla wątku polega na tym, że nie będzie działać więcej niż określona liczba taktów czasomierza, zanim inne wątki o tych samych lub wyższych priorytetach mają szansę na wykonanie.
+Ta usługa zmienia wycinek czasu określonego wątku aplikacji. Wybranie wycinka czasu dla wątku zapewnia, że nie będzie on wykonywany więcej niż określona liczba takt czasomierza, zanim inne wątki o tych samych lub wyższych priorytetach będą mieć możliwość wykonania.
 
 > [!IMPORTANT]
-> Użycie wartości progowej przekroczenia powoduje wyłączenie wycinka czasu dla określonego wątku.
+> Użycie progu wywłaszczenia powoduje wyłączenie czasowego cing dla określonego wątku.
 
 ### <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do wątku aplikacji.
-- **new_time_slice**: Nowa wartość wycinka czasu. Wartości prawne obejmują TX_NO_TIME_SLICE i wartości liczbowe z przedziału od 1 do 0xFFFFFFFF.
-- **old_time_slice**: wskaźnik do lokalizacji przechowywania poprzedniej wartości timeslice określonego wątku.
+- **thread_ptr:** Wskaźnik do wątku aplikacji.
+- **new_time_slice:** Nowa wartość wycinka czasu. Wartości prawne obejmują TX_NO_TIME_SLICE i liczbowe od 1 do 0xFFFFFFFF.
+- **old_time_slice:** wskaźnik do lokalizacji do przechowywania poprzedniej wartości czasu określonego wątku.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) czas pomyślnego odtworzenia wycinka.
+- **TX_SUCCESS:**(0x00) Prawdopodobieństwo pomyślnego fragmentu czasu.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku aplikacji.
-- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik do poprzedniej lokalizacji przechowywania wycinków czasu.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik do poprzedniej lokalizacji przechowywania w wycinku czasu.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki i czasomierze
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5083,7 +5083,7 @@ status = tx_thread_time_slice_change(&my_thread, 20,
 
 ## <a name="tx_thread_wait_abort"></a>tx_thread_wait_abort
 
-Przerwij zawieszenie określonego wątku
+Przerwać zawieszenie określonego wątku
 
 ### <a name="prototype"></a>Prototype
 
@@ -5093,26 +5093,26 @@ UINT tx_thread_wait_abort(TX_THREAD *thread_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa przerywa pracę w stanie uśpienia lub dowolnego innego obiektu zawieszania określonego wątku. W przypadku przerwania oczekiwania zostanie zwrócona wartość TX_WAIT_ABORTED z usługi, w której wątek oczekiwał.
+Ta usługa przerywa tryb uśpienia lub wszelkie inne zawieszenie obiektu określonego wątku. Jeśli oczekiwanie zostało przerwane, TX_WAIT_ABORTED jest zwracana z usługi, na która oczekiwano wątku.
 
 > [!IMPORTANT]
-> Ta usługa nie zwalnia jawnego zawieszenia wykonywanego przez usługę tx_thread_suspend.
+> Ta usługa nie zwalnia jawnego zawieszenia, które jest dokonywane przez tx_thread_suspend usługi.
 
 ### <a name="parameters"></a>Parametry
 
-- **thread_ptr**: wskaźnik do wcześniej utworzonego wątku aplikacji.
+- **thread_ptr:** wskaźnik do wcześniej utworzonego wątku aplikacji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne przerwanie oczekiwania wątku.
+- **TX_SUCCESS:**(0x00) Przerwanie pomyślnego oczekiwania wątku.
 - TX_THREAD_ERROR: (0x0E) Nieprawidłowy wskaźnik wątku aplikacji.
-- **TX_WAIT_ABORT_ERROR**: (0X1b) określony wątek nie jest w stanie oczekiwania.
+- **TX_WAIT_ABORT_ERROR:**(0x1B) Określony wątek nie jest w stanie oczekiwania.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Tak
 
@@ -5151,7 +5151,7 @@ status =  tx_thread_wait_abort(&my_thread);
 
 ## <a name="tx_time_get"></a>tx_time_get
 
-Pobiera bieżącą godzinę
+Pobiera bieżący czas
 
 ### <a name="prototype"></a>Prototype
 
@@ -5160,10 +5160,10 @@ ULONG tx_time_get(VOID);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa zwraca zawartość wewnętrznego zegara systemowego. Każdy timertick zwiększa wewnętrzny zegar systemowy o jeden. Zegar systemowy jest ustawiany na zero podczas inicjowania i można go zmienić na określoną wartość przez ***tx_time_set*** usługi.
+Ta usługa zwraca zawartość wewnętrznego zegara systemowego. Każdy timertick zwiększa wewnętrzny zegar systemowy o jeden. Zegar systemowy jest ustawiony na zero podczas inicjowania i może zostać zmieniony na określoną wartość przez usługę ***tx_time_set***.
 
 > [!IMPORTANT]
-> Rzeczywisty czas, jaki jest reprezentowany przez cykl czasomierza, jest specyficzny dla aplikacji.
+> Rzeczywista godzina, która reprezentuje każdy znacznik czasomierza, jest specyficzna dla aplikacji.
 
 ### <a name="parameters"></a>Parametry
 
@@ -5171,13 +5171,13 @@ Brak
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Takty zegara systemowego: wartość wewnętrznego, wolnego, uruchomionego zegara systemowego.
+- takty zegara systemu: wartość wewnętrznego, wolnego uruchamiania, zegar systemowy.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5198,7 +5198,7 @@ current_time =  tx_time_get();
 
 ## <a name="tx_time_set"></a>tx_time_set
 
-Ustawia bieżącą godzinę
+Ustawia bieżący czas
 
 ### <a name="prototype"></a>Prototype
 
@@ -5207,14 +5207,14 @@ VOID tx_time_set(ULONG new_time);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia wewnętrzny zegar systemowy do określonej wartości. Każdy czasomierz czasu wydłuża zegar systemu wewnętrznego o jeden.
+Ta usługa ustawia wewnętrzny zegar systemowy na określoną wartość. Każdy znacznik czasomierza zwiększa wewnętrzny zegar systemowy o jeden.
 
 > [!IMPORTANT]
-> Rzeczywisty czas, jaki jest reprezentowany przez cykl czasomierza, jest specyficzny dla aplikacji.
+> Rzeczywista godzina, która reprezentuje każdy znacznik czasomierza, jest specyficzna dla aplikacji.
 
 ### <a name="parameters"></a>Parametry
 
-- **new_time**: nowy czas do umieszczenia w zegarze systemowym, wartości prawne mieszczą się w zakresie od 0 do 0xffffffff.
+- **new_time:** nowy czas, aby umieścić w zegarze systemowym, wartości prawne z zakresu od 0 do 0xFFFFFFFF.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
@@ -5222,9 +5222,9 @@ Brak
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki, czasomierze i procedury ISR
+Wątki, czasomierze i isr
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5243,7 +5243,7 @@ tx_time_set(0x1234);
 
 ## <a name="tx_timer_activate"></a>tx_timer_activate
 
-Aktywuj czasomierz aplikacji
+Aktywowanie czasomierza aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -5252,26 +5252,26 @@ UINT tx_timer_activate(TX_TIMER *timer_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa aktywuje określony czasomierz aplikacji. Procedury wygasania czasomierzy, które wygasają w tym samym czasie, są wykonywane w kolejności, w jakiej zostały aktywowane.
+Ta usługa aktywuje czasomierz określonej aplikacji. Procedury wygasania czasomierzy, które wygasają w tym samym czasie, są wykonywane w kolejności, w których zostały aktywowane.
 
 > [!NOTE]
-> Aby można było ponownie aktywować czasomierz, który wygasł, należy zresetować za pomocą **tx_timer_change** .
+> Wygasły czasomierz jednozmijowy musi zostać zresetowany za **pośrednictwem tx_timer_change,** zanim będzie można go ponownie aktywować.
 
 ### <a name="parameters"></a>Parametry
 
-- **timer_ptr**: wskaźnik do wcześniej utworzonego czasomierza aplikacji.
+- **timer_ptr:** wskaźnik do wcześniej utworzonego czasomierza aplikacji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna aktywacja czasomierza aplikacji.
-- **TX_TIMER_ERROR**: (0X15) Nieprawidłowy wskaźnik czasomierza aplikacji.
-- Czasomierz **TX_ACTIVATE_ERROR**: (0x17) był już aktywny lub jest już wygasłym czasomierzem.
+- **TX_SUCCESS:**(0x00) Pomyślna aktywacja czasomierza aplikacji.
+- **TX_TIMER_ERROR:**(0x15) Nieprawidłowy wskaźnik czasomierza aplikacji.
+- **TX_ACTIVATE_ERROR:**(0x17) Czasomierz był już aktywny lub jest czasomierzem jednozmiejscowy, który już wygasł.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5300,7 +5300,7 @@ status = tx_timer_activate(&my_timer);
 
 ## <a name="tx_timer_change"></a>tx_timer_change
 
-Zmień czasomierz aplikacji
+Zmiana czasomierza aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -5310,32 +5310,32 @@ UINT tx_timer_change(TX_TIMER *timer_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa zmienia charakterystykę wygaśnięcia określonego czasomierza aplikacji. Czasomierz należy dezaktywować przed wywołaniem tej usługi.
+Ta usługa zmienia charakterystykę wygasania określonego czasomierza aplikacji. Czasomierz musi zostać zdezaktywowany przed wywołaniem tej usługi.
 
 > [!IMPORTANT]
-> Przed ponownym uruchomieniem czasomierza wymagane jest wywołanie usługi **tx_timer_activate** .
+> Wywołanie usługi **tx_timer_activate** jest wymagane po tej usłudze, aby ponownie uruchomić czasomierz.
 
 ### <a name="parameters"></a>Parametry
 
-- **timer_ptr**: wskaźnik do bloku sterowania czasomierzem.
-- **initial_ticks**: określa początkową liczbę taktów dla wygaśnięcia czasomierza. Wartości prawne mieszczą się w zakresie od 1 do 0xFFFFFFFF.
-- **reschedule_ticks**: określa liczbę taktów dla wszystkich wygasających czasomierzy po pierwszej. Wartość zerowa dla tego parametru powoduje, że czasomierz ma czasomierz jednorazowy. W przeciwnym razie dla okresowych czasomierzy wartości prawne mieszczą się w zakresie od 1 do 0xFFFFFFFF.
+- **timer_ptr:** Wskaźnik do bloku sterowania czasomierza.
+- **initial_ticks:** określa początkową liczbę takt dla wygaśnięcia czasomierza. Wartości prawne wahają się od 1 do 0xFFFFFFFF.
+- **reschedule_ticks:** określa liczbę takt dla wszystkich wygasa czasomierza po pierwszym. Wartość zero dla tego parametru sprawia, że czasomierz jest czasomierzem jednozdniowym. W przeciwnym razie w przypadku czasomierzy okresowych wartości prawne mogą być od 1 do 0xFFFFFFFF.
 
    > [!NOTE]
-   > Aby można było ponownie aktywować czasomierz, który wygasł, należy zresetować za pomocą **tx_timer_change** .
+   > Wygasły czasomierz jednozdresowy musi zostać zresetowany za **pośrednictwem tx_timer_change,** zanim będzie można go ponownie aktywować.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślnie przeprowadzono zmianę czasomierza aplikacji.
+- **TX_SUCCESS:**(0x00) Pomyślna zmiana czasomierza aplikacji.
 - TX_TIMER_ERROR: (0x15) Nieprawidłowy wskaźnik czasomierza aplikacji.
-- TX_TICK_ERROR: (0x16) Nieprawidłowa wartość (zero) dostarczona dla początkowych taktów.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_TICK_ERROR: (0x16) Nieprawidłowa wartość (zero) dostarczona dla początkowych takt.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki, czasomierze i procedury ISR
+Wątki, czasomierze i isr
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5368,7 +5368,7 @@ status = tx_timer_activate(&my_timer);
 
 ## <a name="tx_timer_create"></a>tx_timer_create
 
-Utwórz czasomierz aplikacji
+Tworzenie czasomierza aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -5380,35 +5380,35 @@ UINT tx_timer_create(TX_TIMER *timer_ptr, CHAR *name_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy czasomierz aplikacji z określoną funkcją wygaśnięcia i okresowo.
+Ta usługa tworzy czasomierz aplikacji z określoną funkcją wygasania i okresową.
 
 ### <a name="parameters"></a>Parametry
 
-- **timer_ptr**: wskaźnik do bloku sterowania czasomierzem
-- **name_ptr**: wskaźnik do nazwy czasomierza.
-- **expiration_function**: funkcja aplikacji do wywołania po wygaśnięciu czasomierza.
-- **expiration_input**: dane wejściowe do przekazania do funkcji wygaśnięcia po wygaśnięciu czasomierza.
-- **initial_ticks**: określa początkową liczbę taktów dla wygaśnięcia czasomierza. Wartości prawne mieszczą się w zakresie od 1 do 0xFFFFFFFF.
-- **reschedule_ticks**: określa liczbę taktów dla wszystkich wygasających czasomierzy po pierwszej. Wartość zerowa dla tego parametru powoduje, że czasomierz ma czasomierz jednorazowy. W przeciwnym razie dla okresowych czasomierzy wartości prawne mieszczą się w zakresie od 1 do 0xFFFFFFFF.
+- **timer_ptr:** wskaźnik do bloku kontrolki czasomierza
+- **name_ptr:** Wskaźnik do nazwy czasomierza.
+- **expiration_function:** funkcja aplikacji do wywołania po wygaśnięciu czasomierza.
+- **expiration_input:** dane wejściowe do przekazania do funkcji wygasania po upływie czasu.
+- **initial_ticks:** określa początkową liczbę takt dla wygaśnięcia czasomierza. Wartości prawne wahają się od 1 do 0xFFFFFFFF.
+- **reschedule_ticks:** określa liczbę takt dla wszystkich wygasa czasomierza po pierwszym. Wartość zero dla tego parametru sprawia, że czasomierz jest czasomierzem jednozdniowym. W przeciwnym razie w przypadku czasomierzy okresowych wartości prawne mogą być od 1 do 0xFFFFFFFF.
 
    > [!NOTE]
-   > Po wygaśnięciu czasomierza z jednym zrzutem należy zresetować go za pomocą tx_timer_change, zanim będzie można go ponownie aktywować.
+   > Po wygaśnięciu czasomierza z jednym rzutem musi on zostać zresetowany za pośrednictwem tx_timer_change, zanim będzie można go ponownie aktywować.
 
-- **Auto_Activate**: określa, czy czasomierz jest automatycznie uaktywniany podczas tworzenia. Jeśli ta wartość jest **TX_AUTO_ACTIVATE** (0x01), czasomierz jest aktywny. W przeciwnym razie, jeśli wybrano wartość **TX_NO_ACTIVATE** (0x00), czasomierz zostanie utworzony w stanie nieaktywnym. W takim przypadku kolejne wywołanie usługi **_tx_timer_activate_** jest niezbędne do uruchomienia czasomierza w rzeczywistości.
+- **auto_activate:** określa, czy czasomierz jest automatycznie aktywowany podczas tworzenia. Jeśli ta wartość jest **TX_AUTO_ACTIVATE** (0x01), czasomierz jest aktywny. W przeciwnym razie, **jeśli TX_NO_ACTIVATE** (0x00) jest wybrana, czasomierz jest tworzony w stanie nieaktywna. W takim przypadku kolejne wywołanie **_usługi tx_timer_activate_** jest niezbędne do faktycznie uruchomionego czasomierza.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne utworzenie czasomierza aplikacji.
+- **TX_SUCCESS:**(0x00) Pomyślne utworzenie czasomierza aplikacji.
 - TX_TIMER_ERROR: (0x15) Nieprawidłowy wskaźnik czasomierza aplikacji. Wskaźnik ma wartość NULL lub czasomierz został już utworzony.
-- TX_TICK_ERROR: (0x16) Nieprawidłowa wartość (zero) dostarczona dla początkowych taktów.
-- TX_ACTIVATE_ERROR: (0x17) wybrano nieprawidłową aktywację.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_TICK_ERROR: (0x16) Nieprawidłowa wartość (zero) dostarczona dla początkowych takt.
+- TX_ACTIVATE_ERROR: (0x17) Wybrana nieprawidłowa aktywacja.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5443,7 +5443,7 @@ status =  tx_timer_create(&my_timer,"my_timer_name",
 
 ## <a name="tx_timer_deactivate"></a>tx_timer_deactivate
 
-Dezaktywuj czasomierz aplikacji
+Dezaktywacja czasomierza aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -5453,22 +5453,22 @@ UINT tx_timer_deactivate(TX_TIMER *timer_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa dezaktywuje określony czasomierz aplikacji. Jeśli czasomierz został już zdezaktywowany, ta usługa nie ma wpływu.
+Ta usługa dezaktywuje czasomierz określonej aplikacji. Jeśli czasomierz jest już zdezaktywowany, ta usługa nie ma żadnego efektu.
 
 ### <a name="parameters"></a>Parametry 
 
-- **timer_ptr**: wskaźnik do wcześniej utworzonego czasomierza aplikacji.
+- **timer_ptr:** wskaźnik do wcześniej utworzonego czasomierza aplikacji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0x00) pomyślna dezaktywacja czasomierza aplikacji.
+- **TX_SUCCESS:**(0x00) Pomyślna dezaktywacja czasomierza aplikacji.
 - TX_TIMER_ERROR: (0x15) Nieprawidłowy wskaźnik czasomierza aplikacji.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5497,7 +5497,7 @@ status =  tx_timer_deactivate(&my_timer);
 
 ## <a name="tx_timer_delete"></a>tx_timer_delete
 
-Usuń czasomierz aplikacji
+Usuwanie czasomierza aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -5506,26 +5506,26 @@ UINT tx_timer_delete(TX_TIMER *timer_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa określony czasomierz aplikacji.
+Ta usługa usuwa czasomierz określonej aplikacji.
 
 > [!IMPORTANT]
-> Jest to odpowiedzialność aplikacji, aby uniemożliwić korzystanie z usuniętego czasomierza.
+> Aplikacja odpowiada za zapobieganie używaniu usuniętego czasomierza.
 
 ### <a name="parameters"></a>Parametry 
 
-- **timer_ptr**: wskaźnik do wcześniej utworzonego czasomierza aplikacji.
+- **timer_ptr:** wskaźnik do wcześniej utworzonego czasomierza aplikacji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne usunięcie czasomierza aplikacji.
+- **TX_SUCCESS:**(0x00) Pomyślne usunięcie czasomierza aplikacji.
 - TX_TIMER_ERROR: (0x15) Nieprawidłowy wskaźnik czasomierza aplikacji.
-- TX_CALLER_ERROR: (0x13) Nieprawidłowy obiekt wywołujący tej usługi.
+- TX_CALLER_ERROR: (0x13) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
 Wątki
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5554,7 +5554,7 @@ status =  tx_timer_delete(&my_timer);
 
 ## <a name="tx_timer_info_get"></a>tx_timer_info_get
 
-Pobierz informacje o czasomierzu aplikacji
+Pobieranie informacji o czasomierzu aplikacji
 
 ### <a name="prototype"></a>Prototype
 
@@ -5570,26 +5570,26 @@ Ta usługa pobiera informacje o określonym czasomierzu aplikacji.
 
 ### <a name="parameters"></a>Parametry
 
-- **timer_ptr**: wskaźnik do wcześniej utworzonego czasomierza aplikacji.
+- **timer_ptr:** wskaźnik do wcześniej utworzonego czasomierza aplikacji.
 - **name**: wskaźnik do miejsca docelowego dla wskaźnika do nazwy czasomierza.
-- **aktywny**: wskaźnik do miejsca docelowego dla aktywnego wskaźnika czasomierza. Jeśli czasomierz jest nieaktywny lub ta usługa jest wywoływana z samego czasomierza, zwracana jest wartość TX_FALSE. W przeciwnym razie, jeśli czasomierz jest aktywny, zwracana jest wartość TX_TRUE.
-- **remaining_ticks**: wskaźnik do miejsca docelowego dla liczby cykli czasomierza pozostawionych przed wygaśnięciem czasomierza.
-- **reschedule_ticks**: wskaźnik do miejsca docelowego dla liczby taktów czasomierza, który zostanie użyty do automatycznego ponownego zaplanowania tego czasomierza. Jeśli wartość jest równa zero, czasomierz jest jednorazowy i nie zostanie ponownie zaplanowany.
-- **next_timer**: wskaźnik do miejsca docelowego dla wskaźnika następnego utworzonego czasomierza aplikacji.
+- **active:** wskaźnik do miejsca docelowego dla aktywnego wskazania czasomierza. Jeśli czasomierz jest nieaktywny lub ta usługa jest wywoływana z samego czasomierza, zwracana jest TX_FALSE wartość. W przeciwnym razie, jeśli czasomierz jest aktywny, TX_TRUE zwracana jest wartość.
+- **remaining_ticks:** wskaźnik do miejsca docelowego dla liczby takt czasomierza, które pozostały przed wygaśnięciem czasomierza.
+- **reschedule_ticks:** wskaźnik do miejsca docelowego dla liczby takt czasomierzy, które będą używane do automatycznego ponownego edukacji tego czasomierza. Jeśli wartość wynosi zero, czasomierz jest jednym rzutem i nie będzie ponownie mierzony.
+- **next_timer:** Wskaźnik do miejsca docelowego dla wskaźnika następnego utworzonego czasomierza aplikacji.
 
 > [!NOTE]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie parametru TX_NULL parametru oznacza, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobranie informacji czasomierza.
+- **TX_SUCCESS:**(0x00) Pomyślne pobieranie informacji o czasomierzu.
 - TX_TIMER_ERROR: (0x15) Nieprawidłowy wskaźnik czasomierza aplikacji.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
-### <a name="preemption-possible"></a>Możliwe przeprowadzenie
+### <a name="preemption-possible"></a>Możliwe wywłasznia
 
 Nie
 
@@ -5627,7 +5627,7 @@ status =  tx_timer_info_get(&my_timer, &name,
 
 ## <a name="tx_timer_performance_info_get"></a>tx_timer_performance_info_get 
 
-Pobierz informacje o wydajności czasomierza
+Uzyskiwanie informacji o wydajności czasomierza
 
 ### <a name="prototype"></a>Prototype
 
@@ -5639,32 +5639,32 @@ UINT  tx_timer_performance_info_get(TX_TIMER *timer_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera informacje o wydajności dotyczące określonego czasomierza aplikacji.
+Ta usługa pobiera informacje o wydajności określonego czasomierza aplikacji.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_TIMER_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o wydajności, biblioteka i aplikacja SMP **ThreadX** muszą TX_TIMER_ENABLE_PERFORMANCE_INFO za pomocą zdefiniowanych dla tej usługi.
 
 ### <a name="parameters"></a>Parametry 
 
-- **timer_ptr**: wskaźnik do wcześniej utworzonego czasomierza.
-- **aktywuje**: wskaźnik do miejsca docelowego dla liczby żądań aktywacji wykonanych dla tego czasomierza.
-- **reactivates**: wskaźnik do miejsca docelowego dla liczby automatycznych ponownych aktywacji wykonanych na tym cyklicznym czasomierzu.
-- **dezaktywuje**: wskaźnik do miejsca docelowego dla liczby żądań dezaktywacji wykonanych dla tego czasomierza.
-- **wygaśnięcia**: wskaźnik do miejsca docelowego dla liczby wygaśnięć tego czasomierza.
-- **expiration_adjusts**: wskaźnik do miejsca docelowego dla liczby wewnętrznych korekt wygaśnięcia wykonanych dla tego czasomierza. Te korekty są wykonywane w ramach przetwarzania przerwań czasomierza dla czasomierzy, które są większe niż domyślny rozmiar listy czasomierza (domyślnie czasomierze o wygasaniu większym niż 32 taktów).
+- **timer_ptr:** wskaźnik do wcześniej utworzonego czasomierza.
+- **aktywuje**: wskaźnik do miejsca docelowego dla liczby żądań aktywacji wykonanych na tym czasomierzu.
+- **reaktywacja:** wskaźnik do miejsca docelowego dla liczby automatycznych ponownych aktywacji wykonywanych na tym czasomierzu okresowym.
+- **dezaktywuje**: wskaźnik do miejsca docelowego dla liczby żądań dezaktywacji wykonanych na tym czasomierzu.
+- **expirations**: wskaźnik do miejsca docelowego dla liczby wygaśnięcia tego czasomierza.
+- **expiration_adjusts:** Wskaźnik do miejsca docelowego dla liczby wewnętrznych korekt wygaśnięcia wykonywanych na tym czasomierzu. Te korekty są wykonywane w przetwarzaniu przerwań czasomierza dla czasomierzy większych niż domyślny rozmiar listy czasomierzy (domyślnie czasomierze z wygaśnięciami większymi niż 32 takty).
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie parametru TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne pobieranie wydajności czasomierza.
-- **TX_PTR_ERROR**: (0X03) Nieprawidłowy wskaźnik czasomierza.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności czasomierza.
+- **TX_PTR_ERROR:**(0x03) Nieprawidłowy wskaźnik czasomierza.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -5697,7 +5697,7 @@ status =  tx_timer_performance_info_get(&my_timer, &activates,
 
 ## <a name="tx_timer_performance_system_info_get"></a>tx_timer_performance_system_info_get 
 
-Pobierz informacje o wydajności systemu czasomierza
+Uzyskiwanie informacji o wydajności systemu czasomierza
 
 ### <a name="prototype"></a>Prototype
 
@@ -5711,27 +5711,27 @@ UINT  tx_timer_performance_system_info_get(ULONG *activates,
 Ta usługa pobiera informacje o wydajności wszystkich czasomierzy aplikacji w systemie.
 
 > [!IMPORTANT]
-> Biblioteka i aplikacja SMP ThreadX muszą zostać skompilowane przy użyciu **TX_TIMER_ENABLE_PERFORMANCE_INFO** zdefiniowanych dla tej usługi w celu zwrócenia informacji o wydajności.
+> Aby ta usługa zwracała informacje o wydajności, biblioteka i aplikacja ThreadX SMP muszą **TX_TIMER_ENABLE_PERFORMANCE_INFO** z definicją.
 
 ### <a name="parameters"></a>Parametry
 
-- **aktywuje**: wskaźnik do miejsca docelowego dla łącznej liczby żądań aktywacji wykonanych na wszystkich czasomierzach.
-- **reactivates**: wskaźnik do miejsca docelowego dla łącznej liczby automatycznych ponownych aktywacji wykonanych na wszystkich okresowych czasomierzach.
-- **dezaktywuje**: wskaźnik do miejsca docelowego dla łącznej liczby żądań dezaktywacji wykonanych na wszystkich czasomierzach.
-- **wygaśnięcia**: wskaźnik do miejsca docelowego dla łącznej liczby wygaśnięć dla wszystkich czasomierzy.
-- **expiration_adjusts**: wskaźnik do miejsca docelowego dla łącznej liczby wewnętrznych korekt wygaśnięcia wykonanych na wszystkich czasomierzach. Te korekty są wykonywane w ramach przetwarzania przerwań czasomierza dla czasomierzy, które są większe niż domyślny rozmiar listy czasomierza (domyślnie czasomierze o wygasaniu większym niż 32 taktów).
+- **aktywuje:** wskaźnik do miejsca docelowego dla łącznej liczby żądań aktywacji wykonanych na wszystkich czasomierzach.
+- **reaktywacja:** wskaźnik do miejsca docelowego dla całkowitej liczby automatycznych ponownych aktywacji wykonywanych na wszystkich czasomierzach okresowych.
+- **deactivates**: wskaźnik do miejsca docelowego dla łącznej liczby żądań dezaktywacji wykonanych na wszystkich czasomierzach.
+- **expirations**: wskaźnik do miejsca docelowego dla całkowitej liczby wygaśnięcia na wszystkich czasomierzach.
+- **expiration_adjusts:** Wskaźnik do miejsca docelowego dla całkowitej liczby wewnętrznych korekt wygaśnięcia wykonanych na wszystkich czasomierzach. Te korekty są wykonywane w przetwarzaniu przerwań czasomierza dla czasomierzy, które są większe niż domyślny rozmiar listy czasomierzy (domyślnie czasomierze z wygaśnięciami większymi niż 32 takty).
 
 > [!IMPORTANT]
-> Dostarczenie TX_NULL dla dowolnego parametru wskazuje, że parametr nie jest wymagany.
+> Dostarczenie wartości TX_NULL parametru wskazuje, że parametr nie jest wymagany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **TX_SUCCESS**: (0X00) pomyślne uzyskanie czasomierza wydajności systemu.
-- **TX_FEATURE_NOT_ENABLED**: (0xFF) system nie został skompilowany z włączonymi informacjami o wydajności.
+- **TX_SUCCESS:**(0x00) Pomyślne uzyskiwanie wydajności systemu czasomierza.
+- **TX_FEATURE_NOT_ENABLED:**(0xFF) System nie został skompilowany z włączonymi informacjami o wydajności.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze i procedury ISR
+Inicjowanie, wątki, czasomierze i isR
 
 ### <a name="example"></a>Przykład
 
@@ -5762,7 +5762,7 @@ status =  tx_timer_performance_system_info_get(&activates,
 
 ## <a name="tx_timer_smp_core_exclude"></a>tx_timer_smp_core_exclude
 
-Wyklucz wykonywanie czasomierza na zestawie rdzeni
+Wykluczanie wykonywania czasomierza na zestawie rdzeni
 
 ### <a name="prototype"></a>Prototype
 
@@ -5771,24 +5771,24 @@ UINT  tx_timer_smp_core_exclude(TX_TIMER *timer_ptr, ULONG exclusion_map);
 ```
 ### <a name="description"></a>Opis
 
-Ta funkcja wyklucza określony czasomierz z wykonywania na rdzeniach określonych w mapie bitowej o nazwie "*exclusion_map*". Każdy bit w "*exclusion_map*" reprezentuje rdzeń (bit 0 reprezentuje rdzeń 0 itd.). Jeśli bit jest ustawiony, odpowiadający rdzeń jest wykluczony z wykonywania określonego czasomierza.
+Ta funkcja wyklucza określony czasomierz z wykonywania na rdzeniach określonych w mapie bitowej o nazwie "*exclusion_map."* Każdy bit w "*exclusion_map*" reprezentuje rdzeń (bit 0 reprezentuje rdzeń 0 itp.). Jeśli bit jest ustawiony, odpowiedni rdzeń jest wykluczony z wykonywania określonego czasomierza.
 
 > [!IMPORTANT]
-> Użycie wykluczenia procesora może spowodować dodatkowe przetwarzanie w wątku do podstawowej logiki mapowania, aby znaleźć optymalne dopasowanie. To przetwarzanie jest ograniczone przez liczbę gotowych wątków.
+> Użycie wykluczenia procesora może spowodować dodatkowe przetwarzanie w logice mapowania wątku do rdzenia w celu znalezienia optymalnego dopasowania. To przetwarzanie jest ograniczone przez liczbę gotowych wątków.
 
 ### <a name="parameters"></a>Parametry
 
-- **timer_ptr**: wskaźnik do czasomierza, aby zmienić wykluczenia rdzenia.
-- **exclusion_map**: Mapa bitowa, gdzie bit Sit wskazuje, że rdzeń jest wykluczony. Dostarczenie wartości 0 powoduje, że czasomierz będzie wykonywany na dowolnym rdzeniu (domyślnie).
+- **timer_ptr:** Wskaźnik do czasomierza w celu zmiany wykluczenia podstawowego.
+- **exclusion_map:** mapa bitowa, na której bit sycowy wskazuje, że rdzeń jest wykluczony. Po podaniem wartości 0 czasomierz może być wykonywany na dowolnym rdzeniu (ustawienie domyślne).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Wykluczenie rdzenia **TX_SUCCESS** (0x00).
-- **TX_TIMER_ERROR** (0X0E) Nieprawidłowy wskaźnik czasomierza.
+- **TX_SUCCESS** (0x00) Pomyślne wykluczenie podstawowe.
+- **TX_TIMER_ERROR** (0x0E) Nieprawidłowy wskaźnik czasomierza.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, procedury ISR, wątki i czasomierze
+Inicjowanie, isr, wątki i czasomierze
 
 ### <a name="example"></a>Przykład
 
@@ -5803,7 +5803,7 @@ tx_timer_smp_core_exclude(&timer_0, 0x01);
 
 ## <a name="tx_timer_smp_core_exclude_get"></a>tx_timer_smp_core_exclude_get
 
-Pobiera bieżące wykluczenie rdzenia czasomierza
+Pobiera bieżące wykluczenie podstawowe czasomierza
 
 ### <a name="prototype"></a>Prototype
 
@@ -5813,22 +5813,22 @@ UINT tx_timer_smp_core_exclude_get(TX_TIMER *timer_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta funkcja zwraca bieżącą listę wykluczeń rdzeni.
+Ta funkcja zwraca bieżącą listę wykluczeń podstawowych.
 
 ### <a name="parameters"></a>Parametry
 
-- **timer_ptr**: wskaźnik do czasomierza, z którego ma zostać pobrane podstawowe wykluczenie.
-- **exclusion_map_ptr**: miejsce docelowe dla bieżącej mapy bitowej wykluczeń podstawowych.
+- **timer_ptr:** wskaźnik do czasomierza, z którego ma zostać pobrane wykluczenie podstawowe.
+- **exclusion_map_ptr:** miejsce docelowe dla bieżącej mapy bitów wykluczenia podstawowego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- TX_SUCCESS: (0x00) pomyślne pobranie wykluczenia rdzenia czasomierza.
+- TX_SUCCESS: (0x00) Pomyślne pobranie wykluczenia podstawowego czasomierza.
 - TX_TIMER_ERROR: (0x0E) Nieprawidłowy wskaźnik czasomierza.
-- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik docelowy wykluczenia.
+- TX_PTR_ERROR: (0x03) Nieprawidłowy wskaźnik miejsca docelowego wykluczenia.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, procedury ISR, wątki i czasomierze
+Inicjowanie, isr, wątki i czasomierze
 
 ### <a name="example"></a>Przykład
 

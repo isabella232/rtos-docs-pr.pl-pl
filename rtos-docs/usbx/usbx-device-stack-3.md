@@ -1,80 +1,80 @@
 ---
-title: Rozdział 3-funkcjonalne składniki stosu urządzeń USBX
-description: Ten rozdział zawiera opis stosu urządzenia USB o wysokiej wydajności USBX Embedded z perspektywy funkcjonalnej.
+title: Rozdział 3 — Składniki funkcjonalne stosu urządzeń USBX
+description: Ten rozdział zawiera opis wysokowydajnych stosów osadzonych urządzeń USB USBX z perspektywy funkcjonalnej.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: dc57f3e0f6aa6731f4aaedee8169313ca7276cff
-ms.sourcegitcommit: 1aeca2f91960856d8cc24fef65f909639e527599
+ms.openlocfilehash: 104badcbf1ec682cd8b09008578ba91768834d694473ecccf59e35637dfd9f3c
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/31/2021
-ms.locfileid: "106082204"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116791361"
 ---
-# <a name="chapter-3---functional-components-of-usbx-device-stack"></a>Rozdział 3-funkcjonalne składniki stosu urządzeń USBX
+# <a name="chapter-3---functional-components-of-usbx-device-stack"></a>Rozdział 3 — Składniki funkcjonalne stosu urządzeń USBX
 
-Ten rozdział zawiera opis stosu urządzenia USB o wysokiej wydajności USBX Embedded z perspektywy funkcjonalnej.
+Ten rozdział zawiera opis wysokowydajnych stosów osadzonych urządzeń USB USBX z perspektywy funkcjonalnej.
 
-## <a name="execution-overview"></a>Przegląd wykonywania
+## <a name="execution-overview"></a>Omówienie wykonywania
 
-USBX dla urządzenia składa się z kilku składników.
+Dysk USBX urządzenia składa się z kilku składników.
 
 - Inicjalizacja
 - Wywołania interfejsu aplikacji
 - Klasy urządzeń
-- Stos urządzeń USB
-- Kontroler urządzenia
-- VBUS Manager
+- Stos urządzenia USB
+- Kontroler urządzeń
+- Menedżer VBUS
 
-Na poniższym diagramie przedstawiono stos urządzeń USBX.
+Na poniższym diagramie przedstawiono stos urządzenia USBX.
 
-![Stos urządzeń USBX](media/usbx-device-stack/usbx-device-stack.png)
+![Stos urządzenia USBX](media/usbx-device-stack/usbx-device-stack.png)
 
 ### <a name="initialization"></a>Inicjalizacja
 
-W celu aktywowania USBX należy wywołać funkcję ***ux_system_initialize*** . Ta funkcja inicjuje zasoby pamięci z USBX.
+Aby można było aktywować usbx, ***należy ux_system_initialize*** funkcję. Ta funkcja inicjuje zasoby pamięci USBX.
 
-Aby można było aktywować urządzenia USBX, należy wywołać funkcję ***ux_device_stack_initialize*** . Ta funkcja spowoduje zainicjowanie wszystkich zasobów używanych przez stos urządzeń USBX, takich jak wątki ThreadX, muteksy i semafory.
+Aby aktywować urządzenia USBX, należy ***ux_device_stack_initialize*** funkcję. Ta funkcja z kolei inicjuje wszystkie zasoby używane przez stos urządzenia USBX, takie jak wątki ThreadX, mutexes i semafory.
 
-Do inicjalizacji aplikacji można aktywować kontroler urządzeń USB i co najmniej jedną klasę USB. W przeciwieństwie do strony hosta USB po stronie urządzenia może być uruchomiony tylko jeden sterownik kontrolera USB w dowolnym momencie. Gdy klasy zostały zarejestrowane na stosie, a funkcja inicjowania kontrolerów urządzeń została wywołana, magistrala jest aktywna, a stos odpowiada na polecenia resetowania magistrali i hosta.
+Do inicjowania aplikacji należy aktywowanie kontrolera urządzenia USB i co najmniej jednej klasy USB. W przeciwieństwie do strony hosta USB po stronie urządzenia może być uruchomiony tylko jeden sterownik kontrolera USB w dowolnym momencie. Po zarejestrowaniu klas w stosie i wywołaniu funkcji inicjowania kontrolerów urządzeń magistrala jest aktywna, a stos odpowiada na polecenia resetowania magistrali i wyliczania hostów.
 
 ### <a name="application-interface-calls"></a>Wywołania interfejsu aplikacji
 
 Istnieją dwa poziomy interfejsów API w USBX.
 
 - Interfejsy API stosu urządzeń USB
-- Interfejsy API klas urządzeń USB
+- Interfejsy API klasy urządzeń USB
 
-Zwykle aplikacja USBX nie powinna wywołać żadnego z interfejsów API stosu urządzeń USB. Większość aplikacji będzie uzyskiwać dostęp tylko do interfejsów API klasy USB.
+Zwykle aplikacja USBX nie powinna wymagać wywołania żadnego z interfejsów API stosu urządzenia USB. Większość aplikacji będzie mieć dostęp tylko do interfejsów API klasy USB.
 
 ### <a name="usb-device-stack-apis"></a>Interfejsy API stosu urządzeń USB
 
-Interfejsy API stosu urządzeń są odpowiedzialne za rejestrację składników urządzeń USBX, takich jak klasy i platforma urządzeń.
+Interfejsy API stosu urządzeń są odpowiedzialne za rejestrację składników urządzenia USBX, takich jak klasy i struktury urządzeń.
 
-### <a name="usb-device-class-apis"></a>Interfejsy API klas urządzeń USB
+### <a name="usb-device-class-apis"></a>Interfejsy API klasy urządzeń USB
 
-Interfejsy API klas są bardzo specyficzne dla każdej klasy USB. Większość typowych interfejsów API dla klas USB zapewnia usługi, takie jak otwieranie/zamykanie urządzenia oraz odczytywanie i zapisywanie na urządzeniu. Interfejsy API są podobne do strony hosta.
+Interfejsy API klas są bardzo specyficzne dla każdej klasy USB. Większość typowych interfejsów API dla klas USB zapewniała usługi, takie jak otwieranie/zamykanie urządzenia oraz odczytywanie z i zapisywanie na urządzeniu. Interfejsy API są z natury podobne do interfejsów po stronie hosta.
 
-## <a name="device-framework"></a>Platforma urządzeń
+## <a name="device-framework"></a>Device Framework
 
-Urządzenie USB jest odpowiedzialne za definicję platformy urządzeń. Platforma urządzeń jest podzielona na trzy kategorie, zgodnie z opisem w poniższych sekcjach.
+Po stronie urządzenia USB jest odpowiedzialna za definicję struktury urządzenia. Platformę urządzeń podzielono na trzy kategorie, zgodnie z opisem w poniższych sekcjach.
 
-### <a name="definition-of-the-components-of-the-device-framework"></a>Definicja składników platformy urządzenia
+### <a name="definition-of-the-components-of-the-device-framework"></a>Definicja składników struktury urządzeń
 
-Definicja każdego składnika platformy urządzenia jest związana z charakterem urządzenia i zasobami wykorzystywanymi przez urządzenie. Poniżej przedstawiono główne kategorie.
+Definicja każdego składnika struktury urządzeń jest powiązana z charakterem urządzenia i zasobami wykorzystywanymi przez urządzenie. Poniżej przedstawiono główne kategorie.
 
 - Deskryptor urządzenia
 - Deskryptor konfiguracji
 - Deskryptor interfejsu
 - Deskryptor punktu końcowego
 
-USBX obsługuje definicję składnika urządzenia zarówno dla wysokiej, jak i pełnej prędkości (niska szybkość jest traktowana tak samo jak Pełna szybkość). Dzięki temu urządzenie może działać inaczej po połączeniu z hostem o dużej szybkości lub w trybie szybkim. Typowymi różnicami są rozmiary poszczególnych punktów końcowych i moc zużywaną przez urządzenie.
+UsbX obsługuje definicję składnika urządzenia zarówno dla dużej, jak i pełnej szybkości (niska szybkość jest traktowana tak samo jak pełna szybkość). Dzięki temu urządzenie może działać inaczej po podłączeniu do hosta o dużej szybkości lub pełnej szybkości. Typowe różnice to rozmiar każdego punktu końcowego i ilość energii zużywanej przez urządzenie.
 
-Definicja składnika urządzenia przyjmuje postać ciągu bajtowego, który jest zgodny ze specyfikacją USB. Definicja jest ciągła i kolejność, w jakiej struktura jest reprezentowana w pamięci, będzie taka sama jak wartość zwracana do hosta podczas wyliczania.
+Definicja składnika urządzenia ma postać ciągu bajtowego, który jest zgodny ze specyfikacją USB. Definicja jest ciągła, a kolejność, w której framework jest reprezentowana w pamięci, będzie taka sama jak ta, która zostanie zwrócona do hosta podczas wyliczania.
 
-Poniżej przedstawiono przykładową platformę urządzenia dla dysku flash USB o dużej szybkości.
+Poniżej przedstawiono przykład struktury urządzeń dla szybkiego dysku flash USB.
 
 ```c
 #define DEVICE_FRAMEWORK_LENGTH_HIGH_SPEED 60
@@ -99,13 +99,13 @@ UCHAR device_framework_high_speed[] = {
 };
 ```
 
-### <a name="definition-of-the-strings-of-the-device-framework"></a>Definicja ciągów struktury urządzenia
+### <a name="definition-of-the-strings-of-the-device-framework"></a>Definicja ciągów struktury urządzeń
 
-Ciągi są opcjonalne w urządzeniu. Celem jest umożliwienie hostowi USB znajomości producenta urządzenia, nazwy produktu i numeru poprawki za pośrednictwem ciągów Unicode.
+Ciągi są opcjonalne w urządzeniu. Ich celem jest podaniem hostowi USB informacji o producencie urządzenia, nazwie produktu i numerze poprawki za pośrednictwem ciągów Unicode.
 
-Główne ciągi są indeksami osadzonymi w deskryptorach urządzeń. Dodatkowe indeksy ciągów można osadzić w poszczególnych interfejsach.
+Główne ciągi to indeksy osadzone w deskryptorach urządzeń. Dodatkowe indeksy ciągów można osadzić w poszczególnych interfejsach.
 
-Zakładając, że powyższa platforma urządzenia ma trzy indeksy ciągu osadzone w deskryptorze urządzenia, Definicja struktury ciągu może wyglądać podobnie jak w przypadku tego przykładowego kodu.
+Zakładając, że powyższe struktury urządzeń mają trzy indeksy ciągów osadzone w deskryptorze urządzenia, definicja struktury ciągów może wyglądać jak ten przykładowy kod.
 
 ```c
 /* String Device Framework:
@@ -132,15 +132,15 @@ UCHAR string_framework[] = {
 };
 ```
 
-Jeśli różne ciągi muszą być używane dla każdej szybkości, należy użyć różnych indeksów, ponieważ indeksy są szybkością niezależny od.
+Jeśli dla każdej szybkości muszą być używane różne ciągi, należy użyć różnych indeksów, ponieważ indeksy są niezależne od szybkości.
 
-Kodowanie ciągu jest oparte na formacie UNICODE. Aby uzyskać więcej informacji na temat standardu kodowania UNICODE, zapoznaj się z następującą publikacją:
+Kodowanie ciągu jest oparte na standardzie UNICODE. Aby uzyskać więcej informacji na temat standardu kodowania UNICODE, zapoznaj się z następującą publikacją:
 
-*Standard Unicode, na całym świecie kodowanie znaków, wersja 1,, woluminy 1 i 2, konsorcjum Unicode, Addison-Wesley firmy Publishing, odczyt MA.*
+*Standard Unicode, kodowanie znaków na całym świecie, wersja 1., woluminy 1 i 2, Konsorcjum Unicode, Addison-Wesley Publishing Company, Reading MA.*
 
 ### <a name="definition-of-the-languages-supported-by-the-device-for-each-string"></a>Definicja języków obsługiwanych przez urządzenie dla każdego ciągu
 
-Usługa USBX ma możliwość obsługi wielu języków, chociaż jest to ustawienie domyślne w języku angielskim. Definicja każdego języka dla deskryptorów ciągów ma postać tablicy definicji języka zdefiniowanej w następujący sposób.
+UsbX ma możliwość obsługi wielu języków, chociaż język angielski jest domyślny. Definicja każdego języka dla deskryptorów ciągów ma postać tablicy definicji języków zdefiniowanej w następujący sposób.
 
 ```c
 #define LANGUAGE_ID_FRAMEWORK_LENGTH 2
@@ -150,18 +150,18 @@ UCHAR language_id_framework[] = {
 };
 ```
 
-Aby zapewnić obsługę dodatkowych języków, po prostu Dodaj kod języka podwójnego bajtu po domyślnym kodzie w języku angielskim. Kod języka został zdefiniowany przez firmę Microsoft w dokumencie.
+Aby obsługiwać dodatkowe języki, po prostu dodaj dwu bajtową definicję kodu języka po domyślnym kodzie w języku angielskim. Kod języka został zdefiniowany w dokumencie przez firmę Microsoft.
 
-*Opracowywanie międzynarodowego oprogramowania dla systemów Windows 95 i Windows NT, Nadine Kano, Microsoft Press, Redmond WA*
+*Developing International Software for Windows 95 and Windows NT, Na niech kano, Microsoft Press, Redmond WA*
 
-## <a name="vbus-manager"></a>VBUS Manager
+## <a name="vbus-manager"></a>Menedżer VBUS
 
-W większości projektów urządzeń USB VBUS nie jest częścią podstawowego urządzenia USB, ale nie jest podłączony do zewnętrznego interfejsu GPIO, który monitoruje sygnał liniowy.
+W większości projektów urządzeń USB magistrala VBUS nie jest częścią rdzenia urządzenia USB, ale jest połączona z zewnętrznym interfejsem GPIO, który monitoruje sygnał liniowy.
 
-W związku z tym VBUS musi być zarządzany niezależnie od sterownika kontrolera urządzenia.
+W związku z tym magistralą VBUS należy zarządzać niezależnie od sterownika kontrolera urządzenia.
 
-Jest ona do aplikacji, aby zapewnić kontrolerowi urządzenia adres VBUS we/wy. VBUS musi zostać zainicjowany przed inicjalizacją kontrolera urządzenia.
+Aplikacja musi podać kontrolerowi urządzenia adres we/wy VBUS. Przed zainicjowaniem kontrolera urządzenia należy zainicjować magistralę VBUS.
 
-W zależności od specyfikacji platformy dla monitorowania VBUS można pozwolić, aby sterownik kontrolera obsługiwał sygnały VBUS po zainicjowaniu operacji we/wy VBUS lub jeśli nie jest to możliwe, aplikacja musi dostarczyć kod do obsługi VBUS.
+W zależności od specyfikacji platformy do monitorowania VBUS sterownik kontrolera może obsługiwać sygnały VBUS po zainicjowaniu VBUS IO lub jeśli nie jest to możliwe, aplikacja musi podać kod do obsługi VBUS.
 
-Jeśli aplikacja chce obsłużyć VBUS samodzielnie, Jedynym wymaganiem jest wywołanie funkcji ***ux_device_stack_disconnect*** , gdy wykryje, że urządzenie zostało wyodrębnione. Nie jest konieczne informowanie kontrolera, gdy urządzenie zostanie wstawione, ponieważ kontroler zostanie wznowiony, gdy zostanie wykryty sygnał potwierdzenia/potwierdzeń MAGISTRALi.
+Jeśli aplikacja chce obsługiwać magistralę VBUS samodzielnie, jedynym wymaganiem jest wywołanie funkcji ***ux_device_stack_disconnect,*** gdy wykryje, że urządzenie zostało wyodrębnione. Nie jest konieczne informowanie kontrolera o wstawieniu urządzenia, ponieważ kontroler wznowi jego działania po wykryciu sygnału asertywnego/deassert zresetowania magistrali.

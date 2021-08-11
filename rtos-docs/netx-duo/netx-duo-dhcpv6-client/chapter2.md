@@ -1,69 +1,69 @@
 ---
-title: Rozdział 2 — Instalowanie i używanie klienta DHCPv6 usługi Azure RTO NetX Duo
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta DHCPv6 platformy Azure RTO NetX Duo.
+title: Rozdział 2 — Instalowanie i używanie klienta DHCPv6 Azure RTOS NetX Duo
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta Azure RTOS NetX Duo DHCPv6.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: a154dbeb91b46a2c8bd5f4585e168a6b62d042ff
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 481e29cc674edfa7e437e8e14253172b89aeae6856114192f4ca5b35717c91e0
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821997"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116791537"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-dhcpv6-client"></a>Rozdział 2 — Instalowanie i używanie klienta DHCPv6 usługi Azure RTO NetX Duo
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-dhcpv6-client"></a>Rozdział 2 — Instalowanie i używanie klienta DHCPv6 Azure RTOS NetX Duo
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta DHCPv6 platformy Azure RTO NetX Duo.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta Azure RTOS NetX Duo DHCPv6.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Klient DHCPv6 NetX Duo jest dostępny pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera dwa pliki źródłowe i plik PDF, który zawiera ten dokument, w następujący sposób:
+Klient NetX Duo DHCPv6 jest dostępny na stronie [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera dwa pliki źródłowe i plik PDF zawierający ten dokument w następujący sposób:
 
-- **nxd_dhcpv6_client. h** Plik nagłówka dla klienta NetX DuoDHCPv6
+- **nxd_dhcpv6_client.h** Plik nagłówkowy klienta NetX DuoDPV6
 
-- **nxd_dhcpv6_client. c** Plik kodu źródłowego dla klienta DHCPv6 NetX Duo
+- **nxd_dhcpv6_client.c** Plik kodu źródłowego klienta DHCPv6 NetX Duo
 
-- **demo_netxduo_dhcpv6_client. c** Przykładowy program demonstrujący konfigurację klienta DHCPv6 NetX Duo
+- **demo_netxduo_dhcpv6_client.c** Przykładowy program przedstawiający konfigurację klienta DHCPv6 NetX Duo
 
-- **nxd_dhcpv6_client.pdf** Opis pliku PDF klienta DHCPv6 NetX Duo
+- **nxd_dhcpv6_client.pdf** Opis w formacie PDF klienta NetX Duo DHCPv6
 
-## <a name="netx-duo-dhcpv6-client-installation"></a>Instalacja klienta DHCPv6 NetX Duo
+## <a name="netx-duo-dhcpv6-client-installation"></a>Instalacja klienta DHCPv6 netx Duo
 
-Aby użyć interfejsu API klienta protokołu DHCPv6 NetX Duo, cała wymieniona wyżej dystrybucja może zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowana w katalogu "*\threadx\arm7\green*", wówczas pliki *nxd_dhcpv6_client. h* i *nxd_dhpcv6_client. c* można skopiować do tego katalogu.
+Aby korzystać z interfejsu API klienta DhCPv6 netx Duo, cała dystrybucja wymieniona powyżej może zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX Duo. Jeśli na przykład program NetX Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* do tego katalogu można skopiować pliki *nxd_dhcpv6_client.h* i *nxd_dhpcv6_client.c.*
 
 ## <a name="using-the-netx-duo-dhcpv6-client"></a>Korzystanie z klienta DHCPv6 NetX Duo
 
-Kod aplikacji musi zawierać *nxd_dhcpv6_client. h* , który zawiera *tx_api. h* i *nx_api. h*, aby używać odpowiednio usług klienta DHCPv6, ThreadX i NetX Duo. *nxd_dhcpv6_client. c* musi być skompilowany w projekcie w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji.
+Kod aplikacji musi zawierać kod *nxd_dhcpv6_client.h,* jeśli zawiera on elementy *tx_api.h* i *nx_api.h,* aby można było używać odpowiednio usług DHCPv6 Client, ThreadX i NetX Duo. *nxd_dhcpv6_client.c* musi zostać skompilowany w projekcie w taki sam sposób, jak inne pliki aplikacji, a jego formularz obiektu musi być połączony z plikami aplikacji.
 
 ### <a name="span-classunderlineclient-dhcp-unique-identifier-duidspan"></a><span class="underline">Unikatowy identyfikator DHCP klienta (DUID)</span>
 
-Identyfikator DUID klienta jednoznacznie definiuje każdego klienta w sieci. Aplikacja musi utworzyć identyfikator DUID klienta przed zażądaniem adresu IPv6 z serwera. Identyfikator DUID klienta jest automatycznie uwzględniany we wszystkich komunikatach na serwerze. Aby utworzyć identyfikator DUID, aplikacja wywołuje *nx_dhcpv6_create_client_duid usługi:*
+Identyfikator DUID klienta jednoznacznie definiuje każdego klienta w sieci. Aplikacja musi utworzyć duid klienta przed żądaniem adresu IPv6 z serwera. Nazwa DUID klienta jest automatycznie uwzględniana we wszystkich komunikatach wysyłanych do serwera. Aby utworzyć duid, aplikacja wywołuje usługę *nx_dhcpv6_create_client_duid:*
 ```C
 UINT nx_dhcpv6_create_client_duid(NX_DHCPV6 *dhcpv6_ptr, 
                                   UINT duid_type, 
                                   UINT hardware_type, ULONG time);
 ```
 
-Aplikacja wywołuje tę usługę i określa Typ identyfikatora DUID (tylko warstwy linku lub warstwy linku + Time). W przypadku warstwy linku i DUIDs czasu ta usługa zapewni pole czasu, jeśli nie określono czasu wejścia.
+Aplikacja wywołuje tę usługę i określa typ DUID (tylko warstwa linku lub warstwa łącza plus czas. W przypadku warstwy linku i identyfikatorów DUID czasu ta usługa udostępni pole czasu, jeśli nie określono czasu wejściowego.
 
-W przypadku urządzeń, które są ponownie uruchamiane i chcą korzystać z wcześniej przypisanej dzierżawy adresów IPv6, aplikacja musi utworzyć identyfikator DUID klienta jako ten, który został użyty podczas przypisywania adresu IPv6. Adres warstwy linku jest wymagany do utworzenia identyfikatora DUID klienta warstwy linku. Nie wymaga to wcześniejszego magazynu pamięci nietrwałej, jeśli urządzenie ma dostęp do adresu warstwy linku. W przypadku DUIDs typu Time aplikacja musi mieć dostęp do tych samych danych czasu, które są używane podczas poprzedniego tworzenia identyfikatora DUID, co wymaga nietrwałej pamięci. Klienci, którzy nie mają żadnego stabilnego magazynu, nie mogą używać DUIDs typu Time.
+W przypadku ponownego uruchamiania urządzeń i korzystania z wcześniej przypisanej dzierżawy adresu IPv6 aplikacja musi utworzyć duid klienta jako ten, który był używany podczas przypisywania adresu IPv6. Adres warstwy łącza to wszystko, co jest potrzebne do utworzenia warstwy linku duid klienta. Nie wymaga to wcześniejszego trwałego magazynu pamięci, jeśli urządzenie ma dostęp do adresu warstwy łącza. W przypadku identyfikatorów DUID typu czasu aplikacja musi mieć dostęp do tych samych danych czasu, które były używane podczas poprzedniego tworzenia identyfikatorów DUID i wymaga to trwałej pamięci. Klienci, którzy nie mają żadnego stabilnego magazynu, nie mogą używać identyfikatorów DUID czasu typu.
 
 ### <a name="span-classunderlineclient-identity-association-for-non-temporary-addresses-ianaspan"></a><span class="underline">Skojarzenie tożsamości klienta dla adresów innych niż tymczasowe (IANA)</span>
 
-Aplikacja musi utworzyć organizację IANA i opcjonalnie jeden lub więcej adresów IA przed zażądaniem adresu IPv6. W tym celu aplikacja wywoła usługę *nx_dhcpv6_create_client_iana* . Aby utworzyć opcję adresu IA, aplikacja wywołuje usługę *nx_dhcpv6_add_client_ia* z żądanym adresem IPv6 i wartością okresu istnienia jako wskazówką do serwera.
+Aplikacja musi utworzyć IANA i opcjonalnie co najmniej jeden adres IA przed żądaniem adresu IPv6. W tym celu aplikacja wywołuje usługę *nx_dhcpv6_create_client_iana.* Aby utworzyć opcję adresu IA, aplikacja wywołuje usługę *nx_dhcpv6_add_client_ia* z żądanym adresem IPv6 i wartościami okresu istnienia jako wskazówką dla serwera.
 
-Organizacja IANA i jej MSR łącznie definiują parametry przypisywania adresów IPv6 klienta:
+IANA i jej IAs zbiorczo definiują parametry przypisania adresu IPv6 klienta:
 
-Przed uruchomieniem klienta DHCPv6 aplikacja kliencka DHCPv6 tworzy organizację IANA przy użyciu usługi *nx_dhcpv6_create_client_iana* :
+Przed uruchomieniem klienta DHCPv6 aplikacja klienta DHCPv6 tworzy usługę IANA przy *użyciu nx_dhcpv6_create_client_iana* usługi:
 
 ```C
 UINT    nx_dhcpv6_create_client_iana(NX_DHCPV6 *dhcpv6_ptr, 
                                      UINT IA_ident, ULONG T1, ULONG T2);
 ```
 
-Przed uruchomieniem klienta DHCPv6 należy utworzyć co najmniej jeden serwer IAs przy użyciu usługi *nx_dhcpv6_create_client_ia* i żądanych adresów IPv6.
+Przed uruchomieniem klienta DHCPv6 należy również utworzyć co najmniej jedną usługę we/wy przy użyciu usługi *nx_dhcpv6_create_client_ia* i żądanych adresów IPv6.
 
 ```C
 UINT    nx_dhcpv6_add_client_ia(NX_DHCPV6 *dhcpv6_ptr, 
@@ -73,34 +73,34 @@ UINT    nx_dhcpv6_add_client_ia(NX_DHCPV6 *dhcpv6_ptr,
 ```
 
 > [!NOTE]
-> Liczba adresów IA tworzonych przez aplikację nie może przekroczyć NX_DHCPV6_MAX_IA_ADDRESS parametru, którego wartość domyślna to 1.
+> Liczba adresów IA, które tworzy aplikacja, nie może przekraczać NX_DHCPV6_MAX_IA_ADDRESS, którego wartość domyślna to 1.
 
-Klient DHCPv6 NetX Duo obsługuje *nx_dhcpv6_create_client_ia* dla starszych aplikacji klienckich protokołu DHCPv6 i który jest identyczny z *nx_dhcpv6_add_client_ia* , ale deweloperzy są zachęcani do korzystania z usługi *nx_dhcpv6_add_client_ia* .
+Klient NetX Duo DHCPv6 obsługuje protokół *nx_dhcpv6_create_client_ia* dla starszych aplikacji klienckich DHCPv6 i który jest identyczny z *nx_dhcpv6_add_client_ia, ale* deweloperzy są zachęcani do korzystania nx_dhcpv6_add_client_ia *usługi.*
 
-Te usługi zostały przedstawione w "małym przykładowym systemie" w innym miejscu w tym rozdziale.
+Te usługi zostały zademonstrowane w "małym systemie przykładowym" w innym miejscu tego rozdziału.
 
-### <a name="span-classunderlinenon-volatile-memory-considerations-to-reuse-ianas-and-iasspan"></a><span class="underline">Nielotne zagadnienia dotyczące ponownego użycia organizacji IANA i IAs</span>
+### <a name="span-classunderlinenon-volatile-memory-considerations-to-reuse-ianas-and-iasspan"></a><span class="underline">Zagadnienia dotyczące pamięci trwałej do ponownego użycia IANA i IAs</span>
 
-Aplikacja musi zapisać parametry organizacji T1, T2 i IANA w nieulotnej pamięci, jeśli chcą używać tych samych adresów przy ponownym uruchomieniu. Aplikacja musi również zapisać swoją IA, która uwzględnia adres IPv6 w pamięci nieulotnej.
+Aplikacja musi zapisać parametry IANA T1, T2 i identyfikator IANA w pamięci trwałej, jeśli chce używać tych samych adresów podczas ponownego uruchamiania. Aplikacja musi również zapisać swoje IA, która zawiera adres IPv6 w pamięci trwałej.
 
-W przypadku zamknięcia aplikacji należy również przechować czas, który upłynął od przypisanych do nich dzierżaw adresów IPv6 do pamięci nieulotnej. Robi to przez wywołanie usługi *nx_dhcpv6_get_time_accrued* przed zatrzymaniem klienta DHCPv6.
+Aplikacja musi również przechowywać czas, który upłynął, gdy została powiązana z przypisanymi dzierżawami adresów IPv6 do pamięci trwałej, jeśli zostanie zamknięta. Robi to przez wywołanie usługi *nx_dhcpv6_get_time_accrued* przed zatrzymaniem klienta DHCPv6.
 
 ```C
 UINT nx_dhcpv6_get_time_accrued(NX_DHCPV6 *dhcpv6_ptr, 
                                 ULONG *time_accrued);
 ```
 
-Przy założeniu, że aplikacja ma niezależny zegar do śledzenia przedziału czasu, od momentu zatrzymania i ponownego uruchomienia klienta DHCPv6 po ponownym uruchomieniu, zostaje dodany do tego czasu, który upłynął do czasu naliczania dzierżawy IPv6 przed zatrzymaniem. Teraz uruchamia zadanie wątku klienta z łącznym czasem, który upłynął, w ramach dzierżawy IPv6, jako nv_time dane wejściowe poniżej:
+Zakładając, że aplikacja ma niezależny zegar do śledzenia przedziału czasu od momentu zatrzymania i ponownego uruchomienia klienta DHCPv6 po ponownym uruchomieniu, dodaje do czasu, który upłynął do czasu naliczonego w dzierżawie IPv6 przed zatrzymaniem. Teraz uruchamia zadanie wątku klienta z łącznym upływacym czasem powiązanym z dzierżawą IPv6 jako nv_time danych wejściowych:
 
 ```C
 UINT nx_dhcpv6_start(NX_DHCPV6 *dhcpv6_ptr, ULONG nv_time);
 ```
 
-Od tego momentu zadanie wątku klienta DHCPv6 przejdzie do monitorowania czasu naliczonego przez dzierżawę IPv6 w przypadku odnowienia dzierżawy.
+Od tego momentu zadanie wątku klienta DHCPv6 przejmie monitorowanie czasu naliczania dzierżawy IPv6 dla czasu odnowienia dzierżawy.
 
-### <a name="span-classunderlinesetting-dhcpv6-option-dataspan"></a><span class="underline">Ustawianie danych opcji protokołu DHCPv6</span>
+### <a name="span-classunderlinesetting-dhcpv6-option-dataspan"></a><span class="underline">Ustawianie danych opcji DHCPv6</span>
 
-Przed zażądaniem dzierżawy IPv6 aplikacja może zażądać innych danych parametrów sieciowych, takich jak serwer DNS i serwer czasu. Niektóre z tych parametrów mają określone usługi. Poniżej przedstawiono kilka poniżej:
+Przed zażądaniem dzierżawy IPv6 aplikacja może zażądać innych danych parametrów sieciowych, takich jak serwer DNS i serwer czasu. Niektóre z tych parametrów mają określone usługi. Poniżej przedstawiono kilka z nich:
 
 ```C
 UINT  nx_dhcpv6_request_option_DNS_server(NX_DHCPV6 *dhcpv6_ptr, 
@@ -112,51 +112,51 @@ UINT  nx_dhcpv6_request_option_time_server(NX_DHCPV6 *dhcpv6_ptr,
 
 ### <a name="span-classunderlineinitiating-the-ipv6-address-requestspan"></a><span class="underline">Inicjowanie żądania adresu IPv6</span>
 
-Aplikacja uruchamia wątek klienta DHCPv6 przez wywołanie usługi *nx_dhcpv6_start* z danymi wejściowymi o zerowej godzinie. Aby zainicjować protokół DHCPv6 w celu zażądania adresu IPv6, aplikacja wywołuje *nx_dhcpv6_request_solicit.*
+Aplikacja uruchamia wątek klienta DHCPv6, wywołując *usługę nx_dhcpv6_start* przy użyciu danych wejściowych czasu zerowego. Aby zainicjować protokół DHCPv6 w celu żądania adresu IPv6, aplikacja *wywołuje nx_dhcpv6_request_solicit.*
 
-Jeśli aplikacja chce użyć przypisanej wcześniej dzierżawy IPv6, wywołuje *nx_dhcpv6_start* z niezerowym wejściem w czasie. Nie należy wywoływać *nx_dhcpv6_request_solicit*.
+Jeśli aplikacja chce użyć przypisanej wcześniej dzierżawy IPv6, wywołuje ona nx_dhcpv6_start *z* niezerową wartością wejściową czasu. Nie powinien on wywołać *nx_dhcpv6_request_solicit*.
 
-Następnie aplikacja nie musi nic więcej i klient DHCPv6 będzie automatycznie monitorować czas odnowienia lub ponownego powiązania adresu IPv6.
+Następnie aplikacja nie musi nic więcej robić, a klient DHCPv6 będzie automatycznie monitorować czas odnowienia lub ponownego wiązania adresu IPv6.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykładem łatwego użycia klienta DHCPv6 NetX Duo jest opisana w małym przykładzie poniżej przy użyciu klienta DHCPv6 i wirtualnego sterownika "RAM". W tej wersji demonstracyjnej założono, że urządzenie ma tylko jeden fizyczny interfejs sieciowy.
+Przykład łatwego korzystania z klienta DHCPv6 NetX Duo został opisany w poniższym małym przykładzie przy użyciu klienta DHCPv6 i wirtualnego sterownika "RAM". W tym pokazie założono, że urządzenie ma tylko jeden fizyczny interfejs sieciowy.
 
-*tx_application_define* tworzy pulę pakietów dla klienta DHCPv6 do wysyłania komunikatów DHCPv6. Tworzy również wątek aplikacji i wystąpienie IP. Następnie włącza protokół UDP i ICMP na adresie IP w wierszach 130-148. Następnie klient DHCPv6 zostanie utworzony przy użyciu funkcji wywołania zwrotnego stanu (*dhcpv6_state_change_notify* ) i błędu serwera (*dhcpv6_server_error_handler*) w line151.
+*tx_application_define* tworzy pulę pakietów dla klienta DHCPv6 w celu wysyłania komunikatów DHCPv6. Tworzy również wątek aplikacji i wystąpienie adresu IP. Następnie włącza protokół UDP i ICMP dla adresu IP w wierszach 130–148. Następnie klient DHCPv6 jest tworzony ze zmianami stanu *(dhcpv6_state_change_notify* ) i funkcjami wywołania zwrotnego błędu serwera *(dhcpv6_server_error_handler)* w wierszu 151.
 
-W funkcji wpis wątku klienta *thread_client_entry*, adres IP klienta jest ustawiany z adresem lokalnym linku i włączony dla usług IPv6 i ICMPv6 w wierszach 202-217. Przed uruchomieniem klienta DHCPv6 aplikacja tworzy identyfikator DUID klienta, opcję IANA i opcję adresu IA na lines219-303. Opcja adres IA jest opcjonalna, jeśli klient chce zażądać adresu IPv6 oraz prawidłowych i preferowanych okresów istnienia z serwera. Serwer może lub nie przydzielić żądanych adresów IPv6 lub czasu dzierżawy. Aplikacja może dodać więcej opcji IA (do NX_DHCPV6_MAX_IA_ADDRESS), aby przypisać wiele adresów globalnych.
+W funkcji wpisu wątku klienta, *thread_client_entry*, adres IP klienta jest ustawiany za pomocą adresu lokalnego linku i włączony dla usług IPv6 i ICMPv6 w wierszach 202–217. Przed uruchomieniem klienta DHCPv6 aplikacja tworzy identyfikator DUID klienta, opcję IANA i opcję adresu IA w wierszach219–303. Opcja Adres IA jest opcjonalna, jeśli klient chce zażądać adresu IPv6 oraz prawidłowych i preferowanych okresów istnienia z serwera. Serwer może lub nie może udzielić żądanego adresu IPv6 lub czasu dzierżawy. Aplikacja może dodać więcej opcji IA (maksymalnie NX_DHCPV6_MAX_IA_ADDRESS), aby przypisać wiele adresów globalnych.
 
-Na koniec aplikacja ustawia różne opcje, aby zażądać parametrów sieci w swoich komunikatach do serwera DHCPv6. Zadanie klienta DHCPv6 jest uruchamiane przez wywołanie *nx_dhcpv6_start* w line306, a rzeczywisty protokół DHCPv6 jest uruchamiany w stanie żądanie z wywołaniem do *nx_dhcpv6_request_solicit* w wierszu 317. Klient DHCPv6 automatycznie obsługuje promocję stanu klienta za pomocą protokołu DHCPv6, dopóki nie zostanie on powiązany z adresem lub wystąpi błąd. W tym czasie aplikacja czeka na zakończenie tego protokołu, a także wykrywanie zduplikowanego adresu (tata), aby zakończyć, jeśli wystąpienie adresu IP jest skonfigurowane dla DAD (jest to konfiguracja domyślna).
+Na koniec aplikacja ustawia różne opcje żądania parametrów sieciowych w swoich komunikatach do serwera DHCPv6. Zadanie klienta DHCPv6 jest rozpoczynane przez wywołanie usługi nx_dhcpv6_start w wierszu 306, *a* rzeczywisty protokół DHCPv6 jest uruchomiony w stanie SOLICIT z wywołaniem funkcji *nx_dhcpv6_request_solicit* w wierszu 317. Następnie klient DHCPv6 automatycznie obsługuje pod poziom stanu klienta za pośrednictwem protokołu DHCPv6, dopóki nie zostanie powiązany z adresem lub wystąpi błąd. W tym czasie aplikacja czeka na ukończenie protokołu, a także na ukończenie wykrywania zduplikowanych adresów (TCP, Duplicate Address Detection), jeśli wystąpienie adresu IP jest skonfigurowane dla protokołu SSL (jest to konfiguracja domyślna).
 
-Po wywołaniu tx_thread_sleep aplikacja sprawdza parametry globalne ustawione w wywołaniu zmiany stanu, aby określić powodzenie zadania klienta DHCPv6 do przydzielenia dzierżawy IPv6, a jeśli tak, to w przypadku zaistnienia nieprawidłowej kontroli. Odbywa się to przy użyciu liczników skonfigurowanych w funkcjach wywołania zwrotne zmiany stanu i błąd serwera. Aplikacja sonduje dla niezerowych liczników address_not_assigned, address_expired i server_errors dla przypisywania adresów zakończonych niepowodzeniem. Jeśli liczba bound_addresses jest różna od zera (co najmniej jeden adres został pomyślnie przypisany), sprawdza, czy nie ma address_failed_dad niezerowego dla niepowodzenia. Wyjaśnienie zmiany stanu i wywołania zwrotnego błędów serwera:
+Po wywołaniu usługi tx_thread_sleep aplikacja sprawdza parametry globalne ustawione w wywołaniu zwrotym zmiany stanu w celu określenia powodzenia zadania klienta DHCPv6 w celu przypisania dzierżawy IPv6, a jeśli tak, sprawdzanie STANU STANU pod uwagę unikatowości zakończyło się pomyślnie. Odbywa się to przy użyciu liczników ustawionych w funkcjach zmiany stanu i wywołania zwrotnego błędów serwera. Aplikacja sonduje liczbę niezerowych wartości address_not_assigned, address_expired i server_errors dla przypisania adresu, które zakończyło się niepowodzeniem. Jeśli liczba adresów bound_addresses jest równa niezerowa (co najmniej jeden adres został pomyślnie przypisany), sprawdza, czy nie ma wartości address_failed_dad sprawdzania ZGODNOŚCI z niepowodzeniem. Wyjaśnienie zmiany stanu i wywołania zwrotne błędów serwera są następujące:
 
-Wywołanie zwrotne zmiany stanu, *dhcpv6_state_change_notify*, poprzedni i bieżący stan klienta DHCPv6 aby określić, czy klient otrzymał prawidłowe odpowiedzi serwera:
+Wywołanie zwrotne zmiany stanu, *dhcpv6_state_change_notify*, poprzedniego i bieżącego stanu klienta DHCPv6, aby określić, czy klient odebrał prawidłowe odpowiedzi serwera:
 
-  - *dhcpv6_state_change_notify* sprawdza przejścia bezpośrednio z żądania do init, a więc zwiększa licznik dla klienta DHCPv6 nie otrzymuje odpowiedzi z serwera.
+  - *dhcpv6_state_change_notify* sprawdza przejścia bezpośrednio z SOLICIT do INIT, a jeśli tak, zwiększa licznik dla klienta DHCPv6 nie otrzymuje odpowiedzi z serwera.
 
-Następna *dhcpv6_state_change_notify* sprawdza, czy klient został przypisany (powiązany) do co najmniej jednego adresu IPv6:
+Następnie *dhcpv6_state_change_notify,* czy klient został przypisany (powiązany) do co najmniej jednego adresu IPv6:
 
-  - Jeśli nowy stan jest powiązany, zwiększa on licznik adresów powiązanych z klientem.
+  - Jeśli nowy stan ma wartość BOUND, zwiększa licznik adresów powiązanych z klientem.
     
-*Dhcpv6_state_change_notify* sprawdza także, czy nie zakończyło się niepowodzeniem:
+Ten *dhcpv6_state_change_notify* sprawdza również, czy sprawdzanie NIE powiodło się:
 
-  - W przypadku przejścia stanu z odrzucania do INICJACJi klient DHCPv6 nie zakończył niepowodzenia sprawdzenia na jednym z przypisanych adresów i zwiększa liczbę przypisań adresów zakończonych niepowodzeniem.
+  - Jeśli stan przechodzi z ODRZUĆ do INIT, klient DHCPv6 nie może sprawdzić ZAŚWIADCZEŃ NA jednym z jego przypisanych adresów i zwiększa liczbę nieudanych przypisań adresów.
     
-Ostatnim sprawdzaniem przez *dhcpv6_state_change_notify* w tym przykładzie jest dla pomyślnie przypisanego adresu, który przeszedł do niepowodzenia odnowienia lub ponownego powiązania niepowodzeniem:
+Ostatnim sprawdzeniem przez *dhcpv6_state_change_notify* w tym przykładzie jest pomyślne przypisanie adresu, który przeszedł sprawdzenie THE NIE można odnowić lub ponownie powiązywał:
 
-  - Jeśli stan zmieni się z rebind na INIT, klient nie otrzymał żadnych odpowiedzi na żądania ODNOWIENIa lub ponownego powiązania, a *dhcpv6_state_change_notify* zwiększa liczbę wygasłych adresów.
+  - Jeśli stan zmieni się z REBIND na INIT, klient nie otrzyma żadnych odpowiedzi  na żądania RENEW lub REBIND i dhcpv6_state_change_notify zwiększa liczbę wygasłych adresów.
 
-*Dhcpv6_server_error_handler* w przypadku powiadomienia przez zadanie klienta DHCPv6 o stanie błędu otrzymanego z serwera zwiększa liczbę błędów serwera.
+Serwer *dhcpv6_server_error_handler,* jeśli zostanie powiadomiony przez zadanie klienta DHCPv6 o stanie błędu odebranym z serwera, zwiększa liczbę błędów serwera.
 
-Przy założeniu, że wszystko przebiega prawidłowo, aplikacja wysyła zapytanie do klienta DHCPv6 o dane adresowe, w tym czasy dzierżawy. Pobiera liczbę prawidłowych adresów (przypisanych pomyślnie) przez wywołanie usługi *nx_dhcpv6_get_valid_ip_address_count* i czasu odnowienia w organizacji IANA (dotyczy wszystkich przypisanych adresów IA) przez wywołanie *nx_dhcpv6_get_iana_lease_time* w wierszach 372-392. Następnie wysyła zapytanie do klienta DHCPv6 dla każdej z opcji IA dla adresów IPv6 i czas dzierżawy według indeksu adresu.
+Przy założeniu, że wszystko działa dobrze, aplikacja wysyła do klienta DHCPv6 zapytanie o dane adresów, w tym czasy dzierżawy. Pobiera liczbę prawidłowych (pomyślnie przypisanych) adresów, wywołując usługę *nx_dhcpv6_get_valid_ip_address_count i* czas odnowienia w usłudze IANA (dotyczy wszystkich przypisanych adresów IA), wywołując usługę *nx_dhcpv6_get_iana_lease_time* w wierszach 372–392. Następnie wysyła do klienta DHCPv6 zapytanie o każdą z opcji IA dla adresu IPv6 i czasów dzierżawy według indeksu adresów.
 
-Niektóre usługi klienta DHCPv6 (*nx_dhcpv6_get_lease_time_data, nx_dhcpv6_get_IP_address*) nie wymagają indeksu adresu jako danych wejściowych i zwracają parametry protokołu DHCPv6 dla globalnego adresu klienta. Jest to odpowiednie dla klientów z jednym globalnym adresem IPv6, gdy wywołuje *nx_dhcpv6_get_valid_ip_address_lease_time* w wierszu 384.
+Niektóre usługi klienta DHCPv6 *(nx_dhcpv6_get_lease_time_data, nx_dhcpv6_get_IP_address*) nie wymagają indeksu adresów jako danych wejściowych i zwracają parametry DHCPv6 dla podstawowego globalnego adresu klienta. Jest to odpowiednie dla klientów z jednym globalnym adresem IPv6 podczas nx_dhcpv6_get_valid_ip_address_lease_time *w* wierszu 384.
 
-Konfiguracja klienta DHCPv6 NX_DHCPV6_CLIENT_RESTORE_STATE, t umożliwia systemowi przywrócenie wcześniej utworzonego klienta DHCPv6 w stanie związanym między ponownym uruchomieniem systemu. Wywołanie *nx_dhcpv6_client_get_record* , aby uzyskać rekord klienta DHCPv6 między ponownymi uruchomieniami systemu w wierszu 434, wywołując *nx_dhcpv6_client_restore_record* do przechowywania rekordu klienta DHCPv6 po włączeniu systemu w wierszu 525.
+Konfiguracja klienta DHCPv6, NX_DHCPV6_CLIENT_RESTORE_STATE, nie umożliwia systemowi przywrócenia wcześniej utworzonego klienta DHCPv6 w stanie powiązana między ponownym uruchomieniem systemu. Wywołanie  nx_dhcpv6_client_get_record w celu uzyskania rekordu klienta DHCPv6 między ponownym uruchomieniem  systemu w wierszu 434, wywołując nx_dhcpv6_client_restore_record do przechowywania rekordu klienta DHCPv6 po uruchomieniu systemu w wierszu 525.
 
-Następnie aplikacja zwalnia przypisane adresy przy użyciu usługi *nx_dhcpv6_request_release* w wierszu 552. Aby ponownie uruchomić aplikację, program zatrzyma klienta DHCPv6 z usługą *nx_dhcpv6_client_stop* w wierszu 567 i czyści wszystkie adresy IPv6 zarejestrowane z wystąpieniem IP skonfigurowanym Throughthe klienta DHCPv6. Robi to przez wywołanie *nx_dhcpv6_reinitialize* w wierszu 578. Następnie ponownie uruchamia zadanie klienta DHCPv6 z usługami *nx_dhcpv6_start* i *nx_dhcpv6_request_solicit* tak jak wcześniej.
+Następnie aplikacja zwalnia przypisane adresy przy użyciu usługi *nx_dhcpv6_request_release* w wierszu 552. Ponowne uruchomienie aplikacji powoduje zatrzymanie klienta DHCPv6 z usługą *nx_dhcpv6_client_stop* w wierszu 567 i wyczyszczenie wszystkich adresów IPv6 zarejestrowanych w wystąpieniu adresu IP skonfigurowanym za pośrednictwem klienta DHCPv6. Robi to, wywołując *nx_dhcpv6_reinitialize* wierszu 578. Następnie ponownie uruchamia zadanie klienta DHCPv6 z usługami *nx_dhcpv6_start* i *nx_dhcpv6_request_solicit* tak jak wcześniej.
 
-Klient DHCPv6 został usunięty z wywołaniem *nx_dhcpv6_delete* w line626. Należy pamiętać, że nie usuwa tej puli pakietów *e* utworzonej dla klienta DHCPv6, ponieważ ta pula pakietów jest również używana przez wystąpienie protokołu IP. W przeciwnym razie należy usunąć pulę pakietów, jeśli nie będzie ona już używana do korzystania z usługi NetX Duo *nx_packet_pool_delete* .
+Klient DHCPv6 jest usuwany z wywołaniem nx_dhcpv6_delete *w* wierszu 626. Należy pamiętać, że pula pakietów utworzona dla klienta DHCPv6 nie jest usuwana, ponieważ ta pula pakietów jest również używana przez wystąpienie adresu IP. W przeciwnym razie należy usunąć pulę pakietów, jeśli nie ma do tego dalszego użycia za pomocą usługi NetX Duo *nx_packet_pool_delete* service.
 
 ```C
 /* This is a small demo of the NetX Duo DHCPv6 Client for the high-performance NetX Duo stack. */

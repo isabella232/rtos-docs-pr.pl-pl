@@ -1,59 +1,59 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z protokołu FTP
+title: Rozdział 2 — Instalacja i korzystanie z protokołu FTP
 description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfigurowaniem i użyciem usług FTP NetX Duo.
 author: philmea
 ms.author: philmea
 ms.date: 07/14/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: ac58658af93f59556d99d340ae38570908d63fc1
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: bef7dcce9354e6653dd92c5a47a29d120268faeb4a30b4d146c9e10d2d69084e
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821882"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790228"
 ---
-# <a name="chapter-2---installation-and-use-of-ftp"></a>Rozdział 2 — Instalowanie i korzystanie z protokołu FTP
+# <a name="chapter-2---installation-and-use-of-ftp"></a>Rozdział 2 — Instalacja i korzystanie z protokołu FTP
 
 Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfigurowaniem i użyciem usług FTP NetX Duo.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Usługa FTP NetX Duo jest dostępna pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera dwa pliki źródłowe i plik PDF, który zawiera ten dokument, w następujący sposób:
+Protokół FTP NetX Duo jest dostępny pod witrynie [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera dwa pliki źródłowe i plik PDF zawierający ten dokument w następujący sposób:
 
-- **nxd_ftp_client. h** Plik nagłówka dla klienta FTP NetX Duo
-- **nxd_ftp_client. c** Plik źródłowy języka C dla klienta FTP NetX Duo
-- **nxd_ftp_server. h** Plik nagłówka dla serwera FTP NetX Duo
-- **nxd_ftp_server. c** Plik źródłowy C dla serwera FTP NetX Duo
-- **filex_stub. h** Plik zastępczy, jeśli nie istnieje FileX
-- **nxd_ftp.pdf** Opis pliku PDF protokołu FTP dla NetX Duo
-- **demo_netxduo_ftp. c** System demonstracyjny FTP
+- **nxd_ftp_client.h** Plik nagłówkowy klienta FTP NetX Duo
+- **nxd_ftp_client.c** Plik źródłowy języka C dla klienta FTP NetX Duo
+- **nxd_ftp_server.h** Plik nagłówkowy serwera FTP NetX Duo
+- **nxd_ftp_server.c** Plik źródłowy języka C dla serwera FTP NetX Duo
+- **filex_stub.h** Plik wycinki, jeśli plik FileX nie istnieje
+- **nxd_ftp.pdf** Opis w formacie PDF protokołu FTP dla netx duo
+- **demo_netxduo_ftp.c** Pokazowy system FTP
 
-## <a name="netx-duo-ftp-installation"></a>Instalacja usługi FTP NetX Duo
+## <a name="netx-duo-ftp-installation"></a>Instalacja protokołu FTP w programie NetX Duo
 
-Aby można było używać interfejsu API FTP NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowany w katalogu "*\threadx\arm7\green*", wówczas *nxd_ftp_client. h* i *nxd_ftp_client. c* powinny zostać skopiowane do tego katalogu dla aplikacji klienckich FTP, a pliki *nxd_ftp_server. h* i *nxd_ftp_server. c* powinny zostać skopiowane do tego katalogu dla aplikacji serwera FTP.
+Aby można było korzystać z interfejsu API FTP NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX Duo. Jeśli na przykład netx Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* pliki *nxd_ftp_client.h* i *nxd_ftp_client.c* powinny zostać skopiowane do tego katalogu dla aplikacji klienckich FTP, a pliki *nxd_ftp_server.h* i *nxd_ftp_server.c* powinny zostać skopiowane do tego katalogu dla aplikacji serwera FTP.
 
-## <a name="using-netx-duo-ftp"></a>Korzystanie z protokołu FTP w NetX Duo
+## <a name="using-netx-duo-ftp"></a>Korzystanie z protokołu FTP NetX Duo
 
-Korzystanie z interfejsu API FTP NetX Duo jest proste. W zasadzie kod aplikacji musi zawierać *nxd_ftp_client. h* dla aplikacji klienckich ftp lub *Nxd_ftp_server* dla aplikacji serwera FTP, po uwzględnieniu *tx_api. h, fx_api. h* i *nx_api. h*, w celu używania odpowiednio ThreadX, FileX i NetX Duo. Projekt kompilacji musi zawierać kod źródłowy FTP i plik aplikacji hosta oraz oczywiście pliki biblioteki ThreadX i NetX. To wszystko, co jest wymagane do korzystania z usługi FTP NetX Duo.
+Korzystanie z interfejsu API FTP NetX Duo jest łatwe. Zasadniczo kod aplikacji musi zawierać plik *nxd_ftp_client.h* dla aplikacji klienckich FTP lub plik *nxd_ftp_server dla* aplikacji serwera FTP, po dołączyć pliki *tx_api.h, fx_api.h* i *nx_api.h,* aby można było używać odpowiednio threadX, FileX i NetX Duo. Projekt kompilacji musi zawierać kod źródłowy FTP i plik aplikacji hosta oraz oczywiście pliki bibliotek ThreadX i NetX. To wszystko, co jest wymagane do korzystania z protokołu FTP NetX Duo.
 
-Należy pamiętać, że ponieważ FTP wykorzystuje usługi TCP NetX Duo, należy włączyć protokół TCP z wywołaniem *nx_tcp_enable* przed użyciem protokołu FTP.
+Należy pamiętać, że ze względu na to, że protokół FTP korzysta z usług TCP NetX Duo, protokół TCP musi być włączony nx_tcp_enable *połączenia* przed użyciem protokołu FTP.
 
-Należy pamiętać, że w przypadku protokołu IPv6 można włączyć bibliotekę NetX Duo i nadal obsługiwać sieci IPv4. Jednak NetX Duo nie obsługuje protokołu IPv6, chyba że jest włączony. Aby wyłączyć przetwarzanie IPv6 w NetX Duo, **NX_DISABLE_IPV6** musi być zdefiniowana w pliku *nx_user. h* , a plik musi być uwzględniony w kompilacji biblioteki NetX Duo przez zdefiniowanie **NX_INCLUDE_USER_DEFINE_FILE** w pliku *nx_port. h* . Domyślnie **NX_DISABLE_IPV6** nie jest zdefiniowana (protokół IPv6 jest włączony). Różni się to od usługi *nxd_ipv6_enable* , która konfiguruje protokoły i usługi IPv6 w zadaniu IP, i wymaga, aby **NX_DISABLE_IPV6** nie były zdefiniowane.
+Pamiętaj, że bibliotekę NetX Duo można włączyć dla protokołu IPv6 i nadal obsługiwać sieci IPv4. Jednak NetX Duo nie może obsługiwać protokołu IPv6, chyba że jest włączony. Aby wyłączyć przetwarzanie protokołu IPv6  w programie NetX Duo, NX_DISABLE_IPV6 musi być zdefiniowany w pliku *nx_user.h,* a ten  plik musi zostać uwzględniony w kompilacji biblioteki NetX Duo przez zdefiniowanie NX_INCLUDE_USER_DEFINE_FILE w pliku *nx_port.h.* Domyślnie nie **NX_DISABLE_IPV6** zdefiniowany (protokół IPv6 jest włączony). Różni się to od *usługi nxd_ipv6_enable,* która konfiguruje protokoły i usługi IPv6 w zadaniu adresu IP i NX_DISABLE_IPV6 nie musi być zdefiniowana. 
 
-## <a name="small-example-system-of-netx-duo-ftp"></a>Mały przykładowy system z NetX Duo FTP
+## <a name="small-example-system-of-netx-duo-ftp"></a>Mały przykładowy system protokołu FTP NetX Duo
 
-Przykładem łatwego użycia protokołu FTP w NetX Duo jest opisany poniżej rysunek 1,1. W tym przykładzie tworzone są zarówno serwer FTP, jak i klient FTP. W związku z tym pliki FTP dołączane *nxd_ftp_client. h i nxd_ftp_server. h są* wprowadzane w wierszu 10 i 11. Następnie serwer FTP jest tworzony w lokalizacji "*tx_application_define*" w wierszu 99. Należy pamiętać, że bloki kontroli serwera FTP i klienta są zdefiniowane jako zmienne globalne w wierszu 26.
+Przykład łatwego korzystania z protokołu FTP NetX Duo opisano na rysunku 1.1, który znajduje się poniżej. W tym przykładzie tworzone są zarówno serwer FTP, jak i klient FTP. W związku z tym oba pliki *FTP nxd_ftp_client.h i nxd_ftp_server.h są* dostępne w wierszach 10 i 11. Następnie serwer FTP jest tworzony w ciągu "*tx_application_define*" w wierszu 99. Należy pamiętać, że bloki sterowania serwer FTP i klient są zdefiniowane jako zmienne globalne w wierszu 26 wcześniej.
 
-Ten pokaz pokazuje, jak używać funkcji Duo dostępnych w programie NetX Duo FTP oraz starszych usług FTP z ograniczonym protokołem IPv4. Aby korzystać z funkcji IPv6, demonstracja definiuje USE_IPV6 w wierszu 16
+W tym pokazie pokazano, jak używać funkcji duo dostępnych w protokole FTP NetX Duo, a także starszych ograniczonych usług FTP IPv4. Aby użyć funkcji IPv6, pokaz definiuje USE_IPV6 wierszu 16
 
-W wierszu 162 serwer FTP jest tworzony przy użyciu wartości ***nxd_ftp_server_create** _, jeśli aplikacja hosta definiuje USE_IPV6, która obsługuje protokoły IPv4 i IPv6. Jeśli tak nie jest, serwer FTP jest tworzony przy użyciu _ *_nx_ftp_server_create_** w wierszu 166 przy użyciu usługi ograniczonej adresów IPv4. Należy pamiętać, że funkcja "Duo" używa różnych argumentów funkcji logowania i wylogowywania niż usługa IPv4, które są zdefiniowane w dolnej części pliku w wierszach 534-568.
+W wierszu 162 serwer FTP jest tworzony za pomocą funkcji ***nxd_ftp_server_create** _, jeśli aplikacja hosta definiuje USE_IPV6 która obsługuje protokoły IPv4 i IPv6. Jeśli tak nie jest, serwer FTP jest tworzony z _ *_nx_ftp_server_create_** w wierszu 166 z ograniczoną usługą IPv4. Pamiętaj, że funkcja "duo" używa innych argumentów funkcji logowania i wylogowania niż usługa IPv4, które są zdefiniowane w dolnej części pliku w wierszach 534-568.
 
-Serwer FTP musi następnie ustanowić swój adres IPv6 (Global i link lokalny) z NetX Duo, zaczynając od wiersza 466 w funkcji wprowadzania wątku serwera FTP. Następnie serwer FTP jest uruchamiany w wierszu 518 i jest gotowy do żądań klientów FTP.
+Serwer FTP musi następnie ustanowić swój adres IPv6 (globalny i link lokalny) za pomocą netX Duo, zaczynając od wiersza 466 w funkcji wątków serwera FTP. Serwer FTP jest następnie uruchomiony w wierszu 518 i jest gotowy do obsługi żądań klientów FTP.
 
-Klient FTP jest tworzony w wierszu 316 i przechodzi przez ten sam proces co serwer FTP, aby uzyskać włączony protokół IPv6 klienta FTP, a jego adresy IPv6 zostały zweryfikowane od wierszy 263-313.
+Klient FTP jest tworzony w wierszu 316 i przechodzi przez ten sam proces co serwer FTP, aby włączyć zadanie IPv6 klienta FTP i jego adresy IPv6 zweryfikowane, począwszy od wierszy 263-313.
 
-Następnie klient nawiązuje połączenie z serwerem FTP przy użyciu programu ***nxd_ftp_client_connect** _ w wierszu 334, jeśli ma zdefiniowany USE_IPV6 lub wiersz 340, jeśli używa usługi ograniczonej przez IPv4 _ *_nx_ftp_client_connect_* *. W trakcie działania funkcji wątek klienta FTP program zapisuje plik na serwerze FTP i odczytuje go z powrotem przed rozłączeniem.
+Następnie klient łączy się z serwerem FTP przy użyciu ciągu ***nxd_ftp_client_connect** _ w wierszu 334, jeśli zdefiniowano wartość USE_IPV6, lub 340, jeśli korzysta z ograniczonej usługi IPv4 __*_ nx_ftp_client_connect **. W ramach funkcji wątku klienta FTP zapisuje plik na serwerze FTP i odczytuje go z powrotem przed rozłączeniem.
 
 ```C
 /* This is a small demo of NetX FTP on the high-performance NetX TCP/IP stack.  This demo
@@ -639,30 +639,30 @@ UINT  server_logout(struct NX_FTP_SERVER_STRUCT *ftp_server_ptr, ULONG client_ip
 #endif  /* USE_IPV6 */
 ```
 
-**Rysunek 1,1 przykład usługi FTP NetX Duo**
+**Rysunek 1.1 Przykład protokołu FTP NetX Duo**
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Istnieje kilka opcji konfiguracji do tworzenia NetX FTP i NetX Duo. Wartości domyślne są wyświetlane, ale każda definicja może być ustawiona przez
+Istnieje kilka opcji konfiguracji tworzenia protokołu NETX FTP i NetX Duo FTP. Zostaną wyświetlone wartości domyślne, ale każdą definicję można ustawić za pomocą
 
-Aplikacja przed włączeniem określonego pliku nagłówka FTP NetX Duo. Jeśli plik nagłówka nie zostanie określony, opcja jest dostępna zarówno w *nxd_ftp_client. h, jak i nxd_ftp_server. h*. Poniższa lista zawiera szczegółowy opis:
+przed dodaniem określonego pliku nagłówkowego FTP NetX Duo. Jeśli nie określono pliku nagłówkowego, opcja jest dostępna zarówno w *plikach nxd_ftp_client.h, jak i nxd_ftp_server.h.* Na poniższej liście szczegółowo opisano poszczególne z nich:
 
-- **NX_FTP_SERVER_PRIORITY** Priorytet wątku serwera FTP. Domyślnie ta wartość jest definiowana jako 16, aby określić priorytet 16.
-- **NX_FTP_MAX_CLIENTS** Maksymalna liczba klientów, które serwer może obsłużyć jednocześnie. Domyślnie ta wartość to 4 do obsługi 4 klientów jednocześnie.
-- **NX_FTP_SERVER_MIN_PACKET_PAYLOAD** Minimalny rozmiar ładunku puli pakietów serwera w bajtach, w tym nagłówki protokołu TCP, adresu IP i ramki sieciowej oraz dane protokołu HTTP. Wartość domyślna to 256 (maksymalna długość nazwy pliku w FileX) + 12 bajtów w celu uzyskania informacji o pliku i NX_PHYSICAL_TRAILER.
-- **NX_FTP_SERVER_TIMEOUT** Określa liczbę ThreadXych taktów, dla których będą zawieszane usługi wewnętrzne. Wartość domyślna to 1 sekunda (1 * NX_IP_PERIODIC_RATE).
-- **NX_FTP_ACTIVITY_TIMEOUT** Określa liczbę sekund utrzymywania połączenia z klientem w przypadku braku aktywności. Wartość domyślna to 240.
-- **NX_FTP_TIMEOUT_PERIOD** Określa interwały (w sekundach), po których serwer sprawdza aktywność klienta. Wartość domyślna to 60.
-- **NX_FTP_SERVER_RETRY_SECONDS** Określa początkowy limit czasu (w sekundach) przed ponownym przesłaniem odpowiedzi serwera. Wartość domyślna to 2.
-- **NX_FTP_SERVER_TRANSMIT_QUEUE_DEPTH** Określa maksymalną głębokość pakietów transmisji umieszczonych w kolejce w gnieździe serwera. Wartość domyślna to 20.
+- **NX_FTP_SERVER_PRIORITY** Priorytet wątku serwera FTP. Domyślnie ta wartość jest zdefiniowana jako 16, aby określić priorytet 16.
+- **NX_FTP_MAX_CLIENTS** Maksymalna liczba klientów obsługiwanych przez serwer w tym samym czasie. Domyślnie ta wartość to 4 w celu obsługi 4 klientów jednocześnie.
+- **NX_FTP_SERVER_MIN_PACKET_PAYLOAD** Minimalny rozmiar ładunku puli pakietów serwera w bajtach, w tym nagłówków TCP, IP i ramek sieciowych oraz danych HTTP. Wartość domyślna to 256 (maksymalna długość nazwy pliku w pliku FileX) + 12 bajtów dla informacji o pliku i NX_PHYSICAL_TRAILER.
+- **NX_FTP_SERVER_TIMEOUT** Określa liczbę znaczników ThreadX, dla których usługi wewnętrzne będą wstrzymywane. Wartość domyślna to 1 sekunda (1 * NX_IP_PERIODIC_RATE).
+- **NX_FTP_ACTIVITY_TIMEOUT** Określa liczbę sekund, przez które połączenie klienta jest utrzymywane, jeśli nie ma żadnej aktywności. Wartość domyślna to 240.
+- **NX_FTP_TIMEOUT_PERIOD** Określa interwały w sekundach, gdy serwer sprawdza aktywność klienta. Wartość domyślna to 60.
+- **NX_FTP_SERVER_RETRY_SECONDS** Określa początkowy limit czasu w sekundach przed retransmisją odpowiedzi serwera. Wartość domyślna to 2.
+- **NX_FTP_SERVER_TRANSMIT_QUEUE_DEPTH** Określa maksymalną głębokość pakietów przesyłanych w kolejce na gnieździe serwera. Wartość domyślna to 20.
 - **NX_FTP_SERVER_RETRY_MAX** Określa maksymalną liczbę ponownych prób na pakiet. Wartość domyślna to 10.
-- **NX_FTP_SERVER_RETRY_SHIFT** Określa liczbę bitów do zmiany podczas ustawiania limitu czasu ponawiania. Wartość domyślna to 2, np. Każdy limit czasu ponawiania jest dwa razy dłuższy niż poprzednia próba.
-- **NX_FTP_NO_FILEX** Zdefiniowana, ta opcja udostępnia element zastępczy dla zależności FileX. Klient FTP będzie działać bez żadnej zmiany, jeśli ta opcja jest zdefiniowana. Należy zmodyfikować serwer FTP lub użytkownik będzie musiał utworzyć kilku usługi FileX, aby działać prawidłowo.
-- **NX_FTP_CONTROL_TOS** Typ usługi wymagany dla żądań kontroli FTP. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL w celu wskazania normalnej usługi pakietów IP.
-- **NX_FTP_DATA_TOS** Typ usługi wymagany dla żądań danych FTP. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL w celu wskazania normalnej usługi pakietów IP.
-- **NX_FTP_FRAGMENT_OPTION** Włączono fragment dla żądań FTP. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć funkcję fragmentacji TCP FTP.
-- **NX_FTP_CONTROL_WINDOW_SIZE** Rozmiar okna gniazda kontroli TCP. Wartość domyślna to 400 bajtów.
-- **NX_FTP_DATA_WINDOW_SIZE** Rozmiar okna gniazda danych TCP. Wartość domyślna to 2048 bajtów.
-- **NX_FTP_TIME_TO_LIVE** Określa liczbę routerów, które ten pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
-- **NX_FTP_USERNAME_SIZE** Określa liczbę bajtów dozwolonych w *nazwie użytkownika* dostarczonej przez klienta. Wartość domyślna to 20 *.*
-- **NX_FTP_PASSWORD_SIZE** Określa liczbę bajtów dozwolonych w *haśle* dostarczonym przez klienta. Wartość domyślna to 20.
+- **NX_FTP_SERVER_RETRY_SHIFT** Określa liczbę bitów, które mają być przesunięte w ustawieniu limitu czasu ponawiania. Wartość domyślna to 2, np. limit czasu ponawiania jest dwa razy dłuższy niż poprzednie ponawianie.
+- **NX_FTP_NO_FILEX** Zdefiniowano, ta opcja udostępnia wycinki dla zależności FileX. Klient FTP będzie działać bez żadnych zmian, jeśli ta opcja jest zdefiniowana. Serwer FTP musi zostać zmodyfikowany lub użytkownik będzie musiał utworzyć kilka usług FileX, aby działać prawidłowo.
+- **NX_FTP_CONTROL_TOS** Typ usługi wymagany dla żądań sterowania FTP. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL, aby wskazać normalną usługę pakietów IP.
+- **NX_FTP_DATA_TOS** Typ usługi wymagany dla żądań danych FTP. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL, aby wskazać normalną usługę pakietów IP.
+- **NX_FTP_FRAGMENT_OPTION** Włącz fragment dla żądań FTP. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć fragmentowanie TCP protokołu FTP.
+- **NX_FTP_CONTROL_WINDOW_SIZE** Rozmiar okna gniazda sterowania TCP. Domyślnie ta wartość to 400 bajtów.
+- **NX_FTP_DATA_WINDOW_SIZE** Rozmiar okna gniazda danych TCP. Domyślnie ta wartość to 2048 bajtów.
+- **NX_FTP_TIME_TO_LIVE** Określa liczbę routerów, które pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
+- **NX_FTP_USERNAME_SIZE** Określa dozwoloną liczbę bajtów w podanej przez klienta nazwie *użytkownika*. Wartość domyślna to 20 *.*
+- **NX_FTP_PASSWORD_SIZE** Określa liczbę bajtów dozwolonych w hasłach podanych przez *klienta*. Wartość domyślna to 20.

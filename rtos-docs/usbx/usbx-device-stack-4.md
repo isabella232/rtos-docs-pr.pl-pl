@@ -1,23 +1,23 @@
 ---
-title: Rozdział 4 — Opis usług urządzenia USBX
-description: Dowiedz się więcej na temat usług urządzenia USBX.
+title: Rozdział 4 — Opis usług urządzeń USBX
+description: Dowiedz się więcej o usługach urządzeń USBX.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: d4aea7470ba2d9075296164b9d1fb61db4f88523
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 9d88d9bd177a251a00fec6757fc1f1494b56bab9655a55f973481f273f0683ee
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104824042"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116797555"
 ---
-# <a name="description-of-usbx-device-services"></a>Opis usług urządzenia USBX
+# <a name="description-of-usbx-device-services"></a>Opis usług urządzeń USBX
 
 ### <a name="ux_device_stack_alternate_setting_get"></a>ux_device_stack_alternate_setting_get
 
-Pobierz bieżące ustawienie alternatywne dla wartości interfejsu
+Uzyskiwanie bieżącego alternatywnego ustawienia dla wartości interfejsu
 
 ### <a name="prototype"></a>Prototype
 
@@ -27,16 +27,16 @@ UINT ux_device_stack_alternate_setting_get(ULONG interface_value);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest używana przez hosta USB do uzyskiwania bieżącego alternatywnego ustawienia dla określonej wartości interfejsu. Jest on wywoływany przez sterownik kontrolera po odebraniu żądania **GET_INTERFACE** .
+Ta funkcja jest używana przez hosta USB w celu uzyskania bieżącego alternatywnego ustawienia dla określonej wartości interfejsu. Jest on wywoływany przez sterownik kontrolera po **GET_INTERFACE** żądania.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **Interface_value** Wartość interfejsu, dla którego jest wysyłane zapytanie do bieżącego ustawienia alternatywnego
+- **Interface_value** Wartość interfejsu, dla której jest wyszukiwane bieżące alternatywne ustawienie
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) transfer danych został ukończony.
-- **UX_ERROR** (0Xff) Nieprawidłowa wartość interfejsu.
+- **UX_SUCCESS** (0x00) Transfer danych został ukończony.
+- **UX_ERROR** (0xFF) Nieprawidłowa wartość interfejsu.
 
 ### <a name="example"></a>Przykład
 
@@ -52,7 +52,7 @@ status = ux_device_stack_alternate_setting_get(interface_value);
 
 ### <a name="ux_device_stack_alternate_setting_set"></a>ux_device_stack_alternate_setting_set
 
-Ustaw bieżące ustawienie alternatywne dla wartości interfejsu
+Ustawianie bieżącego alternatywnego ustawienia dla wartości interfejsu
 
 ### <a name="prototype"></a>Prototype
 
@@ -64,21 +64,21 @@ UINT ux_device_stack_alternate_setting_set(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest używana przez hosta USB do ustawiania bieżącego alternatywnego ustawienia dla określonej wartości interfejsu. Jest on wywoływany przez sterownik kontrolera po odebraniu żądania **SET_INTERFACE** . Po zakończeniu **SET_INTERFACE** wartości ustawień alternatywnych są stosowane do klasy.
+Ta funkcja jest używana przez hosta USB do ustawiania bieżącego alternatywnego ustawienia dla określonej wartości interfejsu. Jest on wywoływany przez sterownik kontrolera po **SET_INTERFACE** żądania. Po **SET_INTERFACE,** wartości alternatywnych ustawień są stosowane do klasy.
 
-Stos urządzeń będzie wystawiał **UX_SLAVE_CLASS_COMMAND_CHANGE** do klasy, która jest właścicielem tego interfejsu w celu odzwierciedlenia zmiany ustawienia alternatywnego.
+Stos urządzeń wyemifikuje **UX_SLAVE_CLASS_COMMAND_CHANGE** do klasy, która jest właścicielem tego interfejsu, aby odzwierciedlić zmianę ustawienia alternatywnego.
 
 ### <a name="parameters"></a>Parametry
 
-- **interface_value**: wartość interfejsu, dla którego ustawiono bieżące ustawienie alternatywne.
-- **alternate_setting_value**: Nowa wartość ustawienia alternatywnego.
+- **interface_value:** wartość interfejsu, dla której ustawiono bieżące alternatywne ustawienie.
+- **alternate_setting_value:** nowa wartość ustawienia alternatywnego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) transfer danych został ukończony.
-- **UX_INTERFACE_HANDLE_UNKNOWN** (0X52) brak dołączonego interfejsu.
-- Urządzenie **UX_FUNCTION_NOT_SUPPORTED** (0x54) nie jest skonfigurowane.
-- **UX_ERROR** (0Xff) Nieprawidłowa wartość interfejsu.
+- **UX_SUCCESS** (0x00) Transfer danych został ukończony.
+- **UX_INTERFACE_HANDLE_UNKNOWN** (0x52) Brak dołączonego interfejsu.
+- **UX_FUNCTION_NOT_SUPPORTED** (0x54) Urządzenie nie jest skonfigurowane.
+- **UX_ERROR** (0xFF) Nieprawidłowa wartość interfejsu.
 
 ### <a name="example"></a>Przykład
 
@@ -110,26 +110,26 @@ UINT ux_device_stack_class_register(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest używana przez aplikację do zarejestrowania nowej klasy urządzenia USB. Ta rejestracja uruchamia kontener klasy, a nie wystąpienie klasy. Klasa powinna mieć aktywny wątek i być dołączona do określonego interfejsu.
+Ta funkcja jest używana przez aplikację do rejestrowania nowej klasy urządzeń USB. Ta rejestracja uruchamia kontener klasy, a nie wystąpienie klasy. Klasa powinna mieć aktywny wątek i być dołączona do określonego interfejsu.
 
-Niektóre klasy oczekują parametru lub listy parametrów. Na przykład Klasa magazynu urządzenia powinna oczekiwać geometrii urządzenia magazynującego, które próbuje emulować. W związku z tym pole parametru jest zależne od wymaganej klasy i może być wartością lub wskaźnikiem do struktury wypełnionej wartościami klasy.
+Niektóre klasy oczekują parametru lub listy parametrów. Na przykład klasa magazynu urządzeń oczekuje geometrii urządzenia magazynującego, które próbuje emulować. Pole parametru jest w związku z tym zależne od wymagania klasy i może być wartością lub wskaźnikiem do struktury wypełnionej wartościami klasy.
 
 > [!NOTE]
-> Ciąg C class_name musi być zakończony zerem i długością (bez samego terminatora NULL) nie może być większy niż **UX_MAX_CLASS_NAME_LENGTH**.
+> Ciąg ciągu języka C class_name być zakończony wartością NULL, a jego długość (bez samego terminatora NULL) nie może być większa **niż UX_MAX_CLASS_NAME_LENGTH**.
 
 ### <a name="parameters"></a>Parametry
 
 - **class_name** Nazwa klasy
-- **class_entry_function** Funkcja wejścia klasy.
-- **configuration_number** Numer konfiguracji, do której jest dołączona Ta klasa.
-- **interface_number** Numer interfejsu, do którego jest dołączona Ta klasa.
+- **class_entry_function** Funkcja entry klasy .
+- **configuration_number** Numer konfiguracji, do który jest dołączona ta klasa.
+- **interface_number** Numer interfejsu, do który jest dołączona ta klasa.
 - **parametr** Wskaźnik do listy parametrów specyficznych dla klasy.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) Klasa została zarejestrowana
-- **UX_MEMORY_INSUFFICIENT** (0X12) nie pozostało wpisów w tabeli klas.
-- **UX_THREAD_ERROR** (0X16) nie może utworzyć wątku klasy.
+- **UX_SUCCESS** (0x00) Zarejestrowano klasę
+- **UX_MEMORY_INSUFFICIENT** (0x12) Brak wpisów w tabeli klas.
+- **UX_THREAD_ERROR** (0x16) Nie można utworzyć wątku klasy.
 
 ### <a name="example"></a>Przykład
 
@@ -145,7 +145,7 @@ status = ux_device_stack_class_register(_ux_system_slave_class_storage_name ux_d
 
 ### <a name="ux_device_stack_class_unregister"></a>ux_device_stack_class_unregister
 
-Wyrejestrowywanie klasy urządzenia USB
+Wyrejestruj klasę urządzenia USB
 
 ### <a name="prototype"></a>Prototype
 
@@ -157,19 +157,19 @@ UINT ux_device_stack_class_unregister(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest używana przez aplikację do wyrejestrowywania klasy urządzenia USB.
+Ta funkcja jest używana przez aplikację do wyrejestrniania klasy urządzenia USB.
 
 > [!NOTE]
-> Ciąg C class_name musi być zakończony zerem i długością (bez samego terminatora NULL) nie może być większy niż **UX_MAX_CLASS_NAME_LENGTH**.
+> Ciąg ciągu języka C class_name być zakończony wartością NULL, a jego długość (bez samego terminatora NULL) nie może być większa **niż UX_MAX_CLASS_NAME_LENGTH**.
 
 ### <a name="parameters"></a>Parametry
 
-- **class_name**: Nazwa klasy
-- **class_entry_function**: funkcja wejścia klasy.
+- **class_name:** Nazwa klasy
+- **class_entry_function:** funkcja entry klasy .
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) wyrejestrowano klasę.
+- **UX_SUCCESS** (0x00) Klasa została wyrejestrowana.
 - **UX_NO_CLASS_MATCH** (0x57) Klasa nie jest zarejestrowana.
 
 ### <a name="example"></a>Przykład
@@ -195,7 +195,7 @@ UINT ux_device_stack_configuration_get(VOID);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest używana przez hosta w celu uzyskania bieżącej konfiguracji uruchomionej na urządzeniu.
+Ta funkcja jest używana przez hosta do uzyskiwania bieżącej konfiguracji uruchomionej na urządzeniu.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
@@ -203,7 +203,7 @@ Brak
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- **UX_SUCCESS** (0x00) transfer danych został ukończony.
+- **UX_SUCCESS** (0x00) Transfer danych został ukończony.
 
 ### <a name="example"></a>Przykład
 
@@ -218,7 +218,7 @@ status = ux_device_stack_configuration_get();
 
 ### <a name="ux_device_stack_configuration_set"></a>ux_device_stack_configuration_set
 
-Ustaw bieżącą konfigurację
+Ustawianie bieżącej konfiguracji
 
 ### <a name="prototype"></a>Prototype
 
@@ -228,7 +228,7 @@ UINT ux_device_stack_configuration_set(ULONG configuration_value);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest używana przez hosta do ustawiania bieżącej konfiguracji działającej na urządzeniu. Po odebraniu tego polecenia stos urządzeń USB uaktywni ustawienie alternatywny 0 każdego interfejsu połączonego z tą konfiguracją.
+Ta funkcja jest używana przez hosta do ustawienia bieżącej konfiguracji uruchomionej na urządzeniu. Po otrzymaniu tego polecenia stos urządzenia USB aktywuje alternatywne ustawienie 0 każdego interfejsu podłączonego do tej konfiguracji.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
@@ -236,7 +236,7 @@ Ta funkcja jest używana przez hosta do ustawiania bieżącej konfiguracji dzia�
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- **UX_SUCCESS** (0x00) konfiguracja została pomyślnie ustawiona.
+- **UX_SUCCESS** (0x00) Konfiguracja została pomyślnie ustawiona.
 
 ### <a name="example"></a>Przykład
 
@@ -252,7 +252,7 @@ status = ux_device_stack_configuration_set(configuration_value);
 
 ### <a name="ux_device_stack_descriptor_send"></a>ux_device_stack_descriptor_send
 
-Wyślij deskryptor do hosta
+Wysyłanie deskryptora do hosta
 
 ### <a name="prototype"></a>Prototype
 
@@ -265,23 +265,23 @@ UINT ux_device_stack_descriptor_send(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest używana przez stronę urządzenia do zwrócenia deskryptora do hosta. Ten deskryptor może być deskryptorem urządzenia, deskryptorem konfiguracji lub deskryptorem ciągu.
+Ta funkcja jest używana przez stronę urządzenia w celu zwrócenia deskryptora do hosta. Ten deskryptor może być deskryptorem urządzenia, deskryptorem konfiguracji lub deskryptorem ciągu.
 
 ### <a name="parameters"></a>Parametry
 
-- **descriptor_type**: typ deskryptora. Musi mieć jedną z następujących wartości.
+- **descriptor_type:** typ deskryptora. Musi mieć jedną z następujących wartości.
   - **UX_DEVICE_DESCRIPTOR_ITEM**
   - **UX_CONFIGURATION_DESCRIPTOR_ITEM**
   - **UX_STRING_DESCRIPTOR_ITEM**
   - **UX_DEVICE_QUALIFIER_DESCRIPTOR_ITEM**
   - **UX_OTHER_SPEED_DESCRIPTOR_ITEM**
-- **request_index**: indeks deskryptora.
-- **host_length**: długość wymagana przez hosta.
+- **request_index:** indeks deskryptora.
+- **host_length:** długość wymagana przez hosta.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) transfer danych został ukończony.
-- **UX_ERROR** (0xFF) transfer nie został ukończony.
+- **UX_SUCCESS** (0x00) Zakończono transfer danych.
+- **UX_ERROR** (0xFF) Transfer nie został ukończony.
 
 ### <a name="example"></a>Przykład
 
@@ -299,7 +299,7 @@ status = ux_device_stack_descriptor_send(descriptor_type, request_index, host_le
 
 ### <a name="ux_device_stack_disconnect"></a>ux_device_stack_disconnect
 
-Odłącz stos urządzeń
+Rozłącz stos urządzeń
 
 ### <a name="prototype"></a>Prototype
 
@@ -309,7 +309,7 @@ UINT ux_device_stack_disconnect(VOID);
 
 ### <a name="description"></a>Opis
 
-Menedżer VBUS wywołuje tę funkcję w przypadku odłączenia urządzenia. Stos urządzeń będzie powiadamiał wszystkie klasy zarejestrowane na tym urządzeniu i następnie zwolni wszystkie zasoby urządzenia.
+Menedżer VBUS wywołuje tę funkcję w przypadku rozłączenia urządzenia. Stos urządzenia poinformuje wszystkie klasy zarejestrowane na tym urządzeniu i zwolni wszystkie zasoby urządzenia.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
@@ -317,7 +317,7 @@ Brak
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- **UX_SUCCESS** (0x00) urządzenie zostało rozłączone.
+- **UX_SUCCESS** (0x00) Urządzenie zostało odłączone.
 
 ### <a name="example"></a>Przykład
 
@@ -332,7 +332,7 @@ status = ux_device_stack_disconnect();
 
 ### <a name="ux_device_stack_endpoint_stall"></a>ux_device_stack_endpoint_stall
 
-Warunek zatrzymania punktu końcowego żądania
+Warunek wstrzymania punktu końcowego żądania
 
 ### <a name="prototype"></a>Prototype
 
@@ -342,16 +342,16 @@ UINT ux_device_stack_endpoint_stall(UX_SLAVE_ENDPOINT*endpoint);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana przez klasę urządzenia USB, gdy punkt końcowy powinien zwrócić warunek parkingowy do hosta.
+Ta funkcja jest wywoływana przez klasę urządzenia USB, gdy punkt końcowy powinien zwrócić warunek wsadu do hosta.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **punkt końcowy** Punkt końcowy, dla którego zażądano warunku parkingowego.
+- **punkt końcowy** Punkt końcowy, w którym żądany jest warunek Zatrzymaj.
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- **UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.
-- **UX_ERROR** (0xFF) urządzenie jest w nieprawidłowym stanie.
+- **UX_SUCCESS** (0x00) Ta operacja powiodła się.
+- **UX_ERROR** (0xFF) Urządzenie jest w nieprawidłowym stanie.
 
 ### <a name="example"></a>Przykład
 
@@ -366,7 +366,7 @@ status = ux_device_stack_endpoint_stall(endpoint);
 
 ### <a name="ux_device_stack_host_wakeup"></a>ux_device_stack_host_wakeup
 
-Wznawianie działania hosta
+Wznawianie hosta
 
 ### <a name="prototype"></a>Prototype
 
@@ -376,7 +376,7 @@ UINT ux_device_stack_host_wakeup(VOID);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana, gdy urządzenie chce wznowić działanie hosta. To polecenie jest prawidłowe tylko wtedy, gdy urządzenie jest w trybie wstrzymania. Aby określić, kiedy ma wznowić hosta USB, należy do aplikacji urządzenia. Na przykład modem USB może wznowić Host po wykryciu sygnału PIERŚCIENIowego w linii telefonicznej.
+Ta funkcja jest wywoływana, gdy urządzenie chce wznowić działanie hosta. To polecenie jest prawidłowe tylko wtedy, gdy urządzenie jest w trybie wstrzymania. To aplikacja urządzenia decyduje o tym, kiedy chce wznowić hosta USB. Na przykład modem USB może wznowić hosta po wykryciu sygnału RING na linii telefonicznej.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
@@ -384,8 +384,8 @@ Brak
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- **UX_SUCCESS** (0x00) wywołanie zakończyło się pomyślnie.
-- **UX_FUNCTION_NOT_SUPPORTED** (0x54) wywołanie nie powiodło się (urządzenie prawdopodobnie nie jest w trybie zawieszenia).
+- **UX_SUCCESS** (0x00) Wywołanie powiodło się.
+- **UX_FUNCTION_NOT_SUPPORTED** (0x54) Wywołanie nie powiodło się (urządzenie prawdopodobnie nie było w trybie zawieszonym).
 
 ### <a name="example"></a>Przykład
 
@@ -400,7 +400,7 @@ status = ux_device_stack_host_wakeup();
 
 ### <a name="ux_device_stack_initialize"></a>ux_device_stack_initialize
 
-Zainicjuj stos urządzeń USB
+Inicjowanie stosu urządzenia USB
 
 ### <a name="prototype"></a>Prototype
 
@@ -419,25 +419,25 @@ UINT ux_device_stack_initialize(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana przez aplikację w celu zainicjowania stosu urządzeń USB. Nie inicjuje żadnych klas ani żadnych kontrolerów. Należy to zrobić z oddzielnymi wywołaniami funkcji. To wywołanie głównie zapewnia stos z platformą urządzenia dla funkcji USB. Obsługuje zarówno wysoką, jak i pełną szybkość, z możliwością posiadania całkowicie oddzielnej struktury urządzenia dla każdej szybkości. Obsługiwane są struktury ciągów i wiele języków.
+Ta funkcja jest wywoływana przez aplikację w celu zainicjowania stosu urządzenia USB. Nie inicjuje żadnych klas ani żadnych kontrolerów. Należy to zrobić przy użyciu oddzielnych wywołań funkcji. To wywołanie głównie zapewnia stos z platformą urządzenia dla funkcji USB. Obsługuje zarówno wysoką, jak i pełną szybkość, z możliwością uzyskania całkowicie oddzielnej struktury urządzeń dla każdej szybkości. Obsługiwane są struktury ciągów i wiele języków.
 
 ### <a name="parameters"></a>Parametry
 
-- **device_framework_high_speed**: wskaźnik do struktury o dużej szybkości.
-- **device_framework_length_high_speed**: długość platformy o dużej szybkości.
-- **device_framework_full_speed**: wskaźnik do struktury pełnej prędkości.
-- **device_framework_length_full_speed**: długość struktury pełnej prędkości.
-- **string_framework**: wskaźnik do struktury String.
-- **string_framework_length**: długość struktury ciągu.
-- **language_id_framework**: wskaźnik do struktury języka ciągu.
-- **language_id_framework_length**: długość struktury języka String.
-- **ux_system_slave_change_function**: funkcja, która ma być wywoływana w przypadku zmiany stanu urządzenia.
+- **device_framework_high_speed:** Wskaźnik do struktury o dużej szybkości.
+- **device_framework_length_high_speed:** długość struktury o dużej szybkości.
+- **device_framework_full_speed:** Wskaźnik do struktury o pełnej szybkości.
+- **device_framework_length_full_speed:** długość struktury o pełnej szybkości.
+- **string_framework:** Wskaźnik do struktury ciągów.
+- **string_framework_length:** długość struktury ciągów.
+- **language_id_framework:** Wskaźnik do struktury języka ciągów.
+- **language_id_framework_length:** długość struktury języka ciągów.
+- **ux_system_slave_change_function:** funkcja wywoływana po zmianie stanu urządzenia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.
-- **UX_MEMORY_INSUFFICIENT** (0x12) za mało pamięci, aby zainicjować stos.
-- **UX_DESCRIPTOR_CORRUPTED** (0x42) deskryptor jest nieprawidłowy.
+- **UX_SUCCESS** (0x00) Ta operacja powiodła się.
+- **UX_MEMORY_INSUFFICIENT** (0x12) Za mało pamięci do zainicjowania stosu.
+- **UX_DESCRIPTOR_CORRUPTED** (0x42) Deskryptor jest nieprawidłowy.
 
 ### <a name="example"></a>Przykład
 
@@ -527,12 +527,12 @@ UCHAR language_id_framework[] = {
 };
 ```
 
-Aplikacja może zażądać wywołania zwrotnego, gdy kontroler zmieni swój stan. Dwa główne Stany kontrolera to:
+Aplikacja może zażądać wywołania, gdy kontroler zmieni swój stan. Dwa główne stany kontrolera to:
 
 - **UX_DEVICE_SUSPENDED**
 - **UX_DEVICE_RESUMED**
 
-Jeśli aplikacja nie wymaga sygnałów wstrzymywania/wznawiania, może dostarczyć funkcję UX_NULL.
+Jeśli aplikacja nie potrzebuje sygnałów Wstrzymaj/Wznów, będzie dostarczać UX_NULL funkcji.
 
 ```c
 UINT status;
@@ -560,15 +560,15 @@ UINT ux_device_stack_interface_delete(UX_SLAVE_INTERFACE*interface);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana, gdy interfejs powinien zostać usunięty. Interfejs jest usuwany podczas wyodrębniania urządzenia lub po zresetowaniu magistrali lub gdy jest dostępne nowe ustawienie alternatywne.
+Ta funkcja jest wywoływana, gdy należy usunąć interfejs. Interfejs jest usuwany, gdy urządzenie jest wyodrębnione, po zresetowaniu magistrali lub gdy istnieje nowe ustawienie alternatywne.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **interfejs**: wskaźnik do interfejsu, który ma zostać usunięty.
+- **interface**: wskaźnik do interfejsu do usunięcia.
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- **UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.
+- **UX_SUCCESS** (0x00) Ta operacja powiodła się.
 
 ### <a name="example"></a>Przykład
 
@@ -583,7 +583,7 @@ status = ux_device_stack_interface_delete(interface);
 
 ### <a name="ux_device_stack_interface_get"></a>ux_device_stack_interface_get
 
-Pobierz bieżącą wartość interfejsu
+Uzyskiwanie bieżącej wartości interfejsu
 
 ### <a name="prototype"></a>Prototype
 
@@ -593,10 +593,10 @@ UINT ux_device_stack_interface_get(UINT interface_value);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana, gdy Host wysyła zapytanie do bieżącego interfejsu. Urządzenie zwraca bieżącą wartość interfejsu.
+Ta funkcja jest wywoływana, gdy host wysyła zapytanie do bieżącego interfejsu. Urządzenie zwraca bieżącą wartość interfejsu.
 
 > [!NOTE]
-> Ta funkcja jest przestarzała. Jest on dostępny dla starszego oprogramowania, ale zamiast tego należy użyć funkcji ***ux_device_stack_alternate_setting_get*** .
+> Ta funkcja jest przestarzała. Jest ona dostępna dla starszego oprogramowania, ale nowe oprogramowanie powinno używać ***ux_device_stack_alternate_setting_get*** zamiast tego.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
@@ -604,8 +604,8 @@ Ta funkcja jest wywoływana, gdy Host wysyła zapytanie do bieżącego interfejs
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.
-- **UX_ERROR** (0Xff) nie istnieje interfejs.
+- **UX_SUCCESS** (0x00) Ta operacja powiodła się.
+- **UX_ERROR** (0xFF) Interfejs nie istnieje.
 
 ### <a name="example"></a>Przykład
 
@@ -622,7 +622,7 @@ status = ux_device_stack_interface_get(interface_value);
 
 ### <a name="ux_device_stack_interface_set"></a>ux_device_stack_interface_set
 
-Zmiana alternatywnego ustawienia interfejsu
+Zmienianie alternatywnego ustawienia interfejsu
 
 ### <a name="prototype"></a>Prototype
 
@@ -635,18 +635,18 @@ UINT ux_device_stack_interface_set(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana, gdy host żąda zmiany ustawienia alternatywnego dla interfejsu.
+Ta funkcja jest wywoływana, gdy host żąda zmiany alternatywnego ustawienia interfejsu.
 
 ### <a name="parameters"></a>Parametry
 
-- **device_framework**: adres platformy urządzenia dla tego interfejsu.
-- **device_framework_length**: długość platformy urządzeń.
-- **alternate_setting_value**: wartość ustawienia alternatywnego, która ma być używana przez ten interfejs.
+- **device_framework:** adres struktury urządzeń dla tego interfejsu.
+- **device_framework_length:** długość struktury urządzenia.
+- **alternate_setting_value:** wartość ustawienia alternatywnego, która ma być używana przez ten interfejs.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.
-- **UX_ERROR** (0Xff) nie istnieje interfejs.
+- **UX_SUCCESS** (0x00) Ta operacja powiodła się.
+- **UX_ERROR** (0xFF) Interfejs nie istnieje.
 
 ### <a name="example"></a>Przykład
 
@@ -665,7 +665,7 @@ status = ux_device_stack_interface_set(device_framework,
 
 ### <a name="ux_device_stack_interface_start"></a>ux_device_stack_interface_start
 
-Rozpocznij wyszukiwanie klasy jako należącej do wystąpienia interfejsu
+Rozpocznij wyszukiwanie klasy, która ma być właścicielem wystąpienia interfejsu
 
 ### <a name="prototype"></a>Prototype
 
@@ -675,16 +675,16 @@ UINT ux_device_stack_interface_start(UX_SLAVE_INTERFACE*interface);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana, gdy interfejs został wybrany przez hosta, a stos urządzenia musi wyszukać klasę urządzenia, aby było to wystąpienie tego interfejsu.
+Ta funkcja jest wywoływana, gdy interfejs został wybrany przez hosta, a stos urządzenia musi wyszukać klasę urządzenia, aby być właścicielem tego wystąpienia interfejsu.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **interfejs**: wskaźnik do utworzonego interfejsu.
+- **interface**: wskaźnik do utworzonego interfejsu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.
-- **UX_NO_CLASS_MATCH** (0X57) nie istnieje Klasa dla tego interfejsu.
+- **UX_SUCCESS** (0x00) Ta operacja powiodła się.
+- **UX_NO_CLASS_MATCH** (0x57) Dla tego interfejsu nie istnieje żadna klasa.
 
 ### <a name="example"></a>Przykład
 
@@ -699,7 +699,7 @@ status = ux_device_stack_interface_start(interface);
 
 ### <a name="ux_device_stack_transfer_request"></a>ux_device_stack_transfer_request
 
-Żądanie przeniesienia danych do hosta
+Żądanie transferu danych do hosta
 
 ### <a name="prototype"></a>Prototype
 
@@ -712,19 +712,19 @@ UINT ux_device_stack_transfer_request(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana, gdy Klasa lub stos chce przesłać dane do hosta. Host zawsze sonduje urządzenie, ale urządzenie może z wyprzedzeniem przygotować dane.
+Ta funkcja jest wywoływana, gdy klasa lub stos chce przesłać dane do hosta. Host zawsze sonduje urządzenie, ale urządzenie może przygotować dane z wyprzedzeniem.
 
 ### <a name="parameters"></a>Parametry
 
-- **transfer_request**: wskaźnik do żądania transferu.
-- **slave_length**: długość urządzenia chce zwrócić.
-- **host_length**: długość żądania hosta.
+- **transfer_request:** Wskaźnik do żądania przeniesienia.
+- **slave_length:** długość urządzenia, która ma zostać zwrócona.
+- **host_length:** długość żądana przez hosta.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.
-- **UX_TRANSFER_NOT_READY** (0x25) urządzenie jest w nieprawidłowym stanie; należy ją **dołączyć**, **skonfigurować** lub **rozwiązać**.
-- Błąd transportu **UX_ERROR** (0xFF).
+- **UX_SUCCESS** (0x00) Ta operacja powiodła się.
+- **UX_TRANSFER_NOT_READY** (0x25) Urządzenie jest w nieprawidłowym stanie; Musi być **DOŁĄCZONY,** **SKONFIGUROWANY** lub **ADRESOWANY**.
+- **UX_ERROR** (0xFF) transport.
 
 ### <a name="example"></a>Przykład
 
@@ -771,16 +771,16 @@ UINT ux_device_stack_transfer_abort(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana, gdy aplikacja musi anulować żądanie transferu lub kiedy stos musi przerwać żądanie transferu skojarzone z punktem końcowym.
+Ta funkcja jest wywoływana, gdy aplikacja musi anulować żądanie przeniesienia lub gdy stos musi przerwać żądanie przeniesienia skojarzone z punktem końcowym.
 
 ### <a name="parameters"></a>Parametry
 
-- **transfer_request**: wskaźnik do żądania transferu.
-- **completion_code**: kod błędu do zwrócenia do klasy oczekującej na ukończenie tego żądania transferu.
+- **transfer_request:** Wskaźnik do żądania przeniesienia.
+- **completion_code:** Kod błędu, który ma zostać zwrócony do klasy oczekującej na ukończenie żądania przeniesienia.
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- **UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.
+- **UX_SUCCESS** (0x00) Ta operacja powiodła się.
 
 ### <a name="example"></a>Przykład
 
@@ -796,7 +796,7 @@ status = ux_device_stack_transfer_abort(transfer_request, UX_TRANSFER_BUS_RESET)
 
 ### <a name="ux_device_stack_uninitialize"></a>ux_device_stack_uninitialize
 
-Stos Unitialize
+Unitialize stack
 
 ### <a name="prototype"></a>Prototype
 
@@ -806,7 +806,7 @@ UINT ux_device_stack_uninitialize();
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana, gdy aplikacja wymaga unitialize stosu urządzeń USBX — wszystkie zasoby stosu urządzeń są zwolnione. Ta nazwa powinna być wywoływana po wyrejestrowaniu wszystkich klas za pośrednictwem ux_device_stack_class_unregister.
+Ta funkcja jest wywoływana, gdy aplikacja musi jednolicieć stos urządzeń USBX — wszystkie zasoby stosu urządzenia są wolne. Ta nazwa powinna być wywoływana po wyrejestrowyniu wszystkich klas za pośrednictwem ux_device_stack_class_unregister.
 
 ### <a name="parameters"></a>Parametry
 
@@ -814,4 +814,4 @@ Brak
 
 ### <a name="return-value"></a>Wartość zwracana
 
-**UX_SUCCESS** (0X00) ta operacja zakończyła się pomyślnie.
+**UX_SUCCESS** (0x00) Ta operacja powiodła się.

@@ -1,20 +1,20 @@
 ---
-title: Dodatek D — kody znaków ASCII platformy Azure RTO
-description: Kody znaków ASCII w formacie SZESNASTKOWym
+title: Dodatek D — Azure RTOS kodów znaków ASCII
+description: Kody znaków ASCII w hex
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: d819014e0b79c76a7bd7b37eafef7c35e9b07c47
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 4a55e4eaf815a264587a1a0b739eb486025ac7d8c17b027de0711ff514159bca
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821336"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116802020"
 ---
-# <a name="appendix-d---azure-rtos-ascii-character-codes"></a>Dodatek D — kody znaków ASCII platformy Azure RTO
+# <a name="appendix-d---azure-rtos-ascii-character-codes"></a>Dodatek D — Azure RTOS kodów znaków ASCII
 
-## <a name="ascii-character-codes-in-hex"></a>Kody znaków ASCII w formacie SZESNASTKOWym
+## <a name="ascii-character-codes-in-hex"></a>Kody znaków ASCII w hex
 
-![Kody znaków ASCII w formacie SZESNASTKOWym](media/image12.png)
+![Kody znaków ASCII w hex](media/image12.png)

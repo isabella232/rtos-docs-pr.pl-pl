@@ -1,51 +1,51 @@
-- name: Dokumentacja usługi Azure RTO TraceX
+- name: Azure RTOS TraceX
   href: index.yml
-- name: Przegląd TraceX
+- name: Omówienie traceX
   href: overview-tracex.md
-- name: Podręcznik użytkownika TraceX
+- name: Podręcznik użytkownika traceX
   expanded: true
   items:
     - name: O tym przewodniku
       href: about-this-guide.md
-    - name: Ch. 1 — wprowadzenie do TraceX
+    - name: Ch. 1 — Wprowadzenie do traceX
       href: chapter1.md
-    - name: Ch. 2 — Instalowanie i korzystanie z TraceX
+    - name: Ch. 2 — Instalowanie i używanie traceX
       href: chapter2.md
-    - name: Ch. 3 — Opis TraceX
+    - name: Ch. 3 — Opis traceX
       href: chapter3.md
-    - name: Ch. 4 — Analiza wydajności TraceX
+    - name: Ch. 4 — Analiza wydajności traceX
       href: chapter4.md
-    - name: Ch. 5 — generowanie buforów śledzenia
+    - name: Ch. 5 — Generowanie buforów śledzenia
       href: chapter5.md
-    - name: Ch. 6-ThreadX zdarzenia śledzenia
+    - name: Ch. 6 — Zdarzenia śledzenia ThreadX
       href: chapter6.md
-    - name: Ch. 7 — zdarzenia śledzenia FileX
+    - name: Ch. 7 — Zdarzenia śledzenia pliku FileX
       href: chapter7.md
-    - name: Ch. 8-NetX zdarzeń śledzenia
+    - name: Ch. 8 — Zdarzenia śledzenia NetX
       href: chapter8.md
-    - name: Ch. 9-USBX zdarzenia śledzenia
+    - name: Ch. 9 — Zdarzenia śledzenia USBX
       href: chapter9.md
-    - name: Ch. 10 — zdarzenia użytkownika dla klientów
+    - name: Ch. 10 — Zdarzenia użytkownika klienta
       href: chapter10.md
-    - name: Ch. 11-format buforu śledzenia zdarzeń
+    - name: Ch. 11 — Format buforu śledzenia zdarzeń
       href: chapter11.md
-    - name: Aplikacje. A-przykład tx_port. h
+    - name: App. A — przykładowy tx_port.h
       href: appendix-a.md
-    - name: Aplikacje. B — plik tx_trace. h
+    - name: App. B — plik tx_trace.h
       href: appendix-b.md
-    - name: Aplikacje. Narzędzia wiersza polecenia języka C-DOS
+    - name: App. C — narzędzia wiersza polecenia dos
       href: appendix-c.md
-    - name: Aplikacje. D-zrzucanie i bufor śledzenia
+    - name: App. D — bufor zrzucania i śledzenia
       href: appendix-d.md
-- name: Pobierz TraceX
+- name: Pobieranie pliku TraceX
   href: 'https://aka.ms/azrtos-tracex-installer'
 - name: Powiązane usługi
   items:
-    - name: Defender for IoT — RTO (wersja zapoznawcza)
+    - name: Defender dla IoT — RTOS (wersja zapoznawcza)
       href: 'https://docs.microsoft.com/azure/defender-for-iot/iot-security-azure-rtos'
-- name: Microsoft Azure składniki RTO
+- name: Microsoft Azure Składniki RTOS
   items:
-    - name: Microsoft Azure RTO
+    - name: Microsoft Azure Rtos
       href: ../index.yml
     - name: ThreadX
       href: ../threadx/index.yml
@@ -57,7 +57,7 @@
       href: ../netx/index.yml
     - name: GUIX
       href: ../guix/index.yml
-    - name: FileX
+    - name: PlikX
       href: ../filex/index.yml
     - name: LevelX
       href: ../levelx/index.yml

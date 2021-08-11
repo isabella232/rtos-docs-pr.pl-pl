@@ -1,31 +1,31 @@
 ### YamlMime:Landing
-title: Dokumentacja usługi Azure RTO NetX
-summary: Azure RTO NetX to implementacja standardów protokołów TCP/IP o wysokiej wydajności, w pełni zintegrowana z usługą Azure RTO ThreadX i dostępna dla wszystkich obsługiwanych procesorów.
+title: Azure RTOS NetX
+summary: Azure RTOS NetX to implementacja standardów protokołu TCP/IP o wysokiej wydajności, w pełni zintegrowana z Azure RTOS ThreadX i dostępna dla wszystkich obsługiwanych procesorów.
 metadata:
-  title: Co to jest Azure RTO NetX?
-  description: Azure RTO NetX to implementacja standardów protokołów TCP/IP o wysokiej wydajności, w pełni zintegrowana z usługą Azure RTO ThreadX i dostępna dla wszystkich obsługiwanych procesorów.
+  title: Co to jest Azure RTOS NetX?
+  description: Azure RTOS NetX to implementacja standardów protokołu TCP/IP o wysokiej wydajności, w pełni zintegrowana z Azure RTOS ThreadX i dostępna dla wszystkich obsługiwanych procesorów.
   services: rtos
   ms.service: rtos
   ms.topic: landing-page
   author: philmea
   ms.author: philmea
   ms.date: 5/19/2020
-  ms.openlocfilehash: e8af2831320e21bd0e3a197125f97991b14125b8
-  ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+  ms.openlocfilehash: 12603de514cb5a63b7ea793a36e0cb29a4f4b76c16272a7d07a6ca769617fc81
+  ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
   ms.translationtype: MT
   ms.contentlocale: pl-PL
-  ms.lasthandoff: 03/22/2021
-  ms.locfileid: "104797863"
+  ms.lasthandoff: 08/07/2021
+  ms.locfileid: "116801992"
 landingContent:
-- title: Wprowadzenie do usługi Azure RTO NetX
+- title: Wprowadzenie do Azure RTOS NetX
   linkLists:
   - linkListType: overview
     links:
-    - text: Co to jest Azure RTO NetX?
+    - text: Co to jest Azure RTOS NetX?
       url: overview-netx.md
-- title: Wprowadzenie do usługi Azure RTO NetX
+- title: Wprowadzenie do Azure RTOS NetX
   linkLists:
   - linkListType: get-started
     links:
-    - text: Podręcznik użytkownika usługi Azure RTO NetX
+    - text: Azure RTOS użytkownika netx
       url: about-this-guide.md

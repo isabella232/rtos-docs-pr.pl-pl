@@ -1,19 +1,19 @@
 ---
-title: Dodatek — test CAVS NetX kryptograficznych usługi Azure RTO
-description: Test CAVS NetX kryptograficznych usługi Azure RTO
+title: Dodatek — Azure RTOS NetX Crypto CAVS test
+description: Azure RTOS NetX Crypto CAVS test
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 4a5d3e985833c4c1b6f3ad7287f7f419455477e0
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 934855b7fc84252d9c377388506e2984e393211ce86fc4d7feced839cdcc197c
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822735"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116796747"
 ---
-# <a name="appendix---azure-rtos-netx-crypto-cavs-test"></a>Dodatek — test CAVS NetX kryptograficznych usługi Azure RTO
+# <a name="appendix---azure-rtos-netx-crypto-cavs-test"></a>Dodatek — Azure RTOS NetX Crypto CAVS test
 
 ```
 NetX Crypto CAVS AES Test: CBCGFSbox128........................SUCCESS!
@@ -78,4 +78,4 @@ NetX Crypto CAVS ECDSA Test: SigVer............................SUCCESS!
 **** Testing Complete ****
 ```
 
-Test zakończony.
+Testowanie ukończone.

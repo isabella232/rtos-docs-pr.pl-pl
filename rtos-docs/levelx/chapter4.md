@@ -1,37 +1,37 @@
 ---
-title: Rozdział 4 — interfejsy API usługi Azure RTO LevelX ni
-description: Interfejsy API usługi Azure RTO LevelX ni dostępne dla aplikacji.
+title: Rozdział 4 — Azure RTOS API NAND LevelX
+description: Interfejsy AZURE RTOS NAND LevelX dostępne dla aplikacji.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 73bb94768396b4b8461791a164a102d1f8ef159f
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: d92b6c10921b4d04345610e139101e93c7a439ff695a89a79245894ad9ef1fec
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822968"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790286"
 ---
-# <a name="chapter-4---azure-rtos-levelx-nand-apis"></a>Rozdział 4 — interfejsy API usługi Azure RTO LevelX ni
+# <a name="chapter-4---azure-rtos-levelx-nand-apis"></a>Rozdział 4 — Azure RTOS API NAND LevelX
 
-Dostępne dla aplikacji interfejsy API platformy Azure RTO LevelX ni:
+Interfejsy API NAND Azure RTOS LevelX dostępne dla aplikacji to:
 
-- ***lx_nand_flash_close** _: _Close ni Flash *
-- ***lx_nand_flash_defragment** _: _Defragment ni Flash *
-- ***lx_nand_flash_extended_cache_enable** _: _Enable/Disable Extended ni cache *
-- ***lx_nand_flash_initialize** _: _Initialize ni lampy błyskowej *
-- ***lx_nand_flash_open** _: _Open ni Flash *
-- ***lx_nand_flash_page_ecc_check** _: Strona _Check dla błędów ECC z poprawką *
-- ***lx_nand_flash_page_ecc_compute** _: _Computes ECC dla strony *
-- ***lx_nand_flash_partial_defragment** _: _Partial defragmentacji wystąpienia ni Flash *
-- ***lx_nand_flash_sector_read** _: _Read ni Flash *
-- ***lx_nand_flash_sector_release** _: _Release ni Flash *
-- ***lx_nand_flash_sector_write** _: _Write ni Flash *
+- ***lx_nand_flash_close** _: _Close wystąpienia flash NAND*
+- ***lx_nand_flash_defragment** _: _Defragment wystąpienia flash NAND*
+- ***lx_nand_flash_extended_cache_enable** _: _Enable/wyłącz rozszerzoną pamięć podręczną NAND*
+- ***lx_nand_flash_initialize** _: _Initialize obsługi flash NAND*
+- ***lx_nand_flash_open** _: _Open wystąpienia flash NAND*
+- ***lx_nand_flash_page_ecc_check** _: _Check błędy ECC z poprawką*
+- ***lx_nand_flash_page_ecc_compute** _: _Computes ECC dla strony*
+- ***lx_nand_flash_partial_defragment** _: _Partial defragmentacji wystąpienia flash NAND*
+- ***lx_nand_flash_sector_read** _: _Read flash NAND*
+- ***lx_nand_flash_sector_release** _: _Release flash NAND*
+- ***lx_nand_flash_sector_write** _: _Write sektora flash NAND*
 
 ## <a name="lx_nand_flash_close"></a>lx_nand_flash_close
 
-Zamknij wystąpienie ni Flash
+Zamykanie wystąpienia flash NAND
 
 ### <a name="prototype"></a>Prototype
 
@@ -41,16 +41,16 @@ UINT lx_nand_flash_close(LX_NAND_FLASH *nand_flash);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zamyka poprzednio otwarte wystąpienie ni Flash.
+Ta usługa zamyka wcześniej otwarte wystąpienie flash NAND.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nand_flash**: wskaźnik wystąpienia Flash ni.
+- **nand_flash:** wskaźnik wystąpienia flash NAND.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd podczas zamykania wystąpienia Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd podczas zamykania wystąpienia flash.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -80,7 +80,7 @@ status = lx_nand_flash_close(&my_nand_flash);
 
 ## <a name="lx_nand_flash_defragment"></a>lx_nand_flash_defragment
 
-Defragmentacja wystąpienia programu ni Flash
+Defragmentacja wystąpienia flash NAND
 
 ### <a name="prototype"></a>Prototype
 
@@ -90,16 +90,16 @@ UINT lx_nand_flash_defragment(LX_NAND_FLASH *nand_flash);
 
 ### <a name="description"></a>Opis
 
-Ta usługa defragmentuje poprzednio otwarte wystąpienie ni Flash. Proces defragmentacji maksymalizuje liczbę bezpłatnych stron i bloków.
+Ta usługa defragmentuje wcześniej otwarte wystąpienie flash NAND. Proces defragmentacji maksymalizuje liczbę wolnych stron i bloków.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nand_flash**: wskaźnik wystąpienia Flash ni.
+- **nand_flash:** wskaźnik wystąpienia flash NAND.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd podczas defragmentowania wystąpienia Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd defragmentacji wystąpienia flash.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -129,7 +129,7 @@ status = lx_nand_flash_defragment(&my_nand_flash);
 
 ## <a name="lx_nand_flash_extended_cache_enable"></a>lx_nand_flash_extended_cache_enable
 
-Włącz/Wyłącz rozszerzoną pamięć podręczną ni
+Włączanie/wyłączanie rozszerzonej pamięci podręcznej NAND
 
 ### <a name="prototype"></a>Prototype
 
@@ -151,20 +151,20 @@ size (in_bytes) = number_of_blocks (rounded up to be divisible by 4) +
     ((number_of_blocks * (pages_per_block + 1)) * 4)
 ```
 
-Jeśli dostarczona pamięć nie jest wystarczająco duża, aby pomieścić pełną pamięć podręczną ni, ta procedura spowoduje włączenie tak dużej ilości pamięci podręcznej ni Flash, jak to możliwe, na podstawie dostarczonej pamięci.
+Jeśli dostarczona pamięć nie jest wystarczająco duża, aby pomieścić pełną pamięć podręczną NAND, ta procedura umożliwi jak najwięcej pamięci podręcznej flash NAND na podstawie dostarczonej pamięci.
 
-Pamięć podręczna ni jest wyłączona, jeśli określony adres pamięci ma wartość NULL. W związku z tym pamięć podręczna ni może być używana w sposób tymczasowy.
+Pamięć podręczna NAND jest wyłączona, jeśli określony adres pamięci ma wartość NULL. W związku z tym pamięć podręczna NAND może być używana w sposób tymczasowy.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nand_flash**: wskaźnik wystąpienia Flash ni.  
-- **pamięć**: adres początkowy dla pamięci podręcznej wyrównany do ULONG dostępu. Wartość LX_NULL powoduje wyłączenie pamięci podręcznej.  
-- **rozmiar**: rozmiar w bajtach dostarczonej pamięci.
+- **nand_flash:** wskaźnik wystąpienia flash NAND.  
+- **memory:** adres początkowy pamięci podręcznej wyrównany w celu uzyskania dostępu do programu ULONG. Wartość LX_NULL powoduje wyłączenie pamięci podręcznej.  
+- **rozmiar:** rozmiar w bajtach dostarczonej pamięci.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0x01) za mało pamięci dla jednego elementu pamięci podręcznej ni.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Za mało pamięci dla jednego elementu pamięci podręcznej NAND.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -195,7 +195,7 @@ status = lx_nand_flash_extended_cache_enable(&my_nand_flash,
 
 ## <a name="lx_nand_flash_initialize"></a>lx_nand_flash_initialize
 
-Inicjowanie obsługi ni Flash
+Inicjowanie obsługi flash NAND
 
 ### <a name="prototype"></a>Prototype
 
@@ -205,7 +205,7 @@ UINT lx_nand_flash_initialize(void);
 
 ### <a name="description"></a>Opis
 
-Ta usługa Inicjuje obsługę LevelX ni Flash. Musi być wywoływana przed innymi interfejsami API LevelX ni.
+Ta usługa inicjuje obsługę flash NAND LevelX. Musi być wywoływana przed innymi interfejsami API NAND LevelX.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -213,12 +213,12 @@ Ta usługa Inicjuje obsługę LevelX ni Flash. Musi być wywoływana przed innym
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd podczas inicjowania obsługi ni Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd podczas inicjowania obsługi pamięci flash NAND.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -244,7 +244,7 @@ status = lx_nand_flash_initialize();
 
 ## <a name="lx_nand_flash_open"></a>lx_nand_flash_open
 
-Otwórz wystąpienie ni Flash
+Otwieranie wystąpienia flash NAND
 
 ### <a name="prototype"></a>Prototype
 
@@ -257,19 +257,19 @@ UINT lx_nand_flash_open(
 
 ### <a name="description"></a>Opis
 
-Ta usługa otwiera wystąpienie ni Flash z określonym blokiem sterowania Flash ni i funkcją inicjowania sterownika. Należy pamiętać, że funkcja inicjowania sterownika jest odpowiedzialna za Instalowanie różnych wskaźników funkcji do odczytu, zapisu i wymazywania bloków/stron sprzętu ni skojarzonego z tym wystąpieniem programu ni Flash.
+Ta usługa otwiera wystąpienie flash NAND z określonym blokiem kontrolki flash NAND i funkcją inicjowania sterownika. Należy pamiętać, że funkcja inicjowania sterownika jest odpowiedzialna za instalowanie różnych wskaźników funkcji do odczytywania, zapisywania i wymazania bloków/stron sprzętu NAND skojarzonego z tym wystąpieniem flash NAND.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nand_flash**: wskaźnik wystąpienia Flash ni.
-- **name**: nazwa wystąpienia Flash ni.
-- **nand_driver_initialize**: wskaźnik funkcji do funkcji inicjowania sterownika Flash ni. Więcej informacji na temat obowiązków dotyczących sterownika ni można znaleźć w rozdziale 3 tego przewodnika.
+- **nand_flash:** wskaźnik wystąpienia flash NAND.
+- **name**: nazwa wystąpienia flash NAND.
+- **nand_driver_initialize:** wskaźnik funkcji do funkcji inicjowania sterownika flash NAND. Więcej informacji na temat obowiązków dotyczących sterowników flash NAND można znaleźć w rozdziale 3 tego przewodnika.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) wystąpił błąd podczas otwierania wystąpienia Flash ni.
-- **LX_NO_MEMORY**: (0X08) sterownik nie dostarczył buforu do odczytu jednej strony do pamięci RAM.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd podczas otwierania wystąpienia flash NAND.
+- **LX_NO_MEMORY:** sterownik (0x08) nie zapewnia buforu do odczytu jednej strony do pamięci RAM.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -300,7 +300,7 @@ status = lx_nand_flash_open(&my_nand_flash,"my nand flash",
 
 ## <a name="lx_nand_flash_page_ecc_check"></a>lx_nand_flash_page_ecc_check
 
-Sprawdź, czy na stronie błędów ECC zostały skorygowane
+Sprawdzanie strony pod błędami ECC z korektą
 
 ### <a name="prototype"></a>Prototype
 
@@ -313,19 +313,19 @@ UINT lx_nand_flash_page_ecc_check(
 
 ### <a name="description"></a>Opis
 
-Ta usługa weryfikuje integralność podanego buforu stronicowania ni przy użyciu dostarczonej ECC. Rozmiar strony (zdefiniowany w wskaźniku wystąpienia Flash ni) zakłada się, że jest wielokrotnością 256-bajtów, a dostarczony kod ECC jest w stanie skorygować 1 bit błędu w każdej części 256-bajtowej strony.
+Ta usługa weryfikuje integralność dostarczonego buforu strony NAND z dostarczonym ecc. Przyjmuje się, że rozmiar strony (zdefiniowany we wskaźniku wystąpienia flash NAND) jest wielokrotnością 256 bajtów, a dostarczony kod ECC może naprawić błąd 1-bitowy w każdej 256-bajtowej części strony.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nand_flash**: wskaźnik wystąpienia Flash ni.
-- **page_buffer**: wskaźnik do niego buforu strony Flash.
-- **ecc_buffer**: wskaźnik do strony ni na potrzeby technologii ECC. Należy zauważyć, że liczba bajtów ECC na 256 część strony wynosi 3.
+- **nand_flash:** wskaźnik wystąpienia flash NAND.
+- **page_buffer:** wskaźnik do buforu strony flash NAND.
+- **ecc_buffer:** wskaźnik do ECC dla strony flash NAND. Należy pamiętać, że strona zawiera 3 bajty ECC na 256-bajtową część strony.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0x00) Strona ni nie ma błędów.
-- **LX_NAND_ERROR_CORRECTED**: (0X06) co najmniej jeden błąd 1-bitowy został poprawiony na stronie ni — poprawki są w buforze strony.
-- **LX_NAND_ERROR_NOT_CORRECTED**: (0X07) zbyt wiele błędów do poprawienia na stronie ni.
+- **LX_SUCCESS:**(0x00) NAND nie ma błędów.
+- **LX_NAND_ERROR_CORRECTED:**(0x06) Co najmniej jeden błąd 1-bitowy został poprawiony na stronie NAND — poprawki znajdują się w buforze strony.
+- **LX_NAND_ERROR_NOT_CORRECTED:**(0x07) Zbyt wiele błędów do poprawienia na stronie NAND.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -355,7 +355,7 @@ status = lx_nand_flash_page_ecc_check(&my_nand_flash, page_pointer, ecc_pointer)
 
 ## <a name="lx_nand_flash_page_ecc_compute"></a>lx_nand_flash_page_ecc_compute
 
-Obliczenia ECC dla strony
+Obliczanie ecc dla strony
 
 ### <a name="prototype"></a>Prototype
 
@@ -368,18 +368,18 @@ UINT lx_nand_flash_page_ecc_compute(
 
 ### <a name="description"></a>Opis
 
-Ta usługa oblicza wartość ECC dostarczonego buforu stronicowania ni i zwraca wartość ECC w dostarczonym buforze ECC. Przyjmuje się, że rozmiar strony jest wielokrotnością 256-bajtów (zdefiniowaną w wskaźniku wystąpienia ni Flash). Kod ECC służy do weryfikowania integralności strony, gdy jest odczytywana w późniejszym czasie.
+Ta usługa oblicza ecc dostarczonego buforu strony NAND i zwraca ECC w dostarczonym buforze ECC. Przyjmuje się, że rozmiar strony ma wielokrotność 256 bajtów (zdefiniowanych we wskaźniku wystąpienia flash NAND). Kod ECC służy do weryfikowania integralności strony, gdy zostanie odczytana w późniejszym czasie.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nand_flash**: wskaźnik wystąpienia Flash ni.
-- **page_buffer**: wskaźnik do niego buforu strony Flash.
-- **ecc_buffer**: wskaźnik do miejsca docelowego dla ECC na stronie ni Flash. Należy pamiętać, że musi to być 3 bajty magazynu ECC na 256-bajtowej części strony. Na przykład strona 2048 bajtów będzie wymagała 24 bajtów dla ECC.
+- **nand_flash:** wskaźnik wystąpienia flash NAND.
+- **page_buffer:** wskaźnik do buforu strony flash NAND.
+- **ecc_buffer:** wskaźnik do miejsca docelowego ecc strony flash NAND. Należy pamiętać, że musi to być 3 bajty magazynu ECC na 256-bajtową część strony. Na przykład strona z 2048 bajtami wymagałaby 24 bajtów dla ecc.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0x00) pomyślnie obliczono ECC.
-- **LX_ERROR**: (0X01) błąd podczas obliczania ECC.
+- **LX_SUCCESS:**(0x00) ECC pomyślnie obliczona.
+- **LX_ERROR:**(0x01) Błąd podczas obliczania ECC.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -409,7 +409,7 @@ status = lx_nand_flash_page_ecc_compute(&my_nand_flash, page_pointer, ecc_pointe
 
 ## <a name="lx_nand_flash_partial_defragment"></a>lx_nand_flash_partial_defragment
 
-Częściowa defragmentacja wystąpienia programu ni Flash
+Częściowa defragmentacja wystąpienia flash NAND
 
 ### <a name="prototype"></a>Prototype
 
@@ -421,17 +421,17 @@ UINT lx_nand_flash_partial_defragment(
 
 ### <a name="description"></a>Opis
 
-Ta usługa defragmentuje poprzednio otwarte wystąpienie ni Flash do maksymalnej liczby określonych bloków. Proces defragmentacji maksymalizuje liczbę bezpłatnych stron i bloków.
+Ta usługa defragmentuje wcześniej otwarte wystąpienie flash NAND do maksymalnej określonej liczby bloków. Proces defragmentacji maksymalizuje liczbę wolnych stron i bloków.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nand_flash**: wskaźnik wystąpienia Flash ni.
-- **max_blocks**: Maksymalna liczba bloków.
+- **nand_flash:** wskaźnik wystąpienia flash NAND.
+- **max_blocks:** Maksymalna liczba bloków.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd podczas defragmentowania wystąpienia Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd defragmentacji wystąpienia flash.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -461,7 +461,7 @@ status = lx_nand_flash_partial_defragment(&my_nand_flash, 1);
 
 ## <a name="lx_nand_flash_sector_read"></a>lx_nand_flash_sector_read
 
-Odczytaj NIy sektor Flash
+Odczyt sektora flash NAND
 
 ### <a name="prototype"></a>Prototype
 
@@ -474,18 +474,18 @@ UINT lx_nand_flash_sector_read(
 
 ### <a name="description"></a>Opis
 
-Ta usługa odczytuje sektor logiczny z wystąpienia ni Flash i jeśli pomyślnie zwróci zawartość w podanym buforze. Należy pamiętać, że rozmiar sektora ni jest zawsze rozmiarem strony podstawowego sprzętu ni.
+Ta usługa odczytuje sektor logiczny z wystąpienia flash NAND i, jeśli to się powiedzie, zwraca zawartość w dostarczonym buforze. Należy pamiętać, że rozmiar sektora NAND jest zawsze rozmiarem strony bazowego sprzętu NAND.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nand_flash**: wskaźnik wystąpienia Flash ni.
-- **logical_sector**: sektor logiczny do odczytania.
-- **bufor**: wskaźnik do miejsca docelowego dla zawartości sektora logicznego. Należy pamiętać, że bufor jest przyjmowana jako rozmiar rozmiaru strony ni Flash i wyrównany do ULONG Access.
+- **nand_flash:** wskaźnik wystąpienia flash NAND.
+- **logical_sector:** Sektor logiczny do odczytania.
+- **buffer**: wskaźnik do miejsca docelowego zawartości sektora logicznego. Należy pamiętać, że przyjmuje się, że bufor jest rozmiarem strony flash NAND i jest wyrównany w celu uzyskania dostępu do programu ULONG.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd podczas odczytywania sektora Flash ni.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd odczytu sektora flash NAND.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -515,7 +515,7 @@ status = lx_nand_flash_sector_read(&my_nand_flash, 20, buffer);
 
 ## <a name="lx_nand_flash_sector_release"></a>lx_nand_flash_sector_release
 
-NI wersja sektora Flash
+Zwolnij sektor flash NAND
 
 ### <a name="prototype"></a>Prototype
 
@@ -527,17 +527,17 @@ UINT lx_nand_flash_sector_release(
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwalnia mapowanie sektora logicznego w wystąpieniu Flash ni. Zwolnienie sektora logicznego, gdy nie jest używany, sprawia, że LevelX zwiększa wydajność.
+Ta usługa zwalnia mapowanie sektorów logicznych w wystąpieniu flash NAND. Zwalnianie sektora logicznego, gdy nie jest używany, sprawia, że poziom zużycia LevelX jest bardziej wydajny.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nand_flash**: wskaźnik wystąpienia Flash ni.
-- **logical_sector**: sektor logiczny do wydania.
+- **nand_flash:** wskaźnik wystąpienia flash NAND.
+- **logical_sector:** sektor logiczny do wydania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd ni sektora Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd zapisu sektora flash NAND.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -567,7 +567,7 @@ status = lx_nand_flash_sector_release(&my_nand_flash, 20);
 
 ## <a name="lx_nand_flash_sector_write"></a>lx_nand_flash_sector_write
 
-Pisanie sektora Flash ni
+Zapis sektora flash NAND
 
 ### <a name="prototype"></a>Prototype
 
@@ -580,19 +580,19 @@ UINT lx_nand_flash_sector_write(
 
 ### <a name="description"></a>Opis
 
-Ta usługa Zapisuje określony sektor logiczny w wystąpieniu Flash ni.
+Ta usługa zapisuje określony sektor logiczny w wystąpieniu flash NAND.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nand_flash**: wskaźnik wystąpienia Flash ni.
-- **logical_sector**: sektor logiczny do zapisu.
-- **bufor**: wskaźnik do zawartości sektora logicznego. Należy pamiętać, że bufor jest przyjmowana jako rozmiar rozmiaru strony ni Flash i wyrównany do ULONG Access.
+- **nand_flash:** wskaźnik wystąpienia flash NAND.
+- **logical_sector:** sektor logiczny do zapisu.
+- **buffer**: wskaźnik do zawartości sektora logicznego. Należy pamiętać, że przyjmuje się, że bufor jest rozmiarem strony flash NAND i jest wyrównany w celu uzyskania dostępu do programu ULONG.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_NO_SECTORS**: (0X02) nie ma więcej dostępnych wolnych sektorów do przeprowadzenia zapisu.
-- **LX_ERROR**: (0X01) błąd podczas zwalniania sektora Flash ni.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_NO_SECTORS:**(0x02) Nie ma więcej wolnych sektorów do wykonania zapisu.
+- **LX_ERROR:**(0x01) Błąd zwalniający sektor flash NAND.
 
 ### <a name="allowed-from"></a>Dozwolone z
 

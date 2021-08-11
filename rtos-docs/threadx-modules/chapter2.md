@@ -1,75 +1,75 @@
 ---
-title: Rozdział 2 — wymagania dotyczące modułów
+title: Rozdział 2 — Wymagania dotyczące modułu
 description: Ten artykuł zawiera opis wymagań dotyczących kompilowania modułu ThreadX.
 author: philmea
 ms.author: philmea
 ms.date: 06/08/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 32288d78ceffb74ab088a1d720dbac657f6d3ed4
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 24b814e7c2b510093b809b70b02d9a11ed39996d114f2306e0993893799453cc
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821397"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116791962"
 ---
-# <a name="chapter-2---module-requirements"></a>Rozdział 2 — wymagania dotyczące modułów
+# <a name="chapter-2---module-requirements"></a>Rozdział 2 — Wymagania dotyczące modułu
 
-Moduł ThreadX zawiera preambułę, która definiuje podstawowe cechy modułu. Po preambule następuje obszar instrukcji modułu. Moduły mogą być wykonywane w miejscu lub mogą być ładowane do obszaru pamięci modułu przez Menedżera modułów przed wykonaniem. Jedyny wymóg polega na tym, że Preambuła zawsze znajduje się na pierwszym adresie modułu. Rysunek 2 ilustruje podstawowy układ modułu.
+Moduł ThreadX zawiera aksję, która definiuje podstawowe cechy modułu. Po niej następuje obszar instrukcji modułu. Moduły mogą być wykonywane na miejscu lub przed wykonaniem mogą zostać załadowane do obszaru pamięci modułu przez Menedżera modułów. Jedynym wymaganiem jest, aby zawsze znajdował się on pod pierwszym adresem modułu. Rysunek 2 ilustruje podstawowy układ modułu.
 
 | Układ modułu |
 |:---:|
-| \[Preambuła modułu\]         |
+| \[module module\]         |
 | \[obszar instrukcji modułu\] |
 | \[obszar pamięci RAM modułu\]         |
 
-**Rysunek 2** — układ modułu
+**Rysunek 2.** Układ modułu
 
 > [!NOTE]
-> Moduły muszą być kompilowane przy użyciu odpowiednich kodów niezależnych od pozycji i kompilatora danych/konsolidatora. Dzięki temu można wykonać moduł w dowolnym obszarze pamięci.
+> Moduły muszą być budowaną z odpowiednim kodem niezależnym od pozycji i opcjami kompilatora danych/łączenia. Umożliwia to wykonywanie modułu w dowolnym obszarze pamięci.
 
-Po utworzeniu wątku modułu zostaje przypisana druga przestrzeń stosu do użycia, gdy wątek znajduje się w jądrze chronionym w pamięci. Rozmiar obszaru stosu jądra wątku jest konfigurowalny przez użytkownika przy użyciu **TXM_MODULE_KERNEL_STACK_SIZE** w **_txm_module_port. h_*_. Pozwala to na użycie mniejszego rozmiaru stosu podczas tworzenia wątku modułu, ponieważ stos określony przez użytkownika podczas wywoływania _*_tx_thread_create_** jest używany tylko w module.
+Po utworzeniu wątku modułu przydzielane jest drugie miejsce na stos, gdy wątek znajduje się w jądrze chronionym pamięcią. Rozmiar obszaru stosu jądra wątku można skonfigurować przez użytkownika przy użyciu TXM_MODULE_KERNEL_STACK_SIZE **w** **_txm_module_port.h_*_. Dzięki temu mniejszy rozmiar stosu* może być używany podczas tworzenia wątku modułu, ponieważ stos określony przez użytkownika podczas wywoływania funkcji _ _tx_thread_create_** jest używany tylko w module .
 
 > [!NOTE]
-> Góra stosu wątków modułu zawiera strukturę informacji o wpisie wątku (**TXM_MODULE_THREAD_ENTRY_INFO**), dzięki czemu rozmiar dostępnego stosu jest zmniejszany o rozmiar tej struktury. Podczas tworzenia wątku w module należy zwiększyć jego rozmiar stosu, co najmniej ten rozmiar tej struktury.
+> Górna część stosu wątku modułu zawiera strukturę informacji o wpisie wątku (**TXM_MODULE_THREAD_ENTRY_INFO**), więc rozmiar dostępnego stosu jest zmniejszany o rozmiar tej struktury. Podczas tworzenia wątku w module zwiększ jego rozmiar stosu przynajmniej o ten rozmiar tej struktury.
 
-Poniższe kroki są wymagane do utworzenia i skompilowania modułu ThreadX (każdy krok został szczegółowo opisany poniżej).
+Poniższe kroki są wymagane do tworzenia i budowania modułu ThreadX (każdy krok został opisany bardziej szczegółowo poniżej).
 
-1. Wszystkie pliki C w module muszą #define **TXM_MODULE** przed dołączeniem **_txm_module. h_**. Można to osiągnąć w pliku źródłowym kompilowanym lub w ramach ustawień projektu. W ten sposób ponownie mapuje wywołania interfejsu API ThreadX do wersji interfejsu API specyficznej dla modułu, która wywołuje funkcję wysyłania w Menedżerze modułu rezydentnego w celu wykonania wywołania do rzeczywistej funkcji interfejsu API.
-2. Każdy moduł musi mieć preambułę według pierwszego adresu obszaru instrukcji, który definiuje cechy i wymagania dotyczące zasobów modułu.
-3. Każdy moduł musi połączyć preambułę na początku obszaru instrukcji modułu.
-4. Każdy moduł musi łączyć się z biblioteką modułu (***TXM. a***), która zawiera funkcje specyficzne dla modułu używane do współpracy z ThreadX.
+1. Wszystkie pliki C w module muszą zostać #define **TXM_MODULE** przed dodaniem **_pliku txm_module.h._** Można to zrobić w kompilowanym pliku źródłowym lub w ramach ustawień projektu. W ten sposób ponownie mapuje wywołania interfejsu API ThreadX do wersji interfejsu API specyficznej dla modułu, która wywołuje funkcję dispatch w menedżerze modułów w rezyduacyjną, aby wykonać wywołanie rzeczywistej funkcji interfejsu API.
+2. Każdy moduł musi mieć swój pierwszy adres obszaru instrukcji, który definiuje charakterystykę i wymagania dotyczące zasobów modułu.
+3. Każdy moduł musi łączyć instrukcje na początku obszaru instrukcji modułu.
+4. Każdy moduł musi łączyć się z biblioteką modułów ***(txm.a),*** która zawiera funkcje specyficzne dla modułu używane do interakcji z ThreadX.
 
 ## <a name="module-sources"></a>Źródła modułów
 
-Moduły ThreadX mają własny zestaw plików źródłowych, które zostały zaprojektowane tak, aby były połączone i znajdować się bezpośrednio z kodem źródłowym modułu. Te pliki zapewniają mostek między oddzielnym modułem i menedżerem rezydentów modułu. Pliki modułów są następujące.
+Moduły ThreadX mają własny zestaw plików źródłowych, które są przeznaczone do linku i znajdują się bezpośrednio z kodem źródłowym modułu. Te pliki zapewniają most między oddzielnym modułem a menedżerem modułów. Pliki modułu są następujące.
 
 | Nazwa pliku | Zawartość |
 |---|---|
-| **txm_module. h** | Plik dołączany, który definiuje informacje o module. |
-| **txm_module_port. h** | Plik dołączany, który definiuje informacje o module specyficznym dla portów. |
-| **txm_module_user. h** | Definiuje i wartości, które użytkownik może dostosować. |
-| **txm_module_initialize. s [1] [3]** | Wywołuje funkcje wewnętrzne do modułu uruchomieniowego. |
-| **txm_module_preamble. \{ s/S/68\}** | Plik zestawu preambuły modułu. Ten plik definiuje różne atrybuty specyficzne dla modułu i jest połączony z kodem aplikacji modułu. |
-| **txm_module_application_request. c [1]** | Funkcja żądania aplikacji modułu wysyła do kodu rezydentnego żądanie specyficzne dla aplikacji. |
-| **txm_module_callback_request_thread_entry. c &nbsp; [1]** | Wątek wywołania zwrotnego modułu, który jest odpowiedzialny za przetwarzanie wywołań zwrotnych żądanych przez moduł, w tym czasomierzy i wywołania zwrotne powiadomień. |
-| **txm_ *. c [1] [2]** | Standardowe usługi interfejsu API ThreadX, które wywołują dyspozytora jądra.
-| **txm_module_object_allocate. c [1]** | Funkcja modułu służąca do przydzielania pamięci dla obiektów modułów znajdujących się w puli pamięci Menedżera. |
-| **txm_module_object_deallocate. c [1]** | Funkcja modułu służąca do cofania alokacji pamięci dla obiektów modułów znajdujących się w puli pamięci Menedżera. |
-| **txm_module_object_pointer_get. c [1]** | Funkcja modułu do pobierania wskaźnika do obiektu systemowego. |
-| **txm_module_object_pointer_get_extended. c [1]** | Funkcja modułu służąca do pobierania wskaźnika do obiektu systemowego, o długości nazwy. |
-| **txm_module_thread_shell_entry. c [1]** | Funkcja wprowadzania wątku modułu. |
-| **txm_module_thread_system_suspend. c [1]** | Funkcja modułu służąca do wstrzymywania wątku. |
+| **txm_module.h** | Dołącz plik, który definiuje informacje o module. |
+| **txm_module_port.h** | Dołącz plik, który definiuje informacje o module specyficznym dla portu. |
+| **txm_module_user.h** | Definiuje i wartości, które użytkownik może dostosować. |
+| **txm_module_initialize.s [1][3]** | Wywołuje funkcje wewnętrzne do modułu uruchamiania. |
+| **txm_module_preamble. \{ s/S/68\}** | Plik zestawu chłoniaka modułu. Ten plik definiuje różne atrybuty specyficzne dla modułu i jest połączony z kodem aplikacji modułu. |
+| **txm_module_application_request.c [1]** | Funkcja żądania aplikacji modułu wysyła żądanie specyficzne dla aplikacji do kodu źródłowego. |
+| **txm_module_callback_request_thread_entry.c &nbsp; [1]** | Wątek wywołania zwrotnego modułu odpowiedzialny za przetwarzanie wywołań zwrotnych żądanych przez moduł, w tym czasomierze i wywołania zwrotne powiadomień. |
+| **txm_*.c [1][2]** | Standardowe usługi interfejsu API ThreadX, które wywołują dyspozytor jądra.
+| **txm_module_object_allocate.c [1]** | Funkcja Module do przydzielania pamięci dla obiektów modułu znajdujących się w puli pamięci menedżera. |
+| **txm_module_object_deallocate.c [1]** | Funkcja Module do cofniania alokacji pamięci dla obiektów modułu znajdujących się w puli pamięci menedżera. |
+| **txm_module_object_pointer_get.c [1]** | Funkcja Module pobiera wskaźnik do obiektu systemowego. |
+| **txm_module_object_pointer_get_extended.c [1]** | Funkcja Module pobiera wskaźnik do obiektu systemowego, bezpieczeństwo długości nazwy. |
+| **txm_module_thread_shell_entry.c [1]** | Funkcja wpisu wątku modułu. |
+| **txm_module_thread_system_suspend.c [1]** | Funkcja Module do zawieszania wątku. |
 
-**[1]** znajduje się w bibliotece **_TXM. a_**.
+**[1]** Znajduje się w **_bibliotece txm.a_**.
 
-**[2]** te pliki mają taką samą nazwę jak pliki interfejsu API ThreadX, z prefiksem **txm_** , a nie prefiksem **TX_** .
+**[2]** Te pliki mają taką samą nazwę jak pliki interfejsu API ThreadX z prefiksem **txm_** zamiast **prefiksu tx_** prefiksu.
 
-**[3]** plik **txm_module_initialize. s** jest tylko dla portów korzystających z narzędzi ARM.
+**[3]** **Plik txm_module_initialize.s** jest tylko dla portów korzystających z narzędzi arm.
 
-## <a name="module-preamble"></a>Preambuła modułu
+## <a name="module-preamble"></a>Modułu
 
-Preambuła modułu definiuje charakterystyki i zasoby modułu. Informacje, takie jak początkowa funkcja wprowadzania wątku i początkowy obszar pamięci skojarzony z wątkiem, są zdefiniowane w preambule. Przykłady z preambuły specyficzne dla portów znajdują się w [dodatku](appendix.md). Rysunek 3 przedstawia przykład preambuły modułu ThreadX dla ogólnego celu (wiersze zaczynające się od * są wartościami zwykle modyfikowanymi przez aplikację):
+Podczas pracy z modułem zdefiniowano charakterystyki i zasoby modułu. Informacje, takie jak funkcja wpisu początkowego wątku i początkowy obszar pamięci skojarzony z wątkiem, są zdefiniowane w wątku. Przykłady specyficzne dla portu znajdują się w [dodatku](appendix.md). Rysunek 3 przedstawia przykład modułu ThreadX dla ogólnego obiektu docelowego (wiersze rozpoczynające się od * są wartościami zwykle modyfikowanymi przez aplikację):
 
 ```c
     AREA Init, CODE, READONLY
@@ -131,45 +131,45 @@ __txm_module_preamble
 
 **Rysunek 3**
 
-W większości przypadków Deweloper musi definiować tylko wątek początkowy (offset 0x1C), identyfikator modułu (offset 0x10), priorytet uruchamiania/zatrzymywania wątku (offset 0x24) i początkowy/zatrzymany rozmiar stosu wątku (offset 0x28). Powyższa prezentacja jest skonfigurowana w taki sposób, że początkowy wątek modułu to ***demo_module_start** _, identyfikator modułu to _*_0x12345678 również_*_, a wątek początkowy ma priorytet _*_1_*_, a rozmiar stosu wynoszący _ *_2048_** b.
+W większości przypadków deweloper musi tylko zdefiniować wątek początkowy modułu (przesunięcie 0x1C), identyfikator modułu (przesunięcie 0x10), priorytet wątku uruchamiania/zatrzymania (przesunięcie 0x24) i rozmiar stosu wątku uruchamiania/zatrzymania (przesunięcie 0x28). Powyższy pokaz jest tak ustawiony, że początkowy wątek modułu to ***demo_module_start** _, identyfikator modułu _*_to 0x12345678 , a_*_ wątek początkowy ma priorytet _*_1_*_, a rozmiar stosu to _ *_2048_** bajtów.
 
-Niektóre aplikacje mogą opcjonalnie definiować wątek zatrzymania, który jest wykonywany, gdy Menedżer modułów zatrzymuje moduł. Ponadto niektóre aplikacje mogą korzystać z pola właściwości modułu zdefiniowanego w następujący sposób.
+Niektóre aplikacje mogą opcjonalnie definiować wątek zatrzymywania, który jest wykonywany w momencie zatrzymania modułu przez Menedżera modułów. Ponadto niektóre aplikacje mogą korzystać z pola Właściwości modułu zdefiniowanego w następujący sposób.
 
-## <a name="module-properties-bit-map"></a>Mapa bitów właściwości modułu
+## <a name="module-properties-bit-map"></a>Mapa bitowa właściwości modułu
 
-W poniższej tabeli przedstawiono przykład mapy bitowej właściwości. Mapy bitowe właściwości specyficzne dla portów znajdują się w [dodatku](appendix.md).
+W poniższej tabeli przedstawiono przykład mapy bitowej właściwości. Mapy bitowe właściwości specyficzne dla portu znajdują się w [dodatku](appendix.md).
 
-| Bit | Wartość | Znaczenie |
+| Bitowych | Wartość | Znaczenie |
 |---|---|---|
-| 0 | 0<br />1 | Wykonywanie trybu uprzywilejowanego<br />Wykonywanie w trybie użytkownika |
-| 1 | 0<br />1 | Brak ochrony MPU<br />Ochrona MPU (musi być wybrana w trybie użytkownika) |
-| 2 | 0<br />1 | Wyłącz dostęp do pamięci współdzielonej/zewnętrznej<br />Włącz dostęp do pamięci współdzielonej/zewnętrznej |
+| 0 | 0<br />1 | Wykonywanie w trybie uprzywilejowanym<br />Wykonywanie w trybie użytkownika |
+| 1 | 0<br />1 | Brak ochrony mpu<br />Ochrona w trybie MPU (musi być wybrany tryb użytkownika) |
+| 2 | 0<br />1 | Wyłączanie dostępu do pamięci udostępnionej/zewnętrznej<br />Włączanie dostępu do pamięci udostępnionej/zewnętrznej |
 | [23-3] | 0 | Zarezerwowany
-| [31-24] | <br />0x01<br />0x02<br />0x03 | **Identyfikator kompilatora**<br />IAR<br />ARM<br />GNU |
+| [31-24] | <br />0x01<br />0x02<br />0x03 | **Identyfikator kompilatora**<br />Iar<br />ARM<br />Gnu |
 
 
-## <a name="module-linker-control-file"></a>Plik sterowania konsolidatorem modułu
+## <a name="module-linker-control-file"></a>Plik sterowania linkerem modułu
 
-Podczas kompilowania modułu Preambuła modułu musi być umieszczona przed każdą inną sekcją kodu. Moduł musi być skompilowany przy użyciu kodu niezależnego od pozycji i sekcji danych. Przykładowe pliki konsolidatora specyficzne dla portów znajdują się w [dodatku](appendix.md).
+Podczas tworzenia modułu należy umieścić go przed inną sekcją kodu. Moduł musi być budowaną sekcją kodu i danych niezależną od pozycji. Przykładowe pliki linkera specyficznego dla portu znajdują się w [dodatku](appendix.md).
 
 ## <a name="module-threadx-library"></a>Biblioteka ThreadX modułu
 
-Każdy moduł musi być połączony z specjalną, skoncentrowaną na module biblioteką ThreadX. Ta biblioteka zapewnia dostęp do usług ThreadX Services w kodzie rezydentnym. Większość dostępu jest realizowana za pośrednictwem plików ***txm_ \* . c*** . Poniżej znajduje się przykład wywołania dostępu do modułu dla funkcji API ThreadX **_tx_thread_relinquish_* _ (w _*_ \_ txm_thread_relinquish. c * * * \* ).
+Każdy moduł musi łączyć się ze specjalną, zorientowaną na moduł biblioteką ThreadX. Ta biblioteka zapewnia dostęp do usług ThreadX w kodzie źródłowym. Większość dostępu jest zapewniana za pośrednictwem ***txm_ \* .c.*** Poniżej przedstawiono przykład wywołania dostępu do modułu dla funkcji interfejsu API ThreadX **_tx_thread_relinquish_* _ (w _*_ \_ txm_thread_relinquish.c \* ).).
 
 ```c
 (_txm_module_kernel_call_dispatcher)(TXM_THREAD_RELINQUISH_CALL, 0, 0, 0);
 ```
 
-W tym przykładzie wskaźnik funkcji dostarczony przez Menedżera modułów jest używany do wywołania funkcji wysyłania Menedżera modułów z IDENTYFIKATORem skojarzonym z usługą ***tx_thread_relinquish*** . Ta usługa nie przyjmuje żadnych parametrów.
+W tym przykładzie wskaźnik funkcji dostarczony przez menedżera modułów służy do wywoływania  funkcji wysyłania menedżera modułów z identyfikatorem skojarzonym z tx_thread_relinquish modułem. Ta usługa nie przyjmuje żadnych parametrów.
 
 ## <a name="module-example"></a>Przykład modułu
 
-Poniżej znajduje się przykład standardowej demonstracji ThreadX w postaci modułu. Główne różnice między standardową prezentacją ThreadX a demonstracją modułu są.
+Poniżej przedstawiono przykład standardowego pokazu ThreadX w postaci modułu. Główne różnice między standardowym pokazem ThreadX i pokazem modułów są.
 
-1. Zastąpienie elementu ***tx_api. h** _ znakiem _ *_txm_module. h_**
-2. Dodanie **#define TXM_MODULE** przed **_txm_module. h_**
-3. Zastąpienie ***Main** _ i _ *tx_application_define** z **_demo_module_start_**
-4. Deklarowanie *wskaźników* do obiektów ThreadX, a nie samych obiektów.
+1. Zamiana ***tx_api.h** _ na _ *_txm_module.h_**
+2. Dodanie **#define TXM_MODULE** przed **_txm_module.h_**
+3. Zastąpienie ***main** _ i _ *tx_application_define** z **_demo_module_start_**
+4. *Deklarowanie wskaźników* do obiektów ThreadX, a nie do samych obiektów.
 
 ```c
 /* Specify that this is a module! */
@@ -576,11 +576,11 @@ void thread_6_and_7_entry(ULONG thread_input)
 }
 ```
 
-## <a name="building-modules"></a>Kompilowanie modułów
+## <a name="building-modules"></a>Tworzenie modułów
 
-Kompilowanie modułu jest zależne od używanego łańcucha narzędzi. Zobacz [dodatek](appendix.md) dla przykładów specyficznych dla portów. Typowe działania dotyczące wszystkich portów obejmują następujące elementy:
+Tworzenie modułu zależy od używanego łańcucha narzędzi. Zobacz [dodatek,](appendix.md) aby uzyskać przykłady specyficzne dla portu. Typowe działania dla wszystkich portów są następujące.
 
-- Kompilowanie biblioteki modułów
-- Kompilowanie aplikacji modułu
+- Tworzenie biblioteki modułów
+- Tworzenie aplikacji modułu
 
-Każdy moduł musi mieć **txm_module_preamble** (konfigurację specyficzną dla modułu) i bibliotekę modułów (na przykład **_TXM. a_**).
+Każdy moduł musi mieć bibliotekę **txm_module_preamble** (konfigurację specjalnie dla tego modułu) i bibliotekę modułów (na przykład **_txm.a)._**

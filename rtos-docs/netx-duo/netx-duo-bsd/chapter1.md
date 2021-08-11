@@ -1,33 +1,33 @@
 ---
-title: Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Duo BSD
-description: Otoka interfejsu API zgodności gniazda BSD obsługuje niektóre podstawowe wywołania interfejsu API usługi BSD Socket, z pewnymi ograniczeniami i korzysta z podstawowych podstaw platformy Azure RTO NetX Duo.
+title: Rozdział 1 — wprowadzenie do Azure RTOS NetX Duo BSD
+description: Otoka compagcy interfejsu API gniazd BSD obsługuje niektóre z podstawowych wywołań interfejsu API gniazd BSD, z pewnymi ograniczeniami i wykorzystuje Azure RTOS podstawowych NetX Duo poniżej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: e89018dffd2f9f9065efab2ecabdf4364c4f89a3
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: caf8d5374204bc553ac903f4720d3db402d9a10da5c26caa0fa67c4b5d340049
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822063"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790500"
 ---
-# <a name="chapter-1---introduction-to-azure-rtos-netx-duo-bsd"></a>Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Duo BSD
+# <a name="chapter-1---introduction-to-azure-rtos-netx-duo-bsd"></a>Rozdział 1 — wprowadzenie do Azure RTOS NetX Duo BSD
 
-Otoka interfejsu API zgodności gniazda BSD obsługuje niektóre podstawowe wywołania interfejsu API usługi BSD Socket, z pewnymi ograniczeniami i korzysta z podstawowych podstaw platformy Azure RTO NetX Duo.
+Otoka compagcy interfejsu API gniazd BSD obsługuje niektóre z podstawowych wywołań interfejsu API gniazd BSD, z pewnymi ograniczeniami i wykorzystuje Azure RTOS podstawowych NetX Duo poniżej.
 
-## <a name="bsd-socket-api-compliancy-wrapper-source"></a>Źródło otoki zgodności interfejsu API usługi BSD Socket
+## <a name="bsd-socket-api-compliancy-wrapper-source"></a>Źródło otoki interfejsu API gniazd BSD
 
-Kod źródłowy otoki został zaprojektowany dla uproszczenia i składa się z dwóch plików, czyli *nxd_bsd. h* i *nxd_bsd. c*. Plik *nxd_bsd. h* definiuje wszystkie niezbędne stałe OTOKI interfejsu API usługi BSD Socket oraz prototypy podprocedur, podczas gdy *nxd_bsd. c* zawiera rzeczywisty kod źródłowy zgodności interfejsu API usługi BSD Socket. Te pliki źródłowe otoki są wspólne dla wszystkich pakietów obsługi NetX Duo.
+Kod źródłowy otoki został zaprojektowany dla uproszczenia i składa się z dwóch plików: *nxd_bsd.h* *i nxd_bsd.c.* Plik *nxd_bsd.h* definiuje wszystkie niezbędne stałe i prototypy otoki interfejsu API gniazd BSD, natomiast plik *nxd_bsd.c* zawiera rzeczywisty kod źródłowy zgodności interfejsu API gniazd BSD. Te pliki źródłowe otoki są wspólne dla wszystkich pakietów obsługi netX Duo.
 
 Pakiet składa się z:
 
-- **nxd_bsd. c**: kod źródłowy otoki
-- **nxd_bsd. h**: główny plik nagłówkowy
+- **nxd_bsd.c:** Kod źródłowy otoki
+- **nxd_bsd.h:** Główny plik nagłówkowy
 
 Przykładowe programy demonstracyjne:
 
-- **bsd_demo_udp. c**: *Demonstracja z dwoma elementami równorzędnymi UDP (tylko IPv4)*
-- **bsd_demo_tcp. c**: *Demonstracja przy użyciu jednego serwera i klienta TCP*
-- **bsd_demo_raw. c**: *Demonstracja z dwoma nieprzetworzonymi elementami równorzędnymi*
+- **bsd_demo_udp.c:** pokaz *z dwoma równorzędami UDP (tylko protokół IPv4)*
+- **bsd_demo_tcp.c:** pokaz *z jednym serwerem TCP i klientem*
+- **bsd_demo_raw.c:** pokaz *z dwoma nieprzetworzonych elementów równorzędnych*

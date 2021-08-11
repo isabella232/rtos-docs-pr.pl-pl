@@ -1,23 +1,23 @@
 ---
 title: Rozdział 4 — Opis usług hosta USBX
-description: Dowiedz się więcej na temat usług hosta USBX.
+description: Dowiedz się więcej o usługach hosta USBX.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: d730658c07f3cd7cec8c75a47818314bdc63f35a
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 6cbeff83d8e3812f13aa3f8f66d4013b70490d556911939186b4b43840aac50d
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104824360"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790687"
 ---
 # <a name="chapter-4---description-of-usbx-host-services"></a>Rozdział 4 — Opis usług hosta USBX
 
 ## <a name="ux_host_stack_initialize"></a>ux_host_stack_initialize
 
-Zainicjuj USBX dla operacji hosta.
+Zaimicjuj usbx dla operacji hosta.
 
 ### <a name="prototype"></a>Prototype
 
@@ -29,16 +29,16 @@ UINT ux_host_stack_initialize(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja spowoduje zainicjowanie stosu hosta USB. Dostarczony obszar pamięci zostanie skonfigurowany do użytku wewnętrznego USBX. Jeśli zostanie zwrócona UX_SUCCESS, USBX jest gotowa do rejestracji kontrolerów hosta i klasy.
+Ta funkcja spowoduje zainicjowanie stosu hosta USB. Podany obszar pamięci zostanie skonfigurować do użytku wewnętrznego USBX. Jeśli UX_SUCCESS zwracany, USBX jest gotowy do rejestracji kontrolera hosta i klasy.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **system_change_function** Wskaźnik do opcjonalnej procedury wywołania zwrotnego w celu powiadomienia aplikacji o zmianach urządzenia.
+- **system_change_function** Wskaźnik do opcjonalnej procedury wywołania zwrotnego do powiadamiania o zmianach w urządzeniu.
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- Pomyślnie zainicjowano **UX_SUCCESS** (0x00).
-- **UX_MEMORY_INSUFFICIENT** (0x12) alokacja pamięci nie powiodła się.
+- **UX_SUCCESS** (0x00) Pomyślne inicjowanie.
+- **UX_MEMORY_INSUFFICIENT** (0x12) Alokacja pamięci nie powiodła się.
 
 ### <a name="example"></a>Przykład
 
@@ -53,7 +53,7 @@ status = ux_host_stack_initialize(UX_NULL);
 
 ## <a name="ux_host_stack_endpoint_transfer_abort"></a>ux_host_stack_endpoint_transfer_abort
 
-Przerwij wszystkie transakcje dołączone do żądania transferu dla punktu końcowego.
+Przerwać wszystkie transakcje dołączone do żądania przeniesienia dla punktu końcowego.
 
 ### <a name="prototype"></a>Prototype
 
@@ -63,7 +63,7 @@ UINT ux_host_stack_endpoint_transfer_abort(UX_ENDPOINT *endpoint);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja spowoduje anulowanie wszystkich transakcji aktywnych lub oczekujących na określone żądanie transferu dołączone do punktu końcowego. Żądanie transferu ma załączoną funkcję wywołania zwrotnego, funkcja wywołania zwrotnego zostanie wywołana ze stanem UX_TRANSACTION_ABORTED.
+Ta funkcja anuluje wszystkie aktywne lub oczekujące transakcje dla określonego żądania przeniesienia dołączonego do punktu końcowego. Żądanie przeniesienia ma dołączona funkcję wywołania zwrotnego. Funkcja wywołania zwrotnego zostanie wywołana ze stanem UX_TRANSACTION_ABORTED zwrotnego.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
@@ -71,8 +71,8 @@ Ta funkcja spowoduje anulowanie wszystkich transakcji aktywnych lub oczekującyc
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0X00) nie ma błędów.
-- Dojście punktu końcowego **UX_ENDPOINT_HANDLE_UNKNOWN** (0x53) jest nieprawidłowe.
+- **UX_SUCCESS** (0x00) Brak błędów.
+- **UX_ENDPOINT_HANDLE_UNKNOWN** (0x53) Punkt końcowy jest nieprawidłowy.
 
 ### <a name="example"></a>Przykład
 
@@ -97,7 +97,7 @@ status = ux_host_stack_endpoint_transfer_abort
 
 ## <a name="ux_host_stack_class_get"></a>ux_host_stack_class_get
 
-Pobierz wskaźnik do kontenera klas.
+Pobierz wskaźnik do kontenera klasy.
 
 ### <a name="prototype"></a>Prototype
 
@@ -109,20 +109,20 @@ UINT ux_host_stack_class_get(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja zwraca wskaźnik do kontenera klas. Klasa musi uzyskać kontener ze stosu USB, aby wyszukać wystąpienia, gdy Klasa lub aplikacja chcą otworzyć urządzenie.
+Ta funkcja zwraca wskaźnik do kontenera klas. Klasa musi uzyskać swój kontener ze stosu USB, aby wyszukiwać wystąpienia, gdy klasa lub aplikacja chce otworzyć urządzenie.
 
 > [!NOTE]
-> Ciąg C class_name musi być zakończony zerem i długością (bez samego terminatora NULL) nie może być większy niż UX_MAX_CLASS_NAME_LENGTH.
+> Ciąg znaków C class_name być zakończony wartością NULL, a jego długość (bez samego terminatora NULL) nie może być większa niż UX_MAX_CLASS_NAME_LENGTH.
 
 ### <a name="parameters"></a>Parametry
 
-- **class_name** Wskaźnik na nazwę klasy.
-- **Klasa** Wskaźnik zaktualizowany przez wywołanie funkcji, który zawiera kontener klasy dla nazwy klasy.
+- **class_name** Wskaźnik do nazwy klasy.
+- **klasa** Wskaźnik zaktualizowany przez wywołanie funkcji, które zawiera kontener klas dla nazwy klasy.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0X00) Brak błędów, na zwrócić pole klasy jest zgłaszane ze wskaźnikiem do kontenera klas.
-- Klasa **UX_HOST_CLASS_UNKNOWN** (0x59) jest nieznana przez stos.
+- **UX_SUCCESS** (0x00) Brak błędów, po zwróceniu pole klasy jest zwracane ze wskaźnikiem do kontenera klas.
+- **UX_HOST_CLASS_UNKNOWN** (0x59) Klasa jest nieznana przez stos.
 
 ### <a name="example"></a>Przykład
 
@@ -150,25 +150,25 @@ UINT ux_host_stack_class_register(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja rejestruje klasę USB na stosie USB. Klasa musi określać punkt wejścia dla stosu USB do wysyłania poleceń, takich jak następujące.
+Ta funkcja rejestruje klasę USB w stosie USB. Klasa musi określić punkt wejścia dla stosu USB do wysyłania poleceń, takich jak poniższe.
 
 - **UX_HOST_CLASS_COMMAND_QUERY**
 - **UX_HOST_CLASS_COMMAND_ACTIVATE**
 - **UX_HOST_CLASS_COMMAND_DESTROY**
 
 > [!NOTE]
-> Ciąg C *class_name* musi być zakończony zerem i długością (bez samego terminatora null) nie może być większy niż **UX_MAX_CLASS_NAME_LENGTH**.
+> Ciąg ciągu języka C *class_name* być zakończony wartością NULL, a jego długość (bez samego terminatora NULL) nie może być większa **niż UX_MAX_CLASS_NAME_LENGTH**.
 
 ### <a name="parameters"></a>Parametry
 
-- **class_name** Wskaźnik na nazwę klasy, prawidłowe wpisy znajdują się w pliku ux_system_initialize. c w klasie USB klasy USBX.
-- **class_entry_address** Adres funkcji wejścia klasy.
+- **class_name** Wskaźnik do nazwy klasy, prawidłowe wpisy znajdują się w pliku ux_system_initialize.c w klasach USBX.
+- **class_entry_address** Adres funkcji entry klasy .
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślnie zainstalowano klasę **UX_SUCCESS** (0x00).
-- **UX_MEMORY_ARRAY_FULL** (0X1a) nie więcej pamięci do przechowania tej klasy.
-- Klasa hosta **UX_HOST_CLASS_ALREADY_INSTALLED** (0x58) jest już zainstalowana.
+- **UX_SUCCESS** (0x00) Class installed successfully (Klasa UX_SUCCESS (0x00) została zainstalowana pomyślnie.
+- **UX_MEMORY_ARRAY_FULL** (0x1a) Brak pamięci do przechowywania tej klasy.
+- **UX_HOST_CLASS_ALREADY_INSTALLED** (0x58) Host jest już zainstalowana.
 
 ### <a name="example"></a>Przykład:
 
@@ -195,16 +195,16 @@ UINT ux_host_stack_class_instance_create(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja tworzy nowe wystąpienie klasy dla kontenera klas. Wystąpienie klasy nie jest zawarte w kodzie klasy, aby zmniejszyć złożoność klasy. Zamiast tego każde wystąpienie klasy jest dołączone do kontenera klas znajdującego się w głównym stosie.
+Ta funkcja tworzy nowe wystąpienie klasy dla kontenera klas. Wystąpienie klasy nie jest zawarte w kodzie klasy, aby zmniejszyć złożoność klasy. Zamiast tego każde wystąpienie klasy jest dołączone do kontenera klas znajdującego się w stosie głównym.
 
 ### <a name="parameters"></a>Parametry
 
-- **Klasa** Wskaźnik do kontenera klas.
-- **class_instance** Wskaźnik do wystąpienia klasy, które ma zostać utworzone.
+- **klasa** Wskaźnik do kontenera klas.
+- **class_instance** Wskaźnik do wystąpienia klasy do utworzenia.
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- **UX_SUCCESS** (0x00) wystąpienie klasy zostało dołączone do kontenera klas.
+- **UX_SUCCESS** (0x00) Wystąpienie klasy zostało dołączone do kontenera klas.
 
 ### <a name="example"></a>Przykład
 
@@ -231,7 +231,7 @@ status = ux_host_stack_class_instance_create(printer -> printer_class, (VOID *)p
 
 ## <a name="ux_host_stack_class_instance_destroy"></a>ux_host_stack_class_instance_destroy
 
-Zniszcz wystąpienie klasy dla kontenera klas.
+Niszczenie wystąpienia klasy dla kontenera klas.
 
 ### <a name="prototype"></a>Prototype
 
@@ -247,13 +247,13 @@ Ta funkcja niszczy wystąpienie klasy dla kontenera klas.
 
 ### <a name="parameters"></a>Parametry
 
-- **Klasa** Wskaźnik do kontenera klas.
-- **class_instance** Wskaźnik do wystąpienia, które ma zostać zniszczone.
+- **klasa** Wskaźnik do kontenera klas.
+- **class_instance** Wskaźnik do wystąpienia, aby zniszczyć.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) wystąpienie klasy zostało zniszczone.
-- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) wystąpienie klasy nie jest dołączone do kontenera klas.
+- **UX_SUCCESS** (0x00) Wystąpienie klasy zostało zniszczona.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) Wystąpienie klasy nie jest dołączone do kontenera klas.
 
 ### <a name="example"></a>Przykład
 
@@ -275,7 +275,7 @@ status = ux_host_stack_class_instance_destroy(printer -> printer_class, (VOID *)
 
 ## <a name="ux_host_stack_class_instance_get"></a>ux_host_stack_class_instance_get
 
-Pobierz wskaźnik wystąpienia klasy dla określonej klasy.
+Uzyskiwanie wskaźnika wystąpienia klasy dla określonej klasy.
 
 ### <a name="prototype"></a>Prototype
 
@@ -292,15 +292,15 @@ Ta funkcja zwraca wskaźnik wystąpienia klasy dla określonej klasy. Wystąpien
 
 ### <a name="parameters"></a>Parametry
 
-- **Klasa** Wskaźnik do kontenera klas.
+- **klasa** Wskaźnik do kontenera klas.
 - **class_index** Indeks, który ma być używany przez wywołanie funkcji na liście dołączonych klas do kontenera.
 - **class_instance** Wskaźnik do wystąpienia, które ma zostać zwrócone przez wywołanie funkcji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) wystąpienie klasy zostało znalezione.
+- **UX_SUCCESS** (0x00) Znaleziono wystąpienie klasy.
 
-- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) nie ma więcej wystąpień klasy dołączonych do kontenera klas.
+- **UX_HOST_CLASS_INSTANCE_UNKNOWN** (0x5b) Nie ma już żadnych wystąpień klas dołączonych do kontenera klas.
 
 ### <a name="example"></a>Przykład
 
@@ -322,7 +322,7 @@ status = ux_host_stack_class_instance_get(class, 2, (VOID *) printer);
 
 ## <a name="ux_host_stack_device_configuration_get"></a>ux_host_stack_device_configuration_get
 
-Pobierz wskaźnik do kontenera konfiguracji.
+Uzyskaj wskaźnik do kontenera konfiguracji.
 
 ### <a name="prototype"></a>Prototype
 
@@ -335,19 +335,19 @@ UINT ux_host_stack_device_configuration_get(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja zwraca kontener konfiguracji oparty na dojściem urządzenia i indeksie konfiguracji.
+Ta funkcja zwraca kontener konfiguracji na podstawie dojścia urządzenia i indeksu konfiguracji.
 
 ### <a name="parameters"></a>Parametry
 
-- **urządzenie** Wskaźnik do kontenera urządzenia, do którego należy żądana konfiguracja.
+- **urządzenie** Wskaźnik do kontenera urządzenia, który jest właścicielem żądanej konfiguracji.
 - **configuration_index** Indeks konfiguracji do przeszukania.
-- **Konfiguracja** Adres wskaźnika do zwrócenia kontenera konfiguracji.
+- **konfiguracja** Adres wskaźnika do kontenera konfiguracji, który ma zostać zwrócony.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) konfiguracja została znaleziona.
-- **UX_DEVICE_HANDLE_UNKNOWN** (0x50) kontener urządzeń nie istnieje.
-- **UX_CONFIGURATION_HANDLE_UNKNOWN** (0x51) nie istnieje uchwyt konfiguracyjny dla tego indeksu.
+- **UX_SUCCESS** (0x00) Znaleziono konfigurację.
+- **UX_DEVICE_HANDLE_UNKNOWN** (0x50) Kontener urządzenia nie istnieje.
+- **UX_CONFIGURATION_HANDLE_UNKNOWN** (0x51) Dojście do konfiguracji indeksu nie istnieje.
 
 ### <a name="example"></a>Przykład
 
@@ -372,7 +372,7 @@ status = ux_host_stack_device_configuration_get(printer -> printer_device,
 
 ## <a name="ux_host_stack_device_configuration_select"></a>ux_host_stack_device_configuration_select
 
-Wybierz konkretną konfigurację urządzenia.
+Wybierz określoną konfigurację dla urządzenia.
 
 ### <a name="prototype"></a>Prototype
 
@@ -382,17 +382,17 @@ UINT ux_host_stack_device_configuration_select (UX_CONFIGURATION *configuration)
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wybiera określoną konfigurację dla urządzenia. Gdy ta konfiguracja jest ustawiona na urządzenie, domyślnie na urządzeniu jest uaktywniany każdy interfejs urządzenia i jego skojarzone ustawienia alternatywne 0. Jeśli Klasa urządzenia/interfejsu chce zmienić ustawienie określonego interfejsu, musi wydać **ux_host_stack_interface_setting_select** wywołanie usługi.
+Ta funkcja wybiera określoną konfigurację dla urządzenia. Gdy ta konfiguracja jest ustawiona na urządzenie, domyślnie każdy interfejs urządzenia i skojarzone z nim alternatywne ustawienie 0 jest aktywowane na urządzeniu. Jeśli klasa urządzenia/interfejsu chce zmienić ustawienie określonego interfejsu, musi wydać wywołanie **ux_host_stack_interface_setting_select** usługi.
 
 ### <a name="parameters"></a>Parametry
 
-- **Konfiguracja** Wskaźnik do kontenera konfiguracji, który ma być włączony dla tego urządzenia.
+- **konfiguracja** Wskaźnik do kontenera konfiguracji, który ma być włączony dla tego urządzenia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) wybór konfiguracji zakończył się pomyślnie.
-- **UX_CONFIGURATION_HANDLE_UNKNOWN** (0x51) dojście konfiguracji nie istnieje.
-- Na magistrali dla tej konfiguracji **UX_OVER_CURRENT_CONDITION** (0x43) znajduje się nad bieżącym stanem.
+- **UX_SUCCESS** (0x00) Wybór konfiguracji został pomyślnie.
+- **UX_CONFIGURATION_HANDLE_UNKNOWN** (0x51) Dojście do konfiguracji nie istnieje.
+- **UX_OVER_CURRENT_CONDITION** (0x43) W magistrali dla tej konfiguracji istnieje warunek over current.
 
 ### <a name="example"></a>Przykład
 
@@ -418,7 +418,7 @@ status = ux_host_stack_device_configuration_select(configuration);
 
 ## <a name="ux_host_stack_device_get"></a>ux_host_stack_device_get
 
-Pobierz wskaźnik do kontenera urządzeń.
+Uzyskiwanie wskaźnika do kontenera urządzenia.
 
 ### <a name="prototype"></a>Prototype
 
@@ -430,17 +430,17 @@ UINT ux_host_stack_device_get(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja zwraca kontener urządzenia na podstawie jego indeksu. Indeks urządzenia zaczyna się od 0. Należy zauważyć, że indeks jest ULONG, ponieważ może istnieć kilka kontrolerów, a indeks bajtów może być niewystarczający. Nie należy mylić indeksu urządzenia z adresem urządzenia, który jest specyficzny dla magistrali.
+Ta funkcja zwraca kontener urządzenia na podstawie jego indeksu. Indeks urządzeń zaczyna się od 0. Należy pamiętać, że indeks jest programem ULONG, ponieważ możemy mieć kilka kontrolerów, a indeks bajtów może nie być wystarczający. Indeks urządzenia nie powinien być mylony z adresem urządzenia, który jest specyficzny dla magistrali.
 
 ### <a name="parameters"></a>Parametry
 
 - **device_index** Indeks urządzenia.
-- **urządzenie** Adres wskaźnika dla kontenera urządzenia do zwrócenia.
+- **urządzenie** Adres wskaźnika dla kontenera urządzenia, który ma być zwracany.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) kontener urządzenia istnieje i jest zwracany
-- Nieznane urządzenie **UX_DEVICE_HANDLE_UNKNOWN** (0x50)
+- **UX_SUCCESS** (0x00) Kontener urządzenia istnieje i jest zwracany
+- **UX_DEVICE_HANDLE_UNKNOWN** (0x50) Urządzenie nieznane
 
 ### <a name="example"></a>Przykład
 
@@ -455,7 +455,7 @@ status = ux_host_stack_device_get(0, device);
 
 ## <a name="ux_host_stack_interface_endpoint_get"></a>ux_host_stack_interface_endpoint_get
 
-Pobieranie kontenera punktów końcowych.
+Pobierz kontener punktu końcowego.
 
 ### <a name="prototype"></a>Prototype
 
@@ -468,19 +468,19 @@ UINT ux_host_stack_interface_endpoint_get(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja zwraca kontener punktów końcowych na podstawie uchwytu interfejsu i indeksu punktu końcowego. Przyjęto założenie, że zostało wybrane alternatywne ustawienie interfejsu lub domyślne ustawienie jest używane przed przeszukiwaniem punktów końcowych.
+Ta funkcja zwraca kontener punktu końcowego na podstawie dojścia interfejsu i indeksu punktu końcowego. Zakłada się, że alternatywne ustawienie interfejsu zostało wybrane lub ustawienie domyślne jest używane przed wyszukiwaniem punktów końcowych.
 
 ### <a name="parameters"></a>Parametry
 
-- **interfejs** Wskaźnik do kontenera interfejsu zawierającego żądany punkt końcowy.
+- **interfejs** Wskaźnik do kontenera interfejsu, który zawiera żądany punkt końcowy.
 - **endpoint_index** Indeks punktu końcowego w tym interfejsie.
-- **punkt końcowy** Adres kontenera punktu końcowego, który ma zostać zwrócony.
+- **punkt końcowy** Adres kontenera punktu końcowego do zwrócenia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) kontener punktu końcowego istnieje i jest zwracany.
-- Określony interfejs **UX_INTERFACE_HANDLE_UNKNOWN** (0x52) nie istnieje.
-- Indeks punktu końcowego **UX_ENDPOINT_HANDLE_UNKNOWN** (0x53) nie istnieje.
+- **UX_SUCCESS** (0x00) Kontener punktu końcowego istnieje i jest zwracany.
+- **UX_INTERFACE_HANDLE_UNKNOWN** (0x52) Określony interfejs nie istnieje.
+- **UX_ENDPOINT_HANDLE_UNKNOWN** (0x53) Punkt końcowy nie istnieje.
 
 ### <a name="example"></a>Przykład
 
@@ -523,21 +523,21 @@ UINT ux_host_stack_hcd_register(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja rejestruje kontroler USB na stosie USB. Polega to głównie na przydzieleniu pamięci używanej przez ten kontroler i przekazaniem polecenia inicjującego do kontrolera.
+Ta funkcja rejestruje kontroler USB w stosie USB. Przydziela głównie pamięć używaną przez ten kontroler i przekazuje do kontrolera polecenie inicjowania.
 
 ### <a name="parameters"></a>Parametry
 
 - **hcd_name** Nazwa kontrolera hosta
-- **hcd_function** Funkcja w kontrolerze hosta odpowiedzialna za inicjalizację.
-- **hcd_param1** Zasób we/wy lub pamięć używany przez HCD.
-- **hcd_param2** PRZERWAnie używane przez kontroler hosta.
+- **hcd_function** Funkcja w kontrolerze hosta odpowiedzialna za inicjowanie.
+- **hcd_param1** Zasób we/wy lub pamięci używany przez hcd.
+- **hcd_param2** IrQ używany przez kontroler hosta.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) kontroler został prawidłowo zainicjowany.
-- **UX_MEMORY_INSUFFICIENT** (0x12) za mało pamięci dla tego kontrolera.
-- **UX_PORT_RESET_FAILED** (0x31) resetowanie kontrolera nie powiodło się.
-- **UX_CONTROLLER_INIT_FAILED** (0x32) nie można poprawnie zainicjować kontrolera.
+- **UX_SUCCESS** (0x00) Kontroler został zainicjowany prawidłowo.
+- **UX_MEMORY_INSUFFICIENT** (0x12) Za mało pamięci dla tego kontrolera.
+- **UX_PORT_RESET_FAILED** (0x31) Resetowanie kontrolera nie powiodło się.
+- **UX_CONTROLLER_INIT_FAILED** (0x32) Kontroler nie zainicjował się prawidłowo.
 
 ### <a name="example"></a>Przykład
 
@@ -558,7 +558,7 @@ status = ux_host_stack_hcd_register("ux_hcd_controller",
 
 ## <a name="ux_host_stack_configuration_interface_get"></a>ux_host_stack_configuration_interface_get
 
-Pobierz wskaźnik kontenera interfejsu.
+Uzyskiwanie wskaźnika kontenera interfejsu.
 
 ### <a name="prototype"></a>Prototype
 
@@ -572,20 +572,20 @@ UINT ux_host_stack_configuration_interface_get (
 
 ### <a name="description"></a>Opis
 
-Ta funkcja zwraca kontener interfejsu na podstawie dojścia do konfiguracji, indeksu interfejsu i alternatywnego indeksu ustawienia.
+Ta funkcja zwraca kontener interfejsu na podstawie dojścia konfiguracji, indeksu interfejsu i indeksu ustawień alternatywnych.
 
 ### <a name="parameters"></a>Parametry
 
-- **Konfiguracja** Wskaźnik do kontenera konfiguracji, który jest właścicielem interfejsu.
+- **konfiguracja** Wskaźnik do kontenera konfiguracji, który jest właścicielem interfejsu.
 - **interface_index** Indeks interfejsu do przeszukania.
-- **alternate_setting_index** Alternatywne ustawienie w interfejsie do wyszukania.
+- **alternate_setting_index** Alternatywne ustawienie w interfejsie do wyszukiwania.
 - **interfejs** Adres wskaźnika kontenera interfejsu, który ma zostać zwrócony.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) kontener interfejsu dla indeksu interfejsu oraz ustawienia alternatywnego zostały znalezione i zwrócone.
+- **UX_SUCCESS** (0x00) Znaleziono i zwrócono kontener interfejsu dla indeksu interfejsu i alternatywne ustawienie.
 - **UX_CONFIGURATION_HANDLE_UNKNOWN** (0x51) Konfiguracja nie istnieje.
-- **UX_INTERFACE_HANDLE_UNKNOWN** (0x52) interfejs nie istnieje.
+- **UX_INTERFACE_HANDLE_UNKNOWN** (0x52) Interfejs nie istnieje.
 
 ### <a name="example"></a>Przykład
 
@@ -601,7 +601,7 @@ status = ux_host_stack_configuration_interface_get(configuration, 0, 0,
 
 ## <a name="ux_host_stack_interface_setting_select"></a>ux_host_stack_interface_setting_select
 
-Wybierz alternatywne ustawienie dla interfejsu.
+Wybierz alternatywne ustawienie interfejsu.
 
 ### <a name="prototype"></a>Prototype
 
@@ -611,16 +611,16 @@ UINT ux_host_stack_interface_setting_select(UX_INTERFACE *interface);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wybiera określone ustawienie alternatywne dla danego interfejsu należącego do wybranej konfiguracji. Ta funkcja jest używana do zmiany ustawienia domyślnego alternatywnego na nowe ustawienie lub w celu powrotu do domyślnego ustawienia alternatywnego. W przypadku wybrania nowego ustawienia alternatywnego parametry poprzedniego punktu końcowego są nieprawidłowe i należy je ponownie załadować.
+Ta funkcja wybiera konkretne alternatywne ustawienie dla danego interfejsu należącego do wybranej konfiguracji. Ta funkcja jest używana do zmiany z domyślnego alternatywnego ustawienia na nowe lub do powrotu do domyślnego ustawienia alternatywnego. Po wybraniu nowego ustawienia alternatywnego poprzednie charakterystyki punktu końcowego są nieprawidłowe i powinny zostać ponownie załadowane.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **interfejs** Wskaźnik do kontenera interfejsu, którego alternatywnym ustawieniem jest wybranie.
+- **interfejs** Wskaźnik do kontenera interfejsu, którego alternatywne ustawienie ma zostać wybrane.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) ustawienie alternatywne dla tego interfejsu zostało pomyślnie wybrane.
-- **UX_INTERFACE_HANDLE_UNKNOWN** (0x52) interfejs nie istnieje.
+- **UX_SUCCESS** (0x00) Alternatywne ustawienie dla tego interfejsu zostało pomyślnie wybrane.
+- **UX_INTERFACE_HANDLE_UNKNOWN** (0x52) Interfejs nie istnieje.
 
 ### <a name="example"></a>Przykład
 
@@ -635,7 +635,7 @@ status = ux_host_stack_interface_setting_select(interface);
 
 ## <a name="ux_host_stack_transfer_request_abort"></a>ux_host_stack_transfer_request_abort
 
-Przerywanie oczekującego żądania transferu.
+Przerwać oczekujące żądanie przeniesienia.
 
 ### <a name="prototype"></a>Prototype
 
@@ -645,15 +645,15 @@ UINT ux_host_stack_transfer_request_abort(UX_TRANSFER REQUEST *transfer request)
 
 ### <a name="description"></a>Opis
 
-Ta funkcja przerywa oczekujące żądanie transferu, które zostało wcześniej przesłane. Ta funkcja tylko Anuluje określone żądanie transferu. Wywołanie z powrotem do funkcji będzie miało stan UX_TRANSFER REQUEST_STATUS_ABORT.
+Ta funkcja przerywa oczekujące żądanie przeniesienia, które zostało wcześniej przesłane. Ta funkcja anuluje tylko określone żądanie przeniesienia. Wywołanie funkcji będzie mieć UX_TRANSFER REQUEST_STATUS_ABORT stanu.
 
 ### <a name="parameters"></a>Parametry
 
-- **żądanie transferu** Wskaźnik do żądania przeniesienia, które ma zostać przerwane.
+- **żądanie przeniesienia** Wskaźnik do żądania przeniesienia, które ma zostać przerwane.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) anulowano transfer USB dla tego żądania transferu.
+- **UX_SUCCESS** (0x00) Anulowano transfer USB dla tego żądania transferu.
 
 ### <a name="example"></a>Przykład
 
@@ -678,19 +678,19 @@ UINT ux_host_stack_transfer_request(UX_TRANSFER REQUEST *transfer request);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje transakcję USB. Po wprowadzeniu żądanie transferu zapewnia potok punktu końcowego wybrany dla tej transakcji i parametry skojarzone z transferem (ładunek danych, Długość transakcji). W przypadku potoku kontroli transakcja jest zablokowana i zwróci się tylko wtedy, gdy trzy fazy transferu kontroli zostały zakończone lub wystąpił poprzedni błąd. W przypadku innych potoków stos USB będzie planować transakcję na USB, ale nie czeka na jego zakończenie. Każde żądanie transferu dla potoków nieblokujących musi określać procedurę obsługi procedury uzupełniania.
+Ta funkcja wykonuje transakcję USB. Po wpisie żądania przeniesienia przekazuje potok punktu końcowego wybrany dla tej transakcji oraz parametry skojarzone z transferem (ładunek danych, długość transakcji). W przypadku potoku sterowania transakcja jest blokowana i będzie zwracana tylko wtedy, gdy zostały ukończone trzy fazy transferu kontroli lub jeśli wystąpił poprzedni błąd. W przypadku innych potoków stos USB zaplanuje transakcję na USB, ale nie będzie czekać na jej ukończenie. Każde żądanie transferu dla potoków nieblokacyjnych musi określać procedurę obsługi procedury ukończenia.
 
-Gdy wywołanie funkcji zwraca, stan żądania przeniesienia powinien zostać zbadany, ponieważ zawiera wynik transakcji.
+Gdy wywołanie funkcji zwraca, należy sprawdzić stan żądania przeniesienia, ponieważ zawiera on wynik transakcji.
 
 ### <a name="input-parameter"></a>Parametr wejściowy
 
-- **transfer_request** Wskaźnik na żądanie transferu. Żądanie transferu zawiera wszystkie niezbędne informacje wymagane do przeniesienia.
+- **transfer_request** Wskaźnik do żądania przeniesienia. Żądanie przeniesienia zawiera wszystkie informacje niezbędne do przeniesienia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **UX_SUCCESS** (0x00) transfer USB dla tego żądania transferu został zaplanowany prawidłowo. Kod stanu żądania przeniesienia należy sprawdzić po zakończeniu żądania transferu.
-- **UX_MEMORY_INSUFFICIENT** (0x12) za mało pamięci, aby przydzielić wymagane zasoby kontrolera.
-- **UX_TRANSFER_NOT_READY** (0x25) urządzenie było w nieprawidłowym stanie — musi być dołączone, rozkierowane lub skonfigurowane.
+- **UX_SUCCESS** (0x00) Poprawnie zaplanowano transfer USB dla tego żądania transferu. Kod stanu żądania przeniesienia powinien zostać przeanalizowany po zakończeniu żądania przeniesienia.
+- **UX_MEMORY_INSUFFICIENT** (0x12) Za mało pamięci do przydzielenia niezbędnych zasobów kontrolera.
+- **UX_TRANSFER_NOT_READY** (0x25) Urządzenie było w nieprawidłowym stanie — musi być DOŁĄCZONE, ADRESOWANE lub SKONFIGUROWANE.
 
 ### <a name="example"></a>Przykład:
 

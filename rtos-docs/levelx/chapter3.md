@@ -1,21 +1,21 @@
 ---
-title: Obsługa usługi Azure RTO LevelX ni
-description: NI pamięć flash jest często używana w LevelX w przypadku dużych magazynów danych, które są typowymi systemami plików.
+title: Azure RTOS NAND LevelX
+description: Pamięć flash NAND jest często używana na poziomie LevelX do przechowywania dużych ilości danych, co jest typowe dla systemów plików.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 3286e4ea7f16b28ff55fc95a87a1e0c313ec4240
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 950a4f260d032ebe032aca79ac99cc8217915a3b21b230be9475d82b267da18c
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822171"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790585"
 ---
-# <a name="chapter-3---azure-rtos-levelx-nand-support"></a>Rozdział 3 — Obsługa platformy Azure RTO LevelX ni
+# <a name="chapter-3---azure-rtos-levelx-nand-support"></a>Rozdział 3 — obsługa Azure RTOS NAND LevelX
 
-NI pamięć flash jest często wykorzystywana w przypadku dużych magazynów danych, które są typowymi systemami plików. Pamięć ni składa się z *bloków*. W każdym bloku ni jest serią *stron*. Bloki ni są wymazywane, co oznacza, że wszystkie strony w bloku ni są wymazywane (ustawiane na wszystkie). Każda Strona bloku ni ma zestaw *bajtów zapasowych* , które są używane przez usługę Azure RTO LevelX do księgowania, niewłaściwego zarządzania blokami i wykrywania błędów. Strony blokowe ni są dostępne w różnych rozmiarach. Najczęstsze rozmiary stron to: 
+Pamięć flash NAND jest często używana do przechowywania dużych ilości danych, co jest typowe dla systemów plików. Pamięć NAND składa się z *bloków*. W każdym bloku NAND znajduje się seria *stron*. Bloki NAND można wymazać, co oznacza, że wszystkie strony w bloku NAND są usuwane (ustawione na wszystkie). Każda strona bloku NAND  ma zestaw bajtów zapasowych, które są używane przez usługę Azure RTOS LevelX do obsługi księgowania, zarządzania złymi blokami i wykrywania błędów. Strony blokowe NAND są dostępne w różnych rozmiarach. Najbardziej typowe rozmiary stron to: 
 
 | **Rozmiar strony** | **Bajty zapasowe** |
 | ------------- | --------------- |
@@ -23,80 +23,80 @@ NI pamięć flash jest często wykorzystywana w przypadku dużych magazynów dan
 | 512           | 16              |
 | 2048          | 64              |
 
-Pamięć ni różni się od programu lub pamięci, w której nie ma bezpośredniego dostępu, czyli nie można odczytać pamięci ni bezpośrednio z procesora, takiego jak lub pamięci. Pamięć ni można zapisywać tylko po wymazaniu ograniczonej liczby razy. Ponownie różni się od programu lub pamięci, które mogą być pisane nieograniczoną liczbę razy, gdy żądanie zapisu jest czyszczone. Na koniec bajty zapasowe skojarzone z każdą stroną są unikatowe dla ni Flash. Typowe konfiguracje zapasowych bajtów są przedstawione w poniższej tabeli.
+Pamięć NAND różni się od pamięci NOR tym, że nie ma bezpośredniego dostępu, tj. pamięci NAND nie można odczytać bezpośrednio z procesora, takiego jak pamięć NOR. Pamięć NAND można zapisywać tylko po kilku razy wymazywania pamięci. Ponownie różni się to od pamięci NOR, która może być zapisywana nieograniczoną liczbę razy, pod ile żądanie zapisu czyszczy bity zestawu. Na koniec bajty zapasowe skojarzone z każdą stroną są unikatowe dla flasha NAND. Typowe konfiguracje bajtów zapasowych są pokazane w poniższej tabeli.
 
 | **Bajty zapasowe** | **Liczby bajtów** | **Konfiguracja**     |
 | ------------------------- | -------------- | --------------------- |
-| 8                         | Bajty 0-2:     | Bajty ECC             |
-|                           | Bajty 3, 4, 6, 7: | Mapowanie sektora LevelX |
-|                           | Bajt 5:        | Zła flaga bloku        |
-| 16                        | Bajty 0-3, 6-7: | Bajty ECC             |
-|                           | Bajty 8-11:    | Mapowanie sektora LevelX |
-|                           | Bajty 12-15:   | Nieużywane                |
-|                           | Bajt 5:        | Zła flaga bloku        |
-| 64                        | Bajt 0:        | Zła flaga bloku        |
-|                           | Bajty 2-5:     | Mapowanie sektora LevelX |
-|                           | Bajty 6-39:    | Nieużywane                |
-|                           | Bajty 40-63:   | Bajty ECC             |
+| 8                         | Bajty 0–2:     | Bajty ECC             |
+|                           | Bajty 3,4,6,7: | Mapowanie sektorów LevelX |
+|                           | Bajt 5:        | Flaga złych bloków        |
+| 16                        | Bajty 0–3,6–7: | Bajty ECC             |
+|                           | Bajty 8–11:    | Mapowanie sektorów LevelX |
+|                           | Bajty 12–15:   | Nieużywane                |
+|                           | Bajt 5:        | Flaga złych bloków        |
+| 64                        | Bajt 0:        | Flaga złych bloków        |
+|                           | Bajty 2–5:     | Mapowanie sektorów LevelX |
+|                           | Bajty 6–39:    | Nieużywane                |
+|                           | Bajty 40–63:   | Bajty ECC             |
 
-LevelX wykorzystuje 4 zapasowe bajty każdej strony ni do śledzenia sektora logicznego zamapowanego na fizyczną stronę ni. Te 4 bajty są używane do implementacji 32-bitową liczbę całkowitą bez znaku przy użyciu zastrzeżonego formatu LevelX. Górny bit pola 32-bitowego (bit 31) jest używany do wskazania, że mapowanie sektora logicznego na stronę jest prawidłowe. Jeśli ten bit ma wartość 0, informacje na tej stronie nie są już prawidłowe. Następny bit — bit 30 — służy do wskazywania, że ta strona jest w toku, a nowy sektor jest zapisywany. Bit 29 służy do wskazania, kiedy zapis mapowania jest zakończony. Jeśli bit 29 ma wartość 0, zakończono zapisywanie wpisu mapowania. Jeśli ustawiono bit 29, wpis mapowania był w trakcie zapisywania. Bity 30 i 29 są używane podczas odzyskiwania po potencjalnej utracie mocy podczas aktualizowania nowej strony Flash. Na koniec niższa 29 bitów (28-0) zawiera numer sektora logicznego dla strony.
+LevelX wykorzystuje 4 bajty zapasowe każdej strony NAND do śledzenia sektora logicznego zamapowanych na fizyczną stronę NAND. Te 4 bajty są używane do zaimplementowania 32-bitowej liczby całkowitej bez znaku z zastrzeżonym formatem LevelX. Górny bit pola 32-bitowego (bit 31) służy do wskazywania, że mapowanie między sektorami logicznymi jest prawidłowe. Jeśli ten bit ma 0, informacje na tej stronie nie są już prawidłowe. Następny bit — bit 30 — jest używany, aby wskazać, że ta strona jest w trakcie staje się przestarzała i jest pisany nowy sektor. Bit 29 służy do wskazywania, kiedy zapis wpisu mapowania jest ukończony. Jeśli bit 29 ma 0, zapis wpisu mapowania jest ukończony. Jeśli bit 29 jest ustawiony, wpis mapowania był w trakcie pisano. Bity 30 i 29 są używane do odzyskiwania po potencjalnej utracie zasilania podczas aktualizowania nowej strony flash. Na koniec niższe 29-bitowe (28-0) zawierają numer sektora logicznego dla strony.
 
-**LevelX — wpis mapowania**
+**Wpis mapowania LevelX**
 
-| Liczba bitów: | Znaczenie |
+| Bity | Znaczenie |
 | ------ | ------- |
-| 31     | Prawidłowa flaga. Gdy zestaw i sektor logiczny nie są wszystkie, oznacza to, że mapowanie jest prawidłowe |
-| 30     | Flaga przestarzała. Po wyczyszczeniu to mapowanie jest przestarzałe lub jest w stanie przestarzałe. |
-| 29     | Zapis mapowania wpisu jest zakończony, gdy ten bit ma wartość 0 |
-| 0-28   | Sektor logiczny zmapowany na Tę stronę fizyczną — gdy nie wszystkie te. |
+| 31     | Prawidłowa flaga. Gdy ustawiono i nie wszystkie sektory logiczne wskazują, że mapowanie jest prawidłowe |
+| 30     | Przestarzała flaga. Gdy to mapowanie jest jasne, jest przestarzałe lub trwa jego przestarzałe. |
+| 29     | Zapis wpisu mapowania jest ukończony, gdy ten bit ma 0 |
+| 0-28   | Sektor logiczny zamapowany na tę stronę fizyczną — gdy nie wszystkie z nich. |
 
-LevelX używa również pierwszej strony każdego bloku ni dla liczby wymazywania bloku oraz listy mapowanych stron, gdy blok jest pełny. Poniżej przedstawiono format pierwszej strony bloku ni w LevelX:
+LevelX wykorzystuje również pierwszą stronę każdego bloku NAND dla liczby wymazywania bloków, a także listę zamapowanych stron, gdy blok jest pełny. Poniżej przedstawiono format pierwszej strony bloku NAND na poziomie LevelX:
 
-| LevelX bloku strony 0 |
+| Format bloku LevelX na stronie 0 |
 |:--------------------------:|
-| [Liczba wymazanych bloków]        |
+| [Blokuj liczbę wymazywania]        |
 | [Mapowanie sektorów strony 1]    |
 | ...                        |
-| Mapowanie sektora [Strona "n"]  |
+| [Page "n" Sector Mapping (Mapowanie sektorów na stronie "n])  |
 | [0xF0F0F0F0]               |
 
 > [!NOTE]
-> Informacje o mapowaniu stron są zapisywane tylko wtedy, gdy blok jest pełny, tj. wszystkie strony bloku zostały zapisaną w. Umożliwia to szybsze wyszukiwanie bezpłatnych stron i mapowań sektorów logicznych w czasie wykonywania.
+> Informacje dotyczące mapowania strony są zapisywane tylko wtedy, gdy blok jest pełny, tj. wszystkie strony bloku zostały zapisane w. Umożliwia to szybsze wyszukiwanie wolnych stron i mapowanie sektorów logicznych w czasie uruchamiania.
 
-## <a name="nand-bad-block-support"></a>Obsługa nieprawidłowego bloku ni
+## <a name="nand-bad-block-support"></a>Obsługa złych bloków NAND
 
-Pamięć ni jest również prawdopodobnie nieprawidłowymi blokadami lub pamięcią. Jest to bardzo duże działanie, ponieważ ni producenci mogą zwiększyć wzrost, umożliwiając korzystanie z nieprawidłowych bloków i wymaganie, aby oprogramowanie działało w przypadku takich nieprawidłowych bloków. LevelX obsługuje ni niewłaściwe zarządzanie blokami przez proste mapowanie wokół nieprawidłowych bloków.
+Ponadto istnieje większe prawdopodobieństwo, że pamięć NAND będzie mieć złe bloki niż pamięć NOR. Jest to spowodowane głównie tym, że producenci nandów mogą zwiększyć rentowność, zezwalając na złe bloki i wymagając oprogramowania do ominiania takich złych bloków. LevelX obsługuje zarządzanie złymi blokami NAND, po prostu mapując wokół złych bloków.
 
-Program LevelX udostępnia również interfejsy API dla 256-bajtowych kodów korekcji błędów (ECC) dla podstawowego sterownika LevelX, które będą używane do obliczania nowych kodów ECC lub w celu przeprowadzenia 1-bitowej korekcji błędów podczas odczytywania stron w każdej sekcji 256-bajtowej strony.
+LevelX udostępnia również interfejsy API dla 256-bajtowych kodów korekty błędów Hamminga (ECC) dla bazowego sterownika LevelX do obliczania nowych kodów ECC lub wykonywania 1-bitowej korekty błędów podczas odczytywania strony w każdej 256-bajtowej sekcji strony.
 
-## <a name="nand-driver-requirements"></a>Wymagania dotyczące sterownika ni
+## <a name="nand-driver-requirements"></a>Wymagania dotyczące sterownika NAND
 
-LevelX wymaga podstawowego sterownika Flash ni, który jest specyficzny dla bazowej części Flash i implementacji sprzętowej. Sterownik jest określany do LevelX podczas inicjowania za pośrednictwem interfejsu API ***lx_nand_flash_open***. Prototyp sterownika LevelX jest następujący.
+LevelX wymaga źródłowego sterownika flash NAND, który jest specyficzny dla bazowej implementacji sprzętowej i części flash. Sterownik jest określony na LevelX podczas inicjowania za pośrednictwem interfejsu API ***lx_nand_flash_open***. Prototyp sterownika LevelX jest następujący.
 
 ```c
 INT nand_driver_initialize(LX_NAND_FLASH *instance);
 ```
 
-Parametr *instance* określa blok sterowania LevelX ni. Funkcja inicjowania sterownika jest odpowiedzialna za konfigurowanie wszystkich innych usług na poziomie sterowników dla skojarzonego wystąpienia LevelX. Na poniższej liście przedstawiono usługi wymagane przez każde wystąpienie LevelX ni.
+Parametr *wystąpienia* określa blok sterowania NaND LevelX. Funkcja inicjowania sterownika jest odpowiedzialna za konfigurowanie wszystkich innych usług na poziomie sterownika dla skojarzonego wystąpienia LevelX. Usługi wymagane dla każdego wystąpienia nand LevelX są wyświetlane na poniższej liście.
 
 - Strona odczytu
 - Strona zapisu
 - Blokuj wymazywanie
-- Blokuj wymazywanie
-- Strona została wymazana
-- Pobieranie stanu blokowania
-- Zablokuj ustawienie stanu
-- Pobieranie dodatkowych bajtów
-- Zablokuj dodatkowe bajty
+- Blokuj wymazane weryfikacje
+- Weryfikacja wymazywania strony
+- Uzyskiwanie stanu bloku
+- Blokuj zestaw stanu
+- Blokuj uzyskiwanie dodatkowych bajtów
+- Blokuj zestaw dodatkowych bajtów
 - Program obsługi błędów systemu
 
 ## <a name="driver-initialization"></a>Inicjowanie sterownika
 
-Te usługi są skonfigurowane za pośrednictwem ustawień wskaźników funkcji w wystąpieniu **LX_NAND_FLASH** w ramach funkcji inicjowania sterownika. Funkcja inicjacji sterownika określa również łączną liczbę bloków, stron na blok, bajty na stronę, a obszar pamięci RAM jest wystarczająco duży, aby można było odczytać jedną stronę do pamięci. Funkcja inicjacji sterownika, która umożliwia również wykonywanie dodatkowych obowiązków inicjalizacji dotyczących urządzeń i/lub implementacji przed zwróceniem **LX_SUCCESS**.
+Te usługi są konfigurowe za pośrednictwem ustawiania wskaźników funkcji LX_NAND_FLASH **wystąpieniu** w ramach funkcji inicjowania sterownika. Funkcja inicjowania sterownika określa również łączną liczbę bloków, stron na blok, bajtów na stronę i obszar pamięci RAM wystarczająco duży, aby odczytać jedną stronę do pamięci. Funkcja inicjowania sterownika prawdopodobnie wykonuje również dodatkowe obowiązki dotyczące inicjowania urządzenia i/lub implementacji przed zwróceniem **LX_SUCCESS**.
 
 ## <a name="driver-read-page"></a>Strona odczytu sterownika
 
-Usługa LevelX ni Driver "Read Page" jest odpowiedzialna za odczytywanie określonej strony w określonym bloku ni Flash. Wszystkie błędy sprawdzania i poprawiania logiki są odpowiedzialne za usługę sterownika. Jeśli to się powiedzie, sterownik LevelX ni zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik LevelX ni zwraca **LX_ERROR**. Poniżej przedstawiono prototyp usługi LevelX ni sterownika.
+Usługa "strona odczytu" sterownika NaND LevelX jest odpowiedzialna za odczytywanie określonej strony w określonym bloku flash NAND. Za całą logikę sprawdzania i poprawiania błędów odpowiada usługa sterowników. Jeśli to się powiedzie, sterownik NaND LevelX zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik NaND LevelX zwraca **LX_ERROR**. Poniżej przedstawiono prototyp usługi "strona odczytu" sterownika LevelX NAND.
 
 ```c
 INT nand_driver_read_page(
@@ -106,11 +106,11 @@ INT nand_driver_read_page(
     ULONG words);
 ```
 
-Miejsce, w którym *blok* i *Strona* identyfikują, którą stronę odczytać i *miejsce docelowe* oraz *słowa* określają miejsce umieszczenia zawartości strony oraz liczbę słów 32-bitowych do odczytania.
+Gdzie *blok* i *strona określają,* która  strona ma być odczytywana, miejsce docelowe i wyrazy określają miejsce, w którym ma być umieszczana zawartość strony, oraz liczbę 32-bitowych słów do odczytania. 
 
 ## <a name="driver-write-page"></a>Strona zapisu sterownika
 
-Usługa LevelX ni Driver "Write Page" jest odpowiedzialna za pisanie określonej strony w określonym bloku ni Flash. Wszystkie sprawdzanie błędów i obliczenia ECC są odpowiedzialne za usługę sterownika. Jeśli to się powiedzie, sterownik LevelX ni zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik LevelX ni zwraca **LX_ERROR**. Poniżej przedstawiono prototyp usługi LevelX ni sterownika "Write Page".
+Usługa "strony zapisu" sterownika NAND LevelX jest odpowiedzialna za zapisywanie określonej strony w określonym bloku flash NAND. Wszystkie sprawdzenia błędów i obliczenia ECC są odpowiedzialne za usługę sterowników. Jeśli to się powiedzie, sterownik NaND LevelX zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik NaND LevelX zwraca **LX_ERROR**. Poniżej przedstawiono prototyp usługi "strona zapisu" sterownika LevelX NAND.
 
 ```c
 INT nand_driver_write_page(
@@ -120,55 +120,55 @@ INT nand_driver_write_page(
     ULONG words);
 ```
 
-Miejsce, w którym *blok* i *Strona* identyfikują, która strona do *zapisu i* *słowa* określają Źródło zapisu oraz liczbę słów 32-bitowych do zapisu.
+Gdzie *blok* i *strona identyfikują*  stronę  do zapisu, źródło i wyrazy określają źródło zapisu oraz liczbę 32-bitowych słów do zapisu.
 
 > [!NOTE]
-> LevelX polega na sterowniku wykrywania błędów niskiego poziomu podczas zapisywania na stronie Flash, która zwykle obejmuje odczytywanie strony i porównywanie z buforem zapisu w celu upewnienia się, że zapis zakończył się pomyślnie.
+> LevelX opiera się na sterowniku do wykrywania błędów niskiego poziomu podczas zapisywania na stronie flash, co zwykle obejmuje odczytywanie z powrotem strony i porównywanie z buforem zapisu w celu zapewnienia pomyślnego zapisu.
 
-## <a name="driver-block-erase"></a>Blok sterownika — wymazywanie
+## <a name="driver-block-erase"></a>Wymazywanie bloku sterownika
 
-Usługa LevelX ni Driver "Block Erase" jest odpowiedzialna za wymazywanie określonego bloku ni Flash. Jeśli to się powiedzie, sterownik LevelX ni zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik LevelX ni zwraca **LX_ERROR**. Prototyp usługi LevelX ni sterownika "Blokuj wymazywanie" jest następujący:
+Usługa "blokuj wymazywanie" sterownika NAND LevelX jest odpowiedzialna za wymazywanie określonego bloku flash NAND. Jeśli to się powiedzie, sterownik NaND LevelX zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik NaND LevelX zwraca **LX_ERROR**. Prototyp usługi "blokuj wymazywanie" sterownika LevelX NAND jest następujący.
 
 ```c
 INT nand_driver_block_erase(ULONG block,  
     ULONG erase_count);
 ```
 
-*Blok* WHERE wskazuje, który blok należy wymazać. Parametr *erase_count* jest udostępniany do celów diagnostycznych. Na przykład sterownik może chcieć ostrzec inną część oprogramowania aplikacji, gdy liczba wymazywań przekroczy określony próg.
+Blok *where określa,* który blok ma zostać wymazany. Parametr *erase_count* jest dostarczany do celów diagnostycznych. Na przykład sterownik może chcieć ostrzec inną część oprogramowania aplikacji, gdy liczba wymazywania przekroczy określony próg.
 
 > [!NOTE]
-> LevelX opiera się na sterowniku wykrywania błędów niskiego poziomu, gdy blok zostanie wymazany, co zazwyczaj polega na zapewnieniu, że wszystkie strony bloku są wszystkie.
+> Narzędzie LevelX polega na sterowniku do wykrywania błędów niskiego poziomu podczas wymazywania bloku, co zwykle obejmuje upewnienie się, że wszystkie strony bloku są jedynami.
 
-## <a name="driver-block-erased-verify"></a>Blok sterownika został wymazany
+## <a name="driver-block-erased-verify"></a>Weryfikacja wymazanych bloków sterowników
 
-Usługa LevelX ni Driver "Block Erase verify" jest odpowiedzialna za sprawdzenie, czy określony blok ni błysku jest wymazany. W przypadku wymazania sterownik LevelX ni zwraca **LX_SUCCESS**. Jeśli blok nie zostanie wymazany, sterownik LevelX ni zwraca **LX_ERROR**. Prototyp usługi LevelX ni Driver "Block Erase verify" to:
+Usługa "blokuj wymazaną weryfikację" sterownika LevelX NAND jest odpowiedzialna za sprawdzenie, czy określony blok pamięci flash NAND został usunięty. Jeśli zostanie on wymazany, sterownik LevelX NAND zwróci **wartość LX_SUCCESS**. Jeśli blok nie zostanie wymazany, sterownik NAND LevelX zwróci **wartość LX_ERROR**. Prototyp usługi "blokuj wymazaną weryfikację" sterownika LevelX NAND to:
 
 ```c
 INT nand_driver_block_erased_verify(ULONG block);
 ```
 
-*Blok* WHERE określa, który blok sprawdza, czy jest wymazany.
+Gdzie *bloku* określa, który blok, aby sprawdzić, czy został usunięty.
 
 > [!NOTE]
-> LevelX opiera się na sterowniku, aby sprawdzić wszystkie strony i wszystkie bajty każdej strony, w tym bajty zapasowe i dane, aby upewnić się, że zostały wymazane (zawierają wszystkie).
+> Narzędzie LevelX polega na tym, że sterownik sprawdza wszystkie strony i wszystkie bajty każdej strony — w tym bajty zapasowe i bajty danych — aby upewnić się, że zostały usunięte (zawierają wszystkie).
 
-## <a name="driver-page-erased-verify"></a>Zweryfikowano stronę sterownika
+## <a name="driver-page-erased-verify"></a>Weryfikacja wymazywania strony sterownika
 
-Usługa LevelX ni sterownika "Strona została zweryfikowana" jest odpowiedzialna za sprawdzenie, czy określona strona określonego bloku ni lampy błyskowej została wymazana. W przypadku wymazania sterownik LevelX ni zwraca **LX_SUCCESS**. Jeśli strona nie zostanie wymazana, sterownik LevelX ni zwraca **LX_ERROR**. Prototyp sterownika LevelX ni "Page Erase verify" jest:
+Usługa "weryfikacji wymazanej strony" sterownika LevelX NAND jest odpowiedzialna za sprawdzenie, czy określona strona określonego bloku flash NAND jest wymazana. Jeśli zostanie on wymazany, sterownik LevelX NAND zwróci **wartość LX_SUCCESS**. Jeśli strona nie zostanie wymazana, sterownik NaND LevelX zwróci **wartość LX_ERROR**. Prototyp usługi "page erased verify" sterownika LevelX NAND to:
 
 ```c
 INT nand_driver_page_erased_verify(
     ULONG block,  
     ULONG page);
 ```
-*Blok* WHERE określa, który blok i *Strona* określa stronę, aby sprawdzić, czy została wymazana.
+Gdzie *bloku* określa, który blok *i strona* określa stronę, aby sprawdzić, czy jest ona wymazana.
 
 > [!NOTE]
-> LevelX polega na sterowniku, aby sprawdzić wszystkie bajty określonej strony, w tym bajty zapasowe i dane, aby upewnić się, że zostały wymazane (zawierają wszystkie).
+> Narzędzie LevelX polega na tym, że sterownik sprawdza wszystkie bajty określonej strony — w tym bajty zapasowe i bajty danych — w celu upewniania się, że zostały usunięte (zawierają wszystkie bajty).
 
-## <a name="driver-block-status-get"></a>Pobieranie stanu bloku sterownika
+## <a name="driver-block-status-get"></a>Uzyskiwanie stanu bloku sterownika
 
-Usługa LevelX ni Driver "Block status Get" jest odpowiedzialna za pobieranie nieprawidłowej flagi bloku określonego bloku ni Flash. Jeśli to się powiedzie, sterownik LevelX ni zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik LevelX ni zwraca **LX_ERROR**. Prototyp usługi LevelX ni Driver "Block status Get" jest następujący: pokazano poniżej.
+Usługa "pobieranie stanu bloku" sterownika LevelX NAND jest odpowiedzialna za pobieranie flagi złych bloków określonego bloku flash NAND. Jeśli to się powiedzie, sterownik NaND LevelX zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik NAND LevelX zwraca **LX_ERROR**. Prototyp usługi "block status get" sterownika LevelX NAND to: pokazany poniżej.
 
 ```c
 INT nand_driver_block_status_get(
@@ -176,11 +176,11 @@ INT nand_driver_block_status_get(
     UCHAR *bad_block_byte);
 ```
 
-*Blok* WHERE określa, który blok i *bad_block_byte* określa miejsce docelowe dla nieprawidłowej flagi bloku.
+Where *block* określa, który blok *bad_block_byte* określa miejsce docelowe dla flagi bad block.
 
-## <a name="driver-block-status-set"></a>Ustawienie stanu bloku sterownika
+## <a name="driver-block-status-set"></a>Zestaw stanu bloku sterowników
 
-Usługa LevelX ni Driver "Block status Set" jest odpowiedzialna za ustawienie nieprawidłowej flagi bloku określonego bloku ni Flash. Jeśli to się powiedzie, sterownik LevelX ni zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik LevelX ni zwraca **LX_ERROR**. Prototyp usługi LevelX ni Driver "Block status Set":
+Usługa "blokuj zestaw stanu" sterownika LevelX NAND jest odpowiedzialna za ustawienie flagi złych bloków określonego bloku flash NAND. Jeśli to się powiedzie, sterownik NaND LevelX zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik NAND LevelX zwraca **LX_ERROR**. Prototyp usługi "blokuj zestaw stanu" sterownika NAND LevelX to:
 
 ```c
 INT nand_driver_block_status_set(
@@ -188,11 +188,11 @@ INT nand_driver_block_status_set(
     UCHAR bad_block_byte);
 ```
 
-*Blok* WHERE określa, który blok i *bad_block_byte* określa wartość nieprawidłowej flagi bloku.
+Where *block* określa, który blok *bad_block_byte* określa wartość flagi bad block.
 
-## <a name="driver-block-extra-bytes-get"></a>Pobieranie dodatkowych bajtów w bloku sterownika
+## <a name="driver-block-extra-bytes-get"></a>Uzyskiwanie dodatkowych bajtów bloku sterownika
 
-Usługa LevelX ni Driver "Blokuj dodatkową liczbę bajtów" jest odpowiedzialna za pobieranie dodatkowych bajtów skojarzonych z konkretną stroną określonego bloku ni Flash. Jeśli to się powiedzie, sterownik LevelX ni zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik LevelX ni zwraca **LX_ERROR**. Prototyp usługi LevelX ni Driver "Block Extra Bytes Get" to:
+Usługa sterownika NAND LevelX "blokuj pobieranie dodatkowych bajtów" jest odpowiedzialna za pobieranie dodatkowych bajtów skojarzonych z określoną stroną określonego bloku flash NAND. Jeśli to się powiedzie, sterownik NaND LevelX zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik NAND LevelX zwraca **LX_ERROR**. Prototyp usługi "Blokuj dodatkowe bajty get" sterownika LevelX NAND to:
 
 ```c
 INT nand_driver_block_extra_bytes_get(
@@ -202,11 +202,11 @@ INT nand_driver_block_extra_bytes_get(
     UINT size);
 ```
 
-*Blok* WHERE określa, który blok, *Strona* określa określoną stronę i *miejsce docelowe* określa miejsce docelowe dla dodatkowych bajtów. *Rozmiar* parametru określa liczbę dodatkowych bajtów do pobrania.
+Gdzie *blok* określa blok, *strona* określa określoną stronę, a *miejsce* docelowe określa miejsce docelowe dodatkowych bajtów. Rozmiar *parametru* określa liczbę dodatkowych bajtów do uzyskania.
 
 ## <a name="driver-block-extra-bytes-set"></a>Zestaw dodatkowych bajtów bloku sterownika
 
-Usługa LevelX ni Driver "Block Extra Bytes Set" jest odpowiedzialna za ustawienie dodatkowych bajtów na określonej stronie określonego bloku ni Flash. Jeśli to się powiedzie, sterownik LevelX ni zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik LevelX ni zwraca **LX_ERROR**. Prototyp usługi LevelX ni Driver "Block Extra Bytes Set" to:
+Usługa sterownika NAND LevelX "blokuj zestaw dodatkowych bajtów" jest odpowiedzialna za ustawianie dodatkowych bajtów na określonej stronie określonego bloku flash NAND. Jeśli to się powiedzie, sterownik NaND LevelX zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik NAND LevelX zwraca **LX_ERROR**. Prototyp usługi "blokuj zestaw dodatkowych bajtów" sterownika LevelX NAND to:
 
 ```c
 INT nand_driver_block_extra_bytes_set(
@@ -216,11 +216,11 @@ INT nand_driver_block_extra_bytes_set(
     UINT size);
 ```
 
-*Blok* WHERE określa, który blok, *Strona* określa określoną stronę i *Źródło* określa źródło dodatkowych bajtów. *Rozmiar* parametru określa liczbę dodatkowych bajtów do ustawienia.
+Gdzie *blok* określa, który blok, *strona* określa określoną stronę, a *źródło* określa źródło dodatkowych bajtów. Rozmiar *parametru* określa liczbę dodatkowych bajtów do ustawienia.
 
-## <a name="driver-system-error"></a>Błąd systemu sterownika
+## <a name="driver-system-error"></a>Błąd systemu sterowników
 
-Usługa programu obsługi błędów systemu LevelX ni jest odpowiedzialna za ustawienie obsługi błędów systemu wykrytych przez LevelX. Przetwarzanie w tej procedurze jest zależne od aplikacji. Jeśli to się powiedzie, sterownik LevelX ni zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik LevelX ni zwraca **LX_ERROR**. Prototyp usługi LevelX ni sterownika "System Error" jest następujący:
+Usługa "obsługi błędów systemu" sterownika LevelX NAND jest odpowiedzialna za ustawianie obsługi błędów systemowych wykrytych przez system LevelX. Przetwarzanie w tej procedury jest zależne od aplikacji. Jeśli to się powiedzie, sterownik NaND LevelX zwraca **LX_SUCCESS**. Jeśli to się nie powiedzie, sterownik NAND LevelX zwraca **LX_ERROR**. Prototyp usługi "błąd systemu" sterownika LevelX NAND to:
 
 ```c
 INT nand_driver_system_error(
@@ -229,25 +229,25 @@ INT nand_driver_system_error(
     ULONG page);
 ```
 
-*Blok* WHERE określa, który blok i *Strona* określa określoną stronę, w której wystąpił błąd reprezentowany przez *error_code* .
+Gdzie *blok* określa, który blok, a *strona* określa określoną stronę, błąd reprezentowany przez *error_code* wystąpił.
 
-## <a name="nand-simulated-driver"></a>Sterownik symulowany ni
+## <a name="nand-simulated-driver"></a>Symulowany sterownik NAND
 
-LevelX udostępnia symulowany sterownik Flash ni, który po prostu używa pamięci RAM do symulowania operacji części Flash ni. Domyślnie ni symulowany sterownik zawiera 8 ni bloków Flash z 16 stronami na blok i 2048 bajtów na stronę.
+LevelX udostępnia symulowany sterownik flash NAND, który po prostu używa pamięci RAM do symulowania działania części flash NAND. Domyślnie symulowany sterownik NAND udostępnia 8 bloków flash NAND z 16 stronami na blok i 2048 bajtów na stronę.
 
-Symulowana Funkcja inicjowania sterownika ni Flash to ***lx_nand_flash_simulator_initialize** _ i jest zdefiniowana w _ *_lx_nand_flash_simulator. c_* *. Ten sterownik zapewnia również dobry szablon do pisania określonych sterowników ni Flash.
+Symulowana funkcja inicjowania sterownika flash NAND to ***lx_nand_flash_simulator_initialize** _ i jest zdefiniowana w _*_lx_nand_flash_simulator.c_**. Ten sterownik udostępnia również dobry szablon do pisania określonych sterowników flash NAND.
 
-## <a name="nand-filex-integration"></a>Integracja z programem ni FileX
+## <a name="nand-filex-integration"></a>Integracja z plikiem NAND FileX
 
-Jak wspomniano wcześniej, LevelX nie polega na FileX dla operacji. Wszystkie interfejsy API LevelX mogą być wywoływane bezpośrednio przez oprogramowanie aplikacji do przechowywania/pobierania nieprzetworzonych danych do sektorów logicznych dostarczonych przez LevelX. Jednak LevelX obsługuje również FileX.
+Jak wspomniano wcześniej, levelX nie polega na pliku FileX w przypadku operacji. Wszystkie interfejsy API LevelX mogą być wywoływane bezpośrednio przez oprogramowanie aplikacji w celu przechowywania/pobierania danych pierwotnych do sektorów logicznych dostarczanych przez levelX. Jednak system LevelX obsługuje również plik FileX.
 
-Plik ***fx_nand_flash_simulated_driver. c*** zawiera przykładowy sterownik FileX do użycia z symulacją Flash ni. Interesujący aspekt tego sterownika polega na tym, że łączy on 512-bajtowe sektory logiczne zwykle używane przez FileX do pojedynczego sektora logicznego żądania odczytu/zapisu do symulatora LevelX przy użyciu stron 2048-bajtowych. Powoduje to wydajniejsze wykorzystanie pamięci flash ni. Sterownik ni Flash FileX dla LevelX zapewnia dobry punkt wyjścia do pisania niestandardowych sterowników FileX.  
+Plik ***fx_nand_flash_simulated_driver.c*** zawiera przykładowy sterownik FileX do użycia z symulacją flash NAND. Interesującym aspektem tego sterownika jest to, że łączy on 512-bajtowe sektory logiczne zwykle używane przez plik FileX w żądania odczytu/zapisu pojedynczego sektora logicznego do symulatora LevelX przy użyciu stron 2048-bajtowych. W ten sposób można wydajniej korzystać z pamięci flash NAND. Sterownik NaND flash FileX dla levelX zapewnia dobry punkt wyjścia do pisania niestandardowych sterowników FileX.  
   
 > [!NOTE]
-> Format Flash ni FileX powinien mieć jeden pełny rozmiar bloku dla sektorów niższy niż program ni Flash. Pomoże to zapewnić najlepszą wydajność podczas przetwarzania poziomu zużycia. Dodatkowe techniki zwiększające wydajność zapisu w algorytmie LevelXego zużycia są następujące:
+> Format flash NAND pliku FileX powinien mieć rozmiar jednego pełnego bloku sektorów mniejszy niż rozmiar zapewniany przez flash NAND. Pomoże to zapewnić najlepszą wydajność podczas przetwarzania poziomu zużycia. Poniżej przedstawiono dodatkowe techniki poprawiające wydajność zapisu w algorytmie levelingu poziomu zużycia LevelX.
 
-1. Upewnij się, że wszystkie zapisy mają dokładnie jeden lub więcej klastrów o rozmiarze i Rozpocznij na dokładnych granicach klastra.
-1. Przed wykonaniem operacji zapisu dużych plików za pośrednictwem klasy FileX ***Fx_file_allocate*** interfejsów API należy wstępnie przydzielić klastry.
-1. Upewnij się, że sterownik FileX jest włączony, aby otrzymywać informacje o sektorach wydania i żądania wysyłane do sterownika w celu wydania sektorów są obsługiwane w sterowniku przez wywołanie ***lx_nor_flash_sector_release***.
-1. Okresowe korzystanie z ***lx_nand_flash_defragment*** , aby zwolnić tyle bloków ni, jak to możliwe, a tym samym zwiększyć wydajność zapisu.
-1. Użyj interfejsu API ***lx_nand_flash_extended_cache_enable*** , aby zapewnić pamięć podręczną pamięci RAM różnych zasobów ni, aby zwiększyć wydajność.
+1. Upewnij się, że wszystkie zapis mają dokładnie jeden lub więcej klastrów o rozmiarze, i rozpocznij od dokładnych granic klastra.
+1. Wstępnie przydziel klastry przed wykonaniem operacji zapisu dużych plików za pośrednictwem klasy ***fx_file_allocate*** FileX interfejsów API.
+1. Upewnij się, że sterownik FileX jest włączony do odbierania informacji o sektorze wydania, a żądania do sterownika dotyczące zwalniania sektorów są obsługiwane w sterowniku przez wywołanie lx_nor_flash_sector_release ***.***
+1. Okresowe użycie ***lx_nand_flash_defragment,*** aby jak najwięcej bloków NAND było wolnych, a tym samym poprawić wydajność zapisu.
+1. Użyj ***interfejsu API lx_nand_flash_extended_cache_enable,*** aby zapewnić pamięć podręczną RAM różnych zasobów bloku NAND w celu zapewnienia szybszej wydajności.

@@ -1,19 +1,19 @@
 ---
-title: Rozdział 4 — opis interfejsu API kryptografii usługi Azure RTO NetX
-description: Opis interfejsu API kryptografii usługi Azure RTO NetX
+title: Rozdział 4 — Azure RTOS interfejsu API kryptograficznego netx
+description: Azure RTOS interfejsu API kryptograficznego netx
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 04e732bc1fd6012636aab3a57391829f529724cf
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 5bd4cdae28a293ec9ef259bbd29fdb8f8d6dc43f964cbc184290b82ee8f590a3
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822716"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116788807"
 ---
-# <a name="chapter-4---azure-rtos-netx-crypto-api-description"></a>Rozdział 4 — opis interfejsu API kryptografii usługi Azure RTO NetX
+# <a name="chapter-4---azure-rtos-netx-crypto-api-description"></a>Rozdział 4 — Azure RTOS interfejsu API kryptograficznego netx
 
 ## <a name="nx_crypto_initialize"></a>nx_crypto_initialize
 
@@ -27,7 +27,7 @@ UINT nx_crypto_initialize(VOID);
 
 ### <a name="description"></a>Opis
 
-Ta funkcja Inicjuje moduł biblioteki kryptograficznej Azure RTO NetX. Przed użyciem którejkolwiek z innych funkcji kryptograficznych, aplikacja musi wywołać tę funkcję, aby wykonać inicjalizację i zweryfikować integralność biblioteki. Niepowodzenie wywołania tej funkcji przed użyciem innych usług kryptograficznych NetX spowoduje zwrócenie błędów.
+Ta funkcja inicjuje moduł Azure RTOS Biblioteki kryptograficzne NetX. Przed użyciem jakichkolwiek innych funkcji kryptograficznych aplikacja musi wywołać tę funkcję w celu przeprowadzenia inicjowania i zweryfikowania integralności biblioteki. Niepowodzenie wywołania tej funkcji przed użyciem innych usług kryptograficznych NetX spowoduje zwrócenie błędów.
 
 ### <a name="parameters"></a>Parametry
 
@@ -35,16 +35,16 @@ Ta funkcja Inicjuje moduł biblioteki kryptograficznej Azure RTO NetX. Przed uż
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie zainicjowano bibliotekę kryptograficzną NetX. Funkcje biblioteki są teraz gotowe i mogą być używane.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) nie można zainicjować biblioteki kryptograficznej lub błąd sprawdzania integralności. Aplikacja nie może użyć tej biblioteki.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie zainicjowana biblioteka kryptograficzna NetX. Funkcje biblioteki są teraz gotowe i można ich używać.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Nie można zainicjować biblioteki kryptograficznej lub nie można sprawdzić integralności. Aplikacja nie może używać tej biblioteki.
 
 ### <a name="example"></a>Przykład
 
-CZYNNOŚĆ
+Todo
 
 ## <a name="nx_crypto_module_state_get"></a>nx_crypto_module_state_get
 
-Pobieranie bieżącego stanu modułu z obsługą FIPS
+Pobieranie bieżącego stanu modułu z włączoną obsługą zasad FIPS
 
 ### <a name="prototype"></a>Prototype
 
@@ -54,7 +54,7 @@ UINT nx_crypto_module_state_get(VOID);
 
 ### <a name="description"></a>Opis
 
-Ta usługa jest dostępna tylko w bibliotece kompilacji FIPS. Zwraca stan bieżącego stanu biblioteki kryptograficznej NetX.
+Ta usługa jest dostępna tylko w bibliotece kompilacji FIPS. Zwraca stan bieżącego stanu biblioteki kryptograficznych NetX.
 
 ### <a name="parameters"></a>Parametry
 
@@ -72,11 +72,11 @@ Ta usługa jest dostępna tylko w bibliotece kompilacji FIPS. Zwraca stan bież�
 
 ### <a name="example"></a>Przykład
 
-CZYNNOŚĆ
+Todo
 
 ## <a name="_nx_crypto_method_aes_init"></a>_nx_crypto_method_aes_init
 
-Inicjuje blok kontroli kryptograficznej AES
+Inicjuje blok kontroli kryptografii AES
 
 ### <a name="prototype"></a>Prototype
 
@@ -92,15 +92,15 @@ UINT _nx_crypto_method_aes_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok kontrolny AES z danym ciągiem klucza. Po zainicjowaniu bloku sterowania AES kolejna operacja AES będzie używać tego samego klucza i rozmiaru klucza.
+Ta funkcja inicjuje blok sterowania AES z danym ciągiem klucza. Po zainicjowania bloku sterowania AES kolejna operacja AES będzie używać tego samego klucza i tego samego rozmiaru klucza.
 
-Aplikacja może tworzyć wiele bloków formantów AES, każda reprezentuje sesję. Klucz jest przypisywany do bloku sterującego. Kolejna operacja szyfrowania lub odszyfrowywania może odwoływać się do tego samego bloku kontrolki AES bez konieczności ponownego inicjowania bloku sterowania AES. Jeśli klucz sesji zostanie zmieniony, aplikacja musi ponownie zainicjować blok kontroli AES ze zaktualizowanym kluczem.
+Aplikacja może utworzyć wiele bloków sterujących AES, z których każdy reprezentuje sesję. Klucz jest przypisywany do bloku sterującego. Kolejna operacja szyfrowania lub odszyfrowywania może odwoływać się do tego samego bloku sterowania AES bez konieczności ponownego inicjowania bloku sterowania AES. Jeśli klucz sesji zostanie zmieniony, aplikacja musi ponownie zainicjować blok kontroli AES przy użyciu zaktualizowanego klucza.
 
-Wywołanie _ *nx_crypto_method_aes_init ()* automatycznie aktualizuje wcześniej skonfigurowany klucz i rozmiar klucza do nowego klucza.
+Wywołanie funkcji *_ nx_crypto_method_aes_init()* automatycznie aktualizuje wcześniej skonfigurowany klucz i rozmiar klucza do nowego klucza.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznej AES. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne AES:
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznych AES. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne AES:
   - *crypto_method_aes_cbc_128*
   - *crypto_method_aes_cbc_192*
   - *crypto_method_aes_cbc_256*
@@ -115,16 +115,16 @@ Wywołanie _ *nx_crypto_method_aes_init ()* automatycznie aktualizuje wcześniej
   - *NX_CRYPTO_AES_KEY_SIZE_192_BITS*
   - *NX_CRYPTO_AES_KEY_SIZE_256_BITS*
   - **Wszystkie inne wartości są nieprawidłowe.**
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania AES. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku algorytmu AES rozmiar metadanych musi mieć wartość *sizeof (NX_AES)*
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście zależy od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania AES. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku AES rozmiar metadanych musi być *sizeof(NX_AES)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku kontrolki AES przy użyciu klucza i rozmiaru klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR (0x07)** Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
-- Rozmiar klucza **NX_CRYPTO_UNSUPPORTED_KEY_SIZE** (0x20002) nie jest prawidłowy dla algorytmu AES.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania AES z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR (0x07)** Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie jest wyrównany o 4 bajty.
+- **NX_CRYPTO_UNSUPPORTED_KEY_SIZE** (0x20002) Rozmiar klucza nie jest prawidłowy dla AES.
 
 ## <a name="_nx_crypto_method_aes_operation"></a>_nx_crypto_method_aes_operation
 
@@ -151,44 +151,44 @@ UINT _nx_crypto_method_aes_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację szyfrowania lub odszyfrowywania AES. Blok sterowania AES musi być zainicjowany przy użyciu _ *nx_crypto_method_aes_init ()*. Algorytm AES ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metodami* .
+Ta funkcja wykonuje operację szyfrowania lub odszyfrowywania AES. Blok sterowania AES musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_aes_init()*. Algorytm AES do wykonania jest oparty na algorytmie określonym w bloku *kontroli* metody.
 
-Rozmiar buforu wejściowego musi być wielokrotnością 16 bajtów. Rozmiar odszyfrowanych danych ma taki sam rozmiar jak rozmiar danych wejściowych. Jeśli zaszyfrowane dane zostały uzupełnione w celu osiągnięcia nawet wielokrotności rozmiaru bloku AES, uzupełnienie zostanie uwzględnione w buforze wyjściowym i musi być obsługiwane przez aplikację.
+Rozmiar buforu wejściowego musi być wielokrotnością 16 bajtów. Rozmiar odszyfrowanych danych jest taki sam jak rozmiar danych wejściowych. Jeśli zaszyfrowane dane zostały dopełnione w celu osiągnięcia równomiernej wielokrotności rozmiaru bloku AES, wypełnienie zostanie uwzględnione w buforze wyjściowym i musi być obsługiwane przez aplikację.
 
-Ta operacja nie zachowuje informacji o stanie i nie zmienia materiału klucza w bloku sterowania AES.
+Ta operacja nie powoduje przechowania informacji o stanie i nie zmienia materiału klucza w bloku sterowania AES.
 
-Gdy op jest NX_CRYPTO_SET_ADDITIONAL_DATA, a algoritm to AES-CCM8, punkty wejścia do dodatkowych danych i input_length_in_byte to długość dodatkowych danych.
+Gdy opa jest NX_CRYPTO_SET_ADDITIONAL_DATA a algoritm to AES-CCM8, dane wejściowe wskazuje dodatkowe dane, a input_length_in_byte to długość dodatkowych danych.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowe Operations:
+- **op** Typ operacji do wykonania. Prawidłowe działanie to:
   - *NX_CRYPTO_ENCRYPT*
   - *NX_CRYPTO_DECRYPT*
-  - *NX_CRYPTO_AUTHENTICATE (tylko algorytm AES-XCBC)*
-  - *NX_CRYPTO_SET_ADDITIONAL_DATA (tylko algorytm AES-CCM8)*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej AES. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_aes_init ().*
-- **input_data** Wskazuje bufor zawierający dane zaszyfrowanego tekstu. Bufor wejściowy nie zawiera żadnych ograniczeń.
+  - *NX_CRYPTO_AUTHENTICATE (tylko AES-XCBC)*
+  - *NX_CRYPTO_SET_ADDITIONAL_DATA (tylko AES-CCM8)*
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej AES. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie *nx_crypto_method_aes_init().*
+- **input_data** Wskazuje bufor zawierający zaszyfrowane dane tekstowe. Nie ma żadnych ograniczeń dotyczących buforu wejściowego.
 - **input_data_size** Rozmiar danych wejściowych w bajtach. Rozmiar danych wejściowych musi być wielokrotnością 16 bajtów.
-- **iv_ptr** Wskaźnik do początkowego wektora. Nie ma żadnych ograniczeń dotyczących buforu IV.
-- **iv_size** Rozmiar początkowego bloku wektora, w bajtach to pole musi być 16.
-- **output_buffer** Wskaźnik do obszaru pamięci dla algorytmu AES, aby przechowywać dane w postaci zwykłego tekstu. Aplikacja musi przydzielić miejsce dla buforu wyjściowego. Bufor wyjściowy może nakładać się na bufor wejściowy. Bufor wyjściowy może nakładać się na bufor wejściowy, jeśli korzystają one z tego samego adresu początkowego.
-- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. Rozmiar buforu wyjściowego musi być co najmniej taki sam jak rozmiar buforu wejściowego, a rozmiar buforu wyjściowego musi być wielokrotnością 16 bajtów.
-- **crypto_metadata** Wskaźnik do bloku kontrolki AES używanego w *_nx_crypto_method_aes_init () \* . \**
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku algorytmu AES rozmiar metadanych musi mieć wartość *sizeof (NX_AES)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** — to pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **iv_ptr** Wskaźnik do wektora początkowego. Nie ma żadnych ograniczeń dotyczących buforu IV.
+- **iv_size** Rozmiar bloku Wektor początkowy w bajtach To pole musi mieć wartość 16.
+- **output_buffer** Wskaźnik do obszaru pamięci dla funkcji AES do przechowywania danych w for sposób jednoznacznie tekstowy. Aplikacja musi przydzielić miejsce dla buforu wyjściowego. Bufor wyjściowy może pokrywać się z buforem wejściowym. Bufor wyjściowy może pokrywać się z buforem wejściowym, jeśli mają ten sam adres początkowy.
+- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. Rozmiar buforu wyjściowego musi być co najmniej taki sam jak rozmiar bufora wejściowego, a rozmiar buforu wyjściowego musi być wielokrotnością 16 bajtów.
+- **crypto_metadata** Wskaźnik do bloku sterowania AES używanego w funkcji *_nx_crypto_method_aes_init() \* . \**
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku usługi AES rozmiar metadanych musi *być sizeof(NX_AES)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** — to pole nie jest używane w programowej implementacji biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA operację AES.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm AES * *.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację AES.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm AES**.
 
 ## <a name="_nx_crypto_method_aes_cleanup"></a>_nx_crypto_method_aes_cleanup
 
-Wyczyść blok kontroli AES.
+Wyczyść blok sterowania AES.
 
 ### <a name="prototype"></a>Prototype
 
@@ -198,20 +198,20 @@ UINT _nx_crypto_method_aes_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby wyczyścić blok kontroli AES po ustaleniu, że ta sesja AES nie jest już wymagana.
+Aplikacja wywołuje tę funkcję, aby wyczyścić blok sterowania AES po ustaleniu, że ta sesja AES nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku kontrolki AES używanego w *_nx_crypto_method_aes_init () \* . \**
+- **crypto_metadata** Wskaźnik do bloku sterowania AES używanego w funkcji *_nx_crypto_method_aes_init() \* . \**
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję AES.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja AES.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
 
 ## <a name="_nx_crypto_method_3des_init"></a>_nx_crypto_method_3des_init
 
-Zainicjuj blok kontroli 3DES.
+Zaimicjuj blok sterowania 3DES.
 
 ### <a name="prototype"></a>Prototype
 
@@ -227,31 +227,31 @@ UINT _nx_crypto_method_3des_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok sterowania potrójnym algorytmem DES (3DES) z podanym trzema ciągami kluczy. Ciągi kluczy muszą zawierać 8 bajtów. Trzy klucze DES muszą być połączone z ciągłą ilością pamięci w buforze 24-bajtowym. W przypadku kompilacji zgodnej ze standardem FIPS trzy klucze muszą być inne niż poszczególne lub funkcja zwróci błąd NX_CRYPTO_INVALID_KEY. Po zainicjowaniu bloku sterowania algorytmem 3DES kolejne operacje 3DES będą używać tych samych kluczy.
+Ta funkcja inicjuje blok sterowania Triple DES (3DES) przy użyciu podanych trzech ciągów kluczy. Ciągi kluczy muszą mieć 8 bajtów każdy. Trzy klucze DES muszą być zwięzłe w pamięci ciągłej buforu 24-bajtowego. W przypadku kompilacji zgodnej ze standardem FIPS trzy klucze muszą różnić się od każdego lub funkcja zwróci NX_CRYPTO_INVALID_KEY błąd. Po zainicjowania bloku sterowania 3DES kolejne operacje 3DES będą używać tych samych kluczy.
 
-Aplikacja może utworzyć wiele bloków sterujących algorytmem 3DES, z których każda reprezentuje sesję. Klucz jest przypisywany do bloku sterowania, a kolejne operacje szyfrowania lub odszyfrowywania mogą odwoływać się do tego samego bloku sterowania bez konieczności ponownego inicjowania. Jeśli klucz sesji zostanie zmieniony, aplikacja będzie musiała ponownie zainicjować blok kontroli ze zaktualizowanym kluczem.
+Aplikacja może utworzyć wiele bloków sterowania 3DES, z których każdy reprezentuje sesję. Klucz jest przypisywany do bloku sterowania, a kolejne operacje szyfrowania lub odszyfrowywania mogą odwoływać się do tego samego bloku sterowania bez konieczności ponownego inicjowania. Jeśli klucz sesji zostanie zmieniony, aplikacja będzie musiał ponownie zainicjować blok sterowania przy użyciu zaktualizowanego klucza.
 
-Wywołanie _ *nx_crypto_method_3des_init ()* automatycznie aktualizuje wcześniej skonfigurowany klucz do nowych kluczy.
+Wywołanie funkcji *_ nx_crypto_method_3des_init()* automatycznie aktualizuje wcześniej skonfigurowany klucz do nowych kluczy.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku kontroli metody szyfrowania 3DES. Dostępna jest następująca wstępnie zdefiniowana Metoda kryptograficzna 3DES: ***crypto_method_3des***
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznej 3DES. Dostępna jest następująca wstępnie zdefiniowana metoda kryptograficzna 3DES: ***crypto_method_3des***
 - **klucz** Wskazuje bufor zawierający trzy (3) klucz DES
-- **key_size_in_bits** Musi być 192 (3 klucze, każdy 64 bitów).
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście identyfikuje blok kontroli 3DES. Kolejne operacje 3DES (szyfrowanie, odszyfrowywanie i czyszczenie) używają tego uchwytu do uzyskiwania dostępu do bloku sterowania 3DES
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania 3DES. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku algorytmu 3DES rozmiar metadanych musi mieć wartość *sizeof (NX_3DES)*
+- **key_size_in_bits** Musi mieć 192 (3 klucze, każdy 64 bity).
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście identyfikuje blok sterowania 3DES, który jest inicjowany. Kolejne operacje 3DES (szyfrowanie, odszyfrowywanie i oczyszczanie) używają tego dojścia do uzyskiwania dostępu do bloku sterowania 3DES
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania 3DES. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku usługi 3DES rozmiar metadanych musi być *sizeof(NX_3DES)*
 
 ### <a name="return-value"></a>Wartość zwracana
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku kontroli 3DES z rozmiarem klucza i klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR (0x07)** Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
-- Rozmiar klucza **NX_CRYPTO_UNSUPPORTED_KEY_SIZE** (0x20002) nie jest prawidłowy dla algorytmu 3DES.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania 3DES z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR (0x07)** Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie jest wyrównany o 4 bajty.
+- **NX_CRYPTO_UNSUPPORTED_KEY_SIZE** (0x20002) Rozmiar klucza nie jest prawidłowy dla 3DES.
 
 ## <a name="_nx_crypto_method_3des_operation"></a>_nx_crypto_method_3des_operation
 
-Szyfrowanie lub odszyfrowywanie przy użyciu algorytmu 3DES.
+Szyfruj lub odszyfruj przy użyciu 3DES.
 
 ### <a name="prototype"></a>Prototype
 
@@ -275,44 +275,44 @@ UINT _nx_crypto_method_3des_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operacje szyfrowania 3DES lub odszyfrowywania. Blok kontroli 3DES musi być zainicjowany przy użyciu _ *nx_crypto_method_3des_init ()*. Algorytm 3DES ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metodami* .
+Ta funkcja wykonuje operację szyfrowania lub odszyfrowywania 3DES. Blok sterowania usługi 3DES musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_3des_init()*. Algorytm 3DES do wykonania jest oparty na algorytmie określonym w bloku *kontroli* metody.
 
-Rozmiar buforu wejściowego musi być wielokrotnością 8 bajtów. Rozmiar odszyfrowanych danych ma taki sam rozmiar jak rozmiar danych wejściowych. Jeśli zaszyfrowane dane zostały uzupełnione w celu osiągnięcia nawet wielokrotności rozmiaru bloku 3DES, uzupełnienie zostanie uwzględnione w buforze wyjściowym i musi być obsługiwane przez aplikację.
+Rozmiar buforu wejściowego musi być wielokrotnością 8 bajtów. Rozmiar odszyfrowanych danych jest taki sam jak rozmiar danych wejściowych. Jeśli zaszyfrowane dane zostały wypełnione w celu osiągnięcia równomiernej wielokrotności rozmiaru bloku 3DES, wypełnienie zostanie uwzględnione w buforze wyjściowym i musi być obsługiwane przez aplikację.
 
-Ta operacja nie zachowuje informacji o stanie i nie zmienia materiału klucza w bloku kontroli 3DES.
+Ta operacja nie powoduje przechowania informacji o stanie i nie zmienia materiału klucza w bloku sterowania 3DES.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowe operacje:
+- **op** Typ operacji do wykonania. Prawidłowe operacje to:
   - *NX_CRYPTO_ENCRYPT*
   - *NX_CRYPTO_DECRYPT*
-- **Obsługa** Dojście zainicjowane przez *_nx_crypto_method_3des_init ()*.
-- **Metoda** Wskaźnik do prawidłowej metody szyfrowania 3DES. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_3des_init ().*
-- **input_data** Wskazuje bufor zawierający dane zaszyfrowanego tekstu.
-Bufor wejściowy nie zawiera żadnych ograniczeń.
+- **dojście** Dojście zainicjowane przez *_nx_crypto_method_3des_init()*.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej 3DES. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie *nx_crypto_method_3des_init().*
+- **input_data** Wskazuje bufor zawierający zaszyfrowane dane tekstowe.
+Nie ma żadnych ograniczeń dotyczących buforu wejściowego.
 - **input_data_size** Rozmiar danych wejściowych w bajtach. Rozmiar danych wejściowych musi być wielokrotnością 8 bajtów.
-- **iv_ptr** Wskaźnik do początkowego wektora. Nie ma żadnych ograniczeń dotyczących buforu IV.
-- **iv_size** Rozmiar początkowego bloku wektora, w bajtach to pole musi zawierać wartość 8.
-- **output_buffer** Wskaźnik do obszaru pamięci dla algorytmu 3DES do przechowywania danych w postaci zwykłego tekstu. Aplikacja musi przydzielić miejsce dla buforu wyjściowego. Bufor wyjściowy może nakładać się na bufor wejściowy. Bufor wyjściowy może nakładać się na bufor wejściowy, jeśli korzystają one z tego samego adresu początkowego.
-- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. Rozmiar buforu wyjściowego musi być co najmniej taki sam jak rozmiar buforu wejściowego, a rozmiar buforu wyjściowego musi być wielokrotnością 8 bajtów.
-- **crypto_metadata** Wskaźnik do bloku sterowania algorytmem 3DES używanym w *_nx_crypto_method_3des_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku algorytmu 3DES rozmiar metadanych musi mieć wartość *sizeof (NX_3DES)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **iv_ptr** Wskaźnik do wektora początkowego. Nie ma żadnych ograniczeń dotyczących buforu IV.
+- **iv_size** Rozmiar bloku wektora początkowego w bajtach To pole musi mieć wartość 8.
+- **output_buffer** Wskaźnik do obszaru pamięci dla 3DES do przechowywania danych w for sposób jednoznacznie tekstowy. Aplikacja musi przydzielić miejsce dla buforu wyjściowego. Bufor wyjściowy może pokrywać się z buforem wejściowym. Bufor wyjściowy może pokrywać się z buforem wejściowym, jeśli mają ten sam adres początkowy.
+- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. Rozmiar buforu wyjściowego musi być co najmniej taki sam, jak rozmiar bufora wejściowego, a rozmiar buforu wyjściowego musi być wielokrotnością 8 bajtów.
+- **crypto_metadata** Wskaźnik do bloku sterowania 3DES używanego w *_nx_crypto_method_3des_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku usługi 3DES rozmiar metadanych musi być *sizeof(NX_3DES)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje szyfrowanie 3DES. Blok kontroli 3DES musi być zainicjowany przy użyciu _ *nx_crypto_moethod_3des_init ()*. Ta operacja nie zachowuje informacji o stanie i nie zmienia materiału klucza w bloku kontroli 3DES. Należy zauważyć, że uzupełnienie nie jest dodawane przez tę funkcję, więc obiekt wywołujący będzie musiał obsłużyć uzupełnienie przed wywołaniem operacji szyfrowania.
+Ta funkcja wykonuje szyfrowanie 3DES. Blok sterowania usługi 3DES musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_moethod_3des_init()*. Ta operacja nie powoduje przechowania informacji o stanie i nie zmienia materiału klucza w bloku sterowania 3DES. Pamiętaj, że dopełnienie nie jest dodawane przez tę funkcję, więc obiekt wywołujący musi obsłużyć dopełnienie przed wywołaniem operacji szyfrowania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku kontroli 3DES z rozmiarem klucza i klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR (0x07)** Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania 3DES z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR (0x07)** Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_3des_cleanup"></a>_nx_crypto_method_3des_cleanup
 
-Wyczyść blok kontroli 3DES.
+Wyczyść blok sterowania 3DES.
 
 ### <a name="prototype"></a>Prototype
 
@@ -322,16 +322,16 @@ UINT _nx_crypto_method_3des_cleanup(VOID *crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby oczyścić blok kontroli 3DES po ustaleniu, że ta sesja 3DES nie jest już wymagana.
+Aplikacja wywołuje tę funkcję, aby wyczyścić blok sterowania 3DES po ustaleniu, że ta sesja 3DES nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **Obsługa** Dojście zainicjowane przez *_nx_crypto_method_3des_init ()*.
+- **dojście** Dojście zainicjowane przez *_nx_crypto_method_3des_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję 3DES.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja 3DES.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
 
 ## <a name="_nx_crypto_method_drbg_init"></a>_nx_crypto_method_drbg_init
 
@@ -351,29 +351,29 @@ UINT _nx_crypto_method_drbg_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok sterowania DRBG z danym ciągiem klucza. Po zainicjowaniu bloku sterowania DRBG kolejna operacja DRBG będzie używać tego samego bloku sterowania.
+Ta funkcja inicjuje blok sterowania DRBG z danym ciągiem klucza. Po zainicjowania bloku sterowania DRBG kolejna operacja DRBG musi używać tego samego bloku sterowania.
 
-Aplikacja może utworzyć wiele bloków sterujących DRBG, każda reprezentuje sesję. Inicjalizacja bloku sterowania DRBG uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku sterowania DRBG porzuca bieżącą sesję i gwiazdy nowe.
+Aplikacja może utworzyć wiele bloków sterowania DRBG, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania DRBG uruchamia nową sesję obliczania skrótu. Ponowne inicjowanie bloku sterowania DRBG porzuca bieżącą sesję i dodaje nową.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku sterowania metodą kryptograficzną DRBG. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznych DRBG. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_drbg*
-- **klucz** To pole nie jest używane w przypadku DRBG.
-- **key_size_in_bits** To pole nie jest używane w przypadku DRBG.
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania DRBG. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku DRBG rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_DRBG)*
+- **klucz** To pole nie jest używane dla drbg.
+- **key_size_in_bits** To pole nie jest używane dla drbg.
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania DRBG. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku usługi DRBG rozmiar metadanych musi być *sizeof(NX_CRYPTO_DRBG)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku sterowania DRBG przy użyciu klucza i rozmiaru klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania DRBG z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_drbg_operation"></a>_nx_crypto_method_drbg_operation
 
-Wykonaj operację DRBG
+Wykonywanie operacji DRBG
 
 ### <a name="prototype"></a>Prototype
 
@@ -397,37 +397,37 @@ UINT __nx_crypto_method_drbg_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację DRBG. Blok sterowania DRBG musi zostać zainicjowany przy użyciu _ *nx_crypto_method_drbg_init ()*. Algorytm DRBG ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metodami* . Domyślnie algorytm AES-128 jest używany dla DRBG.
+Ta funkcja wykonuje operację DRBG. Blok sterowania DRBG musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_drbg_init()*. Algorytm DRBG do wykonania jest oparty na algorytmie określonym w bloku *kontroli* metody. Domyślnie dla drbg jest używany standard AES-128.
 
-Gdy operacja jest NX_CRYPTO_DRBG_OPTIONS_SET, punkty wejścia do NX_CRYPTO_DRBG_OPTIONS struktury. Gdy operacja jest NX_CRYPTO_DRBG_INSTANTIATE, klucz wskazuje identyfikator jednorazowy, punkty wejścia do ciągu personalizacji. Gdy operacja jest NX_CRYPTO_DRBG_RESEED lub NX_CRYPTO_DRBG_GENERATE, punkty wejścia wskazują dodatkowe dane wejściowe.
+Gdy operacja jest NX_CRYPTO_DRBG_OPTIONS_SET, dane wejściowe wskazuje NX_CRYPTO_DRBG_OPTIONS strukturę. Gdy operacja jest NX_CRYPTO_DRBG_INSTANTIATE, klucz wskazuje wartość nonce, a punkty wejściowe na ciąg personalizacji. Gdy operacja jest NX_CRYPTO_DRBG_RESEED lub NX_CRYPTO_DRBG_GENERATE, dane wejściowe wskazuje dodatkowe dane wejściowe.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_DRBG_OPTIONS_SET*
   - *NX_CRYPTO_DRBG_INSTANTIATE*
   - *NX_CRYPTO_DRBG_RESEED NX_CRYPTO_DRBG_GENERATE*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej DRBG. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_drbg_init _ ().*
-- **klucz** Wskaźnik na identyfikator jednorazowy operacji tworzenia wystąpienia. To pole nie jest używane w przypadku innych operacji.
-- **key_size_in_bits** Rozmiar identyfikatora jednorazowego w bitach. To pole nie jest używane w przypadku innych operacji.
-- **dane wejściowe** Gdy jest NX_CRYPTO_DRBG_OPTIONS_SET, to pole wskazuje opcje DRBG. Gdy jest NX_CRYPTO_DRBG_INSTANTIATE, to pole wskazuje ciąg personalizacji. Gdy op jest NX_CRYPTO_DRBG_RESEED lub NX_CRYPTO_DRBG_GENERATE, to pole wskazuje dodatkowe dane wejściowe.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej DRBG. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie *_nx_crypto_method_drbg_init().*
+- **klucz** Wskaźnik do wskaźnika nonce dla operacji wystąpienia. To pole nie jest używane w przypadku innych operacji.
+- **key_size_in_bits** Rozmiar nonce w bitach. To pole nie jest używane w przypadku innych operacji.
+- **dane wejściowe** Po NX_CRYPTO_DRBG_OPTIONS_SET to pole wskazuje opcje DRBG. Po NX_CRYPTO_DRBG_INSTANTIATE to pole wskazuje ciąg personalizacji. Gdy opa NX_CRYPTO_DRBG_RESEED lub NX_CRYPTO_DRBG_GENERATE, to pole wskazuje dodatkowe dane wejściowe.
 - **input_length_in_byte** Rozmiar danych wejściowych w bajtach.
-- **iv_ptr** To pole nie jest używane w przypadku DRBG.
-- **dane wyjściowe** Gdy operacja jest NX_CRYPTO_DRBG_GENERATE, to pole wskazuje obszar pamięci dla wygenerowanego DRBG. W przeciwnym razie to pole nie jest używane.
+- **iv_ptr** To pole nie jest używane dla drbg.
+- **dane wyjściowe** Po NX_CRYPTO_DRBG_GENERATE to pole wskazuje obszar pamięci dla wygenerowanej strefy DRBG. W przeciwnym razie to pole nie jest używane.
 - **output_length_in_byte** Rozmiar buforu wyjściowego w bajtach.
-- **crypto_metadata** Wskaźnik do bloku sterowania DRBG używany w *_nx_crypto_method_drbg_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku DRBG rozmiar metadanych musi być *sizeof (NX_CRYPTO_DRBG)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **crypto_metadata** Wskaźnik do bloku sterowania DRBG używanego w funkcji *_nx_crypto_method_drbg_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku usługi DRBG rozmiar metadanych musi *być sizeof(NX_CRYPTO_DRBG)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA operację DRBG.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm DRBG.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację DRBG.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm DRBG.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ## <a name="_nx_crypto_method_drbg_cleanup"></a>_nx_crypto_method_drbg_cleanup
 
@@ -441,16 +441,16 @@ UINT _nx_crypto_method_drbg_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby oczyścić blok sterowania DRBG po ustaleniu, że ta sesja DRBG nie jest już wymagana.
+Aplikacja wywołuje tę funkcję w celu oczyszczenia bloku sterowania DRBG po ustaleniu, że ta sesja DRBG nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku sterowania DRBG używany w *_nx_crypto_method_drbg_init ()*.
+- **crypto_metadata** Wskaźnik do bloku sterowania DRBG używanego w funkcji *_nx_crypto_method_drbg_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję DRBG.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja DRBG.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
 
 ## <a name="_nx_crypto_method_ecdh_init"></a>_nx_crypto_method_ecdh_init
 
@@ -470,29 +470,29 @@ UINT _nx_crypto_method_ecdh_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok sterowania ECDH z danym ciągiem klucza. Po zainicjowaniu bloku sterowania ECDH kolejna operacja ECDH będzie używać tego samego bloku sterowania.
+Ta funkcja inicjuje blok sterowania ECDH z danym ciągiem klucza. Po zainicjowania bloku sterowania ECDH kolejna operacja ECDH musi używać tego samego bloku sterowania.
 
-Aplikacja może utworzyć wiele bloków sterujących ECDH, każda reprezentuje sesję. Inicjalizacja bloku sterowania ECDH uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku sterowania ECDH porzuca bieżącą sesję i gwiazdy nowe.
+Aplikacja może utworzyć wiele bloków sterowania ECDH, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania ECDH uruchamia nową sesję obliczania skrótu. Ponowne inicjowanie bloku kontrolki ECDH porzuca bieżącą sesję i dodaje nową.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku sterowania metodą kryptograficzną ECDH. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznych ECDH. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_ecdh*
-- **klucz** To pole nie jest używane w przypadku ECDH.
-- **key_size_in_bits** To pole nie jest używane w przypadku ECDH.
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania ECDH. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku ECDH rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_ECDH)*
+- **klucz** To pole nie jest używane dla ECDH.
+- **key_size_in_bits** To pole nie jest używane dla ECDH.
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania ECDH. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku usługi ECDH rozmiar metadanych musi być *sizeof(NX_CRYPTO_ECDH)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku sterowania ECDH przy użyciu klucza i rozmiaru klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania ECDH z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_ecdh_operation"></a>_nx_crypto_method_ecdh_operation
 
-Wykonaj operację ECDH
+Wykonywanie operacji ECDH
 
 ### <a name="prototype"></a>Prototype
 
@@ -516,40 +516,40 @@ UINT _nx_crypto_method_ecdh_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację ECDH. Blok sterowania ECDH musi zostać zainicjowany przy użyciu _ *nx_crypto_method_ecdh_init ()*. Algorytm ECDH ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metodami* .
+Ta funkcja wykonuje operację ECDH. Blok sterowania ECDH musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_ecdh_init()*. Algorytm ECDH do wykonania jest oparty na algorytmie określonym w bloku *kontroli* metody.
 
-Gdy operacja jest NX_CRYPTO_EC_CURVE_SET, punkty wejścia do metody kryptograficznej krzywej eliptycznej. Gdy operacja jest NX_CRYPTO_EC_KEY_PAIR_GENERATE, punkty wyjścia do struktury NX_CRYPTO_EXTENDED_OUTPUT i pary kluczy są kopiowane do nx_crypto_extended_output_data. Gdy operacja jest NX_CRYPTO_DH_SETUP, klucz publiczny jest zwracany do nx_crypto_extended_output_data. Gdy operacja jest NX_CRYPTO_DH_KEY_PAIR_IMPORT, punkty wejścia do klucza publicznego i klucza do klucza prywatnego. Gdy operacja jest NX_CRYPTO_DH_PRIVATE_KEY_EXPORT, klucz prywatny jest kopiowany do nx_crypto_extended_output_data. Gdy operacja jest NX_CRYPTO_DH_CALCULATE, punkty wejścia do zdalnego klucza publicznego i wspólny klucz tajny są kopiowane do nx_crypto_extended_output_data.
+Gdy operacja jest NX_CRYPTO_EC_CURVE_SET, dane wejściowe wskazuje metodę kryptograficzna krzywej eliptycznej. Po NX_CRYPTO_EC_KEY_PAIR_GENERATE dane wyjściowe wskazuje na NX_CRYPTO_EXTENDED_OUTPUT, a para kluczy jest kopiowana do nx_crypto_extended_output_data. Po NX_CRYPTO_DH_SETUP klucz publiczny jest zwracany do nx_crypto_extended_output_data. Gdy operacja jest NX_CRYPTO_DH_KEY_PAIR_IMPORT, dane wejściowe wskazuje klucz publiczny, a klucz na klucz prywatny. Po NX_CRYPTO_DH_PRIVATE_KEY_EXPORT klucz prywatny jest kopiowany do nx_crypto_extended_output_data. Gdy operacja jest NX_CRYPTO_DH_CALCULATE, dane wejściowe wskazuje zdalny klucz publiczny i wspólny klucz tajny są kopiowane do nx_crypto_extended_output_data.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_EC_CURVE_SET*
   - *NX_CRYPTO_DH_SETUP*
   - *NX_CRYPTO_DH_CALCULATE*
   - *NX_CRYPTO_DH_KEY_PAIR_IMPOPRT*
   - *NX_CRYPTO_DH_KEY_PAIR_GENERATE*
   - *NX_CRYPTO_DH_PRIVATE_KEY_EXPORT*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej ECDH. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_ecdh_init _ ().*
-- **klucz** Gdy jest NX_CRYPTO_DH_IMPORT_KEY_PAIR, to pole wskazuje na klucz prywatny. W przeciwnym razie to pole nie jest używane w przypadku ECDH.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej ECDH. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie *_nx_crypto_method_ecdh_init().*
+- **klucz** Po NX_CRYPTO_DH_IMPORT_KEY_PAIR to pole wskazuje na klucz prywatny. W przeciwnym razie to pole nie jest używane dla ECDH.
 - **key_size_in_bits** Rozmiar klucza w bitach.
-- **dane wejściowe** Gdy jest NX_CRYPTO_EC_CURVE_SET, to pole wskazuje metodę kryptograficzną krzywej eliptycznej. Gdy jest NX_CRYPTO_DH_SETUP, to pole nie jest używane. Gdy operacja jest NX_CRYPTO_DH_CALCULATE, to pole wskazuje bufor zawierający dane wejściowe tekstu. Gdy operacja jest NX_CRYPTO_DH_IMPORT_KEY_PAIR, to pole wskazuje na klucz publiczny.
+- **dane wejściowe** Gdy operacje są NX_CRYPTO_EC_CURVE_SET, to pole wskazuje na metodę kryptograficzna krzywej eliptycznej. Gdy jest NX_CRYPTO_DH_SETUP, to pole nie jest używane. Po NX_CRYPTO_DH_CALCULATE to pole wskazuje bufor zawierający wejściowe dane tekstowe. Po NX_CRYPTO_DH_IMPORT_KEY_PAIR to pole wskazuje klucz publiczny.
 - **input_length_in_byte** Rozmiar danych wejściowych w bajtach.
-- **iv_ptr** To pole nie jest używane w przypadku ECDH.
-- **dane wyjściowe** Gdy op jest NX_CRYPTO_EC_CURVE_SET lub NX_CRYPTO_DH_IMPORT_KEY_PAIR, to pole nie jest używane. Gdy jest NX_CRYPTO_DH_SETUP, to pole wskazuje obszar pamięci dla wygenerowanego klucza publicznego ECDH. Gdy jest NX_CRYPTO_DH_CALCULATE, to pole wskazuje obszar pamięci dla wygenerowanego wspólnego wpisu tajnego ECDH.
+- **iv_ptr** To pole nie jest używane dla ECDH.
+- **dane wyjściowe** W przypadku NX_CRYPTO_EC_CURVE_SET lub NX_CRYPTO_DH_IMPORT_KEY_PAIR to pole nie jest używane. Po NX_CRYPTO_DH_SETUP to pole wskazuje obszar pamięci dla wygenerowanego klucza publicznego ECDH. Po NX_CRYPTO_DH_CALCULATE to pole wskazuje obszar pamięci dla wygenerowanego wspólnego tajnego ecdh.
 - **output_length_in_byte** Rozmiar buforu wyjściowego w bajtach.
-- **crypto_metadata** Wskaźnik do bloku sterowania ECDH używany w *_nx_crypto_method_ecdh_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku ECDH rozmiar metadanych musi być *sizeof (NX_CRYPTO_ECDH)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **crypto_metadata** Wskaźnik do bloku sterowania ECDH używanego w funkcji *_nx_crypto_method_ecdh_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku ecdh rozmiar metadanych musi *być sizeof(NX_CRYPTO_ECDH)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA operację ECDH.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm ECDH.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację ECDH.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm ECDH.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ## <a name="_nx_crypto_method_ecdh_cleanup"></a>_nx_crypto_method_ecdh_cleanup
 
@@ -563,16 +563,16 @@ UINT _nx_crypto_method_ecdh_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby oczyścić blok sterowania ECDH po ustaleniu, że ta sesja ECDH nie jest już wymagana.
+Aplikacja wywołuje tę funkcję, aby wyczyścić blok sterowania ECDH po ustaleniu, że ta sesja ECDH nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku sterowania ECDH używany w *_nx_crypto_method_ecdh_init ()*.
+- **crypto_metadata** Wskaźnik do bloku sterowania ECDH używanego w funkcji *_nx_crypto_method_ecdh_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję ECDH.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja ECDH.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
 
 ## <a name="_nx_crypto_method_ecdsa_init"></a>_nx_crypto_method_ecdsa_init
 
@@ -592,29 +592,29 @@ UINT _nx_crypto_method_ecdsa_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok sterowania ECDSA z danym ciągiem klucza. Po zainicjowaniu bloku sterowania ECDSA kolejna operacja ECDSA będzie używać tego samego bloku sterowania.
+Ta funkcja inicjuje blok sterowania ECDSA z danym ciągiem klucza. Po zainicjowania bloku sterowania ECDSA kolejna operacja ECDSA powinna używać tego samego bloku sterowania.
 
-Aplikacja może utworzyć wiele bloków sterujących ECDSA, każda reprezentuje sesję. Inicjalizacja bloku sterowania ECDSA uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku sterowania ECDSA porzuca bieżącą sesję i gwiazdy nowe.
+Aplikacja może utworzyć wiele bloków sterujących ECDSA, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania ECDSA uruchamia nową sesję obliczania skrótu. Ponowne inicjowanie bloku sterowania ECDSA porzuca bieżącą sesję i dodaje nową.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku sterowania metodą kryptograficzną ECDSA. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznych ECDSA. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_ecdsa*
-- **klucz** To pole nie jest używane w przypadku ECDSA.
-- **key_size_in_bits** To pole nie jest używane w przypadku ECDSA.
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania ECDSA. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku ECDSA rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_ECDSA)*
+- **klucz** To pole nie jest używane w przypadku ecdsa.
+- **key_size_in_bits** To pole nie jest używane w przypadku ecdsa.
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania ECDSA. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku ecdsa rozmiar metadanych musi być *sizeof(NX_CRYPTO_ECDSA)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku sterowania ECDSA przy użyciu klucza i rozmiaru klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania ECDSA z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_ecdsa_operation"></a>_nx_crypto_method_ecdsa_operation
 
-Wykonaj operację ECDSA
+Wykonywanie operacji ECDSA
 
 ### <a name="prototype"></a>Prototype
 
@@ -638,37 +638,37 @@ UINT _nx_crypto_method_ecdsa_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację ECDSA. Blok sterowania ECDSA musi zostać zainicjowany przy użyciu _ *nx_crypto_method_ecdsa_init ()*. Algorytm ECDSA ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metodami* .
+Ta funkcja wykonuje operację ECDSA. Blok sterowania ECDSA musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_ecdsa_init()*. Algorytm ECDSA do wykonania jest oparty na algorytmie określonym w bloku *kontroli* metody.
 
-Gdy operacja jest NX_CRYPTO_EC_CURVE_SET, punkty wejścia do metody kryptograficznej krzywej eliptycznej. Gdy operacja jest NX_CRYPTO_EC_KEY_PAIR_GENERATE, punkty wyjścia do struktury NX_CRYPTO_EXTENDED_OUTPUT i pary kluczy są kopiowane do nx_crypto_extended_output_data.
+Gdy operacja jest NX_CRYPTO_EC_CURVE_SET, dane wejściowe wskazuje metodę kryptograficzna krzywej eliptycznej. Po NX_CRYPTO_EC_KEY_PAIR_GENERATE dane wyjściowe wskazuje na NX_CRYPTO_EXTENDED_OUTPUT, a para kluczy jest kopiowana do nx_crypto_extended_output_data.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_EC_CURVE_SET*
   - *NX_CRYPTO_AUTHENTICATE*
   - *NX_CRYPTO_VERIFY*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej ECDSA. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_ecdsa_init _ ().*
-- **klucz** Wskazuje klucz, gdy operacja jest NX_CRYPTO_VERIFY. Nie ma ograniczeń dotyczących buforu kluczy. To pole nie jest używane w przypadku innych wartości op.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej ECDSA. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie *_nx_crypto_method_ecdsa_init().*
+- **klucz** Wskazuje klucz, gdy po NX_CRYPTO_VERIFY. Nie ma żadnych ograniczeń dotyczących buforu kluczy. To pole nie jest używane dla innych wartości op.
 - **key_size_in_bits** Rozmiar klucza w bitach.
-- **dane wejściowe** Gdy jest NX_CRYPTO_EC_CURVE_SET, to pole wskazuje metodę kryptograficzną krzywej eliptycznej. W przeciwnym razie to pole wskazuje bufor zawierający dane wejściowe tekstu.
+- **dane wejściowe** Gdy operacje są NX_CRYPTO_EC_CURVE_SET, to pole wskazuje na metodę kryptograficzna krzywej eliptycznej. W przeciwnym razie to pole wskazuje bufor zawierający wejściowe dane tekstowe.
 - **input_length_in_byte** Rozmiar danych wejściowych w bajtach.
-- **iv_ptr** To pole nie jest używane w przypadku ECDSA.
-- **dane wyjściowe** Gdy jest NX_CRYPTO_EC_CURVE_SET, to pole nie jest używane. Gdy jest NX_CRYPTO_AUTHENTICATE, to pole wskazuje obszar pamięci dla wygenerowanej sygnatury ECDSA. Gdy jest NX_CRYPTO_VERIFY, to pole wskazuje obszar pamięci dla zweryfikowanej sygnatury ECDSA.
+- **iv_ptr** To pole nie jest używane w przypadku ecdsa.
+- **dane wyjściowe** W przypadku NX_CRYPTO_EC_CURVE_SET to pole nie jest używane. Po NX_CRYPTO_AUTHENTICATE to pole wskazuje obszar pamięci dla wygenerowanego podpisu ECDSA. Po NX_CRYPTO_VERIFY to pole wskazuje obszar pamięci dla zweryfikowanego podpisu ECDSA.
 - **output_length_in_byte** Rozmiar buforu wyjściowego w bajtach.
-- **crypto_metadata** Wskaźnik do bloku sterowania ECDSA używany w *_nx_crypto_method_ecdsa_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku ECDSA rozmiar metadanych musi być *sizeof (NX_CRYPTO_ECDSA)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **crypto_metadata** Wskaźnik do bloku sterowania ECDSA używanego w funkcji *_nx_crypto_method_ecdsa_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku ecdsa rozmiar metadanych musi *być sizeof(NX_CRYPTO_ECDSA)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA operację ECDSA.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm ECDSA.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację ECDSA.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm ECDSA.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ## <a name="_nx_crypto_method_ecdsa_cleanup"></a>_nx_crypto_method_ecdsa_cleanup
 
@@ -682,20 +682,20 @@ UINT _nx_crypto_method_ecdsa_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby oczyścić blok sterowania ECDSA po ustaleniu, że ta sesja ECDSA nie jest już wymagana.
+Aplikacja wywołuje tę funkcję, aby wyczyścić blok sterowania ECDSA po ustaleniu, że ta sesja ECDSA nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku sterowania ECDSA używany w *_nx_crypto_method_ecdsa_init ()*.
+- **crypto_metadata** Wskaźnik do bloku sterowania ECDSA używanego w funkcji *_nx_crypto_method_ecdsa_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję ECDSA.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja ECDSA.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
 
 ## <a name="_nx_crypto_method_hmac_md5_init"></a>_nx_crypto_method_hmac_md5_init
 
-Inicjuje blok kontroli kryptograficznej algorytmu HMAC MD5
+Inicjuje blok formantu kryptograficznego HMAC MD5
 
 ### <a name="prototype"></a>Prototype
 
@@ -711,30 +711,30 @@ UINT _nx_crypto_method_hmac_md5_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok kontrolny MD5 algorytmu z danym ciągiem klucza. Po zainicjowaniu bloku sterowania algorytmem MD5 algorytmu algorytmu, kolejne operacje HMAC MD5 używają tego samego bloku sterowania.
+Ta funkcja inicjuje blok sterowania HMAC MD5 z danym ciągiem klucza. Po zainicjowania bloku sterowania HMAC MD5 kolejne działanie HMAC MD5 musi używać tego samego bloku sterowania.
 
-Aplikacja może utworzyć wiele bloków sterujących algorytmem MD5, każdy reprezentuje sesję. Inicjalizacja bloku kontroli MD5 algorytmu HMAC uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku sterowania algorytmem MD5 algorytmu porzuca bieżącą sesję i gwiazdy nowe.
+Aplikacja może utworzyć wiele bloków sterowania HMAC MD5, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania HMAC MD5 uruchamia nową sesję obliczania skrótu. Ponowne inicjowanie bloku sterowania HMAC MD5 porzuca bieżącą sesję i dodaje nową.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznej algorytmu algorytmu MD5.
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznych HMAC MD5.
 Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_hmac_md5*
-- **klucz** Wskazuje na klucz. Nie ma ograniczeń dotyczących buforu kluczy.
+- **klucz** Wskazuje klucz. Nie ma żadnych ograniczeń dotyczących buforu kluczy.
 - **key_size_in_bits** Rozmiar klucza w bitach.
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania algorytmem MD5. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku algorytmu HMAC MD5 rozmiar metadanych musi być *: sizeof (NX_CRYPTO_MD5_HMAC)*
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania HMAC MD5. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku HMAC MD5 rozmiar metadanych musi być *sizeof(NX_CRYPTO_MD5_HMAC)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku sterowania algorytmem MD5 algorytmu przy użyciu klucza i rozmiaru klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania HMAC MD5 z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_hmac_md5_operation"></a>_nx_crypto_method_hmac_md5_operation
 
-Wykonaj operację mieszania algorytmu HMAC MD5.
+Wykonaj operację skrótu HMAC MD5.
 
 ### <a name="prototype"></a>Prototype
 
@@ -758,44 +758,44 @@ UINT _nx_crypto_method_hmac_md5_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację mieszania algorytmu HMAC MD5. Blok kontroli MD5 algorytmu HMAC musi być zainicjowany przy użyciu _ *nx_crypto_method_hmac_md5_init ()*. Algorytm algorytmu algorytmem MD5 w oparciu o algorytm określony w bloku sterowania *metodami* .
+Ta funkcja wykonuje operację skrótu HMAC MD5. Blok sterowania HMAC MD5 musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_hmac_md5_init()*. Algorytm HMAC MD5 do wykonania jest oparty na algorytmie określonym w bloku *sterowania* metodą.
 
-Dla ostatecznej operacji *NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi wynosić 16 bajtów.
+W przypadku *ostatniej NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi być 16 bajtów.
 
-Ta operacja nie zachowuje informacji o stanie i nie zmienia materiału klucza w bloku kontroli algorytmu MD5.
+Ta operacja nie powoduje przechowania informacji o stanie i nie zmienia materiału klucza w bloku sterowania HMAC MD5.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_HASH_INITIALIZE*
   - *NX_CRYPTO_HASH_UPDATE*
   - *NX_CRYPTO_HASH_CALCULATE*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowych metod kryptograficznych algorytmu algorytmu MD5. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_hmac_md5_init ().*
-- **klucz** Wskazuje na klucz. Nie ma ograniczeń dotyczących buforu kluczy.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej HMAC MD5. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie *nx_crypto_method_hmac_md5_init().*
+- **klucz** Wskazuje klucz. Nie ma żadnych ograniczeń dotyczących buforu kluczy.
 - **key_size_in_bits** Rozmiar klucza w bitach.
-- **input_data** Wskazuje bufor zawierający dane wejściowe tekstu. Bufor wejściowy nie zawiera żadnych ograniczeń.
+- **input_data** Wskazuje bufor zawierający wejściowe dane tekstowe. Nie ma żadnych ograniczeń dotyczących buforu wejściowego.
 - **input_data_size** Rozmiar danych wejściowych w bajtach.
-- **iv_ptr** To pole nie jest używane dla algorytmu HMAC MD5.
-- **iv_size** To pole nie jest używane dla algorytmu HMAC MD5.
-- **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu algorytmu HMAC MD5.
+- **iv_ptr** To pole nie jest używane dla HMAC MD5.
+- **iv_size** To pole nie jest używane dla HMAC MD5.
+- **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu HMAC MD5.
 - **output_buffer_size** Rozmiar buforu wyjściowego w bajtach.
-- **crypto_metadata** Wskaźnik do bloku sterowania algorytmem MD5 algorytmu używanego w *_nx_crypto_method_hmac_md5_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku algorytmu HMAC MD5 rozmiar metadanych musi być *sizeof (NX_CRYPTO_MD5_HMAC)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **crypto_metadata** Wskaźnik do bloku sterowania HMAC MD5 używanego w funkcji *_nx_crypto_method_hmac_md5_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku HMAC MD5 rozmiar metadanych musi *być sizeof(NX_CRYPTO_MD5_HMAC)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA OPERACJĘ HMAC MD5.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) podano nieprawidłowy algorytm algorytmu MD5.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację HMAC MD5.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm HMAC MD5.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ## <a name="_nx_crypto_method_hmac_sha1_init"></a>_nx_crypto_method_hmac_sha1_init
 
-Inicjuje blok kontroli kryptografii algorytmu szyfrowania HMAC
+Inicjuje blok formantu kryptograficznego HMAC SHA1
 
 ### <a name="prototype"></a>Prototype
 
@@ -811,29 +811,29 @@ UINT _nx_crypto_method_hmac_sha1_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok kontroli SHA1 algorytmu HMAC z danym ciągiem klucza. Po zainicjowaniu bloku sterowania SHA1 algorytmem HMAC kolejna operacja algorytmu SHA1 będzie używać tego samego bloku sterowania.
+Ta funkcja inicjuje blok sterowania HMAC SHA1 z danym ciągiem klucza. Po zainicjowania bloku sterowania HMAC SHA1 kolejne działanie HMAC SHA1 musi używać tego samego bloku sterowania.
 
-Aplikacja może tworzyć wiele bloków sterowania SHA1 algorytmem HMAC, każdy reprezentuje sesję. Inicjalizacja bloku kontroli SHA1 algorytmu HMAC uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku kontroli SHA1 algorytmu HMAC porzuca bieżącą sesję i gwiazdy nowe.
+Aplikacja może utworzyć wiele bloków sterowania HMAC SHA1, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania HMAC SHA1 uruchamia nową sesję obliczania skrótu. Ponowne inicjowanie bloku sterowania HMAC SHA1 porzuca bieżącą sesję i dodaje nową.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku sterowania metodą kryptograficzną algorytmu SHA1. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznych HMAC SHA1. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_hmac_sha1*
-- **klucz** Wskazuje na klucz. Nie ma ograniczeń dotyczących buforu kluczy.
+- **klucz** Wskazuje klucz. Nie ma żadnych ograniczeń dotyczących buforu kluczy.
 - **key_size_in_bits** Rozmiar klucza w bitach.
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania SHA1 algorytmu HMAC. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. Dla algorytmu SHA1 algorytmem, rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_SHA1_HMAC)*
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania HMAC SHA1. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku HMAC SHA1 rozmiar metadanych musi być *sizeof(NX_CRYPTO_SHA1_HMAC)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślne INICJOWANIE bloku HMAC SHA1control z kluczem i rozmiarem klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania SHA1 HMAC z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_hmac_sha1_operation"></a>_nx_crypto_method_hmac_sha1_operation
 
-Wykonywanie operacji skrótu SHA1 algorytmu HMAC
+Wykonywanie operacji skrótu SHA1 HMAC
 
 ### <a name="prototype"></a>Prototype
 
@@ -857,42 +857,42 @@ UINT _nx_crypto_method_hmac_sha1_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację mieszania algorytmu HMAC. Blok sterowania SHA1 algorytmem HMAC musi być zainicjowany przy użyciu _ *nx_crypto_method_hmac_sha1_init ()*. Algorytm SHA1 algorytmu HMAC ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metody* .
+Ta funkcja wykonuje operację skrótu SHA1 HMAC. Blok sterowania HMAC SHA1 musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_hmac_sha1_init()*. Algorytm SHA1 HMAC do wykonania jest oparty na algorytmie określonym w bloku *sterowania* metodą.
 
-Dla ostatecznej operacji *NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi wynosić 20 bajtów.
+W przypadku *ostatniej NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi być 20 bajtów.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_HASH_INITIALIZE*
   - *NX_CRYPTO_HASH_UPDATE*
   - *NX_CRYPTO_HASH_CALCULATE*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej algorytmu SHA1. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_hmac_sha1_init _ ().*
-- **klucz** Wskazuje na klucz. Nie ma ograniczeń dotyczących buforu kluczy.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej HMAC SHA1. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie *_nx_crypto_method_hmac_sha1_init().*
+- **klucz** Wskazuje klucz. Nie ma żadnych ograniczeń dotyczących buforu kluczy.
 - **key_size_in_bits** Rozmiar klucza w bitach.
-- **input_data** Wskazuje bufor zawierający dane wejściowe tekstu. Bufor wejściowy nie zawiera żadnych ograniczeń.
+- **input_data** Wskazuje bufor zawierający wejściowe dane tekstowe. Nie ma żadnych ograniczeń dotyczących buforu wejściowego.
 - **input_data_size** Rozmiar danych wejściowych w bajtach.
-- **iv_ptr** To pole nie jest używane dla algorytmu SHA1 algorytmem HMAC.
-- **iv_size** To pole nie jest używane dla algorytmu SHA1 algorytmem HMAC.
-- **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu SHA1 algorytmu HMAC.
+- **iv_ptr** To pole nie jest używane dla HMAC SHA1.
+- **iv_size** To pole nie jest używane dla HMAC SHA1.
+- **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu SHA1 HMAC.
 - **output_buffer_size** Rozmiar buforu wyjściowego w bajtach.
-- **crypto_metadata** Wskaźnik do bloku sterowania SHA1 algorytmem HMAC używanym w *_nx_crypto_method_hmac_sha1_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. Dla algorytmu SHA1 algorytmem, rozmiar metadanych musi być *sizeof (NX_CRYPTO_SHA1_HMAC)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **crypto_metadata** Wskaźnik do bloku sterowania HMAC SHA1 używanego w funkcji *_nx_crypto_method_hmac_sha1_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku HMAC SHA1 rozmiar metadanych musi *być sizeof(NX_CRYPTO_SHA1_HMAC)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA operację SHA1 algorytmu HMAC.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację SHA1 HMAC.
 - **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm SHA1 algorytmu HMAC.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm SHA1 HMAC.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ## <a name="_nx_crypto_method_hmac_sha1_cleanup"></a>_nx_crypto_method_hmac_sha1_cleanup
 
-Wyczyść blok sterowania algorytmem SHA1 algorytmu HMAC.
+Wyczyść blok sterowania HMAC SHA1.
 
 ### <a name="prototype"></a>Prototype
 
@@ -902,20 +902,20 @@ UINT _nx_crypto_method_hmac_sha1_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby oczyścić blok sterowania SHA1 algorytmu HMAC po ustaleniu, że ta sesja SHA1 nie jest już wymagana.
+Aplikacja wywołuje tę funkcję w celu oczyszczenia bloku sterowania HMAC SHA1 po ustaleniu, że ta sesja HMAC SHA1 nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku sterowania SHA1 algorytmem HMAC używanym w *_nx_crypto_method_hmac_sha1_init ()*.
+- **crypto_metadata** Wskaźnik do bloku sterowania HMAC SHA1 używanego w funkcji *_nx_crypto_method_hmac_sha1_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję SHA1 algorytmu HMAC.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja HMAC SHA1.
 - **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
 
 ## <a name="_nx_crypto_method_hmac_sha256_init"></a>_nx_crypto_method_hmac_sha256_init
 
-Inicjuje blok sterowania kryptografią SHA256 HMAC
+Inicjuje blok sterowania kryptograficznego HMAC SHA256
 
 ### <a name="prototype"></a>Prototype
 
@@ -931,30 +931,30 @@ UINT _nx_crypto_method_hmac_sha256_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok sterowania SHA256 HMAC z danym ciągiem klucza. Po zainicjowaniu bloku sterowania SHA256 HMAC kolejna operacja SHA256 jest używana w tym samym bloku sterowania.
+Ta funkcja inicjuje blok sterowania HMAC SHA256 z danym ciągiem klucza. Po zainicjowania bloku sterowania HMAC SHA256 kolejna operacja HMAC SHA256 musi używać tego samego bloku sterującego.
 
-Aplikacja może utworzyć wiele bloków sterujących SHA256 HMAC, każdy reprezentuje sesję. Inicjalizacja bloku sterowania SH256 HMAC uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku sterowania SHA256 HMAC porzuca bieżącą sesję i gwiazdy nową z nowym kluczem.
+Aplikacja może utworzyć wiele bloków sterowania HMAC SHA256, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania HMAC SH256 uruchamia nową sesję obliczania skrótu. Ponowne inicjowanie bloku sterowania HMAC SHA256 porzuca bieżącą sesję i dodaje nowy klucz.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku sterowania metodą kryptograficzną SHA256. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
+- **metoda** Wskaźnik do prawidłowego bloku sterowania metodami kryptograficznymi HMAC SHA256. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_hmac_sha224*
   - *crypto_method_hmac_sha256*
-- **klucz** Wskazuje na klucz. Nie ma ograniczeń dotyczących buforu kluczy.
+- **klucz** Wskazuje klucz. Nie ma żadnych ograniczeń dotyczących buforu kluczy.
 - **key_size_in_bits** Rozmiar klucza w bitach.
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania SHA256 HMAC. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku SHA256 HMAC rozmiar metadanych musi mieć wartość *sizeof (NX_CRYTPO_SHA256_HMAC)*
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście zależy od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania HMAC SHA256. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku HMAC SHA256 rozmiar metadanych musi być *sizeof(NX_CRYTPO_SHA256_HMAC)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku sterowania SHA256 HMAC przy użyciu klucza i rozmiaru klucza.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania HMAC SHA256 z kluczem i rozmiarem klucza.
 - **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_hmac_sha256_operation"></a>_nx_crypto_method_hmac_sha256_operation
 
-Wykonywanie operacji skrótu SHA256 HMAC
+Wykonywanie operacji skrótu HMAC SHA256
 
 ### <a name="prototype"></a>Prototype
 
@@ -978,42 +978,42 @@ UINT _nx_crypto_method_hmac_sha256_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację mieszania SHA256. Blok sterowania SHA256 HMAC musi być zainicjowany przy użyciu _ *nx_crypto_method_hmac_sha256_init ()*. Algorytm SHA256 HMAC ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metody* .
+Ta funkcja wykonuje operację skrótu HMAC SHA256. Blok sterowania HMAC SHA256 musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_hmac_sha256_init()*. Algorytm SHA256 HMAC do wykonania jest oparty na algorytmie określonym w bloku *sterowania* metodą.
 
-Dla ostatecznej operacji *NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi wynosić 32 bajtów dla SHA256 lub 28 bajtów dla SHA224.
+W przypadku *ostatniej NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi być 32 bajtów dla SHA256 lub 28 bajtów dla SHA224.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op (op)** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_HASH_INITIALIZE*
   - *NX_CRYPTO_HASH_UPDATE*
   - *NX_CRYPTO_HASH_CALCULATE*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej HMAC SHA256. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_hmac_sha256_init _ ().*
-- **klucz** Wskazuje na klucz. Nie ma ograniczeń dotyczących buforu kluczy.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej HMAC SHA256. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie _ *nx_crypto_method_hmac_sha256_init().*
+- **klucz** Wskazuje klucz. Nie ma żadnych ograniczeń dotyczących buforu kluczy.
 - **key_size_in_bits** Rozmiar klucza w bitach.
-- **input_data** Wskazuje bufor zawierający dane wejściowe tekstu. Bufor wejściowy nie zawiera żadnych ograniczeń.
+- **input_data** Wskazuje bufor zawierający wejściowe dane tekstowe. Nie ma żadnych ograniczeń dotyczących buforu wejściowego.
 - **input_data_size** Rozmiar danych wejściowych w bajtach.
 - **iv_ptr** To pole nie jest używane dla HMAC SHA256.
 - **iv_size** To pole nie jest używane dla HMAC SHA256.
-- **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu SHA256 HMAC.
+- **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu HMAC SHA256.
 - **output_buffer_size** Rozmiar buforu wyjściowego w bajtach.
-- **crypto_metadata** Wskaźnik do bloku sterowania SHA256 HMAC używanego w *_nx_crypto_method_hmac_sha256_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku SHA256 HMAC rozmiar metadanych musi być *sizeof (NX_CRYPTO_SHA256_HMAC)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **crypto_metadata** Wskaźnik do bloku sterowania HMAC SHA256 używanego w funkcji *_nx_crypto_method_hmac_sha256_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku HMAC SHA256 rozmiar metadanych musi *być sizeof(NX_CRYPTO_SHA256_HMAC)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA OPERACJĘ SHA256 HMAC.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację SHA256 HMAC.
 - **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm SHA256 HMAC.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm SHA256 HMAC.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ## <a name="_nx_crypto_method_hmac_sha256_cleanup"></a>_nx_crypto_method_hmac_sha256_cleanup
 
-Wyczyść blok sterowania SHA256 HMAC.
+Wyczyść blok sterowania HMAC SHA256.
 
 ### <a name="prototype"></a>Prototype
 
@@ -1023,20 +1023,20 @@ UINT _nx_crypto_method_hmac_sha256_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby wyczyścić blok sterowania SHA256 HMAC po ustaleniu, że ta funkcja nie jest już wymagana.
+Aplikacja wywołuje tę funkcję w celu oczyszczenia bloku sterowania HMAC SHA256 po ustaleniu, że ta sesja HMAC SHA256 nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku sterowania SHA256 HMAC używanego w *_nx_crypto_method_hmac_sha256_init ()*.
+- **crypto_metadata** Wskaźnik do bloku sterowania HMAC SHA256 używanego w funkcji *_nx_crypto_method_hmac_sha256_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję SHA256 HMAC.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja HMAC SHA256.
 - **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
 
 ## <a name="_nx_crypto_method_hmac_sha512_init"></a>_nx_crypto_method_hmac_sha512_init
 
-Inicjuje blok sterowania kryptografią SHA512 HMAC
+Inicjuje blok sterowania kryptograficznego HMAC SHA512
 
 ### <a name="prototype"></a>Prototype
 
@@ -1052,30 +1052,30 @@ UINT _nx_crypto_method_hmac_sha512_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok sterowania SHA512 HMAC z danym ciągiem klucza. Po zainicjowaniu bloku sterowania SHA512 HMAC kolejna operacja SHA512 jest używana w tym samym bloku sterowania.
+Ta funkcja inicjuje blok sterowania HMAC SHA512 z danym ciągiem klucza. Po zainicjowania bloku sterowania HMAC SHA512 kolejna operacja HMAC SHA512 musi używać tego samego bloku sterującego.
 
-Aplikacja może utworzyć wiele bloków sterujących SHA512 HMAC, każdy reprezentuje sesję. Inicjalizacja bloku sterowania SH512 HMAC uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku sterowania SHA512 HMAC porzuca bieżącą sesję i gwiazdy nową z nowym kluczem.
+Aplikacja może utworzyć wiele bloków sterowania HMAC SHA512, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania HMAC SH512 uruchamia nową sesję obliczania skrótu. Ponowne inicjowanie bloku sterowania HMAC SHA512 porzuca bieżącą sesję i dodaje nowy klucz.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku sterowania metodą kryptograficzną SHA512. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
+- **metoda** Wskaźnik do prawidłowego bloku sterowania metodami kryptograficznymi HMAC SHA512. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_hmac_sha384*
   - *crypto_method_hmac_sha512*
-- **klucz** Wskazuje na klucz. Nie ma ograniczeń dotyczących buforu kluczy.
+- **klucz** Wskazuje klucz. Nie ma żadnych ograniczeń dotyczących buforu kluczy.
 - **key_size_in_bits** Rozmiar klucza w bitach.
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania SHA512 HMAC. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku SHA512 HMAC rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_SHA512_HMAC)*
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście zależy od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania HMAC SHA512. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku HMAC SHA512 rozmiar metadanych musi być *sizeof(NX_CRYPTO_SHA512_HMAC)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku sterowania SHA512 HMAC przy użyciu klucza i rozmiaru klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania HMAC SHA512 z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_hmac_sha512_operation"></a>_nx_crypto_method_hmac_sha512_operation
 
-Wykonywanie operacji skrótu SHA512 HMAC
+Wykonywanie operacji skrótu HMAC SHA512
 
 ### <a name="prototype"></a>Prototype
 
@@ -1099,42 +1099,42 @@ UINT _nx_crypto_method_hmac_sha512_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację mieszania SHA512. Blok sterowania SHA512 HMAC musi być zainicjowany przy użyciu _ *nx_crypto_method_hmac_sha512_init ()*. Algorytm SHA512 HMAC ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metody* .
+Ta funkcja wykonuje operację skrótu HMAC SHA512. Blok sterowania HMAC SHA512 musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_hmac_sha512_init()*. Algorytm HMAC SHA512 do wykonania jest oparty na algorytmie określonym w bloku *sterowania* metodą.
 
-Dla ostatecznej operacji *NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi być 64 bajtów dla SHA512 lub 48 bajtów dla SHA384.
+W przypadku *ostatniej NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi być 64 bajtów dla SHA512 lub 48 bajtów dla SHA384.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op (op)** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_HASH_INITIALIZE*
   - *NX_CRYPTO_HASH_UPDATE*
   - *NX_CRYPTO_HASH_CALCULATE*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej HMAC SHA512. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_hmac_sha512_init _ ().*
-- **klucz** Wskazuje na klucz. Nie ma ograniczeń dotyczących buforu kluczy.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej HMAC SHA512. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie _ *nx_crypto_method_hmac_sha512_init().*
+- **klucz** Wskazuje klucz. Nie ma żadnych ograniczeń dotyczących buforu kluczy.
 - **key_size_in_bits** Rozmiar klucza w bitach.
-- **input_data** Wskazuje bufor zawierający dane wejściowe tekstu. Bufor wejściowy nie zawiera żadnych ograniczeń.
+- **input_data** Wskazuje bufor zawierający wejściowe dane tekstowe. Nie ma żadnych ograniczeń dotyczących buforu wejściowego.
 - **input_data_size** Rozmiar danych wejściowych w bajtach.
 - **iv_ptr** To pole nie jest używane dla HMAC SHA512.
 - **iv_size** To pole nie jest używane dla HMAC SHA512.
-- **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu SHA512 HMAC.
+- **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu HMAC SHA512.
 - **output_buffer_size** Rozmiar buforu wyjściowego w bajtach.
-- **crypto_metadata** Wskaźnik do bloku sterowania SHA512 HMAC używanego w *_nx_crypto_method_hmac_sha512_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku SHA512 HMAC rozmiar metadanych musi być *sizeof (NX_CRYPTO_SHA512_HMAC)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **crypto_metadata** Wskaźnik do bloku sterowania HMAC SHA512 używanego w funkcji *_nx_crypto_method_hmac_sha512_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku HMAC SHA512 rozmiar metadanych musi *być NX_CRYPTO_SHA512_HMAC)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA OPERACJĘ SHA512 HMAC.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm SHA512 HMAC.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację HMAC SHA512.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm SHA512 HMAC.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ## <a name="_nx_crypto_method_hmac_sha512_cleanup"></a>_nx_crypto_method_hmac_sha512_cleanup
 
-Wyczyść blok sterowania SHA512 HMAC.
+Wyczyść blok sterowania HMAC SHA512.
 
 ### <a name="prototype"></a>Prototype
 
@@ -1144,22 +1144,22 @@ UINT _nx_crypto_method_hmac_sha512_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby wyczyścić blok sterowania SHA512 HMAC po ustaleniu, że ta funkcja nie jest już wymagana.
+Aplikacja wywołuje tę funkcję w celu oczyszczenia bloku sterowania HMAC SHA512 po ustaleniu, że ta sesja HMAC SHA512 nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku sterowania SHA512 HMAC używanego w *_nx_crypto_method_hmac_sha512_init ()*.
+- **crypto_metadata** Wskaźnik do bloku sterowania HMAC SHA512 używanego w funkcji *_nx_crypto_method_hmac_sha512_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję SHA512 HMAC.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja HMAC SHA512.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
 
 ### <a name="example"></a>Przykład 
 
 ## <a name="_nx_crypto_method_md5_init"></a>_nx_crypto_method_md5_init
 
-Inicjuje blok kontroli kryptograficznej MD5
+Inicjuje blok kontroli kryptografii MD5
 
 ### <a name="prototype"></a>Prototype
 
@@ -1175,31 +1175,31 @@ UINT _nx_crypto_method_md5_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok kontroli MD5 z danym ciągiem klucza. Po zainicjowaniu bloku kontroli MD5 kolejna operacja MD5 będzie używać tego samego bloku sterowania.
+Ta funkcja inicjuje blok sterujący MD5 przy użyciu danego ciągu klucza. Po zainicjowania bloku sterowania MD5 kolejnej operacji MD5 musi używać tego samego bloku sterowania.
 
-Aplikacja może tworzyć wiele bloków kontroli MD5, każda reprezentuje sesję. Inicjalizacja bloku kontroli MD5 uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku kontroli MD5 porzuca bieżącą sesję i gwiazdy nowe.
+Aplikacja może utworzyć wiele bloków sterujących MD5, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania MD5 uruchamia nową sesję obliczania skrótu. Ponowne inicjowanie bloku sterowania MD5 porzuca bieżącą sesję i dodaje nową.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznej MD5. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznych MD5. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_md5*
-- **klucz** To pole nie jest używane w przypadku algorytmu MD5.
-- **key_size_in_bits** To pole nie jest używane dla algorytmu MD5
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku kontroli MD5. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku algorytmu MD5 rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_MD5)*
+- **klucz** To pole nie jest używane w przypadku rozwiązania MD5.
+- **key_size_in_bits** To pole nie jest używane w przypadku rozwiązania MD5
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście zależy od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania MD5. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku md5 rozmiar metadanych musi być *sizeof(NX_CRYPTO_MD5)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku kontroli MD5 przy użyciu klucza i rozmiaru klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania MD5 z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ### <a name="example"></a>Przykład
 
 ## <a name="_nx_crypto_method_md5_operation"></a>_nx_crypto_method_md5_operation
 
-Wykonaj operację mieszania MD5.
+Wykonaj operację skrótu MD5.
 
 ### <a name="prototype"></a>Prototype
 
@@ -1223,42 +1223,42 @@ UINT _nx_crypto_method_md5_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację mieszania MD5. Blok kontroli MD5 musi być zainicjowany przy użyciu _ *nx_crypto_method_md5_init ()*. Algorytm MD5 ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metody* .
+Ta funkcja wykonuje operację skrótu MD5. Blok sterowania MD5 musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_md5_init()*. Algorytm MD5 do wykonania jest oparty na algorytmie określonym w bloku *kontroli* metody.
 
-Dla ostatecznej operacji *NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi wynosić 16 bajtów.
+W przypadku *ostatniej NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi być 16 bajtów.
 
-Ta operacja nie zachowuje informacji o stanie i nie zmienia materiału klucza w bloku kontroli MD5.
+Ta operacja nie powoduje przechowania informacji o stanie i nie zmienia materiału klucza w bloku sterowania MD5.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_HASH_INITIALIZE*
   - *NX_CRYPTO_HASH_UPDATE*
   - *NX_CRYPTO_HASH_CALCULATE*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej MD5. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_md5_init _ ().*
-- **input_data** Wskazuje bufor zawierający dane wejściowe tekstu. Bufor wejściowy nie zawiera żadnych ograniczeń.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej MD5. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie *_nx_crypto_method_md5_init().*
+- **input_data** Wskazuje bufor zawierający wejściowe dane tekstowe. Nie ma żadnych ograniczeń dotyczących buforu wejściowego.
 - **input_data_size** Rozmiar danych wejściowych w bajtach.
-- **iv_ptr** To pole nie jest używane w przypadku algorytmu MD5.
-- **iv_size** To pole nie jest używane w przypadku algorytmu MD5.
+- **iv_ptr** To pole nie jest używane w przypadku rozwiązania MD5.
+- **iv_size** To pole nie jest używane w przypadku rozwiązania MD5.
 - **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu MD5.
-- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. W przypadku algorytmu MD5 rozmiar buforu musi wynosić 16 bajtów.
-- **crypto_metadata** Wskaźnik do bloku kontroli MD5 używanego w *_nx_crypto_method_md5_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku algorytmu MD5 rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_MD5)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. W przypadku rozwiązania MD5 rozmiar buforu musi być 16 bajtów.
+- **crypto_metadata** Wskaźnik do bloku sterowania MD5 używanego w funkcji *_nx_crypto_method_md5_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku md5 rozmiar metadanych musi *być sizeof(NX_CRYPTO_MD5)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA operację MD5.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm MD5.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację MD5.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm MD5.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ## <a name="_nx_crypto_method_md5_cleanup"></a>_nx_crypto_method_md5_cleanup
 
-Wyczyść blok kontroli MD5.
+Wyczyść blok sterowania MD5.
 
 ### <a name="prototype"></a>Prototype
 
@@ -1268,16 +1268,16 @@ UINT _nx_crypto_method_md5_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby oczyścić blok kontroli MD5 po ustaleniu, że ta sesja MD5 nie jest już wymagana.
+Aplikacja wywołuje tę funkcję, aby wyczyścić blok sterowania MD5 po ustaleniu, że ta sesja MD5 nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku kontroli MD5 używanego w *_nx_crypto_method_md5_init ()*.
+- **crypto_metadata** Wskaźnik do bloku sterowania MD5 używanego w funkcji *_nx_crypto_method_md5_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję MD5.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja MD5.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
 
 ## <a name="_nx_crypto_method_sha1_init"></a>_nx_crypto_method_sha1_init
 
@@ -1297,29 +1297,29 @@ UINT _nx_crypto_method_sha1_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok sterowania SHA1 z danym ciągiem klucza. Po zainicjowaniu bloku sterowania SHA1 kolejna operacja SHA1 będzie używać tego samego bloku sterowania.
+Ta funkcja inicjuje blok sterowania SHA1 z danym ciągiem klucza. Po zainicjowania bloku sterowania SHA1 kolejna operacja SHA1 musi używać tego samego bloku sterowania.
 
-Aplikacja może tworzyć wiele bloków sterowania SHA1, każdy reprezentuje sesję. Inicjalizacja bloku sterowania SHA1 uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku sterowania SHA1 porzuca bieżącą sesję i gwiazdy nowe.
+Aplikacja może utworzyć wiele bloków sterowania SHA1, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania SHA1 uruchamia nową sesję obliczania skrótu. Ponowne inicjowanie bloku sterowania SHA1 porzuca bieżącą sesję i dodaje nową.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznej SHA1. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznych SHA1. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_sha1*
-- **klucz** To pole nie jest używane na potrzeby algorytmu SHA1.
-- **key_size_in_bits** To pole nie jest używane na potrzeby algorytmu SHA1
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania SHA1. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku algorytmu SHA1 rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_SHA1)*
+- **klucz** To pole nie jest używane dla sha1.
+- **key_size_in_bits** To pole nie jest używane dla sha1
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania SHA1. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku sha1 rozmiar metadanych musi być *sizeof(NX_CRYPTO_SHA1)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku SHA1control z rozmiarem klucza i klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku SHA1control z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_sha1_operation"></a>_nx_crypto_method_sha1_operation
 
-Wykonywanie operacji skrótu SHA1
+Wykonywanie operacji wyznaczania wartości skrótu SHA1
 
 ### <a name="prototype"></a>Prototype
 
@@ -1343,36 +1343,36 @@ UINT _nx_crypto_method_sha1_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację mieszania SHA1. Blok sterowania SHA1 musi być zainicjowany przy użyciu _ *nx_crypto_method_sha1_init ()*. Algorytm SHA1 ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metody* .
+Ta funkcja wykonuje operację wyznaczania wartości skrótu SHA1. Blok sterowania SHA1 musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_sha1_init()*. Algorytm SHA1 do wykonania jest oparty na algorytmie określonym w bloku *kontroli* metody.
 
-Dla ostatecznej operacji *NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi wynosić 20 bajtów.
+W przypadku *ostatniej NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi być 20 bajtów.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_HASH_INITIALIZE*
   - *NX_CRYPTO_HASH_UPDATE*
   - *NX_CRYPTO_HASH_CALCULATE*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej SHA1. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_sha1_init ().*
-- **input_data** Wskazuje bufor zawierający dane wejściowe tekstu. Bufor wejściowy nie zawiera żadnych ograniczeń.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej SHA1. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie *nx_crypto_method_sha1_init().*
+- **input_data** Wskazuje bufor zawierający wejściowe dane tekstowe. Nie ma żadnych ograniczeń dotyczących buforu wejściowego.
 - **input_data_size** Rozmiar danych wejściowych w bajtach.
-- **iv_ptr** To pole nie jest używane na potrzeby algorytmu SHA1.
-- **iv_size** To pole nie jest używane na potrzeby algorytmu SHA1.
+- **iv_ptr** To pole nie jest używane dla sha1.
+- **iv_size** To pole nie jest używane dla sha1.
 - **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu SHA1.
-- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. W przypadku algorytmu SHA1 rozmiar buforu musi wynosić 20 bajtów.
-- **crypto_metadata** Wskaźnik do bloku sterowania algorytmem SHA1 używanym w *_nx_crypto_method_sha1_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku algorytmu SHA1 rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_SHA1)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. W przypadku sha1 rozmiar buforu musi być 20 bajtów.
+- **crypto_metadata** Wskaźnik do bloku sterowania SHA1 używanego w funkcji *_nx_crypto_method_sha1_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku sha1 rozmiar metadanych musi *być sizeof(NX_CRYPTO_SHA1)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA operację SHA1.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm SHA1.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację SHA1.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm SHA1.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ### <a name="example"></a>Przykład
 
@@ -1388,20 +1388,20 @@ UINT _nx_crypto_method_sha1_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby oczyścić blok sterowania SHA1 po ustaleniu, że ta sesja SHA1 nie jest już wymagana.
+Aplikacja wywołuje tę funkcję w celu oczyszczenia bloku sterowania SHA1 po ustaleniu, że ta sesja SHA1 nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku sterowania algorytmem SHA1 używanym w *_nx_crypto_method_sha1_init ()*.
+- **crypto_metadata** Wskaźnik do bloku sterowania SHA1 używanego w funkcji *_nx_crypto_method_sha1_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję SHA1.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja SHA1.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
 
 ## <a name="_nx_crypto_method_sha256_init"></a>_nx_crypto_method_sha256_init
 
-Inicjuje blok kontroli kryptografii SHA256
+Inicjuje blok sterowania kryptograficznego SHA256
 
 ### <a name="prototype"></a>Prototype
 
@@ -1417,30 +1417,30 @@ UINT _nx_crypto_method_sha256_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok sterowania SHA256 z danym ciągiem klucza. Po zainicjowaniu bloku sterowania SHA256 kolejna operacja SHA256 będzie używać tego samego bloku sterowania.
+Ta funkcja inicjuje blok sterowania SHA256 z danym ciągiem klucza. Po zainicjowania bloku sterowania SHA256 kolejna operacja SHA256 musi używać tego samego bloku sterującego.
 
-Aplikacja może utworzyć wiele bloków sterujących SHA256, każda reprezentuje sesję. Inicjalizacja bloku sterowania SHA256 uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku sterowania SHA256 porzuca bieżącą sesję i gwiazdy nowe.
+Aplikacja może utworzyć wiele bloków sterowania SHA256, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania SHA256 uruchamia nową sesję obliczania skrótu. Ponowne inicjowanie bloku sterowania SHA256 porzuca bieżącą sesję i dodaje nową.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku sterowania metodą kryptograficzną SHA256. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznych SHA256. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_sha256*
   - *crypto_method_sha224*
-- **klucz** To pole nie jest używane w przypadku SHA256.
-- **key_size_in_bits** To pole nie jest używane w przypadku SHA256
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania SHA256. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku SHA256 rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_SHA256)*
+- **klucz** To pole nie jest używane dla sha256.
+- **key_size_in_bits** To pole nie jest używane dla sha256
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście zależy od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania SHA256. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku sha256 rozmiar metadanych musi być *sizeof(NX_CRYPTO_SHA256)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku sterowania SHA256 przy użyciu klucza i rozmiaru klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania SHA256 z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_sha256_operation"></a>_nx_crypto_method_sha256_operation
 
-Wykonywanie operacji skrótu SHA256
+Wykonywanie operacji wyznaczania wartości skrótu SHA256
 
 ### <a name="prototype"></a>Prototype
 
@@ -1464,36 +1464,36 @@ UINT _nx_crypto_method_sha256_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację mieszania SHA256. Blok sterowania SHA256 musi zostać zainicjowany przy użyciu _ ***nx_crypto_method_sha256_init ()***. Algorytm SHA256 ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metodami* .
+Ta funkcja wykonuje operację wyznaczania wartości skrótu SHA256. Blok sterowania SHA256 musi zostać zainicjowany za pomocą funkcji _ ***nx_crypto_method_sha256_init()***. Algorytm SHA256 do wykonania jest oparty na algorytmie określonym w bloku *kontroli* metody.
 
-Dla ostatecznej operacji *NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi wynosić 32 bajtów dla SHA256 lub 28 bajtów dla SHA224.
+W przypadku *ostatniej NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi być 32 bajtów dla SHA256 lub 28 bajtów dla SHA224.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op (op)** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_HASH_INITIALIZE*
   - *NX_CRYPTO_HASH_UPDATE*
   - *NX_CRYPTO_HASH_CALCULATE*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej SHA256. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_sha256_init _ ().*
-- **input_data** Wskazuje bufor zawierający dane wejściowe tekstu. Bufor wejściowy nie zawiera żadnych ograniczeń.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej SHA256. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie _ *nx_crypto_method_sha256_init().*
+- **input_data** Wskazuje bufor zawierający wejściowe dane tekstowe. Nie ma żadnych ograniczeń dotyczących buforu wejściowego.
 - **input_data_size** Rozmiar danych wejściowych w bajtach.
-- **iv_ptr** To pole nie jest używane w przypadku SHA256.
-- **iv_size** To pole nie jest używane w przypadku SHA256.
+- **iv_ptr** To pole nie jest używane dla sha256.
+- **iv_size** To pole nie jest używane dla sha256.
 - **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu SHA256.
-- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. W przypadku SHA256 rozmiar buforu musi wynosić 32 bajtów. W przypadku SHA224 rozmiar buforu musi wynosić 28 bajtów.
-- **crypto_metadata** Wskaźnik do bloku sterowania algorytmu SHA2 używany w *_nx_crypto_method_sha2_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku SHA256 rozmiar metadanych musi być *sizeof (NX_CRYPTO_SHA256)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. W przypadku sha256 rozmiar buforu musi być 32 bajty. W przypadku sha224 rozmiar buforu musi być 28 bajtów.
+- **crypto_metadata** Wskaźnik do bloku sterowania SHA2 używanego w funkcji *_nx_crypto_method_sha2_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku sha256 rozmiar metadanych musi *być sizeof(NX_CRYPTO_SHA256)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki Kryptograficzne NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA operację SHA256.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm SHA256.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację SHA256.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm SHA256.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ## <a name="_nx_crypto_method_sha256_cleanup"></a>_nx_crypto_method_sha256_cleanup
 
@@ -1507,16 +1507,16 @@ UINT _nx_crypto_method_sha256_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby oczyścić blok sterowania SHA256 po ustaleniu, że ta sesja SHA256 nie jest już wymagana.
+Aplikacja wywołuje tę funkcję w celu oczyszczenia bloku sterowania SHA256 po ustaleniu, że ta sesja SHA256 nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku sterowania SHA256 używany w *_nx_crypto_method_sha256_init ()*.
+- **crypto_metadata** Wskaźnik do bloku sterowania SHA256 używanego w funkcji *_nx_crypto_method_sha256_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję SHA256.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja SHA256.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
 
 ## <a name="_nx_crypto_method_sha512_init"></a>_nx_crypto_method_sha512_init
 
@@ -1536,30 +1536,30 @@ UINT _nx_crypto_method_sha512_init(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja inicjuje blok sterowania SHA512 z danym ciągiem klucza. Po zainicjowaniu bloku sterowania SHA512 kolejna operacja SHA512 będzie używać tego samego bloku sterowania.
+Ta funkcja inicjuje blok sterowania SHA512 z danym ciągiem klucza. Po zainicjowania bloku sterowania SHA512 kolejna operacja SHA512 musi używać tego samego bloku sterowania.
 
-Aplikacja może utworzyć wiele bloków sterujących SHA512, każda reprezentuje sesję. Inicjalizacja bloku sterowania SHA512 uruchamia nową sesję obliczeń skrótu. Ponowne inicjowanie bloku sterowania SHA512 porzuca bieżącą sesję i gwiazdy nowe.
+Aplikacja może utworzyć wiele bloków sterowania SHA512, z których każdy reprezentuje sesję. Inicjowanie bloku sterowania SHA512 rozpoczyna nową sesję obliczania skrótu. Ponowne inicjowanie bloku sterowania SHA512 porzuca bieżącą sesję i dodaje nową.
 
 ### <a name="parameters"></a>Parametry
 
-- **Metoda** Wskaźnik do prawidłowego bloku sterowania metodą kryptograficzną SHA512. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
+- **metoda** Wskaźnik do prawidłowego bloku kontroli metody kryptograficznych SHA512. Dostępne są następujące wstępnie zdefiniowane metody kryptograficzne:
   - *crypto_method_sha512*
   - *crypto_method_sha384*
-- **klucz** To pole nie jest używane w przypadku SHA512.
-- **key_size_in_bits** To pole nie jest używane w przypadku SHA512
-- **Obsługa** Ta usługa zwraca dojście do obiektu wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja przekaże wartość NULL dla dojścia.
-- **crypto_metadata** Wskaźnik na prawidłowy obszar pamięci dla bloku sterowania SHA512. Adres początkowy miejsca w pamięci musi być wyrównany 4-bajtowy.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku SHA512 rozmiar metadanych musi mieć wartość *sizeof (NX_CRYPTO_SHA512)*
+- **klucz** To pole nie jest używane dla sha512.
+- **key_size_in_bits** To pole nie jest używane dla sha512
+- **dojście** Ta usługa zwraca dojście do wywołującego. Dojście jest zależne od implementacji i nie jest używane w tej implementacji. Aplikacja musi przekazać wartość NULL dla dojścia.
+- **crypto_metadata** Wskaźnik do prawidłowego miejsca w pamięci dla bloku sterowania SHA512. Adres początkowy przestrzeni pamięci musi być wyrównany o 4 bajty.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku sha512 rozmiar metadanych musi być *sizeof(NX_CRYPTO_SHA512)*
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) Pomyślne inicjowanie bloku sterowania SHA512 przy użyciu klucza i rozmiaru klucza.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik do klucza lub nieprawidłowy crypto_metadata lub crypto_metadata_size lub crypto_metadata nie ma 4-bajtowego wyrównania.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślne zainicjowanie bloku sterowania SHA512 z kluczem i rozmiarem klucza.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik do klucza, nieprawidłowy crypto_metadata lub crypto_metadata_size albo crypto_metadata nie jest wyrównany o 4 bajty.
 
 ## <a name="_nx_crypto_method_sha512_operation"></a>_nx_crypto_method_sha512_operation
 
-Wykonywanie operacji skrótu SHA512
+Wykonywanie operacji wyznaczania wartości skrótu SHA512
 
 ### <a name="prototype"></a>Prototype
 
@@ -1582,36 +1582,36 @@ UINT _nx_crypto_method_sha512_operation(UINT op,
 
 ### <a name="description"></a>Opis
 
-Ta funkcja wykonuje operację mieszania SHA512. Blok sterowania SHA512 musi zostać zainicjowany przy użyciu _ *nx_crypto_method_sha512_init ()*. Algorytm SHA512 ma być wykonywany na podstawie algorytmu określonego w bloku sterowania *metodami* .
+Ta funkcja wykonuje operację wyznaczania wartości skrótu SHA512. Blok sterowania SHA512 musi zostać zainicjowany za pomocą funkcji _ *nx_crypto_method_sha512_init()*. Algorytm SHA512 do wykonania jest oparty na algorytmie określonym w bloku *kontroli* metody.
 
-Dla ostatecznej operacji *NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi być 64 bajtów dla SHA512 lub 48 bajtów dla SHA384.
+W przypadku *ostatniej NX_CRYPTO_HASH_CALCULATE* rozmiar buforu wyjściowego musi być 64 bajtów dla sha512 lub 48 bajtów dla SHA384.
 
 ### <a name="parameters"></a>Parametry
 
-- **operacja** Typ operacji do wykonania. Prawidłowa operacja:
+- **op** Typ operacji do wykonania. Prawidłowa operacja to:
   - *NX_CRYPTO_HASH_INITIALIZE*
   - *NX_CRYPTO_HASH_UPDATE*
   - *NX_CRYPTO_HASH_CALCULATE*
-- **Obsługa** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **Metoda** Wskaźnik do prawidłowej metody kryptograficznej SHA512. Metoda kryptograficzna użyta w tym miejscu musi być taka sama, jak w *nx_crypto_method_sha512_init _ ().*
-- **input_data** Wskazuje bufor zawierający dane wejściowe tekstu. Bufor wejściowy nie zawiera żadnych ograniczeń.
+- **dojście** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **metoda** Wskaźnik do prawidłowej metody kryptograficznej SHA512. Używana tutaj metoda kryptograficzna musi być taka sama jak w metodzie _ *nx_crypto_method_sha512_init().*
+- **input_data** Wskazuje bufor zawierający wejściowe dane tekstowe. Nie ma żadnych ograniczeń dotyczących buforu wejściowego.
 - **input_data_size** Rozmiar danych wejściowych w bajtach.
-- **iv_ptr** To pole nie jest używane w przypadku SHA512.
-- **iv_size** To pole nie jest używane w przypadku SHA512.
+- **iv_ptr** To pole nie jest używane dla sha512.
+- **iv_size** To pole nie jest używane dla sha512.
 - **output_buffer** Wskaźnik do obszaru pamięci dla wygenerowanego skrótu SHA512.
-- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. W przypadku SHA512 rozmiar buforu musi wynosić 64 bajtów. W przypadku SHA384 rozmiar buforu musi wynosić 48 bajtów.
-- **crypto_metadata** Wskaźnik do bloku sterowania SHA512 używany w *_nx_crypto_method_sha512_init ()*.
-- **crypto_metadata_size** Rozmiar (w bajtach) obszaru crypto_metadata. W przypadku SHA512 rozmiar metadanych musi być *sizeof (NX_CRYPTO_SHA512)*
-- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
-- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznej NetX. Wszystkie przesyłane wartości są dyskretnie ignorowane.
+- **output_buffer_size** Rozmiar buforu wyjściowego w bajtach. W przypadku sha512 rozmiar buforu musi być 64 bajtów. W przypadku sha384 rozmiar buforu musi być 48 bajtów.
+- **crypto_metadata** Wskaźnik do bloku sterowania SHA512 używanego w funkcji *_nx_crypto_method_sha512_init()*.
+- **crypto_metadata_size** Rozmiar w bajtach obszaru crypto_metadata danych. W przypadku sha512 rozmiar metadanych musi być *sizeof(NX_CRYPTO_SHA512)*
+- **packet_ptr** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
+- **nx_crypto_hw_process_callback** To pole nie jest używane w implementacji oprogramowania biblioteki kryptograficznych NetX. Wszystkie przekazane wartości są ignorowane w trybie dyskretnym.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie WYKONAŁA operację SHA512.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
-- **NX_PTR_ERROR** (0X07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
-- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) określono nieprawidłowy algorytm SHA512.
-- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0X20005) Nieprawidłowy rozmiar buforu wyjściowego.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wykonano operację SHA512.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.
+- **NX_PTR_ERROR** (0x07) Nieprawidłowy wskaźnik wejściowy lub nieprawidłowa długość.
+- **NX_CRYPTO_INVALID_ALGORITHM** (0x20004) Określono nieprawidłowy algorytm SHA512.
+- **NX_CRYPTO_INVALID_BUFFER_SIZE** (0x20005) Nieprawidłowy rozmiar buforu wyjściowego.
 
 ## <a name="_nx_crypto_method_sha512_cleanup"></a>_nx_crypto_method_sha512_cleanup
 
@@ -1625,13 +1625,13 @@ UINT _nx_crypto_method_sha512_cleanup(VOID* crypto_metadata);
 
 ### <a name="description"></a>Opis
 
-Aplikacja wywołuje tę funkcję, aby oczyścić blok sterowania SHA512 po ustaleniu, że ta sesja SHA512 nie jest już wymagana.
+Aplikacja wywołuje tę funkcję w celu oczyszczenia bloku sterowania SHA512 po ustaleniu, że ta sesja SHA512 nie jest już potrzebna.
 
 ### <a name="parameters"></a>Parametry
 
-- **crypto_metadata** Wskaźnik do bloku sterowania SHA512 używany w *_nx_crypto_method_sha512_init ()*.
+- **crypto_metadata** Wskaźnik do bloku sterowania SHA512 używanego w funkcji *_nx_crypto_method_sha512_init()*.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_CRYPTO_SUCCESS** (0X00) pomyślnie wyczyszczono sesję SHA512.
-- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej użyć.
+- **NX_CRYPTO_SUCCESS** (0x00) Pomyślnie wyczyszczona sesja SHA512.
+- **NX_CRYPTO_INVALID_LIBRARY** (0x20001) Biblioteka kryptograficzna jest w nieprawidłowym stanie i nie można jej używać.

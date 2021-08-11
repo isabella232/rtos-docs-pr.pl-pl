@@ -1,33 +1,33 @@
 ### YamlMime:Landing
-title: Dokumentacja usługi Azure RTO USBX
-summary: Azure RTO USBX to osadzony stos hosta USB o wysokiej wydajności, urządzenia i na platformie (OTG). Usługa Azure RTO USBX jest w pełni zintegrowana z platformą Azure RTO ThreadX i jest dostępna dla wszystkich obsługiwanych procesorów platformy Azure RTO ThreadX.
+title: Azure RTOS dokumentacji USBX
+summary: Azure RTOS USBX jest hostem USB o wysokiej wydajności, urządzeniem i osadzonym stosem OTG (on-the-go). Azure RTOS USBX jest w pełni zintegrowany z Azure RTOS ThreadX i jest dostępny dla Azure RTOS obsługiwanych procesorów ThreadX.
 metadata:
-  title: Co to jest Azure RTO USBX?
-  description: Azure RTO USBX to osadzony stos hosta USB o wysokiej wydajności, urządzenia i na platformie (OTG). Usługa Azure RTO USBX jest w pełni zintegrowana z platformą Azure RTO ThreadX i jest dostępna dla wszystkich obsługiwanych procesorów platformy Azure RTO ThreadX.
+  title: Co to jest Azure RTOS USBX?
+  description: Azure RTOS USBX jest hostem USB o wysokiej wydajności, urządzeniem i osadzonym stosem OTG (on-the-go). Azure RTOS USBX jest w pełni zintegrowany z Azure RTOS ThreadX i jest dostępny dla Azure RTOS obsługiwanych procesorów ThreadX.
   services: rtos
   ms.service: rtos
   ms.topic: landing-page
   author: philmea
   ms.author: philmea
   ms.date: 5/19/2020
-  ms.openlocfilehash: 05ff41048304d3cb66b74cbf342de664e8ad88ab
-  ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+  ms.openlocfilehash: da805afb17e7b9a77b5fc3a65be7ec36b3129080d6b5081e4b517076d3547fa0
+  ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
   ms.translationtype: MT
   ms.contentlocale: pl-PL
-  ms.lasthandoff: 03/22/2021
-  ms.locfileid: "104798083"
+  ms.lasthandoff: 08/07/2021
+  ms.locfileid: "116796280"
 landingContent:
-- title: Wprowadzenie do usługi Azure RTO USBX
+- title: Wprowadzenie do Azure RTOS USBX
   linkLists:
   - linkListType: overview
     links:
-    - text: Co to jest Azure RTO USBX?
+    - text: Co to jest Azure RTOS USBX?
       url: overview-usbx.md
-- title: Wprowadzenie do usługi Azure RTO USBX
+- title: Rozpoczynanie pracy z Azure RTOS USBX
   linkLists:
   - linkListType: get-started
     links:
-    - text: Przewodnik użytkownika stosu urządzeń usługi Azure RTO USBX
+    - text: Azure RTOS użytkownika stosu urządzeń USBX
       url: usbx-device-stack-about.md
-    - text: Przewodnik użytkownika stosu hosta usługi Azure RTO USBX
+    - text: Azure RTOS użytkownika stosu hosta USBX
       url: usbx-host-stack-about.md

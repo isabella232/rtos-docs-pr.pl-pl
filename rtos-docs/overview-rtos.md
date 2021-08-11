@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: overview
-ms.openlocfilehash: a6f9cfd772c81340a90b7dc217c0ccc160c7f957
-ms.sourcegitcommit: 7993d2c3b0711ae2c246561a0c8bf963d8e0324a
+ms.openlocfilehash: d9bd7cfda454e73e9bd270b86616780ab7ceab1a76160a66cf49a9ef82efae05
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 07/24/2021
-ms.locfileid: "114661202"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116792404"
 ---
 # <a name="what-is-microsoft-azure-rtos"></a>Co to jest Microsoft Azure RTOS?
 
@@ -134,7 +134,7 @@ Azure RTOS na najpopularniejszych 32/64-bitowych mikroprocesorach, które są ju
 
 - **Andes Core:** RISC-V
 
-- **Ambiqmicro:** Mikrojądki mcu
+- **Ambiqmicro:** Mikroujmiki mcu
 
 - **ARM:** ARM7, ARM9, ARM11, Cortex-M0/M3/M4/M7/A15/A5/A7/A8/A9/A5x 64-bi/A7x 64-bitowy/R4/R5, TrustZone ARMv8-M
 
@@ -156,7 +156,7 @@ Azure RTOS na najpopularniejszych 32/64-bitowych mikroprocesorach, które są ju
 
 - **NXP:** LPC, ARM7, ARM9, PowerPC, 68 K, i.MX, ColdFire, Kinetis Cortex-M3/M4
 
-- **Renesas**: SH, HS, V850, RX, RZ, Koder
+- **Renesas**: SH, HS, V850, RX, RZ, Poszyb
 
 - **Silicon Labs:** EFM32
 

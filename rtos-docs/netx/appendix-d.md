@@ -1,34 +1,34 @@
 ---
-title: Dodatek D — interfejs API usługi Azure RTO NetX BSD-Compatible Socket
-description: Dowiedz się więcej o interfejsie API usługi BSD-Compatible Socket dla protokołu IPv4.
+title: Dodatek D — Azure RTOS NetX BSD-Compatible Socket API
+description: Dowiedz się więcej o interfejsie API BSD-Compatible Socket dla protokołu IPv4.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 9062e27d8f447ac8d36e7a09afee5ac14f86f8c3
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: bd4a35c19cd794a5135f01abe5595456d39b5306ba25ce2966c3bb1aea14ea17
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822801"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790092"
 ---
-# <a name="appendix-d---azure-rtos-netx-bsd-compatible-socket-api"></a>Dodatek D — interfejs API usługi Azure RTO NetX BSD-Compatible Socket
+# <a name="appendix-d---azure-rtos-netx-bsd-compatible-socket-api"></a>Dodatek D — Azure RTOS NetX BSD-Compatible Socket API
 
-## <a name="bsd-compatible-socket-api"></a>Interfejs API usługi BSD-Compatible Socket
+## <a name="bsd-compatible-socket-api"></a>interfejs API BSD-Compatible Socket
 
-Interfejs API BSD-Compatible Socket obsługuje podzestaw wywołań interfejsu API usługi BSD Sockets (z pewnymi ograniczeniami) przez wykorzystanie RTO NetX podstawowych. Obsługiwane są Protokoły IPv4 i adresy sieciowe. Ta warstwa interfejsu API usługi BSD-Compatible Sockets powinna działać jako Szybka lub nieco szybsza niż typowe implementacje BSD, ponieważ ten interfejs API wykorzystuje wewnętrzne NetXe podstawowe i pomija niepotrzebne sprawdzanie błędów NetX.
+Interfejs API BSD-Compatible Socket obsługuje podzbiór wywołań interfejsu API gniazd BSD (z pewnymi ograniczeniami), korzystając z Azure RTOS podstawowych NetX poniżej. Obsługiwane są protokoły IPv4 i adresowanie sieciowe. Ta BSD-Compatible API gniazd powinna działać tak szybko lub nieco szybciej niż typowe implementacje BSD, ponieważ ten interfejs API wykorzystuje wewnętrzne typy pierwotne NetX i pomija niepotrzebne sprawdzanie błędów NetX.
 
-Konfigurowalne opcje umożliwiają aplikacji hosta zdefiniowanie maksymalnej liczby gniazd, maksymalnego rozmiaru okna TCP i głębokości kolejki nasłuchiwania.
+Opcje konfigurowalne umożliwiają aplikacji hosta definiowanie maksymalnej liczby gniazd, maksymalnego rozmiaru okna protokołu TCP i głębokości kolejki nasłuchiwać.
 
-Ze względu na ograniczenia wydajności i architektury ten interfejs API usługi BSD-Compatible Sockets nie obsługuje wszystkich wywołań usługi BSD Sockets. Ponadto nie wszystkie opcje BSD dla usług BSD są dostępne w następujący sposób:
+Ze względu na ograniczenia wydajności i architektury ten interfejs API BSD-Compatible Sockets nie obsługuje wszystkich wywołań gniazd BSD. Ponadto nie wszystkie opcje BSD są dostępne dla usług BSD, w szczególności następujące:
 
-- Funkcja ***SELECT** _ działa tylko z _fd_set \* readfds *, inne argumenty w tym wywołaniu, np. *writefds*, *exceptfds* nie są obsługiwane.
-- Argument *flag int* nie jest obsługiwany dla funkcji ***send** _, _*_recv_*_, _*_SendTo_*_ i _ *_recvfrom_**. Interfejs API gniazda BSD-Compatible obsługuje tylko ograniczony zestaw wywołań BSD Sockets.
+- Funkcja ***select** _ działa tylko z _fd_set readfds*, inne argumenty w tym wywołaniu, \* np. *writefds*, *z wyjątkiemfds* nie są obsługiwane.
+- Argument *int flags* nie jest obsługiwany dla funkcji ***send** _, _*_recv,_*_ _*_sendto_*_ i _ *_recvfrom_**. Interfejs API BSD-Compatible Socket obsługuje tylko ograniczony zestaw wywołań gniazd BSD.
 
-Kod źródłowy jest przeznaczony dla uproszczenia i składa się tylko z dwóch plików, ***nx_bsd. c** _ i _*_nx_bsd. h_*_. Instalacja wymaga dodania tych dwóch plików do projektu kompilacji (nie biblioteki NetX) i utworzenia aplikacji hosta, która będzie używać wywołań usługi gniazda BSD. Plik _ *_nx_bsd. h_** musi być również dołączony do źródła aplikacji. Przykładowe pliki demonstracyjne są dołączone do dystrybucji, która jest dostępna bezpłatnie z NetX. Dalsze szczegóły są dostępne w pliku pomocy BSD-Compatible gniazda API **417** i pliki Readme dołączone do pakietu BSD-Compatible interfejsu API gniazda.
+Kod źródłowy został zaprojektowany dla uproszczenia i składa się tylko z dwóch plików, ***nx_bsd.c** _ _*_i nx_bsd.h_*_. Instalacja wymaga dodania tych dwóch plików do projektu kompilacji (nie biblioteki NetX) i utworzenia aplikacji hosta, która będzie używać wywołań usługi BSD Socket. Plik _ *_nx_bsd.h_** również musi być uwzględniony w źródle aplikacji. Przykładowe pliki demonstracyjne są dołączone do dystrybucji, która jest bezpłatnie dostępna w programie NetX. Więcej szczegółów można znaleźć w pomocy dotyczącej BSD-Compatible Socket API **417** i plików Readme dołączonych do pakietu BSD-Compatible Socket API.
 
-Interfejs API BSD-Compatible Sockets obsługuje następujące wywołania interfejsu API usługi BSD Sockets:
+Interfejs API BSD-Compatible Sockets obsługuje następujące wywołania interfejsu API gniazd BSD:
 
 ```C
 *INT bsd_initialize (NX_IP *default_ip, NX_PACKET_POOL *default_pool,

@@ -1,34 +1,34 @@
 ---
-title: Rozdział 3 — Opis usług klienta RTO NetX PPPoE platformy Azure
-description: Ten rozdział zawiera opis wszystkich usług klienta usługi Azure RTO NetX PPPoE (wymienionych poniżej) w kolejności alfabetycznej.
+title: Rozdział 3 — Opis Azure RTOS klienta NetX PPPoE
+description: Ten rozdział zawiera opis wszystkich usług Azure RTOS NetX PPPoE (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 07/13/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 246115fc97d7597246f7fd5b4fb88cb615baab33
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 8310006b7c188fa63402c931459ffd84ebb776c207dc520959208449862fe27f
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821493"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790211"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-pppoe-client-services"></a>Rozdział 3 — Opis usług klienta RTO NetX PPPoE platformy Azure
+# <a name="chapter-3---description-of-azure-rtos-netx-pppoe-client-services"></a>Rozdział 3 — Opis Azure RTOS klienta NetX PPPoE
 
-Ten rozdział zawiera opis wszystkich usług klienta usługi Azure RTO NetX PPPoE (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług Azure RTOS NetX PPPoE (wymienionych poniżej) w kolejności alfabetycznej.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w następujących  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości pogrubione, a wartości bez pogrubienia są całkowicie wyłączone.
 
-- **nx_pppoe_client_create** *utworzyć wystąpienia klienta PPPoE*
-- **nx_pppoe_client_delete** *usunąć wystąpienia klienta PPPoE*
+- **nx_pppoe_client_create** *tworzenie wystąpienia klienta PPPoE*
+- **nx_pppoe_client_delete** *klienta PPPoE*
 - **nx_pppoe_client_host_uniq_set** *ustawić hosta unikatowego dla klienta PPPoE*
 - **nx_pppoe_client_host_uniq_set_extended** *ustawić hosta unikatowego dla klienta PPPoE*
-- **nx_pppoe_client_service_name_set** *ustawić nazwę usługi dla klienta PPPoE*
-- **nx_pppoe_client_service_name_set_extended** *ustawić nazwę usługi dla klienta PPPoE*
-- **nx_pppoe_client_session_connect** *łączenie sesji klienta PPPoE z serwerem PPPoE*
-- **nx_pppoe_client_session_packet_send** *wysłać pakietu sesji PPPoE*
-- **nx_pppoe_client_session_terminate** *przerywanie sesji PPPoE*
-- **nx_pppoe_client_session_get** *uzyskać określonego pliku inf sesji PPPoE*
+- **nx_pppoe_client_service_name_set** *ustaw nazwę usługi dla klienta PPPoE*
+- **nx_pppoe_client_service_name_set_extended** *ustaw nazwę usługi dla klienta PPPoE*
+- **nx_pppoe_client_session_connect** *Połączenie klienta PPPoE z serwerem PPPoE*
+- **nx_pppoe_client_session_packet_send** *wysyłania pakietów sesji PPPoE*
+- **nx_pppoe_client_session_terminate** *zakończenie sesji PPPoE*
+- **nx_pppoe_client_session_get** *pobrać określoną sesję PPPoE inf*
 
 ## <a name="nx_pppoe_client_create"></a>nx_pppoe_client_create
 
@@ -51,38 +51,38 @@ UINT  nx_pppoe_client_create(NX_PPPOE_CLIENT *pppoe_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wystąpienie klienta PPPoE z dostarczonym przez użytkownika sterownikiem linku dla określonego wystąpienia NetX IP. Jeśli sterownik łącza nie został zainicjowany i włączono, oprogramowanie klienckie PPPoE jest odpowiedzialne za Inicjowanie sterownika łącza.
+Ta usługa tworzy wystąpienie klienta PPPoE z dostarczonym przez użytkownika sterownikem łącza dla określonego wystąpienia adresu IP NetX. Jeśli sterownik łącza nie został zainicjowany i włączony, oprogramowanie klienta PPPoE jest odpowiedzialne za inicjowanie sterownika łącza.
 
-Ponadto aplikacja musi dostarczyć wcześniej utworzoną pulę pakietów dla wystąpienia klienta PPPoE, które ma być używane na potrzeby wewnętrznej alokacji pakietów.
+Ponadto aplikacja musi podać wcześniej utworzoną pulę pakietów dla wystąpienia klienta PPPoE do użycia na użytek wewnętrznej alokacji pakietów.
 
 > [!NOTE]
-> Ogólnie dobrym pomysłem jest utworzenie wątku IP NetX o wyższym priorytecie niż priorytet wątku klienta PPPoE. Aby uzyskać więcej informacji na temat określania priorytetu wątku IP, zapoznaj się z usługą *nx_ip_create* .
+> Ogólnie dobrym pomysłem jest utworzenie wątku ip NetX o wyższym priorytecie niż priorytet wątku klienta PPPoE. Zapoznaj się z *usługą nx_ip_create,* aby uzyskać więcej informacji na temat określania priorytetu wątku ip.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
- - **pppoe_client_ptr** Wskaźnik do bloku kontroli klienta PPPoE.
- - **Nazwa** Nazwa tego wystąpienia klienta PPPoE.
- - **ip_ptr** Wskaźnik sterowania blokiem dla wystąpienia IP.
+ - **pppoe_client_ptr** Wskaźnik do bloku sterowania klienta PPPoE.
+ - **name (nazwa)** Nazwa tego wystąpienia klienta PPPoE.
+ - **ip_ptr** Wskaźnik do bloku sterowania dla wystąpienia adresu IP.
  - **interface_index** Indeks interfejsu.
  - **pool_ptr** Wskaźnik do puli pakietów.
  - **stack_ptr** Wskaźnik do początku obszaru stosu wątku klienta PPPoE.
  - **stack_size** Rozmiar w bajtach w stosie wątku.
- - **priorytet** Priorytet wewnętrznych wątków klienta PPPoE (1-31).
- - **pppoe_link_driver** Sterownik linku dostarczony przez użytkownika.
+ - **priorytet** Priorytet wewnętrznych wątków klienta PPPoE (1–31).
+ - **pppoe_link_driver** Sterownik linku podany przez użytkownika.
  - **pppoe_packet_receive** Funkcja odbierania pakietów dostarczonych przez użytkownika.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
- - **NX_PPPOE_CLIENT_SUCCESS** (0X00) pomyślnie utworzono klienta PPPoE.
- - NX_PPPOE_CLIENT_PTR_ERROR (0xD1) nieprawidłowy klient PPPoE, adres IP, Pula pakietów lub wskaźnik stosu.
+ - **NX_PPPOE_CLIENT_SUCCESS** (0x00) Pomyślne utworzenie klienta PPPoE.
+ - NX_PPPOE_CLIENT_PTR_ERROR (0xD1) Nieprawidłowy klient PPPoE, adres IP, pula pakietów lub wskaźnik stosu.
  - NX_PPPOE_CLIENT_INVALID_INTERFACE (0xD2) Nieprawidłowy interfejs.
  - NX_PPPOE_CLIENT_PACKET_PAYLOAD_ERROR (0xD3) Nieprawidłowy rozmiar ładunku puli pakietów.
  - NX_PPPOE_CLIENT_MEMORY_SIZE_ERROR (0xD4) Nieprawidłowy rozmiar pamięci.
- - NX_PPPOE_CLIENT_PRIORITY_ERROR (0xD5) nieprawidłowy priorytet wątku klienta PPPoE.
+ - NX_PPPOE_CLIENT_PRIORITY_ERROR (0xD5) Nieprawidłowy priorytet wątku klienta PPPoE.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -107,15 +107,15 @@ UINT nx_pppoe_client_delete(NX_PPPOE_CLIENT *pppoe_client_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa poprzednio utworzone wystąpienie klienta PPPoE.
+Ta usługa usuwa wcześniej utworzone wystąpienie klienta PPPoE.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
- - **pppoe_client_ptr** Wskaźnik do bloku kontroli klienta PPPoE
+ - **pppoe_client_ptr** Wskaźnik do bloku sterowania klienta PPPoE
 
 ### <a name="return-values"></a>Wartości zwrócone
 
- - **NX_PPPOE_CLIENT_SUCCESS** (0X00) pomyślne usunięcie klienta PPPoE.
+ - **NX_PPPOE_CLIENT_SUCCESS** (0x00) Pomyślne usunięcie klienta PPPoE.
  - NX_PPPOE_CLIENT_PTR_ERROR (0xD1) Nieprawidłowy wskaźnik klienta PPPoE.
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -133,7 +133,7 @@ status =  nx_pppoe_client_delete(&my_pppoe_client);
 
 ## <a name="nx_pppoe_client_host_uniq_set"></a>nx_pppoe_client_host_uniq_set
 
-Ustaw unikatowy Host klienta PPPoE
+Ustawianie unikatowego hosta klienta PPPoE
 
 ### <a name="prototype"></a>Prototype
 
@@ -145,28 +145,28 @@ UINT nx_pppoe_client_host_uniq_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia unikatowy Host klienta PPPoE. Host-Uniq jest używana przez hosta do unikatowego kojarzenia koncentratora dostępu z określonym żądaniem hosta.
-Mogą to być dane binarne dowolnej wartości i długości wybranych przez hosta.
+Ta usługa ustawia unikatowy host klienta PPPoE. Host-Uniq jest używany przez hosta do unikatowego skojarzenia z określonym żądaniem hosta.
+Mogą to być dane binarne o dowolnej wartości i długości wybieranej przez hosta.
 
 > [!NOTE]
-> unikatowy host musi mieć ciąg zakończony znakiem null.
+> Unikatowy host musi być ciągiem zakończonym z wartością Null.
 
 > [!NOTE]
-> Ta usługa jest przestarzała. Deweloperzy są zachęcani do migracji do *nx_pppoe_client_host_uniq_set_extended ()*.
+> Ta usługa jest przestarzała. Zachęcamy deweloperów do migracji do *nx_pppoe_client_host_uniq_set_extended()*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
- - **pppoe_client_ptr** Wskaźnik do bloku kontroli klienta PPPoE.
- - **host_uniq** Na hoście unikatowym wskaźnikiem. Unikatowy host musi mieć ciąg zakończony znakiem null.
+ - **pppoe_client_ptr** Wskaźnik do bloku sterowania klienta PPPoE.
+ - **host_uniq** Wskaźnik do hosta jest unikatowy. Unikatowy host musi być ciągiem z zakończeniem o wartości Null.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
- - **NX_PPPOE_CLIENT_SUCCESS** (0X00) pomyślnie ustawiony unikatowy Host klienta PPPoE.
+ - **NX_PPPOE_CLIENT_SUCCESS** (0x00) Unikatowy zestaw pomyślnego hosta klienta PPPoE.
  - NX_PPPOE_CLIENT_PTR_ERROR (0xD1) Nieprawidłowy wskaźnik klienta PPPoE.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -180,7 +180,7 @@ status =  nx_pppoe_client_host_uniq_set(&my_pppoe_client,
 
 ## <a name="nx_pppoe_client_host_uniq_set_extended"></a>nx_pppoe_client_host_uniq_set_extended
 
-Ustaw unikatowy Host klienta PPPoE
+Ustawianie unikatowego hosta klienta PPPoE
 
 ### <a name="prototype"></a>Prototype
 
@@ -192,30 +192,30 @@ UINT nx_pppoe_client_host_uniq_set_extended(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia unikatowy Host klienta PPPoE. Host-Uniq jest używana przez hosta do unikatowego kojarzenia koncentratora dostępu z określonym żądaniem hosta.
-Mogą to być dane binarne dowolnej wartości i długości wybranych przez hosta.
+Ta usługa ustawia unikatowy host klienta PPPoE. Host-Uniq jest używany przez hosta do unikatowego skojarzenia z określonym żądaniem hosta.
+Mogą to być dane binarne o dowolnej wartości i długości wybieranej przez hosta.
 
 > [!NOTE]
-> unikatowy host musi mieć ciąg zakończony znakiem null.
+> Unikatowy host musi być ciągiem zakończonym z wartością Null.
 
 > [!NOTE]
-> Ta usługa zastępuje *nx_pppoe_client_host_uniq_set ()*. Ta wersja dostarcza dodatkowe informacje o długości do usługi.
+> Ta usługa zastępuje *nx_pppoe_client_host_uniq_set()*. Ta wersja dostarcza do usługi dodatkowe informacje o długości.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
- - **pppoe_client_ptr** Wskaźnik do bloku kontroli klienta PPPoE.
- - **host_uniq** Na hoście unikatowym wskaźnikiem. Unikatowy host musi mieć ciąg zakończony znakiem null.
+ - **pppoe_client_ptr** Wskaźnik do bloku sterowania klienta PPPoE.
+ - **host_uniq** Wskaźnik do hosta jest unikatowy. Unikatowy host musi być ciągiem z zakończeniem o wartości Null.
  - **host_uniq_length** Długość host_uniq
 
 ### <a name="return-values"></a>Wartości zwrócone
 
- - **NX_PPPOE_CLIENT_SUCCESS** (0X00) pomyślnie ustawiony unikatowy Host klienta PPPoE.
- - **NX_PPPOE_CLIENT_PTR_ERROR** (0XD1) Nieprawidłowy wskaźnik klienta PPPoE.
- - Sprawdzanie **NX_SIZE_ERROR** (0x09) nie powiodło się host_uniq_length
+ - **NX_PPPOE_CLIENT_SUCCESS** (0x00) Unikatowy zestaw pomyślnego hosta klienta PPPoE.
+ - **NX_PPPOE_CLIENT_PTR_ERROR** (0xD1) Nieprawidłowy wskaźnik klienta PPPoE.
+ - **NX_SIZE_ERROR** (0x09) Sprawdzanie host_uniq_length niepowodzeniem
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -229,7 +229,7 @@ status =  nx_pppoe_client_host_uniq_set_extended(&my_pppoe_client,
 
 ## <a name="nx_pppoe_client_service_name_set"></a>nx_pppoe_client_service_name_set
 
-Ustaw nazwę usługi klienta PPPoE
+Ustawianie nazwy usługi klienta PPPoE
 
 ### <a name="prototype"></a>Prototype
 
@@ -241,27 +241,27 @@ UINT nx_pppoe_client_service_name_set(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia nazwę usługi klienta PPPoE. Service-Name wskazujący usługę żądaną przez hosta. Jeśli nie ustawiono Service-Name, oznacza to, że host będzie akceptować dowolną liczbę usług.
+Ta usługa ustawia nazwę usługi klienta PPPoE. Komunikat Service-Name wskazujący usługę żądaną przez hosta. Jeśli Service-Name nie jest ustawiona, oznacza to, że host będzie akceptował dowolną liczbę usług.
 
 > [!NOTE]
-> Nazwa usługi musi być ciągiem zakończonym wartością null
+> Nazwa usługi musi być ciągiem zakończonym z wartością null
 
 > [!NOTE]
-> Ta usługa jest przestarzała. Deweloperzy są zachęcani do migracji do *nx_pppoe_client_service_name_set_extended ()*.
+> Ta usługa jest przestarzała. Zachęcamy deweloperów do migracji do *nx_pppoe_client_service_name_set_extended()*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
- - **pppoe_client_ptr** Wskaźnik do bloku kontroli klienta PPPoE.
- - **service_name** Wskaźnik na nazwę usługi. Nazwa usługi musi mieć ciąg zakończony znakiem null.
+ - **pppoe_client_ptr** Wskaźnik do bloku sterowania klienta PPPoE.
+ - **service_name** Wskaźnik do nazwy usługi. Nazwa usługi musi być ciągiem zakończonym z wartością Null.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
- - **NX_PPPOE_CLIENT_SUCCESS** (0X00) pomyślnie ustawiono nazwę usługi klienta PPPoE.
- - **NX_PPPOE_CLIENT_PTR_ERROR** (0XD1) Nieprawidłowy wskaźnik klienta PPPoE.
+ - **NX_PPPOE_CLIENT_SUCCESS** (0x00) Successful PPPoE Client service name set (Pomyślna nazwa usługi klienta PPPoE).
+ - **NX_PPPOE_CLIENT_PTR_ERROR** (0xD1) Nieprawidłowy wskaźnik klienta PPPoE.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -275,7 +275,7 @@ status =  nx_pppoe_client_service_name_set(&my_pppoe_client,
 
 ## <a name="nx_pppoe_client_service_name_set_extended"></a>nx_pppoe_client_service_name_set_extended
 
-Ustaw nazwę usługi klienta PPPoE
+Ustawianie nazwy usługi klienta PPPoE
 
 ### <a name="prototype"></a>Prototype
 
@@ -287,29 +287,29 @@ UINT nx_pppoe_client_service_name_set_extended(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia nazwę usługi klienta PPPoE. Service-Name wskazujący usługę żądaną przez hosta. Jeśli nie ustawiono Service-Name, oznacza to, że host będzie akceptować dowolną liczbę usług.
+Ta usługa ustawia nazwę usługi klienta PPPoE. Komunikat Service-Name wskazujący usługę żądaną przez hosta. Jeśli Service-Name nie jest ustawiona, oznacza to, że host będzie akceptował dowolną liczbę usług.
 
 > [!NOTE]
-> Nazwa usługi musi mieć ciąg zakończony znakiem null.
+> Nazwa usługi musi być ciągiem zakończonym wartością null.
 
 > [!NOTE]
-> Ta usługa zastępuje *nx_pppoe_client_service_name_set ()*. Ta wersja dostarcza dodatkowe informacje o długości nazwy usługi do funkcji.
+> Ta usługa zastępuje *nx_pppoe_client_service_name_set()*. Ta wersja dostarcza do funkcji dodatkowe informacje o długości nazwy usługi.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
- - **pppoe_client_ptr** Wskaźnik do bloku kontroli klienta PPPoE.
- - **service_name** Wskaźnik na nazwę usługi. Nazwa usługi musi mieć ciąg zakończony znakiem null.
+ - **pppoe_client_ptr** Wskaźnik do bloku sterowania klienta PPPoE.
+ - **service_name** Wskaźnik do nazwy usługi. Nazwa usługi musi być ciągiem zakończonym z wartością Null.
  - **service_name_length** Długość service_name
 
 ### <a name="return-values"></a>Wartości zwrócone
 
- - **NX_PPPOE_CLIENT_SUCCESS** (0X00) pomyślnie ustawiono nazwę usługi klienta PPPoE.
- - **NX_PPPOE_CLIENT_PTR_ERROR** (0XD1) Nieprawidłowy wskaźnik klienta PPPoE.
- - Sprawdzanie **NX_SIZE_ERROR** (0x09) nie powiodło się service_name_length
+ - **NX_PPPOE_CLIENT_SUCCESS** (0x00) Successful PPPoE Client service name set (Pomyślna nazwa usługi klienta PPPoE).
+ - **NX_PPPOE_CLIENT_PTR_ERROR** (0xD1) Nieprawidłowy wskaźnik klienta PPPoE.
+ - **NX_SIZE_ERROR** (0x09) Sprawdzanie service_name_length niepowodzeniem
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -323,7 +323,7 @@ status =  nx_pppoe_client_service_name_set_extended(&my_pppoe_client,
 
 ## <a name="nx_pppoe_client_session_connect"></a>nx_pppoe_client_session_connect
 
-Łączenie sesji klienta PPPoE
+Połączenie Sesja klienta PPPoE
 
 ### <a name="prototype"></a>Prototype
 
@@ -341,17 +341,17 @@ Ta usługa umożliwia połączenie sesji PPPoE przy użyciu wcześniej utworzone
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
- - **pppoe_client_ptr** Wskaźnik do bloku kontroli klienta PPPoE.
- - **WAIT_OPTION** Opcja oczekiwania podczas ustanawiania połączenia.
+ - **pppoe_client_ptr** Wskaźnik do bloku sterowania klienta PPPoE.
+ - **wait_option** Opcja Czekaj podczas nawiązynia połączenia.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
- - **NX_PPPOE_CLIENT_SUCCESS** (0x00) pomyślna sesja klienta z klientem PPPoE.
+ - **NX_PPPOE_CLIENT_SUCCESS** (0x00) Pomyślne połączenie sesji klienta PPPoE.
  - NX_PPPOE_CLIENT_PTR_ERROR (0xD1) Nieprawidłowy wskaźnik klienta PPPoE.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -364,7 +364,7 @@ status =  nx_pppoe_client_session_connect(&my_pppoe_client);
 
 ## <a name="nx_pppoe_client_session_packet_send"></a>nx_pppoe_client_session_packet_send
 
-Wyślij pakiet klienta PPPoE do określonej sesji
+Wysyłanie pakietu klienta PPPoE do określonej sesji
 
 ### <a name="prototype"></a>Prototype
 
@@ -380,19 +380,19 @@ Ta usługa wysyła pakiet PPPoE przy użyciu określonego identyfikatora sesji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
- - **pppoe_client_ptr** Wskaźnik do bloku kontroli klienta PPPoE.
- - **packet_ptr** Wskaźnik na pakiet PPPoE.
+ - **pppoe_client_ptr** Wskaźnik do bloku sterowania klienta PPPoE.
+ - **packet_ptr** Wskaźnik do pakietu PPPoE.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
- - **NX_PPPOE_CLIENT_SUCCESS** (0X00) pomyślne wysłanie pakietu klienta PPPoE.
+ - **NX_PPPOE_CLIENT_SUCCESS** (0x00) Pomyślne wysłanie pakietu klienta PPPoE.
  - NX_PPPOE_CLIENT_PTR_ERROR (0xD1) Nieprawidłowy wskaźnik klienta PPPoE.
- - NX_PPPOE_CLIENT_PACKET_PAYLOAD_ERROR (0xD3) nieprawidłowy pakiet klienta PPPoE.
- - Sesja PPPoE NX_PPPOE_CLIENT_SESSION_NOT_ESTABLISHED (0xD8) nie została ustanowiona.
+ - NX_PPPOE_CLIENT_PACKET_PAYLOAD_ERROR (0xD3) Nieprawidłowy pakiet klienta PPPoE.
+ - NX_PPPOE_CLIENT_SESSION_NOT_ESTABLISHED (0xD8) PPPoE nie jest ustanowiona.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -405,7 +405,7 @@ status =  nx_pppoe_client_session_packet_send(&my_pppoe_client, packet_ptr);
 
 ## <a name="nx_pppoe_client_session_terminate"></a>nx_pppoe_client_session_terminate
 
-Przerwij sesję klienta PPPoE
+Zakończenie sesji klienta PPPoE
 
 ### <a name="prototype"></a>Prototype
 
@@ -420,16 +420,16 @@ Ta usługa kończy określoną sesję PPPoE.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
- - **pppoe_client_ptr** Wskaźnik do bloku kontroli klienta PPPoE.
+ - **pppoe_client_ptr** Wskaźnik do bloku sterowania klienta PPPoE.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
- - **NX_PPPOE_CLIENT_SUCCESS** (0x00) pomyślna przerwa sesja klienta PPPoE.
+ - **NX_PPPOE_CLIENT_SUCCESS** (0x00) Pomyślne zakończenie sesji klienta PPPoE.
  - NX_PPPOE_CLIENT_PTR_ERROR (0xD1) Nieprawidłowy wskaźnik klienta PPPoE.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -442,7 +442,7 @@ status =  nx_pppoe_client_session_terminate(&my_pppoe_client);
 
 ## <a name="nx_pppoe_client_session_get"></a>nx_pppoe_client_session_get
 
-Pobierz informacje o określonej sesji PPPoE
+Uzyskiwanie informacji o określonej sesji PPPoE
 
 ### <a name="prototype"></a>Prototype
 
@@ -459,20 +459,20 @@ Ta usługa pobiera określone informacje o sesji PPPoE, adres fizyczny serwera i
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
- - **pppoe_server_ptr** Wskaźnik do bloku kontroli klienta PPPoE.
+ - **pppoe_server_ptr** Wskaźnik do bloku sterowania klienta PPPoE.
  - **server_mac_msw** Wskaźnik MSW adresu fizycznego serwera.
  - **server_mac_lsw** Wskaźnik MSW adresu fizycznego serwera.
  - **session_id** Wskaźnik identyfikatora sesji.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
- - **NX_PPPOE_CLIENT_SUCCESS** (0x00) pomyślna sesja klienta PPPoE get.
+ - **NX_PPPOE_CLIENT_SUCCESS** (0x00) Pomyślne uzyskiwanie sesji klienta PPPoE.
  - NX_PPPOE_CLIENT_PTR_ERROR (0xD1) Nieprawidłowy wskaźnik klienta PPPoE.
- - Sesja PPPoE NX_PPPOE_CLIENT_SESSION_NOT_ESTABLISHED (0xD8) nie została ustanowiona.
+ - NX_PPPOE_CLIENT_SESSION_NOT_ESTABLISHED (0xD8) PPPoE nie jest ustanowiona.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 

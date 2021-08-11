@@ -1,96 +1,96 @@
 ---
-title: Rozdział 5 — sterowniki urządzeń dla usługi Azure RTO ThreadX
-description: Ten rozdział zawiera opis sterowników urządzeń dla usługi Azure RTO ThreadX.
+title: Rozdział 5 — Sterowniki urządzeń dla Azure RTOS ThreadX
+description: Ten rozdział zawiera opis sterowników urządzeń dla Azure RTOS ThreadX.
 author: philmea
 ms.author: philmea
 ms.date: 05/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 2432b291f2b3fa7d6d798b8b4c187dd20b97db6b
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: fd31c586a8b582215d2f0e54e3e543cd1127594599162ca93bbba69b07565f12
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823262"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116791263"
 ---
-# <a name="chapter-5---device-drivers-for-azure-rtos-threadx"></a>Rozdział 5 — sterowniki urządzeń dla usługi Azure RTO ThreadX
+# <a name="chapter-5---device-drivers-for-azure-rtos-threadx"></a>Rozdział 5 — Sterowniki urządzeń dla Azure RTOS ThreadX
 
-Ten rozdział zawiera opis sterowników urządzeń dla usługi Azure RTO ThreadX. Informacje przedstawione w tym rozdziale zaprojektowano w celu ułatwienia deweloperom pisanie sterowników specyficznych dla aplikacji.
+Ten rozdział zawiera opis sterowników urządzeń dla Azure RTOS ThreadX. Informacje przedstawione w tym rozdziale mają ułatwić deweloperom pisanie sterowników specyficznych dla aplikacji.
 
-## <a name="device-driver-introduction"></a>Wprowadzenie do sterownika urządzenia
+## <a name="device-driver-introduction"></a>Wprowadzenie do sterowników urządzeń
 
-Komunikacja ze środowiskiem zewnętrznym jest ważnym składnikiem większości aplikacji osadzonych. Ta komunikacja jest realizowana za pomocą urządzeń sprzętowych, które są dostępne dla oprogramowania aplikacji osadzonej. Składniki oprogramowania odpowiedzialne za zarządzanie takimi urządzeniami są zwykle nazywane *sterownikami urządzeń*.
+Komunikacja ze środowiskiem zewnętrznym jest ważnym składnikiem większości aplikacji osadzonych. Ta komunikacja jest realizowane za pośrednictwem urządzeń sprzętowych, które są dostępne dla osadzonego oprogramowania aplikacji. Składniki oprogramowania odpowiedzialne za zarządzanie takimi urządzeniami są często nazywane *sterownikami urządzeń.*
 
-Sterowniki urządzeń w osadzonych systemach czasu rzeczywistego są zależne od aplikacji. Jest to prawdziwe w przypadku dwóch głównych przyczyn: ogromnej różnorodności sprzętu docelowego i równie ogromnych wymagań dotyczących wydajności nałożonych na aplikacje w czasie rzeczywistym. Z tego powodu praktycznie niemożliwe jest dostarczenie wspólnego zestawu sterowników, który będzie spełniał wymagania każdej aplikacji. Z tego względu informacje przedstawione w tym rozdziale zaprojektowano w celu ułatwienia *użytkownikom dostosowywania sterowników* urządzeń ThreadX i pisania własnych określonych sterowników.
+Sterowniki urządzeń w systemach osadzonych w czasie rzeczywistym są z założenia zależne od aplikacji. Jest to prawdziwe z dwóch głównych powodów: ogromnej różnorodności sprzętu docelowego i równie ogromnych wymagań dotyczących wydajności narzuconych na aplikacje w czasie rzeczywistym. W związku z tym praktycznie niemożliwe jest zapewnienie wspólnego zestawu sterowników, który będzie spełniał wymagania każdej aplikacji. Z tego powodu informacje zawarte w tym rozdziale mają na celu pomoc użytkownikom w dostosowywaniu sterowników urządzeń *ThreadX* z gotowej do pracy i pisach własnych sterowników.
 
-## <a name="driver-functions"></a>Funkcje sterownika
+## <a name="driver-functions"></a>Funkcje sterowników
 
-Sterowniki urządzeń ThreadX składają się z ośmiu podstawowych obszarów funkcjonalnych, jak pokazano poniżej.
+Sterowniki urządzeń ThreadX składają się z ośmiu podstawowych obszarów funkcjonalnych w następujący sposób.
 
 - **Inicjowanie sterownika**
-- **Kontrolka sterownika**
-- **Dostęp do sterownika**
+- **Sterowanie sterownikami**
+- **Dostęp sterowników**
 - **Dane wejściowe sterownika**
 - **Dane wyjściowe sterownika**
-- **Przerwania sterownika**
+- **Przerwań sterownika**
 - **Stan sterownika**
-- **Zakończenie sterownika**
+- **Zakończenie działania sterownika**
 
-Z wyjątkiem inicjalizacji każdy obszar funkcjonalny sterownika jest opcjonalny. Ponadto dokładne przetwarzanie w poszczególnych obszarach jest specyficzne dla sterownika urządzenia.
+Z wyjątkiem inicjowania każdy obszar funkcjonalny sterownika jest opcjonalny. Ponadto dokładne przetwarzanie w każdym obszarze jest specyficzne dla sterownika urządzenia.
 
 ### <a name="driver-initialization"></a>Inicjowanie sterownika
-Ten obszar funkcjonalny jest odpowiedzialny za Inicjowanie rzeczywistego urządzenia sprzętowego i wewnętrznych struktur danych sterownika. Wywoływanie innych usług sterowników jest niedozwolone do momentu ukończenia inicjalizacji.
+Ten obszar funkcjonalny jest odpowiedzialny za inicjowanie rzeczywistego urządzenia sprzętowego i wewnętrznych struktur danych sterownika. Wywoływanie innych usług sterowników jest niedozwolone do momentu ukończenia inicjowania.
 
 > [!NOTE]
-> * Składnik funkcji inicjującej sterownika jest zazwyczaj wywoływany z funkcji ***tx_application_define** _ lub z Thread._ inicjowania
+> *Składnik funkcji inicjowania sterownika jest zwykle wywoływany z funkcji ***tx_application_define** _ lub z thread._
 
-### <a name="driver-control"></a>Kontrolka sterownika
+### <a name="driver-control"></a>Sterowanie sterownikami
 
-Po zainicjowaniu sterownika i przygotowaniu go do działania ten obszar funkcjonalny jest odpowiedzialny za kontrolę w czasie wykonywania. Zwykle kontrola w czasie wykonywania składa się z wprowadzania zmian w podstawowym urządzeniu sprzętowym. Przykłady obejmują zmianę szybkości transmisji urządzenia szeregowego lub wyszukanie nowego sektora na dysku.
+Po zainicjowaniu sterownika i przygotowaniu go do działania ten obszar funkcjonalny jest odpowiedzialny za kontrolę w czasie działania. Zazwyczaj kontrola w czasie rzeczywistym polega na wymusze zmian w bazowym urządzeniu sprzętowym. Przykłady obejmują zmianę szybkości transmisji urządzenia szeregowego lub szukanie nowego sektora na dysku.
 
-### <a name="driver-access"></a>Dostęp do sterownika
+### <a name="driver-access"></a>Dostęp sterowników
 
-Niektóre sterowniki urządzeń są wywoływane tylko z jednego wątku aplikacji. W takich przypadkach ten obszar funkcjonalny nie jest wymagany. Jednak w aplikacjach, w których wiele wątków wymaga jednoczesnego dostępu do sterowników, ich interakcje muszą być kontrolowane przez dodanie funkcji Przypisz/Zwolnij do sterownika urządzenia. Alternatywnie aplikacja może używać semafora do kontrolowania dostępu do sterowników i uniknięcia dodatkowych obciążeń i komplikacji w obrębie sterownika.
+Niektóre sterowniki urządzeń są wywoływane tylko z jednego wątku aplikacji. W takich przypadkach ten obszar funkcjonalny nie jest potrzebny. Jednak w aplikacjach, w których wiele wątków wymaga jednoczesnego dostępu sterowników, interakcje z nimi muszą być kontrolowane przez dodanie funkcji przypisywania/zwalniania w sterowniku urządzenia. Alternatywnie aplikacja może używać semafora do kontrolowania dostępu sterowników i uniknięcia dodatkowych narzutów i komplikacji wewnątrz sterownika.
 
 ### <a name="driver-input"></a>Dane wejściowe sterownika
 
-Ten obszar funkcjonalny jest odpowiedzialny za wszystkie dane wejściowe urządzenia. Główne problemy związane z wejściem sterownika zwykle obejmują, jak dane wejściowe są buforowane i jak wątki oczekują na takie dane wejściowe.
+Ten obszar funkcjonalny jest odpowiedzialny za wszystkie dane wejściowe urządzenia. Główne problemy związane z wprowadzaniem sterowników zwykle obejmują sposób buforowania danych wejściowych i sposób oczekiwania wątków na takie dane wejściowe.
 
 ### <a name="driver-output"></a>Dane wyjściowe sterownika
 
-Ten obszar funkcjonalny jest odpowiedzialny za wszystkie dane wyjściowe urządzenia. Główne problemy związane z danymi wyjściowymi sterowników zwykle obejmują, jak dane wyjściowe są buforowane i jak wątki oczekują na wykonanie danych wyjściowych.
+Ten obszar funkcjonalny jest odpowiedzialny za wszystkie dane wyjściowe urządzenia. Główne problemy związane z wyjściem sterownika zwykle obejmują sposób buforowania danych wyjściowych i sposób oczekiwania wątków na wykonanie danych wyjściowych.
 
-### <a name="driver-interrupts"></a>Przerwania sterownika
+### <a name="driver-interrupts"></a>Przerwań sterownika
 
-Większość systemów w czasie rzeczywistym polega na przerwaniu sprzętowym w celu powiadomienia sterownika o zdarzeniach wejściowych, wyjściowych, kontroli i błędach urządzenia. Przerwania zapewniają gwarantowany czas odpowiedzi na takie zdarzenia zewnętrzne. Zamiast przerwań oprogramowanie sterownika może okresowo sprawdzać sprzęt zewnętrzny pod kątem takich zdarzeń. Ta technika jest nazywana *sondowaniem*. Jest mniej w czasie rzeczywistym niż przerwania, ale sondowanie może mieć sens w przypadku niektórych aplikacji w czasie rzeczywistym.
+Większość systemów czasu rzeczywistego korzysta z przerwań sprzętowych w celu powiadamiania sterownika o zdarzeniach wejścia, wyjścia, sterowania i błędów urządzenia. Przerwania zapewniają gwarantowany czas odpowiedzi na takie zdarzenia zewnętrzne. Zamiast przerwań oprogramowanie sterowników może okresowo sprawdzać sprzęt zewnętrzny pod względu na takie zdarzenia. Ta technika jest nazywana *sondą*. Jest to mniej czasu rzeczywistego niż przerwań, ale sondowanie może mieć sens w przypadku niektórych aplikacji w czasie rzeczywistym mniej.
 
 ### <a name="driver-status"></a>Stan sterownika
 
-Ten obszar funkcji jest odpowiedzialny za zapewnienie stanu i statystyk czasu wykonywania skojarzonych z operacją sterownika. Informacje zarządzane przez ten obszar funkcji zwykle obejmują następujące elementy.
+Ten obszar funkcji jest odpowiedzialny za zapewnienie stanu czasu działania i statystyk skojarzonych z operacją sterownika. Informacje zarządzane przez ten obszar funkcji zwykle obejmują następujące informacje.
 
 - Bieżący stan urządzenia
 - Bajty wejściowe
 - Bajty wyjściowe
 - Liczba błędów urządzeń
 
-### <a name="driver-termination"></a>Zakończenie sterownika
+### <a name="driver-termination"></a>Zakończenie działania sterownika
 
-Ten obszar funkcjonalny jest opcjonalny. Jest to wymagane tylko wtedy, gdy sterownik i/lub fizyczne urządzenie sprzętowe należy wyłączyć. Po zakończeniu tego sterownika nie można go ponownie wywołać do momentu ponownego zainicjowania.
+Ten obszar funkcjonalny jest opcjonalny. Jest to wymagane tylko wtedy, gdy trzeba zamknąć sterownik i/lub fizyczne urządzenie sprzętowe. Po zakończeniu nie można ponownie wywołać sterownika, dopóki nie zostanie on ponownie zaim iniekcją.
 
-## <a name="simple-driver-example"></a>Przykład prostego sterownika
+## <a name="simple-driver-example"></a>Prosty przykład sterownika
 
-Przykładem jest najlepszy sposób opisywania sterownika urządzenia. W tym przykładzie sterownik przyjmuje proste urządzenie szeregowe z rejestrem konfiguracji, rejestrem wejściowym i rejestrem wyjściowym. Ten prosty przykład sterownika ilustruje obszar funkcjonalności inicjalizacji, wejścia, wyjścia i przerwania.
+Przykładem jest najlepszy sposób opisania sterownika urządzenia. W tym przykładzie sterownik zakłada proste szeregowe urządzenie sprzętowe z rejestrem konfiguracji, rejestrem wejściowym i rejestrem danych wyjściowych. Ten prosty przykład sterownika ilustruje obszary funkcjonalne inicjalizacji, danych wejściowych, wyjściowych i przerwań.
 
-### <a name="simple-driver-initialization"></a>Prosta Inicjalizacja sterownika
+### <a name="simple-driver-initialization"></a>Proste inicjowanie sterownika
 
-Funkcja ***tx_sdriver_initialize*** prostego sterownika tworzy dwa semafory zliczania, które są używane do zarządzania operacjami wejścia i wyjścia sterownika. Semafor wejściowy jest ustawiany przez wejście w trybie ISR, gdy znak jest odbierany przez urządzenie sprzętowe szeregowe. Z tego powodu semafor wejściowy jest tworzony z początkową liczbą równą zero.
+Funkcja ***tx_sdriver_initialize*** prostego sterownika tworzy dwa semafory zliczania, które są używane do zarządzania operacją wejściową i wyjściową sterownika. Semafor danych wejściowych jest ustawiany przez wejściowy kod ISR, gdy znak jest odbierany przez szeregowe urządzenie sprzętowe. W związku z tym semafor danych wejściowych jest tworzony z początkową licznikiem o wartości zero.
 
-Z drugiej strony semafor wyjściowy wskazuje dostępność rejestru transmisji sprzętu szeregowego. Jest tworzony z wartością jednego, aby wskazać, że rejestr przesyłania jest początkowo dostępny.
+Z kolei semafor danych wyjściowych wskazuje dostępność rejestru przesyłania sprzętu szeregowego. Jest on tworzony z wartością 1, aby wskazać, że rejestr przesyłania jest początkowo dostępny.
 
-Funkcja inicjowania jest również odpowiedzialna za Instalowanie obsługi wektorów przerwania niskiego poziomu na potrzeby powiadomień wejściowych i wyjściowych. Podobnie jak w przypadku innych procedur usługi ThreadX Interrupt, obsługa niskiego poziomu musi wywoływać ***_tx_thread_context_save** _ przed wywołaniem prostego procedury ISR sterownika. Po powrocie przez funkcję ISR sterownika procedura obsługi niskiego poziomu musi wywołać _ * _ _tx_thread_context_restore_* *.
+Funkcja inicjowania jest również odpowiedzialna za instalowanie programów obsługi wektorów przerwań niskiego poziomu dla powiadomień wejściowych i wyjściowych. Podobnie jak w przypadku innych procedur usługi przerwania ThreadX, procedura obsługi niskiego poziomu musi wywołać wywołanie ***_tx_thread_context_save** _ przed wywołaniem prostego sterownika ISR. Po zwracaniu przez sterownik isr procedura obsługi niskiego poziomu musi wywołać wywołanie _*_ _tx_thread_context_restore_**.
 
 > [!IMPORTANT]
-> * Ważne jest, aby Inicjalizacja była wywoływana przed żadną inną funkcje sterownika. Zazwyczaj Inicjalizacja sterownika jest wywoływana z ***tx_application_define***.
+> *Ważne jest, aby inicjowanie było wywoływane przed dowolną z innych funkcji sterowników. Zazwyczaj inicjowanie sterownika jest wywoływane ***z*** tx_application_define .
 
 ```c
 VOID tx_sdriver_initialize(VOID)
@@ -110,18 +110,18 @@ VOID tx_sdriver_initialize(VOID)
     generation, baud rate, stop bits, etc. */
 }
 ```
-**RYSUNEK 9. Prosta Inicjalizacja sterownika**
+**RYSUNEK 9. Proste inicjowanie sterownika**
 
-### <a name="simple-driver-input"></a>Proste wprowadzanie sterowników
+### <a name="simple-driver-input"></a>Proste dane wejściowe sterownika
 
-Dane wejściowe dla prostych centrów sterowników wokół semafora wejściowego. Po odebraniu przerwań wejścia urządzenia szeregowego zostanie ustawiony semafor wejściowy. Jeśli co najmniej jeden wątek oczekuje na znak ze sterownika, wątek czekający najdłuższy zostanie wznowiony. Jeśli żadne wątki nie oczekują, semafor po prostu pozostaje ustawiony do momentu wywołania przez wątek funkcji wejścia stacji.
+Dane wejściowe dla prostych sterowników wyśrodkują się wokół wejściowego semafora. Po otrzymaniu przerwania wejściowego urządzenia szeregowego ustawiany jest semafor danych wejściowych. Jeśli co najmniej jeden wątek oczekuje na znak ze sterownika, wątek oczekujący najdłużej jest wznawiany. Jeśli żadne wątki nie oczekują, semafor pozostaje ustawiony do momentu, aż wątek wywoła funkcję wejściową dysku.
 
-Istnieje kilka ograniczeń związanych z prostą obsługą wejścia sterownika. Najbardziej znaczącym jest potencjalną przyczyną porzucania znaków wejściowych. Jest to możliwe, ponieważ nie ma możliwości buforowania znaków wejściowych, które docierają przed przetworzeniem poprzedniego znaku. Jest to łatwo obsługiwane przez dodanie wejściowego buforu znaków.
+Istnieje kilka ograniczeń dotyczących prostej obsługi danych wejściowych sterownika. Najbardziej znaczący jest potencjał porzucania znaków wejściowych. Jest to możliwe, ponieważ nie ma możliwości buforowania znaków wejściowych, które docierają przed przetworzeniem poprzedniego znaku. Można to łatwo obsłużyć przez dodanie buforu znaków wejściowych.
 
 > [!NOTE]
-> *Tylko wątki mogą wywołać*  * **tx_sdriver_input** _ _function. *
+> *Tylko wątki mogą wywołać*  * **tx_sdriver_input** _ _function.*
 
-Rysunek 10 pokazuje kod źródłowy skojarzony z prostym wejściem sterownika.
+Rysunek 10 przedstawia kod źródłowy skojarzony z prostymi danych wejściowymi sterownika.
 
 ```c
 UCHAR tx_sdriver_input(VOID)
@@ -144,18 +144,18 @@ UCHAR tx_sdriver_input(VOID)
   }
 }
 ```
-**RYSUNEK 10. Proste wprowadzanie sterowników**
+**RYSUNEK 10. Proste dane wejściowe sterownika**
 
-### <a name="simple-driver-output"></a>Proste wyjście sterownika
+### <a name="simple-driver-output"></a>Proste dane wyjściowe sterownika
 
-Przetwarzanie danych wyjściowych wykorzystuje semafor wyjściowy do sygnalizowania, kiedy rejestr transmisji urządzenia szeregowego jest bezpłatny. Przed faktycznym zapisaniem na urządzeniu znaku wyjściowego zostanie uzyskany semafor wyjściowy. Jeśli ta wartość jest niedostępna, poprzednia Transmisja nie została jeszcze ukończona.
+Przetwarzanie danych wyjściowych wykorzystuje semafor danych wyjściowych do sygnalizowania, kiedy rejestr przesyłania urządzenia szeregowego jest wolny. Zanim znak wyjściowy zostanie faktycznie zapisany na urządzeniu, jest uzyskiwany semafor danych wyjściowych. Jeśli nie jest dostępna, poprzednia transmisja nie jest jeszcze ukończona.
 
-Wyjście ISR jest odpowiedzialne za obsługę przerwania przesyłania. Przetwarzanie ilości danych wyjściowych ISR do ustawiania semafora wyjściowego, co pozwala na wyjście innego znaku.
+Wyjściowy isr jest odpowiedzialny za obsługę zakończenia przerwania przesyłania. Przetwarzanie wyjściowego isr kwot do ustawienia semafora danych wyjściowych, umożliwiając dane wyjściowe innego znaku.
 
 > [!NOTE]
-> *Tylko wątki mogą wywołać*  * **tx_sdriver_output** _ _function. *
+> *Tylko wątki mogą wywołać*  * **tx_sdriver_output** _ _function.*
 
-Rysunek 11 przedstawia kod źródłowy skojarzony z prostym wyjściem sterownika.
+Rysunek 11 przedstawia kod źródłowy skojarzony z prostymi danych wyjściowych sterownika.
 
 ```c
 VOID tx_sdriver_output(UCHAR alpha)
@@ -177,31 +177,31 @@ VOID tx_sdriver_output_ISR(VOID)
   tx_semaphore_put(&tx_sdriver_output_semaphore);
 }
 ```
-**RYSUNEK 11. Proste wyjście sterownika**
+**RYSUNEK 11. Proste dane wyjściowe sterownika**
 
-### <a name="simple-driver-shortcomings"></a>Proste braki sterowników
+### <a name="simple-driver-shortcomings"></a>Proste wady sterowników
 
-Ten prosty przykład sterownika urządzenia ilustruje podstawowy pomysł dotyczący sterownika urządzenia ThreadX. Jednak ponieważ prosty sterownik urządzenia nie rozwiąże buforowania danych ani nie występują żadne problemy, nie reprezentuje w pełni rzeczywistych sterowników ThreadX. W poniższej sekcji opisano niektóre bardziej zaawansowane problemy związane z sterownikami urządzeń.
+Ten prosty przykład sterownika urządzenia ilustruje podstawową ideę sterownika urządzenia ThreadX. Jednak ponieważ prosty sterownik urządzenia nie obsługuje buforowania danych ani żadnych problemów z obciążeniem, nie reprezentuje w pełni rzeczywistych sterowników ThreadX. W poniższej sekcji opisano niektóre bardziej zaawansowane problemy związane ze sterownikami urządzeń.
 
-## <a name="advanced-driver-issues"></a>Zaawansowane problemy ze sterownikiem
+## <a name="advanced-driver-issues"></a>Zaawansowane problemy ze sterownikami
 
-Jak wspomniano wcześniej, sterowniki urządzeń mają wymagania, które są unikatowe jako aplikacje. Niektóre aplikacje mogą wymagać nadmiernej ilości buforów danych, a inna aplikacja może wymagać zoptymalizowanego procedury ISR sterownika z powodu przerwań urządzeń o wysokiej częstotliwości.
+Jak wspomniano wcześniej, wymagania dotyczące sterowników urządzeń są tak unikatowe jak ich aplikacje. Niektóre aplikacje mogą wymagać ogromnej ilości buforowania danych, podczas gdy inna aplikacja może wymagać zoptymalizowanych sterowników isr z powodu przerwań urządzenia o wysokiej częstotliwości.
 
 ### <a name="io-buffering"></a>Buforowanie we/wy
 
-Buforowanie danych w aplikacjach osadzonych w czasie rzeczywistym wymaga znacznego zaplanowania. Niektóre z tych projektów są podyktowane przez bazowe urządzenie sprzętowe. Jeśli urządzenie zapewnia podstawowe bajty we/wy, prawdopodobnie jest to prosty bufor cykliczny. Jeśli jednak urządzenie zapewnia blok, dostęp DMA lub we/wy, prawdopodobnie jest to schemat zarządzania buforem.
+Buforowanie danych w aplikacjach osadzonych w czasie rzeczywistym wymaga znacznego planowania. Część projektu jest określana przez podstawowe urządzenie sprzętowe. Jeśli urządzenie udostępnia podstawowe bajtowe we/wy, prawdopodobnie uporządkowany jest prosty bufor cykliczny. Jeśli jednak urządzenie udostępnia blokowe, DMA lub we/wy pakietów, prawdopodobnie jest uzasadniany schemat zarządzania buforem.
 
-### <a name="circular-byte-buffers"></a>Cykliczne bufory bajtów
+### <a name="circular-byte-buffers"></a>Cykliczne bufory bajtowe
 
-Cykliczne bufory bajtów są zwykle używane w sterownikach, które zarządzają prostym urządzeniem sprzętowym, takim jak UART. Dwa bufory cykliczne są najczęściej używane w takich sytuacjach — jeden dla danych wejściowych i jeden dla danych wyjściowych.
+Cykliczne bufory bajtowe są zwykle używane w sterownikach, które zarządzają prostym szeregowym urządzeniem sprzętowym, na przykład UART. W takich sytuacjach najczęściej używane są dwa bufory cykliczne — jeden dla danych wejściowych i jeden dla danych wyjściowych.
 
-Każdy kolisty bufor bajtowy składa się z obszaru pamięci bajtów (zazwyczaj jest to tablica **UCHAR** s), wskaźnik odczytu i wskaźnik zapisu. Bufor jest uważany za pusty, gdy wskaźnik odczytu i wskaźniki zapisu odwołują się do tej samej lokalizacji pamięci w buforze. Inicjalizacja sterownika ustawia wskaźniki buforu odczytu i zapisu na adres początkowy buforu.
+Każdy cykliczny bufor bajtowy składa się z obszaru pamięci bajtowej (zazwyczaj tablicy **FUNKCJI SYSTEMR),** wskaźnika odczytu i wskaźnika zapisu. Bufor jest uznawany za pusty, gdy wskaźnik odczytu i wskaźniki zapisu odwołują się do tej samej lokalizacji pamięci w buforze. Inicjalizacja sterownika ustawia wskaźniki buforu odczytu i zapisu na początkowy adres buforu.
 
-### <a name="circular-buffer-input"></a>Cykliczne wejście buforu
+### <a name="circular-buffer-input"></a>Cykliczne dane wejściowe buforu
 
-Bufor wejściowy jest używany do przechowywania znaków, które docierają do tej aplikacji. Po odebraniu znaku wejściowego (zazwyczaj w procedurze usługi przerwania) nowy znak zostanie pobrany z urządzenia sprzętowego i umieszczony w buforze wejściowym w lokalizacji wskazywanej przez wskaźnik zapisu. Wskaźnik zapisu jest zaawansowany do następnej pozycji w buforze. Jeśli następna pozycja znajduje się poza końcem buforu, wskaźnik zapisu jest ustawiany na początku buforu. Pełny warunek kolejki jest obsługiwany przez anulowanie przybierania wskaźnika zapisu, jeśli nowy wskaźnik zapisu jest taki sam jak wskaźnik odczytu.
+Bufor wejściowy służy do przechowywania znaków, które docierają, zanim aplikacja będzie dla nich gotowa. Po otrzymaniu znaku wejściowego (zazwyczaj w procedurie usługi przerywania) nowy znak jest pobierany z urządzenia sprzętowego i umieszczany w buforze wejściowym w lokalizacji wskazywanej przez wskaźnik zapisu. Wskaźnik zapisu jest następnie zaawansowany do następnej pozycji w buforze. Jeśli następna pozycja znajduje się za końcem buforu, wskaźnik zapisu jest ustawiany na początek buforu. Pełny warunek kolejki jest obsługiwany przez anulowanie postępu wskaźnika zapisu, jeśli nowy wskaźnik zapisu jest taki sam jak wskaźnik odczytu.
 
-Żądania bajtów wejściowych aplikacji do sterownika najpierw przeanalizują wskaźniki odczytu i zapisu w buforze wejściowym. Jeśli wskaźniki odczytu i zapisu są identyczne, bufor jest pusty. W przeciwnym razie, jeśli wskaźnik odczytu nie jest taki sam, bajt wskazywany przez wskaźnik odczytu jest kopiowany z buforu wejściowego, a wskaźnik odczytu jest zaawansowany do następnej lokalizacji buforu. Jeśli nowy wskaźnik odczytu znajduje się poza końcem buforu, zostanie zresetowany do początku. Rysunek 12 przedstawia logikę cyklicznego buforu wejściowego.
+Żądania bajtów wejściowych aplikacji do sterownika najpierw badają wskaźniki odczytu i zapisu buforu wejściowego. Jeśli wskaźniki odczytu i zapisu są identyczne, bufor jest pusty. W przeciwnym razie, jeśli wskaźnik odczytu nie jest taki sam, bajt wskazywany przez wskaźnik odczytu jest kopiowany z buforu wejściowego, a wskaźnik odczytu jest zaawansowany do następnej lokalizacji buforu. Jeśli nowy wskaźnik odczytu znajduje się za końcem buforu, jest resetowany do początku. Rysunek 12 przedstawia logikę cyklicznego bufora wejściowego.
 
 ```c
 UCHAR   tx_input_buffer[MAX_SIZE];
@@ -228,15 +228,15 @@ if (tx_input_read_ptr != tx_input_write_ptr)
       tx_input_read_ptr = &tx_input_buffer[0];
 }
 ```
-**RYSUNEK 12. Logika dla cyklicznego buforu wejściowego**
+**RYSUNEK 12. Logika cyklicznego bufora wejściowego**
 
 > [!NOTE]
-> * Aby zapewnić niezawodne działanie, może być konieczne zablokowanie przerwań podczas manipulowania wskaźnikami odczytu i zapisu zarówno wejściowych, jak i wyjściowych buforów cyklicznych. *
+> *Aby operacja była niezawodna, może być konieczne zablokowanie przerwań podczas manipulowania wskaźnikami odczytu i zapisu buforów cyklicznych zarówno wejściowych, jak i wyjściowych. *
 
 ### <a name="circular-output-buffer"></a>Cykliczny bufor wyjściowy
 
-Bufor wyjściowy jest używany do przechowywania znaków, które dotarły do danych wyjściowych, zanim urządzenie sprzętowe zakończy wysyłanie poprzedniego bajtu. Przetwarzanie buforu wyjściowego jest podobne do przetwarzania buforu wejściowego, z wyjątkiem tego, że przetwarzanie przerwania przesyłania zostało wykonane, manipuluje wskaźnikiem odczytywania danych wyjściowych, podczas gdy żądanie danych wyjściowych aplikacji wykorzystuje wskaźnik zapisu danych wyjściowych.
-W przeciwnym razie przetwarzanie buforu wyjściowego jest takie samo. Rysunek 13 przedstawia logikę cyklicznego buforu wyjściowego.
+Bufor wyjściowy służy do przechowywania znaków, które dotarły do danych wyjściowych przed zakończeniem wysyłania poprzedniego bajtu przez urządzenie sprzętowe. Przetwarzanie buforu wyjściowego jest podobne do przetwarzania buforu wejściowego, z tą różnicą, że pełne przetwarzanie przerwań przesyłania manipuluje wskaźnikiem odczytu danych wyjściowych, natomiast żądanie wyjściowe aplikacji wykorzystuje wyjściowy wskaźnik zapisu.
+W przeciwnym razie przetwarzanie buforu wyjściowego jest takie samo. Rysunek 13 przedstawia logikę cyklicznego bufora wyjściowego.
 
 ```c
 UCHAR   tx_output_buffer[MAX_SIZE];
@@ -265,11 +265,11 @@ if (tx_output_write_ptr == tx_output_read_ptr)
 ```
 **RYSUNEK 13. Logika cyklicznego buforu wyjściowego**
 
-### <a name="buffer-io-management"></a>Zarządzanie buforowaniem we/wy
+### <a name="buffer-io-management"></a>Zarządzanie we/wy buforu
 
-Aby zwiększyć wydajność osadzonych mikroprocesorów, wiele urządzeń urządzeń peryferyjnych przesyła i odbiera dane przy użyciu buforów dostarczonych przez oprogramowanie. W niektórych implementacjach wiele buforów może służyć do przesyłania lub odbierania pojedynczych pakietów danych.
+Aby poprawić wydajność osadzonych mikroprocesorów, wiele urządzeń peryferyjnych przesyła i odbiera dane z buforami dostarczonymi przez oprogramowanie. W niektórych implementacjach można użyć wielu buforów do przesyłania lub odbierania poszczególnych pakietów danych.
 
-Rozmiar i lokalizacja buforów we/wy jest określana przez oprogramowanie aplikacji i/lub sterownika. Zazwyczaj bufory mają ustalony rozmiar i są zarządzane w puli pamięci bloku ThreadX. Rysunek 14 opisuje typowy bufor we/wy i ThreadX blok pamięci, który zarządza ich alokacją.
+Rozmiar i lokalizacja buforów We/Wy jest określana przez aplikację i/lub oprogramowanie sterowników. Zazwyczaj bufory mają stały rozmiar i są zarządzane w puli pamięci blokowej ThreadX. Rysunek 14 opisuje typowy bufor we/wy i blokową pulę pamięci ThreadX, która zarządza ich alokacją.
 
 ```c
 typedef struct TX_IO_BUFFER_STRUCT
@@ -294,45 +294,45 @@ tx_block_pool_create(&tx_io_block_pool,
 
 ### <a name="tx_io_buffer"></a>TX_IO_BUFFER
 
-Element typedef TX_IO_BUFFER składa się z dwóch wskaźników. **Tx_next_packet** wskaźnik służy do łączenia wielu pakietów na liście danych wejściowych lub wyjściowych. Wskaźnik **tx_next_buffer** służy do łączenia razem buforów, które składają się na pojedynczy pakiet danych z urządzenia. Oba te wskaźniki są ustawione na wartość NULL, gdy bufor jest przypisywany z puli. Ponadto niektóre urządzenia mogą wymagać innego pola, aby wskazać, jaka część obszaru buforowego zawiera dane.
+Typedef TX_IO_BUFFER składa się z dwóch wskaźników. Wskaźnik **tx_next_packet** służy do łączenia wielu pakietów na liście danych wejściowych lub wyjściowych. Wskaźnik **tx_next_buffer** służy do łączenia ze sobą buforów, które sprawiają, że pojedynczy pakiet danych z urządzenia. Oba te wskaźniki są ustawione na wartość NULL, gdy bufor jest przydzielany z puli. Ponadto niektóre urządzenia mogą wymagać innego pola, aby wskazać, jaka część obszaru buforu faktycznie zawiera dane.
 
-### <a name="buffered-io-advantage"></a>Zalety buforowanej operacji we/wy
+### <a name="buffered-io-advantage"></a>Buforowane korzyści we/wy
 
-Jakie są zalety schematu we/wy buforu? Największą korzyść polega na tym, że dane nie są kopiowane między rejestrami urządzeń i pamięcią aplikacji. Zamiast tego sterownik dostarcza urządzenie z serią wskaźników buforów. We/wy urządzenia fizycznego jest używana bezpośrednio pamięć buforu.
+Jakie są zalety schematu we/wy buforu? Największą zaletą jest to, że dane nie są kopiowane między rejestrami urządzenia a pamięcią aplikacji. Zamiast tego sterownik dostarcza urządzeniu serię wskaźników buforu. We/Wy urządzenia fizycznego bezpośrednio wykorzystuje dostarczoną pamięć bufora.
 
-Użycie procesora do kopiowania pakietów wejściowych lub wyjściowych informacji jest niezwykle kosztowne i należy je unikać w każdej sytuacji dużej przepływności we/wy.
+Użycie procesora do kopiowania pakietów wejściowych lub wyjściowych informacji jest niezwykle kosztowne i należy unikać w każdej sytuacji dużej przepływności we/wy.
 
-Kolejną zaletą operacji wejścia/wyjścia na sekundę jest to, że listy wejściowe i wyjściowe nie mają pełnych warunków. Wszystkie dostępne bufory mogą znajdować się w dowolnym momencie. Jest to kontrast z prostymi buforami dwubajtowymi przedstawionymi wcześniej w rozdziale. Każdy miał ustalony rozmiar ustalony podczas kompilacji.
+Inną zaletą buforowanych we/wy jest to, że listy wejściowe i wyjściowe nie mają pełnych warunków. Wszystkie dostępne bufory mogą być na dowolnej liście w dowolnym momencie. Jest to przeciwieńsze proste bajtowe bufory cykliczne przedstawione wcześniej w rozdziale. Każdy z nich miał stały rozmiar określany podczas kompilacji.
 
-### <a name="buffered-driver-responsibilities"></a>Zakresy obowiązków sterownika w buforze
+### <a name="buffered-driver-responsibilities"></a>Buforowane obowiązki sterowników
 
-Buforowane sterowniki urządzeń są objęte wyłącznie zarządzaniem połączonymi listami buforów we/wy. Lista buforów wejściowych jest utrzymywana dla pakietów, które są odbierane, zanim oprogramowanie aplikacji jest gotowe. Z drugiej strony Lista buforów wyjściowych jest utrzymywana dla pakietów wysyłanych szybciej niż urządzenia sprzętowe mogą je obsłużyć. Rysunek 15 pokazuje proste dane wejściowe i wyjściowe połączone listy pakietów danych i buforów, które tworzą każdy pakiet.
+Buforowane sterowniki urządzeń dotyczą tylko zarządzania połączonymi listami buforów we/wy. Lista buforów wejściowych jest zachowywana dla pakietów odbieranych przed gotowością oprogramowania aplikacji. Z kolei lista buforów wyjściowych jest utrzymywana dla pakietów wysyłanych szybciej niż urządzenie sprzętowe może je obsłużyć. Rysunek 15 przedstawia proste połączone listy danych wejściowych i wyjściowych pakietów danych oraz bufory, które się na nie nakładają.
 
 **Lista danych wejściowych**
 
 ![Lista danych wejściowych](./media/user-guide/input-list.png)
 
-**Lista wyjściowa**
+**Lista danych wyjściowych**
 
-![Lista wyjściowa](./media/user-guide/output-list.png)
+![Lista danych wyjściowych](./media/user-guide/output-list.png)
 
-**RYSUNEK 15. Listy Input-Output**
+**RYSUNEK 15. Input-Output listy**
 
-Interfejs aplikacji z buforowanymi sterownikami z takimi samymi buforami we/wy. W przypadku przesyłania oprogramowanie aplikacji udostępnia sterownik z co najmniej jednym buforem do przesłania. Gdy oprogramowanie aplikacji żąda danych wejściowych, sterownik zwraca dane wejściowe w buforach we/wy.
+Interfejs aplikacji ze sterownikami buforowanych z tym samym buforem we/wy. Podczas przesyłania oprogramowanie aplikacji zapewnia sterownikowi co najmniej jeden bufor do przesyłania. Gdy oprogramowanie aplikacji żąda danych wejściowych, sterownik zwraca dane wejściowe w buforach We/Wy.
 
 > [!NOTE]
-> *W niektórych aplikacjach warto utworzyć interfejs wejściowy sterownika, który wymaga, aby aplikacja mogła wymienić bezpłatny bufor dla buforu wejściowego ze sterownika. Może to zmniejszyć część przetwarzania alokacji buforu w ramach sterownika.*
+> *W niektórych aplikacjach przydatne może być skompilowanie interfejsu wejściowego sterownika, który wymaga, aby aplikacja wymieniała wolny bufor buforu wejściowego ze sterownika. Może to zmniejszyć część przetwarzania alokacji buforu wewnątrz sterownika.*
 
 ### <a name="interrupt-management"></a>Zarządzanie przerwami
 
-W niektórych aplikacjach częstotliwość przerwań urządzenia może uniemożliwić zapisanie procedury ISR w języku C lub współdziałanie z ThreadX na każdym przerwaniu. Na przykład jeśli 25us do zapisywania i przywracania przerwanego kontekstu, nie zaleca się przeprowadzania pełnego kontekstu zapisywania, jeśli częstotliwość przerwań została 50us. W takich przypadkach do obsługi większości przerwań urządzenia jest używany mały język asemblera. To niskie obciążenie ISR będzie współpracujące z ThreadX, jeśli jest to konieczne.
+W niektórych aplikacjach częstotliwość przerwań urządzenia może zabraniać pisania isr w języku C lub interakcji z ThreadX na każdym przerwaniu. Jeśli na przykład zapisanie i przywrócenie przerwanego kontekstu zajmuje 25us, nie zaleca się wykonania pełnego zapisu kontekstu, jeśli częstotliwość przerwań wynosi 50us. W takich przypadkach do obsługi większości przerwań urządzenia jest używany niewielki język zestawu ISR. Ten niski narzut isr będzie współdziałać z ThreadX tylko wtedy, gdy jest to konieczne.
 
-Podobne dyskusje można znaleźć w omówieniu zarządzania przerwami na końcu rozdziału 3.
+Podobne omówienie można znaleźć w dyskusji na temat zarządzania przerwami na końcu rozdziału 3.
 
 ### <a name="thread-suspension"></a>Zawieszenie wątku
 
-W prostym przykładzie sterownika przedstawionym wcześniej w tym rozdziale, obiekt wywołujący usługi wejściowej zawiesza się, jeśli znak nie jest dostępny. W niektórych aplikacjach może to nie być akceptowalne.
+W prostym przykładzie sterownika przedstawionym wcześniej w tym rozdziale wywołujący usługę wejściową zawiesza się, jeśli znak jest niedostępny. W niektórych aplikacjach może to być niedopuszczalne.
 
-Na przykład jeśli wątek odpowiedzialny za przetwarzanie danych wejściowych z sterownika również ma inne obowiązki, wstrzymanie tylko wejścia sterownika prawdopodobnie nie będzie działało. Zamiast tego sterownik należy dostosować do przetwarzania żądania podobnego do sposobu, w jaki inne żądania przetwarzania są wykonywane do wątku.
+Jeśli na przykład wątek odpowiedzialny za przetwarzanie danych wejściowych od sterownika ma również inne obowiązki, wstrzymanie tylko danych wejściowych sterownika prawdopodobnie nie będzie działać. Zamiast tego sterownik należy dostosować do przetwarzania żądań podobny do sposobu, w jaki inne żądania przetwarzania są dokonywane do wątku.
 
-W większości przypadków bufor wejściowy jest umieszczany na połączonej liście, a wejściowy komunikat zdarzenia jest wysyłany do kolejki wejściowej wątku.
+W większości przypadków bufor wejściowy jest umieszczany na połączonej liście, a komunikat zdarzenia wejściowego jest wysyłany do kolejki wejściowej wątku.

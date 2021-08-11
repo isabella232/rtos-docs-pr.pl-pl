@@ -1,48 +1,48 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z platformy Azure RTO NetX Duo AutoIP
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika Azure RTO NetX Duo AutoIP.
+title: Rozdział 2 . Instalowanie i używanie aplikacji Azure RTOS NetX Duo AutoIP
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika Azure RTOS NetX Duo AutoIP.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 42c58a4cdec34a03eda9f42315438e5fbe2ea594
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 56bd8cd3cc361bbe0ec435012251e751af8c1566d01e8d52ff38d2eb9c381bfd
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822074"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790517"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-autoip"></a>Rozdział 2 — Instalowanie i korzystanie z platformy Azure RTO NetX Duo AutoIP
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-autoip"></a>Rozdział 2 . Instalowanie i używanie aplikacji Azure RTOS NetX Duo AutoIP
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika Azure RTO NetX Duo AutoIP.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika Azure RTOS NetX Duo AutoIP.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Usługę Azure RTO NetX AutoIP można uzyskać z naszego publicznego repozytorium kodu źródłowego w lokalizacji [https://github.com/azure-rtos/netx/](https://github.com/azure-rtos/netx/) . Pakiet zawiera trzy pliki źródłowe, jedno dołączane pliki i plik PDF, który zawiera ten dokument, w następujący sposób:
+Azure RTOS NetX AutoIP można uzyskać z naszego publicznego repozytorium kodu źródłowego na stronie [https://github.com/azure-rtos/netx/](https://github.com/azure-rtos/netx/) . Pakiet zawiera trzy pliki źródłowe, jeden plik dołączany i plik PDF zawierający ten dokument w następujący sposób:
 
-- **nx_auto_ip. h**: plik nagłówkowy dla NetX AutoIP
-- plik źródłowy **nx_auto_ip. c**: c dla NetX AutoIP
-- plik źródłowy **demo_netx_auto_ip. c**: c dla demonstracji NetX AutoIP
-- **nx_auto_ip.pdf**: Opis pliku PDF NetX AutoIP
+- **nx_auto_ip.h:** Plik nagłówka dla funkcji NetX AutoIP
+- **nx_auto_ip.c:** plik źródłowy C dla funkcji NetX AutoIP
+- **demo_netx_auto_ip.c:** Plik źródłowy języka C dla pokazu funkcji AutoIP netX
+- **nx_auto_ip.pdf:** opis PDF funkcji NetX AutoIP
 
-## <a name="autoip-installation"></a>Instalacja AutoIP
+## <a name="autoip-installation"></a>Instalacja funkcji AutoIP
 
-Aby można było korzystać z programu NetX AutoIP, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX. Na przykład jeśli NetX jest zainstalowana w katalogu "*\threadx\arm7\green*", wówczas pliki *nx_auto_ip. h*, *nx_auto_ip. c* i *demo_netx_auto_ip. c* powinny zostać skopiowane do tego katalogu.
+Aby można było korzystać z funkcji NetX AutoIP, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX. Jeśli na przykład netx jest zainstalowany w katalogu *"\threadx\arm7\green",* do tego katalogu powinny zostać skopiowane pliki *nx_auto_ip.h*, *nx_auto_ip.c* i *demo_netx_auto_ip.c.*
 
-## <a name="using-autoip"></a>Korzystanie z AutoIP
+## <a name="using-autoip"></a>Korzystanie z funkcji AutoIP
 
-Korzystanie z programu NetX AutoIP jest proste. W zasadzie kod aplikacji musi zawierać *nx_auto_ip. h* po zawiera *tx_api. h* i *nx_api. h*, aby można było użyć ThreadX i NetX. Po dołączeniu *nx_auto_ip. h* kod aplikacji jest następnie w stanie umożliwić wywoływanie funkcji AutoIP w dalszej części tego przewodnika. Aplikacja musi również zawierać *nx_auto_ip. c* w procesie kompilacji. Te pliki muszą być kompilowane w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do korzystania z NetX AutoIP.
+Korzystanie z funkcji NetX AutoIP jest łatwe. Zasadniczo kod aplikacji musi zawierać kod *nx_auto_ip.h* po dołączyć *tx_api.h* i *nx_api.h,* aby można było używać threadX i NetX. Po *nx_auto_ip.h* kod aplikacji może następnie wykonać wywołania funkcji AutoIP określone w dalszej części tego przewodnika. Aplikacja musi również *uwzględniać nx_auto_ip.c* w procesie kompilacji. Te pliki muszą zostać skompilowane w taki sam sposób, jak inne pliki aplikacji, a ich formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z funkcji NetX AutoIP.
 
 > [!NOTE]
-> Ponieważ AutoIP korzysta z usług NetX ARP, należy włączyć protokół ARP z wywołaniem *nx_arp_enable* przed użyciem AutoIP.
+> Ze względu na to, że funkcja AutoIP korzysta  z usług ARP NetX, należy włączyć obsługę nx_arp_enable przed użyciem funkcji AutoIP.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykład, jak łatwo jest używać NetX AutoIP jest opisany na rysunku 1,1, który jest widoczny poniżej. W tym przykładzie AutoIP dołączenia pliku *nx_auto_ip. h* jest w wierszu 002. Następnie wystąpienie NetX AutoIP jest tworzone w lokalizacji "*tx_application_define*" w wierszu 090. Należy zauważyć, że blok sterujący NetX AutoIP "auto_ip_0" został wcześniej zdefiniowany jako zmienna globalna w wierszu 015. Po pomyślnym utworzeniu NetX AutoIP jest uruchamiany w wierszu 098. Przetwarzanie funkcji wywołania zwrotnego zmiany adresu IP zaczyna się w wierszu 105, który jest używany do obsługi kolejnych konfliktów lub rozpoznawania adresów DHCP.
+Przykład łatwego korzystania z funkcji NetX AutoIP opisano na rysunku 1.1, który znajduje się poniżej. W tym przykładzie plik dołączania funkcji AutoIP *nx_auto_ip.h* jest przekierowyny w wierszu 002. Następnie wystąpienie netx autoIP jest tworzone w ciągu "*tx_application_define*" w wierszu 090. Zwróć uwagę, że blok sterowania NetX AutoIP "auto_ip_0" został wcześniej zdefiniowany jako zmienna globalna w wierszu 015. Po pomyślnym utworzeniu aplikacja NetX AutoIP jest uruchomiona w wierszu 098. Przetwarzanie funkcji wywołania zwrotnego zmiany adresu IP rozpoczyna się w wierszu 105, który jest używany do obsługi kolejnych konfliktów lub możliwego rozpoznawania adresów DHCP.
 
 > [!NOTE]
-> W poniższym przykładzie przyjęto założenie, że urządzenie hosta jest urządzeniem pojedynczym. W przypadku urządzenia wieloadresowego aplikacja hosta może korzystać z *nx_auto_ip_interface_* usługi NetX AutoIP, aby określić pomocniczy interfejs sieciowy do sondowania adresu IP. Więcej informacji na temat konfigurowania aplikacji wieloadresowych można znaleźć w [podręczniku użytkownika NetX](https://docs.microsoft.com/azure/rtos/netx/about-this-guide) . Zwróć uwagę na to, że aplikacja hosta powinna używać interfejsu API NetX *nx_status_ip_interface_check* , aby zweryfikować, że AutoIP uzyskała adres IP.
+> W poniższym przykładzie przyjęto założenie, że urządzenie hosta jest urządzeniem jednoademowym. W przypadku urządzenia wieloadresowego aplikacja hosta może używać zestawu nx_auto_ip_interface_ NetX AutoIP w celu określenia pomocniczego interfejsu sieciowego do sondowania adresu IP. Aby uzyskać więcej informacji na temat konfigurowania aplikacji wieloadresowych, zobacz NetX User Guide (Podręcznik użytkownika [netx).](https://docs.microsoft.com/azure/rtos/netx/about-this-guide) Ponadto aplikacja hosta powinna używać interfejsu *API* NetX nx_status_ip_interface_check, aby sprawdzić, czy usługa AutoIP uzyskała adres IP.
 
 ```c
 #include "tx_api.h"
@@ -219,20 +219,20 @@ NX_AUTO_IP    *auto_ip_ptr;
 }
 ```
 
-Rysunek 1,1 przykład użycia AutoIP z NetX
+Rysunek 1.1 Przykład użycia funkcji AutoIP z netX
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Istnieje kilka opcji konfiguracji do kompilowania NetX AutoIP. Poniżej znajduje się lista wszystkich opcji, w których szczegóły są szczegółowo opisane:
+Istnieje kilka opcji konfiguracji tworzenia funkcji NetX AutoIP. Poniżej znajduje się lista wszystkich opcji, gdzie każda z nich jest szczegółowo opisana:
 
-- **NX_DISABLE_ERROR_CHECKING**: zdefiniowane, ta opcja usuwa podstawowe sprawdzanie błędów AutoIP. Jest on zazwyczaj używany po debugowaniu aplikacji.
-- **NX_AUTO_IP_PROBE_WAIT**: liczba sekund oczekiwania przed wysłaniem pierwszej sondy. Domyślnie ta wartość jest definiowana jako 1.
-- **NX_AUTO_IP_PROBE_NUM**: liczba sond protokołu ARP do wysłania. Domyślnie ta wartość jest definiowana jako 3.
-- **NX_AUTO_IP_PROBE_MIN**: minimalna liczba sekund oczekiwania między wysłaniem sond. Domyślnie ta wartość jest definiowana jako 1.
-- **NX_AUTO_IP_PROBE_MAX**: Maksymalna liczba sekund oczekiwania między wysłaniem sond. Domyślnie ta wartość jest definiowana jako 2.
-- **NX_AUTO_IP_MAX_CONFLICTS**: liczba konfliktów AutoIP przed zwiększeniem opóźnień przetwarzania. Domyślnie ta wartość jest definiowana jako 10.
-- **NX_AUTO_IP_RATE_LIMIT_INTERVAL**: liczba sekund określająca czas oczekiwania w przypadku przekroczenia całkowitej liczby konfliktów. Domyślnie ta wartość jest definiowana jako 60.
-- **NX_AUTO_IP_ANNOUNCE_WAIT**: liczba sekund oczekiwania przed wysłaniem anonsu. Domyślnie ta wartość jest definiowana jako 2.
-- **NX_AUTO_IP_ANNOUNCE_NUM**: liczba ANONSÓW protokołu ARP do wysłania. Domyślnie ta wartość jest definiowana jako 2.
-- **NX_AUTO_IP_ANNOUNCE_INTERVAL**: liczba sekund oczekiwania między wysłaniem ogłaszania. Domyślnie ta wartość jest definiowana jako 2.
-- **NX_AUTO_IP_DEFEND_INTERVAL**: liczba sekund oczekiwania między podwyższeniem poziomu zabezpieczeń. Domyślnie ta wartość jest definiowana jako 10.
+- **NX_DISABLE_ERROR_CHECKING:** zdefiniowana, ta opcja usuwa podstawowe sprawdzanie błędów funkcji AutoIP. Jest on zwykle używany po debugowaniu aplikacji.
+- **NX_AUTO_IP_PROBE_WAIT:** liczba sekund oczekiwania przed wysłaniem pierwszej sondy. Domyślnie ta wartość jest zdefiniowana jako 1.
+- **NX_AUTO_IP_PROBE_NUM:** liczba sond ARP do wysłania. Domyślnie ta wartość jest zdefiniowana jako 3.
+- **NX_AUTO_IP_PROBE_MIN:** minimalna liczba sekund oczekiwania między wysyłaniem sond. Domyślnie ta wartość jest zdefiniowana jako 1.
+- **NX_AUTO_IP_PROBE_MAX:** maksymalna liczba sekund oczekiwania między wysyłaniem sond. Domyślnie ta wartość jest zdefiniowana jako 2.
+- **NX_AUTO_IP_MAX_CONFLICTS:** Liczba konfliktów funkcji AutoIP przed zwiększeniem opóźnień przetwarzania. Domyślnie ta wartość jest zdefiniowana jako 10.
+- **NX_AUTO_IP_RATE_LIMIT_INTERVAL:** liczba sekund, o które ma być wydłużony okres oczekiwania po przekroczeniu całkowitej liczby konfliktów. Domyślnie ta wartość jest zdefiniowana jako 60.
+- **NX_AUTO_IP_ANNOUNCE_WAIT:** liczba sekund oczekiwania przed wysłaniem powiadomienia. Domyślnie ta wartość jest zdefiniowana jako 2.
+- **NX_AUTO_IP_ANNOUNCE_NUM:** liczba ogłaszanych wiadomości ARP. Domyślnie ta wartość jest zdefiniowana jako 2.
+- **NX_AUTO_IP_ANNOUNCE_INTERVAL:** liczba sekund oczekiwania między wysłaniem na głos. Domyślnie ta wartość jest zdefiniowana jako 2.
+- **NX_AUTO_IP_DEFEND_INTERVAL:** liczba sekund oczekiwania między głosami obrony. Domyślnie ta wartość jest zdefiniowana jako 10.

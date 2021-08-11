@@ -1,98 +1,98 @@
 ---
-title: Rozdział 1 — wprowadzenie do klienta DHCP usługi Azure RTO NetX
-description: W NetX adres IP aplikacji jest jednym z podanych parametrów wywołania usługi nx_ip_create.
+title: Rozdział 1 — Wprowadzenie do klienta DHCP Azure RTOS NetX
+description: W programie NetX adres IP aplikacji jest jednym z parametrów dostarczonych do wywołania nx_ip_create usługi.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 44eb764c84a15a1bc96cf94bcbc8f81be7b41eef
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 54853fd3677b8d60b7fbe1445ca67c7e7a4a6e832683f65cbfca86158cb7fbd3
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822710"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116788816"
 ---
-# <a name="chapter-1---introduction-to-azure-rtos-netx-dhcp-client"></a>Rozdział 1 — wprowadzenie do klienta DHCP usługi Azure RTO NetX
+# <a name="chapter-1---introduction-to-azure-rtos-netx-dhcp-client"></a>Rozdział 1 — Wprowadzenie do klienta DHCP Azure RTOS NetX
 
-W NetX adres IP aplikacji jest jednym z podanych parametrów wywołania usługi *nx_ip_create* . Dostarczenie adresu IP nie powoduje żadnych problemów, jeśli adres IP jest znany aplikacji, statycznie lub przez konfigurację użytkownika. Istnieją jednak pewne wystąpienia, w których aplikacja nie wie ani nie ponosi jego adresu IP. W takich sytuacjach do funkcji *nx_ip_create* należy dostarczyć zerowy adres IP, a protokół klienta DHCP usługi Azure RTO powinien być używany do dynamicznego uzyskiwania adresu IP.
+W programie NetX adres IP aplikacji jest jednym z parametrów dostarczonych do wywołania *nx_ip_create* usługi. Podanie adresu IP nie stanowi problemu, jeśli adres IP jest znany aplikacji statycznie lub za pośrednictwem konfiguracji użytkownika. Istnieją jednak wystąpienia, w których aplikacja nie wie lub nie wie, jaki jest jej adres IP. W takich sytuacjach do funkcji nx_ip_create powinien być dostarczany zerowy adres *IP,* a do dynamicznego uzyskiwania adresu IP należy użyć protokołu Azure RTOS KLIENTA DHCP.
 
 ## <a name="dynamic-ip-address-assignment"></a>Dynamiczne przypisywanie adresów IP
 
-Podstawowa usługa używana do uzyskiwania dynamicznego adresu IP z sieci to protokół odwrotnego rozpoznawania adresów (RARP). Ten protokół jest podobny do protokołu ARP, z tą różnicą, że został zaprojektowany w celu uzyskania adresu IP dla samego siebie zamiast wyszukiwania adresu MAC dla innego węzła sieci. Komunikat RARP niskiego poziomu jest emitowany w sieci lokalnej i jest odpowiedzialny za serwer w sieci, aby odpowiedzieć na odpowiedź z RARP, która zawiera dynamicznie przydzieloną adres IP.
+Podstawową usługą używaną do uzyskiwania dynamicznego adresu IP z sieci jest protokół rarp (Reverse Address Resolution Protocol). Ten protokół jest podobny do protokołu ARP, z tą różnicą, że jest przeznaczony do uzyskiwania adresu IP zamiast znajdowania adresu MAC dla innego węzła sieciowego. Komunikat RARP niskiego poziomu jest emitowany w sieci lokalnej i odpowiada serwer w sieci za odpowiadanie za pomocą odpowiedzi RARP, która zawiera dynamicznie przydzielany adres IP.
 
-Mimo że usługa RARP udostępnia usługę dynamicznego przydzielania adresów IP, ma kilka wad. Większość niedoborów odblasku polega na tym, że RARP zapewnia tylko dynamiczną alokację adresu IP. W większości sytuacji więcej informacji jest konieczna, aby urządzenie mogło prawidłowo uczestniczyć w sieci. Oprócz adresu IP większość urządzeń wymaga maski sieci i adresu IP bramy. Może być również wymagany adres IP serwera DNS i inne informacje o sieci. RARP nie ma możliwości podania tych informacji.
+Mimo że protokół RARP zapewnia usługę dynamicznego przydzielania adresów IP, ma kilka wad. Najbardziej niedobór jest taki, że protokół RARP zapewnia tylko dynamiczną alokację adresu IP. W większości sytuacji, aby urządzenie prawidłowo uczestniczyło w sieci, konieczne jest więcej informacji. Oprócz adresu IP większość urządzeń potrzebuje maski sieci i adresu IP bramy. Może być również potrzebny adres IP serwera DNS i inne informacje o sieci. RaRP nie ma możliwości podania tych informacji.
 
-## <a name="rarp-alternatives"></a>RARP alternatywy
+## <a name="rarp-alternatives"></a>Alternatywy RARP
 
-W celu pokonania wad RARP pracownicy opracowanli bardziej kompleksowy mechanizm alokacji adresów IP o nazwie protokół Bootstrap (BOOTP). Ten protokół ma możliwość dynamicznego przydzielenia adresu IP, a także zapewnienia dodatkowych ważnych informacji o sieci. Jednak protokół BOOTP ma wady, które są przeznaczone do konfiguracji sieci statycznych. Nie zezwala na szybkie lub automatyczne przypisywanie adresów.
+Aby wyeliminować braki rarp, badacze opracowali bardziej kompleksowy mechanizm przydzielania adresów IP o nazwie Bootstrap Protocol (BOOTP). Ten protokół ma możliwość dynamicznego przydzielania adresu IP oraz podania dodatkowych ważnych informacji o sieci. Jednak bootp ma wadę jest zaprojektowane dla konfiguracji sieci statycznej. Nie zezwala na szybkie ani automatyczne przypisywanie adresów.
 
-Jest to miejsce, w którym Dynamic Host Configuration Protocol (DHCP) jest niezwykle przydatna. Usługa DHCP została zaprojektowana w celu rozbudowania podstawowych funkcji protokołu BOOTP w taki sposób, aby obejmowały całkowicie zautomatyzowaną alokację serwera IP i całkowicie dynamiczną alokację adresów IP za pomocą "dzierżawy" adresu IP do klienta przez określony czas. Protokół DHCP można również skonfigurować tak, aby przydzielał adresy IP w sposób statyczny, jak w przypadku protokołu BOOTP.
+Jest to miejsce, w Dynamic Host Configuration Protocol (DHCP) jest bardzo przydatne. Protokół DHCP został zaprojektowany tak, aby rozszerzyć podstawową funkcjonalność bootp o całkowicie zautomatyzowaną alokację serwera IP i całkowicie dynamiczną alokację adresów IP przez "dzierżawienie" adresu IP klientowi na określony czas. Protokół DHCP można również skonfigurować do przydzielania adresów IP w sposób statyczny, taki jak BOOTP.
 
 ## <a name="dhcp-messages"></a>Komunikaty DHCP
 
-Mimo że usługa DHCP znacznie rozszerza funkcjonalność protokołu BOOTP, protokół DHCP używa tego samego formatu komunikatów co BOOTP i obsługuje te same opcje dostawcy co protokół BOOTP. Aby można było wykonać swoją funkcję, usługa DHCP wprowadza siedem nowych opcji specyficznych dla protokołu DHCP w następujący sposób:
+Mimo że protokół DHCP znacznie zwiększa funkcjonalność bootp, DHCP używa tego samego formatu komunikatów jako BOOTP i obsługuje te same opcje dostawcy jako BOOTP. W celu wykonania tej funkcji protokół DHCP wprowadza siedem nowych opcji specyficznych dla protokołu DHCP w następujący sposób:
 
-- ODNAJDYWAnie (1) (wysyłane przez klienta DHCP)
+- ODNAJDYWANIE (1) (wysyłane przez klienta DHCP)
 
-- Oferta (2) (wysłana przez serwer DHCP)
+- OFFER (2) (wysyłane przez serwer DHCP)
 
-- ŻĄDANIE (3) (wysyłane przez klienta DHCP)
+- REQUEST (3) (wysyłane przez klienta DHCP)
 
-- Odrzuć (4) (Wysłany przez klienta DHCP)
+- ODRZUĆ (4) (wysyłane przez klienta DHCP)
 
-- ACK (5) (wysyłany przez serwer DHCP)
+- ACK (5) (wysyłane przez serwer DHCP)
 
-- NACK (6) (wysyłanych przez serwer DHCP)
+- NACK (6) (wysyłane przez serwer DHCP)
 
-- WYDANIE (7) (wysyłane przez klienta DHCP)
+- RELEASE (7) (wysyłane przez klienta DHCP)
 
-- Informowanie (8) (wysyłane przez klienta DHCP)
+- INFORM (8) (wysyłane przez klienta DHCP)
 
 - FORCERENEW (9) (wysyłane przez klienta DHCP)
 
 ## <a name="dhcp-communication"></a>Komunikacja DHCP
 
-Protokół DHCP korzysta z protokołu UDP do wysyłania żądań i odpowiedzi pól. Przed przystąpieniem do adresu IP komunikaty UDP przenoszące informacje DHCP są wysyłane i odbierane przy użyciu adresu IP o wartości 255.255.255.255.
+Protokół DHCP używa protokołu UDP do wysyłania żądań i odpowiedzi pól. Przed posiadaniem adresu IP komunikaty UDP z informacjami DHCP są wysyłane i odbierane przy użyciu adresu emisji IP 255.255.255.255.
 
 ## <a name="dhcp-client-state-machine"></a>Komputer stanu klienta DHCP
 
-Klient DHCP jest zaimplementowany jako komputer stanu. Komputer stanu jest przetwarzany przez wewnętrzny wątek DHCP, który jest tworzony podczas przetwarzania *nx_dhcp_create* . Główne Stany klienta DHCP są następujące:
+Klient DHCP jest implementowane jako maszyna stanu. Maszyna stanu jest przetwarzana przez wewnętrzny wątek DHCP, który jest tworzony *nx_dhcp_create* przetwarzania. Główne stany klienta DHCP są następujące:
 
 
-- **NX_DHCP_STATE_BOOT** Począwszy od poprzedniego adresu IP
+- **NX_DHCP_STATE_BOOT** Zaczynając od poprzedniego adresu IP
 
-- **NX_DHCP_STATE_INIT** Rozpoczynając od braku poprzedniej wartości adresu IP
+- **NX_DHCP_STATE_INIT** Począwszy od żadnej poprzedniej wartości adresu IP
 
 - **NX_DHCP_STATE_SELECTING** Oczekiwanie na odpowiedź z dowolnego serwera DHCP
 
-- **NX_DHCP_STATE_REQUESTING** Zidentyfikowano serwer DHCP, wysłane żądanie adresu IP
+- **NX_DHCP_STATE_REQUESTING** Zidentyfikowany serwer DHCP, wysłane żądanie adresu IP
 
-- **NX_DHCP_STATE_BOUND** Ustanowiono dzierżawę adresu IP DHCP
+- **NX_DHCP_STATE_BOUND** Ustanowiono dzierżawę adresu IP PROTOKOŁU DHCP
 
-- **NX_DHCP_STATE_RENEWING** Upłynął czas odnawiania dzierżawy adresu IP DHCP, żądanie odnowienia
+- **NX_DHCP_STATE_RENEWING** Upłynął czas odnowienia dzierżawy adresu IP PROTOKOŁU DHCP, zażądano odnowienia
 
-- **NX_DHCP_STATE_REBINDING** Upłynął czas ponownego wiązania dzierżawy adresu IP DHCP, żądanie odnowienia
+- **NX_DHCP_STATE_REBINDING** Upłynął czas ponownego wiązania dzierżawy adresu IP PROTOKOŁU DHCP, żądanie odnowienia
 
-- **NX_DHCP_STATE_FORCERENEW** Ustanowiono dzierżawę adresu IP DHCP, Wymuś odnowienie przez serwer (obecnie nie jest to obsługiwane) lub przez aplikację wywołującą nx_dhcp_force_renew
+- **NX_DHCP_STATE_FORCERENEW** Ustanowiona dzierżawa adresu IP PROTOKOŁU DHCP, wymuszanie odnawiania przez serwer (obecnie nie jest obsługiwane) lub przez aplikację wywołującą nx_dhcp_force_renew
 
-- **NX_DHCP_STATE_ADDRESS_PROBING** Badanie adresu IP DHCP, Wyślij sondę ARP w celu wykrycia konfliktu adresów IP.
+- **NX_DHCP_STATE_ADDRESS_PROBING** Sondowanie adresu IP PROTOKOŁU DHCP, wysyłanie sondy ARP w celu wykrycia konfliktu adresów IP.
 
 ## <a name="dhcp-client-multiple-interface-support"></a>Obsługa wielu interfejsów klienta DHCP
 
-Klient DHCP został wcześniej zaimplementowany do uruchomienia tylko na jednym interfejsie sieciowym. Zachowanie domyślne to (i nadal), aby klient DHCP był uruchamiany w interfejsie podstawowym. Wywołując *nx_dhcp_set_interface_index*, aplikacja może (i nadal może) uruchomić usługę DHCP na pomocniczym interfejsie sieciowym, a nie w interfejsie podstawowym.
+Klient DHCP został wcześniej zaimplementowany do uruchamiania tylko na jednym interfejsie sieciowym. Domyślnym zachowaniem było (i nadal jest) uruchamianie klienta DHCP w interfejsie podstawowym. Wywołując *nx_dhcp_set_interface_index*, aplikacja może (i nadal może) uruchamiać protokół DHCP na pomocniczym interfejsie sieciowym zamiast w interfejsie podstawowym.
 
-Teraz obsługuje protokół DHCP działający w wielu interfejsach równolegle. Zobacz **klienta DHCP na wielu interfejsach jednocześnie** w rozdziale dwa, aby uzyskać szczegółowe informacje dotyczące sposobu uruchamiania klienta DHCP w więcej niż jednym interfejsie fizycznym.
+Teraz obsługuje ona protokół DHCP uruchomiony równolegle na wielu interfejsach. Aby **uzyskać szczegółowe informacje na** temat jednoczesnego uruchamiania klienta DHCP na więcej niż jednym interfejsie fizycznym, zobacz Klient DHCP na wielu interfejsach jednocześnie w rozdziale 2.
 
 ## <a name="dhcp-user-request"></a>Żądanie użytkownika DHCP
 
-Gdy serwer DHCP przydzieli adres IP, przetwarzanie klienta DHCP może żądać dodatkowych parametrów — pojedynczo — przy użyciu usługi *nx_dhcp_user_option_request* .
+Gdy serwer DHCP udziela adresu IP, przetwarzanie klienta DHCP może żądać dodatkowych parametrów — po jednym naraz — przy użyciu *nx_dhcp_user_option_request* usługi.
 
-## <a name="dhcp-client-socket-queue"></a>Kolejka gniazda klienta DHCP 
+## <a name="dhcp-client-socket-queue"></a>Kolejka gniazd klienta DHCP 
 
-Klient DHCP automatycznie czyści pakiety emisji z serwerów DHCP przeznaczonych dla innych klientów DHCP z kolejki odbierania gniazda podczas oczekiwania na odpowiedź serwera na siebie. W przypadku zajętej sieci nie może to spowodować porzucenia pakietów przeznaczonych dla klienta.
+Klient DHCP automatycznie usuwa pakiety emisji z serwerów DHCP przeznaczonych dla innych klientów DHCP z kolejki odbierania gniazda podczas oczekiwania na odpowiedź serwera. W sieci zajętej nie można tego zrobić, co może spowodować porzucanie pakietów przeznaczonych dla klienta.
 
-## <a name="dhcp-rfcs"></a>Specyfikacje RFC protokołu DHCP
+## <a name="dhcp-rfcs"></a>Dhcp RFC
 
-NetX DHCP jest zgodny z RFC2132, RFC2131 i powiązanymi specyfikacjami RFC.
+Protokół DHCP NetX jest zgodny ze specyfikacjami RFC2132, RFC2131 i powiązanymi RFC.
 

@@ -1,55 +1,55 @@
 ---
-title: Rozdział 1 — wprowadzenie do usługi Azure RTO NetX POP3
-description: Interfejs API klienta POP3 NetX Duo został zaprojektowany w celu zapewnienia systemowi transportu poczty dla małych stacji roboczych, aby uzyskać dostęp do maildrops klienta na serwerach POP3 w celu pobrania poczty klienta.
+title: Rozdział 1 — Wprowadzenie do Azure RTOS NetX POP3
+description: Interfejs API klienta NETX Duo POP3 zaprojektowano w celu zapewnienia systemu transportu poczty dla małych stacji roboczych w celu uzyskiwania dostępu do poczty klienta na serwerach POP3 w celu pobierania poczty klienta.
 author: philmea
 ms.author: philmea
 ms.date: 07/09/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 4d41da1e1e87e59c5c40674a58b288ac62ec8c78
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 0143b142a39bbda28ae20d41adf08119b8b2f8f99d510a456743b4f447802833
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821751"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116797232"
 ---
-# <a name="chapter-1---introduction-to-azure-rtos-netx-pop3"></a>Rozdział 1 — wprowadzenie do usługi Azure RTO NetX POP3
+# <a name="chapter-1---introduction-to-azure-rtos-netx-pop3"></a>Rozdział 1 — Wprowadzenie do Azure RTOS NetX POP3
 
-Protokół Post Office w wersji 3 (POP3) to protokół zaprojektowany w celu zapewnienia systemu transportu poczty dla małych stacji roboczych, aby uzyskać dostęp do maildrops klienta na serwerach POP3 na potrzeby pobierania poczty klienta. POP3 wykorzystuje usługi Transmission Control Protocol (TCP) do przeprowadzenia transferu poczty. W związku z tym usługa POP3 jest wysoce niezawodnym protokołem transferu zawartości.
+Post Office Protocol w wersji 3 (POP3) to protokół zaprojektowany w celu zapewnienia systemu transportu poczty dla małych stacji roboczych do uzyskiwania dostępu do poczty klienta na serwerach POP3 do pobierania poczty klienta. Pop3 wykorzystuje usługi Transmission Control Protocol (TCP) do wykonywania transferu poczty e-mail. W związku z tym POP3 to wysoce niezawodny protokół transferu zawartości.
 
-Jednak usługa POP3 nie zapewnia obszernych operacji na obsłudze poczty. Zwykle poczta jest pobierana przez klienta, a następnie usuwana z maildrop serwera.
+Jednak pop3 nie zapewnia rozbudowanych operacji obsługi poczty e-mail. Zazwyczaj poczta jest pobierana przez klienta, a następnie usuwana z usługi maildrop serwera.
 
-## <a name="netx-duo-pop3-client-requirements"></a>Wymagania dotyczące klienta POP3 NetX Duo
+## <a name="netx-duo-pop3-client-requirements"></a>Wymagania dotyczące klienta NETX Duo POP3
 
 ### <a name="client-requirements"></a>Wymagania dotyczące klienta
 
-Interfejs API klienta usługi NetX POP3 wymaga utworzonego wcześniej wystąpienia protokołu IP NetX Duo przy użyciu *nx_ip_create* i utworzonego wcześniej puli pakietów NetX przy użyciu *nx_packet_pool_create*. Ponieważ klient POP3 NetX Duo korzysta z usług TCP, należy włączyć protokół TCP z wywołaniem *nx_tcp_enable* przed użyciem interfejsu API klienta usługi POP3 NetX Duo dla tego samego wystąpienia IP. Klient POP3 używa gniazda TCP, aby nawiązać połączenie z serwerem POP3 na porcie POP3 serwera. Jest to zwykle ustawiane na *dobrze znanym porcie 110, chociaż nie jest wymagane użycie tego portu przez klienta POP3 ani serwer.*
+Interfejs API klienta NetX POP3 wymaga utworzonego wcześniej wystąpienia adresu IP NetX Duo przy użyciu nx_ip_create *i* wcześniej utworzonej puli pakietów NetX przy użyciu nx_packet_pool_create *.* Ponieważ klient NetX Duo POP3 korzysta z usług TCP, protokół TCP musi być włączony za pomocą wywołania *nx_tcp_enable* przed użyciem interfejsu API klienta NETX Duo POP3 w tym samym wystąpieniu adresu IP. Klient POP3 używa gniazda TCP do nawiązywania połączenia z serwerem POP3 na porcie POP3 serwera. Zwykle jest on ustawiany na dobrze znanym *porcie 110,* chociaż do korzystania z tego portu nie jest wymagany ani klient POP3, ani serwer.
 
-Rozmiar puli pakietów użyty podczas tworzenia klienta POP3 jest konfigurowany przez użytkownika w postaci ładunku pakietów i liczby dostępnych pakietów. Jeśli pakiet jest używany tylko w usłudze Klient POP3, ładunek pakietu nie może mieć więcej niż 100-120 bajtów w zależności od długości nazwy użytkownika i hasła lub APOP Digest. Polecenie użytkownika z nazwą użytkownika hosta lokalnego jest prawdopodobnie największym komunikatem wysłanym przez klienta POP3. Istnieje możliwość udostępnienia tej samej puli pakietów w nx_ip_create (domyślna pula pakietów IP), ponieważ wewnętrzny operatiosn IP nie wymaga bardzo dużego ładunku pakietu do wysyłania i otrzymywania danych kontroli TCP.
+Rozmiar puli pakietów używanej podczas tworzenia klienta POP3 jest konfigurowalny przez użytkownika pod względem ładunku pakietów i liczby dostępnych pakietów. Jeśli pakiet jest używany tylko w usłudze tworzenia klienta POP3, ładunek pakietu nie musi być większy niż 100–120 bajtów w zależności od długości nazwy użytkownika i hasła lub skrótu APOP. Polecenie USER z nazwą użytkownika hosta lokalnego jest prawdopodobnie największym komunikatem wysyłanym przez klienta POP3. Istnieje możliwość współużytkowania tej samej puli pakietów w programie nx_ip_create (domyślna pula pakietów IP), ponieważ wewnętrzny operatiosn ip nie wymaga bardzo dużego ładunku pakietu do wysyłania i odbierania danych sterujących TCP.
 
-Nie jest to jednak ogólnie korzystne dla sterownika Ethernet do używania tej samej puli pakietów jako puli pakietów klienta POP3. Ogólnie rzecz biorąc, ładunek ładunku puli pakietów odbioru jest ustawiony na wartość jednostki MTU wystąpienia IP (zwykle 1500 bajtów) interfejsu sieciowego, który jest znacznie większy niż komunikaty klienta POP3. Przychodzące komunikaty POP3 zwykle mają znacznie większy rozmiar danych, a następnie wychodzące komunikaty klienta POP3
+Jednak użycie tej samej puli pakietów co pula pakietów klienta POP3 nie jest zazwyczaj korzystne dla sterownika Ethernet. Ogólnie rzecz biorąc, ładunek puli pakietów odbioru jest ustawiany na jednostkę MTU wystąpienia adresu IP (zwykle 1500 bajtów) interfejsu sieciowego, który jest znacznie większy niż komunikaty klienta POP3. Przychodzące komunikaty POP3 zazwyczaj miałyby znacznie większy rozmiar danych niż wychodzące komunikaty klienta POP3
 
-## <a name="netx-duo-pop3-client-creation"></a>Tworzenie klienta POP3 NetX Duo
+## <a name="netx-duo-pop3-client-creation"></a>Tworzenie klienta POP3 aplikacji NetX Duo
 
-Istnieją dwie usługi do tworzenia klienta POP3. Zalecana usługa to *nxd_pop3_client_create* , która przyjmuje typ danych adresu NXD_ADDRESS, który akceptuje adresy IPv4 lub IPv6 dla serwera POP3. Inna usługa klienta POP3, *nx_pop3_client_create* akceptuje tylko adresy IPv4 dla serwera POP3. Obie usługi powiążą port gniazda TCP i nawiązują połączenie z serwerem POP3.
+Istnieją dwie usługi do tworzenia klienta POP3. Zalecana usługa jest *nxd_pop3_client_create,* która przyjmuje typ danych adresu NXD_ADDRESS, który akceptuje adresy IPv4 lub IPv6 dla serwera POP3. Inna usługa tworzenia klienta POP3, *nx_pop3_client_create*, akceptuje tylko adresy IPv4 dla serwera POP3. Obie usługi łączą port gniazda TCP i łączą się z serwerem POP3.
 
-Po nawiązaniu połączenia z serwerem POP3 aplikacja kliencka POP3 może wywoływać *nx_pop3_client _mail_items_get* , aby uzyskać liczbę elementów poczty znajdujących się w jego maildrop Box:
+Po nałączeniu się z serwerem POP3 aplikacja  klienta POP3 może wywołać nx_pop3_client _mail_items_get, aby uzyskać liczbę elementów poczty e-mail, które są w jego polu poczty:
 
 ```C
 UINT nx_pop3_client_mail_items_get(NX_POP3_CLIENT *client_ptr,
     UINT *number_mail_items, ULONG *maildrop_total_size);
 ```
 
-Jeśli co najmniej jeden element znajduje się w maildrop klienta, aplikacja może uzyskać rozmiar określonego elementu poczty przy użyciu usługi *nx_pop3_client_get_mail_item* :
+Jeśli co najmniej jeden element jest w maildrop klienta, aplikacja może uzyskać rozmiar określonego elementu poczty przy użyciu *nx_pop3_client_get_mail_item* mail:
 
 ```C
 UINT nx_pop3_client_mail_item_get(NX_POP3_CLIENT *client_ptr,
     UINT mail_item, ULONG *item_size);
 ```
 
-Pierwszy element poczty w maildrop ma indeks 1.
+Pierwszy element poczty w maildrop znajduje się w indeksie 1.
 
-Aby uzyskać rzeczywistą wiadomość e-mail, aplikacja może wywołać usługę *nx_pop3_client_mail_item_get_message_data* w celu pobrania pakietów wiadomości e-mail do momentu, gdy usługa wskaże ostatni pakiet odebrany przez argument wejściowy final_packet:
+Aby uzyskać rzeczywistą wiadomość e-mail, aplikacja może wywołać usługę *nx_pop3_client_mail_item_get_message_data* w celu pobrania pakietów wiadomości e-mail, dopóki usługa nie wskaże, że ostatni pakiet został odebrany przez final_packet wejściowy:
 
 ```C
 UINT nx_pop3_client_mail_item_message_get(
@@ -59,26 +59,26 @@ UINT nx_pop3_client_mail_item_message_get(
     UINT *final_packet);
 ```
 
-Aby usunąć określony element poczty, aplikacja wywołuje *nx_pop3_client_mail_item_delete* z tym samym indeksem, które są używane w poprzednim wywołaniu *nx_pop3_client_get_mail_item* .
+Aby usunąć określony element poczty,  aplikacja wywołuje nx_pop3_client_mail_item_delete z takim samym indeksem, jak w poprzednim *wywołaniu nx_pop3_client_get_mail_item* mail.
 
-Klienta można usunąć za pomocą usługi *nx_pop3_client_delete* . Zwróć uwagę na to, że aplikacja może usunąć pulę pakietów klienta POP3 przy użyciu usługi *nx_packet_pool_delete* nie ma już do niej zastosowania.
+Klienta można usunąć za pomocą *usługi nx_pop3_client_delete* service. Należy pamiętać, że aplikacja musi usunąć pulę pakietów klienta POP3 przy użyciu usługi *nx_packet_pool_delete,* która nie jest już do jej używania.
 
-## <a name="netx-duo-pop3-client-constraints"></a>Ograniczenia klienta POP3 NetX Duo
+## <a name="netx-duo-pop3-client-constraints"></a>Ograniczenia klienta NETX Duo POP3
 
-Implementacja klienta POP3 NetX Duo zawiera pewne ograniczenia:
+Implementacja klienta NetX Duo POP3 ma pewne ograniczenia:
 
-1. Klient POP3 NetX Duo nie obsługuje polecenia AUTH, mimo że implementuje uwierzytelnianie APOP przy użyciu skrótu DIGEST-MD5 do wymiany uwierzytelniania serwera klienckiego.
-2. Klient POP3 NetX Duo nie implementuje wszystkich poleceń POP3 (np. poleceń TOP lub UIDL). Poniżej znajduje się lista poleceń, które obsługuje:
-   - AKTUALIZUJĄCY nie działa
-   - RSET
+1. Klient NETX Duo POP3 nie obsługuje polecenia AUTH, mimo że implementuje uwierzytelnianie APOP przy użyciu protokołu DIGEST-MD5 do wymiany uwierzytelniania serwera klienta.
+2. Klient NETX Duo POP3 nie implementuje wszystkich poleceń POP3 (np. poleceń TOP lub UIDL). Poniżej znajduje się lista poleceń, które obsługuje:
+   - Noop
+   - Zestaw RSET
 
-## <a name="netx-duo-pop3-client-login"></a>Logowanie klienta POP3 NetX Duo
+## <a name="netx-duo-pop3-client-login"></a>Logowanie klienta NETX Duo POP3
 
-Klient POP3 NetX Duo musi uwierzytelnić się na serwerze POP3, aby uzyskać dostęp do maildrop. Można to zrobić za pomocą poleceń USER/PASS i podając nazwę użytkownika i hasło znane serwerowi POP3 lub korzystając z polecenia APOP i skrótu MD5 opisanego poniżej.
+Klient NETX Duo POP3 musi się uwierzytelnić (zalogować) na serwerze POP3, aby uzyskać dostęp do usługi maildrop. Można to zrobić za pomocą poleceń USER/PASS oraz podać nazwę użytkownika i hasło znane serwerowi POP3 lub przy użyciu polecenia APOP i skrótu MD5 opisanego poniżej.
 
-Nazwa użytkownika jest zwykle w pełni kwalifikowaną nazwą domeny (zawiera lokalną część i nazwę domeny oddzieloną znakiem "@"). W przypadku korzystania z poleceń POP3 użytkownika i PASSu klient wysyła swoją nazwę użytkownika i hasło, które nie są szyfrowane przez Internet.
+Nazwa użytkownika jest zazwyczaj w pełni kwalifikowaną nazwą domeny (zawiera część lokalną i nazwę domeny oddzieloną znakiem "@"). W przypadku korzystania z poleceń POP3 USER i PASS klient wysyła swoją nazwę użytkownika i hasło niezaszyfrowane przez Internet.
 
-Aby uniknąć zagrożenia bezpieczeństwa dla nazwy użytkownika i hasła w postaci zwykłego tekstu, klient POP3 NetX Duo można skonfigurować tak, aby korzystał z uwierzytelniania APOP przez ustawienie parametru *APOP_authentication* w usłudze *nxd_pop3_client_create* :
+Aby uniknąć ryzyka związanego z bezpieczeństwem związanego z nazwą użytkownika i hasłem w wiadomościach SMS, można skonfigurować klienta NetX Duo POP3 do korzystania z uwierzytelniania APOP, ustawiając parametr *APOP_authentication* w *usłudze nxd_pop3_client_create* service:
 
 ```C
 UINT nxd_pop3_client_create(NX_POP3_CLIENT *client_ptr,
@@ -90,7 +90,7 @@ UINT nxd_pop3_client_create(NX_POP3_CLIENT *client_ptr,
     CHAR *client_password);
 ```
 
-Lub tylko dla aplikacji IPv4, usługa *nx_pop3_client_create* :
+Lub tylko dla aplikacji protokołu IPv4 usługa *nx_pop3_client_create* usługi:
 
 ```C
 UINT  nx_pop3_client_create(NX_POP3_CLIENT *client_ptr,
@@ -101,30 +101,30 @@ UINT  nx_pop3_client_create(NX_POP3_CLIENT *client_ptr,
     CHAR *client_password);
 ```
 
-Gdy klient wysyła polecenie APOP, przyjmuje jako jedyny argument skrót MD5 zawierający domenę serwera, czas lokalny i identyfikator procesu wyodrębnione z powitania serwera oraz hasło klienta. Serwer POP3 utworzy skrót MD5 zawierający te same informacje i jeśli jego skrót MD5 jest zgodny ze skrótem MD5 klienta, klient zostanie uwierzytelniony.
+Gdy klient wysyła polecenie APOP, przyjmuje jako jedyny argument skrót MD5 zawierający domenę serwera, identyfikator czasu lokalnego i procesu wyodrębniony z powitania serwera oraz hasło klienta. Serwer POP3 utworzy skrót MD5 zawierający te same informacje, a jeśli jego skrót MD5 jest taki sam jak skrót MD5 klienta, klient jest uwierzytelniany.
 
-Jeśli uwierzytelnianie APOP nie powiedzie się, klient POP3 NetX Duo podejmie próbę uwierzytelnienia użytkownika/przejścia.
+Jeśli uwierzytelnianie APOP nie powiedzie się, klient NETX Duo POP3 podejmie próbę uwierzytelnienia USER/PASS.
 
-## <a name="the-pop3-client-maildrop"></a>Klient POP3 maildrop
+## <a name="the-pop3-client-maildrop"></a>The POP3 Client Maildrop
 
-Poczta klienta jest przechowywana na serwerze POP3 w skrzynce pocztowej lub "maildrop". Klient maildrop na serwerze POP3 jest reprezentowany przez 1 listę elementów poczty. Oznacza to, że każda poczta jest określana przez swój indeks na liście maildrop przy użyciu pierwszego elementu poczty w indeksie 1 (nie zero). Polecenia POP3 odwołują się do określonych elementów poczty według ich indeksu na tej liście.
+Poczta klienta jest przechowywana na serwerze POP3 w skrzynce pocztowej lub "maildrop". Poczta klienta na serwerze POP3 jest reprezentowana jako lista elementów poczty oparta na 1. Oznacza to, że każda poczta jest określana przez jej indeks na liście maildrop z pierwszym elementem poczty o indeksie 1 (a nie zeru). Polecenia POP3 odwołują się do określonych elementów poczty według indeksu na tej liście.
 
 ## <a name="the-pop3-protocol-state-machine"></a>Komputer stanu protokołu POP3
 
-Protokół POP3 wymaga, aby zarówno klient, jak i serwer utrzymują stan sesji POP3. Po pierwsze klient próbuje nawiązać połączenie z serwerem POP3. Po pomyślnym przejściu do protokołu POP3, który ma trzy odrębne Stany zdefiniowane przez RFC 1939. Stan początkowy jest stanem autoryzacji, w którym musi identyfikować się na serwerze. W stanie autoryzacji klient POP3 może wystawiać tylko użytkownika i polecenia PASS, a w tej kolejności lub polecenie APOP.
+Protokół POP3 wymaga, aby klient i serwer zachowywały stan sesji POP3. Najpierw klient próbuje nawiązać połączenie z serwerem POP3. W przypadku powodzenia wprowadza on protokół POP3, który ma trzy odrębne stany zdefiniowane przez RFC 1939. Stan początkowy to stan autoryzacji, w którym musi się identyfikować z serwerem. W stanie autoryzacji klient POP3 może wystawiać tylko polecenia USER i PASS oraz w tej kolejności lub polecenie APOP.
 
-Po uwierzytelnieniu klienta POP3 sesja klienta przechodzi do stanu transakcji. W tym stanie klient może pobrać i zażądać usunięcia poczty. Polecenia dozwolone w stanie transakcji to LIST, STAT, RETR, &, RSET i QUIT. Zwykle klient POP3 wysyła polecenie STAT, a następnie szereg poleceń RETR (jeden dla każdego elementu poczty w jego maildrop).
+Po uwierzytelnieniu klienta POP3 sesja klienta przechodzi w stan Transakcja. W tym stanie klient może pobrać wiadomość e-mail i zażądać jej usunięcia. Polecenia dozwolone w stanie Transakcji to LIST, STAT, RETR, DELE, RSET i QUIT. Zazwyczaj klient POP3 wysyła polecenie STAT, po którym następuje szereg poleceń RETR (po jednym dla każdego elementu poczty w jego maildrop).
 
-Gdy klient wystawia polecenie QUIT, sesja POP3 przechodzi w stan aktualizacji, w którym inicjuje połączenie TCP z serwerem. Aby pobrać pocztę w innym momencie, aplikacja kliencka POP3 może wywoływać nx_pop3_client_mail_items_get, aby sprawdzić nową pocztę w maildrop.
+Gdy klient wydaje polecenie QUIT, sesja POP3 przechodzi w stan aktualizacji, w którym inicjuje rozłączenie TCP z serwerem. Aby pobrać wiadomość e-mail w innym czasie, aplikacja klienska POP3 może wywołać nx_pop3_client_mail_items_get, aby sprawdzić, czy w tej wiadomości nie ma nowej wiadomości e-mail.
 
 ### <a name="pop3-server-reply-codes"></a>Kody odpowiedzi serwera POP3
 
-- + OK serwer używa tej odpowiedzi, aby zaakceptować polecenie klienta. Serwer może zawierać dodatkowe informacje po "+ OK", ale nie może założyć, że klient będzie przetwarzać te informacje, chyba że w przypadku pobierania danych wiadomości e-mail lub poleceń LIST lub &. W tym drugim przypadku "argument" po poleceniu odwołuje się do indeksu elementu poczty w maildrop klienta.
-- -BŁĄD serwer używa tej odpowiedzi, aby odrzucić polecenie klienta. Serwer może wysłać dodatkowe informacje po "-ERR", ale nie może założyć, że klient będzie przetwarzać te informacje.
+- +OK Serwer używa tej odpowiedzi, aby zaakceptować klienta polecenia. Serwer może zawierać dodatkowe informacje po przycisku "+OK", ale nie może założyć, że klient będzie przetwarzał te informacje, z wyjątkiem pobierania danych wiadomości e-mail lub poleceń LIST lub DELE. W drugim przypadku "argument" po poleceniu odwołuje się do indeksu elementu poczty w ropie maildrop klienta.
+- -ERR Serwer używa tej odpowiedzi do odrzucania polecenia klienta. Serwer może wysłać dodatkowe informacje po błędzie "-ERR", ale nie może założyć, że klient będzie przetwarzał te informacje.
 
 ### <a name="sample-pop3-client---server-session"></a>Przykładowy klient POP3 — sesja serwera
 
-**Podstawowy przykład POP3 korzystający z użytkownika/PRZEBIEGu:**
+**Podstawowy przykład POP3 z użyciem funkcji USER/PASS:**
 
 ```
 S: <wait for connection on TCP port 110>
@@ -154,7 +154,7 @@ C: <close connection>
 S: <wait for next connection>
 ```
 
-**Podstawowy przykład POP3 przy użyciu APOP (i listy zamiast STAT):**
+**Podstawowy przykład POP3 korzystający z apop (i list zamiast STAT):**
 
 ```
 S: <wait for connection on TCP port 110>
@@ -185,6 +185,6 @@ C: <close connection>
 S: <wait for next connection>
 ```
 
-## <a name="rfcs-supported-by-netx-duo-pop3-client"></a>Specyfikacje RFC obsługiwane przez klienta POP3 NetX Duo
+## <a name="rfcs-supported-by-netx-duo-pop3-client"></a>RFC obsługiwane przez klienta POP3 NetX Duo
 
-Program NetX Duo Client POP3 jest zgodny ze standardem RFC 1939.
+NetX Duo Client POP3 jest zgodny ze standardem RFC 1939.

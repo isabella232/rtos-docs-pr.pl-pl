@@ -1,21 +1,21 @@
 ---
-title: Dodatek B — stałe platformy Azure RTO NetX Duo
-description: Poznaj stałe usługi Azure RTO NetX Duo.
+title: Dodatek B — Azure RTOS NetX Duo Constants
+description: Poznaj Azure RTOS NetX Duo.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 04207c5183d732ccb49200c117d7e85a4ff80e33
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: d9063de460a09977ed4ee7a0a02ca578bdd116e9935394e600af75a74e8f34e1
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822140"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116789820"
 ---
-# <a name="appendix-b---azure-rtos-netx-duo-constants"></a>Dodatek B — stałe platformy Azure RTO NetX Duo
+# <a name="appendix-b---azure-rtos-netx-duo-constants"></a>Dodatek B — Azure RTOS NetX Duo Constants
 
-## <a name="alphabetic-listing"></a>Alfabetyczna lista
+## <a name="alphabetic-listing"></a>Lista alfabetyczna
 
 <table>
 <thead>
@@ -224,11 +224,11 @@ ms.locfileid: "104822140"
 <td>0</td>
 </tr>
 <tr class="even">
-<td>NX_ICMP_PACKET (protokół IPv6 włączony</td>
+<td>NX_ICMP_PACKET (włączony protokół IPv6)</td>
 <td>56</td>
 </tr>
 <tr class="odd">
-<td>NX_ICMP_PACKET (protokół IPv6 jest wyłączony</td>
+<td>NX_ICMP_PACKET (protokół IPv6 jest wyłączony)</td>
 <td>36</td>
 </tr>
 <tr class="even">
@@ -780,11 +780,11 @@ ms.locfileid: "104822140"
 </td>
 </tr>
 <tr class="odd">
-<td>NX_IP_PACKET (protokół IPv6 włączony</td>
+<td>NX_IP_PACKET (włączony protokół IPv6)</td>
 <td>56</td>
 </tr>
 <tr class="even">
-<td>NX_IP_PACKET (protokół IPv6 jest wyłączony</td>
+<td>NX_IP_PACKET (protokół IPv6 jest wyłączony)</td>
 <td>36</td>
 </tr>
 <tr class="odd">
@@ -1285,7 +1285,7 @@ ms.locfileid: "104822140"
 </tr>
 <tr class="even">
 <td>NX_OPTION_ERROR</td>
-<td>0x0A</td>
+<td>0x0a</td>
 </tr>
 <tr class="odd">
 <td>NX_OVERFLOW</td>
@@ -1554,11 +1554,11 @@ ms.locfileid: "104822140"
 <td>0x01010100</td>
 </tr>
 <tr class="odd">
-<td>NX_TCP_PACKET (protokół IPv6 włączony)</td>
+<td>NX_TCP_PACKET (włączony protokół IPv6)</td>
 <td>76</td>
 </tr>
 <tr class="even">
-<td>NX_TCP_PACKET (protokół IPv6 jest wyłączony)</td>
+<td>NX_TCP_PACKET (wyłączony protokół IPv6)</td>
 <td>56</td>
 </tr>
 <tr class="odd">
@@ -1640,11 +1640,11 @@ ms.locfileid: "104822140"
 </td>
 </tr>
 <tr class="even">
-<td>NX_UDP_PACKET (protokół IPv6 włączony)</td>
+<td>NX_UDP_PACKET (włączony protokół IPv6)</td>
 <td>64</td>
 </tr>
 <tr class="odd">
-<td>NX_UDP_PACKET (protokół IPv6 jest wyłączony)</td>
+<td>NX_UDP_PACKET (wyłączony protokół IPv6)</td>
 <td>44</td>
 </tr>
 <tr class="even">
@@ -1682,7 +1682,7 @@ ms.locfileid: "104822140"
 </tbody>
 </table>
 
-## <a name="listings-by-value"></a>Aukcje według wartości  
+## <a name="listings-by-value"></a>Oferty według wartości  
 
 <table>
 <tr>

@@ -1,214 +1,214 @@
 ---
-title: Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Duo FTP
-description: Protokół transferu plików (FTP) to protokół przeznaczony do transferów plików.
+title: Rozdział 1 — Wprowadzenie do usługi Azure RTOS NetX Duo FTP
+description: Protokół protokół transferu plików (FTP) to protokół przeznaczony do transferów plików.
 author: philmea
 ms.author: philmea
 ms.date: 07/14/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 1d56b20b1c7d719d1b7d9c8c5b2fe234d5577da3
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: a36357ce486d5ba8a68b23c829de6c4b821dfb3cc62f47b0958ff32deaa2f7a7
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821889"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116791299"
 ---
-# <a name="chapter-1---introduction-to-azure-rtos-netx-duo-ftp"></a>Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Duo FTP
+# <a name="chapter-1---introduction-to-azure-rtos-netx-duo-ftp"></a>Rozdział 1 — Wprowadzenie do usługi Azure RTOS NetX Duo FTP
 
-Protokół transferu plików (FTP) to protokół przeznaczony do transferów plików. FTP wykorzystuje niezawodne usługi Transmission Control Protocol (TCP) do wykonywania funkcji transferu plików. Z tego powodu usługa FTP jest wysoce niezawodnym protokołem transferu plików. Serwer FTP jest również wysoce wydajny. Bieżący transfer plików FTP odbywa się na dedykowanym połączeniu FTP. Usługa FTP NetX Duo obsługuje zarówno sieci IPv4, jak i IPv6. Protokół IPv6 nie zmienia bezpośrednio protokołu FTP, mimo że niektóre zmiany w oryginalnym interfejsie API FTP NetX są niezbędne do uwzględnienia protokołu IPv6 i zostaną opisane w tym dokumencie.
+Protokół protokół transferu plików (FTP) to protokół przeznaczony do transferów plików. Protokół FTP korzysta z Transmission Control Protocol (TCP) do wykonywania funkcji transferu plików. W związku z tym FTP to wysoce niezawodny protokół transferu plików. Ftp jest również o wysokiej wydajności. Rzeczywisty transfer plików FTP jest wykonywany na dedykowanym połączeniu FTP. Protokół FTP NetX Duo jest przeznaczony zarówno dla sieci IPv4, jak i IPv6. Protokół IPv6 nie zmienia bezpośrednio protokołu FTP, chociaż niektóre zmiany w oryginalnym interfejsie API FTP NetX są niezbędne do dostosowania protokołu IPv6 i zostaną opisane w tym dokumencie.
 
-## <a name="ftp-requirements"></a>Wymagania dotyczące FTP
+## <a name="ftp-requirements"></a>Wymagania dotyczące protokołu FTP
 
-Aby zapewnić prawidłowe działanie, pakiet FTP NetX wymaga NetX Duo. Aplikacja hosta musi utworzyć wystąpienie IP dla uruchomionych usług NetX i zadań okresowych. Jeśli uruchomiona jest aplikacja hosta FTP za pośrednictwem sieci IPv6, IPv6 i ICMPv6 musi być włączona w zadaniu adresu IP. Dla sieci IPv6 lub IPv4 musi być także włączony protokół TCP. Aplikacja hosta IPv6 musi ustawić swój LINKLOCAL i globalny adres IPv6 przy użyciu interfejsu API IPv6 i/lub protokołu DHCPv6. Program demonstracyjny w sekcji "mały przykładowy system" w **rozdziale 2** demonstruje, jak to zrobić.
+Aby pakiet FTP NetX działał prawidłowo, wymagany jest program NetX Duo. Aplikacja hosta musi utworzyć wystąpienie adresu IP do uruchamiania usług NetX i okresowych zadań. W przypadku uruchamiania aplikacji hosta FTP za pośrednictwem sieci IPv6 należy włączyć protokoły IPv6 i ICMPv6 w zadaniu adresu IP. Protokół TCP musi być również włączony dla sieci IPv6 lub IPv4. Aplikacja hosta IPv6 musi ustawić swój linklokalny i globalny adres IPv6 przy użyciu interfejsu API IPv6 i/lub protokołu DHCPv6. Pokazowy program w sekcji "Mały przykładowy system" w **rozdziale 2** pokazuje, jak to zrobić.
 
-Serwer FTP i klient są również zaprojektowane do pracy z osadzonym systemem plików FileX. Jeśli FileX nie jest dostępna, deweloper hosta może zaimplementować lub zastąpić własny system plików zgodnie z zaleceniami sugerowanymi w filex_stub. h przez zdefiniowanie każdej usługi wymienionej w tym pliku. Zostało to omówione w kolejnych sekcjach tego przewodnika.
+Serwer FTP i klient są również zaprojektowane do pracy z osadzonym systemem plików FileX. Jeśli plik FileX jest niedostępny, deweloper hosta może zaimplementować lub zastąpić własny system plików zgodnie z wytycznymi sugerowanymi w pliku filex_stub.h przez zdefiniowanie każdej z usług wymienionych w tym pliku. Omówiono to w kolejnych sekcjach tego przewodnika.
 
-Część klienta FTP pakietu FTP NetX nie ma żadnych dalszych wymagań.
+Część klienta FTP pakietu FTP NetX nie ma dodatkowych wymagań.
 
-Część serwera FTP w pakiecie FTP NetX ma kilka dodatkowych wymagań. Najpierw wymaga pełnego dostępu do *dobrze znanego portu* TCP, aby obsłużyć wszystkie żądania poleceń FTP klienta i *dobrze znany port 20* do obsługi wszystkich transferów danych FTP klienta.
+Część FTP Server pakietu FTP NetX ma kilka dodatkowych wymagań. Po pierwsze, wymaga pełnego dostępu do dobrze znanego portu *21* protokołu TCP do obsługi wszystkich żądań poleceń ftp klienta i dobrze znanego portu *20* do obsługi wszystkich transferów danych KLIENTA FTP.
 
 ## <a name="ftp-constraints"></a>Ograniczenia FTP
 
-Standard FTP ma wiele opcji dotyczących reprezentacji danych plików. NetX FTP nie implementuje opcji przełącznika, np. ls – Al. NetX serwer FTP oczekuje, że żądania i ich argumenty są odbierane w pojedynczym pakiecie, a nie w kolejnych pakietach.
+Standard FTP ma wiele opcji dotyczących reprezentacji danych plików. NetX FTP nie implementuje opcji przełącznika, np. ls –al. Serwer FTP NetX oczekuje odbierania żądań i ich argumentów w jednym pakiecie, a nie kolejnych pakietach.
 
-Podobnie jak w przypadku implementacji systemu UNIX, NetX FTP przyjmuje następujące ograniczenia dotyczące formatu pliku:
+Podobnie jak system UNIX implementacji, protokół NETX FTP zakłada następujące ograniczenia formatu pliku:
 
-- Typ pliku: dane **binarne**
-- Format pliku: **tylko do drukowania**
-- Struktura pliku: **tylko Struktura pliku**
+- Typ pliku: **Binarny**
+- Format pliku: **tylko bez odcisku palca**
+- Struktura pliku: **Tylko struktura pliku**
 
 ## <a name="ftp-file-names"></a>Nazwy plików FTP
 
-Nazwy plików FTP powinny mieć format docelowego systemu plików (zazwyczaj FileX). Powinny to być ciągi ASCII zakończonych znakiem NULL, z pełnymi informacjami o ścieżce, jeśli jest to konieczne. Nie ma określonego limitu rozmiaru nazw plików FTP w implementacji FTP NetX. Jednak rozmiar ładunku puli pakietów powinien być w stanie obsłużyć maksymalną ścieżkę i/lub nazwę pliku.
+Nazwy plików FTP powinny być w formacie docelowego systemu plików (zazwyczaj FileX). Powinny to być ciągi ASCII zakończone wartością NULL z pełnymi informacjami o ścieżce, jeśli jest to konieczne. Nie ma określonego limitu rozmiaru nazw plików FTP w implementacji protokołu FTP NetX. Jednak rozmiar ładunku puli pakietów powinien być w stanie obsłużyć maksymalną ścieżkę i/lub nazwę pliku.
 
 ## <a name="ftp-client-commands"></a>Polecenia klienta FTP
 
-FTP ma prosty mechanizm otwierania połączeń i wykonywania operacji plików i katalogów. Istnieje zasadniczo zestaw standardowych poleceń FTP, które są wydawane przez klienta po pomyślnym nawiązaniu połączenia z *dobrze znanym portem TCP 21*. Poniżej przedstawiono niektóre z podstawowych poleceń FTP. Należy zauważyć, że jedyną różnicą, gdy usługa FTP działa za pośrednictwem protokołu IPv6, to polecenie PORT jest zastępowane poleceniem EPRT:
+Protokół FTP ma prosty mechanizm otwierania połączeń i wykonywania operacji na plikach i katalogach. Zasadniczo istnieje zestaw standardowych poleceń FTP, które są wydawane przez klienta po pomyślnym nawiązaniu połączenia na dobrze znanym porcie TCP *21.* Poniżej przedstawiono niektóre z podstawowych poleceń FTP. Należy pamiętać, że jedyną różnicą w przypadku, gdy protokół FTP działa za pośrednictwem protokołu IPv6, jest to, że polecenie PORT jest zastępowane poleceniem EPRT:
 
-- CWD ścieżka *zmiany katalogu roboczego*
-- & nazwa *pliku*
-- EPRT ip_address, port *udostępnia adres IPv6 i port danych klienta*
-- EPSV *Zażądaj trybu transferu pasywnego dla protokołu IPv6*
-- Wyświetlanie listy katalogów *Pobierz katalog*
-- Katalog MKD *Utwórz nowy katalog*
-- Katalog NLST — *Pobieranie listy katalogów*
-- AKTUALIZUJĄCY nie działa *Brak operacji, zwraca sukces*
-- Hasło przekazywania hasła *dla logowania*
-- PASV *Zażądaj trybu transferu pasywnego dla protokołu IPv4*
-- Ip_address portów, port *udostępnia adres IP i port danych klienta*
-- Ścieżka do *pobrania ścieżki bieżącego katalogu*
-- Zakończ *Kończenie połączenia klienta*
-- RETR filename *Odczytaj określony plik*
+- Zmiana katalogu *roboczego* ścieżki CWD
+- Nazwa pliku DELE *Usuń określoną nazwę pliku*
+- EpRT ip_address, port *Podaj adres IPv6 i port danych klienta*
+- Tryb pasywnego transferu żądania EPSV *dla protokołu IPv6*
+- KATALOG LIST *Pobierz listę katalogów*
+- Katalog MKD *Make new directory (Katalog MKD: make new directory)*
+- Katalog NLST *Pobierz listę katalogów*
+- NOOP *No operation, returns success (Brak operacji noop, zwraca powodzenie)*
+- PASS password *(PRZEKAŻ hasło) Podaj hasło do logowania*
+- Tryb pasywnego transferu żądania PASV *dla protokołu IPv4*
+- PORT ip_address,port *Podaj adres IP i Port danych klienta*
+- Ścieżka PWD *Odbiór bieżącej ścieżki katalogu*
+- ZAKOŃCZ *przerywanie połączenia klienta*
+- Nazwa pliku RETR *Odczytaj określony plik*
 - Katalog RMD *Usuń określony katalog*
 - RNFR oldfilename *Określ plik do zmiany nazwy*
-- RNTO NewFileName *Zmień nazwę pliku na podaną nazwę pliku*
-- STOR filename *Zapisz określony plik*
-- *Wybierz opcję obraz pliku binarnego*
-- Nazwa_użytkownika użytkownika *Podaj nazwę użytkownika na potrzeby logowania*
+- RNTO newfilename *Zmień nazwę pliku na podaną nazwę pliku*
+- Nazwa pliku STOR *Zapisuj określony plik*
+- TYP I *Wybieranie obrazu pliku binarnego*
+- Nazwa użytkownika *Podaj nazwę użytkownika do logowania*
 
-Te polecenia ASCII są używane wewnętrznie przez oprogramowanie klienckie NetX FTP do wykonywania operacji FTP z serwerem FTP.
+Te polecenia ASCII są używane wewnętrznie przez oprogramowanie klienckie NetX FTP do wykonywania operacji FTP na serwerze FTP.
 
 ## <a name="ftp-server-responses"></a>Odpowiedzi serwera FTP
 
-Gdy serwer FTP przetwarza żądanie klienta, zwraca 3-cyfrową odpowiedź zakodowaną w kodzie ASCII, po którym następuje opcjonalny tekst ASCII. Odpowiedź numeryczna jest używana przez oprogramowanie klienckie FTP do określenia, czy operacja zakończyła się powodzeniem, czy niepowodzeniem. Na poniższej liście przedstawiono różne odpowiedzi serwera FTP na żądania klientów:
+Gdy serwer FTP przetwarza żądanie klienta, zwraca 3-cyfrową zakodowaną odpowiedź w ascii, po której następuje opcjonalny tekst ASCII. Odpowiedź liczbowa jest używana przez oprogramowanie klienckie FTP do określenia, czy operacja zakończyła się powodzeniem, czy niepowodzeniem. Na poniższej liście przedstawiono różne odpowiedzi serwera FTP na żądania klientów:
 
-**Pierwsze znaczenie pola liczbowego**
+**Znaczenie pierwszego pola liczbowego**
 
-- 1XX *pozytywnego stanu wstępnego — inna odpowiedź*.
-- 2xx *pozytywnego stanu ukończenia*.
-- 3xx *pozytywnego stanu wstępnego — należy wysłać inne polecenie*.
-- 4xx *tymczasowy warunek błędu*.
-- 5xx *warunek błędu.*
+- 1xx *Dodatni stan wstępny — nadchodzą kolejne odpowiedzi*.
+- Stan ukończenia *dodatniego* 2xx .
+- 3xx *Dodatni stan wstępny — należy wysłać inne polecenie*.
+- 4xx *Warunek błędu tymczasowego*.
+- 5xx *Warunek błędu.*
 
-**Drugie znaczenie pola liczbowego**
+**Znaczenie drugiego pola liczbowego**
 
-- x0x *błąd składniowy w poleceniu*.
-- x1x *komunikat informacyjny*.
-- *powiązane z usługą* X2X.
-- *powiązane z uwierzytelnianiem* x3x.
-- *nieokreślony* x4x.
-- *powiązany system plików* x5x.
+- Błąd składni x0x *w poleceniu*.
+- X1x *Komunikat informacyjny*.
+- x2x *Connection related*.
+- Związane z *uwierzytelnianiem* x3x .
+- x4x *Nieokreślony*.
+- Związane z *systemem* plików x5x .
 
-Na przykład żądanie klienta dotyczące rozłączenia połączenia FTP z poleceniem QUIT zazwyczaj reaguje na kod "221" z serwera — w przypadku pomyślnego rozłączenia.
+Na przykład żądanie klienta dotyczące odłączenia połączenia FTP za pomocą polecenia QUIT zwykle będzie odpowiadać kodem "221" z serwera — jeśli rozłączenie zakończy się pomyślnie.
 
 ## <a name="ftp-passive-transfer-mode"></a>Tryb pasywnego transferu FTP
 
-Domyślnie klient FTP NetX Duo używa aktywnego trybu transportu do wymiany danych za pośrednictwem gniazda danych z serwerem FTP. Problem z tym rozmieszczeniem polega na tym, że klient FTP musi otworzyć gniazdo serwera TCP, z którym serwer FTP ma nawiązać połączenie. Oznacza to potencjalne zagrożenie bezpieczeństwa i może być blokowany przez zaporę klienta. Tryb transferu pasywnego różni się od aktywnego trybu transportu, ponieważ serwer FTP tworzy gniazdo serwera TCP na potrzeby połączenia danych. Eliminuje to zagrożenie bezpieczeństwa (dla klienta FTP).
+Domyślnie klient FTP NetX Duo używa trybu aktywnego transportu do wymiany danych za pośrednictwem gniazda danych z serwerem FTP. Problem z tym rozmieszczeniem polega na tym, że klient FTP musi otworzyć gniazdo serwera TCP, z którym serwer FTP ma nawiązać połączenie. Reprezentuje to możliwe zagrożenie bezpieczeństwa i może zostać zablokowane przez zaporę klienta. Tryb transferu pasywnego różni się od trybu transportu aktywnego przez utworzenie przez serwer FTP gniazda serwera TCP na połączeniu danych. Eliminuje to zagrożenie bezpieczeństwa (w przypadku klienta FTP).
 
-Aby włączyć pasywny transfer danych, aplikacja wywołuje *nx_ftp_client_passive_mode_set* na wcześniej utworzonym kliencie FTP z drugim argumentem ustawionym na NX_TRUE. Następnie wszystkie kolejne usługi klienta FTP NetX Duo do przesyłania danych (NLST, RETR, STOR) są podejmowane w trybie transportu pasywnego.
+Aby włączyć pasywny transfer danych, aplikacja wywołuje nx_ftp_client_passive_mode_set *wcześniej* utworzonego klienta FTP z drugim argumentem ustawionym na NX_TRUE. Następnie wszystkie kolejne usługi klienta FTP NetX Duo w celu przesyłania danych (NLST, RETR, STOR) będą podejmować próby w trybie pasywnego transportu.
 
-Klient FTP najpierw wysyła polecenie pasywne (bez argumentów), PASV polecenie dla protokołu IPv4 lub EPSV dla protokołu IPv6. Jeśli serwer FTP obsługuje to żądanie, zwróci odpowiedź 227 "OK" dla PASV i 229 "OK" odpowiedzi na EPSV. Następnie klient wysyła żądanie, np. RETR. Jeśli serwer odmówi trybu transferu pasywnego, usługa klienta FTP NetX Duo zwróci stan błędu.
+Klient FTP najpierw wysyła pasywne polecenie (bez argumentów), polecenie PASV dla polecenia IPv4 lub EPSV dla protokołu IPv6. Jeśli serwer FTP obsługuje to żądanie, zwróci odpowiedź 227 "OK" dla aplikacji PASV i odpowiedź 229 "OK" dla programu EPSV. Następnie klient wysyła żądanie, np. RETR. Jeśli serwer odmówi pasywnego trybu transferu, usługa klienta FTP NetX Duo zwraca stan błędu.
 
-Aby wyłączyć tryb transportu pasywnego i wrócić do trybu aktywnego transportu, aplikacja wywołuje *nx_ftp_client_passive_mode_set* z drugim argumentem ustawionym na NX_FALSE.
+Aby wyłączyć pasywny tryb transportu i powrócić do trybu aktywnego transportu, aplikacja *wywołuje* nx_ftp_client_passive_mode_set z drugim argumentem ustawionym na NX_FALSE.
 
 ## <a name="ftp-communication"></a>Komunikacja FTP
 
-Serwer FTP używa *dobrze znanego portu TCP 21* w polu żądania klientów. Klienci FTP mogą korzystać z dowolnego dostępnego portu TCP. Ogólna sekwencja zdarzeń FTP jest następująca:
+Serwer FTP używa dobrze znanego portu *TCP 21* do pola Żądania klienta. Klienci FTP mogą używać dowolnego dostępnego portu TCP. Ogólna sekwencja zdarzeń FTP jest następująca:
 
-**Żądania odczytu pliku FTP**:
+**Żądania odczytu pliku FTP:**
 
-1. Problemy z klientem połączenie TCP z serwerem 21.
-1. Serwer wysyła odpowiedź "220", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "użytkownik" z "username".
-1. Serwer wysyła odpowiedź "331", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "PASS" z hasłem "Password" (hasło).
-1. Serwer wysyła odpowiedź "230", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "TYPE I" na potrzeby transferu binarnego.
-1. Serwer wysyła odpowiedź "200", aby sygnał zakończył się pomyślnie.
-1. *Aplikacje IPv4*: klient wysyła komunikat "Port" z adresem IP i portem.<br />*Aplikacje IPv6*: klient wysyła komunikat "EPRT" z adresem IP i portem.
-1. Serwer wysyła odpowiedź "200", aby sygnał zakończył się pomyślnie.
+1. Problemy z łącznością TCP klienta z portem 21 serwera.
+1. Serwer wysyła odpowiedź "220", aby zasygnalizować powodzenie.
+1. Klient wysyła komunikat "USER" z "username".
+1. Serwer wysyła odpowiedź "331", aby zasygnalizować powodzenie.
+1. Klient wysyła komunikat "PASS" z hasłem.
+1. Serwer wysyła odpowiedź "230" w celu sygnalizowania powodzenia.
+1. Klient wysyła komunikat "TYP I" dla transferu binarnego.
+1. Serwer wysyła odpowiedź "200" w celu sygnalizowania powodzenia.
+1. *Aplikacje IPv4:* klient wysyła komunikat "PORT" z adresem IP i portem.<br />*Aplikacje protokołu IPv6:* klient wysyła komunikat "EPRT" z adresem IP i portem.
+1. Serwer wysyła odpowiedź "200" w celu sygnalizowania powodzenia.
 1. Klient wysyła komunikat "RETR" z nazwą pliku do odczytu.
-1. Serwer tworzy gniazdo danych i łączy się z portem danych klienta określonym w poleceniu "PORT".
-1. Serwer wysyła odpowiedź "125" do odczytu pliku sygnału.
-1. Serwer wysyła zawartość pliku za pomocą połączenia danych. Ten proces jest kontynuowany do momentu całkowitego przetransferowania pliku.
+1. Serwer tworzy gniazdo danych i nawiązuje połączenie z portem danych klienta określonym w poleceniu "PORT".
+1. Serwer wysyła odpowiedź "125" na sygnał odczytany plik został uruchomiony.
+1. Serwer wysyła zawartość pliku za pośrednictwem połączenia danych. Ten proces jest kontynuowany do momentu całkowitego transferu pliku.
 1. Po zakończeniu serwer rozłącza połączenie danych.
-1. Serwer wysyła odpowiedź "250", aby odczytywanie pliku sygnału zakończyło się pomyślnie.
-1. Klient wysyła "QUIT", aby zakończyć połączenie FTP.
-1. Serwer wysyła odpowiedź "221", aby sygnał rozłączył się pomyślnie.
+1. Serwer wysyła odpowiedź "250" na komunikat o pomyślnym odczycie pliku.
+1. Klient wysyła komunikat "QUIT" w celu zakończenia połączenia FTP.
+1. Serwer wysyła odpowiedź "221", aby sygnał rozłączenia został pomyślnie rozłączny.
 1. Serwer rozłącza połączenie FTP.
 
-Jak wspomniano wcześniej, jedyną różnicą między usługą FTP działającą za pośrednictwem protokołu IPv4 i
+Jak wspomniano wcześniej, jedyna różnica między protokołem FTP uruchomionym za pośrednictwem protokołu IPv4 i
 
-IPv6 to polecenie PORT jest zastępowane poleceniem EPRT dla protokołu IPv6
+Protokół IPv6 to polecenie PORT jest zastępowane poleceniem EPRT dla protokołu IPv6
 
-Jeśli klient FTP wykonuje żądanie odczytu w trybie transferu pasywnego, sekwencja poleceń jest następująca (**pogrubione** wiersze wskazują inny krok z aktywnego trybu transferu):
+Jeśli klient FTP wysyła żądanie odczytu w trybie pasywnego transferu, sekwencja poleceń jest następująca (pogrubione wiersze wskazują inny krok niż aktywny tryb transferu):
 
-1. Problemy z klientem połączenie TCP z serwerem 21.
-1. Serwer wysyła odpowiedź "220", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "użytkownik" z "username".
-1. Serwer wysyła odpowiedź "331", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "PASS" z hasłem "Password" (hasło).
-1. Serwer wysyła odpowiedź "230", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "TYPE I" na potrzeby transferu binarnego.
-1. Serwer wysyła odpowiedź "200", aby sygnał zakończył się pomyślnie.
-1. ***Aplikacje IPv4:* Klient wysyła komunikat "PASV".**<br />**_Aplikacje IPv6:_ Klient wysyła komunikat "EPSV".**
-1. ***Aplikacje IPv4:* Serwer wysyła odpowiedź "227" oraz adres IP i port, z którymi klient może się połączyć, aby sygnalizować powodzenie.**<br />**_Aplikacje IPv6:_ Serwer wysyła odpowiedź "229" oraz adres IP i port, z którymi klient może się połączyć, aby sygnalizować powodzenie.**
+1. Problemy z klientem: połączenie TCP z portem 21 serwera.
+1. Serwer wysyła odpowiedź "220" w celu sygnalizowania powodzenia.
+1. Klient wysyła komunikat "USER" z "username".
+1. Serwer wysyła odpowiedź "331", aby zasygnalizować powodzenie.
+1. Klient wysyła komunikat "PASS" z hasłem.
+1. Serwer wysyła odpowiedź "230" w celu sygnalizowania powodzenia.
+1. Klient wysyła komunikat "TYP I" dla transferu binarnego.
+1. Serwer wysyła odpowiedź "200" w celu sygnalizowania powodzenia.
+1. ***Aplikacje IPv4:* Klient wysyła komunikat "PASV".**<br />**_Aplikacje protokołu IPv6:_ Klient wysyła komunikat "EPSV".**
+1. ***Aplikacje IPv4:* Serwer wysyła odpowiedź "227" oraz adres IP i port, z którym klient może się połączyć, aby zasygnalizować powodzenie.**<br />**_Aplikacje protokołu IPv6:_ Serwer wysyła odpowiedź "229" oraz adres IP i port, z którym klient może się połączyć, aby zasygnalizować powodzenie.**
 1. Klient wysyła komunikat "RETR" z nazwą pliku do odczytu.
-1. **Serwer tworzy gniazdo serwera danych i nasłuchuje dla żądania połączenia klienta w tym gnieździe przy użyciu portu określonego w odpowiedzi w kroku 10.**
-1. **Serwer wysyła odpowiedź "150" w gnieździe sterowania do odczytania pliku sygnału.**
-1. Serwer wysyła zawartość pliku za pomocą połączenia danych. Ten proces jest kontynuowany do momentu całkowitego przetransferowania pliku.
+1. **Serwer tworzy gniazdo serwera danych i nasłuchuje żądania Połączenia klienta na tym gnieździe przy użyciu portu określonego w odpowiedzi w kroku 10.**
+1. **Serwer wysyła odpowiedź "150" na gniazdo sterowania, aby zasygnalizować, że rozpoczęto odczytywanie pliku.**
+1. Serwer wysyła zawartość pliku za pośrednictwem połączenia danych. Ten proces jest kontynuowany do momentu całkowitego transferu pliku.
 1. Po zakończeniu serwer rozłącza połączenie danych.
-1. **Serwer wysyła odpowiedź "226" w gnieździe sterowania, aby plik sygnału został pomyślnie odczytany.**
-1. Klient wysyła "QUIT", aby zakończyć połączenie FTP.
-1. Serwer wysyła odpowiedź "221", aby sygnał rozłączył się pomyślnie.
+1. **Serwer wysyła odpowiedź "226" na gnieździe sterującym, aby sygnał odczytu pliku został pomyślnie odczytany.**
+1. Klient wysyła komunikat "QUIT" w celu zakończenia połączenia FTP.
+1. Serwer wysyła odpowiedź "221", aby sygnał rozłączenia został pomyślnie rozłączny.
 1. Serwer rozłącza połączenie FTP.
 
-**Żądania zapisu FTP**:
+**Żądania zapisu FTP:**
 
-1. Problemy z klientem połączenie TCP z serwerem 21.
-1. Serwer wysyła odpowiedź "220", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "użytkownik" z "username".
-1. Serwer wysyła odpowiedź "331", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "PASS" z hasłem "Password" (hasło).
-1. Serwer wysyła odpowiedź "230", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "TYPE I" na potrzeby transferu binarnego.
-1. Serwer wysyła odpowiedź "200", aby sygnał zakończył się pomyślnie.
-1. *Aplikacje IPv4*: klient wysyła komunikat "Port" z adresem IP i portem.<br />*Aplikacje IPv6*: klient wysyła komunikat "EPRT" z adresem IP i portem.
-1. Serwer wysyła odpowiedź "200", aby sygnał zakończył się pomyślnie.
+1. Problemy z klientem: połączenie TCP z portem 21 serwera.
+1. Serwer wysyła odpowiedź "220" w celu sygnalizowania powodzenia.
+1. Klient wysyła komunikat "USER" z "username".
+1. Serwer wysyła odpowiedź "331", aby zasygnalizować powodzenie.
+1. Klient wysyła komunikat "PASS" z hasłem.
+1. Serwer wysyła odpowiedź "230" w celu sygnalizowania powodzenia.
+1. Klient wysyła komunikat "TYP I" dla transferu binarnego.
+1. Serwer wysyła odpowiedź "200" w celu sygnalizowania powodzenia.
+1. *Aplikacje IPv4:* klient wysyła komunikat "PORT" z adresem IP i portem.<br />*Aplikacje protokołu IPv6:* klient wysyła komunikat "EPRT" z adresem IP i portem.
+1. Serwer wysyła odpowiedź "200" w celu sygnalizowania powodzenia.
 1. Klient wysyła komunikat "STOR" z nazwą pliku do zapisu.
-1. Serwer tworzy gniazdo danych i łączy się z portem danych klienta określonym w poprzednim poleceniu "EPRT" lub "PORT".
-1. Serwer wysyła odpowiedź "125" do zapisu pliku sygnału zostało uruchomione.
-1. Klient wysyła zawartość pliku za pomocą połączenia danych. Ten proces jest kontynuowany do momentu całkowitego przetransferowania pliku.
+1. Serwer tworzy gniazdo danych i nawiązuje połączenie przy użyciu portu danych klienta określonego w poprzednim poleceniu "EPRT" lub "PORT".
+1. Serwer wysyła odpowiedź "125" na sygnał zapisu pliku została uruchomiona.
+1. Klient wysyła zawartość pliku za pośrednictwem połączenia danych. Ten proces jest kontynuowany do momentu całkowitego transferu pliku.
 1. Po zakończeniu klient rozłącza połączenie danych.
-1. Serwer wysyła odpowiedź "250", aby zapis pliku sygnału zakończył się pomyślnie.
-1. Klient wysyła "QUIT", aby zakończyć połączenie FTP.
-1. Serwer wysyła odpowiedź "221", aby sygnał rozłączył się pomyślnie.
+1. Serwer wysyła odpowiedź "250" na komunikat o pomyślnym zapisie pliku.
+1. Klient wysyła komunikat "QUIT" w celu zakończenia połączenia FTP.
+1. Serwer wysyła odpowiedź "221", aby sygnał rozłączenia został pomyślnie rozłączny.
 1. Serwer rozłącza połączenie FTP.
 
-Jeśli klient FTP wykonuje żądanie zapisu w trybie transferu pasywnego, sekwencja poleceń jest następująca (**pogrubione** wiersze wskazują inny krok z aktywnego trybu transferu):
+Jeśli klient FTP wysyła żądanie zapisu w trybie pasywnego transferu, sekwencja poleceń jest następująca (pogrubione wiersze wskazują inny krok niż aktywny tryb transferu):
 
-1. Problemy z klientem połączenie TCP z serwerem 21.
-1. Serwer wysyła odpowiedź "220", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "użytkownik" z "username".
-1. Serwer wysyła odpowiedź "331", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "PASS" z hasłem "Password" (hasło).
-1. Serwer wysyła odpowiedź "230", aby sygnał zakończył się pomyślnie.
-1. Klient wysyła komunikat "TYPE I" na potrzeby transferu binarnego.
-1. Serwer wysyła odpowiedź "200", aby sygnał zakończył się pomyślnie.
-1. ***Aplikacje IPv4:* Klient wysyła komunikat "PASV".**<br />**_Aplikacje IPv6:_ Klient wysyła komunikat "EPSV".**
-1. ***Aplikacje IPv4:* Serwer wysyła odpowiedź "227" oraz adres IP i port, z którymi klient może się połączyć, aby sygnalizować powodzenie.**<br />**_Aplikacje IPv6:_ Serwer wysyła odpowiedź "229" oraz adres IP i port, z którymi klient może się połączyć, aby sygnalizować powodzenie.**
+1. Problemy z klientem: połączenie TCP z portem 21 serwera.
+1. Serwer wysyła odpowiedź "220" w celu sygnalizowania powodzenia.
+1. Klient wysyła komunikat "USER" z "username".
+1. Serwer wysyła odpowiedź "331", aby zasygnalizować powodzenie.
+1. Klient wysyła komunikat "PASS" z hasłem.
+1. Serwer wysyła odpowiedź "230" w celu sygnalizowania powodzenia.
+1. Klient wysyła komunikat "TYP I" dla transferu binarnego.
+1. Serwer wysyła odpowiedź "200" w celu sygnalizowania powodzenia.
+1. ***Aplikacje IPv4:* Klient wysyła komunikat "PASV".**<br />**_Aplikacje protokołu IPv6:_ Klient wysyła komunikat "EPSV".**
+1. ***Aplikacje IPv4:* Serwer wysyła odpowiedź "227" oraz adres IP i port, z którym klient może się połączyć, aby zasygnalizować powodzenie.**<br />**_Aplikacje protokołu IPv6:_ Serwer wysyła odpowiedź "229" oraz adres IP i port, z którym klient może się połączyć, aby zasygnalizować powodzenie.**
 1. Klient wysyła komunikat "STOR" z nazwą pliku do zapisu.
-1. **Serwer tworzy gniazdo serwera danych i nasłuchuje dla żądania połączenia klienta w tym gnieździe przy użyciu portu określonego w odpowiedzi w kroku 10.**
-1. **Serwer wysyła odpowiedź "150" w gnieździe sterowania, aby został uruchomiony zapis pliku sygnału.**
-1. Klient wysyła zawartość pliku za pomocą połączenia danych. Ten proces jest kontynuowany do momentu całkowitego przetransferowania pliku.
+1. **Serwer tworzy gniazdo serwera danych i nasłuchuje żądania Połączenia klienta na tym gnieździe przy użyciu portu określonego w odpowiedzi w kroku 10.**
+1. **Serwer wysyła odpowiedź "150" na gniazdo sterowania, aby zasygnalizować, że rozpoczęto zapis pliku.**
+1. Klient wysyła zawartość pliku za pośrednictwem połączenia danych. Ten proces jest kontynuowany do momentu całkowitego transferu pliku.
 1. Po zakończeniu klient rozłącza połączenie danych.
-1. **Serwer wysyła odpowiedź "226" w gnieździe sterowania, aby sygnał zapisu pliku zakończył się pomyślnie.**
-1. Klient wysyła "QUIT", aby zakończyć połączenie FTP.
-1. Serwer wysyła odpowiedź "221", aby sygnał rozłączył się pomyślnie.
+1. **Serwer wysyła odpowiedź "226" na gnieździe sterującym, aby zasygnalizować powodzenie zapisu pliku.**
+1. Klient wysyła komunikat "QUIT" w celu zakończenia połączenia FTP.
+1. Serwer wysyła odpowiedź "221", aby sygnał rozłączenia został pomyślnie rozłączny.
 1. Serwer rozłącza połączenie FTP.
 
 ## <a name="ftp-authentication"></a>Uwierzytelnianie FTP
 
-Za każdym razem, gdy ma miejsce połączenie FTP, klient musi podać *nazwę użytkownika* i *hasło*. Niektóre witryny FTP zezwalają na to, co jest nazywane *anonimową FTP*, co umożliwia dostęp do usługi FTP bez określonej nazwy użytkownika i hasła. Dla tego typu połączenia należy podać wartość "Anonymous" dla nazwy użytkownika, a hasło powinno być kompletnym adresem e-mail.
+Przy każdym nawiązaniu połączenia FTP klient musi podać serwerowi nazwę *użytkownika i* *hasło*. Niektóre witryny FTP zezwalają na dostęp do protokołu *FTP* anonimowego bez określonej nazwy użytkownika i hasła. W przypadku tego typu połączenia jako nazwę użytkownika należy podać "anonimowe", a hasło powinno być kompletnym adresem e-mail.
 
-Użytkownik jest odpowiedzialny za dostarczanie NetX FTP z procedurami uwierzytelniania logowania i wylogowywania. Są one dostarczane w ramach usług ***nxd_ftp_server_create** _ i _*_nx_ftp_server_create_*_ i wywoływane z przetwarzania haseł. Różnica między nimi polega na tym, że wskaźniki funkcji wejścia _*_nxd_ftp_server_create_*_ są używane do logowania i wylogowywania funkcji uwierzytelniania, oczekiwano typu adresu NetX Duo _*_NXD_ADDRESS_*_. Ten typ danych zawiera formaty adresów IPv4 lub IPv6, dzięki czemu ta funkcja jest usługą "Duo" obsługującą zarówno sieci IPv4, jak i IPv6. Funkcja input programu _ *_nx_ftp_server_create_**, która umożliwia zalogowanie i wylogowanie się, oczekuje ULONG typu adresu IP. Ta funkcja jest ograniczona do sieci IPv4. Deweloperzy są zachęcani do korzystania z usługi "Duo" wszędzie tam, gdzie to możliwe.
+Użytkownik jest odpowiedzialny za dostarczenie protokołu FTP NetX z procedurami uwierzytelniania logowania i wylogowania. Są one dostarczane podczas ***nxd_ftp_server_create** _ i _*_nx_ftp_server_create_*_ usług i wywoływane z przetwarzania haseł. Różnica między nimi polega na tym, _*_że wskaźniki nxd_ftp_server_create_*_ do logowania i uwierzytelniania logout oczekują, że typ adresu NetX Duo będzie _*_NXD_ADDRESS_*_. Ten typ danych przechowuje formaty adresów IPv4 i IPv6, dzięki czemu ta funkcja jest usługą "duet" obsługą sieci IPv4 i IPv6. Funkcja _ *_nx_ftp_server_create_** wejściowych wskaźników do funkcji uwierzytelniania logowania i wylogowywu oczekuje typu adresu IP ULONG. Ta funkcja jest ograniczona do sieci IPv4. Zachęcamy deweloperów do korzystania z usługi "duo" zawsze, gdy jest to możliwe.
 
-Jeśli funkcja *logowania* zwróci NX_SUCCESS, połączenie zostanie uwierzytelnione i operacje FTP są dozwolone. W przeciwnym razie, jeśli funkcja *logowania* zwróci coś innego niż NX_SUCCESS, próba połączenia zostanie odrzucona.
+Jeśli funkcja *logowania* zwróci NX_SUCCESS, połączenie zostanie uwierzytelnione i operacje FTP będą dozwolone. W przeciwnym razie, *jeśli funkcja logowania* zwróci wartość inną NX_SUCCESS, próba połączenia zostanie odrzucona.
 
-## <a name="ftp-multi-thread-support"></a>Obsługa wielowątkowości FTP
+## <a name="ftp-multi-thread-support"></a>Obsługa wielu wątków FTP
 
-Usługi klienta FTP NetX można wywołać z wielu wątków jednocześnie. Jednak żądania odczytu lub zapisu dla danego wystąpienia klienta FTP powinny być wykonywane w kolejności z tego samego wątku.
+Usługi klienta FTP NetX mogą być wywoływane z wielu wątków jednocześnie. Jednak żądania odczytu lub zapisu dla określonego wystąpienia klienta FTP powinny być wykonywane kolejno z tego samego wątku.
 
-## <a name="ftp-rfcs"></a>Specyfikacje RFC protokołu FTP
+## <a name="ftp-rfcs"></a>RFC FTP
 
-Usługa FTP NetX Duo jest zgodna ze standardami RFC 959, RFC 2428 i pokrewnymi specyfikacjami RFC.
+Protokół FTP NetX Duo jest zgodny ze specyfikacjami RFC 959, RFC 2428 i powiązanymi RFC.

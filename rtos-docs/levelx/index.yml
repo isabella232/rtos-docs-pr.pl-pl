@@ -1,31 +1,31 @@
 ### YamlMime:Landing
-title: Dokumentacja usługi Azure RTO LevelX
-summary: Usługa Azure RTO LevelX zapewnia ni i lub Flash funkcje do wyrównywania zużycia w aplikacjach osadzonych.
+title: Azure RTOS LevelX
+summary: Azure RTOS LevelX zapewnia osadzonym aplikacjom funkcje wyrównania zużycia pamięci flash NAND i NOR.
 metadata:
-  title: Co to jest Azure RTO LevelX?
-  description: Usługa Azure RTO LevelX zapewnia ni i lub Flash funkcje do wyrównywania zużycia w aplikacjach osadzonych.
+  title: Co to jest Azure RTOS LevelX?
+  description: Azure RTOS LevelX zapewnia osadzonym aplikacjom funkcje wyrównania zużycia pamięci flash NAND i NOR.
   services: rtos
   ms.service: rtos
   ms.topic: landing-page
   author: philmea
   ms.author: philmea
   ms.date: 07/10/2020
-  ms.openlocfilehash: 27ce4d34d53b2a6daec651dd83c648024aad0291
-  ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+  ms.openlocfilehash: ea822259a774e57cb9e018a90a1985f291a4cbbd157b086753680f577e8cbc94
+  ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
   ms.translationtype: MT
   ms.contentlocale: pl-PL
-  ms.lasthandoff: 03/22/2021
-  ms.locfileid: "104797881"
+  ms.lasthandoff: 08/07/2021
+  ms.locfileid: "116790551"
 landingContent:
-- title: Wprowadzenie do usługi Azure RTO LevelX
+- title: Wprowadzenie do Azure RTOS LevelX
   linkLists:
   - linkListType: overview
     links:
-    - text: Co to jest Azure RTO LevelX?
+    - text: Co to jest Azure RTOS LevelX?
       url: chapter1.md
-- title: Instalowanie i używanie usługi Azure RTO LevelX
+- title: Instalowanie i używanie Azure RTOS LevelX
   linkLists:
   - linkListType: get-started
     links:
-    - text: Podręcznik użytkownika usługi Azure RTO LevelX
+    - text: Azure RTOS użytkownika LevelX
       url: chapter2.md

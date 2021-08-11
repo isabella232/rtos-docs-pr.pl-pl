@@ -1,52 +1,52 @@
 ---
-title: Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Secure DTLS
-description: Usługa Azure RTO NetX Secure DTLS to implementacja protokołu dataTransport Layer Security gramów w czasie rzeczywistym zaprojektowana na potrzeby aplikacji opartych na ThreadX.
+title: Rozdział 1 — Wprowadzenie do bezpiecznego Azure RTOS DTLS netx
+description: Azure RTOS NetX Secure DTLS to implementacja protokołu Datagram Transport Layer Security przeznaczona dla osadzonych aplikacji opartych na technologii ThreadX w czasie rzeczywistym.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: dbd81082524f50787765dfacf494248dda740fd6
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: a7fe51fd1e141c0c525a98986ca3058732b61843f8bd79bf24fc5ac986147501
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822879"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116797045"
 ---
-# <a name="chapter-1-introduction-to-azure-rtos-netx-secure-dtls"></a>Rozdział 1: wprowadzenie do usługi Azure RTO NetX Secure DTLS
+# <a name="chapter-1-introduction-to-azure-rtos-netx-secure-dtls"></a>Rozdział 1: Wprowadzenie do bezpiecznego Azure RTOS DTLS netx
 
-Usługa Azure RTO NetX Secure DTLS to oparta na czasie rzeczywistym implementacja protokołu datagramów Transport Layer Security, zaprojektowana wyłącznie dla wbudowanych aplikacji opartych na ThreadX. Ten rozdział zawiera wprowadzenie do NetX bezpiecznego DTLS i opis jego aplikacji oraz korzyści.
+Azure RTOS NetX Secure DTLS to implementacja protokołu Datagram Transport Layer Security w czasie rzeczywistym o wysokiej wydajności przeznaczona wyłącznie dla osadzonych aplikacji opartych na technologii ThreadX. Ten rozdział zawiera wprowadzenie do bezpiecznego dtls NetX oraz opis jego aplikacji i korzyści.
 
-## <a name="netx-secure-unique-features"></a>NetX bezpieczne funkcje
+## <a name="netx-secure-unique-features"></a>NetX Secure Unique Features
 
-W przeciwieństwie do większości innych implementacji protokołów TLS/DTLS, ochrona NetX została zaprojektowana od podstaw do obsługi szerokiej gamy wbudowanych platform sprzętowych i umożliwia łatwe skalowanie z małych aplikacji mikrokontrolerów do najbardziej zaawansowanych dostępnych procesorów. Kod jest zapisywana z ograniczoną ilością zasobów osadzonych systemów i udostępnia pewną liczbę opcji konfiguracji w celu zmniejszenia ilości pamięci wymaganej do zapewnienia bezpiecznej komunikacji sieciowej za pośrednictwem protokołu TLS lub DTLS.
+W przeciwieństwie do większości innych implementacji TLS/DTLS, oprogramowanie NetX Secure zostało zaprojektowane od podstaw w celu obsługi szerokiej gamy osadzonych platform sprzętowych i łatwo skaluje się od małych aplikacji mikrokontrolerów po najbardziej zaawansowane procesory osadzone. Kod jest napisany z myślą o ograniczonych zasobach systemów osadzonych i udostępnia szereg opcji konfiguracji w celu zmniejszenia ilości pamięci potrzebnej do zapewnienia bezpiecznej komunikacji sieciowej za pośrednictwem TLS lub DTLS.
 
-## <a name="rfcs-supported-by-netx-secure"></a>Specyfikacje RFC obsługiwane przez NetX Secure
+## <a name="rfcs-supported-by-netx-secure"></a>RFC obsługiwane przez NetX Secure
 
-NetX Secure obsługuje następujące protokoły związane z protokołem TLS i DTLS. Lista nie zawsze jest kompletna, ponieważ istnieje wiele dokumentów RFC dotyczących protokołu TLS/DTLS i kryptografii. NetX zabezpieczeń są zgodne ze wszystkimi ogólnymi zaleceniami i podstawowymi wymaganiami w ramach ograniczeń systemu operacyjnego w czasie rzeczywistym z małą ilością pamięci i wydajnym wykonywaniem.
+NetX Secure obsługuje następujące protokoły związane z protokołami TLS i DTLS. Lista nie musi być wyczerpująca, ponieważ istnieje wiele RFC związanych z TLS/DTLS i kryptografią. NetX Secure jest zgodny ze wszystkimi ogólnymi zaleceniami i podstawowymi wymaganiami w ramach ograniczeń systemu operacyjnego w czasie rzeczywistym, z małym zużyciem pamięci i wydajnym wykonywaniem.
 
 
 | RFC | Opis |
 | --- | ----------- |
-| RFC 6347 | Datagram Transport Layer Security w wersji 1,2. |
-| RFC 2246 | Protokół TLS w wersji 1,0|
-| RFC 4346 | Protokół Transport Layer Security (TLS) w wersji 1,1 |
-| RFC 5246 | Protokół Transport Layer Security (TLS) w wersji 1,2 |
-| RFC 5280 | Certyfikaty PKI X. 509 (wersja 3) |
-| RFC 3268 | Advanced Encryption Standard (AES) Ciphersuites dla Transport Layer Security (TLS) |
-| RFC 3447 | #1 standardy kryptografii Public-Key (PKCS): specyfikacje kryptografii RSA w wersji 2,1 |
-| RFC 2104 | HMAC: Keyed-Hashing uwierzytelniania komunikatów |
-| RFC 6234 | Bezpieczne algorytmy wyznaczania wartości skrótu (algorytmu SHA i algorytmem SHA-based HKDF) |
-| RFC 4279 | Ciphersuites klucza wstępnego dla protokołu TLS |
+| RFC 6347 | Datagram Transport Layer Security wersji 1.2. |
+| RFC 2246 | Protokół TLS w wersji 1.0|
+| RFC 4346 | Protokół Transport Layer Security (TLS) w wersji 1.1 |
+| RFC 5246 | Protokół Transport Layer Security (TLS) w wersji 1.2 |
+| RFC 5280 | X.509 Certyfikaty PKI (wersja 3) |
+| RFC 3268 | Advanced Encryption Standard (AES) Ciphersuites for Transport Layer Security (TLS) |
+| RFC 3447 | Public-Key Cryptography Standards (PKCS) #1: RSA Cryptography Specifications Version 2.1 (Specyfikacje kryptografii RSA w wersji 2.1) |
+| RFC 2104 | HMAC: Keyed-Hashing do uwierzytelniania komunikatów |
+| RFC 6234 | US Secure Hash Algorithms (SHA and SHA-based HMAC and HKDF) |
+| RFC 4279 | Pre-Shared Key Ciphersuites for TLS |
 
-## <a name="netx-secure-dtls-requirements"></a>NetX bezpieczne wymagania DTLS
+## <a name="netx-secure-dtls-requirements"></a>Wymagania bezpiecznego dtls netx
 
-Aby zapewnić prawidłowe działanie, biblioteka NetX bezpiecznego uruchomieniowego wymaga, aby wystąpienie adresu IP NetX zostało już utworzone. Ponadto, w zależności od aplikacji, wymagany jest co najmniej jeden certyfikat cyfrowy X. 509 szyfrowany algorytmem DER w celu zidentyfikowania wystąpienia protokołu TLS/DTLS lub zweryfikowania certyfikatów pochodzących z hosta zdalnego. Pakiet bezpieczny NetX nie ma żadnych dalszych wymagań.
+Aby zapewnić prawidłowe działanie, biblioteka środowisk uruchomieniowych NetX Secure wymaga, aby wystąpienie adresu IP NetX zostało już utworzone. Ponadto w zależności od aplikacji będzie wymagany co najmniej jeden certyfikat cyfrowy X.509 zakodowany w formacie DER w celu zidentyfikowania wystąpienia TLS/DTLS lub zweryfikowania certyfikatów pochodzących z hosta zdalnego. Pakiet NetX Secure nie ma dodatkowych wymagań.
 
-## <a name="netx-secure-dtls-constraints"></a>NetX bezpieczne DTLS ograniczenia
+## <a name="netx-secure-dtls-constraints"></a>NetX Secure DTLS Constraints
 
-Protokół NetX Secure DTLS implementuje wymagania RFC 6347 Standard (s) dla DTLS 1,2. Istnieją jednak następujące ograniczenia:
+Protokół NetX Secure DTLS implementuje wymagania standardu RFC 6347 dla protokołu DTLS 1.2. Istnieją jednak następujące ograniczenia:
 
-1. Ze względu na charakter urządzeń osadzonych niektóre aplikacje mogą nie mieć zasobów do obsługi maksymalnego rozmiaru rekordu TLS/DTLS 16 KB. NetX Secure może obsługiwać rekordy 16 KB na urządzeniach z wystarczającą ilością zasobów.
-2. Minimalna weryfikacja certyfikatu. NetX Secure będzie przeprowadzać podstawową weryfikację łańcucha X. 509 na certyfikacie, aby upewnić się, że certyfikat jest prawidłowy i podpisany przez zaufany urząd certyfikacji, i może podać nazwę pospolitą certyfikatu dla aplikacji, która będzie porównywana z Top-Level nazwą domeny hosta zdalnego. Jednak weryfikacja rozszerzeń certyfikatów i innych danych jest odpowiedzialna za realizatora aplikacji.
-3. Kryptografia oparta na oprogramowaniu jest intensywnym procesorem. NetX bezpieczne procedury kryptograficzne oparte na oprogramowaniu zostały zoptymalizowane pod kątem wydajności, ale w zależności od możliwości procesora docelowego wydajność może spowodować długotrwałe operacje. Gdy kryptografia oparta na sprzęcie jest dostępna, należy ją stosować w celu uzyskania optymalnej wydajności NetX Secure DTLS.
+1. Ze względu na charakter urządzeń osadzonych niektóre aplikacje mogą nie mieć zasobów do obsługi maksymalnego rozmiaru rekordu TLS/DTLS 16 KB. NetX Secure może obsługiwać 16 KB rekordów na urządzeniach z wystarczającymi zasobami.
+2. Minimalna weryfikacja certyfikatu. Usługa NetX Secure wykona podstawową weryfikację łańcuchową X.509 na certyfikacie, aby upewnić się, że certyfikat jest prawidłowy i podpisany przez zaufany urząd certyfikacji, i może podać nazwę pospolitą certyfikatu dla aplikacji do porównania z nazwą domeny Top-Level hosta zdalnego. Jednak odpowiedzialność za weryfikację rozszerzeń certyfikatów i innych danych spoczywa na implementatorze aplikacji.
+3. Kryptografia oparta na oprogramowaniu intensywnie obciąża procesor. Procedury kryptograficzne oparte na oprogramowaniu NetX Secure zostały zoptymalizowane pod kątem wydajności, ale w zależności od mocy procesora docelowego ta wydajność może skutkować bardzo długimi operacjami. Gdy kryptografia oparta na sprzęcie jest dostępna, powinna być używana w celu uzyskania optymalnej wydajności bezpiecznego szyfrowania DTLS NetX.

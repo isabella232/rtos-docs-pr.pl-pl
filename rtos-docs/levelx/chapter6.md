@@ -1,35 +1,35 @@
 ---
-title: Rozdział 6 — usługa Azure RTO LevelX lub interfejsy API
-description: Usługa Azure RTO LevelX ani interfejsy API dostępne dla aplikacji.
+title: Rozdział 6 — Azure RTOS LevelX ANI interfejsy API
+description: Interfejsy API Azure RTOS LevelX ANI dostępne dla aplikacji.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 3ab7d3a7e431d7c8f49ef4f5cab9216dc77c8d33
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 2e109f5916a9e903aa3341f2855ade085e9d9a22b80ec7cb2e0c310e43ff3eac
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822956"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116790245"
 ---
-# <a name="chapter-6---azure-rtos-levelx-nor-apis"></a>Rozdział 6 — usługa Azure RTO LevelX lub interfejsy API
+# <a name="chapter-6---azure-rtos-levelx-nor-apis"></a>Rozdział 6 — Azure RTOS LevelX ANI interfejsy API
 
-Usługa Azure RTO LevelX lub funkcje interfejsu API dostępne dla aplikacji są następujące.
+Dostępne Azure RTOS interfejsu API LevelX ANI API są następujące.
 
-- ***lx_nor_flash_close** _: _Close lub Flash wystąpienie *
-- ***lx_nor_flash_defragment** _: _Defragment lub Flash wystąpienie *
-- ***lx_nor_flash_extended_cache_enable** _: _Enable/Disable Extended lub cache *
-- ***lx_nor_flash_initialize** _: _Initialize lub Flash support *
-- ***lx_nor_flash_open** _: _Open lub Flash wystąpienie *
-- ***lx_nor_flash_partial_defragment** _: _Partial defragmentacji wystąpienia lub Flash *
-- ***lx_nor_flash_sector_read** _: _Read lub sektor Flash *
-- ***lx_nor_flash_sector_release** _: _Release lub sektor Flash *
-- ***lx_nor_flash_sector_write** _: _Write lub sektor Flash *
+- ***lx_nor_flash_close** _: _Close ANI flash instance*
+- ***lx_nor_flash_defragment** _: _Defragment ANI flash instance*
+- ***lx_nor_flash_extended_cache_enable** _: _Enable/wyłącz rozszerzoną pamięć podręczną ANI*
+- ***lx_nor_flash_initialize** _: obsługa _Initialize ANI flash*
+- ***lx_nor_flash_open** _: _Open ANI flash instance*
+- ***lx_nor_flash_partial_defragment** _: _Partial defragmentacji wystąpienia flash NOR*
+- ***lx_nor_flash_sector_read** _: _Read ANI sektor flash*
+- ***lx_nor_flash_sector_release** _: _Release ANI sektor flash*
+- ***lx_nor_flash_sector_write** _: _Write ANI sektor flash*
 
 ## <a name="lx_nor_flash_close"></a>lx_nor_flash_close
 
-Zamknij lub Flash wystąpienie
+Zamykanie wystąpienia flash NOR
 
 ### <a name="prototype"></a>Prototype
 
@@ -39,16 +39,16 @@ UINT lx_nor_flash_close(LX_NOR_FLASH *nor_flash);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zamyka poprzednio otwarte i nieflash wystąpienie.
+Ta usługa zamyka wcześniej otwarte wystąpienie ANI flash.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- *nor_flash*: ani na Flash wskaźnik wystąpienia.
+- *nor_flash:* ANI flash instance pointer (Wskaźnik wystąpienia flash).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd podczas zamykania wystąpienia Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd podczas zamykania wystąpienia flash.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -76,7 +76,7 @@ status = lx_nor_flash_close(&my_nor_flash);
 
 ## <a name="lx_nor_flash_defragment"></a>lx_nor_flash_defragment
 
-Defragmentacja i wystąpienie programu Flash
+Defragmentacja ANI flash wystąpienia
 
 ### <a name="prototype"></a>Prototype
 
@@ -86,16 +86,16 @@ UINT lx_nor_flash_defragment(LX_NOR_FLASH *nor_flash);
 
 ### <a name="description"></a>Opis
 
-Ta usługa defragmentuje poprzednio otwarte i nieflash wystąpienie. Proces defragmentacji maksymalizuje liczbę wolnych sektorów i bloków.
+Ta usługa defragmentuje wcześniej otwarte wystąpienie flash ANI. Proces defragmentacji maksymalizuje liczbę wolnych sektorów i bloków.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- *nor_flash*: ani na Flash wskaźnik wystąpienia.
+- *nor_flash:* ANI flash instance pointer (Wskaźnik wystąpienia flash).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd podczas defragmentowania wystąpienia Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd defragmentacji wystąpienia flash.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -123,7 +123,7 @@ status = lx_nor_flash_defragment(&my_nor_flash);
 
 ## <a name="lx_nor_flash_extended_cache_enable"></a>lx_nor_flash_extended_cache_enable
 
-Włącz/Wyłącz rozszerzoną lub buforowaną pamięć podręczną
+Włączanie/wyłączanie rozszerzonej pamięci podręcznej NOR
 
 ### <a name="prototype"></a>Prototype
 
@@ -136,19 +136,19 @@ UINT lx_nor_flash_extended_cache_enable(
 
 ### <a name="description"></a>Opis
 
-Ta usługa służy do implementowania warstwy pamięci podręcznej sektora i w pamięci RAM przy użyciu pamięci dostarczonej przez aplikację. Każde 512 bajtów dostarczonej pamięci jest tłumaczone do jednego lub sektora, który może być buforowany. W pamięci podręcznej sektory są te, które zawierają informacje o kontrolkach bloku, np., liczba wymazów, Mapa wolnego sektora i informacje o mapowaniu sektorów. Sektory danych nie są przechowywane w tej pamięci podręcznej.
+Ta usługa implementuje warstwę pamięci podręcznej sektora NOR w pamięci RAM przy użyciu pamięci dostarczonej przez aplikację. Każde 512 bajtów dostarczonej pamięci przekłada się na jeden sektor NOR, który może być buforowany. Buforowane sektory to te, które zawierają informacje o kontroli bloków, np. liczbę wymazań, mapę wolnych sektorów i informacje o mapowaniu sektorów. Sektory danych nie są przechowywane w tej pamięci podręcznej.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **nor_flash**: ani na Flash wskaźnik wystąpienia.  
-- **pamięć**: początkowy adres pamięci podręcznej wyrównany do ULONG dostępu. Wartość LX_NULL powoduje wyłączenie pamięci podręcznej.  
-- **rozmiar**: rozmiar w bajtach dostarczonej pamięci (powinien być wielokrotnością 512 bajtów).
+- **nor_flash:** ANI flash instance pointer (Wskaźnik wystąpienia flash).  
+- **memory:** adres początkowy pamięci podręcznej wyrównany do dostępu przez program ULONG. Wartość LX_NULL powoduje wyłączenie pamięci podręcznej.  
+- **rozmiar:** rozmiar w bajtach dostarczonej pamięci (powinien być wielokrotnością 512 bajtów).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0x01) za mało pamięci dla jednego i sektora.
-- **LX_DISABLED**: (0X09) lub rozszerzona pamięć podręczna wyłączona przez opcję konfiguracji.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Za mało pamięci dla jednego sektora NOR.
+- **LX_DISABLED:**(0x09) ANI rozszerzona pamięć podręczna wyłączona przez opcję konfiguracji.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -177,7 +177,7 @@ status = lx_nor_flash_extended_cache_enable(&my_nor_flash,
 
 ## <a name="lx_nor_flash_initialize"></a>lx_nor_flash_initialize
 
-Obsługa inicjowania i Flash
+Obsługa inicjowania ANI flash
 
 ### <a name="prototype"></a>Prototype
 
@@ -187,7 +187,7 @@ UINT lx_nor_flash_initialize(void);
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje usługę LevelX lub Flash support. Musi być wywoływana przed wszystkimi innymi LevelXami i interfejsami API.
+Ta usługa inicjuje obsługę technologii LevelX ANI flash. Musi być wywoływana przed innymi interfejsami API LevelX ANI .
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -195,12 +195,12 @@ Ta usługa inicjuje usługę LevelX lub Flash support. Musi być wywoływana prz
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd podczas inicjowania i obsługi Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd inicjowania ANI obsługa flash.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -224,7 +224,7 @@ status = lx_nor_flash_initialize();
 
 ## <a name="lx_nor_flash_open"></a>lx_nor_flash_open
 
-Otwórz i uruchom wystąpienie
+Otwieranie wystąpienia flash NOR
 
 ### <a name="prototype"></a>Prototype
 
@@ -237,19 +237,19 @@ UINT lx_nor_flash_open(
 
 ### <a name="description"></a>Opis
 
-Ta usługa otwiera wystąpienie a i Flash z określonym i funkcją inicjowania sterownika. Należy pamiętać, że funkcja inicjowania sterownika jest odpowiedzialna za Instalowanie różnych wskaźników funkcji do odczytywania, pisania i wymazywania bloków sprzętu i niezwiązanych z tym wystąpieniem.
+Ta usługa otwiera wystąpienie flash NOR z określonym blokiem kontrolki flash NOR i funkcją inicjowania sterownika. Należy pamiętać, że funkcja inicjowania sterownika jest odpowiedzialna za instalowanie różnych wskaźników funkcji do odczytywania, zapisywania i wymazania bloków sprzętu NOR skojarzonego z tym wystąpieniem flash NOR.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- *nor_flash*: ani na Flash wskaźnik wystąpienia.
-- *Nazwa*: Nazwa i wystąpienie programu Flash.
-- *nor_driver_initialize*: wskaźnik funkcji do i funkcji inicjowania sterownika Flash. Więcej informacji na temat obowiązków związanych z sterownikiem i ich Flash można znaleźć w rozdziale 5 tego przewodnika.
+- *nor_flash:* ANI flash instance pointer (Wskaźnik wystąpienia flash).
+- *name*: nazwa wystąpienia flash NOR.
+- *nor_driver_initialize:* Wskaźnik funkcji do funkcji inicjowania sterownika flash NOR. Zapoznaj się z rozdziałem 5 tego przewodnika, aby uzyskać więcej informacji na temat obowiązków dotyczących sterowników flash ANI.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd otwierania i wystąpienia Flash.
-- **LX_NO_MEMORY**: (0X08) sterownik nie dostarczył buforu do odczytu sektora none w pamięci RAM.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd podczas otwierania ANI wystąpienia flash.
+- **LX_NO_MEMORY:** sterownik (0x08) nie zapewnia buforu odczytu z żadnego sektora do pamięci RAM.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -278,7 +278,7 @@ status = lx_nor_flash_open(&my_nor_flash,"my NOR flash",
 
 ## <a name="lx_nor_flash_partial_defragment"></a>lx_nor_flash_partial_defragment
 
-Częściowa defragmentacja lub wystąpienie programu Flash
+Częściowa defragmentacja wystąpienia flash NOR
 
 ### <a name="prototype"></a>Prototype
 
@@ -290,17 +290,17 @@ UINT lx_nor_flash_partial_defragment(
 
 ### <a name="description"></a>Opis
 
-Ta usługa defragmentuje poprzednio otwarte lub Flash wystąpienie do maksymalnej liczby określonych bloków. Proces defragmentacji maksymalizuje liczbę wolnych sektorów i bloków.
+Ta usługa defragmentuje wcześniej otwarte wystąpienie ani flash do maksymalnej liczby określonych bloków. Proces defragmentacji maksymalizuje liczbę wolnych sektorów i bloków.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- *nor_flash*: ani na Flash wskaźnik wystąpienia.
-- *max_blocks*: Maksymalna liczba bloków.
+- *nor_flash:* ANI flash instance pointer (Wskaźnik wystąpienia flash).
+- *max_blocks:* maksymalna liczba bloków.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd podczas defragmentowania wystąpienia Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd defragmentacji wystąpienia flash.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -328,7 +328,7 @@ status = lx_nor_flash_partial_defragment(&my_nor_flash, 1);
 
 ## <a name="lx_nor_flash_sector_read"></a>lx_nor_flash_sector_read
 
-Odczytaj i wycinek
+Odczytaj sektor flash NOR
 
 ### <a name="prototype"></a>Prototype
 
@@ -341,18 +341,18 @@ UINT lx_nor_flash_sector_read(
 
 ### <a name="description"></a>Opis
 
-Ta usługa odczytuje sektor logiczny z wystąpienia i programu Flash i jeśli pomyślnie zwraca zawartość z podanego buforu. Należy pamiętać, że rozmiar sektora nie jest zawsze 512 bajtów.
+Ta usługa odczytuje sektor logiczny z wystąpienia flash NOR i w przypadku powodzenia zwraca zawartość w dostarczonym buforze. Należy pamiętać, że rozmiar sektora NOR to zawsze 512 bajtów.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- *nor_flash* LUB wskaźnik wystąpienia programu Flash.
-- *logical_sector*: sektor logiczny do odczytania.
-- *bufor*: wskaźnik do miejsca docelowego dla zawartości sektora logicznego. Należy pamiętać, że bufor jest przyjmowana jako 512 bajtów i wyrównany do ULONG dostępu.
+- *nor_flash* ANI wskaźnik wystąpienia flash.
+- *logical_sector:* sektor logiczny do odczytania.
+- *buffer*: wskaźnik do miejsca docelowego dla zawartości sektora logicznego. Należy pamiętać, że przyjmuje się, że bufor ma rozmiar 512 bajtów i jest wyrównany w celu uzyskania dostępu do programu ULONG.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0x01) odczytywanie błędów i sektory Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd odczytu ANI sektora flash.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -380,7 +380,7 @@ status = lx_nor_flash_sector_read(&my_nor_flash, 20, buffer);
 
 ## <a name="lx_nor_flash_sector_release"></a>lx_nor_flash_sector_release
 
-Wydanie lub sektor Flash
+Zwolnij sektor flash NOR
 
 ### <a name="prototype"></a>Prototype
 
@@ -392,17 +392,17 @@ UINT lx_nor_flash_sector_release(
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwalnia mapowanie sektora logicznego w wystąpieniu programu i programu Flash. Zwolnienie sektora logicznego, gdy nie jest używany, sprawia, że LevelX zwiększa wydajność.
+Ta usługa zwalnia mapowanie sektorów logicznych w wystąpieniu flash NOR. Zwalnianie sektora logicznego, gdy nie jest używany, sprawia, że poziom zużycia LevelX jest bardziej wydajny.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- *nor_flash*: ani na Flash wskaźnik wystąpienia.
-- *logical_sector*: sektor logiczny do wydania.
+- *nor_flash:* ANI flash instance pointer (Wskaźnik wystąpienia flash).
+- *logical_sector:* sektor logiczny do wydania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_ERROR**: (0X01) błąd ani zapis sektora programu Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_ERROR:**(0x01) Błąd ANI zapis sektora flash.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -430,7 +430,7 @@ status = lx_nor_flash_sector_release(&my_nor_flash, 20);
 
 ## <a name="lx_nor_flash_sector_write"></a>lx_nor_flash_sector_write
 
-Pisanie i sektory w programie Flash
+Sektor flash WRITE NOR
 
 ### <a name="prototype"></a>Prototype
 
@@ -443,19 +443,19 @@ UINT lx_nor_flash_sector_write(
 
 ### <a name="description"></a>Opis
 
-Ta usługa Zapisuje określony sektor logiczny w wystąpieniu i programie Flash.
+Ta usługa zapisuje określony sektor logiczny w wystąpieniu flash NOR.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- *nor_flash*: ani na Flash wskaźnik wystąpienia.
-- *logical_sector*: sektor logiczny do zapisu.
-- *bufor*: wskaźnik do zawartości sektora logicznego. Należy pamiętać, że bufor jest przyjmowana jako 512 bajtów wyrównany do ULONG dostępu.
+- *nor_flash:* ANI flash instance pointer (Wskaźnik wystąpienia flash).
+- *logical_sector:* sektor logiczny do zapisu.
+- *buffer*: wskaźnik do zawartości sektora logicznego. Należy pamiętać, że przyjmuje się, że bufor jest wyrównany o 512 bajtów w celu uzyskania dostępu do programu ULONG.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **LX_SUCCESS**: (0X00) pomyślne żądanie.
-- **LX_NO_SECTORS**: (0X02) nie ma więcej dostępnych wolnych sektorów do przeprowadzenia zapisu.
-- **LX_ERROR**: (0X01) błąd podczas zwalniania ani sektora Flash.
+- **LX_SUCCESS:**(0x00) Żądanie pomyślne.
+- **LX_NO_SECTORS:**(0x02) Nie są dostępne żadne więcej wolnych sektorów do wykonania zapisu.
+- **LX_ERROR:**(0x01) Błąd zwalniający sektor flash NOR.
 
 ### <a name="allowed-from"></a>Dozwolone z
 

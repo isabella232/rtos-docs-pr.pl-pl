@@ -1,49 +1,49 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z translatora adresów sieciowych
-description: Ten rozdział zawiera opis sposobu instalowania, konfigurowania i używania usług translatora adresów sieciowych NetX Duo.
+title: Rozdział 2 — Instalowanie i używanie nat
+description: Ten rozdział zawiera opis sposobu instalowania, instalowania i używania usług NetX Duo NAT.
 author: philmea
 ms.author: philmea
 ms.date: 07/14/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 47816c8a62aed9e2b096b121d1676c66178ad825
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: e1eb96e53f600eac56f8a82f3ca02ccfdaabf5cc12d95989e1e38e87775ff24f
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821768"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116797385"
 ---
-# <a name="chapter-2---installation-and-use-of-nat"></a>Rozdział 2 — Instalowanie i korzystanie z translatora adresów sieciowych
+# <a name="chapter-2---installation-and-use-of-nat"></a>Rozdział 2 — Instalowanie i używanie nat
 
-Ten rozdział zawiera opis sposobu instalowania, konfigurowania i używania usług translatora adresów sieciowych NetX Duo.
+Ten rozdział zawiera opis sposobu instalowania, instalowania i używania usług NetX Duo NAT.
 
-## <a name="netx-duo-nat-installation"></a>Instalacja translatora adresów sieciowych NetX Duo
+## <a name="netx-duo-nat-installation"></a>Instalacja systemu NetX Duo NAT
 
-NetX Duo translator adresów sieciowych jest dostępny pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet translatora adresów sieciowych NetX Duo zawiera jeden plik źródłowy i jeden plik nagłówka, plik aplikacji demonstracyjnej i plik PDF dla tego dokumentu w następujący sposób:
+NetX Duo NAT jest dostępny na stronie [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet NetX Duo NAT zawiera jeden plik źródłowy i jeden plik nagłówkowy, demonstracyjny plik aplikacji i plik PDF dla tego dokumentu w następujący sposób:
 
-- **nx_nat. c** Plik źródłowy języka C dla NetX Duo translator adresów sieciowych
-- **nx_nat. h** Plik nagłówkowy C dla NetX Duo translator adresów sieciowych
-- **demo_netx_nat. c** Przykładowy plik źródłowy hosta NetX Duo C
-- **nx_nat.docx** Opis podręcznika użytkownika dotyczącego systemu NetX Duo (ten dokument)
+- **nx_nat.c** Plik źródłowy języka C dla netX Duo NAT
+- **nx_nat.h** Plik nagłówka języka C dla narzędzia NetX Duo NAT
+- **demo_netx_nat.c** Przykładowy plik źródłowy hosta NetX Duo C
+- **nx_nat.docx** Opis podręcznika użytkownika aplikacji NetX Duo NAT (ten dokument)
 
-Skopiuj pliki kodu źródłowego translatora adresów sieciowych NetX Duo do tego samego katalogu, w którym zainstalowano NetX Duo i ThreadX. Na przykład jeśli NetX Duo i ThreadX są zainstalowane w katalogu "*\threadx\mcf5485\green*", a następnie *nx_nat. c*, *nx_nat. h, a zmodyfikowane pliki NetX Duo* powinny zostać skopiowane do tego katalogu. Skopiuj zmodyfikowane pliki NetX Duo z istniejących plików NetX Duo. Skopiuj również pliki sterownika kontrolera sieci Ethernet do tego katalogu.
+Skopiuj pliki kodu źródłowego NetX Duo NAT do tego samego katalogu, w którym zainstalowano oprogramowanie NetX Duo i ThreadX. Jeśli na przykład netx Duo i ThreadX są zainstalowane w katalogu *"\threadx\mcf5485\green",* do tego katalogu powinny zostać skopiowane pliki *nx_nat.c*, *nx_nat.h i zmodyfikowane pliki NetX Duo.* Skopiuj zmodyfikowane pliki NetX Duo do istniejących plików NetX Duo. Skopiuj również pliki sterowników kontrolera Ethernet do tego katalogu.
 
 Aby skompilować aplikację NAT NetX Duo:
 
-- Biblioteka NetX Duo *nxduo. a* musi być skompilowana przy użyciu NX_NAT_ENABLED zdefiniowanej. Można to zrobić w *nx_user. h*, (Upewnij się, że NX_INCLUDE_USER_DEFINE_FILE jest również zdefiniowana, aby upewnić się, że opcje konfiguracji w *nx_user. h* zostały uwzględnione w kompilacji.
-- Projekt aplikacji musi zawierać *nx_nat. h* po *tx_api. h* i *nx_api. h. Te ostatnie dwa pliki nagłówkowe są niezbędne* do korzystania z usług ThreadX i NetX Duo.
-- Następnie aplikacja włącza translator adresów sieciowych dla utworzonego wcześniej wystąpienia IP przy użyciu usługi *nx_nat_enable* .
-- Kod aplikacji umożliwia dynamiczne włączenie/wyłączenie translatora adresów sieciowych przez wywołanie *nx_nat_enable* i *nx_nat_disable* usługi.
-- Kod projektu aplikacji jest kompilowany i połączony z biblioteką NetX Duo z włączoną obsługą translatora adresów sieciowych w celu utworzenia pliku wykonywalnego.
-- Aby można było obsługiwać połączenia NAT przy użyciu protokołów TCP, UDP lub ICMP, NetX Duo musi być włączona, aby obsługiwał ten protokół. W tym celu należy odpowiednio wywołać *nx_tcp_enable, nx_udp_enable* i *nx_icmp_enable* dla wcześniej utworzonego wystąpienia adresu IP.
+- Biblioteka NetX Duo *nxduo.a* musi być budowaną przy użyciu NX_NAT_ENABLED zdefiniowanej. Można to zrobić w *pliku nx_user.h*(upewnij się, że NX_INCLUDE_USER_DEFINE_FILE zdefiniowano również opcje konfiguracji w pliku *nx_user.h* w kompilacji.
+- Projekt aplikacji musi zawierać *nx_nat.h* po *tx_api.h* i *nx_api.h. Dwa ostatnie pliki nagłówkowe są niezbędne do* korzystania z usług ThreadX i NetX Duo.
+- Następnie aplikacja włącza nat na wcześniej utworzonym wystąpieniu adresu IP przy *użyciu nx_nat_enable* usługi.
+- Kod aplikacji może dynamicznie włączać/wyłączać funkcje NAT, wywołując *nx_nat_enable* i *nx_nat_disable* usługę.
+- Kod projektu aplikacji jest kompilowany i połączony z biblioteką NetX Duo z włączoną obsługą nat w celu utworzenia pliku wykonywalnego.
+- Aby obsługiwać połączenia NAT przy użyciu protokołów TCP, UDP lub ICMP, należy włączyć obsługę tego protokołu w aplikacji NetX Duo. W tym celu należy *nx_tcp_enable, nx_udp_enable* i *nx_icmp_enable* odpowiednio dla wcześniej utworzonego wystąpienia adresu IP.
 
-## <a name="small-example-demo-nat-setup"></a>Niewielka Przykładowa demonstracyjna konfiguracja translatora adresów sieciowych
+## <a name="small-example-demo-nat-setup"></a>Przykładowa konfiguracja nat demonstracyjna
 
-Przykładem sposobu konfigurowania aplikacji NetX Duo NAT w funkcji *tx_application_define* na rysunku 4 poniżej. W przeciwieństwie do większości plików demonstracyjnych NetX Duo dystrybuowanych na instalacyjnym dysku CD, ta wersja demonstracyjna jest uruchamiana na rzeczywistej płycie procesora z dwoma kontrolerami Ethernet, a nie z komputerem z systemem Windows przy użyciu sterownika sieci wirtualnej *_nx_ram_network_driver*(). Urządzenie NAT jest połączone z domeną lokalną za pomocą lokalnego przełącznika w jego interfejsie lokalnym oraz do sieci zewnętrznej przez drugi przełącznik w interfejsie zewnętrznym.
+Przykład sposobu, w jaki aplikacja konfiguruje aplikację NetX Duo NAT, znajduje się w *tx_application_define* na rysunku 4 poniżej. W przeciwieństwie do większości plików demonstracyjnych NetX Duo dystrybuowanych na instalacyjnym dysku CD, ta demonstracja jest uruchamiana na rzeczywistej tablicy procesora z dwoma kontrolerami Ethernet, a nie na komputerze Windows używającym sterownika sieci wirtualnej *_nx_ram_network_driver*(). Urządzenie NAT jest połączone z domeną lokalną za pośrednictwem przełącznika lokalnego w interfejsie lokalnym i z siecią zewnętrzną za pośrednictwem drugiego przełącznika interfejsu zewnętrznego.
 
-Konfiguracja podstawowa NetXDuo jest pokazana w demo_netx_nat. c. Sieć prywatna jest definiowana jako 192.168.2. XX i ma dwa węzły hosta lokalnego. Sieć globalna jest definiowana jako 192.168.0. XX i definiuje jej bramę dla pakietów sieciowych jako 192.168.0.1. Wystąpienia adresów IP NetX Duo są tworzone w wierszach 118-171 i wywołują sterownik "ram"; wystąpienie nat_ip dołączone dwa interfejsy działa jako router NAT, local_ip wystąpienie dołączone do interfejsu działa jako host lokalny; wystąpienie external_ip dołączone jeden interfejs działa jako host zewnętrzny.
+Podstawowa konfiguracja NetXDuo jest wyświetlana w pliku demo_netx_nat.c. Sieć prywatna jest zdefiniowana jako 192.168.2.xx i ma dwa węzły hosta lokalnego. Sieć globalna jest zdefiniowana jako 192.168.0.xx i definiuje swoją bramę dla pakietów sieciowych jako 192.168.0.1. Wystąpienia adresów IP NetX Duo są tworzone w wierszach 118–171 i wywołują sterownik "ram". nat_ip dołączone dwa interfejsy działają jako router NAT, a local_ip dołączone do interfejsu działają jako host lokalny; external_ip dołączony jeden interfejs działa jako host zewnętrzny.
 
-Translator adresów sieciowych jest tworzony w wierszu 252 i wywołuje pamięć podręczną do przechowywania dynamicznych wpisów translacji. Włączenie funkcji NAT w line319, statycznego tłumaczenia entrie (wpis przychodzący) jest tworzony w wierszach 362, aby umożliwić zewnętrznym hostowi dostęp do hosta lokalnego.
+Translator translatora danych jest tworzony w wierszu 252 i wywołuje pamięć podręczną w celu przechowywania dynamicznych wpisów tłumaczenia. Włącz funkcję NAT w wierszu 319, statyczny element translacji (wpis przychodzący) jest tworzony w wierszach 362, aby umożliwić hostowi zewnętrznemu dostęp do hosta lokalnego.
 
 ```C
 /*
@@ -456,4 +456,4 @@ NX_PACKET   *my_packet;
 #endif
 ```
 
-**Rysunek 5 — Konfigurowanie translatora adresów sieciowych NetX Duo**
+**Rysunek 5. Konfigurowanie netx Duo NAT**

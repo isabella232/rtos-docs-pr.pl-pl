@@ -1,21 +1,21 @@
 ---
-title: Rozdział 3 — usługi Azure RTO NetX BSD
-description: Ten rozdział zawiera opis wszystkich usług Azure RTO NetX BSD Basic wymienionych poniżej w kolejności alfabetycznej.
+title: Rozdział 3 — Azure RTOS NetX BSD
+description: Ten rozdział zawiera opis wszystkich podstawowych usług Azure RTOS NetX BSD wymienionych poniżej w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 9fe96f9896b76294a32543e9a4e0ae11da601ca6
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 064f52ce34d46562b71f53e0230ea02ac467139149e27bd4dd0f2b64629ab607
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821504"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116796789"
 ---
-# <a name="chapter-3---azure-rtos-netx-bsd-services"></a>Rozdział 3 — usługi Azure RTO NetX BSD
+# <a name="chapter-3---azure-rtos-netx-bsd-services"></a>Rozdział 3 — Azure RTOS NetX BSD
 
-Ten rozdział zawiera opis wszystkich usług Azure RTO NetX BSD Basic wymienionych poniżej w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich podstawowych usług Azure RTOS NetX BSD wymienionych poniżej w kolejności alfabetycznej.
 
 ```c
 INT accept(INT sockID, struct sockaddr *ClientAddress, INT *addressLength);
