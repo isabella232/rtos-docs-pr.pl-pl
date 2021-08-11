@@ -1,21 +1,21 @@
 ---
-title: Dodatek B — plik tx_trace. h
-description: W tym rozdziale przedstawiono plik tx_trace. h.
+title: Dodatek B — plik tx_trace.h
+description: W tym rozdziale jest wyświetlany tx_trace.h.
 author: philmea
 ms.service: rtos
 ms.topic: article
 ms.date: 5/19/2020
 ms.author: philmea
-ms.openlocfilehash: 23d318186709e1ecc8085daee41f1569f70af5a3
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 13479071452c189bc87dd974a506ff34fc4da8b51e3bf0339e9c9bb3c2e3b7a7
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823731"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116798235"
 ---
-# <a name="appendix-b---the-tx_traceh-file"></a>Dodatek B — plik tx_trace. h
+# <a name="appendix-b---the-tx_traceh-file"></a>Dodatek B — plik tx_trace.h
 
-W tym rozdziale przedstawiono plik **tx_trace. h** .
+W tym rozdziale jest **wyświetlany tx_trace.h.**
 
 ```c
 /**************************************************************************/

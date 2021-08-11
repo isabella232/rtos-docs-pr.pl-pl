@@ -1,23 +1,23 @@
 ---
-title: Rozdział 6 — USBX przechwytywania zmian — ECM klasy
-description: USBX zawiera klasę reklasy ECM dla hosta i urządzenia. Ta klasa została zaprojektowana tak, aby była używana z NetX, w odniesieniu do klasy USBX-ECM, działa jako sterownik dla NetX. Dlatego nie ma żadnych interfejsów API ECM w rozdziale 5.
+title: Rozdział 6 — Użycie klasy USBX CDC-ECM
+description: UsbX zawiera klasę CDC-ECM po stronie hosta i urządzenia. Ta klasa jest przeznaczona do pracy z NetX, w szczególności klasa USBX CDC-ECM działa jako sterownik dla NetX. Dlatego w rozdziale 5 nie ma żadnych interfejsów API CDC-ECM.
 author: philmea
 ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: 18e7e075788623916de36cf911597230295b56c5
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 7328b8c3537acac1ef02fced32b0c2731065aea0c6e2742a96f0644e9a8045f0
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104824342"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116798354"
 ---
-# <a name="chapter-6---usbx-cdc-ecm-class-usage"></a>Rozdział 6 — USBX przechwytywania zmian — ECM klasy
+# <a name="chapter-6---usbx-cdc-ecm-class-usage"></a>Rozdział 6 — Użycie klasy USBX CDC-ECM
 
-USBX zawiera klasę reklasy ECM dla hosta i urządzenia. Ta klasa została zaprojektowana tak, aby była używana z NetX, w odniesieniu do klasy USBX-ECM, działa jako sterownik dla NetX. Dlatego nie ma żadnych interfejsów API ECM w rozdziale 5.
+UsbX zawiera klasę CDC-ECM po stronie hosta i urządzenia. Ta klasa jest przeznaczona do pracy z NetX, w szczególności klasa USBX CDC-ECM działa jako sterownik dla NetX. Dlatego w rozdziale 5 nie ma żadnych interfejsów API CDC-ECM.
 
-Po zainicjowaniu NetX i USBX, a wystąpienie urządzenia przepustek ECM zostanie znalezione przez USBX, aplikacja używa wyłącznie programu NetX do komunikowania się z urządzeniem. Inicjalizacja jest zgodna ze wzorcem przedstawionym w poniższym przykładzie.
+Po zainicjowania netx i USBX wystąpienia urządzenia CDC-ECM przez USBX, aplikacja używa wyłącznie NetX do komunikowania się z urządzeniem. Inicjalizacja jest zgodna ze wzorcem przedstawionym w poniższym przykładzie.
 
 ```c
 UINT status;

@@ -1,839 +1,839 @@
 ---
-title: Rozdział 3 — funkcjonalne składniki platformy Azure RTO ThreadX SMP
-description: Ten rozdział zawiera opis jądra SMP HighPerformance Azure RTO ThreadX z perspektywy funkcjonalnej.
+title: Rozdział 3 — Składniki funkcjonalne Azure RTOS ThreadX SMP
+description: Ten rozdział zawiera opis wysokiej wydajności Azure RTOS SMP ThreadX z perspektywy funkcjonalnej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 6a72acb111aa986f4621e8747568ce3ce3e5e080
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 04676491f8ccaa98fa9ad396c221c38901c188b420ed710da3c96d863b49e6c5
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104823364"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116799257"
 ---
-# <a name="chapter-3---functional-components-of-azure-rtos-threadx-smp"></a>Rozdział 3 — funkcjonalne składniki platformy Azure RTO ThreadX SMP
+# <a name="chapter-3---functional-components-of-azure-rtos-threadx-smp"></a>Rozdział 3 — Składniki funkcjonalne Azure RTOS ThreadX SMP
 
-Ten rozdział zawiera opis jądra SMP HighPerformance Azure RTO ThreadX z perspektywy funkcjonalnej. Każdy składnik funkcjonalny jest prezentowany w zrozumiały sposób.
+Ten rozdział zawiera opis wysokiej wydajności Azure RTOS SMP ThreadX z perspektywy funkcjonalnej. Każdy składnik funkcjonalny jest przedstawiony w łatwy do zrozumienia sposób.
 
-## <a name="execution-overview"></a>Przegląd wykonywania
+## <a name="execution-overview"></a>Omówienie wykonywania
 
-Istnieją cztery typy wykonywania programu w ramach aplikacji SMP ThreadX: Inicjowanie, wykonywanie wątków, procedury usługi przerwania (procedury ISR) i czasomierze aplikacji.
+W aplikacji SMP ThreadX istnieją cztery typy wykonywania programów: inicjowanie, wykonywanie wątku, procedury usługi przerwań (ISR) i czasomierze aplikacji.
 
-Rysunek 1 na stronie 45 pokazuje każdy inny typ wykonywania programów. Bardziej szczegółowe informacje na temat każdego z tych typów znajdują się w kolejnych sekcjach tego rozdziału.
+Rysunek 1 na stronie 45 przedstawia różne typy wykonywania programu. Bardziej szczegółowe informacje na temat każdego z tych typów można znaleźć w kolejnych sekcjach tego rozdziału.
 
 ### <a name="initialization"></a>Inicjalizacja
-Jak nazywa się, jest to pierwszy typ wykonania programu w aplikacji ThreadX SMP. Inicjalizacja obejmuje wykonywanie wszystkich programów między resetowaniem procesora i punktem wejścia *pętli planowania wątku.*
+Jak sama nazwa wskazuje, jest to pierwszy typ wykonywania programu w aplikacji SMP ThreadX. Inicjowanie obejmuje całe wykonywanie programu między resetowaniem procesora a punktem wejścia pętli *planowania wątków.*
 
 > [!IMPORTANT]
-> Inicjalizacja jest wykonywana przez lub zainicjowana przez rdzeń 0, która jest domyślnym rdzeniem uruchomionym po zresetowaniu.
+> Inicjowanie jest wykonywane przez lub inicjowane przez rdzeń 0, który jest domyślnym uruchomionym rdzeniem po zresetowaniu.
 
 ### <a name="thread-execution"></a>Wykonywanie wątku
-Po zakończeniu inicjalizacji każda rdzeń ThreadX SMP zostanie przesunięty w pętlę planowania wątków. Pętla planowania szuka wątku aplikacji gotowego do wykonania na tym rdzeniu. Po znalezieniu gotowego wątku ThreadX SMP przenosi do niego kontrolę. Po zakończeniu wątku (lub przeniesieniu innego wątku wyższego priorytetu) wykonywanie jest wykonywane z powrotem do pętli planowania wątku, aby znaleźć wątek gotowego o najwyższym priorytecie dla każdego rdzenia.
+Po zakończeniu inicjowania każdy rdzeń z uruchomionym smp ThreadX przechodzi w pętlę planowania wątków. Pętla planowania szuka wątku aplikacji gotowego do wykonania na tym rdzeniu. Po znalezioniu gotowego wątku threadX SMP przekazuje do niego kontrolę. Po zakończeniu wątku (lub przygotowaniu innego wątku o wyższym priorytecie) wykonywanie jest transferowane z powrotem do pętli planowania wątków w celu znalezienia następnego wątku o najwyższym priorytecie gotowego na każdym rdzeniu.
 
-Proces ciągłego wykonywania i planowania wątków jest najpopularniejszym typem wykonywania programów w aplikacjach SMP ThreadX.
+Ten proces ciągłego wykonywania i planowania wątków jest najbardziej powszechnym typem wykonywania programu w aplikacjach SMP ThreadX.
 
 ![Wykonywanie wątku](media/image4.png)
 
 **RYSUNEK 1. Typy wykonywania programu**
 
-### <a name="interrupt-service-routines-isr"></a>Procedury usługi przerwania (ISR)
-Przerwania są podstawą systemów w czasie rzeczywistym. Bez przeszkód bardzo trudne jest reagowanie na zmiany w świecie zewnętrznym w odpowiednim czasie. W przypadku wykrywania przerwania procesor zapisuje kluczowe informacje o bieżącym wykonaniu programu (zwykle na stosie), a następnie przenosi formant do obszaru wstępnie zdefiniowanego programu. Ten wstępnie zdefiniowany obszar programu jest często nazywany procedurą usługi przerwania.
+### <a name="interrupt-service-routines-isr"></a>Procedury usługi przerywania (ISR)
+Przerwania są podstawą systemów czasu rzeczywistego. Bez przerwań reagowanie na zmiany w świecie zewnętrznym w terminowy sposób byłoby niezwykle trudne. Po wykryciu przerwania procesor zapisuje kluczowe informacje o bieżącym wykonaniu programu (zazwyczaj na stosie), a następnie przekazuje kontrolę do wstępnie zdefiniowanego obszaru programu. Ten wstępnie zdefiniowany obszar programu jest często nazywany rutyną usługi przerwań.
 
-W większości przypadków przerwania występują podczas wykonywania wątku (lub w pętli planowania wątku). Przerwania mogą jednak wystąpić w trakcie wykonywania procedury ISR lub czasomierza aplikacji.
+W większości przypadków przerwania występują podczas wykonywania wątku (lub w pętli planowania wątków). Jednak przerwania mogą również wystąpić wewnątrz wykonywanego isr lub czasomierza aplikacji.
 
-Wszystkie rdzenie mogą przetwarzać przerwania. Mapowanie przerwań na rdzenie jest kontrolowane bezpośrednio przez aplikację. Przerwanie czasomierza SMP ThreadX jest domyślnie przypisane do rdzenia 0 w celu przetworzenia. Sprawdź kod w *tx_timer_interrupt. S* dla wdrożenia tego przydziału.
+Wszystkie rdzenie mogą przetwarzać przerwania. Mapowanie przerwań na rdzenie jest pod bezpośrednią kontrolą aplikacji. Przerwanie czasomierza SMP ThreadX jest domyślnie przypisane do rdzenia 0 w celu przetwarzania. Zobacz kod w *tx_timer_interrupt. S* do implementacji tego przypisania.
 
 ### <a name="application-timers"></a>Czasomierze aplikacji
-Czasomierze aplikacji są podobne do procedury ISR, z wyjątkiem tego, że implementacja sprzętowa (zazwyczaj jest używany pojedynczy okresowe przerwanie sprzętowe) jest ukryta w aplikacji. Takie czasomierze są używane przez aplikacje do wykonywania limitów czasu, okresowych i/lub usług alarmowych. Podobnie jak procedury ISR, czasomierze aplikacji najczęściej przerywają wykonywanie wątków. W przeciwieństwie do procedury ISR, jednak czasomierze aplikacji nie mogą przerwać siebie nawzajem.
+Czasomierze aplikacji są podobne do isR, z wyjątkiem implementacji sprzętu (zwykle używane jest jedno okresowe przerwań sprzętowych) jest ukryta przed aplikacją. Takie czasomierze są używane przez aplikacje do wykonywania przekłamań czasu, okresowych i/lub usług watchdog. Podobnie jak w przypadku isR, czasomierze aplikacji najczęściej przerywają wykonywanie wątku. Jednak w przeciwieństwie do isR czasomierze aplikacji nie mogą wzajemnie przerywać działania.
 
 > [!NOTE]
-> Takie jak wątki, czasomierze aplikacji mogą być wykluczone z wykonywania na dowolnym rdzeniu.
+> Podobnie jak wątki czasomierze aplikacji mogą być wykluczone z wykonywania na dowolnym rdzeniu.
 
 ## <a name="memory-usage"></a>Użycie pamięci
 
-ThreadX SMP znajduje się wraz z programem aplikacji. W związku z tym użycie pamięci statycznej (lub stałej pamięci) ThreadX SMP jest określane przez narzędzia programistyczne. na przykład kompilator, konsolidator i lokalizator. Użycie pamięci dynamicznej (lub pamięci w czasie wykonywania) jest kontrolowane bezpośrednio przez aplikację.
+ThreadX SMP znajduje się wraz z programem aplikacji. W związku z tym użycie pamięci statycznej (lub pamięci stałej) przez SMP ThreadX jest określane przez narzędzia programskie. Np. kompilator, linker i lokalizator. Użycie pamięci dynamicznej (lub pamięci w czasie uruchamiania) jest pod bezpośrednią kontrolą aplikacji.
 
 > [!NOTE]
-> Cała pamięć poddana ThreadX SMP musi być spójna z pamięcią podręczną i dostępna ze wszystkich rdzeni wykonujących ThreadX SMP.
+> Cała pamięć dostępna dla SMP ThreadX musi być spójna w pamięci podręcznej i dostępna dla wszystkich rdzeni wykonujących SMP ThreadX.
 
 ### <a name="static-memory-usage"></a>Użycie pamięci statycznej
-Większość narzędzi programistycznych dzieli obraz programu aplikacji na pięć podstawowych obszarów: *instrukcje*, *stałe*, *zainicjowane dane*, *niezainicjowane dane* i *stos systemu*. Rysunek 2 na stronie 47 pokazuje przykład tych obszarów pamięci.
+Większość narzędzi deweloperskimi dzieli obraz programu aplikacji na pięć podstawowych obszarów: *instrukcji* *,* stałej, zainicjowanych danych, *niezainicjowanych* danych i stosu *systemu*. Rysunek 2 na stronie 47 przedstawia przykład tych obszarów pamięci.
 
 ![Użycie pamięci statycznej](media/image5.png)
 
 **RYSUNEK 2. Przykład obszaru pamięci**
 
-Ważne jest, aby zrozumieć, że jest to tylko przykład. Rzeczywisty układ pamięci statycznej jest specyficzny dla procesora, narzędzi programistycznych i bazowego sprzętu.
+Ważne jest, aby zrozumieć, że jest to tylko przykład. Rzeczywisty układ pamięci statycznej jest specyficzny dla procesora, narzędzi programisttycznych i podstawowego sprzętu.
 
-Obszar instrukcji zawiera wszystkie instrukcje procesora programu. Ten obszar jest zwykle największą i często znajduje się w pamięci ROM.
+Obszar instrukcji zawiera wszystkie instrukcje procesora programu. Ten obszar jest zwykle największy i często znajduje się w pamięci ROM.
 
-Obszar stałych zawiera różne skompilowane stałe, w tym ciągi zdefiniowane lub przywoływane w programie. Ponadto ten obszar zawiera "początkową kopię" zainicjowanego obszaru danych. W trakcie procesu inicjowania kompilatora ta część stałego obszaru służy do konfigurowania zainicjowanego obszaru danych w pamięci RAM. Obszar stałych zwykle jest zgodny z obszarem instrukcji i często znajduje się w pamięci ROM.
+Obszar stałej zawiera różne skompilowane stałe, w tym ciągi zdefiniowane lub przywołyne w programie. Ponadto ten obszar zawiera "początkową kopię" zainicjowanych obszarów danych. Podczas procesu inicjowania kompilatora ta część stałego obszaru jest używana do skonfigurowania zainicjowanych obszarów danych w pamięci RAM. Obszar stałej zwykle następuje po obszarze instrukcji i często znajduje się w romcie.
 
-Zainicjowane dane i niezainicjowane obszary danych zawierają wszystkie zmienne globalne i statyczne. Obszary te są zawsze zlokalizowane w pamięci RAM.
+Zainicjowane dane i niezainicjowane obszary danych zawierają wszystkie zmienne globalne i statyczne. Te obszary zawsze znajdują się w pamięci RAM.
 
-Stos systemowy jest zwykle ustawiany bezpośrednio po zainicjowaniu i niezainicjowanym obszarze danych. Stos systemu jest używany przez kompilator podczas inicjacji, a następnie przez ThreadX SMP podczas inicjowania, a następnie w procesie przetwarzania w procesie ISR.
+Stos systemu jest zwykle ustawiany bezpośrednio po zainicjowanych i niezainicjowanych obszarach danych. Stos systemowy jest używany przez kompilator podczas inicjowania, a następnie przez SMP ThreadX podczas inicjowania, a następnie podczas przetwarzania ISR.
 
-### <a name="dynamic-memory-usage"></a>Użycie pamięć dynamiczna
-Jak wspomniano wcześniej, użycie pamięci dynamicznej jest kontrolowane bezpośrednio przez aplikację. Bloki kontroli i obszary pamięci skojarzone z stosami, kolejkami i pulami pamięci można umieścić w dowolnym miejscu w obszarze pamięci docelowej. Jest to ważna funkcja, ponieważ ułatwia ona łatwe wykorzystanie różnych typów pamięci fizycznej.
+### <a name="dynamic-memory-usage"></a>pamięć dynamiczna użycia
+Jak wspomniano wcześniej, dynamiczne użycie pamięci jest pod bezpośrednią kontrolą aplikacji. Bloki sterowania i obszary pamięci skojarzone ze stosami, kolejkami i pulami pamięci można umieścić w dowolnym miejscu w przestrzeni pamięci obiektu docelowego. Jest to ważna funkcja, ponieważ ułatwia wykorzystanie różnych typów pamięci fizycznej.
 
-Załóżmy na przykład, że w docelowym środowisku sprzętowym występuje szybka pamięć i wolna pamięć. Jeśli aplikacja wymaga dodatkowej wydajności dla wątku o wysokim priorytecie, jego blok sterowania (TX_THREAD) i stos można umieścić w obszarze szybkiej pamięci, co może znacząco wzmocnić jego wydajność.
+Załóżmy na przykład, że docelowe środowisko sprzętowe ma zarówno szybką pamięć, jak i powolną pamięć. Jeśli aplikacja wymaga dodatkowej wydajności dla wątku o wysokim priorytecie, jej blok sterowania (TX_THREAD) i stos można umieścić w szybkim obszarze pamięci, co może znacznie zwiększyć wydajność.
 
 ## <a name="initialization"></a>Inicjalizacja 
-Zrozumienie procesu inicjowania jest ważne. Początkowe środowisko sprzętowe jest skonfigurowane w tym miejscu. Ponadto jest to miejsce, w którym aplikacja ma swoją wstępną osobowość.
+Zrozumienie procesu inicjowania jest ważne. W tym miejscu jest ustawione początkowe środowisko sprzętowe. Ponadto w tym miejscu aplikacja ma nadaną początkową osobowość.
 
 > [!IMPORTANT]
-> ThreadX SMP próbuje użyć (o ile to możliwe) pełnego procesu inicjowania narzędzia deweloperskiego. Dzięki temu można łatwiej uaktualniać do nowych wersji narzędzi programistycznych w przyszłości.
+> ThreadX SMP próbuje użyć (jeśli to możliwe) pełnego procesu inicjowania narzędzia deweloperacyjnego. Ułatwi to uaktualnianie do nowych wersji narzędzi deweloperskie w przyszłości.
 
 ### <a name="system-reset-vector"></a>Wektor resetowania systemu 
-Wszystkie mikroprocesory mają logikę resetowania. W przypadku wyzerowania (sprzętowego lub programowego) adres punktu wejścia aplikacji jest pobierany z określonej lokalizacji pamięci. Po pobraniu punktu wejścia procesor przetransferuje kontrolkę do tej lokalizacji. 
+Wszystkie mikroprocesory mają logikę resetowania. W przypadku zresetowania (sprzętu lub oprogramowania) adres punktu wejścia aplikacji jest pobierany z określonej lokalizacji pamięci. Po pobraniu punktu wejścia procesor przekazuje kontrolę do tej lokalizacji. 
 
-Punkt wejścia aplikacji jest bardzo często pisany w natywnym języku asemblera i jest zwykle dostarczany przez narzędzia programistyczne (co najmniej w formularzu szablonu). W niektórych przypadkach specjalna wersja programu wprowadzania jest dostarczana z ThreadX SMP. 
+Punkt wejścia aplikacji jest dość często pisany w natywnym języku zestawu i zazwyczaj jest dostarczany przez narzędzia programskie (przynajmniej w postaci szablonu). W niektórych przypadkach specjalna wersja programu wprowadzania jest dostarczana z threadX SMP. 
 
-### <a name="development-tool-initialization"></a>Inicjowanie narzędzia programistycznego
-Po zakończeniu inicjalizacji niskiego poziomu należy kontrolować transfery do inicjalizacji wysokiego poziomu narzędzia deweloperskiego. Zwykle jest to miejsce, w którym są skonfigurowane zmienne globalne i statyczne języka C. Należy pamiętać, że ich początkowe wartości są pobierane z obszaru stałego. Dokładne przetwarzanie inicjowania jest specyficzne dla narzędzia deweloperskiego.
+### <a name="development-tool-initialization"></a>Inicjalizacja narzędzia programizacyjnego
+Po zakończeniu inicjowania niskiego poziomu kontroluj transfery do inicjowania wysokiego poziomu narzędzia dewelopera. Zazwyczaj jest to miejsce, w którym są ustawiane zainicjowane zmienne globalne i statyczne języka C. Pamiętaj, że ich początkowe wartości są pobierane z obszaru stałego. Dokładne przetwarzanie inicjalizacji jest specyficzne dla narzędzia deweloperacyjnego.
 
-### <a name="main-function"></a>Funkcja Main 
-Po zakończeniu inicjowania narzędzia deweloperskiego należy kontrolować transfery do funkcji *głównej* dostarczonej przez użytkownika. W tym momencie aplikacja kontroluje, co się stanie dalej. W przypadku większości aplikacji główna funkcja po prostu wywołuje *tx_kernel_enter*, który jest wpisem do ThreadX SMP. Jednak aplikacje mogą wykonać wstępne przetwarzanie (zwykle w przypadku inicjowania sprzętowego) przed wprowadzeniem ThreadX SMP.
+### <a name="main-function"></a>main, funkcja 
+Po zakończeniu inicjowania narzędzia deweloperacyjnego sterowanie transferuje dane do funkcji *main dostarczonej przez* użytkownika. W tym momencie aplikacja kontroluje, co się dzieje dalej. W przypadku większości aplikacji funkcja main po prostu *wywołuje funkcję tx_kernel_enter*, która jest wpisem w threadX SMP. Jednak aplikacje mogą wykonywać wstępne przetwarzanie (zazwyczaj w przypadku inicjowania sprzętu) przed wprowadzeniem threadX SMP.
 
 > [!IMPORTANT]
-> Wywołanie tx_kernel_enter nie zwraca, dlatego nie należy umieszczać żadnego przetwarzania po!
+> Wywołanie tx_kernel_enter nie zwraca, więc nie umieszczaj po nim żadnego przetwarzania!
 
 ### <a name="tx_kernel_enter"></a>tx_kernel_enter 
-Funkcja wejścia koordynuje inicjowanie różnych struktur danych SMP wewnętrznej ThreadX, a następnie wywołuje funkcję definicji aplikacji *tx_application_define*.
+Funkcja entry koordynuje inicjowanie różnych wewnętrznych struktur danych SMP ThreadX, a następnie wywołuje funkcję definicji aplikacji *tx_application_define*.
 
-Gdy *tx_application_define* zwraca, kontrola jest przekazywana do pętli planowania wątku. Oznacza to koniec inicjalizacji.
+Gdy *tx_application_define* zwraca, sterowanie jest przenoszone do pętli planowania wątków. Oznacza to koniec inicjowania!
 
 ### <a name="application-definition-function"></a>Funkcja definicji aplikacji
-Funkcja *tx_application_define* definiuje wszystkie początkowe wątki aplikacji, kolejki, semafory, muteksy, flagi zdarzeń, Pule pamięci i czasomierze. Istnieje również możliwość tworzenia i usuwania zasobów systemowych z wątków podczas normalnego działania aplikacji. Wszystkie początkowe zasoby aplikacji są jednak zdefiniowane w tym miejscu.
+Funkcja *tx_application_define* definiuje wszystkie początkowe wątki aplikacji, kolejki, semafory, mutexe, flagi zdarzeń, pule pamięci i czasomierze. Istnieje również możliwość tworzenia i usuwania zasobów systemowych z wątków podczas normalnego działania aplikacji. Jednak wszystkie początkowe zasoby aplikacji są zdefiniowane w tym miejscu.
 
-Funkcja *tx_application_define* ma jeden parametr wejściowy, a jego wartość różni się od siebie. *Pierwszy dostępny* adres pamięci RAM jest jedynym parametrem wejściowym tej funkcji. Jest zazwyczaj używany jako punkt wyjścia dla początkowych alokacji pamięci w czasie wykonywania dla stosów wątków, kolejek i pul pamięci.
+Funkcja *tx_application_define* ma jeden parametr wejściowy i z pewnością warto o nim wspomnieć. Pierwszy *dostępny adres pamięci* RAM jest jedynym parametrem wejściowym dla tej funkcji. Jest ona zwykle używana jako punkt początkowy dla początkowych alokacji pamięci w czasie rzeczywistym stosów wątków, kolejek i pul pamięci.
 
 > [!IMPORTANT]
-> Po zakończeniu inicjalizacji tylko wątek wykonawczy może tworzyć i usuwać zasoby systemowe, w tym inne wątki. W związku z tym należy utworzyć co najmniej jeden wątek podczas inicjalizacji.
+> Po zakończeniu inicjowania tylko wątek wykonujący może tworzyć i usuwać zasoby systemowe — w tym inne wątki. W związku z tym co najmniej jeden wątek musi zostać utworzony podczas inicjowania.
 
-### <a name="interrupts"></a>Przerwań 
-Przerwania są pozostawiane wyłączone podczas całego procesu inicjowania. Jeśli aplikacja w dowolny sposób włącza przerwania, może wystąpić nieprzewidywalne zachowanie. Rysunek 3 na stronie 52 pokazuje cały proces inicjowania, od resetowania systemu przez inicjalizację specyficzną dla aplikacji.
+### <a name="interrupts"></a>Przerwania 
+Przerwania są pozostawiane wyłączone podczas całego procesu inicjowania. Jeśli aplikacja w jakiś sposób włącza przerwania, może wystąpić nieprzewidywalne zachowanie. Rysunek 3 na stronie 52 przedstawia cały proces inicjowania — od resetowania systemu przez inicjowanie specyficzne dla aplikacji.
 
 ## <a name="thread-execution"></a>Wykonywanie wątku
 
-Planowanie i wykonywanie wątków aplikacji jest najważniejszym działaniem ThreadX SMP. Wątek jest zwykle definiowany jako segment częściowo niezależnego programu z dedykowanym przeznaczeniem. Połączone przetwarzanie wszystkich wątków tworzy aplikację.
+Planowanie i wykonywanie wątków aplikacji jest najważniejszą czynnością wątków SMP ThreadX. Wątek jest zwykle definiowany jako segment programu częściowo niezależnego i przeznaczony do określonego celu. Połączone przetwarzanie wszystkich wątków sprawia, że aplikacja.
 
-Wątki są tworzone dynamicznie przez wywoływanie *tx_thread_create* podczas inicjowania lub podczas wykonywania wątku. Wątki są tworzone w stanie *gotowości* lub *wstrzymania* .
+Wątki są tworzone dynamicznie przez *wywołanie* tx_thread_create podczas inicjowania lub wykonywania wątku. Wątki są tworzone w stanie *gotowości lub* *wstrzymania.*
 
 ![Proces inicjowania SMP](media/image6.png)
 
 **RYSUNEK 3. Proces inicjowania SMP**
 
-### <a name="thread-execution-states"></a>Stany wykonywania wątków  
-Zrozumienie różnych stanów przetwarzania wątków jest kluczowym elementem opisującym całe środowisko wielowątkowości. W ThreadX SMP istnieje pięć odrębnych Stanów wątków: *gotowy*, *zawieszony*, *wykonywany*, *zakończony* i zakończony *.* Rysunek 4 przedstawia diagram przejścia stanu wątku dla ThreadX SMP.
+### <a name="thread-execution-states"></a>Stany wykonywania wątku  
+Zrozumienie różnych stanów przetwarzania wątków jest kluczowym składnikiem do zrozumienia całego środowiska wielowątkowego. W threadX SMP istnieje pięć odrębnych stanów wątków: *ready*, *suspended*, *executing*, *terminated* i *completed*. Rysunek 4 przedstawia diagram przejścia stanu wątku dla SMP ThreadX.
 
-![Stany wykonywania wątków](media/image7.png)
+![Stany wykonywania wątku](media/image7.png)
 
 **RYSUNEK 4. Przejście stanu wątku**
 
-Wątek jest w stanie *gotowości* , gdy jest gotowy do wykonania. Wątek gotowy nie jest wykonywany, dopóki nie jest to wątek o najwyższym priorytecie w stanie gotowe. W takim przypadku ThreadX SMP wykonuje wątek, który następnie zmienia jego stan na *wykonywanie*.
+Wątek jest w stanie *gotowości,* gdy jest gotowy do wykonania. Wątek gotowy nie jest wykonywany, dopóki wątek o najwyższym priorytecie nie jest w stanie gotowości. W takim przypadku threadX SMP wykonuje wątek, który następnie zmienia jego stan *na wykonywanie*.
 
-Jeśli wątek o wyższym priorytecie stanie się gotowy, wątek wykonawczy powróci do stanu *gotowości* . Nowo przygotowany wątek o wysokim priorytecie jest następnie wykonywany, co powoduje zmianę jego stanu logicznego na *wykonanie*. To przejście między Stanami *gotowe* i *wykonawcze* odbywa się za każdym razem, gdy wystąpi zastępujący wątek.
+Jeśli wątek o wyższym priorytecie stanie się gotowy, wątek wykonujący zostanie przywrócony do *stanu gotowości.* Nowo gotowy wątek o wysokim priorytecie jest następnie wykonywany, co zmienia jego stan logiczny na *wykonywanie*. To przejście między *stanami gotowości* *i wykonywania* odbywa się za każdym razem, gdy wystąpi wywłaszanie wątku.
 
-W danym momencie tylko jeden wątek jest w stanie *wykonywania* . Dzieje się tak, ponieważ wątek w stanie *wykonywania* ma kontrolę nad podstawowym procesorem.
+W danym momencie tylko jeden wątek jest w *stanie wykonywania.* Wynika to z tego, że wątek w *stanie wykonywania* ma kontrolę nad bazowym procesorem.
 
-Wątki w stanie *wstrzymania* nie kwalifikują się do wykonania. Przyczyny *wstrzymania* w stanie zawieszenia obejmują zawieszenie czasu, komunikatów w kolejce, semaforów, muteksów, flag zdarzeń, pamięci i zawieszenia wątku podstawowego. Po usunięciu przyczyny zawieszenia wątek zostanie umieszczony w stanie *gotowości* .
+Wątki w stanie *zawieszonym* nie kwalifikują się do wykonania. Przyczyny wstrzymania obejmują  wstrzymanie czasu, komunikaty w kolejce, semafory, elementy mutex, flagi zdarzeń, pamięć i podstawowe zawieszenie wątku. Po usunięciu przyczyny zawieszenia wątek jest z powrotem umieszczany w *stanie* gotowości.
 
-Wątek w stanie *ukończone* jest wątkiem, który ukończył przetwarzanie i zwraca z funkcji wejścia. Funkcja wprowadzania jest określana podczas tworzenia wątku. Wątek w stanie *ukończenia* nie może zostać ponownie wykonany.
+Wątek w stanie *ukończenia* jest wątkiem, który zakończył przetwarzanie i zwrócił z funkcji wpisu. Funkcja entry jest określana podczas tworzenia wątku. Wątek w stanie *ukończenia nie* może zostać ponownie wykonany.
 
-Wątek jest w stanie *przerwania* , ponieważ inny wątek lub sam wątek o nazwie Usługa *tx_thread_terminate* . Wątek w stanie *przerwania* nie może zostać ponownie wykonany.
+Wątek jest w stanie *zakończenia,* ponieważ inny wątek lub sam wątek jest nazywany tx_thread_terminate *service.* Wątek w stanie *zakończenia nie* może zostać wykonany ponownie.
 
 > [!IMPORTANT]
-> Jeśli pożądane jest ponowne uruchomienie wątku zakończony lub zakończony, aplikacja musi najpierw usunąć wątek. Następnie można go ponownie utworzyć i ponownie uruchomić.
+> Jeśli wymagane jest ponowne uruchomienie ukończonego lub zakończonego wątku, aplikacja musi najpierw usunąć wątek. Następnie można je ponownie utworzyć i ponownie rozpocząć.
 
 ### <a name="thread-entryexit-notification"></a>Powiadomienie o wejściu/wyjściu wątku  
-Niektóre aplikacje mogą otrzymywać powiadomienia, gdy określony wątek zostanie wprowadzony po raz pierwszy, po jego zakończeniu lub zostanie zakończony. ThreadX SMP zapewnia tę możliwość za pomocą usługi *tx_thread_entry_exit_notify* . Ta usługa rejestruje funkcję powiadamiania aplikacji dla określonego wątku, który jest wywoływany przez ThreadX SMP za każdym razem, gdy wątek zacznie działać, kończy lub zostaje zakończony. Po wywołaniu Funkcja powiadomień aplikacji może wykonać przetwarzanie applicationspecific. Zwykle obejmuje to informowanie innego wątku aplikacji za pośrednictwem elementu podstawowego synchronizacji ThreadX SMP.
+W przypadku niektórych aplikacji korzystne może być powiadomienie, gdy określony wątek zostanie wprowadzony po raz pierwszy, po jego zakończeniu lub jego zakończeniu. ThreadX SMP zapewnia tę możliwość za *pośrednictwem tx_thread_entry_exit_notify* usługi. Ta usługa rejestruje funkcję powiadomień aplikacji dla określonego wątku, który jest wywoływany przez SMP ThreadX za każdym razem, gdy wątek jest uruchomiony, kończy działanie lub zostaje zakończony. Po wywołaniu funkcja powiadomień aplikacji może wykonywać aplikacjeokreślone przetwarzanie. Zwykle obejmuje to informowanie innego wątku aplikacji o zdarzeniu za pośrednictwem prymitywu synchronizacji SMP ThreadX.
 
-### <a name="thread-priorities"></a>Priorytety wątków  
-Jak wspomniano wcześniej, wątek jest niezależnym segmentem programu z dedykowanym przeznaczeniem. Jednak wszystkie wątki nie są tworzone jako równe! Dedykowany cel niektórych wątków jest znacznie ważniejszy niż inne. Ten heterogeniczny typ ważności wątków to Hallmark osadzonych aplikacji w czasie rzeczywistym.
+### <a name="thread-priorities"></a>Priorytety wątku  
+Jak wspomniano wcześniej, wątek jest częściowo niezależnym segmentem programów przeznaczonym do dedykowanych celów. Jednak wszystkie wątki nie są tworzone tak samo! Dedykowany cel niektórych wątków jest znacznie ważniejszy niż inne. Ten heterogeniczny typ ważności wątku jest cechą charakterystyczną osadzonych aplikacji w czasie rzeczywistym.
 
-ThreadX SMP określa ważność wątku, gdy tworzony jest wątek przez przypisanie wartości liczbowej reprezentującej jej *priorytet*. Maksymalna liczba priorytetów SMP ThreadX można skonfigurować w zakresie od 32 do 1024 w przyrostach wynoszących 32. Rzeczywista Maksymalna liczba priorytetów jest określana na podstawie stałej *TX_MAX_PRIORITIES* podczas kompilowania biblioteki SMP ThreadX. Posiadanie większej liczby priorytetów nie powoduje znacznego zwiększenia obciążenia związanego z przetwarzaniem. Jednak dla każdej grupy poziomów priorytetów 32 do zarządzania nimi jest wymagane dodatkowe 128 bajtów pamięci RAM. Na przykład 32 poziomów priorytetów wymaga 128 bajtów pamięci RAM, 64 poziomy priorytetu wymagają 256 bajtów pamięci RAM, a poziom priorytetu 96 wymaga 384 bajtów pamięci RAM.
+ThreadX SMP określa ważność wątku, gdy wątek jest tworzony przez przypisanie wartości liczbowej reprezentującej jej *priorytet*. Maksymalną liczbę priorytetów SMP ThreadX można skonfigurować z 32 do 1024 w przyrostach 32. Rzeczywista maksymalna liczba priorytetów jest określana przez *TX_MAX_PRIORITIES* podczas kompilacji biblioteki SMP ThreadX. Większa liczba priorytetów nie zwiększa znacząco obciążenia związanego z przetwarzaniem. Jednak do zarządzania nimi jest wymagane dodatkowe 128 bajtów pamięci RAM dla każdej grupy o priorytecie 32 poziomów. Na przykład 32 poziomy priorytetu wymagają 128 bajtów pamięci RAM, 64 poziomy priorytetu wymagają 256 bajtów pamięci RAM, a 96 poziomów priorytetu wymaga 384 bajtów pamięci RAM.
 
-Domyślnie ThreadX SMP ma 32 poziomów priorytetów, z zakresu od priorytetu od 0 do 31.
+Domyślnie SMP ThreadX ma 32 poziomy priorytetu, od priorytetu 0 do priorytetu 31.
 
-Mniejsze wartości liczbowe oznaczają wyższy priorytet. W związku z tym priorytet 0 reprezentuje najwyższy priorytet, a priorytet (*TX_MAX_PRIORITIES*-1) reprezentuje najniższy priorytet.
+Wartości mniejsze numerycznie oznaczają wyższy priorytet. W związku z tym priorytet 0 reprezentuje najwyższy priorytet, a priorytet *(TX_MAX_PRIORITIES*-1) oznacza najniższy priorytet.
 
-Wiele wątków może mieć ten sam priorytet polegający na planowaniu współdziałania lub wycinku czasu. Ponadto priorytety wątków można zmieniać w czasie wykonywania.
+Wiele wątków może mieć taki sam priorytet, w zależności od planowania kooperatywnych lub dzielania czasu. Ponadto priorytety wątków można zmieniać w czasie działania.
 
 ### <a name="thread-scheduling"></a>Planowanie wątków 
-ThreadX SMP planuje wątki na podstawie ich priorytetu. Wątek gotowy z najwyższym priorytetem jest wykonywany jako pierwszy. Jeśli jest gotowych wiele wątków o takim samym priorytecie, są one wykonywane w sposób *pierwszy-pierwszy-wyewidencjonowany* (FIFO).
+ThreadX SMP planuje wątki na podstawie ich priorytetu. Gotowy wątek o najwyższym priorytecie jest wykonywany jako pierwszy. Jeśli wiele wątków o tym samym priorytecie jest gotowych, są one wykonywane w trybie fifo *(first-in-first-out).*
 
-Domyślnie ThreadX SMP planuje wątki "n" o najwyższym priorytecie na dostępnych procesorach "n". Jeśli współbieżne przetwarzanie jest wymagane tylko w przypadku gotowych wątków o takim samym priorytecie, biblioteka SMP ThreadX musi być skompilowana przy użyciu zdefiniowanych **TX_THREAD_SMP_EQUAL_PRIORITY** .
+Domyślnie threadX SMP planuje "n" wątki o najwyższym priorytecie na "n" dostępnych procesorów. Jeśli przetwarzanie współbieżne jest wymagane tylko w gotowych wątkach  o tym samym priorytecie, biblioteka SMP ThreadX musi zostać s zbudowana TX_THREAD_SMP_EQUAL_PRIORITY zdefiniowane.
 
 > [!NOTE]
-> Wszystkie wątki mogą być początkowo domyślnie uruchamiane tylko na rdzeńch 0, tworząc bibliotekę SMP ThreadX o zdefiniowanym **TX_THREAD_SMP_ONLY_CORE_0_DEFAULT** .
+> Początkowo można domyślnie uruchamiać wszystkie wątki tylko w rdzeniu 0, budowania biblioteki SMP ThreadX ze zdefiniowanymi **TX_THREAD_SMP_ONLY_CORE_0_DEFAULT** głównymi.
 
 ### <a name="round-robin-scheduling"></a>Planowanie okrężne  
-ThreadX *SMP obsługuje planowanie okrężne* wielu wątków mających taki sam priorytet. Jest to realizowane za poorednictwem wspólnych wywołań do *tx_thread_relinquish*. Ta usługa udostępnia wszystkie inne gotowe wątki o takim samym priorytecie, które mogą wykonać przed ponownym uruchomieniem wywołującego *tx_thread_relinquish* .
+SMP ThreadX obsługuje *planowanie działania* okrężnego wielu wątków o tym samym priorytecie. Jest to realizowane za pośrednictwem wspólnych połączeń z *tx_thread_relinquish*. Ta usługa daje wszystkim innym gotowym wątkom o tym samym priorytecie możliwość *wykonania tx_thread_relinquish,* gdy wywołujący wykona ponownie.
 
 ### <a name="time-slicing"></a>Time-Slicing 
-*Cięcie czasu* jest kolejną formą planowania działania okrężnego. Wycinek czasu określa maksymalną liczbę taktów czasomierza (przerwań czasomierza), którą wątek można wykonać bez podawania procesora. W ThreadX SMP, skalowanie czasu jest dostępne na perthread. Wycinek czasu wątku jest przypisywany podczas tworzenia i może być modyfikowany w czasie wykonywania. Gdy wycinek czasu wygaśnie, wszystkie inne gotowe wątki o tym samym poziomie priorytetu otrzymają szansę wykonania przed ponownym uruchomieniem wątku.
+*Kolejną formą planowania* z zastosowaniem okrężnego jest zastosowanie licowania w czasie. Wycinek czasu określa maksymalną liczbę takt czasomierzy (przerwań czasomierza), które wątek może wykonać bez rezygnacji z procesora. W przypadku SMP ThreadX czas jest dostępny w sposób perthreading. Wycinek czasu wątku jest przypisywany podczas tworzenia i może być modyfikowany w czasie uruchamiania. Gdy wycinek czasu wygaśnie, wszystkie inne gotowe wątki na tym samym poziomie priorytetu będą mieć możliwość wykonania przed wykonaniem ponownie wątku z fragmentami czasu.
 
-Do wątku po zawieszeniu zostanie przyznany oddzielny czas wątku, który wychodzi z wywołania usługi SMP ThreadX, która powoduje przeprowadzenie zastępujący lub sama timesliced.
+Wycinek czasu nowego wątku jest nadany do wątku po jego wstrzymaniu, wywłaszczeniu, wywołaniu usługi SMP ThreadX, które powoduje wywłaszczenie lub samo wywłaszczeniu.
 
-Po przeniesieniu wątku z podziałem czasowym zostanie ono wznowione przed innymi gotowe wątki o równym priorytecie dla pozostałej części czasu.
-
-> [!IMPORTANT]
-> Korzystanie z wycinków czasu powoduje niewielkie obciążenie systemu. Ponieważ podział czasu jest przydatny tylko w przypadkach, w których wiele wątków ma ten sam priorytet, w wątkach mających unikatowy priorytet nie należy przypisywać wycinków czasu.
-
-### <a name="preemption"></a>Wywłaszczania 
-Zastępujący jest procesem tymczasowego przerwania wykonywania wątku na rzecz wątku o wyższym priorytecie. Ten proces jest niewidoczny dla wątku wykonawczego. Po zakończeniu wątku o wyższym priorytecie kontrola jest przekazywana z powrotem do dokładnego miejsca, w którym nastąpiło przemieszczenie.
-
-Jest to bardzo ważna funkcja w systemach w czasie rzeczywistym, ponieważ ułatwia ona szybkie reagowanie na ważne zdarzenia aplikacji. Mimo że jest to bardzo ważna funkcja, zastępujący może być również źródłem różnych problemów, w tym przeciążania, nadmiernego obciążenia i niewersjami priorytetów.
-
-### <a name="preemption-threshold"></a>™ Progu zastępujący 
-Aby ułatwić nietypowe problemy związane z zastępując, ThreadX SMP zapewnia unikatową i zaawansowaną funkcję o nazwie *próg* przekroczenia.
-
-Próg przekroczenia umożliwia wątek określający *priorytet dla* wyłączenia zastępujący. Wątki, które mają wyższe priorytety niż limit, nadal mogą być przełożone, podczas gdy nie mogą być przełożone na mniejsze niż górny limit.
-
-Załóżmy na przykład, że wątek o priorytecie 20 współdziała tylko z grupą wątków o priorytetach od 15 do 20. W jej sekcjach krytycznych wątek o priorytecie 20 może ustawić jego próg przekroczenia na 15, uniemożliwiając tym samym przepełnianie ze wszystkich wątków, z którymi się komunikują. Nadal pozwala to na naprawdę ważne wątki (od 0 do 14), aby przewyższyć ten wątek podczas przetwarzania sekcji krytycznej, co skutkuje znacznie większą szybkością przetwarzania.
-
-Oczywiście nadal jest możliwe, aby wątek wyłączył wszystkie przekroczenia przez ustawienie jego progu zastępujące na 0. Dodatkowo można zmienić próg zastępujący w czasie wykonywania.
+Gdy wątek z wycinkiem czasu zostanie wywłaszowany, zostanie wznowiony przed innymi gotowymi wątkami o równym priorytecie dla pozostałej części tego wycinka czasu.
 
 > [!IMPORTANT]
-> Użycie wartości progowej przekroczenia powoduje wyłączenie wycinka czasu dla określonego wątku.
+> Użycie funkcji licowania w czasie powoduje niewielkie obciążenie systemu. Ponieważ fragmentowanie w czasie jest przydatne tylko w przypadkach, w których wiele wątków ma ten sam priorytet, wątki o unikatowym priorytecie nie powinny mieć przypisanego fragmentu czasu.
+
+### <a name="preemption"></a>Wywłaszczanie 
+Wywłaszczenie to proces tymczasowego przerywania wykonywania wątku na rzecz wątku o wyższym priorytecie. Ten proces jest niewidoczny dla wątku wykonującego. Po zakończeniu wątku o wyższym priorytecie sterowanie jest przenoszone z powrotem do dokładnego miejsca, w którym miało miejsce wywłaszenia.
+
+Jest to bardzo ważna funkcja w systemach czasu rzeczywistego, ponieważ ułatwia szybkie reagowanie na ważne zdarzenia aplikacji. Chociaż jest to bardzo ważna funkcja, wywłaszczenie może być również źródłem różnych problemów, takich jak zator, nadmierne obciążenie i odwrócenie priorytetu.
+
+### <a name="preemption-threshold"></a>Próg wywłaszczenia™ 
+Aby ułatwić niektóre z charakterystycznych problemów wywłaszczenia, threadX SMP udostępnia unikatową i zaawansowaną funkcję o nazwie *próg wywłaszczenia.*
+
+Próg wywłaszczenia umożliwia wątkowi określenie limitu *priorytetu* wyłączania wywłaszczenia. Wątki o wyższych priorytetach niż limit nadal mogą wywłaszczeć, podczas gdy te mniejsze niż limit nie mogą wywłaszczeć.
+
+Załóżmy na przykład, że wątek o priorytecie 20 współdziała tylko z grupą wątków o priorytetach od 15 do 20. W sekcjach krytycznych wątek o priorytecie 20 może ustawić próg wywłaszczenia na 15, zapobiegając wywłaszczeniu ze wszystkich wątków, z których wchodzi w interakcję. Dzięki temu naprawdę ważne wątki (o priorytetach od 0 do 14) mogą wywłaszczyć ten wątek podczas jego krytycznego przetwarzania sekcji, co skutkuje znacznie bardziej dynamicznym przetwarzaniem.
+
+Oczywiście nadal jest możliwe, aby wątek wyłączył wszystkie wywłaszczenia, ustawiając jego próg wywłaszczenia na 0. Ponadto próg wywłaszczenia można zmienić w czasie uruchamiania.
+
+> [!IMPORTANT]
+> Użycie progu wywłaszczenia powoduje wyłączenie czasowego cing dla określonego wątku.
 
 ### <a name="priority-inheritance"></a>Dziedziczenie priorytetów 
-ThreadX SMP obsługuje również opcjonalne dziedziczenie priorytetów w ramach usług muteksów opisanych w dalszej części tego rozdziału. Dziedziczenie priorytetowe umożliwia wątek o niższym priorytecie w celu tymczasowego założenia priorytetu wątku wysokiego priorytetu, który oczekuje na element mutex należący do wątku o niższym priorytecie. Ta funkcja ułatwia aplikacji uniknięcie niedeterministycznych priorytetów, eliminując zastępujące priorytety wątku pośredniego. Oczywiście *próg zastępujący* może być używany do osiągnięcia podobnego wyniku.
+SMP ThreadX obsługuje również opcjonalne dziedziczenie priorytetów w ramach usług mutex opisanych w dalszej części tego rozdziału. Dziedziczenie priorytetów umożliwia wątku o niższym priorytecie tymczasowo przyjąć priorytet wątku o wysokim priorytecie, który oczekuje na mutex należące do wątku o niższym priorytecie. Ta funkcja pomaga aplikacji uniknąć niedeterministycznego odwrócenia priorytetu przez wyeliminowanie wywłaszczenia priorytetów wątku pośredniego. Oczywiście do *osiągnięcia podobnego* wyniku można użyć progu wywłaszczenia.
 
 ### <a name="thread-creation"></a>Tworzenie wątku 
-Wątki aplikacji są tworzone podczas inicjowania lub podczas wykonywania innych wątków aplikacji. Nie ma żadnego limitu liczby wątków, które mogą zostać utworzone przez aplikację.
+Wątki aplikacji są tworzone podczas inicjowania lub wykonywania innych wątków aplikacji. Nie ma żadnego ograniczenia liczby wątków, które mogą zostać utworzone przez aplikację.
 
-### <a name="thread-control-block-tx_thread"></a>TX_THREAD bloku sterowania wątku 
-Charakterystyki każdego wątku są zawarte w jego bloku sterowania. Ta struktura jest zdefiniowana w pliku ***tx_api. h*** .
+### <a name="thread-control-block-tx_thread"></a>Blok sterowania wątkami TX_THREAD 
+Cechy poszczególnych wątków znajdują się w bloku sterującym. Ta struktura jest zdefiniowana ***w tx_api.h.***
 
-Blok sterowania wątku może znajdować się w dowolnym miejscu w pamięci, ale najczęściej jest to, że formant blokuje strukturę globalną poprzez definiowanie jej poza zakresem dowolnej funkcji.
+Blok sterowania wątku może być umieszczony w dowolnym miejscu w pamięci, ale najczęściej blok sterujący ma globalną strukturę przez zdefiniowanie jej poza zakresem dowolnej funkcji.
 
-Lokalizowanie bloku sterowania w innych obszarach wymaga nieco więcej informacji, podobnie jak wszystkie dynamicznie przydzieloną pamięć. Jeśli blok sterowania jest przypisywany w ramach funkcji języka C, skojarzona z nim pamięć jest częścią stosu wywołującego wątku. Ogólnie rzecz biorąc, Unikaj używania lokalnego magazynu dla bloków kontroli, ponieważ po powrocie funkcji jest wydawana cała jego przestrzeń na stosie zmiennych lokalnych, niezależnie od tego, czy inny wątek używa go dla bloku sterowania!
+Lokalizowanie bloku sterującego w innych obszarach wymaga nieco więcej ostrożności, podobnie jak w przypadku całej dynamicznie przydzielanej pamięci. Jeśli blok sterujący jest przydzielany w ramach funkcji języka C, skojarzona z nim pamięć jest częścią stosu wątku wywołującego. Ogólnie rzecz biorąc, unikaj używania magazynu lokalnego dla bloków sterujących, ponieważ po zwracaniu przez funkcję zwalniana jest cała jej przestrzeń stosu zmiennych lokalnych — niezależnie od tego, czy inny wątek używa jej dla bloku sterującego!
 
-W większości przypadków aplikacja jest Oblivious do zawartości bloku sterowania wątku. Istnieją jednak sytuacje, szczególnie podczas debugowania, które są przydatne w przypadku niektórych elementów członkowskich. Poniżej przedstawiono niektóre z bardziej przydatnych elementów członkowskich bloku sterowania:
+W większości przypadków aplikacja jest nieświeższa o zawartości bloku sterowania wątku. Jednak istnieją pewne sytuacje, szczególnie podczas debugowania, w których przydatne jest przyglądanie się niektórym członkom. Poniżej przedstawiono niektóre z bardziej przydatnych elementów członkowskich bloku sterowania:
 
-- **tx_thread_run_count** zawiera Licznik liczby wystąpień wątku, który został zaplanowany. Rosnący licznik wskazuje, że wątek jest zaplanowany i wykonywany.
+- **tx_thread_run_count** licznik liczby zaplanowanych wątków. Rosnący licznik wskazuje, że wątek jest zaplanowany i wykonywany.
 
 - **tx_thread_state** zawiera stan skojarzonego wątku. Poniżej wymieniono możliwe stany wątków:
 
-    - TX_READY (0x00)
-    - TX_COMPLETED (0x01)
-    - TX_TERMINATED (0x02)
-    - TX_SUSPENDED (0x03)
-    - TX_SLEEP (0x04)
-    - TX_QUEUE_SUSP (0x05)
-    - TX_SEMAPHORE_SUSP (0x06)
+    - TX_READY(0x00)
+    - TX_COMPLETED(0x01)
+    - TX_TERMINATED(0x02)
+    - TX_SUSPENDED(0x03)
+    - TX_SLEEP(0x04)
+    - TX_QUEUE_SUSP(0x05)
+    - TX_SEMAPHORE_SUSP(0x06)
     - TX_EVENT_FLAG (0x07)
-    - TX_BLOCK_MEMORY (0x08)
+    - TX_BLOCK_MEMORY(0x08)
     - TX_BYTE_MEMORY (0x09)
-    - TX_MUTEX_SUSP (0x0D)
+    - TX_MUTEX_SUSP(0x0D)
 
 > [!IMPORTANT]
-> Oczywiście istnieje wiele innych interesujących pól w bloku sterowania wątku, w tym Wskaźnik stosu, wartość wycinka czasu, priorytety itp. Użytkownicy mogą przeglądać elementy członkowskie bloku kontrolki, ale modyfikacje są absolutnie zabronione.
+> Oczywiście blok sterowania wątku zawiera wiele innych interesujących pól, w tym wskaźnik stosu, wartość wycinka czasu, priorytety itp. Użytkownicy mogą przeglądać elementy członkowskie bloku kontroli, ale modyfikacje są ściśle zabronione.
 
 > [!IMPORTANT]
-> Nie ma żadnego elementu równego dla stanu "Executing" wymienionego wcześniej w tej sekcji. Nie jest to konieczne, ponieważ w danym momencie istnieje tylko jeden wykonywany wątek. Stan wątku wykonywania jest również ***TX_READY***.
+> Nie ma żadnego równika dla stanu "wykonywania" wspomnianego wcześniej w tej sekcji. Nie jest to konieczne, ponieważ w danym momencie wykonywany jest tylko jeden wątek. Stan wątku wykonującego jest również ***TX_READY***.
 
-### <a name="currently-executing-thread"></a>Aktualnie wykonywany wątek 
-Jak wspomniano wcześniej, w danym momencie jest wykonywany tylko jeden wątek. Istnieje kilka sposobów identyfikacji wątku wykonującego, w zależności od tego, który wątek wykonuje żądanie.
+### <a name="currently-executing-thread"></a>Obecnie wykonywanie wątku 
+Jak wspomniano wcześniej, w danym momencie wykonywany jest tylko jeden wątek. Istnieje kilka sposobów identyfikowania wątku wykonującego, w zależności od tego, który wątek żąda.
 
-Segment programu może uzyskać adres bloku sterowania wykonywanego wątku przez wywołanie ***tx_thread_identify***. Jest to przydatne w przypadku udostępnionych części kodu aplikacji, które są wykonywane z wielu wątków.
+Segment programu może uzyskać adres bloku sterowania wątku wykonującego, wywołując ***tx_thread_identify***. Jest to przydatne w udostępnionych fragmentach kodu aplikacji, które są wykonywane z wielu wątków.
 
-W sesji debugowania użytkownicy mogą przeanalizować tablicę wskaźników SMP wewnętrznej ThreadX ***_tx_thread_current_ptr [rdzeń]***. Zawiera adres bloku kontroli aktualnie wykonywanego wątku. Jeśli ten wskaźnik ma wartość NULL, żaden wątek aplikacji nie jest wykonywany; oznacza to, że ThreadX SMP czeka w swojej pętli planowania, aby wątek stał się gotowy.
+W sesjach debugowania użytkownicy mogą badać wewnętrzną tablicę wskaźników SMP ThreadX ***_tx_thread_current_ptr[core]***. Zawiera adres bloku sterowania aktualnie wykonywanego wątku. Jeśli ten wskaźnik ma wartość NULL, wątek aplikacji nie jest wykonywany; Tj. threadX SMP oczekuje w pętli planowania na gotowość wątku.
 
-### <a name="thread-stack-area"></a>Obszar stosu wątków 
-Każdy wątek musi mieć własny stos do zapisywania kontekstu ostatniego wykonywania i użycia kompilatora. Większość kompilatorów języka C używa stosu do tworzenia wywołań funkcji i tymczasowej alokacji zmiennych lokalnych. Rysunek 5 na stronie 61 pokazuje stos typowego wątku.
+### <a name="thread-stack-area"></a>Obszar stosu wątku 
+Każdy wątek musi mieć własny stos do zapisywania kontekstu jego ostatniego wykonania i użycia kompilatora. Większość kompilatorów języka C używa stosu do tworzenia wywołań funkcji i tymczasowego przydzielania zmiennych lokalnych. Rysunek 5 na stronie 61 przedstawia typowy stos wątku.
 
-![Obszar stosu wątków](media/image8.png)
+![Obszar stosu wątku](media/image8.png)
 
 **RYSUNEK 5. Typowy stos wątków**
 
-Miejsce, w którym stos wątków znajduje się w pamięci, jest do aplikacji. Obszar stosu jest określany podczas tworzenia wątku i może znajdować się w dowolnym miejscu w przestrzeni adresowej docelowej. Jest to ważna funkcja, ponieważ umożliwia aplikacjom Ulepszanie wydajności ważnych wątków przez umieszczenie ich stosu w dużej szybkości pamięci RAM.
+Miejsce, w którym stos wątków znajduje się w pamięci, należy do aplikacji. Obszar stosu jest określony podczas tworzenia wątku i może być umieszczony w dowolnym miejscu w przestrzeni adresowej obiektu docelowego. Jest to ważna funkcja, ponieważ umożliwia aplikacjom zwiększenie wydajności ważnych wątków przez umieszczenie ich stosu w pamięci RAM o dużej szybkości.
 
-Jak duży stos powinien być jednym z najczęściej zadawanych pytań dotyczących wątków. Obszar stosu wątku musi być wystarczająco duży, aby pomieścić najgorsze wywołanie funkcji, alokację zmiennej lokalnej i zapisanie jej ostatniego kontekstu wykonania.
+To, jak duży powinien być stos, to jedno z najczęściej zadawanych pytań dotyczących wątków. Obszar stosu wątku musi być wystarczająco duży, aby obsłużyć zagnieżdżanie wywołań funkcji najgorszego przypadku, alokację zmiennych lokalnych i zapisanie kontekstu ostatniego wykonania.
 
-Minimalny rozmiar stosu, **TX_MINIMUM_STACK**, jest definiowany przez ThreadX SMP. Stos tego rozmiaru obsługuje zapisywanie kontekstu wątku i minimalnej liczby wywołań funkcji i alokacji zmiennych lokalnych.
+Minimalny rozmiar stosu, **TX_MINIMUM_STACK**, jest definiowany przez SMP ThreadX. Stos o tym rozmiarze obsługuje zapisywanie kontekstu wątku i minimalnej ilości wywołań funkcji oraz alokacji zmiennych lokalnych.
 
-W przypadku większości wątków jednak minimalny rozmiar stosu jest zbyt mały, a użytkownik musi upewnić się, że wymagania dotyczące rozmiaru worstcase przez badanie zagnieżdżenia wywołań funkcji i alokacji zmiennych lokalnych. Oczywiście lepiej jest zacząć od większego obszaru stosu.
+Jednak w przypadku większości wątków minimalny rozmiar stosu jest zbyt mały, a użytkownik musi ustalić, że jest to najgorsze wymaganie dotyczące rozmiaru, sprawdzając zagnieżdżanie wywołań funkcji i alokację zmiennych lokalnych. Oczywiście zawsze lepiej jest zacząć od większego obszaru stosu.
 
-Po debugowaniu aplikacji można dostosować rozmiary stosu wątków, jeśli ilość pamięci jest nietrwała. Ulubioną lewę jest to, aby ustawić wszystkie obszary stosu z łatwym do zidentyfikowania wzorcem danych, takim jak (0xEFEF) przed utworzeniem wątków. Po dokładnym umieszczeniu aplikacji przez tępy obszary stosu można sprawdzić, aby zobaczyć, jak dużo stosu zostało faktycznie zużyte przez znalezienie obszaru stosu, w którym wzorzec danych jest wciąż nienaruszony. Rysunek 6 przedstawia ustawienia wstępne stosu 0xEFEF po dokładnym wykonaniu wątku.
+Po debugowaniu aplikacji można dostroić rozmiary stosu wątków, jeśli ilość pamięci jest za mało. Ulubioną sztuczką jest wstępne ustawienie wszystkich obszarów stosu za pomocą łatwego do zidentyfikowania wzorca danych, takiego 0xEFEF) przed utworzeniem wątków. Po dokładnym przeanalizowaniu tempa aplikacji można zbadać obszary stosu, aby sprawdzić, ile stosu rzeczywiście zostało użyte, znajdując obszar stosu, w którym wzorzec danych jest nadal nienaruszony. Rysunek 6 przedstawia ustawienie wstępne stosu do 0xEFEF po dokładnym wykonaniu wątku.
 
 > [!IMPORTANT]
-> Domyślnie ThreadX SMP inicjuje każdy bajt każdego stosu wątku z wartością 0xEF.
+> Domyślnie SMP ThreadX inicjuje każdy bajt każdego stosu wątków o wartości 0xEF.
 
-### <a name="memory-pitfalls"></a>Pułapek pamięci 
-Wymagania dotyczące stosu dla wątków mogą być duże. W związku z tym ważne jest, aby zaprojektować aplikację w celu uzyskania odpowiedniej liczby wątków. Ponadto należy podjąć pewne czynności, aby uniknąć nadmiernego użycia stosu w wątkach. Należy unikać stosowania algorytmów cyklicznych i dużych lokalnych struktur danych.
+### <a name="memory-pitfalls"></a>Pułapki pamięci 
+Wymagania dotyczące stosu dla wątków mogą być duże. Dlatego ważne jest zaprojektowanie aplikacji tak, aby zawierała rozsądną liczbę wątków. Ponadto należy uważać, aby uniknąć nadmiernego użycia stosu w wątkach. Należy unikać rekursywnych algorytmów i dużych lokalnych struktur danych.
 
-W większości przypadków nadchodzący stos sprawia, że wykonywanie wątku jest uszkodzone (zwykle 
+W większości przypadków przepełniony stos powoduje, że wykonanie wątku powoduje uszkodzenie sąsiadującej pamięci (zazwyczaj 
 
-![Pułapek pamięci](media/image9.png)
+![Pułapki pamięci](media/image9.png)
 
-**RYSUNEK 6. Ustawienia wstępne stosu do 0xEFEF**
+**RYSUNEK 6. Ustawienie wstępne stosu do 0xEFEF**
 
-przed) jego obszar stosu. Wyniki są nieprzewidywalne, ale większość często powoduje nienaturalną zmianę w liczniku programu. Jest to często nazywane "przechodzeniem do chwastów". Oczywiście jedynym sposobem na uniknięcie tego jest upewnienie się, że wszystkie stosy wątków są wystarczająco duże.
+wcześniej) jego obszaru stosu. Wyniki są nieprzewidywalne, ale najczęściej skutkują nie naturalną zmianą licznika programu. Jest to często nazywane "skokiem do chwasty". Oczywiście jedynym sposobem, aby temu zapobiec, jest upewnianie się, że wszystkie stosy wątków są wystarczająco duże.
 
-### <a name="optional-run-time-stack-checking"></a>Opcjonalne sprawdzanie stosu czasu wykonywania  
-ThreadX SMP umożliwia sprawdzenie stosu każdego wątku w celu uszkodzenia w czasie wykonywania. Domyślnie ThreadX SMP wypełnia każdy bajt stosów wątków przy użyciu wzorca danych 0xEF podczas tworzenia. Jeśli aplikacja kompiluje bibliotekę SMP ThreadX z definicją ***TX_ENABLE_STACK_CHECKING** _, ThreadX SMP przeanalizuje stos każdego wątku pod kątem uszkodzenia w miarę jego wstrzymania lub wznowienia. W przypadku wykrycia uszkodzenia stosu ThreadX SMP wywoła procedurę obsługi błędów stosu aplikacji określoną przez wywołanie do _tx_thread_stack_error_notify *. W przeciwnym razie, jeśli nie określono programu obsługi błędów stosu, ThreadX SMP wywoła procedurę wewnętrzną *_tx_thread_stack_error_handler* .
+### <a name="optional-run-time-stack-checking"></a>Opcjonalne sprawdzanie stosu czasu uruchamiania  
+SMP ThreadX zapewnia możliwość sprawdzania stosu każdego wątku pod czy uszkodzenie w czasie wykonywania. Domyślnie SMP ThreadX wypełnia każdy bajt stosów wątków 0xEF wzorzec danych podczas tworzenia. Jeśli aplikacja tworzy bibliotekę SMP ThreadX z definicją ***TX_ENABLE_STACK_CHECKING** _, threadX SMP przeanalizuje stos każdego wątku pod adresem uszkodzenia, ponieważ jest wstrzymany lub wznowiony. Jeśli zostanie wykryte uszkodzenie stosu, SMP ThreadX wywoła procedurę obsługi błędów stosu aplikacji określoną przez wywołanie do _tx_thread_stack_error_notify*. W przeciwnym razie, jeśli nie określono procedury obsługi błędów stosu, threadX SMP wywoła wewnętrzną *_tx_thread_stack_error_handler* procedury.
 
 ### <a name="reentrancy"></a>Ponowne wejścia 
-Jednym z prawdziwych Beauties wielowątkowości jest to, że ta sama funkcja języka C może być wywoływana z wielu wątków. Zapewnia to doskonałe możliwości, a także pomaga zmniejszyć ilość miejsca w kodzie. Jednak wymaga to, aby funkcje języka C wywoływane z wielu wątków były *współużytkowane*.
+Jedną z rzeczywistych funkcji wielowątkowych jest możliwość wywoływania tej samej funkcji języka C z wielu wątków. Zapewnia to doskonałą moc, a także pomaga zmniejszyć ilość miejsca na kod. Jednak funkcja języka C wywoływana z wielu wątków wymaga *ponownego wytłaniania*.
 
-Zasadniczo funkcja współużytkowania przechowuje adres zwrotny obiektu wywołującego na bieżącym stosie i nie bazuje na globalnych lub statycznych zmiennych języka C, które wcześniej zostały skonfigurowane. Większość kompilatorów umieszcza adres zwrotny na stosie. W związku z tym deweloperzy aplikacji mogą martwić się o użycie *Globals* i elementów *statycznych*.
+Zasadniczo funkcja reentrant przechowuje adres zwrotny wywołującego na bieżącym stosie i nie polega na zmiennych globalnych ani statycznych języka C, które zostały wcześniej ustawione. Większość kompilatorów umieszcza adres zwrotny na stosie. W związku z tym deweloperzy aplikacji muszą martwić się tylko o użycie *danych globalnych* i *statycznych.*
 
-Przykładem funkcji współużytkowanej jest funkcja tokenu ciągu "strtok" znaleziona w standardowej bibliotece C. Ta funkcja zapamiętuje poprzedni wskaźnik ciągu podczas kolejnych wywołań. Robi to ze statycznym wskaźnikiem ciągu. Jeśli ta funkcja jest wywoływana z wielu wątków, prawdopodobnie zwróci nieprawidłowy wskaźnik.
+Przykładem funkcji bez reentrant jest funkcja tokenu ciągu "strtok" znaleziona w standardowej bibliotece języka C. Ta funkcja zapamiętuje poprzedni wskaźnik ciągu dla kolejnych wywołań. Robi to za pomocą statycznego wskaźnika ciągu. Jeśli ta funkcja jest wywoływana z wielu wątków, najprawdopodobniej zwróci nieprawidłowy wskaźnik.
 
-### <a name="thread-priority-pitfalls"></a>Priorytet wątku pułapek 
-Wybór priorytetów wątków jest jednym z najważniejszych aspektów wielowątkowości. Czasami bardzo zachęca się do przypisywania priorytetów na podstawie postrzeganych koncepcji o znaczeniu wątku zamiast określania, co jest dokładnie wymagane w czasie wykonywania. Nieprawidłowe użycie priorytetów wątków może zablokować dostęp inne wątki, utworzyć niewersję priorytetu, zmniejszyć przepustowość przetwarzania i sprawić, że zachowanie w czasie wykonywania aplikacji jest trudne do zrozumienia.
+### <a name="thread-priority-pitfalls"></a>Pułapki priorytetów wątków 
+Wybór priorytetów wątków jest jednym z najważniejszych aspektów wielowątkowania. Czasami przypisywanie priorytetów w oparciu o postrzeganą istotność wątku jest czasami bardzo kuszące, a nie określanie, co dokładnie jest wymagane w czasie działania. Nieprawidłowe wykorzystanie priorytetów wątków może zasłaniać inne wątki, tworzyć odwrócenie priorytetów, zmniejszać przepustowość przetwarzania i utrudniać zrozumienie zachowania aplikacji w czasie działania.
 
-Jak wspomniano wcześniej, ThreadX SMP zapewnia oparty na priorytetach algorytm planowania z przeznaczeniem. Wątki o niższym priorytecie nie są wykonywane, dopóki nie są gotowe do wykonania żadne wątki o wyższym priorytecie. Jeśli wątek o wyższym priorytecie zawsze jest gotowy, wątki o niższym priorytecie nigdy nie są wykonywane. Ten warunek jest nazywany *przetrzymaniem wątku*.
+Jak wspomniano wcześniej, funkcja SMP ThreadX udostępnia oparty na priorytetach algorytm planowania wywłaszczania. Wątki o niższym priorytecie nie są wykonywane, dopóki nie ma wątków o wyższym priorytecie gotowych do wykonania. Jeśli wątek o wyższym priorytecie jest zawsze gotowy, wątki o niższym priorytecie nigdy nie są wykonywane. Ten warunek jest nazywany *wątkową blokowania*.
 
-Większość problemów z zablokowanie wątków jest wykrywanych wczesnie w debugowaniu i można je rozwiązać przez zapewnienie, że priorytety o wyższym priorytecie nie są stale wykonywane. Alternatywnie można dodać logikę do aplikacji, która stopniowo podnosi priorytet wątków Starved do momentu uzyskania szansy do wykonania.
+Większość problemów z wątkami jest wykrywanych na wczesnym etapie debugowania i można je rozwiązać, upewniając się, że wątki o wyższym priorytecie nie są wykonywane w sposób ciągły. Alternatywnie można dodać do aplikacji logikę, która stopniowo podniesie priorytet wątków zdjętymi wątkami, dopóki nie zostaną one wykonane.
 
-Inna Pitfall skojarzona z priorytetami wątków jest w *wersji priorytetowej*. Priorytetowa wersja ma miejsce, gdy wątek o wyższym priorytecie jest zawieszony, ponieważ wątek o niższym priorytecie ma wymagany zasób. Oczywiście w niektórych przypadkach jest konieczne, aby dwa wątki o różnym priorytecie współdzielą wspólne zasoby. Jeśli te wątki są jedynymi aktywnymi, czas niewersji priorytetu jest ograniczany przez czas, w którym wątek niższego priorytetu utrzymuje zasób. Ten warunek jest deterministyczny i całkiem normalny. Jeśli jednak wątki o priorytecie pośrednim staną się aktywne w stanie niewersji priorytetu, czas braku wersji nie jest już deterministyczny i może spowodować błąd aplikacji.
+Kolejną pułapką skojarzoną z priorytetami wątku jest *odwrócenie priorytetu*. Odwrócenie priorytetu ma miejsce, gdy wątek o wyższym priorytecie jest zawieszony, ponieważ wątek o niższym priorytecie ma wymagany zasób. Oczywiście w niektórych przypadkach konieczne jest, aby dwa wątki o różnym priorytecie współużytkować wspólny zasób. Jeśli te wątki są jedynymi aktywnymi, czas inwersji priorytetu jest ograniczony przez czas, w który wątek o niższym priorytecie przechowuje zasób. Ten warunek jest zarówno deterministyczny, jak i dość normalny. Jeśli jednak wątki o priorytecie pośrednim staną się aktywne podczas tego warunku inwersji priorytetu, czas inwersji priorytetu nie jest już deterministyczny i może spowodować błąd aplikacji.
 
-Istnieją głównie trzy różne metody uniemożliwiające niedeterministyczną wersję priorytetu w ThreadX SMP. Najpierw wybór priorytetu aplikacji oraz zachowanie w czasie wykonywania mogą być zaprojektowane w sposób, który uniemożliwia problem z nieprawidłową wersją. W drugim, wątki o niższym priorytecie mogą korzystać z *progu* przekroczenia, aby zablokować przekroczenie z wątków pośrednich, a współużytkują zasoby o wyższym priorytecie. Na koniec wątki korzystające z obiektów mutex ThreadX SMP do ochrony zasobów systemowych mogą korzystać z opcjonalnego *dziedziczenia priorytetu* muteksu, aby wyeliminować niedeterministyczną wersję priorytetu.
+Istnieją trzy odrębne metody zapobiegania niedeterministycznej inwersji priorytetów w threadX SMP. Po pierwsze, wybór priorytetu aplikacji i zachowanie w czasie działania można zaprojektować w taki sposób, aby zapobiec problemowi z odwróceniem priorytetu. Po drugie wątki o  niższym priorytecie mogą wykorzystywać próg wywłaszczenia do blokowania wywłaszczenia z wątków pośrednich, gdy współużytkują zasoby z wątkami o wyższym priorytecie. Na koniec wątki używające obiektów mutex ThreadX SMP do ochrony zasobów systemowych mogą korzystać z opcjonalnego dziedziczenia priorytetów *mutex* w celu wyeliminowania niedeterministycznej inwersji priorytetu.
 
-### <a name="priority-overhead"></a>Priorytetowe narzuty 
-Jednym z najczęstszych sposobów zmniejszenia obciążenia w wielowątkowości jest zmniejszenie liczby przełączeń kontekstu. Jak wspomniano wcześniej, przełącznik kontekstu występuje, gdy wykonywanie wątku o wyższym priorytecie jest preferowane przez wykonywany wątek. Należy zauważyć, że wątki o wyższym priorytecie mogą stać się gotowe jako wynik obu zdarzeń zewnętrznych (na przykład przerwań) i od wywołań usługi wykonanych przez wątek wykonujący.
+### <a name="priority-overhead"></a>Priorytet narzutowy 
+Jednym z najczęściej pomijanych sposobów zmniejszenia obciążenia wielowątkowego jest zmniejszenie liczby przełączników kontekstu. Jak wspomniano wcześniej, przełącznik kontekstu występuje, gdy wykonywanie wątku o wyższym priorytecie jest preferowane niż wykonywanie wątku. Warto wspomnieć, że wątki o wyższym priorytecie mogą być gotowe zarówno w wyniku zdarzeń zewnętrznych (takich jak przerwań), jak i wywołań usługi wykonywanych przez wątek wykonujący.
 
-W celu zilustrowania priorytetów wątków związanych z przełączaniem kontekstu należy założyć trzy środowiska wątku z wątkami o nazwie *thread_1*, *thread_2* i *thread_3*. Załóżmy, że wszystkie wątki w stanie zawieszania oczekują na komunikat. Gdy thread_1 otrzymuje komunikat, natychmiast przekaże go do thread_2. Następnie Thread_2 przekazuje komunikat do thread_3. Thread_3 po prostu odrzuca komunikat. Gdy każdy wątek przetwarza swój komunikat, wraca i czeka na kolejną wiadomość.
+Aby zilustrować wpływ priorytetów wątków na obciążenie przełącznika kontekstu, należy przyjąć trzy środowiska wątków z wątkami o *nazwach thread_1*, *thread_2* i *thread_3*. Załóżmy dalej, że wszystkie wątki są w stanie wstrzymania w oczekiwaniu na komunikat. Gdy thread_1 komunikat, natychmiast przekazuje go do thread_2. Thread_2 następnie przekazuje komunikat do thread_3. Thread_3 odrzuca komunikat. Gdy każdy wątek przetwarza swój komunikat, wraca i czeka na inny komunikat.
 
-Przetwarzanie wymagane do wykonania tych trzech wątków różni się znacznie w zależności od ich priorytetów. Jeśli wszystkie wątki mają ten sam priorytet, przełączenie do jednego kontekstu następuje przed wykonaniem każdego wątku. Przełącznik kontekstu występuje, gdy każdy wątek zawiesza się w pustej kolejce komunikatów.
+Przetwarzanie wymagane do wykonania tych trzech wątków różni się znacznie w zależności od ich priorytetów. Jeśli wszystkie wątki mają ten sam priorytet, przed wykonaniem każdego wątku następuje pojedynczy przełącznik kontekstu. Przełącznik kontekstu występuje, gdy każdy wątek zawiesza się w pustej kolejce komunikatów.
 
-Jeśli jednak thread_2 ma wyższy priorytet niż thread_1, a thread_3 jest wyższym priorytetem niż thread_2, Liczba przełączeń kontekstu podwaja się. Jest to spowodowane tym, że inny przełącznik kontekstu występuje w ramach usługi *tx_queue_send* , gdy wykryje, że jest teraz gotowy wątek o wyższym priorytecie.
+Jeśli jednak thread_2 ma wyższy priorytet niż thread_1, thread_3 ma wyższy priorytet niż thread_2, liczba przełączeń kontekstu podwaja się. Jest to spowodowane innym przełącznikiem kontekstu wewnątrz usługi *tx_queue_send,* gdy wykryje, że wątek o wyższym priorytecie jest teraz gotowy.
 
-Mechanizm przekroczenia SMP ThreadX może uniknąć tych dodatkowych przełączników kontekstowych i nadal zezwalać na poprzednio wymienione priorytety. Jest to ważna funkcja, ponieważ pozwala ona na kilka priorytetów wątków podczas planowania, jednocześnie eliminując niektóre niechciane przełączanie kontekstu między nimi podczas wykonywania wątku.
+Mechanizm progu wywłaszczania SMP ThreadX może uniknąć tych dodatkowych przełączników kontekstu i nadal zezwalać na powyższe opcje priorytetów. Jest to ważna funkcja, ponieważ umożliwia kilka priorytetów wątków podczas planowania, jednocześnie eliminując niektóre niepożądane przełączanie kontekstu między nimi podczas wykonywania wątku.
 
-### <a name="run-time-thread-performance-information"></a>Informacje o wydajności wątku czasu wykonywania 
-ThreadX SMP zapewnia opcjonalne informacje o wydajności wątku czasu wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX zostały skompilowane przy użyciu zdefiniowanych ***TX_THREAD_ENABLE_PERFORMANCE_INFO*** , ThreadX SMP gromadzi następujące informacje:
+### <a name="run-time-thread-performance-information"></a>Informacje o wydajności wątków w czasie wykonywania 
+SMP ThreadX udostępnia opcjonalne informacje o wydajności wątków w czasie wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX jest budowaną przy ***TX_THREAD_ENABLE_PERFORMANCE_INFO,*** threadx SMP gromadzi następujące informacje:
 
 Łączna liczba dla całego systemu:
 
 - wznowienia wątków
-- zawieszenie wątku
-- zastępujące wywołania usług
-- zastępujące przerwania
-- priorytetowe wersje
+- zawieszenia wątków
+- wywłaszcze wywołań usługi
+- wywłaszcze przerwań
+- inversions priorytetu
 - wycinki czasu
-- braki
-- limity czasu wątków
-- przerwania zawieszenia
-- bezczynne zwracanie systemu
-- bezczynne przywrócenie systemu
+- relinquishes
+- limity czasu wątku
+- przerywanie zawieszenia
+- Bezczynne zwroty systemu
+- bezczynne zwroty systemowe
 
 Łączna liczba dla każdego wątku:
 
-- Dzięki wznawianiu
-- zawieszeniach
-- zastępujące wywołania usług
-- zastępujące przerwania
-- priorytetowe wersje
+- wznowienia
+- Zawieszenia
+- wywłaszcze wywołań usługi
+- wywłaszcze przerwań
+- inversions priorytetu
 - wycinki czasu
-- zrzeczenia się wątków
-- limity czasu wątków
-- przerwania zawieszenia
+- relinquishes wątku
+- limity czasu wątku
+- przerywanie zawieszenia
 
-Te informacje są dostępne w czasie wykonywania za pomocą usług *tx_thread_performance_info_get* i *tx_thread_performance_system_info_get*. Informacje o wydajności wątków są przydatne podczas ustalania, czy aplikacja działa prawidłowo. Jest on również przydatny do optymalizowania aplikacji. Na przykład stosunkowo wysoka liczba przeniesień wywołań usług może zasugerować priorytet wątku i/lub przekroczenie — próg jest zbyt niski. Ponadto stosunkowo niska liczba bezczynnych funkcji zwracanych przez system może sugerować, że wątki o niższym priorytecie nie są wystarczająco zawieszone.
+Te informacje są dostępne w czasie rzeczywistym za pośrednictwem usług tx_thread_performance_info_get *i* *tx_thread_performance_system_info_get*. Informacje o wydajności wątku są przydatne podczas określania, czy aplikacja działa prawidłowo. Jest to również przydatne podczas optymalizacji aplikacji. Na przykład stosunkowo duża liczba wywłaszcze wywołań usług może sugerować, że priorytet wątku i/lub próg wywłaszczenia jest zbyt niski. Ponadto stosunkowo niska liczba bezczynnych zwrotów systemu może sugerować, że wątki o niższym priorytecie nie wstrzymują się wystarczająco.
 
-### <a name="debugging-pitfalls"></a>Debugowanie pułapek 
-Debugowanie aplikacji wielowątkowych jest nieco trudniejsze, ponieważ ten sam kod programu może być wykonywany z wielu wątków. W takich przypadkach sama punkt przerwania może być niewystarczająca. Debuger musi również wyświetlić bieżącą tablicę wskaźnika wątku ***_tx_thread_current_ptr [rdzeń]*** przy użyciu warunkowego punktu przerwania, aby sprawdzić, czy wywoływany wątek jest obiektem do debugowania.
+### <a name="debugging-pitfalls"></a>Pułapki debugowania 
+Debugowanie aplikacji wielowątkowych jest nieco trudniejsze, ponieważ ten sam kod programu może być wykonywany z wielu wątków. W takich przypadkach sam punkt przerwania może nie być wystarczający. Debuger musi również wyświetlić bieżącą tablicę wskaźnika wątku ***_tx_thread_current_ptr[core]*** przy użyciu warunkowego punktu przerwania, aby sprawdzić, czy wątek wywołujący jest tym, który ma być debugowany.
 
-Większość z nich jest obsługiwana w pakietach obsługi wielowątkowości oferowanych przez różnych dostawców narzędzi programistycznych. Ze względu na prosty projekt integrowanie ThreadX SMP z różnymi narzędziami programistycznymi jest stosunkowo proste.
+Większość z tych rozwiązań jest obsługiwanych w wielowątkowych pakietach pomocy technicznej oferowanych przez różnych dostawców narzędzi programistów. Ze względu na prosty projekt integracja rozwiązania ThreadX SMP z różnymi narzędziami programistyki jest stosunkowo łatwa.
 
-Rozmiar stosu jest zawsze ważnym tematem debugowania w wielowątkowości. Zawsze, gdy zaobserwowano niewyjaśnione zachowanie, zwykle jest to dobre pierwsze odgadnięcie w celu zwiększenia rozmiaru stosu dla wszystkich wątków — szczególnie rozmiaru stosu dla ostatniego wątku do wykonania.
+Rozmiar stosu jest zawsze ważnym tematem debugowania w wielowątkowych. Za każdym razem, gdy zaobserwowano nieeksjalne zachowanie, zazwyczaj warto najpierw odgadnąć, aby zwiększyć rozmiary stosów dla wszystkich wątków — zwłaszcza rozmiar stosu ostatniego wątku do wykonania.
 
 > [!IMPORTANT]
-> Dobrym pomysłem jest również utworzenie biblioteki SMP ThreadX z definicją TX_ENABLE_STACK_CHECKING. Pomoże to w wyizolowaniu problemów z uszkodzeniem stosu tak wcześnie jak to możliwe.
+> Dobrym pomysłem jest również skompilowanie biblioteki SMP ThreadX z TX_ENABLE_STACK_CHECKING zdefiniowanymi. Pomoże to wyizolować problemy z uszkodzeniem stosu tak wcześnie, jak to możliwe!
 
 ## <a name="message-queues"></a>Kolejki komunikatów
 
-Kolejki komunikatów są podstawowym sposobem komunikacji między wątkami w ThreadX SMP. Co najmniej jeden komunikat może znajdować się w kolejce komunikatów. Kolejka komunikatów, która przechowuje pojedynczy komunikat, jest zazwyczaj nazywana *skrzynką pocztową*.
+Kolejki komunikatów są podstawowym sposobem komunikacji międzywątkowej w threadX SMP. Co najmniej jeden komunikat może znajdować się w kolejce komunikatów. Kolejka komunikatów, która zawiera jeden komunikat, jest często nazywana skrzynką *pocztową*.
 
-Komunikaty są kopiowane do kolejki przez *tx_queue_send* i kopiowane z kolejki przez *tx_queue_receive*. Jedynym wyjątkiem jest zawieszenie wątku podczas oczekiwania na komunikat w pustej kolejce. W takim przypadku Następna wiadomość wysłana do kolejki zostanie umieszczona bezpośrednio w obszarze docelowym wątku.
+Komunikaty są kopiowane do kolejki przez *tx_queue_send* i kopiowane z kolejki przez *tx_queue_receive*. Jedynym wyjątkiem od tej reguły jest wstrzymanie wątku podczas oczekiwania na komunikat w pustej kolejce. W takim przypadku następny komunikat wysyłany do kolejki jest umieszczany bezpośrednio w obszarze docelowym wątku.
 
-Każda kolejka komunikatów jest zasobem publicznym. ThreadX SMP nie nakłada żadnych ograniczeń dotyczących sposobu używania kolejek komunikatów.
+Każda kolejka komunikatów jest zasobem publicznym. SMP ThreadX nie ma żadnych ograniczeń co do sposobu, w jaki są używane kolejki komunikatów.
 
 ### <a name="creating-message-queues"></a>Tworzenie kolejek komunikatów 
-Kolejki komunikatów są tworzone podczas inicjacji lub w czasie wykonywania przez wątki aplikacji. Nie ma limitu liczby kolejek komunikatów w aplikacji. 
+Kolejki komunikatów są tworzone podczas inicjowania lub w czasie uruchamiania przez wątki aplikacji. Nie ma żadnego limitu liczby kolejek komunikatów w aplikacji. 
 
 ### <a name="message-size"></a>Rozmiar komunikatu 
-Każda kolejka komunikatów obsługuje wiele komunikatów fixedsized. Dostępne rozmiary wiadomości to od 1 do 16 32-bitowych słów włącznie. Rozmiar komunikatu jest określany podczas tworzenia kolejki. 
+Każda kolejka komunikatów obsługuje wiele naprawionych komunikatów. Dostępne rozmiary komunikatów to od 1 do 16 słów 32-bitowych włącznie. Rozmiar komunikatu jest określony podczas tworzenia kolejki. 
 
-Komunikaty aplikacji o więcej niż 16 wyrazach muszą być przesyłane przez wskaźnik. W tym celu można utworzyć kolejkę z rozmiarem komunikatu wynoszącym 1 wyraz (wystarczająco mały, aby pomieścić wskaźnik), a następnie wysyłać i odbierać wskaźniki komunikatów zamiast całego komunikatu.
+Komunikaty aplikacji większe niż 16 wyrazów muszą być przekazywane przez wskaźnik. Jest to realizowane przez utworzenie kolejki o rozmiarze komunikatu 1 wyrazu (wystarczającego do przechowywania wskaźnika), a następnie wysłanie i odebranie wskaźników komunikatów zamiast całego komunikatu.
 
 ### <a name="message-queue-capacity"></a>Pojemność kolejki komunikatów 
-Liczba komunikatów, które mogą być przechowywane w kolejce jest funkcją rozmiaru komunikatu oraz rozmiarem obszaru pamięci dostarczonego podczas tworzenia. Całkowita pojemność wiadomości w kolejce jest obliczana przez podzielenie liczby bajtów w poszczególnych komunikatach na całkowitą liczbę bajtów w podanym obszarze pamięci.
+Liczba komunikatów, które może zawierać kolejka, jest funkcją rozmiaru komunikatu i rozmiaru obszaru pamięci dostarczonego podczas tworzenia. Łączna pojemność komunikatu kolejki jest obliczana przez podzielenie liczby bajtów w każdym komunikacie na łączną liczbę bajtów w dostarczonym obszarze pamięci.
 
-Na przykład, jeśli kolejka komunikatów obsługująca rozmiar komunikatu 1 32-bit (4 bajty) jest tworzona z obszarem pamięci 100 bajtów, jego pojemność to 25 komunikatów.
+Jeśli na przykład kolejka komunikatów, która obsługuje rozmiar komunikatu 1 32-bitowego słowa (4 bajty), zostanie utworzona z 100-bajtowym obszarem pamięci, jego pojemność to 25 komunikatów.
 
 ### <a name="queue-memory-area"></a>Obszar pamięci kolejki 
-Jak wspomniano wcześniej, obszar pamięci do buforowania komunikatów jest określany podczas tworzenia kolejki. Podobnie jak w przypadku innych obszarów pamięci w ThreadX SMP, może ona znajdować się w dowolnym miejscu w przestrzeni adresowej docelowej.
+Jak wspomniano wcześniej, obszar pamięci do buforowania komunikatów jest określony podczas tworzenia kolejki. Podobnie jak w przypadku innych obszarów pamięci w threadx SMP, może ona być zlokalizowana w dowolnym miejscu w przestrzeni adresowej obiektu docelowego.
 
-Jest to ważna funkcja, ponieważ zapewnia znaczną elastyczność aplikacji. Na przykład aplikacja może zlokalizować obszar pamięci ważnej kolejki w pamięci RAM o dużej szybkości, aby zwiększyć wydajność.
+Jest to ważna funkcja, ponieważ zapewnia aplikacji dużą elastyczność. Na przykład aplikacja może zlokalizować obszar pamięci ważnej kolejki w pamięci RAM o dużej szybkości, aby zwiększyć wydajność.
 
 ### <a name="thread-suspension"></a>Zawieszenie wątku  
-Wątki aplikacji mogą wstrzymywać podczas próby wysłania lub odebrania komunikatu z kolejki. Zazwyczaj zawieszenie wątku obejmuje oczekiwanie na komunikat z pustej kolejki. Istnieje również możliwość zawieszenia przez wątek próby wysłania komunikatu do pełnej kolejki. 
+Wątki aplikacji mogą zostać wstrzymane podczas próby wysłania lub odbierania komunikatu z kolejki. Zazwyczaj zawieszenie wątku polega na oczekiwaniu na komunikat z pustej kolejki. Istnieje jednak również możliwość wstrzymania przez wątek próby wysłania komunikatu do pełnej kolejki. 
 
-Po rozwiązaniu problemu z zawieszeniem żądana usługa zostanie zakończona, a wątek Oczekujący zostanie wznowiony. Jeśli wiele wątków jest zawieszonych w tej samej kolejce, zostaną wznowione w kolejności, w której zostały wstrzymane (FIFO).
+Po rozpoznaniu warunku wstrzymania żądana usługa zostanie ukończona i wątek oczekiwania zostanie wznowiony. Jeśli wiele wątków jest zawieszonych w tej samej kolejce, są one wznawiane w kolejności, w których zostały wstrzymane (FIFO).
 
-Jednak możliwość wznowienia priorytetu jest również możliwa, jeśli aplikacja wywołuje ***tx_queue_prioritize*** przed usługą kolejki, która zawieszania wątku Wind. Usługa Queue priorytetyzacji usługi umieszcza wątek o najwyższym priorytecie na początku listy zawieszania, pozostawiając wszystkie pozostałe zawieszone wątki w tej samej kolejności FIFO.
+Jednak wznowienie priorytetu jest również możliwe, jeśli aplikacja ***wywołuje*** tx_queue_prioritize przed usługą kolejki, która podnosi zawieszenie wątku. Usługa priorytetów kolejki umieszcza wątek o najwyższym priorytecie na początku listy zawieszenia, pozostawiając wszystkie inne wstrzymane wątki w tej samej kolejności FIFO.
 
-Limity czasu są również dostępne dla wszystkich zawieszeń kolejki. W zasadzie limit czasu określa maksymalną liczbę cykli czasomierza, przez jaką wątek pozostanie zawieszony. W przypadku wystąpienia limitu czasu wątek zostaje wznowiony, a usługa zwraca odpowiedni kod błędu.
+Dla wszystkich zawieszeń kolejek są również dostępne przejady. Zasadniczo limit czasu określa maksymalną liczbę takt czasomierzy, które wątek pozostanie zawieszony. W przypadku przechowania czasu wątek jest wznawiany, a usługa wraca z odpowiednim kodem błędu.
 
-### <a name="queue-send-notification"></a>Powiadomienie o wysłaniu kolejki  
-Niektóre aplikacje mogą otrzymywać powiadomienia za każdym razem, gdy komunikat zostanie umieszczony w kolejce. ThreadX SMP zapewnia tę możliwość za pomocą usługi *tx_queue_send_notify* . Ta usługa rejestruje podaną funkcję powiadamiania aplikacji z określoną kolejką. ThreadX SMP wywoła następnie tę funkcję powiadamiania aplikacji za każdym razem, gdy komunikat zostanie wysłany do kolejki. Dokładne przetwarzanie w ramach funkcji powiadomień aplikacji jest określane przez aplikację; jednak zwykle składa się z wznawiania odpowiedniego wątku w celu przetworzenia nowej wiadomości.
+### <a name="queue-send-notification"></a>Powiadomienie o wysyłaniu w kolejce  
+W przypadku niektórych aplikacji korzystne może być powiadomienie za każdym razem, gdy komunikat zostanie umieszczony w kolejce. ThreadX SMP zapewnia tę możliwość za pośrednictwem *tx_queue_send_notify* usługi. Ta usługa rejestruje dostarczoną funkcję powiadomień aplikacji w określonej kolejce. ThreadX SMP będzie następnie wywoływać tę funkcję powiadomień aplikacji za każdym razem, gdy komunikat zostanie wysłany do kolejki. Dokładne przetwarzanie w funkcji powiadomień aplikacji jest określane przez aplikację; Jednak zwykle polega na wznowieniu odpowiedniego wątku do przetwarzania nowego komunikatu.
 
-### <a name="queue-event-chaining"></a>™ Łańcucha zdarzeń kolejki  
-Możliwości powiadamiania w ThreadX SMP mogą służyć do łańcucha różnych zdarzeń synchronizacji razem. Jest to zazwyczaj przydatne, gdy pojedynczy wątek musi przetwarzać wiele zdarzeń synchronizacji.
+### <a name="queue-event-chaining"></a>Łańcuch zdarzeń kolejki™  
+Możliwości powiadomień w threadX SMP mogą służyć do łańcucha różnych zdarzeń synchronizacji. Jest to zazwyczaj przydatne, gdy jeden wątek musi przetwarzać wiele zdarzeń synchronizacji.
 
-Załóżmy na przykład, że jeden wątek jest odpowiedzialny za przetwarzanie komunikatów z pięciu różnych kolejek i musi również zostać zawieszony, gdy nie są dostępne żadne komunikaty. Jest to łatwo realizowane przez zarejestrowanie funkcji powiadomień aplikacji dla każdej kolejki i wprowadzenie dodatkowego semafora zliczania. W odróżnieniu od tego, czy funkcja powiadamiania aplikacji wykonuje *tx_semaphore_put* przy każdym wywołaniu (liczba semaforów reprezentuje łączną liczbę komunikatów we wszystkich pięciu kolejkach). Wątek przetwarzania zawiesza się w tym semaforze za pośrednictwem usługi *tx_semaphore_get* . Gdy semafor jest dostępny (w tym przypadku, gdy komunikat jest dostępny!), wątek przetwarzania zostaje wznowiony. Następnie interrogates każdą kolejkę dla wiadomości, przetwarza znaleziony komunikat i wykonuje inne *tx_semaphore_get* , aby oczekiwać na następny komunikat. Ukończenie tego procesu bez łańcucha zdarzeń jest dość trudne i prawdopodobnie będzie wymagało większej liczby wątków i/lub dodatkowego kodu aplikacji.
+Załóżmy na przykład, że jeden wątek jest odpowiedzialny za przetwarzanie komunikatów z pięciu różnych kolejek i musi również zostać wstrzymany, gdy żadne komunikaty nie są dostępne. Można to łatwo osiągnąć, rejestrując funkcję powiadomień aplikacji dla każdej kolejki i wprowadzając dodatkowy semafor zliczania. W szczególności funkcja powiadamiania aplikacji wykonuje tx_semaphore_put *zawsze,* gdy jest wywoływana (liczba semaforów reprezentuje łączną liczbę komunikatów we wszystkich pięciu kolejkach). Wątek przetwarzania zawiesza się na tym semaforze za *pośrednictwem tx_semaphore_get* usługi. Gdy semafor jest dostępny (w tym przypadku gdy komunikat jest dostępny!), wątek przetwarzania jest wznawiany. Następnie sprawdza każdą kolejkę dla komunikatu, przetwarza znaleziony komunikat  i wykonuje kolejne tx_semaphore_get oczekiwanie na następny komunikat. Osiągnięcie tego celu bez łańcucha zdarzeń jest dość trudne i prawdopodobnie wymagałoby większej liczby wątków i/lub dodatkowego kodu aplikacji.
 
-Ogólnie rzecz biorąc, *łańcuch zdarzeń* powoduje zmniejszenie liczby wątków, mniejsze obciążenie i mniejsze wymagania dotyczące pamięci RAM. Zapewnia również wysoce elastyczny mechanizm obsługujący wymagania dotyczące synchronizacji bardziej złożonych systemów.
+Ogólnie rzecz biorąc, *łańcuch zdarzeń* powoduje mniejszą liczbę wątków, mniejsze obciążenie i mniejsze wymagania dotyczące pamięci RAM. Zapewnia również wysoce elastyczny mechanizm do obsługi wymagań dotyczących synchronizacji bardziej złożonych systemów.
 
-### <a name="run-time-queue-performance-information"></a>Informacje o wydajności kolejki czasu wykonywania  
-ThreadX SMP zapewnia opcjonalne informacje o wydajności kolejki w czasie wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX zostały skompilowane przy użyciu zdefiniowanych ***TX_QUEUE_ENABLE_PERFORMANCE_INFO*** , ThreadX SMP gromadzi następujące informacje:
+### <a name="run-time-queue-performance-information"></a>Informacje o wydajności kolejki w czasie wykonywania  
+SMP ThreadX udostępnia opcjonalne informacje o wydajności kolejki w czasie wykonywania. Jeśli biblioteka I aplikacja SMP ThreadX została s zbudowana przy ***TX_QUEUE_ENABLE_PERFORMANCE_INFO,*** threadx SMP gromadzi następujące informacje:
 
 Łączna liczba dla całego systemu:
 
-- Wysłane komunikaty
+- wysłane komunikaty
 - odebrane komunikaty
-- zawieszanie pustych kolejek
+- kolejkowanie pustych zawieszeń
 - pełne zawieszenie kolejki
-- Pełna wartość błędu kolejki (zawieszenie nie okreś-Fied)
+- pełne zwracane błędy kolejki (zawieszenie nie jest speci-fied)
 - limity czasu kolejki
 
 Łączna liczba dla każdej kolejki:
 
-- Wysłane komunikaty
+- wysłane komunikaty
 - odebrane komunikaty
-- zawieszanie pustych kolejek
+- kolejkowanie pustych zawieszeń
 - pełne zawieszenie kolejki
-- Pełna wartość błędu kolejki (zawieszenie nie okreś-Fied)
+- pełne zwracane błędy kolejki (zawieszenie nie jest speci-fied)
 - limity czasu kolejki
 
-Te informacje są dostępne w czasie wykonywania za pomocą usług *tx_queue_performance_info_get* i *tx_queue_performance_system_info_get*. Informacje o wydajności kolejki są przydatne podczas ustalania, czy aplikacja działa prawidłowo. Jest on również przydatny do optymalizowania aplikacji. Na przykład stosunkowo wysoka liczba zawieszeń "queue fulls" sugeruje zwiększenie rozmiaru kolejki może być korzystne.
+Te informacje są dostępne w czasie rzeczywistym za pośrednictwem usług tx_queue_performance_info_get *i* *tx_queue_performance_system_info_get.* Informacje o wydajności kolejki są przydatne podczas określania, czy aplikacja działa prawidłowo. Jest to również przydatne podczas optymalizacji aplikacji. Na przykład stosunkowo duża liczba "zawieszeń pełnych kolejek" sugeruje, że zwiększenie rozmiaru kolejki może być korzystne.
 
-### <a name="queue-control-block-tx_queue"></a>Blok kontrolny kolejki TX_QUEUE 
-Charakterystyka każdej kolejki komunikatów znajduje się w jego bloku sterowania. Zawiera interesujące informacje, takie jak liczba komunikatów w kolejce. Ta struktura jest zdefiniowana w pliku ***tx_api. h*** .
+### <a name="queue-control-block-tx_queue"></a>Blok sterowania kolejką TX_QUEUE 
+Cechy każdej kolejki komunikatów znajdują się w bloku sterującym. Zawiera on interesujące informacje, takie jak liczba komunikatów w kolejce. Ta struktura jest zdefiniowana w ***tx_api.h.***
 
-Bloki sterujące kolejki komunikatów mogą również znajdować się w dowolnym miejscu w pamięci, ale najczęściej jest to, że formant blokuje strukturę globalną przez definiowanie jej poza zakresem dowolnej funkcji.
+Bloki sterowania kolejki komunikatów mogą również być zlokalizowane w dowolnym miejscu w pamięci, ale najczęściej kontrolka blokuje globalną strukturę, definiując ją poza zakresem dowolnej funkcji.
 
-### <a name="message-destination-pitfall"></a>Pitfall miejsca docelowego wiadomości  
-Jak wspomniano wcześniej, komunikaty są kopiowane między obszarami kolejki i danymi aplikacji. Należy upewnić się, że miejsce docelowe odebranej wiadomości jest wystarczająco duże, aby pomieścić całą wiadomość. W przeciwnym razie pamięć następująca po miejscu docelowym wiadomości prawdopodobnie zostanie uszkodzona. 
+### <a name="message-destination-pitfall"></a>Pułapka miejsca docelowego komunikatu  
+Jak wspomniano wcześniej, komunikaty są kopiowane między obszarem kolejki i obszarami danych aplikacji. Ważne jest, aby upewnić się, że miejsce docelowe odebranego komunikatu jest wystarczająco duże, aby pomieścić cały komunikat. Jeśli tak nie jest, pamięć po miejscu docelowym komunikatu prawdopodobnie będzie uszkodzona. 
 
 > [!WARNING]
-> Jest to szczególnie ważne, gdy na stosie znajduje się zbyt małe miejsce docelowe komunikatów — nic jak uszkodzenie adresu zwrotnego funkcji!
+> Jest to szczególnie lethal, gdy na stosie znajduje się zbyt małe miejsce docelowe komunikatów — nic takiego jak uszkodzenie adresu zwracanej funkcji.
 
 ## <a name="counting-semaphores"></a>Zliczanie semaforów
 
-ThreadX SMP zapewnia 32-bitowy licznik semaforów, który ma wartość z zakresu od 0 do 4 294 967 295. Istnieją dwie operacje zliczania semaforów: *tx_semaphore_get* i *tx_semaphore_put*. Operacja get zmniejsza semafor o jeden. Jeśli semafor ma wartość 0, operacja get nie powiedzie się. Odwrotność operacji pobierania jest operacją Put. Zwiększa semafor o jeden.
+SMP ThreadX zapewnia 32-bitowe zliczanie semaforów o wartości od 0 do 4 294 967 295. Istnieją dwie operacje zliczania semaforów:  tx_semaphore_get i *tx_semaphore_put*. Operacja get zmniejsza semafor o jeden. Jeśli semafor ma 0, operacja get nie powiedzie się. Odwrotnością operacji get jest operacja put. Zwiększa ona semafor o jeden.
 
-Każdy semafor zliczania jest zasobem publicznym. ThreadX SMP nie nakłada żadnych ograniczeń dotyczących sposobu używania semaforów zliczania.
+Każdy semafor zliczania jest zasobem publicznym. SMP ThreadX nie ma żadnych ograniczeń co do sposobu zliczania semaforów.
 
-Licznik semaforów jest zwykle używany do *wzajemnego wykluczania*. Jednak zliczanie semaforów może być również używane jako metoda powiadamiania o zdarzeniach.
+Zliczanie semaforów jest zwykle używane do *wzajemnego wykluczania*. Jednak zliczanie semaforów może być również używane jako metoda powiadamiania o zdarzeniach.
 
-### <a name="mutual-exclusion"></a>Wzajemne wykluczenie 
-Wzajemne wykluczenie dotyczy kontroli dostępu wątków do określonych obszarów aplikacji (nazywanych także *sekcjami krytycznymi* lub *zasobami aplikacji*). W przypadku użycia do wzajemnego wykluczania "Bieżąca liczba" semafora reprezentuje łączną liczbę wątków, które są dozwolone. W większości przypadków zliczanie semaforów używanych do wzajemnego wykluczania będzie miało wartość początkową 1, co oznacza, że tylko jeden wątek może uzyskać dostęp do skojarzonego zasobu w danym momencie. Zliczanie semaforów, które mają tylko wartości 0 lub 1, są zwykle nazywane *semaforami binarnymi*.
+### <a name="mutual-exclusion"></a>Wzajemne wykluczanie 
+Wzajemne wykluczanie dotyczy kontrolowania dostępu wątków do niektórych obszarów aplikacji (nazywanych również sekcjami krytycznymi *lub* *zasobami aplikacji).* W przypadku wzajemnego wykluczania "bieżąca liczba" semafora reprezentuje łączną liczbę wątków, do których dostęp jest dozwolony. W większości przypadków zliczanie semaforów używanych do wzajemnego wykluczania będzie mieć początkową wartość 1, co oznacza, że tylko jeden wątek może jednocześnie uzyskać dostęp do skojarzonego zasobu. Zliczanie semaforów, które mają tylko wartości 0 lub 1, są często nazywane *semaforami binarnymi*.
 
 > [!IMPORTANT]
-> Jeśli jest używany semafor binarny, użytkownik musi uniemożliwić wykonanie operacji get przez ten sam wątek na semaforze, który jest już właścicielem. Druga wartość nie powiedzie się i może spowodować niepowodzenie zawieszenia wątku wywołującego i trwałej niedostępności zasobu.
+> Jeśli jest używany binarny semafor, użytkownik musi uniemożliwić temu samemu wątku wykonanie operacji get na semaforze, który jest już właścicielem. Drugi get nie powiedzie się i może spowodować nieograniczone zawieszenie wywołującego wątku i trwałą niedostępność zasobu.
 
 ### <a name="event-notification"></a>Powiadomienie o zdarzeniu 
-Można również użyć zliczania semaforów jako powiadomienia o zdarzeniach, w sposób przeznaczony dla konsumentów. Odbiorca podejmuje próbę uzyskania semafora zliczania, gdy producent zwiększa semafor, gdy coś jest dostępne. Takie semafory zwykle mają wartość początkową 0 i nie zostaną zwiększone do momentu, gdy producent ma coś gotowego dla konsumenta. Semafory używane na potrzeby powiadomień o zdarzeniach mogą również korzystać z wywołania usługi *tx_semaphore_ceiling_put* . Ta usługa zapewnia, że liczba semaforów nigdy nie przekracza wartości podanej w wywołaniu.
+Istnieje również możliwość użycia zliczania semaforów jako powiadomienia o zdarzeniach w sposób producent—konsument. Konsument próbuje uzyskać semafor zliczania, podczas gdy producent zwiększa semafor zawsze, gdy coś jest dostępne. Takie semafory zwykle mają wartość początkową 0 i nie zwiększają się, dopóki producent nie będzie miał czegoś gotowego dla konsumenta. Semafory używane do powiadamiania o zdarzeniach mogą również korzystać z wywołania *tx_semaphore_ceiling_put* usługi. Ta usługa zapewnia, że liczba semaforów nigdy nie przekracza wartości podanej w wywołaniu.
 
 ### <a name="creating-counting-semaphores"></a>Tworzenie semaforów zliczania 
-Zliczanie semaforów jest tworzone podczas inicjacji lub w czasie wykonywania przez wątki aplikacji. Początkowa liczba semaforów jest określana podczas tworzenia. Nie ma żadnego limitu liczby semaforów zliczania w aplikacji. 
+Zliczanie semaforów jest tworzone podczas inicjowania lub w czasie uruchamiania przez wątki aplikacji. Początkowa liczba semafora jest określana podczas tworzenia. Nie ma żadnego limitu liczby semaforów zliczania w aplikacji. 
 
 ### <a name="thread-suspension"></a>Zawieszenie wątku  
-Wątki aplikacji mogą wstrzymywać podczas próby wykonania operacji get na semaforze z bieżącą liczbą 0. 
+Wątki aplikacji mogą zostać wstrzymane podczas próby wykonania operacji get na semaforze z bieżącą licznikiem 0. 
 
-Po wykonaniu operacji put jest wykonywana operacja pobrania zawieszonego wątku, a wątek zostaje wznowiony. Jeśli wiele wątków jest zawieszonych na tym samym semaforze zliczania, zostaną wznowione w tej samej kolejności, w jakiej zostały wstrzymane (FIFO).
+Po wykonaniu operacji put wykonywana jest operacja get wstrzymanego wątku, a wątek jest wznawiany. Jeśli wiele wątków jest zawieszonych na tym samym zliczeniu semafora, są one wznawiane w tej samej kolejności, w których zostały wstrzymane (FIFO).
 
-Jednak możliwość wznowienia priorytetu jest również możliwa, jeśli aplikacja wywołuje ***tx_semaphore_prioritize*** przed wywołaniem semafora, które zawiesić wątek dźwigu. Usługa semafor priorytetyzacji powoduje umieszczenie wątku o najwyższym priorytecie na początku listy zawieszania, pozostawiając wszystkie pozostałe zawieszone wątki w tej samej kolejności FIFO.
+Jednak wznowienie priorytetu jest również możliwe, jeśli aplikacja ***wywołuje*** tx_semaphore_prioritize przed wywołaniem semafora put, które podnosi zawieszenie wątku. Priorytet usługi semafora umieszcza wątek o najwyższym priorytecie na początku listy zawieszenia, pozostawiając wszystkie inne wstrzymane wątki w tej samej kolejności FIFO.
 
-### <a name="semaphore-put-notification"></a>Powiadomienie o wprowadzeniu semafora 
-Niektóre aplikacje mogą otrzymywać powiadomienia o każdym umieszczeniu semafora. ThreadX SMP zapewnia tę możliwość za pomocą usługi *tx_semaphore_put_notify* . Ta usługa rejestruje podaną funkcję powiadamiania aplikacji z określonym semaforem. ThreadX SMP wywoła następnie tę funkcję powiadamiania aplikacji za każdym razem, gdy semafor zostanie umieszczony. Dokładne przetwarzanie w ramach funkcji powiadomień aplikacji jest określane przez aplikację; jednak zwykle składa się z wznawiania odpowiedniego wątku do przetwarzania nowego zdarzenia Put.
+### <a name="semaphore-put-notification"></a>Powiadomienie Put Semaphore 
+W przypadku niektórych aplikacji korzystne może być powiadomienie za każdym razem, gdy zostanie wprowadzone semafor. ThreadX SMP zapewnia tę możliwość za pośrednictwem *tx_semaphore_put_notify* usługi. Ta usługa rejestruje dostarczoną funkcję powiadomień aplikacji przy użyciu określonego semafora. SMP ThreadX będzie następnie wywoływać tę funkcję powiadomień aplikacji za każdym razem, gdy zostanie wprowadzone semafor. Dokładne przetwarzanie w funkcji powiadomień aplikacji jest określane przez aplikację; Jednak zazwyczaj składa się on z wznowienie odpowiedniego wątku do przetwarzania nowego zdarzenia put semaphore.
 
-### <a name="semaphore-eventchaining"></a>™ Semafora Eventchaining 
-Możliwości powiadamiania w ThreadX SMP mogą służyć do łańcucha różnych zdarzeń synchronizacji razem. Jest to zazwyczaj przydatne, gdy pojedynczy wątek musi przetwarzać wiele zdarzeń synchronizacji.
+### <a name="semaphore-eventchaining"></a>Semaphore Eventchaining™ 
+Możliwości powiadomień w threadX SMP mogą służyć do łańcucha różnych zdarzeń synchronizacji. Jest to zazwyczaj przydatne, gdy jeden wątek musi przetwarzać wiele zdarzeń synchronizacji.
 
-Na przykład zamiast konieczności zawieszania oddzielnych wątków dla komunikatu kolejki, flag zdarzeń i semafora aplikacja może zarejestrować procedurę powiadamiania dla każdego obiektu. Po wywołaniu procedura powiadamiania aplikacji może następnie wznowić pojedynczy wątek, który może przejrzeć każdy obiekt, aby znaleźć i przetworzyć nowe zdarzenie.
+Na przykład zamiast wstrzymywać oddzielne wątki dla komunikatu w kolejce, flag zdarzeń i semafora, aplikacja może zarejestrować procedurę powiadamiania dla każdego obiektu. Po wywołaniu procedura powiadamiania aplikacji może następnie wznowić pojedynczy wątek, który może interrogować każdy obiekt w celu znalezienia i przetworzyć nowe zdarzenie.
 
-Ogólnie rzecz biorąc, *łańcuch zdarzeń* powoduje zmniejszenie liczby wątków, mniejsze obciążenie i mniejsze wymagania dotyczące pamięci RAM. Zapewnia również wysoce elastyczny mechanizm obsługujący wymagania dotyczące synchronizacji bardziej złożonych systemów.
+Ogólnie rzecz biorąc, *łańcuch zdarzeń* powoduje mniejszą liczbę wątków, mniejsze obciążenie i mniejsze wymagania dotyczące pamięci RAM. Zapewnia również wysoce elastyczny mechanizm do obsługi wymagań dotyczących synchronizacji bardziej złożonych systemów.
 
 ### <a name="run-time-semaphore-performance-information"></a>Informacje o wydajności semafora czasu wykonywania 
-ThreadX SMP zapewnia opcjonalne informacje o wydajności semaforów czasu wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX zostały skompilowane przy użyciu zdefiniowanych ***TX_SEMAPHORE_ENABLE_PERFORMANCE_INFO*** , ThreadX SMP gromadzi poniższe informacje. 
+SMP ThreadX udostępnia opcjonalne informacje o wydajności semafora czasu wykonywania. Jeśli biblioteka I aplikacja SMP ThreadX została s zbudowana przy ***TX_SEMAPHORE_ENABLE_PERFORMANCE_INFO,*** smp ThreadX gromadzi następujące informacje. 
 
 Łączna liczba dla całego systemu:
 
-- Umieszczanie semaforów
-- Pobieranie semafora
-- zawieszenie pobierania semaforów
-- limity czasu pobierania semaforów
+- semaphore puts
+- Semaphore pobiera
+- semaphore get suspensions (uzyskiwanie zawieszeń)
+- Semaphore get timeouts (Uzyskiwanie limitów czasu semafora)
 
 Łączna liczba dla każdego semafora:
 
-- Umieszczanie semaforów
-- Pobieranie semafora
-- zawieszenie pobierania semaforów
-- limity czasu pobierania semaforów
+- semaphore puts
+- Semaphore pobiera
+- semaphore get suspensions (uzyskiwanie zawieszeń)
+- Semaphore get timeouts (Uzyskiwanie limitów czasu semafora)
 
-Te informacje są dostępne w czasie wykonywania za pomocą usług *tx_semaphore_performance_info_get* i *tx_semaphore_performance_system_info_get*. Informacje o wydajności semaforów są przydatne w ustaleniu, czy aplikacja działa prawidłowo. Jest on również przydatny do optymalizowania aplikacji. Na przykład stosunkowo wysoka liczba przekroczeń limitu czasu "Semafor" może sugerować, że inne wątki są zbyt długie.
+Te informacje są dostępne w czasie rzeczywistym za pośrednictwem usług tx_semaphore_performance_info_get *i* *tx_semaphore_performance_system_info_get.* Informacje o wydajności Semafora są przydatne podczas określania, czy aplikacja działa prawidłowo. Jest to również przydatne podczas optymalizacji aplikacji. Na przykład stosunkowo duża liczba "limitów czasu get semaphore" może sugerować, że inne wątki zbyt długo wstrzymują zasoby.
 
-### <a name="semaphore-control-block-tx_semaphore"></a>Blok sterowania semaforem TX_SEMAPHORE 
-Charakterystyka każdego semafora zliczania znajduje się w jego bloku sterowania. Zawiera informacje, takie jak bieżąca liczba semaforów. Ta struktura jest zdefiniowana w pliku ***tx_api. h*** . 
+### <a name="semaphore-control-block-tx_semaphore"></a>Blokuj kontrolki Semaphore TX_SEMAPHORE 
+Cechy każdego zliczania semafora znajdują się w bloku sterującym. Zawiera informacje, takie jak bieżąca liczba semaforów. Ta struktura jest zdefiniowana w ***tx_api.h.*** 
 
-Bloki sterujące semaforów mogą znajdować się w dowolnym miejscu w pamięci, ale najczęściej jest to, że formant blokuje strukturę globalną poprzez definiowanie jej poza zakresem dowolnej funkcji. 
+Bloki sterowania Semaforem mogą być zlokalizowane w dowolnym miejscu w pamięci, ale najczęściej kontrolka blokuje globalną strukturę, definiując ją poza zakresem dowolnej funkcji. 
 
-### <a name="deadly-embrace"></a>Deadly 
-Jednym z najbardziej interesujących i niebezpiecznych pułapek związanych z semaforami używanymi do wzajemnego wykluczania jest *Deadly*. Deadly to *warunek, w* którym co najmniej dwa wątki są zawieszane w nieskończoność podczas próby uzyskania semaforów, które są już własnością siebie.
+### <a name="deadly-embrace"></a>Embrace (Przyjmijmy) 
+Jedną z najbardziej interesujących i niebezpiecznych pułapek związanych z semaforami używanymi do wzajemnego wykluczania jest wykluczony *przyjaźń*. Uściślicie, czyli *zakleszczenie*, to warunek, w którym co najmniej dwa wątki są zawieszane na czas nieokreślony podczas próby uzyskania semaforów, które już należą do siebie nawzajem.
 
-Ten warunek jest najlepiej zilustrowany przez dwa wątki, dwa przykładowe semafory. Załóżmy, że pierwszy wątek jest właścicielem pierwszego semafora, a drugi wątek jest właścicielem drugiego semafora. Jeśli pierwszy wątek próbuje uzyskać drugi semafor i w tym samym czasie drugi wątek próbuje uzyskać pierwszy semafor, oba wątki wprowadzają warunek zakleszczenia. Ponadto, jeśli te wątki pozostają nieznacznie zawieszone, ich skojarzone zasoby są domyślnie zablokowane. Ten przykład ilustruje rysunek 7 na stronie 78.
+Ten warunek najlepiej zilustrować w dwóch wątkach, dwóch przykładach semaforów. Załóżmy, że pierwszy wątek jest właścicielem pierwszego semafora, a drugi jest właścicielem drugiego semafora. Jeśli pierwszy wątek próbuje uzyskać drugi semafor, a jednocześnie drugi wątek próbuje uzyskać pierwszy semafor, oba wątki wchodzą w stan zakleszczenia. Ponadto jeśli te wątki zostaną wstrzymane na zawsze, skojarzone z nimi zasoby również zostaną zablokowane na zawsze. Rysunek 7 na stronie 78 ilustruje ten przykład.
 
-![Deadly](media/image10.png)
+![Embrace (Przyjmijmy)](media/image10.png)
 
 **RYSUNEK 7. Przykład zawieszonych wątków**
 
-W przypadku systemów w czasie rzeczywistym Deadly można zapobiec, wprowadzając pewne ograniczenia dotyczące sposobu, w jaki wątki uzyskują semafory. Wątki mogą mieć tylko jeden semafor jednocześnie. Alternatywnie wątki mogą mieć wiele semaforów, jeśli zbierają je w takiej samej kolejności. W poprzednim przykładzie, jeśli pierwszy i drugi wątek uzyskuje pierwszy i drugi semafor w kolejności, wdrożenie Deadly jest uniemożliwione.
+W przypadku systemów czasu rzeczywistego można zapobiec objęciom przez wprowadzenie pewnych ograniczeń dotyczących sposobu uzyskiwania semaforów wątków. Wątki mogą mieć tylko jeden semafor na raz. Alternatywnie wątki mogą być właścicielami wielu semaforów, jeśli zbierają je w tej samej kolejności. W poprzednim przykładzie, jeśli pierwszy i drugi wątek uzyskają pierwszy i drugi semafor w kolejności, można zapobiec objęciu przez chłońcę.
 
 > [!IMPORTANT]
-> Można również użyć limitu czasu zawieszenia skojarzonego z operacją pobierania, aby odzyskać z Deadly.
+> Istnieje również możliwość użycia przeskoku czasu zawieszenia skojarzonego z operacją get w celu odzyskania po ładzie.
 
-### <a name="priority-inversion"></a>Priorytetowa wersja 
-Inna Pitfall skojarzona z wzajemnymi semaforami wykluczeń jest w wersji priorytetowej. Ten temat został omówiony w pełni w sekcji "priorytet wątku pułapek" na stronie 64.
+### <a name="priority-inversion"></a>Odwrócenie priorytetu 
+Kolejną pułapką związaną z semaforami wzajemnego wykluczania jest inwersja priorytetowa. Ten temat został dokładniej omówiony w artykule "Pułapki dotyczące priorytetów wątków" na stronie 64.
 
-Podstawowy problem wynika z sytuacji, w której wątek o niższym priorytecie ma semafor, którego potrzebuje wątek o wyższym priorytecie. Jest to normalne. Jednak wątki z priorytetami między nimi mogą spowodować, że priorytet Inwersja do ostatniego niedeterministycznego czasu. Może to być obsługiwane przez staranne wybranie priorytetów wątków, użycie wartości progowej przechodzenia i tymczasowe zwiększenie priorytetu wątku, który jest właścicielem zasobu, do tego wątku o wysokim priorytecie.
+Podstawowy problem wynika z sytuacji, w której wątek o niższym priorytecie ma semafor, którego wymaga wątek o wyższym priorytecie. To samo w sobie jest normalne. Jednak wątki z priorytetami między nimi mogą powodować, że odwrócenie priorytetu będzie trwało nieokreślony czas. Można to obsłużyć przez staranny wybór priorytetów wątku, użycie progu wywłaszczenia i tymczasowe podwyższenie priorytetu wątku, który jest właścicielem zasobu, do wątku o wysokim priorytecie.
 
 ## <a name="mutexes"></a>Muteksy
 
-Oprócz semaforów ThreadX SMP również udostępnia obiekt mutex. Mutex jest zasadniczo binarny semafor, co oznacza, że tylko jeden wątek może być właścicielem obiektu mutex jednocześnie. Ponadto ten sam wątek może wykonać pomyślną operację pobrania muteksa na należącym do obiektu mutex wiele razy, 4 294 967 295. Istnieją dwie operacje na obiekcie mutex: ***tx_mutex_get** _ i _ *_tx_mutex_put_* *. Operacja get uzyskuje mutex, który nie należy do innego wątku, podczas gdy operacja Put zwalnia poprzednio uzyskany obiekt mutex. W przypadku wątku do zwolnienia muteksu liczba operacji Put musi być równa liczbie wcześniejszych operacji pobierania.
+Oprócz semaforów, threadX SMP udostępnia również obiekt mutex. Mutex jest zasadniczo semaforem binarnym, co oznacza, że tylko jeden wątek może być jednocześnie właścicielem mutex. Ponadto ten sam wątek może wielokrotnie wykonać pomyślną operację get mutex na posiadanym mutexie, dokładnie 4 294 967 295. Istnieją dwie operacje na obiekcie mutex: ***tx_mutex_get** _ i __*_ tx_mutex_put **. Operacja get uzyskuje mutex, który nie należy do innego wątku, podczas gdy operacja put zwalnia wcześniej uzyskany mutex. Aby wątek zwalniał mutex, liczba operacji put musi być równa liczbie poprzednich operacji get.
 
-Każdy mutex jest zasobem publicznym. ThreadX SMP nie nakłada żadnych ograniczeń dotyczących sposobu używania muteksów.
+Każdy mutex jest zasobem publicznym. ThreadX SMP nie stosuje żadnych ograniczeń co do sposobu, w jaki są używane muteny.
 
-Muteksy ThreadX są używane wyłącznie do *wzajemnego wykluczania*. W przeciwieństwie do zliczania semaforów, muteksy nie mają zastosowania jako metody powiadamiania o zdarzeniach.
+Mutexes ThreadX są używane wyłącznie do *wzajemnego wykluczania*. W przeciwieństwie do zliczania semaforów, mutexes nie mają zastosowania jako metoda powiadamiania o zdarzeniach.
 
-### <a name="mutex-mutual-exclusion"></a>Wzajemne wykluczenie obiektu mutex 
-Podobnie jak w przypadku dyskusji w sekcji zliczanie semaforów, wzajemne wykluczenia dotyczy kontroli dostępu wątków do określonych obszarów aplikacji (nazywanych także *sekcjami krytycznymi* lub *zasobami aplikacji*). Jeśli jest dostępny, element mutex SMP ThreadX będzie miał liczbę własności równą 0. Po uzyskaniu elementu mutex przez wątek licznik własności jest zwiększany raz dla każdego pomyślnego wykonania operacji pobrania dla obiektu mutex i zmniejszany dla każdej pomyślnej operacji Put.
+### <a name="mutex-mutual-exclusion"></a>Wzajemne wykluczanie mutex 
+Podobnie jak w dyskusji w sekcji zliczania semaforów, wzajemne wykluczanie dotyczy kontrolowania dostępu wątków do niektórych obszarów aplikacji (nazywanych również sekcjami krytycznymi lub *zasobami aplikacji).*  Jeśli jest dostępny, wierzchołek SMP ThreadX będzie miał liczbę własności 0. Po uzyskaniu wartości mutex przez wątek liczba własności jest zwiększana raz dla każdej pomyślnej operacji get wykonanej na mutex i dekrementowana dla każdej pomyślnej operacji put.
 
-### <a name="creating-mutexes"></a>Tworzenie muteksów 
-Muteksy ThreadX SMP są tworzone podczas inicjacji lub w czasie wykonywania przez wątki aplikacji. Początkowy warunek elementu mutex jest zawsze dostępny. Można również utworzyć element mutex z wybranym *dziedziczeniem priorytetu* .
+### <a name="creating-mutexes"></a>Tworzenie mutexes 
+Wierzchołki SMP ThreadX są tworzone podczas inicjowania lub w czasie uruchamiania przez wątki aplikacji. Początkowy warunek mutex jest zawsze "dostępny". Można również utworzyć element mutex z wybranym *dziedziczeniem priorytetu.*
 
 ### <a name="thread-suspension"></a>Zawieszenie wątku 
-Wątki aplikacji mogą wstrzymywać się podczas próby wykonania operacji get na elemencie mutex, który jest już własnością innego wątku.
+Wątki aplikacji mogą zostać wstrzymane podczas próby wykonania operacji get na mutex już należącym do innego wątku.
 
-Po wykonaniu tej samej liczby operacji Put przez wątek będącego właścicielem zostanie wykonana operacja pobrania zawieszonego wątku, która nadaje mu własność elementu mutex, a wątek zostaje wznowiony. Jeśli wiele wątków jest zawieszonych na tym samym elemencie mutex, są wznawiane w tej samej kolejności, w jakiej zostały zawieszone (FIFO).
+Po wykonaniu tej samej liczby operacji put przez wątek, który jest właścicielem, wykonywana jest operacja get wstrzymanego wątku, dając mu własność mutex i wątek jest wznawiany. Jeśli wiele wątków jest zawieszonych na tym samym węzłem mutex, są one wznawiane w tej samej kolejności, w których zostały wstrzymane (FIFO).
 
-Jednak wznowienie priorytetu odbywa się automatycznie, jeśli podczas tworzenia wybrano dziedziczenie priorytetu obiektu mutex. Możliwe jest również wznowienie priorytetu, jeśli aplikacja wywołuje ***tx_mutex_prioritize*** przed wywołaniem obiektu mutex, które zawieszania wątku Wind. Usługa określania priorytetów obiektów mutex umieszcza wątek o najwyższym priorytecie na początku listy zawieszania, pozostawiając wszystkie pozostałe zawieszone wątki w tej samej kolejności FIFO.
+Jednak ponowne wznowienie priorytetu jest wykonywane automatycznie, jeśli dziedziczenie priorytetów mutex zostało wybrane podczas tworzenia. Wznowienie priorytetu jest również możliwe,  jeśli aplikacja wywołuje tx_mutex_prioritize przed wywołaniem mutex put, które podnosi zawieszenie wątku. Priorytet usługi mutex umieszcza wątek o najwyższym priorytecie na początku listy zawieszenia, pozostawiając wszystkie inne wstrzymane wątki w tej samej kolejności FIFO.
 
-### <a name="run-time-mutex-performance-information"></a>Informacje o wydajności muteksu w czasie wykonywania 
-ThreadX SMP zapewnia opcjonalne informacje o wydajności muteksu w czasie wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX zostały skompilowane przy użyciu zdefiniowanych ***TX_MUTEX_ENABLE_PERFORMANCE_INFO*** , ThreadX SMP gromadzi poniższe informacje.
+### <a name="run-time-mutex-performance-information"></a>Informacje o wydajności mutex czasu wykonywania 
+SMP ThreadX udostępnia opcjonalne informacje o wydajności mutex czasu wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX jest budowaną przy ***TX_MUTEX_ENABLE_PERFORMANCE_INFO,*** to threadx SMP gromadzi następujące informacje.
 
 Łączna liczba dla całego systemu:
 
-- Umieszczanie obiektów mutex
-- Pobieranie obiektu mutex
-- wstrzymanie pobierania obiektu mutex
-- limity czasu pobierania dla obiektu mutex
-- Brak wersji priorytetu obiektu mutex
-- Dziedziczenie priorytetu obiektu mutex
+- mutex puts
+- mutex pobiera
+- mutex get suspensions
+- limity czasu get mutex
+- inversions priorytetu mutex
+- dziedziczenie priorytetów mutex
 
-Łączna liczba dla każdego muteksu:
+Łączna liczba dla każdego obiektu mutex:
 
-- Umieszczanie obiektów mutex
-- Pobieranie obiektu mutex
-- wstrzymanie pobierania obiektu mutex
-- limity czasu pobierania dla obiektu mutex
-- Brak wersji priorytetu obiektu mutex
-- Dziedziczenie priorytetu obiektu mutex
+- mutex puts
+- mutex pobiera
+- mutex get suspensions
+- limity czasu get mutex
+- inversions priorytetu mutex
+- dziedziczenie priorytetów mutex
 
-Te informacje są dostępne w czasie wykonywania za pomocą usług *tx_mutex_performance_info_get* i *tx_mutex_performance_system_info_get*. Informacje o wydajności muteksu są przydatne podczas ustalania, czy aplikacja działa prawidłowo. Jest on również przydatny do optymalizowania aplikacji. Na przykład stosunkowo wysoka liczba przekroczeń limitu czasu "mutex" może sugerować, że inne wątki są zbyt długie.
+Te informacje są dostępne w czasie rzeczywistym za pośrednictwem usług tx_mutex_performance_info_get *i* *tx_mutex_performance_system_info_get.* Informacje o wydajności obiektu Mutex są przydatne podczas określania, czy aplikacja działa prawidłowo. Jest to również przydatne podczas optymalizacji aplikacji. Na przykład stosunkowo duża liczba "limitów czasu get mutex" może sugerować, że inne wątki zbyt długo wstrzymują zasoby.
 
-### <a name="mutex-control-block-tx_mutex"></a>Blok sterowania muteksem TX_MUTEX 
-Charakterystyki każdego obiektu mutex są dostępne w jego bloku sterowania. Zawiera informacje, takie jak bieżąca liczba własności obiektu mutex oraz wskaźnik wątku, który jest właścicielem obiektu mutex. Ta struktura jest zdefiniowana w pliku ***tx_api. h*** .
+### <a name="mutex-control-block-tx_mutex"></a>Blok sterowania mutex TX_MUTEX 
+Cechy poszczególnych mutex znajdują się w bloku sterującym. Zawiera informacje, takie jak bieżąca liczba własności mutex wraz ze wskaźnikiem wątku, który jest właścicielem mutex. Ta struktura jest zdefiniowana w ***tx_api.h.***
 
-Bloki sterujące muteksem mogą znajdować się w dowolnym miejscu w pamięci, ale najczęściej jest to, że formant blokuje strukturę globalną poprzez definiowanie jej poza zakresem dowolnej funkcji.
+Bloki sterujące mutex mogą być zlokalizowane w dowolnym miejscu w pamięci, ale najczęściej kontrolka blokuje globalną strukturę, definiując ją poza zakresem dowolnej funkcji.
 
-### <a name="deadly-embrace"></a>Deadly  
-Jednym z najbardziej interesujących i niebezpiecznych pułapek związanych z własnością obiektu mutex jest *Deadly*. Deadly, lub *zakleszczenie*, to warunek, w którym co najmniej dwa wątki są zawieszane w nieskończoność podczas próby uzyskania obiektu mutex, który jest już własnością innych wątków. Dyskusja dotycząca *Deadly* i jej środków zaradczych znalezionych na stronie 77 jest całkowicie ważna dla obiektu mutex.
+### <a name="deadly-embrace"></a>Embrace (Przyjmijmy)  
+Jedną z najbardziej interesujących i niebezpiecznych pułapek związanych z własnością mutex jest chłoniak *.* Zakleszczenie to warunek, w którym co najmniej dwa wątki są wsadowe na czas nieokreślony podczas próby uzyskania mutex już należącego do innych wątków. Omówienie *ujścia i* środków zaradczych znalezionych na stronie 77 jest również całkowicie prawidłowe dla obiektu mutex.
 
-### <a name="priority-inversion"></a>Priorytetowa wersja 
-Jak wspomniano wcześniej, głównym pitfallą skojarzoną z wzajemnym wykluczeniem jest priorytetowa wersja. Ten temat został omówiony w pełni w sekcji "priorytet wątku pułapek" na stronie 64. 
+### <a name="priority-inversion"></a>Odwrócenie priorytetu 
+Jak wspomniano wcześniej, główną pułapką związaną ze wzajemnego wykluczania jest odwrócenie priorytetu. Ten temat został bardziej dokładnie omówiony w artykule "Pułapki dotyczące priorytetów wątków" na stronie 64. 
 
-Podstawowy problem wynika z sytuacji, w której wątek o niższym priorytecie ma semafor, którego potrzebuje wątek o wyższym priorytecie. Jest to normalne. Jednak wątki z priorytetami między nimi mogą spowodować, że priorytet Inwersja do ostatniego niedeterministycznego czasu. W przeciwieństwie do semaforów omówionych wcześniej, obiekt mutex ThreadX SMP ma opcjonalne *dziedziczenie priorytetu*. Podstawowym pomysłem związanym z dziedziczeniem priorytetu jest to, że priorytet wątku o niższym priorytecie jest tymczasowo podniesiony do priorytetu wątku o wysokim priorytecie, który chce mieć ten sam mutex, którego właścicielem jest wątek o niższym priorytecie. Gdy wątek o niższym priorytecie zwalnia element mutex, jego oryginalny priorytet jest następnie przywracany, a wątek o wyższym priorytecie otrzymuje własność obiektu mutex. Ta funkcja eliminuje niedeterministyczną wersję priorytetu, zależnie od ilości inwersji do momentu, w którym wątek o niższym priorytecie utrzymuje element mutex. Oczywiście techniki omówione wcześniej w tym rozdziale do obsługi niedeterministycznych nieposiadanych priorytetów są również prawidłowe dla muteksów.
+Podstawowy problem wynika z sytuacji, w której wątek o niższym priorytecie ma semafor, którego potrzebuje wątek o wyższym priorytecie. To samo w sobie jest normalne. Jednak wątki z priorytetami między nimi mogą spowodować, że inwersja priorytetu będzie trwała przez niedeterministyczny czas. W przeciwieństwie do semaforów omówiony wcześniej, obiekt mutex ThreadX SMP ma opcjonalne *dziedziczenie priorytetu*. Podstawowym założeniem dziedziczenia priorytetów jest to, że wątek o niższym priorytecie ma tymczasowo podniesiony priorytet do priorytetu wątku o wysokim priorytecie, który chce mieć ten sam wierzchołek należący do wątku o niższym priorytecie. Gdy wątek o niższym priorytecie zwalnia mutex, jego oryginalny priorytet jest przywracany, a wątek o wyższym priorytecie jest nadawać własność mutex. Ta funkcja eliminuje niedeterministyczne odwrócenie priorytetu przez zmniejszenie wartości inwersji do czasu, gdy wątek o niższym priorytecie zawiera element mutex. Oczywiście techniki omówione wcześniej w tym rozdziale w celu obsługi niedeterministycznego odwrócenia priorytetu są również prawidłowe w przypadku mutexes.
 
 ## <a name="event-flags"></a>Flagi zdarzeń
 
-Flagi zdarzeń zapewniają zaawansowane narzędzie do synchronizacji wątków. Każda flaga zdarzenia jest reprezentowana przez jeden bit. Flagi zdarzeń są rozmieszczone w grupach 32.
+Flagi zdarzeń zapewniają zaawansowane narzędzie do synchronizacji wątków. Każda flaga zdarzenia jest reprezentowana przez pojedynczy bit. Flagi zdarzeń są uporządkowane w grupach po 32.
 
-Wątki mogą obsługiwać wszystkie flagi zdarzeń 32 w grupie w tym samym czasie. Zdarzenia są ustawiane przez *tx_event_flags_set* i pobierane przez *tx_event_flags_get*.
+Wątki mogą działać na wszystkich 32 flagach zdarzeń w grupie w tym samym czasie. Zdarzenia są ustawiane *przez tx_event_flags_set* i pobierane przez *tx_event_flags_get*.
 
-Ustawianie flag zdarzeń odbywa się z użyciem operacji logicznej i/lub między bieżącymi flagami zdarzenia i nowymi flagami zdarzenia. Typ operacji logicznej (i lub lub) jest określony w wywołaniu *tx_event_flags_set* .
+Ustawianie flag zdarzeń jest wykonywane za pomocą operacji logicznej AND/OR między bieżącymi flagami zdarzeń i nowymi flagami zdarzeń. Typ operacji logicznej (AND lub OR) jest określony w *wywołaniu tx_event_flags_set* .
 
-Istnieją podobne opcje logiczne do pobierania flag zdarzeń. Żądanie Get może określać, że wszystkie określone flagi zdarzeń są wymagane (logiczne i). Alternatywnie żądanie Get może określać, że dowolne z określonych flag zdarzeń będzie spełniać żądanie (logiczne lub). Typ operacji logicznej skojarzonej z pobieraniem flag zdarzeń jest określany w wywołaniu *tx_event_flags_get* .
+Istnieją podobne opcje logiczne pobierania flag zdarzeń. Żądanie get może określać, że wszystkie określone flagi zdarzeń są wymagane (operator logiczny AND). Alternatywnie żądanie get może określić, że dowolna z określonych flag zdarzeń będzie spełniać żądanie (logiczne OR). Typ operacji logicznej skojarzony z pobieraniem flag zdarzeń jest określony w *wywołaniu tx_event_flags_get* zdarzenia.
 
 > [!IMPORTANT]
-> Flagi zdarzeń, które spełniają żądanie Get, są używane, tj. ustawione na zero, jeśli **TX_OR_CLEAR** lub **TX_AND_CLEAR** są określone przez żądanie.
+> Flagi zdarzeń, które spełniają wymagania żądania get, są używane,  tj. ustawione na zero, jeśli TX_OR_CLEAR lub **TX_AND_CLEAR** są określone przez żądanie.
 
-Każda grupa flag zdarzeń jest zasobem publicznym. ThreadX SMP nie nakłada żadnych ograniczeń dotyczących sposobu używania grup flag zdarzeń.
+Każda grupa flag zdarzeń jest zasobem publicznym. ThreadX SMP nie stosuje żadnych ograniczeń co do sposobu, w jaki są używane grupy flag zdarzeń.
 
 ### <a name="creating-event-flags-groups"></a>Tworzenie grup flag zdarzeń
-Grupy flag zdarzeń są tworzone podczas inicjacji lub w czasie wykonywania przez wątki aplikacji. W momencie ich tworzenia wszystkie flagi zdarzeń w grupie mają ustawioną wartość zero. Nie ma żadnego limitu liczby grup flag zdarzeń w aplikacji.
+Grupy flag zdarzeń są tworzone podczas inicjowania lub w czasie uruchamiania przez wątki aplikacji. W momencie ich tworzenia wszystkie flagi zdarzeń w grupie są ustawione na zero. Nie ma żadnego limitu liczby grup flag zdarzeń w aplikacji.
 
 ### <a name="thread-suspension"></a>Zawieszenie wątku 
-Wątki aplikacji mogą wstrzymywać się podczas próby pobrania logicznej kombinacji flag zdarzeń z grupy. Po ustawieniu flagi zdarzenia żądania GET wszystkich zawieszonych wątków są przeglądane. Wszystkie wątki, które mają teraz wymagane flagi zdarzeń, są wznawiane.
+Wątki aplikacji mogą zostać wstrzymane podczas próby uzyskania dowolnej logicznej kombinacji flag zdarzeń z grupy. Po skonfigurowaniu flagi zdarzenia żądania get wszystkich zawieszonych wątków są przeglądane. Wszystkie wątki, które mają teraz wymagane flagi zdarzeń, zostaną wznowione.
 
 > [!IMPORTANT]
-> Wszystkie zawieszone wątki w grupie flag zdarzeń są przeglądane po ustawieniu flag zdarzeń. Oczywiście wprowadzają dodatkowe koszty. W związku z tym dobrym sposobem jest ograniczenie liczby wątków przy użyciu tej samej grupy flag zdarzeń do odpowiedniej liczby.
+> Wszystkie wstrzymane wątki w grupie flag zdarzeń są przeglądane, gdy są ustawione jej flagi zdarzeń. Oczywiście stanowi to dodatkowe obciążenie. W związku z tym dobrym rozwiązaniem jest ograniczenie liczby wątków używających tej samej grupy flag zdarzeń do rozsądnej liczby.
 
-### <a name="event-flags-set-notification"></a>Powiadomienie o ustawieniu flag zdarzeń 
-Niektóre aplikacje mogą otrzymywać powiadomienia, gdy flaga zdarzenia jest ustawiona. ThreadX SMP zapewnia tę możliwość za pomocą usługi *tx_event_flags_set_notify* . Ta usługa rejestruje podaną funkcję powiadamiania aplikacji z określoną grupą flag zdarzeń. ThreadX SMP wywoła następnie tę funkcję powiadamiania aplikacji za każdym razem, gdy flaga zdarzenia w grupie zostanie ustawiona. Dokładne przetwarzanie w ramach funkcji powiadomień aplikacji jest określane przez aplikację, ale zazwyczaj polega na wznowieniu odpowiedniego wątku w celu przetworzenia nowej flagi zdarzenia. 
+### <a name="event-flags-set-notification"></a>Powiadomienie o zestawie flag zdarzeń 
+W przypadku niektórych aplikacji korzystne może być powiadomienie za każdym razem, gdy jest ustawiona flaga zdarzenia. ThreadX SMP zapewnia tę możliwość za *pośrednictwem tx_event_flags_set_notify* usługi. Ta usługa rejestruje dostarczoną funkcję powiadomień aplikacji przy użyciu określonej grupy flag zdarzeń. ThreadX SMP będzie następnie wywoływać tę funkcję powiadomień aplikacji za każdym razem, gdy zostanie ustawiona flaga zdarzenia w grupie. Dokładne przetwarzanie w ramach funkcji powiadomień aplikacji jest określane przez aplikację, ale zazwyczaj polega na wznowieniu odpowiedniego wątku do przetwarzania nowej flagi zdarzenia. 
 
-### <a name="event-flags-event-chaining"></a>™ Łańcucha zdarzeń flag zdarzeń 
-Możliwości powiadomień w ThreadX SMP mogą służyć do "łańcucha" różnych zdarzeń synchronizacji razem. Jest to zazwyczaj przydatne, gdy pojedynczy wątek musi przetwarzać wiele zdarzeń synchronizacji. 
+### <a name="event-flags-event-chaining"></a>Łańcuch zdarzeń flag zdarzeń™ 
+Możliwości powiadomień w pniu SMP ThreadX mogą służyć do "łańcucha" różnych zdarzeń synchronizacji. Jest to zazwyczaj przydatne, gdy jeden wątek musi przetworzyć wiele zdarzeń synchronizacji. 
 
-Na przykład zamiast konieczności zawieszania oddzielnych wątków dla komunikatu kolejki, flag zdarzeń i semafora aplikacja może zarejestrować procedurę powiadamiania dla każdego obiektu. Po wywołaniu procedura powiadamiania aplikacji może następnie wznowić pojedynczy wątek, który może przejrzeć każdy obiekt, aby znaleźć i przetworzyć nowe zdarzenie. 
+Na przykład zamiast oddzielnych wątków wstrzymywanych dla komunikatu w kolejce, flag zdarzeń i semafora, aplikacja może zarejestrować procedurę powiadamiania dla każdego obiektu. Po wywołaniu procedura powiadamiania aplikacji może następnie wznowić pojedynczy wątek, który może interrogować każdy obiekt w celu znalezienia i przetwarzania nowego zdarzenia. 
 
-Ogólnie rzecz biorąc, *łańcuch zdarzeń* powoduje zmniejszenie liczby wątków, mniejsze obciążenie i mniejsze wymagania dotyczące pamięci RAM. Zapewnia również wysoce elastyczny mechanizm obsługujący wymagania dotyczące synchronizacji bardziej złożonych systemów. 
+Ogólnie rzecz biorąc, *łańcuch zdarzeń* powoduje mniejszą liczbę wątków, mniejsze obciążenie i mniejsze wymagania dotyczące pamięci RAM. Zapewnia również wysoce elastyczny mechanizm obsługi wymagań dotyczących synchronizacji w bardziej złożonych systemach. 
 
 ### <a name="run-time-event-flags-performance-information"></a>Informacje o wydajności flag zdarzeń czasu wykonywania 
-ThreadX SMP zapewnia opcjonalne informacje o wydajności flag w czasie wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX zostały skompilowane przy użyciu zdefiniowanych ***TX_EVENT_FLAGS_ENABLE_PERFORMANCE_INFO*** , ThreadX SMP gromadzi poniższe informacje.
+SMP ThreadX udostępnia opcjonalne informacje o wydajności flag zdarzeń czasu wykonywania. Jeśli biblioteka i aplikacja ThreadX SMP została s zbudowana TX_EVENT_FLAGS_ENABLE_PERFORMANCE_INFO, smp ThreadX gromadzi następujące informacje. 
 
 Łączna liczba dla całego systemu:
 
-- Zestawy flag zdarzeń
-- flagi zdarzeń są pobierane
-- flagi zdarzeń pobieranie zawieszeń
-- flagi zdarzeń pobierają limity czasu
+- zestawy flag zdarzeń
+- pobiera flagi zdarzeń
+- flagi event get suspensions
+- Flagi zdarzeń uzyskają limity czasu
 
 Łączna liczba dla każdej grupy flag zdarzeń:
 
-- Zestawy flag zdarzeń
-- flagi zdarzeń są pobierane
-- flagi zdarzeń pobieranie zawieszeń
-- flagi zdarzeń pobierają limity czasu
+- zestawy flag zdarzeń
+- pobiera flagi zdarzeń
+- flagi event get suspensions
+- Flagi zdarzeń uzyskają limity czasu
 
-Te informacje są dostępne w czasie wykonywania za pomocą usług *tx_event_flags_performance_info_get* i *tx_event_flags_performance_system_info_get*. Informacje o wydajności flag zdarzeń są przydatne podczas ustalania, czy aplikacja działa prawidłowo. Jest on również przydatny do optymalizowania aplikacji. Na przykład stosunkowo duża liczba limitów czasu w usłudze *tx_event_flags_get* może sugerować, że limit czasu zawieszenia flag zdarzeń jest za krótki.
+Te informacje są dostępne w czasie rzeczywistym za pośrednictwem usług tx_event_flags_performance_info_get *i* *tx_event_flags_performance_system_info_get*. Informacje o wydajności flag zdarzeń są przydatne podczas określania, czy aplikacja działa prawidłowo. Jest to również przydatne podczas optymalizacji aplikacji. Na przykład stosunkowo duża liczba limitów czasu w usłudze *tx_event_flags_get* może sugerować, że limit czasu wstrzymania flag zdarzeń jest zbyt krótki.
 
-### <a name="event-flags-group-control-block-tx_event_flags_group"></a>Flagi zdarzeń grupuje blok sterowania TX_EVENT_FLAGS_GROUP
-Właściwości każdej grupy flag zdarzeń znajdują się w bloku sterowania. Zawiera informacje takie jak bieżące ustawienia flag zdarzeń oraz liczbę wątków zawieszonych dla zdarzeń. Ta struktura jest zdefiniowana w pliku ***tx_api. h*** . 
+### <a name="event-flags-group-control-block-tx_event_flags_group"></a>Blokuj kontrolki grupy flag zdarzeń TX_EVENT_FLAGS_GROUP
+Cechy każdej grupy flag zdarzeń znajdują się w jej bloku sterującym. Zawiera informacje, takie jak bieżące ustawienia flag zdarzeń i liczba wątków wstrzymanych dla zdarzeń. Ta struktura jest zdefiniowana ***w tx_api.h.*** 
 
-Bloki sterujące grupą zdarzeń mogą znajdować się w dowolnym miejscu w pamięci, ale najczęściej jest to, że formant blokuje strukturę globalną przez definiowanie jej poza zakresem dowolnej funkcji.
+Bloki sterowania grupy zdarzeń mogą być zlokalizowane w dowolnym miejscu w pamięci, ale najczęściej blok sterujący jest strukturą globalną przez zdefiniowanie jej poza zakresem dowolnej funkcji.
 
 ## <a name="memory-block-pools"></a>Pule bloków pamięci  
 
-Przydzielanie pamięci w sposób szybki i deterministyczny jest zawsze wyzwaniem w aplikacjach w czasie rzeczywistym. Z tego względu ThreadX SMP zapewnia możliwość tworzenia wielu pul bloków pamięci o stałym rozmiarze i zarządzania nimi.
+Szybkie i deterministyczne przydzielanie pamięci zawsze stanowi wyzwanie w aplikacjach czasu rzeczywistego. Mając to na uwadze, threadX SMP zapewnia możliwość tworzenia wielu pul bloków pamięci o stałym rozmiarze i zarządzania nimi.
 
-Ponieważ pule bloków pamięci składają się z bloków o stałym rozmiarze, nigdy nie występują żadne problemy z fragmentacją. Oczywiście fragmentacja powoduje, że zachowanie, które jest niedeterministyczne. Ponadto czas wymagany do przydzielenia i zwolnienia bloku pamięci o ustalonym rozmiarze jest porównywalny z tym, że proste manipulowanie listą. Ponadto alokacja bloku pamięci i cofnięcie alokacji są wykonywane na końcu listy dostępnych. Zapewnia to najszybszy możliwy do przetwarzania listy połączonej i może pomóc zachować rzeczywisty blok pamięci w pamięci podręcznej.
+Ponieważ pule bloków pamięci składają się z bloków o stałym rozmiarze, nigdy nie występują problemy z fragmentacją. Oczywiście fragmentacja powoduje zachowanie, które jest z założenia niedeterministyczne. Ponadto czas wymagany do przydzielenia i wolnego bloku pamięci o stałym rozmiarze jest porównywalny z prostym manipulowaniem listami połączonymi. Ponadto alokacja bloków pamięci i ich co najmniej alokacja odbywa się na początku dostępnej listy. Zapewnia to najszybsze możliwe przetwarzanie połączonych list i może pomóc w zatrzymaniu rzeczywistego bloku pamięci w pamięci podręcznej.
 
-Brak elastyczności jest główną wadą dla pul pamięci o stałym rozmiarze. Rozmiar bloku puli musi być wystarczająco duży, aby obsługiwał najgorsze wymagania dotyczące pamięci dla swoich użytkowników. Oczywiście pamięć może być tracona, jeśli wiele żądań pamięci o różnych rozmiarach jest wykonywanych w tej samej puli. Możliwe rozwiązanie polega na utworzeniu kilku różnych pul bloków pamięci, które zawierają różne rozmiary bloków pamięci.
+Brak elastyczności jest główną wadą pul pamięci o stałym rozmiarze. Rozmiar bloku puli musi być wystarczająco duży, aby obsłużyć najgorsze wymagania dotyczące pamięci użytkowników. Oczywiście pamięć może zostać zmarnowana, jeśli do tej samej puli zostanie wykonanych wiele żądań pamięci o różnym rozmiarze. Możliwym rozwiązaniem jest użycie kilku różnych pul bloków pamięci, które zawierają bloki pamięci o różnych rozmiarach.
 
-Każda pula bloków pamięci jest zasobem publicznym. ThreadX SMP nie nakłada żadnych ograniczeń dotyczących sposobu używania pul.
+Każda pula bloków pamięci jest zasobem publicznym. ThreadX SMP nie stosuje żadnych ograniczeń co do sposobu, w jaki są używane pule.
 
 ### <a name="creating-memory-block-pools"></a>Tworzenie pul bloków pamięci  
-Pule bloków pamięci są tworzone podczas inicjacji lub w czasie wykonywania przez wątki aplikacji. Nie ma limitu liczby pul bloków pamięci w aplikacji.
+Pule bloków pamięci są tworzone podczas inicjowania lub w czasie uruchamiania przez wątki aplikacji. Nie ma żadnego limitu liczby pul bloków pamięci w aplikacji.
 
 ### <a name="memory-block-size"></a>Rozmiar bloku pamięci  
-Jak wspomniano wcześniej, pule bloków pamięci zawierają wiele bloków o stałym rozmiarze. Rozmiar bloku (w bajtach) jest określany podczas tworzenia puli.
+Jak wspomniano wcześniej, pule bloków pamięci zawierają wiele bloków o stałym rozmiarze. Rozmiar bloku w bajtach jest określony podczas tworzenia puli.
 
 > [!IMPORTANT]
-> ThreadX SMP dodaje niewielki nakład pracy — rozmiar wskaźnika C — do każdego bloku pamięci w puli. Ponadto ThreadX SMP może wymagać zablokowania rozmiaru bloku, aby zachować początek każdego bloku pamięci na właściwym wyrównaniu.
+> ThreadX SMP dodaje niewielki narzut — rozmiar wskaźnika C — do każdego bloku pamięci w puli. Ponadto threadX SMP może być konieczne uzupełnienie rozmiaru bloku, aby zachować początek każdego bloku pamięci przy odpowiednim wyrównaniu.
 
 ### <a name="pool-capacity"></a>Pojemność puli 
-Liczba bloków pamięci w puli jest funkcją rozmiaru bloku i łączną liczbę bajtów w obszarze pamięci dostarczonym podczas tworzenia. Pojemność puli jest obliczana przez podzielenie rozmiaru bloku (włącznie z uzupełnieniem i wskaźnikiem bajtów) do całkowitej liczby bajtów w podanym obszarze pamięci.
+Liczba bloków pamięci w puli jest funkcją rozmiaru bloku i całkowitej liczby bajtów w obszarze pamięci dostarczonym podczas tworzenia. Pojemność puli jest obliczana przez podzielenie rozmiaru bloku (w tym wypełnienia i narzutu wskaźnika w bajtach) na łączną liczbę bajtów w dostarczonym obszarze pamięci.
 
 ### <a name="pools-memory-area"></a>Obszar pamięci puli 
-Jak wspomniano wcześniej, obszar pamięci dla puli bloków jest określany podczas tworzenia. Podobnie jak w przypadku innych obszarów pamięci w ThreadX SMP, może ona znajdować się w dowolnym miejscu w przestrzeni adresowej docelowej.
+Jak wspomniano wcześniej, obszar pamięci dla puli bloków jest określony podczas tworzenia. Podobnie jak w przypadku innych obszarów pamięci w smp ThreadX, może ona być zlokalizowana w dowolnym miejscu w przestrzeni adresowej obiektu docelowego.
 
-Jest to ważna funkcja ze względu na znaczną elastyczność, którą zapewnia. Załóżmy na przykład, że produkt komunikacyjny ma obszar pamięci HighSpeed dla operacji we/wy. Ten obszar pamięci jest łatwo zarządzany przez umieszczenie go w puli bloków pamięci SMP ThreadX.
+Jest to ważna funkcja ze względu na dużą elastyczność, która zapewnia. Załóżmy na przykład, że produkt komunikacyjny ma obszar pamięci o dużej szybkości dla we/wy. Tym obszarem pamięci można łatwo zarządzać, przez wprowadzenie go do puli bloków pamięci SMP ThreadX.
 
 ### <a name="thread-suspension"></a>Zawieszenie wątku 
-Wątki aplikacji mogą wstrzymywać się podczas oczekiwania na blok pamięci z pustej puli. Gdy blok jest zwracany do puli, zawieszony wątek otrzymuje ten blok, a wątek zostaje wznowiony.
+Wątki aplikacji mogą zostać wstrzymane podczas oczekiwania na blok pamięci z pustej puli. Gdy blok jest zwracany do puli, wstrzymany wątek jest podany ten blok i wątek jest wznawiany.
 
-Jeśli wiele wątków jest zawieszonych w tej samej puli bloków pamięci, zostaną wznowione w kolejności, w której zostały wstrzymane (FIFO).
+Jeśli wiele wątków jest zawieszonych w tej samej puli bloków pamięci, są one wznawiane w kolejności, w których zostały wstrzymane (FIFO).
 
-Jednak możliwość wznowienia priorytetu jest również możliwa, jeśli aplikacja wywołuje ***tx_block_pool_prioritize*** przed wywołaniem bloku zwalniania wątku Wind. Usługa Blocking Pool priorytetyzacja powoduje umieszczenie wątku o najwyższym priorytecie na początku listy zawieszania, pozostawiając wszystkie pozostałe zawieszone wątki w tej samej kolejności FIFO.
+Jednak wznowienie priorytetu jest również możliwe, jeśli aplikacja ***wywołuje*** tx_block_pool_prioritize przed wywołaniem wydania bloku, które podnosi zawieszenie wątku. Usługa priorytetów puli bloków umieszcza wątek o najwyższym priorytecie na początku listy zawieszenia, pozostawiając wszystkie inne wstrzymane wątki w tej samej kolejności FIFO.
 
-### <a name="run-time-block-pool-performance-information"></a>Informacje o wydajności bloku blokowego czasu wykonywania  
-ThreadX SMP zapewnia opcjonalne informacje o wydajności puli bloku czasu wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX zostały skompilowane przy użyciu zdefiniowanych ***TX_BLOCK_POOL_ENABLE_PERFORMANCE_INFO*** , ThreadX SMP gromadzi poniższe informacje.
+### <a name="run-time-block-pool-performance-information"></a>Informacje o wydajności puli bloków czasu wykonywania  
+SMP ThreadX udostępnia opcjonalne informacje o wydajności puli bloków czasu wykonywania. Jeśli biblioteka I aplikacja threadX SMP została s zbudowana TX_BLOCK_POOL_ENABLE_PERFORMANCE_INFO zdefiniowanej, smp ThreadX gromadzi następujące informacje. 
 
 Łączna liczba dla całego systemu:
 
-- przydzielono bloki
-- bloki wydane
-- zawieszenie alokacji
+- przydzielone bloki
+- wydane bloki
+- wstrzymanie alokacji
 - limity czasu alokacji
 
 Łączna liczba dla każdej puli bloków:
 
-- przydzielono bloki
-- bloki wydane
-- zawieszenie alokacji
+- przydzielone bloki
+- wydane bloki
+- wstrzymanie alokacji
 - limity czasu alokacji
 
-Te informacje są dostępne w czasie wykonywania za pomocą usług *tx_block_pool_performance_info_get* i *tx_block_pool_performance_system_info_get*. Informacje o wydajności puli bloku są przydatne podczas ustalania, czy aplikacja działa prawidłowo. Jest on również przydatny do optymalizowania aplikacji. Na przykład stosunkowo wysoka liczba "zawieszeń alokacji" może sugerować, że Pula bloków jest za mała.
+Te informacje są dostępne w czasie rzeczywistym za pośrednictwem usług tx_block_pool_performance_info_get *i* *tx_block_pool_performance_system_info_get*. Informacje o wydajności puli bloków są przydatne podczas określania, czy aplikacja działa prawidłowo. Jest to również przydatne podczas optymalizacji aplikacji. Na przykład stosunkowo duża liczba "zawieszeń alokacji" może sugerować, że pula bloków jest zbyt mała.
 
-### <a name="memory-block-pool-control-block-tx_block_pool"></a>Blok sterowania puli bloków pamięci TX_BLOCK_POOL  
-Charakterystyki każdej puli bloków pamięci znajdują się w bloku sterowania. Zawiera informacje, takie jak liczba dostępnych bloków pamięci i rozmiar bloku puli pamięci. Ta struktura jest zdefiniowana w pliku ***tx_api. h*** . 
+### <a name="memory-block-pool-control-block-tx_block_pool"></a>Blokowy blok pamięci blokowy blokowy blokowy blokowy TX_BLOCK_POOL  
+Cechy każdej puli bloków pamięci znajdują się w jej bloku sterującym. Zawiera informacje, takie jak liczba dostępnych bloków pamięci i rozmiar bloku puli pamięci. Ta struktura jest zdefiniowana ***w tx_api.h.*** 
 
-Bloki sterujące puli mogą znajdować się w dowolnym miejscu w pamięci, ale najczęściej jest to, że formant blokuje strukturę globalną poprzez definiowanie jej poza zakresem dowolnej funkcji. 
+Bloki sterowania puli mogą również być zlokalizowane w dowolnym miejscu w pamięci, ale najczęściej blok sterujący jest strukturą globalną przez zdefiniowanie jej poza zakresem dowolnej funkcji. 
 
-### <a name="overwriting-memory-blocks"></a>Zastępowanie bloków pamięci  
-Ważne jest, aby upewnić się, że użytkownik przydzielony blok pamięci nie zapisuje poza granicami. W takim przypadku uszkodzenie występuje w sąsiednim (zazwyczaj następnym) obszarze pamięci. Wyniki są nieprzewidywalne i często krytyczne! 
+### <a name="overwriting-memory-blocks"></a>Nadpisanie bloków pamięci  
+Należy się upewnić, że użytkownik przydzielonego bloku pamięci nie zapisuje poza jego granicami. W takim przypadku uszkodzenie występuje w sąsiednim (zazwyczaj kolejnym) obszarze pamięci. Wyniki są nieprzewidywalne i często krytyczne! 
 
 ## <a name="memory-byte-pools"></a>Pule bajtów pamięci
 
-Pule bajtów pamięci SMP ThreadX są podobne do standardowej sterty języka C. W przeciwieństwie do standardowej sterty C, możliwe jest posiadanie wielu pul bajtów pamięci. Ponadto wątki mogą wstrzymywać się w puli, dopóki żądana pamięć nie jest dostępna.
+Pule bajtów pamięci SMP ThreadX są podobne do standardowej sterty C. W przeciwieństwie do standardowej sterty C, istnieje możliwość użycia wielu pul bajtów pamięci. Ponadto wątki mogą wstrzymywać się w puli do momentu, aż żądana pamięć będzie dostępna.
 
-Alokacje z pul bajtów pamięci są podobne do tradycyjnych wywołań *malloc* , które obejmują ilość żądanej pamięci (w bajtach). Pamięć jest przydzielono z puli w *pierwszej kolejności* . oznacza to, że jest używany pierwszy blok wolnej pamięci, który spełnia żądanie. Nadmierna ilość pamięci z tego bloku jest konwertowana na nowy blok i umieszczana z powrotem na liście wolnej pamięci. Ten proces jest nazywany *fragmentacją*.
+Alokacje z pul bajtów pamięci są podobne do tradycyjnych wywołań *malloc,* które obejmują żądaną ilość pamięci (w bajtach). Pamięć jest przydzielana z puli w *pierwszej kolejności;* oznacza to, że jest używany pierwszy blok wolnej pamięci, który spełnia żądanie. Nadmiarowa pamięć z tego bloku jest konwertowana na nowy blok i umieszczana z powrotem na liście wolnej pamięci. Ten proces jest nazywany *fragmentacją*.
 
-Sąsiadujące bloki wolnej pamięci są *scalane* podczas kolejnego wyszukiwania alokacji dla dużej ilości wolnego bloku pamięci. Ten proces jest nazywany *defragmentacją*.
+Sąsiadujące bloki wolnej pamięci *są scalane* razem podczas kolejnego wyszukiwania alokacji w celu wyszukania wystarczająco dużego bloku wolnej pamięci. Ten proces jest nazywany *dekodacją*.
 
-Każda pula bajtów pamięci jest zasobem publicznym. ThreadX SMP nie ma żadnych ograniczeń dotyczących sposobu używania pul, z tą różnicą, że nie można wywoływać usług bajtów pamięci z procedury ISR.
+Każda pula bajtów pamięci jest zasobem publicznym. ThreadX SMP nie stosuje żadnych ograniczeń co do sposobu użycia pul, z tą różnicą, że usługi bajtów pamięci nie mogą być wywoływane z serwerów ISR.
 
 ### <a name="creating-memory-byte-pools"></a>Tworzenie pul bajtów pamięci 
-Pule bajtów pamięci są tworzone podczas inicjacji lub w czasie wykonywania przez wątki aplikacji. Nie ma żadnego limitu liczby pul bajtów pamięci w aplikacji.  
+Pule bajtów pamięci są tworzone podczas inicjowania lub w czasie uruchamiania przez wątki aplikacji. Nie ma żadnego limitu liczby pul bajtów pamięci w aplikacji.  
 
 ### <a name="pool-capacity"></a>Pojemność puli 
-Liczba bajtów do przydzielenia w puli bajtów pamięci jest nieco mniejsza niż wartość określona podczas tworzenia. Wynika to z faktu, że zarządzanie obszarem wolnej pamięci wprowadza pewne obciążenie. Każdy blok wolnej pamięci w puli wymaga odpowiedniku dwóch wskaźników C w obciążeniu. Ponadto Pula jest tworzona z dwoma blokami, dużym bezpłatnym blokiem i niewielkim trwale przydzielonym blokiem na końcu obszaru pamięci. Ten przydzielony blok służy do poprawienia wydajności algorytmu alokacji. Eliminuje to konieczność ciągłego sprawdzania pod kątem końca obszaru puli podczas scalania.  
+Liczba przydzielanych bajtów w puli bajtów pamięci jest nieco mniejsza niż określona podczas tworzenia. Wynika to z tego, że zarządzanie obszarem wolnej pamięci wprowadza pewne obciążenia. Każdy blok wolnej pamięci w puli wymaga odpowiednika dwóch wskaźników obciążenia C. Ponadto pula jest tworzona z dwoma blokami: dużym blokiem swobodnym i małym trwale przydzielonym blokiem na końcu obszaru pamięci. Ten przydzielony blok służy do poprawy wydajności algorytmu alokacji. Eliminuje to konieczność ciągłego sprawdzania końca obszaru puli podczas scalania.  
 
-W czasie wykonywania ilość narzutów w puli zwykle rośnie. Alokacje nieparzystej liczby bajtów są uzupełniane w celu zapewnienia prawidłowego wyrównania następnego bloku pamięci. Dodatkowo narzuty zwiększają się, ponieważ pula jest bardziej pofragmentowana.
+W czasie trwania zwykle zwiększa się obciążenie puli. Alokacje nieparzystej liczby bajtów są dosłaniane w celu zapewnienia odpowiedniego wyrównania następnego bloku pamięci. Ponadto obciążenie zwiększa się, gdy pula staje się bardziej pofragmentowana.
 
 ### <a name="pools-memory-area"></a>Obszar pamięci puli  
-Obszar pamięci dla puli bajtów pamięci jest określany podczas tworzenia. Podobnie jak w przypadku innych obszarów pamięci w ThreadX SMP, może ona znajdować się w dowolnym miejscu w przestrzeni adresowej docelowej. 
+Obszar pamięci dla puli bajtów pamięci jest określony podczas tworzenia. Podobnie jak w przypadku innych obszarów pamięci w smp ThreadX, może ona być zlokalizowana w dowolnym miejscu w przestrzeni adresowej obiektu docelowego. 
 
-Jest to ważna funkcja ze względu na znaczną elastyczność, którą zapewnia. Na przykład jeśli sprzęt docelowy ma obszar pamięci o dużej szybkości i obszar pamięci o małej szybkości, użytkownik może zarządzać alokacją pamięci dla obu obszarów, tworząc pulę w każdym z nich. 
+Jest to ważna funkcja ze względu na dużą elastyczność, która zapewnia. Jeśli na przykład sprzęt docelowy ma obszar pamięci o dużej szybkości i obszar pamięci o małej szybkości, użytkownik może zarządzać alokacją pamięci dla obu obszarów, tworząc pulę w każdym z nich. 
 
 ### <a name="thread-suspension"></a>Zawieszenie wątku  
-Wątki aplikacji mogą wstrzymywać się podczas oczekiwania na bajty pamięci z puli. Gdy dostępna jest wystarczająca ciągła pamięć, zawieszone wątki otrzymują żądaną pamięć, a wątki są wznawiane. 
+Wątki aplikacji mogą zostać wstrzymane podczas oczekiwania na bajty pamięci z puli. Gdy dostępna jest wystarczająca ilość ciągłej pamięci, wstrzymane wątki mają żądaną pamięć i wątki są wznawiane. 
 
-Jeśli wiele wątków jest zawieszonych w tej samej puli bajtów pamięci, zostanie określona pamięć (wznowiona) w kolejności, w jakiej zostały wstrzymane (FIFO). 
+Jeśli wiele wątków jest zawieszonych w tej samej puli bajtów pamięci, są one nadane pamięci (wznowione) w kolejności, w których zostały wstrzymane (FIFO). 
 
-Jednak możliwość wznowienia priorytetu jest również możliwa, jeśli aplikacja wywołuje ***tx_byte_pool_prioritize*** przed wywołaniem zwolnienia bajtów, które zawieszania wątku Wind. Priorytet puli bajtów Usługa umieszcza wątek o najwyższym priorytecie na początku listy zawieszania, pozostawiając wszystkie pozostałe zawieszone wątki w tej samej kolejności FIFO.
+Jednak wznowienie priorytetu jest również możliwe,  jeśli aplikacja wywołuje tx_byte_pool_prioritize przed wywołaniem wydania bajtowego, które podnosi zawieszenie wątku. Usługa priorytetów puli bajtów umieszcza wątek o najwyższym priorytecie na początku listy zawieszenia, pozostawiając wszystkie inne wstrzymane wątki w tej samej kolejności FIFO.
 
 ### <a name="run-time-byte-pool-performance-information"></a>Informacje o wydajności puli bajtów czasu wykonywania  
-ThreadX SMP zapewnia opcjonalne informacje o wydajności puli bajtów w czasie wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX zostały skompilowane przy użyciu zdefiniowanych ***TX_BYTE_POOL_ENABLE_PERFORMANCE_INFO*** , ThreadX SMP gromadzi poniższe informacje.
+SMP ThreadX udostępnia opcjonalne informacje o wydajności puli bajtów czasu wykonywania. Jeśli biblioteka i aplikacja ThreadX SMP TX_BYTE_POOL_ENABLE_PERFORMANCE_INFO zdefiniowane, smp ThreadX gromadzi następujące informacje. 
 
 Łączna liczba dla całego systemu:
 
-- alokacji
+- Alokacji
 - wersje
-- fragmenty przeszukane
-- fragmenty scalone
+- przeszukiwane fragmenty
+- scalone fragmenty
 - utworzone fragmenty
-- zawieszenie alokacji
+- wstrzymanie alokacji
 - limity czasu alokacji
 
 Łączna liczba dla każdej puli bajtów:
 
-- alokacji
+- Alokacji
 - wersje
-- fragmenty przeszukane
-- fragmenty scalone
+- przeszukiwane fragmenty
+- scalone fragmenty
 - utworzone fragmenty
-- zawieszenie alokacji
+- wstrzymanie alokacji
 - limity czasu alokacji
 
-Te informacje są dostępne w czasie wykonywania za pomocą usług *tx_byte_pool_performance_info_get* i *tx_byte_pool_performance_system_info_get*. Informacje o wydajności puli bajtów są przydatne podczas ustalania, czy aplikacja działa prawidłowo. Jest on również przydatny do optymalizowania aplikacji. Na przykład stosunkowo wysoka liczba "zawieszeń alokacji" może sugerować, że Pula bajtów jest za mała.
+Te informacje są dostępne w czasie rzeczywistym za pośrednictwem usług tx_byte_pool_performance_info_get *i* *tx_byte_pool_performance_system_info_get*. Informacje o wydajności puli bajtów są przydatne podczas określania, czy aplikacja działa prawidłowo. Jest to również przydatne podczas optymalizacji aplikacji. Na przykład stosunkowo duża liczba "zawieszeń alokacji" może sugerować, że pula bajtów jest zbyt mała.
 
-### <a name="memory-byte-pool-control-block-tx_byte_pool"></a>Blok kontroli puli bajtów pamięci TX_BYTE_POOL  
-Charakterystyki każdej puli bajtów pamięci znajdują się w bloku sterowania. Zawiera użyteczne informacje, takie jak liczba bajtów dostępnych w puli. Ta struktura jest zdefiniowana w pliku ***tx_api. h*** . 
+### <a name="memory-byte-pool-control-block-tx_byte_pool"></a>Blok sterowania puli bajtów pamięci TX_BYTE_POOL  
+Charakterystyki każdej puli bajtów pamięci znajdują się w jej bloku sterującym. Zawiera on przydatne informacje, takie jak liczba dostępnych bajtów w puli. Ta struktura jest zdefiniowana ***w tx_api.h.*** 
 
-Bloki sterujące puli mogą znajdować się w dowolnym miejscu w pamięci, ale najczęściej jest to, że formant blokuje strukturę globalną poprzez definiowanie jej poza zakresem dowolnej funkcji. 
+Bloki sterowania puli mogą również być zlokalizowane w dowolnym miejscu w pamięci, ale najczęściej kontrolka blokuje globalną strukturę, definiując ją poza zakresem dowolnej funkcji. 
 
-### <a name="nondeterministic-behavior"></a>Zachowanie niedeterministyczne 
-Chociaż pule bajtów pamięci zapewniają największą elastyczną alokację pamięci, mogą również mieć nieco niedeterministyczne zachowanie. Na przykład Pula bajtów pamięci może mieć 2 000 bajtów pamięci, ale może nie być w stanie spełnić żądania alokacji o 1 000 bajtów. Wynika to z faktu, że liczba wolnych bajtów jest ciągła. Nawet jeśli istnieje blok o numerze 1 000 bajtów, nie ma żadnych gwarancji dotyczących czasu, w którym może upłynąć, aby znaleźć blok. W całości jest możliwe, że cała pula pamięci będzie musiała zostać przeszukana w celu znalezienia bloku bajtów 1 000. 
+### <a name="nondeterministic-behavior"></a>Niedeterministyczne zachowanie 
+Mimo że pule bajtów pamięci zapewniają najbardziej elastyczną alokację pamięci, również mają nieco nieokreślone zachowanie. Na przykład pula bajtów pamięci może mieć 2000 bajtów pamięci, ale może nie być w stanie spełnić żądania alokacji o 1000 bajtów. Wynika to z tego, że nie ma żadnych gwarancji, ile wolnych bajtów jest ciągłych. Nawet jeśli istnieje blok o długości 1000 bajtów, nie ma gwarancji, jak długo może potrwać znalezienie bloku. Jest całkowicie możliwe, że cała pula pamięci musi być przeszukiwana w celu znalezienia bloku 1000 bajtów. 
 
 > [!IMPORTANT]
-> Z tego względu warto unikać korzystania z usług bajtów pamięci w obszarach, w których jest wymagane jednoznaczne zachowanie. Wiele aplikacji wstępnie przydzieli wymaganą pamięć w czasie inicjalizacji lub konfiguracji czasu wykonywania.
+> W związku z tym dobrą praktyką jest unikanie korzystania z usług bajtowych pamięci w obszarach, w których jest wymagane deterministyczne zachowanie w czasie rzeczywistym. Wiele aplikacji wstępnie przydziela wymaganą pamięć podczas inicjowania lub konfigurowania w czasie działania.
 
-### <a name="overwriting-memory-blocks"></a>Zastępowanie bloków pamięci 
-Ważne jest, aby upewnić się, że użytkownik przydzieloną pamięć nie zapisuje poza granicami. W takim przypadku uszkodzenie występuje w sąsiednim (zazwyczaj następnym) obszarze pamięci. Wyniki są nieprzewidywalne i często krytyczne! 
+### <a name="overwriting-memory-blocks"></a>Nadpisanie bloków pamięci 
+Ważne jest, aby upewnić się, że użytkownik przydzielonej pamięci nie zapisuje poza jego granicami. W takim przypadku uszkodzenie występuje w sąsiednim (zazwyczaj kolejnym) obszarze pamięci. Wyniki są nieprzewidywalne i często krytyczne! 
 
 ## <a name="application-timers"></a>Czasomierze aplikacji
 
-Szybka odpowiedź na asynchroniczne zdarzenia zewnętrzne to najważniejsze funkcje aplikacji osadzonych w czasie rzeczywistym. Jednak wiele z tych aplikacji musi również wykonywać pewne działania w ustalonych odstępach czasu.
+Szybka odpowiedź na asynchroniczne zdarzenia zewnętrzne jest najważniejszą funkcją aplikacji osadzonych w czasie rzeczywistym. Jednak wiele z tych aplikacji musi również wykonywać pewne działania we wstępnie określonych odstępach czasu.
 
-Liczniki czasomierze aplikacji SMP ThreadX zapewniają aplikacjom możliwość wykonywania funkcji C w określonych odstępach czasu. Istnieje również możliwość wygaśnięcia czasomierza aplikacji tylko raz. Ten typ czasomierza jest nazywany *czasomierzem z jednym zrzutem*, podczas gdy powtarzające się czasomierze interwału są określane jako *okresowe czasomierze*.
+Czasomierze aplikacji SMP ThreadX zapewniają aplikacjom możliwość wykonywania funkcji języka C aplikacji w określonych odstępach czasu. Czasomierz aplikacji może również wygasać tylko raz. Ten typ czasomierza jest nazywany czasomierzem jednozdniowym, a powtarzające się czasomierze interwałów są nazywane *czasomierzami okresowymi*.
 
-Każdy czasomierz aplikacji jest zasobem publicznym. ThreadX SMP nie nakłada żadnych ograniczeń dotyczących sposobu używania czasomierzy aplikacji.
+Każdy czasomierz aplikacji jest zasobem publicznym. SMP ThreadX nie ma żadnych ograniczeń co do sposobu stosowania czasomierzy aplikacji.
 
 > [!IMPORTANT]
-> Czasomierze aplikacji można wyłączyć z poziomu wykonywania na dowolnym rdzeniu za pośrednictwem interfejsu API tx_timer_smp_core_exclude.
+> Czasomierze aplikacji można wykluczyć z wykonywania na dowolnym rdzeniu za pośrednictwem tx_timer_smp_core_exclude API.
 
 ### <a name="timer-intervals"></a>Interwały czasomierza 
-W ThreadX przedziały czasu SMP są mierzone przez okresowe przerwania czasomierza. Każdy przerwa czasomierza jest nazywany *cyklem* czasomierza. Rzeczywisty czas między taktami czasomierza jest określany przez aplikację, ale 10 MS jest normą dla większości implementacji. Konfiguracja czasomierza okresowego zazwyczaj znajduje się w pliku zestawu ***tx_initialize_low_level*** .
+W interwałach czasu SMP ThreadX są mierzone za pomocą okresowych przerwań czasomierza. Każde przerwanie czasomierza jest nazywane taktą *czasomierza*. Rzeczywisty czas między taktami czasomierza jest określony przez aplikację, ale 10 ms jest normą w przypadku większości implementacji. Okresowa konfiguracja czasomierza zwykle znajduje się ***w tx_initialize_low_level*** zestawu.
 
-Warto zauważyć, że podstawowy sprzęt musi mieć możliwość generowania okresowych przerwań dla czasomierzy aplikacji. W niektórych przypadkach procesor ma wbudowaną funkcję okresowego przerwania. Jeśli procesor nie ma takiej możliwości, tablica użytkownika musi mieć urządzenie peryferyjne, które może generować okresowe przerwania.
+Warto wspomnieć, że podstawowy sprzęt musi mieć możliwość generowania okresowych przerwań, aby czasomierze aplikacji działały. W niektórych przypadkach procesor ma wbudowaną funkcję okresowych przerwań. Jeśli procesor nie ma takiej możliwości, tablica użytkownika musi mieć urządzenie peryferyjne, które może generować okresowe przerwania.
 
 > [!IMPORTANT]
-> ThreadX SMP może nadal działać nawet bez okresowego źródła przerwań. Jednak wszystkie przetwarzanie związane z czasomierzem jest następnie wyłączone. Obejmuje to timeslicing, czas zawieszenia i usługi czasomierza.
+> ThreadX SMP może nadal działać nawet bez źródła okresowych przerwań. Jednak całe przetwarzanie związane z czasomierzem jest następnie wyłączone. Obejmuje to użytą usługę timelicing, time timelicing, time-outs zawieszenia i czasomierza.
 
 ### <a name="timer-accuracy"></a>Dokładność czasomierza 
-Czas wygaśnięcia czasomierza jest określany w warunkach taktów. Określona wartość wygaśnięcia jest zmniejszana o jeden w każdym taktie czasomierza. Ponieważ czasomierz aplikacji może być włączony tuż przed przerwaniem czasomierza (lub cyklem czasomierza), rzeczywisty czas wygaśnięcia może być wcześniejszy niż jeden cykl.
+Czasy wygaśnięcia czasomierza są określane jako takty. Określona wartość wygaśnięcia jest zmniejszana o jedną na każdej taktce czasomierza. Ponieważ czasomierz aplikacji można włączyć tuż przed przerwaniem czasomierza (lub taktą czasomierza), rzeczywisty czas wygaśnięcia może być nawet o jeden znacznik wcześniej.
 
-Jeśli częstotliwość taktu czasomierza to 10 ms, czasomierze aplikacji mogą wygasnąć do 10 ms wczesnej. Jest to bardziej znaczące w przypadku czasomierzy 10 ms niż 1 sekunda czasomierza. Oczywiście zwiększenie częstotliwości przerwań czasomierza zmniejsza ten margines błędu.
+Jeśli czasomierz wynosi 10ms, czasomierze aplikacji mogą wygasnąć do 10ms wcześnie. Jest to bardziej znaczące w przypadku czasomierzy 10m niż 1 sekundy. Oczywiście zwiększenie częstotliwości przerwań czasomierza zmniejsza ten margines błędu.
 
 ### <a name="timer-execution"></a>Wykonywanie czasomierza 
-Czasomierze aplikacji są wykonywane w kolejności, w jakiej stają się aktywne. Na przykład jeśli trzy czasomierze są tworzone z tą samą wartością wygaśnięcia i aktywowane, odpowiednie funkcje wygasania są gwarantowane w kolejności, w jakiej zostały aktywowane. 
+Czasomierze aplikacji są wykonywane w kolejności, w których stają się aktywne. Jeśli na przykład trzy czasomierze zostaną utworzone z taką samą wartością wygaśnięcia i aktywowane, ich odpowiednie funkcje wygasania będą wykonywane w kolejności, w których zostały aktywowane. 
 
 ### <a name="creating-application-timers"></a>Tworzenie czasomierzy aplikacji 
-Czasomierze aplikacji są tworzone podczas inicjacji lub w czasie wykonywania przez wątki aplikacji. Nie ma limitu liczby czasomierzy aplikacji w aplikacji. 
+Czasomierze aplikacji są tworzone podczas inicjowania lub w czasie uruchamiania przez wątki aplikacji. Nie ma żadnego limitu liczby czasomierzy aplikacji w aplikacji. 
 
-### <a name="run-time-application-timer-performance-information"></a>Informacje o wydajności czasomierza aplikacji czasu wykonywania  
-ThreadX SMP zapewnia opcjonalne informacje o wydajności czasomierza aplikacji w czasie wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX zostały skompilowane przy użyciu zdefiniowanych ***TX_TIMER_ENABLE_PERFORMANCE_INFO*** , ThreadX SMP gromadzi poniższe informacje. 
+### <a name="run-time-application-timer-performance-information"></a>Informacje o wydajności czasomierza aplikacji w czasie wykonywania  
+SMP ThreadX udostępnia opcjonalne informacje o wydajności czasomierza aplikacji czasu wykonywania. Jeśli biblioteka i aplikacja SMP ThreadX są budowane TX_TIMER_ENABLE_PERFORMANCE_INFO zdefiniowane, threadx SMP gromadzi następujące informacje.  
 
 Łączna liczba dla całego systemu:
 
-- aktywacji
+- Aktywacji
 - dezaktywacje
-- ponowne aktywacje (okresowe czasomierze)
-- wygaśnięcia
-- Korekta wygaśnięcia
+- reaktywacja (czasomierze okresowe)
+- Wygasania
+- korekty wygasania
 
 Łączna liczba dla każdego czasomierza aplikacji:
 
-- aktywacji
+- Aktywacji
 - dezaktywacje
-- ponowne aktywacje (okresowe czasomierze)
-- wygaśnięcia
-- Korekta wygaśnięcia
+- reaktywacja (czasomierze okresowe)
+- Wygasania
+- korekty wygasania
 
-Te informacje są dostępne w czasie wykonywania za pomocą usług *tx_timer_performance_info_get* i *tx_timer_performance_system_info_get*. Informacje o wydajności czasomierza aplikacji są przydatne w ustaleniu, czy aplikacja działa prawidłowo. Jest on również przydatny do optymalizowania aplikacji.
+Te informacje są dostępne w czasie rzeczywistym za pośrednictwem usług tx_timer_performance_info_get *i* *tx_timer_performance_system_info_get.* Informacje o wydajności czasomierza aplikacji są przydatne podczas określania, czy aplikacja działa prawidłowo. Jest to również przydatne podczas optymalizacji aplikacji.
 
 ### <a name="application-timer-control-block-tx_timer"></a>Blok sterowania czasomierzem aplikacji TX_TIMER 
-Charakterystyka każdego czasomierza aplikacji znajduje się w jego bloku sterowania. Zawiera ona przydatne informacje, takie jak 32-bitowe wartości identyfikacyjne wygaśnięcia. Ta struktura jest zdefiniowana w pliku ***tx_api. h*** .
+Właściwości każdego czasomierza aplikacji znajdują się w bloku sterowania. Zawiera on przydatne informacje, takie jak 32-bitowa wartość identyfikacji wygaśnięcia. Ta struktura jest zdefiniowana w ***tx_api.h.***
 
-Bloki sterujące czasomierzem aplikacji mogą znajdować się w dowolnym miejscu w pamięci, ale najczęściej jest to, że formant blokuje strukturę globalną przez definiowanie jej poza zakresem dowolnej funkcji. 
+Bloki sterowania czasomierza aplikacji mogą się znaleźć w dowolnym miejscu w pamięci, ale najczęściej kontrolka blokuje globalną strukturę, definiując ją poza zakresem dowolnej funkcji. 
 
 ### <a name="excessive-timers"></a>Nadmierne czasomierze 
-Domyślnie czasomierze aplikacji są wykonywane z ukrytego wątku systemowego, który działa z priorytetem zero, który jest zazwyczaj wyższy niż dowolny wątek aplikacji. Z tego powodu przetwarzanie wewnątrz czasomierzy aplikacji powinno być ograniczone do minimum. 
+Domyślnie czasomierze aplikacji są wykonywane z poziomu ukrytego wątku systemowego uruchamianego z priorytetem zero, który jest zwykle wyższy niż dowolny wątek aplikacji. W związku z tym przetwarzanie wewnątrz czasomierzy aplikacji powinno być minimalne. 
 
-Ważne jest również, aby uniknąć czasomierzy, który wygasa każdy cykl czasomierza. Takie sytuacje mogą powodować nadmierne obciążenie aplikacji.
+Ważne jest również, aby zawsze, gdy jest to możliwe, unikać czasomierzy, które wygasają po każdym znaczniku czasomierza. Taka sytuacja może powodować nadmierne obciążenie aplikacji.
 
 > [!WARNING]
-> Jak wspomniano wcześniej, czasomierze aplikacji są wykonywane z ukrytego wątku systemowego. W związku z tym ważne jest, aby nie wybierać zawieszenia dla wszystkich wywołań usługi SMP ThreadX z poziomu funkcji wygaśnięcia czasomierza aplikacji.
+> Jak wspomniano wcześniej, czasomierze aplikacji są wykonywane z ukrytego wątku systemowego. Dlatego ważne jest, aby nie wybierać zawieszenia dla żadnych wywołań usługi SMP ThreadX wykonanych z poziomu funkcji wygasania czasomierza aplikacji.
 
 ## <a name="relative-time"></a>Czas względny
 
-Oprócz wymienionych wcześniej czasomierzy aplikacji ThreadX SMP zapewnia jeden ciągły przyrost licznika 32-bitowego. Licznik lub *czas* jest zwiększany o jeden w każdym przerwaniu czasomierza.
+Oprócz czasomierzy aplikacji wymienionych wcześniej, threadX SMP zapewnia jeden stale powiększający się 32-bitowy licznik taktowy. Licznik taktowy lub *czas jest* zwiększany o jeden na każdym przerwaniu czasomierza.
 
-Aplikacja może odczytywać lub ustawiać Ten licznik 32-bitowy poprzez wywołania odpowiednio do *tx_time_get* i *tx_time_set*. Użycie tego licznika jest całkowicie określane przez aplikację. Nie jest on używany wewnętrznie przez ThreadX SMP.
+Aplikacja może odczytywać lub ustawiać ten licznik  32-bitowy za pośrednictwem wywołań tx_time_get i *tx_time_set*, odpowiednio. Użycie tego licznika taktowego jest określane całkowicie przez aplikację. Nie jest on używany wewnętrznie przez SMP ThreadX.
 
-### <a name="interrupts"></a>Przerwań 
-Szybka odpowiedź na zdarzenia asynchroniczne to główna funkcja aplikacji osadzonych w czasie rzeczywistym. Aplikacja wie, że takie zdarzenie jest obecne za pomocą przerwań sprzętowych. 
+### <a name="interrupts"></a>Przerwania 
+Szybka odpowiedź na zdarzenia asynchroniczne jest główną funkcją aplikacji osadzonych w czasie rzeczywistym. Aplikacja wie, że takie zdarzenie występuje za pośrednictwem przerwań sprzętowych. 
 
-Przerwanie to asynchroniczna zmiana w wykonywaniu procesora. Zwykle, gdy wystąpi przerwanie, procesor zapisuje niewielką część bieżącego wykonania na stosie i przekazuje kontrolę do odpowiedniego wektora przerwań. Wektor przerwania jest w zasadzie tylko adresem procedury odpowiedzialnej za obsługę określonego przerwania typu. Dokładna procedura obsługi przerwania jest zależna od procesora. 
+Przerwanie to asynchroniczna zmiana w wykonywaniu procesora. Zwykle w przypadku przerwania procesor zapisuje niewielką część bieżącego wykonania na stosie i przekazuje kontrolę do odpowiedniego wektora przerwań. Wektor przerwań to po prostu adres procedury odpowiedzialnej za obsługę przerwań określonego typu. Dokładna procedura obsługi przerwań jest specyficzna dla procesora. 
 
-### <a name="interrupt-control"></a>Kontrola przerwania 
-Usługa *tx_interrupt_control* umożliwia aplikacjom Włączanie i wyłączanie przerwań. Ta usługa zwróci poprzednią wartość Enable/Disable stan. Należy zauważyć, że kontrola przerwania ma wpływ tylko na aktualnie wykonywany segment programu. Na przykład jeśli wątek wyłącza przerwania, zostaną one wyłączone tylko podczas wykonywania tego wątku. 
+### <a name="interrupt-control"></a>Sterowanie przerwaniami 
+Usługa *tx_interrupt_control* umożliwia aplikacjom włączanie i wyłączanie przerwań. Poprzednia przerwa w włączaniu/wyłączaniu jest zwracana przez tę usługę. Należy pamiętać, że kontrola przerwań ma wpływ tylko na aktualnie wykonywany segment programu. Jeśli na przykład wątek wyłączy przerwania, pozostaną one wyłączone tylko podczas wykonywania tego wątku. 
 
 > [!WARNING]
-> Przerwanie z maską (NMI) to przerwanie, które nie może zostać wyłączone przez sprzęt. Takie przerwanie może być używane przez aplikacje ThreadX SMP. Jednak procedura obsługi NMI aplikacji nie może używać funkcji zarządzania kontekstem SMP ThreadX ani żadnych usług API. Przerwania zarządzane przez ThreadX SMP
+> Przerwanie niemaskowalne (NMI, Non-Maskable Interrupt) to przerwanie, które nie może zostać wyłączone przez sprzęt. Takie przerwanie może być używane przez aplikacje SMP ThreadX. Jednak procedura obsługi interfejsu NMI aplikacji nie może używać zarządzania kontekstem SMP ThreadX ani żadnych usług interfejsu API. Przerwania zarządzane przez SMP ThreadX
 
-ThreadX SMP zapewnia aplikacjom kompletne zarządzanie przerwami. To zarządzanie obejmuje zapisanie i przywrócenie kontekstu przerwanego wykonania. Ponadto ThreadX SMP umożliwia wywoływanie niektórych usług z poziomu procedur usługi przerwania (procedury ISR). Poniżej znajduje się lista ThreadX SMPservices, które są dozwolone z procedury ISR aplikacji:
+ThreadX SMP zapewnia aplikacjom pełne zarządzanie przerwami. To zarządzanie obejmuje zapisywanie i przywracanie kontekstu przerwanego wykonywania. Ponadto SMP ThreadX umożliwia wywoływanie niektórych usług z procedur usługi przerwań (ISR). Poniżej znajduje się lista usług SMPservice ThreadX dozwolonych od serwerów ISR aplikacji:
 
 - tx_block_allocate 
 - tx_block_pool_info_get 
@@ -888,32 +888,32 @@ ThreadX SMP zapewnia aplikacjom kompletne zarządzanie przerwami. To zarządzani
 - tx_timer_performance_system_info_get
 
 > [!WARNING]
-> Zawieszenie nie jest dozwolone z procedury ISR. W związku z tym, parametr **WAIT_OPTION** dla wszystkich wywołań usługi ThreadX SMP wykonanych z procedury ISR musi być ustawiony na **TX_NO_WAIT**.
+> Zawieszenie jest niedozwolone od isR. W związku **z tym wait_option** dla wszystkich wywołań usługi SMP ThreadX wykonanych przez isr musi być ustawiony na wartość **TX_NO_WAIT**.
 
 ### <a name="isr-template"></a>Szablon ISR 
-Aby zarządzać przerwami aplikacji, należy wywołać kilka narzędzi SMP ThreadX na początku i na końcu aplikacji procedury ISR. Dokładny format obsługi przerwań zależy od portów. Zapoznaj się z plikiem ***readme_threadx.txt*** na dysku dystrybucyjnym, aby uzyskać szczegółowe instrukcje dotyczące zarządzania procedury ISR.
+Aby zarządzać przerwań aplikacji, kilka narzędzi SMP ThreadX musi być wywoływanych na początku i na końcu serwerów ISR aplikacji. Dokładny format obsługi przerwań różni się między portami. Przejrzyj plik ***readme_threadx.txt*** na dysku dystrybucji, aby uzyskać szczegółowe instrukcje dotyczące zarządzania usługami ISR.
 
-Następujący mały segment kodu jest typowy w przypadku większości ThreadX zarządzanych procedury ISR. W większości przypadków to przetwarzanie jest w języku asemblera.
+Następujący mały segment kodu jest typowy dla większości zarządzanych przez SMP serwerów ISR ThreadX. W większości przypadków to przetwarzanie odbywa się w języku zestawu.
 
-**_application_ISR_vector_entry**:  
-; Zapisz kontekst i przygotuj do  
-; ThreadX użycie SMP przez wywołanie procedury ISR  
-; funkcja wprowadzania.  
-**_TX_THREAD_CONTEXT_SAVE** wywołania  
+**_application_ISR_vector_entry:**  
+; Zapisywanie kontekstu i przygotowanie do  
+; Użycie threadX SMP przez wywołanie isr  
+; entry, funkcja .  
+WYWOŁANIE **_TX_THREAD_CONTEXT_SAVE**  
 
-; Procedura ISR może teraz wywołać ThreadX SMP  
+; IsR może teraz wywołać threadX SMP  
 ; usługi i własne funkcje języka C  
 
-; Po zakończeniu procesu ISR, kontekst  
-; jest przywracany (lub zastępujący wątek)  
+; Po zakończeniu pracy isr kontekstu  
+; zostanie przywrócony (lub wywłaszcz) wątku  
 ; przez wywołanie przywracania kontekstu  
-; funkcyjn. Formant nie zwraca!  
-**_TX_THREAD_CONTEXT_RESTORE** skoku
+; Funkcja. Kontrolka nie zwraca!  
+SKOK **_TX_THREAD_CONTEXT_RESTORE**
 
 ### <a name="high-frequency-interrupts"></a>Przerwania o wysokiej częstotliwości  
-Niektóre przerwania są wykonywane z taką dużą częstotliwością, że zapis i przywrócenie pełnego kontekstu dla każdego przerwania zużywa nadmierną przepustowość przetwarzania. W takich przypadkach często aplikacja ma mały język zestawu procedur ISR, który wykonuje ograniczoną ilość przetwarzania dla większości highfrequency przerwań. 
+Niektóre przerwania występują z taką wysoką częstotliwością, że zapisanie i przywrócenie pełnego kontekstu na każdym przerwaniu będzie zużywać nadmierną przepustowość przetwarzania. W takich przypadkach typowe dla aplikacji jest zastosowanie niewielkiego zestawu języka ISR, który w ograniczonym zakresie przetwarza większość tych przerwań o wysokiej częstotliwości. 
 
-Po pewnym czasie małe procedury ISR mogą wymagać współpracy z ThreadX SMP. Jest to realizowane przez wywołanie funkcji wejścia i wyjścia opisanych w powyższym szablonie. 
+Po pewnym punkcie w czasie mały isr może wymagać interakcji z SMP ThreadX. Jest to realizowane przez wywołanie funkcji wejścia i wyjścia opisanych w powyższym szablonie. 
 
-### <a name="interrupt-latency"></a>Opóźnienie przerwania  
-ThreadX SMP blokuje przerwania w ciągu krótkich okresów czasu. Maksymalna liczba przerwań czasu jest wyłączona w kolejności czasu wymaganej do zapisania lub przywrócenia kontekstu wątku. 
+### <a name="interrupt-latency"></a>Opóźnienie przerwań  
+ThreadX SMP blokuje przerwania w krótkich okresach czasu. Maksymalny czas wyłączenia przerwań zależy od czasu wymaganego do zapisania lub przywrócenia kontekstu wątku. 

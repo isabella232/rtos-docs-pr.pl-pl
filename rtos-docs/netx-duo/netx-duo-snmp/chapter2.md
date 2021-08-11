@@ -1,57 +1,57 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z agenta SNMP usługi Azure RTO NetX Duo
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika agenta SNMP NetX Duo.
+title: Rozdział 2 . Instalowanie i używanie agenta AZURE RTOS NetX Duo SNMP
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika agenta NetX Duo SNMP.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: f011b73217c7f413dd19c555e9c2d40dace305ee
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 6e18906b6356bd8ff4efdc1ab0f2809d75493ad027c3d3e27e0536ee4b80f43b
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821667"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116798286"
 ---
-# <a name="chapter-2---installation-and-use-of-the-azure-rtos-netx-duo-snmp-agent"></a>Rozdział 2 — Instalowanie i korzystanie z agenta SNMP usługi Azure RTO NetX Duo
+# <a name="chapter-2---installation-and-use-of-the-azure-rtos-netx-duo-snmp-agent"></a>Rozdział 2 . Instalowanie i używanie agenta AZURE RTOS NetX Duo SNMP
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika agenta SNMP usługi Azure RTO NetX Duo.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika agenta NETX Duo SNMP Azure RTOS.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Agent SNMP dla NetX Duo jest dostępny pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera cztery pliki źródłowe, jeden plik dołączany i plik PDF, który zawiera ten dokument, w następujący sposób:
+Agent SNMP dla NetX Duo jest dostępny na stronie [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera cztery pliki źródłowe, jeden plik dołączany i plik PDF zawierający ten dokument w następujący sposób:
 
-- **nxd_snmp. h** Plik nagłówkowy dla protokołu SNMP dla NetX Duo
-- **demo_snmp_helper. h** Plik nagłówkowy dla danych SNMP MIB
-- **nxd_snmp. c** Plik źródłowy języka C dla agenta SNMP dla NetX Duo
-- **nx_md5. c** Algorytmy Digest MD5
-- **nx_sha. c** Algorytmy szyfrowania SHA
-- **nx_des. c** Algorytmy szyfrowania DES
-- **nxd_snmp.pdf** Podręcznik użytkownika dla agenta SNMP dla NetX Duo
-- **demo_netxduo_snmp. c** Prosta Prezentacja SNMP
-- **demo_netxduo_mib2. c** Prosta Demonstracja MIB2 (MIB zawiera elementy adresów IPv6)
-- **demo_snmp_helper. h** Plik nagłówkowy definiujący elementy MIB
+- **nxd_snmp.h** Plik nagłówkowy snmp for NetX Duo
+- **demo_snmp_helper.h** Plik nagłówkowy dla danych SNMP MIB
+- **nxd_snmp.c** Plik źródłowy języka C dla agenta SNMP dla NetX Duo
+- **nx_md5.c** Algorytmy skrótu MD5
+- **nx_sha.c** Algorytmy skrótu SHA
+- **nx_des.c** Algorytmy szyfrowania DES
+- **nxd_snmp.pdf** Podręcznik użytkownika agenta SNMP dla NetX Duo
+- **demo_netxduo_snmp.c** Prosty pokaz SNMP
+- **demo_netxduo_mib2.c** Prosty pokaz MIB2 (mib ma elementy adresu IPv6)
+- **demo_snmp_helper.h** Plik nagłówkowy definiujący elementy MIB
 
 ## <a name="netx-duo-snmp-agent-installation"></a>Instalacja agenta SNMP NetX Duo
 
-Aby można było korzystać z protokołu SNMP NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowana w katalogu "*\threadx\arm7\green*", wówczas pliki *nxd_snmp. h*, *nxd_snmp. c*, *nx_md5. c, nx_sha. c* i nx_ *des. c* powinny zostać skopiowane do tego katalogu.
+Aby można było korzystać z netX Duo SNMP, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX Duo. Jeśli na przykład netx Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* do tego katalogu powinny zostać skopiowane pliki *nxd_snmp.h*, *nxd_snmp.c*, *nx_md5.c, nx_sha.c* i *nx_ des.c.*
 
-## <a name="using-the-netx-duo-snmp-agent"></a>Korzystanie z agenta SNMP NetX Duo
+## <a name="using-the-netx-duo-snmp-agent"></a>Korzystanie z agenta NetX Duo SNMP
 
-Aplikacja musi mieć *nxd_snmp. c*, *nx_md5. c, nx_sha. c* i *nx_des. c* w projekcie kompilacji. Kod aplikacji musi również zawierać *nxd_snmp. h* po uwzględnieniu *nx_api. h, aby można* było wywołać usługi SNMP. Te pliki muszą być kompilowane w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone z biblioteką NetX Duo. To wszystko, co jest wymagane do korzystania z protokołu SNMP NetX Duo.
-
-> [!NOTE]
-> *Jeśli **NX_SNMP_NO_SECURITY** jest określony w procesie kompilacji, pliki nx_md5. c, nx_sha. c i nx_des. c nie są zbędne.*
+Aplikacja musi mieć w *projekcie kompilacji nxd_snmp.c*, *nx_md5.c, nx_sha.c* i *nx_des.c.* Kod aplikacji musi również zawierać kod *nxd_snmp.h,* gdy zawiera on *nx_api.h,* aby móc wywoływać usługi SNMP. Te pliki muszą zostać skompilowane w taki sam sposób, jak inne pliki aplikacji, a ich formularz obiektu musi być połączony z biblioteką NetX Duo. To wszystko, co jest wymagane do korzystania z NetX Duo SNMP.
 
 > [!NOTE]
-> Ponieważ NetX Duo SNMP korzysta z usług UDP, należy włączyć protokół UDP przy użyciu wywołania *nx_udp_enable* przed użyciem protokołu SNMP.
+> *Jeśli **NX_SNMP_NO_SECURITY** w procesie kompilacji, pliki nx_md5.c, nx_sha.c i nx_des.c nie będą potrzebne.*
+
+> [!NOTE]
+> Ponieważ NetX Duo SNMP korzysta z usług UDP, należy włączyć protokół UDP przy *użyciu nx_udp_enable* przed użyciem protokołu SNMP.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykład użycia agenta SNMP NetX Duo został opisany na rysunku 1,0, który pojawia się poniżej. W tym przykładzie plik dołączany SNMP *nxd_snmp. h* jest umieszczony w wierszu 6. Plik nagłówkowy, który definiuje elementy bazy danych MIB, *demo_snmp_helper. h,* został wprowadzony w wierszu 8. Definicja MIB jest definiowana od wiersza 32. Następnie Agent SNMP jest tworzony w lokalizacji "*tx_application_define*" w wierszu 129. Należy zauważyć, że blok sterowania agenta SNMP "*my_agent*" został zdefiniowany jako zmienna globalna w wierszu 18 wcześniej. W przypadku włączenia protokołu IPv6 adresy IPv6 są rejestrowane przy użyciu wystąpienia adresu IP w wierszach 166-223. Agent SNMP został uruchomiony w wierszu 229. Definicje wywołania zwrotnego obiektów SNMP dla menedżera SNMP żądania GET, GetNext i SET, a także żądania aktualizacji nazwy użytkownika i MIB, są przetwarzane począwszy od wiersza 250. W tym przykładzie nie jest wykonywane uwierzytelnianie.
+Przykład sposobu korzystania z agenta NetX Duo SNMP opisano na rysunku 1.0, który znajduje się poniżej. W tym przykładzie plik dołączany SNMP *nxd_snmp.h* jest przekierowyny w wierszu 6. Plik nagłówkowy, który definiuje elementy bazy danych MIB( *demo_snmp_helper.h,* jest wyniesiony w wierszu 8. Program MIB jest definiowany począwszy od wiersza 32. Następnie agent SNMP jest tworzony w ciągu "*tx_application_define*" w wierszu 129. Należy pamiętać, że blok sterowania agenta SNMP "*my_agent*" został wcześniej zdefiniowany jako zmienna globalna w wierszu 18. Jeśli protokół IPv6 jest włączony, adresy IPv6 są rejestrowane w wystąpieniu adresu IP w wierszach 166-223. Agent SNMP jest uruchomiony w wierszu 229. Definicje wywołania zwrotnego obiektu SNMP dla żądań GET, GETNEXT i SET menedżera SNMP, a także żądań aktualizacji nazwy użytkownika i mib są przetwarzane od wiersza 250. W tym przykładzie uwierzytelnianie nie jest wykonywane.
 
 > [!NOTE]
-> *Tabela MIB2 pokazana poniżej jest po prostu przykładem. Aplikacja może korzystać z innej bazy MIB i zawierać ją w oddzielnych plikach, a także definiować procesy GET, GetNext i SET, zgodnie z ich wymaganiami dotyczącymi aplikacji.*
+> *Tabela MIB2 pokazana poniżej jest po prostu przykładem. Aplikacja może używać innego programu MIB i dołączać go do oddzielnych plików, a także definiować przetwarzanie GET, GETNEXT lub SET zgodnie z wymaganiami aplikacji.*
 
 ```c
 /* This is a small demo of the NetX SNMP Agent on the high-performance NetX TCP/IP  
@@ -569,29 +569,29 @@ VOID  mib2_variable_update(NX_IP *ip_ptr, NX_SNMP_AGENT *agent_ptr)
       snmpOutTraps =              agent_ptr -> nx_snmp_agent_traps_sent;
 }   
 ```
-Rysunek 1,0 przykład użycia agenta SNMP z NetX Duo
+Rysunek 1.0 Przykład użycia agenta SNMP z netX Duo
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Istnieje kilka opcji konfiguracji dla kompilowania protokołu SNMP dla NetX Duo. Poniżej znajduje się lista wszystkich opcji, w których szczegóły są szczegółowo opisane:  
+Istnieje kilka opcji konfiguracji tworzenia snmp for NetX Duo. Poniżej znajduje się lista wszystkich opcji, gdzie każda z nich jest szczegółowo opisana:  
   
 | Zdefiniować                     | Znaczenie                                                                                                                                                                                                                                                                        |
 |----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **NX_SNMP_AGENT_PRIORITY**     | Priorytet wątku agenta SNMP. Domyślnie ta wartość jest definiowana jako 16, aby określić priorytet 16.                                                                                                                                                                         |
-| **NX_SNMP_TYPE_OF_SERVICE**    | Typ usługi wymaganej przez protokół SNMP odpowiedzi. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL w celu wskazania normalnej usługi pakietów IP. Ta definicja może być ustawiana przez aplikację przed włączeniem *nxd_snmp. h.*                                                       |
-| **NX_SNMP_FRAGMENT_OPTION**    | Włączono fragment dla żądań protokołu SNMP UDP. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć funkcję fragmentacji protokołu UDP protokołu SNMP. Ta definicja może być ustawiana przez aplikację przed włączeniem *nxd_snmp. h.*                                                                                 |
-| **NX_SNMP_TIME_TO_LIVE**       | Określa czas wygaśnięcia przed jego wygaśnięciem. Wartość domyślna to 0x80, ale można ją zdefiniować ponownie przed włączeniem *nxd_snmp. h.*                                                                                                                                         |
-| **NX_SNMP_AGENT_TIMEOUT**      | Określa liczbę ThreadXych taktów, dla których będą zawieszane usługi wewnętrzne. Wartość domyślna to 100, ale można ją zdefiniować ponownie przed włączeniem *nxd_snmp. h.*                                                                                                         |
-| **NX_SNMP_MAX_OCTET_STRING**   | Określa maksymalną dozwoloną liczbę bajtów w ciągu oktetu w agencie SNMP. Wartość domyślna to 255, ale można ją zdefiniować ponownie przed włączeniem *nxd_snmp. h.*                                                                                                    |
-| **NX_SNMP_MAX_CONTEXT_STRING** | Określa maksymalną liczbę bajtów ciągu aparatu kontekstu w agencie SNMP. Wartość domyślna to 32, ale można ją zdefiniować ponownie przed włączeniem *nxd_snmp. h.*                                                                                                    |
-| **NX_SNMP_MAX_USER_NAME**      | Określa maksymalną liczbę bajtów w nazwie użytkownika (w tym ciągi społeczności). Wartość domyślna to 64, ale można ją zdefiniować ponownie przed włączeniem *nxd_snmp. h.*                                                                                                      |
-| **NX_SNMP_MAX_SECURITY_KEY**   | Określa liczbę bajtów dozwolonych w ciągu klucza zabezpieczeń. Wartość domyślna to 64, ale można ją zdefiniować ponownie przed *nxd_snmp nclusion. h.*                                                                                                                          |
-| **NX_SNMP_PACKET_SIZE**        | Określa minimalny rozmiar pakietów w puli określony podczas tworzenia agenta SNMP. Minimalny rozmiar jest wymagany w celu zapewnienia, że kompletny ładunek SNMP może być zawarty w jednym pakiecie. Wartość domyślna to 560, ale można ją zdefiniować ponownie przed włączeniem *nxd_snmp. h.* |
-| **NX_SNMP_AGENT_PORT**         | Określa port UDP do pola żądania menedżera SNMP. Domyślnym portem jest port UDP 161, ale można go ponownie zdefiniować przed włączeniem *nxd_snmp. h.*                                                                                                                             |
-| **NX_SNMP_MANAGER_TRAP_PORT**  | Określa port UDP, do którego mają być wysyłane żądania pułapki agenta SNMP. Domyślnym portem jest port UDP 162, ale można go ponownie zdefiniować przed włączeniem *nxd_snmp. h.*                                                                                                                           |
-| **NX_SNMP_MAX_TRAP_NAME**      | Określa rozmiar tablicy do przechowywania nazwy użytkownika wysyłanej przy użyciu komunikatów pułapki. Wartość domyślna to 64.                                                                                                                                                                         |
-| **NX_SNMP_MAX_TRAP_KEY**       | Określa rozmiar kluczy uwierzytelniania i prywatności dla komunikatów pułapki. Wartość domyślna to 64.                                                                                                                                                                          |
-| **NX_SNMP_TIME_INTERVAL**      | Określa interwał uśpienia w taktach czasomierza podjętych przez zadanie wątku SNMP między przetwarzaniem odebranych pakietów SNMP. Wartość domyślna to 100. W trakcie tego interwału uśpienia aplikacja hosta ma dostęp do usług interfejsu API protokołu SNMP.                                           |
-| **NX_SNMP_DISABLE_V1**         | Zdefiniowane, spowoduje to usunięcie wszystkich operacji przetwarzania protokołu SNMP w wersji 1 w *nxd_snmp. c.* Domyślnie to nie jest zdefiniowane.                                                                                                                                                                         |
-| **NX_SNMP_DISABLE_V2**         | Zdefiniowane, spowoduje to usunięcie wszystkich operacji przetwarzania protokołu SNMP w wersji 2 w *nxd_snmp. c.* Domyślnie to nie jest zdefiniowane.                                                                                                                                                                         |
-| **NX_SNMP_DISABLE_V3**         | Zdefiniowane, spowoduje to usunięcie wszystkich procesów przetwarzania SNMPv3 w *nxd_snmp. c.* Domyślnie to nie jest zdefiniowane.                                                                                                                                                                                 |
+| **NX_SNMP_AGENT_PRIORITY**     | Priorytet wątku AGENTA SNMP. Domyślnie ta wartość jest zdefiniowana jako 16, aby określić priorytet 16.                                                                                                                                                                         |
+| **NX_SNMP_TYPE_OF_SERVICE**    | Typ usługi wymagany dla odpowiedzi protokołu UDP SNMP. Domyślnie ta wartość jest zdefiniowana jako wartość NX_IP_NORMAL, aby wskazać normalną usługę pakietów IP. To zdefiniowanie może zostać ustawione przez aplikację przed dodaniem *nxd_snmp.h.*                                                       |
+| **NX_SNMP_FRAGMENT_OPTION**    | Włącz fragment dla żądań SNMP UDP. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć fragmentowanie PROTOKOŁU UDP SNMP. To zdefiniowanie może zostać ustawione przez aplikację przed dodaniem *nxd_snmp.h.*                                                                                 |
+| **NX_SNMP_TIME_TO_LIVE**       | Określa czas wygaśnięcia przed wygaśnięciem. Wartość domyślna jest ustawiona na 0x80, ale można ją ponownie zdefiniować przed dodaniem *nxd_snmp.h.*                                                                                                                                         |
+| **NX_SNMP_AGENT_TIMEOUT**      | Określa liczbę znaczników ThreadX, dla których usługi wewnętrzne będą wstrzymywane. Wartość domyślna to 100, ale można ją ponownie zdefiniować przed dodaniem wartości *nxd_snmp.h.*                                                                                                         |
+| **NX_SNMP_MAX_OCTET_STRING**   | Określa maksymalną liczbę bajtów dozwolonych w ciągu oktetu w agencie SNMP. Wartość domyślna to 255, ale można ją ponownie zdefiniować przed dodaniem wartości *nxd_snmp.h.*                                                                                                    |
+| **NX_SNMP_MAX_CONTEXT_STRING** | Określa maksymalną liczbę bajtów dla ciągu aparatu kontekstu w agencie SNMP. Wartość domyślna to 32, ale można ją ponownie zdefiniować przed dodaniem wartości *nxd_snmp.h.*                                                                                                    |
+| **NX_SNMP_MAX_USER_NAME**      | Określa maksymalną liczbę bajtów w nazwie użytkownika (w tym ciągi społeczności). Wartość domyślna to 64, ale można ją ponownie zdefiniować przed dodaniem wartości *nxd_snmp.h.*                                                                                                      |
+| **NX_SNMP_MAX_SECURITY_KEY**   | Określa liczbę bajtów dozwolonych w ciągu klucza zabezpieczeń. Wartość domyślna jest ustawiona na 64, ale można ponownie zdefiniować przed nclusion *nxd_snmp.h.*                                                                                                                          |
+| **NX_SNMP_PACKET_SIZE**        | Określa minimalny rozmiar pakietów w puli określonej podczas tworzenia agenta SNMP. Minimalny rozmiar jest wymagany do zapewnienia, że pełny ładunek SNMP może być zawarty w jednym pakiecie. Wartość domyślna to 560, ale można ją ponownie zdefiniować przed dodaniem wartości *nxd_snmp.h.* |
+| **NX_SNMP_AGENT_PORT**         | Określa port UDP do pola SNMP Manager żądań na. Domyślnym portem jest port UDP 161, ale można go ponownie zdefiniować przed dodaniem *nxd_snmp.h.*                                                                                                                             |
+| **NX_SNMP_MANAGER_TRAP_PORT**  | Określa port UDP do wysyłania żądań pułapek agenta SNMP. Domyślnym portem jest port UDP 162, ale można go ponownie zdefiniować przed dodaniem *nxd_snmp.h.*                                                                                                                           |
+| **NX_SNMP_MAX_TRAP_NAME**      | Określa rozmiar tablicy do przechowywania nazwy użytkownika wysyłanej z komunikatami pułapek. Wartość domyślna to 64.                                                                                                                                                                         |
+| **NX_SNMP_MAX_TRAP_KEY**       | Określa rozmiar kluczy uwierzytelniania i prywatności dla komunikatów pułapek. Wartość domyślna to 64.                                                                                                                                                                          |
+| **NX_SNMP_TIME_INTERVAL**      | Określa interwał uśpienia takty czasomierza podjęte przez zadanie wątku SNMP między przetwarzaniem odebranych pakietów SNMP. Wartość domyślna to 100. W tym interwale uśpienia aplikacja hosta ma dostęp do usług interfejsu API SNMP.                                           |
+| **NX_SNMP_DISABLE_V1**         | Zdefiniowane. Spowoduje to usunięcie całego przetwarzania SNMP w wersji 1 w *pliku nxd_snmp.c.* Domyślnie nie jest to zdefiniowane.                                                                                                                                                                         |
+| **NX_SNMP_DISABLE_V2**         | Zdefiniowane, spowoduje to usunięcie całego przetwarzania SNMP w wersji 2 w *pliku nxd_snmp.c.* Domyślnie nie jest to zdefiniowane.                                                                                                                                                                         |
+| **NX_SNMP_DISABLE_V3**         | Zdefiniowane, spowoduje to usunięcie całego przetwarzania SNMPv3 w *nxd_snmp.c.* Domyślnie nie jest to zdefiniowane.                                                                                                                                                                                 |

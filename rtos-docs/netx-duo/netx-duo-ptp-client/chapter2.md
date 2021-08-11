@@ -1,34 +1,34 @@
 ---
-title: Rozdział 2 — Instalowanie i używanie klienta usługi Azure RTO NetX Duo
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta PTP NetX Duo.
+title: Rozdział 2 — Instalowanie i używanie klienta AZURE RTOS NetX Duo PTP
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika klienta NetX Duo PTP.
 author: v-condav
 ms.author: v-condav
 ms.date: 01/27/2021
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: cab2c31099bded953753fd530cef931cf0d7aaf7
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: ee2e4184ce041679b5ae5368d91c436cf8a0bc2ac6f59deba67d996b318151bd
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821703"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116798031"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-ptp-client"></a>Rozdział 2 — Instalowanie i używanie klienta usługi Azure RTO NetX Duo
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-ptp-client"></a>Rozdział 2 — Instalowanie i używanie klienta AZURE RTOS NetX Duo PTP
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta PTP NetX Duo.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika klienta NetX Duo PTP.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Usługę Azure RTO NetX Duo można uzyskać z publicznego repozytorium kodu źródłowego w lokalizacji https://github.com/azure-rtos/netxduo/tree/master/addons/ptp .
+Azure RTOS NetX Duo można uzyskać z publicznego repozytorium kodu źródłowego na stronie https://github.com/azure-rtos/netxduo/tree/master/addons/ptp .
 
-***nxd_ptp_client. h*** Plik nagłówkowy dla klienta PTP dla NetX Duo ***nxd_ptp_client. c*** c plik źródłowy dla klienta PTP dla NetX Duo ***demo_netx_duo_ptp_client. c*** NetX Duo PTP Client
+***nxd_ptp_client.h*** Plik nagłówkowy klienta PTP dla netx duo ***nxd_ptp_client.c*** plik źródłowy C dla klienta PTP dla netx duo ***demo_netx_duo_ptp_client.c*** NetX Duo PTP pokaz klienta
 
 
 ## <a name="using-ptp-client"></a>Korzystanie z klienta PTP
-Korzystanie z klienta PTP dla NetX Duo jest proste. Zasadniczo kod aplikacji musi zawierać ***nxd_ptp_client. h** _, po którym zawiera _*_tx_api. h_*_ i _*_nx_api. h_*_, aby użyć odpowiednio ThreadX i NetX Duo. Po dołączeniu pliku nagłówkowego klienta programu PTP kod aplikacji może być w stanie wykonać wywołania funkcji klienta PTP określone w dalszej części tego przewodnika. Aplikacja musi również zawierać _ *_nxd_ptp_client. c_** w procesie kompilacji. Ten plik musi być skompilowany w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do korzystania z klienta PTP NetX Duo.
+Korzystanie z klienta PTP dla aplikacji NetX Duo jest łatwe. Zasadniczo kod aplikacji musi zawierać wartość ***nxd_ptp_client.h** _ po dołączyć elementy _*_tx_api.h_*_ i _*_nx_api.h_*_, aby można było używać odpowiednio ThreadX i NetX Duo. Po dołączona pliku nagłówka klienta PTP kod aplikacji jest w stanie wykonać wywołania funkcji klienta PTP określone w dalszej części tego przewodnika. Aplikacja musi również uwzględniać w *_procesie kompilacji nxd_ptp_client.c_**. Ten plik musi zostać skompilowany w taki sam sposób, jak inne pliki aplikacji, a jego formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z klienta NetX Duo PTP.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
-Przykład korzystania z usług klienta PTP NetX Duo został opisany na rysunku 1, który pojawia się poniżej.
+Przykład sposobu korzystania z usług klienckich NetX Duo PTP opisano na rysunku 1, który znajduje się poniżej.
 ```C
 /*
    This is a small demo of the NetX Duo PTP client on the high-performance NetX Duo TCP/IP stack.
@@ -304,10 +304,10 @@ ULONG   gw_address;
 ```
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
-Istnieje kilka opcji konfiguracji z klientem PTP NetX Duo. Poniżej znajduje się lista wszystkich opcji opisanych szczegółowo:
+Istnieje kilka opcji konfiguracji klienta NetX Duo PTP. Poniżej znajduje się lista wszystkich opcji opisanych szczegółowo:
 * **NX_PTP_CLIENT_THREAD_TIME_SLICE** Definiuje to wycinek czasu wątku klienta PTP. Wartość domyślna to brak wycinka czasu.
-* **NX_PTP_CLIENT_TIMER_TICKS_PER_SECOND** Definiuje ona częstotliwość wewnętrznego zegara klienta programu PTP. Wartość domyślna to 10, co oznacza czasomierz 100 ms.
-* **NX_PTP_CLIENT_ANNOUNCE_RECEIPT_TIMEOUT** Definiuje ona maksymalną liczbę brakujących pakietów ogłaszania przed upływem limitu czasu. Wartość domyślna to 3.
-* **NX_PTP_CLIENT_LOG_ANNOUNCE_INTERVAL** Definiuje przedział czasu między kolejnym pakietem anonsu wyrażony jako log 2. Ta wartość powinna być jednorodna w całej domenie. Wartość domyślna to 1, czyli 2S.
-* **NX_PTP_CLIENT_DELAY_REQ_INTERVAL** Definiuje interwał wysyłania pakietów żądań opóźnienia. Wartość domyślna to 2 sekundy.
-* **NX_PTP_CLIENT_MAX_QUEUE_DEPTH** Definiuje ona maksymalną głębokość kolejki dla gniazda klienta. Wartość domyślna to 5.
+* **NX_PTP_CLIENT_TIMER_TICKS_PER_SECOND** Definiuje wewnętrzną częstotliwość czasomierza klienta PTP. Wartość domyślna to 10, wskazując czasomierz 100ms.
+* **NX_PTP_CLIENT_ANNOUNCE_RECEIPT_TIMEOUT** Określa maksymalną liczbę brakujących pakietów ogłaszania przed limitem czasu. Wartość domyślna to 3.
+* **NX_PTP_CLIENT_LOG_ANNOUNCE_INTERVAL** Określa przedział czasu między kolejnymi pakietami ogłaszania, wyrażony jako dziennik 2. Ta wartość powinna być jednolity w całej domenie. Wartość domyślna to 1, czyli 2s.
+* **NX_PTP_CLIENT_DELAY_REQ_INTERVAL** Określa interwał wysyłania pakietów żądań opóźnienia. Wartość domyślna to 2 sekundy.
+* **NX_PTP_CLIENT_MAX_QUEUE_DEPTH** Definiuje maksymalną głębokość kolejki dla gniazda klienta. Wartość domyślna to 5.

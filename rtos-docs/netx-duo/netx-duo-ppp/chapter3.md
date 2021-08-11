@@ -1,51 +1,51 @@
 ---
-title: Rozdział 3 — Opis usług Azure RTO NetX Duo Point-to-Point Protocol (PPP)
-description: Ten rozdział zawiera opis wszystkich usług PPP usługi Azure RTO NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+title: Rozdział 3 — opis Azure RTOS NetX Duo Point-to-Point Protocol (PPP)
+description: Ten rozdział zawiera opis wszystkich usług Azure RTOS NetX Duo PPP (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 90c24cad5e595087ba27178243f9dda0dab11029
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 1174d7fdc470bc91278413d56948789cc210aab9d7389a5ecad5baf4f6ad7a7f
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821727"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116798082"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-duo-point-to-point-protocol-ppp-services"></a>Rozdział 3 — Opis usług Azure RTO NetX Duo Point-to-Point Protocol (PPP)
+# <a name="chapter-3---description-of-azure-rtos-netx-duo-point-to-point-protocol-ppp-services"></a>Rozdział 3 — opis Azure RTOS NetX Duo Point-to-Point Protocol (PPP)
 
-Ten rozdział zawiera opis wszystkich usług PPP usługi Azure RTO NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług Azure RTOS NetX Duo PPP (wymienionych poniżej) w kolejności alfabetycznej.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w poniższych  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości z pogrubieniem, a wartości bez pogrubienia są całkowicie wyłączone.
 
-- **nx_ppp_byte_receive**: *odebranie bajtu z SZEREGowego procedury ISR*
-- **nx_ppp_chap_challenge**: *generowanie wyzwania protokołu CHAP*
-- **nx_ppp_chap_enable**: *Włączanie uwierzytelniania CHAP*
-- **nx_ppp_create**: *Tworzenie wystąpienia protokołu PPP*
-- **nx_ppp_delete**: *usuwanie wystąpienia protokołu PPP*
-- **nx_ppp_dns_address_get**: *Pobierz adres IP serwera DNS*
-- **nx_ppp_dns_address_set**:*Ustaw adres IP serwera DNS*
-- **nx_ppp_secondary_dns_address_get**: *Pobierz adres IP POMOCNICZego serwera DNS*
-- **nx_ppp_secondary_dns_address_set**: *Ustaw adres IP serwera Secondary_DNS*
-- **nx_ppp_interface_index_get**: *Pobierz indeks interfejsu IP*
-- **nx_ppp_ip_address_assign**: *Przypisz adresy IP do protokołu IPCP*
-- **nx_ppp_link_down_notify**: *Powiadamiaj aplikację przy połączeniu w dół*
-- **nx_ppp_link_up_notify**: *Powiadom aplikację przy połączeniu*
-- **nx_ppp_nak_authentication_notify**: *Powiadamiaj aplikację w przypadku ODEBRANia uwierzytelniania nak*
-- **nx_ppp_pap_enable**: *Włączanie uwierzytelniania PAP*
-- **nx_ppp_ping_request**: *Wyślij żądanie echa LCP*
-- **nx_ppp_raw_string_send**: *Wyślij ciąg NIEbędący protokołem PPP*
-- **nx_ppp_restart**: *Ponowne uruchamianie przetwarzania PPP*
-- **nx_ppp_start**: *Uruchamianie przetwarzania PPP*
-- **nx_ppp_status_get**: *Pobierz bieżący stan protokołu PPP*
-- **nx_ppp_stop**: *ZAtrzymywanie przetwarzania PPP*
-- **nx_ppp_packet_receive**: *odbieranie pakietu PPP*
-- **nx_ppp_packet_send_set**: *Ustaw funkcję wysyłania pakietów PPP*
+- **nx_ppp_byte_receive:** *odbieranie bajtu z szeregowego isr*
+- **nx_ppp_chap_challenge:** Generowanie *wyzwania protokołu CHAP*
+- **nx_ppp_chap_enable:** Włączanie *uwierzytelniania protokołu CHAP*
+- **nx_ppp_create:** Tworzenie *wystąpienia protokołu PPP*
+- **nx_ppp_delete:** Usuwanie *wystąpienia protokołu PPP*
+- **nx_ppp_dns_address_get:** uzyskiwanie *adresu IP serwera DNS*
+- **nx_ppp_dns_address_set:***ustaw adres IP serwera DNS*
+- **nx_ppp_secondary_dns_address_get:** uzyskiwanie *pomocniczego adresu IP serwera DNS*
+- **nx_ppp_secondary_dns_address_set:** ustaw *Secondary_DNS IP serwera*
+- **nx_ppp_interface_index_get:** uzyskiwanie *indeksu interfejsu IP*
+- **nx_ppp_ip_address_assign:** *Przypisywanie adresów IP dla protokołu IPCP*
+- **nx_ppp_link_down_notify:** *Powiadom aplikację przy linku*
+- **nx_ppp_link_up_notify:** *Powiadamianie aplikacji o linku*
+- **nx_ppp_nak_authentication_notify:** *powiadamianie aplikacji o otrzymaniu nak uwierzytelniania*
+- **nx_ppp_pap_enable:** Włącz *uwierzytelnianie PAP*
+- **nx_ppp_ping_request:** Wysyłanie *żądania echa LCP*
+- **nx_ppp_raw_string_send:** Wyślij *ciąg bez protokołu PPP*
+- **nx_ppp_restart:** Ponowne *uruchamianie przetwarzania PROTOKOŁU PPP*
+- **nx_ppp_start:** Rozpocznij *przetwarzanie PROTOKOŁU PPP*
+- **nx_ppp_status_get:** *Uzyskiwanie bieżącego stanu protokołu PPP*
+- **nx_ppp_stop:** *Zatrzymaj przetwarzanie protokołu PPP*
+- **nx_ppp_packet_receive:** *Odbieranie pakietu PPP*
+- **nx_ppp_packet_send_set:** *Ustaw funkcję wysyłania pakietów PPP*
 
 ## <a name="nx_ppp_byte_receive"></a>nx_ppp_byte_receive
 
-Odbierz bajt od szeregu ISR
+Odbieranie bajtu od szeregowego isr
 
 ### <a name="prototype"></a>Prototype
 
@@ -55,22 +55,22 @@ UINT nx_ppp_byte_receive(NX_PPP *ppp_ptr, UCHAR byte);
 
 ### <a name="description"></a>Opis
 
-Ta usługa jest zazwyczaj wywoływana z procedury usługi przerwania sterownika szeregowego aplikacji (ISR) do transferu odebranego bajtu do PPP. Gdy jest wywoływana, ta procedura umieszcza odebrany bajt w buforze bajtów cyklicznych i powiadamia odpowiedni wątek PPP do przetwarzania.
+Ta usługa jest zwykle wywoływana z procedury obsługi przerwania (ISR) sterownika szeregowego aplikacji w celu przeniesienia odebranego bajtu do protokołu PPP. Gdy ta procedura jest wywoływana, umieszcza odebrany bajt w cyklicznym buforze bajtów i powiadamia odpowiedni wątek PPP do przetworzenia.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **Byte**: bajt odebrany z urządzenia szeregowego
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
+- **byte:** bajt odebrany z urządzenia szeregowego
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne odebranie BAJTOWEGO protokołu PPP.
-- **NX_PPP_BUFFER_FULL**: bufor szeregowy PPP (0xB1) jest już zapełniony.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
+- **NX_SUCCESS:**(0x00) Pomyślne odbieranie bajtów PPP.
+- **NX_PPP_BUFFER_FULL:**(0xB1) Bufor szeregowy PROTOKOŁU PPP jest już pełny.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Wątki, procedury ISR
+Wątki, isR
 
 ### <a name="example"></a>Przykład
 
@@ -84,7 +84,7 @@ status =  nx_ppp_byte_receive(&my_ppp, new_byte);
 
 ## <a name="nx_ppp_chap_challenge"></a>nx_ppp_chap_challenge
 
-Generuj wyzwanie CHAP
+Generowanie wyzwania protokołu CHAP
 
 ### <a name="prototype"></a>Prototype
 
@@ -94,19 +94,19 @@ UINT nx_ppp_chap_challenge(NX_PPP *ppp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje wyzwanie protokołu CHAP po nawiązaniu połączenia PPP i uruchomieniu go. Dzięki temu aplikacja ma możliwość regularnego weryfikowania autentyczności połączenia. Jeśli test nie powiedzie się, łącze PPP zostanie zamknięte.
+Ta usługa inicjuje wyzwanie protokołu CHAP, gdy połączenie PROTOKOŁU PPP jest już uruchomione. Dzięki temu aplikacja może okresowo weryfikować autentyczność połączenia. Jeśli wyzwanie nie powiedzie się, link PPP zostanie zamknięty.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie zainicjowano żądanie PPP.
-- **NX_PPP_FAILURE**: (0XB0) nieprawidłowe wyzwanie protokołu PPP, protokół CHAP został włączony tylko dla odpowiedzi.
-- **NX_NOT_IMPLEMENTED**: (0x80) logika protokołu CHAP została wyłączona za pośrednictwem NX_PPP_DISABLE_CHAP.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS:**(0x00) Zainicjowanie pomyślnego wyzwania PROTOKOŁU PPP.
+- **NX_PPP_FAILURE:**(0xB0) Nieprawidłowe wyzwanie PPP, protokół CHAP został włączony tylko dla odpowiedzi.
+- **NX_NOT_IMPLEMENTED:** logika protokołu CHAP (0x80) została wyłączona za pośrednictwem NX_PPP_DISABLE_CHAP.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -124,7 +124,7 @@ initiated. */
 
 ## <a name="nx_ppp_chap_enable"></a>nx_ppp_chap_enable
 
-Włącz uwierzytelnianie CHAP
+Włączanie uwierzytelniania protokołu CHAP
 
 ### <a name="prototype"></a>Prototype
 
@@ -137,32 +137,32 @@ UINT nx_ppp_chap_enable(NX_PPP *ppp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa włącza protokół uwierzytelniania Challenge-Handshake (CHAP) dla określonego wystąpienia protokołu PPP.
+Ta usługa włącza protokół Challenge-Handshake Authentication Protocol (CHAP) dla określonego wystąpienia protokołu PPP.
 
-Jeśli określono wskaźniki funkcji "***get_challenge_values**_" i "_ * _get_verification_values_* *", protokół CHAP jest wymagany przez to wystąpienie protokołu PPP. W przeciwnym razie protokół CHAP odpowiada tylko na żądania wyzwania elementu równorzędnego.
+Jeśli określono wskaźniki funkcji "***get_challenge_values**" i _"_ * _get_verification_values_**", protokół CHAP jest wymagany przez to wystąpienie protokołu PPP. W przeciwnym razie protokół CHAP odpowiada tylko na żądania wyzwania elementu równorzędnego.
 
-Poniżej przedstawiono kilka elementów danych, do których odwołuje się wymagana funkcja wywołania zwrotnego. Parametry *tajne*, *Nazwa* i *system* elementów danych mają być ciągiem zakończonym wartością null o maksymalnym rozmiarze NX_PPP_NAME_SIZE-1. Oczekiwanym *rand_valuem* elementu danych będzie ciąg zakończony znakiem null o maksymalnym rozmiarze NX_PPP_VALUE_SIZE-1. *Identyfikator* elementu danych to prosty typ znaku bez znaku.
+Istnieje kilka elementów danych przywołynych poniżej w wymaganych funkcjach wywołania zwrotnego. Ciągi *tajne* elementów danych , *nazwa* i *system* powinny być ciągami zakończonymi wartością NULL o maksymalnym rozmiarze NX_PPP_NAME_SIZE-1. Oczekuje się, *rand_value* element danych będzie ciągiem zakończonym z wartością NULL i maksymalnym rozmiarem NX_PPP_VALUE_SIZE-1. Identyfikator elementu danych *jest* prostym typem znaku bez znaku.
 
 >[!NOTE]
-> Ta funkcja musi być wywoływana po *nx_ppp_create* , ale przed nx_ip_create lub *nx_ip_interface_attach*.
+> Ta funkcja musi być wywoływana po *nx_ppp_create* ale przed nx_ip_create lub *nx_ip_interface_attach*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **get_challenge_values**: wskaźnik do funkcji aplikacji, aby pobrać wartości używane dla wyzwania. Należy pamiętać, że wartości *rand_value*, *ID* i *Secret* muszą zostać skopiowane do dostarczonych miejsc docelowych.
-- **get_responder_values**: wskaźnik do funkcji aplikacji, która pobiera wartości używane do reagowania na wyzwanie. Należy zauważyć, że wartości *system*, *name* i *Secret* muszą zostać skopiowane do dostarczonych miejsc docelowych.
-- **get_verification_values**: wskaźnik do funkcji aplikacji pobierającej wartości używane do weryfikowania odpowiedzi na wezwanie. Należy zauważyć, że wartości *system*,*name* i *Secret* muszą zostać skopiowane do dostarczonych miejsc docelowych.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
+- **get_challenge_values:** Wskaźnik do funkcji aplikacji w celu pobrania wartości użytych do zadania. Należy pamiętać, *że rand_value*, *id* i *secret* muszą zostać skopiowane do podanych miejsc docelowych.
+- **get_responder_values:** Wskaźnik do funkcji aplikacji, która pobiera wartości używane do reagowania na wyzwanie. Należy pamiętać, *że wartości systemowe*, *nazwa* i *klucz tajny* muszą zostać skopiowane do podanych miejsc docelowych.
+- **get_verification_values:** Wskaźnik do funkcji aplikacji, która pobiera wartości używane do weryfikacji odpowiedzi wyzwania. Należy pamiętać, *że wartości systemowe*,*nazwa* i *klucz tajny* muszą zostać skopiowane do podanych miejsc docelowych.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne włączenie protokołu CHAP PPP
-- **NX_NOT_IMPLEMENTED**: (0x80) logika protokołu CHAP została wyłączona za pośrednictwem NX_PPP_DISABLE_CHAP.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP lub wskaźnik funkcji wywołania zwrotnego. Należy pamiętać, że jeśli *get_challenge_values* jest określony, należy również podać funkcję *get_verification_values* .
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS:**(0x00) Pomyślne włączenie protokołu CHAP protokołu PPP
+- **NX_NOT_IMPLEMENTED:** logika protokołu CHAP (0x80) została wyłączona za pośrednictwem NX_PPP_DISABLE_CHAP.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP lub wskaźnik funkcji wywołania zwrotnego. Należy pamiętać, *że get_challenge_values* jest określona, należy *get_verification_values* również podać funkcję.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -268,33 +268,33 @@ UINT  nx_ppp_create(NX_PPP *ppp_ptr, CHAR *name, NX_IP *ip_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wystąpienie protokołu PPP dla określonego wystąpienia NetX IP. Ta funkcja musi zostać wywołana przed utworzeniem wystąpienia adresu IP NetX.
+Ta usługa tworzy wystąpienie protokołu PPP dla określonego wystąpienia adresu IP NetX. Ta funkcja musi zostać wywołana przed utworzeniem wystąpienia adresu IP NetX.
 
 >[!NOTE]
-> Zwykle dobrym pomysłem jest utworzenie wątku IP NetX o wyższym priorytecie niż priorytet wątku PPP. Aby uzyskać więcej informacji na temat określania priorytetu wątku IP, zapoznaj się z usługą *nx_ip_create* .
+> Zazwyczaj dobrym pomysłem jest utworzenie wątku IP NetX o wyższym priorytecie niż priorytet wątku PROTOKOŁU PPP. Zapoznaj się z *usługą nx_ip_create,* aby uzyskać więcej informacji na temat określania priorytetu wątku ip.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **name**: Nazwa tego wystąpienia protokołu PPP.
-- **ip_ptr**: wskaźnik kontroli dla niejeszcze utworzonego wystąpienia adresu IP.
-- **stack_memory_ptr**: wskaźnik do początku obszaru stosu wątku PPP.
-- **stack_size**: rozmiar w bajtach w stosie wątku.
-- **pool_ptr**: wskaźnik do domyślnej puli pakietów.
-- **thread_priority**: priorytet wewnętrznych wątków PPP (1-31).
-- **ppp_invalid_packet_handler**: wskaźnik funkcji do obsługi aplikacji dla wszystkich pakietów innych niż PPP. NetX PPP zazwyczaj wywołuje tę procedurę podczas inicjacji. Jest to miejsce, w którym aplikacja może odpowiadać na polecenia modemowe lub w przypadku systemu Windows XP aplikacja NetX PPP może inicjować protokół PPP przez odpowiadanie na początkowy "klient", który jest wysyłany przez system Windows XP.
-- **ppp_byte_send**: wskaźnik funkcji do procedury wyjściowej bajtów szeregowych aplikacji.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **name**: nazwa tego wystąpienia PROTOKOŁU PPP.
+- **ip_ptr:** Wskaźnik do bloku sterowania dla jeszcze nie utworzonego wystąpienia adresu IP.
+- **stack_memory_ptr:** Wskaźnik do rozpoczęcia obszaru stosu wątku PPP.
+- **stack_size:** rozmiar w bajtach w stosie wątku.
+- **pool_ptr:** Wskaźnik do domyślnej puli pakietów.
+- **thread_priority:** Priorytet wewnętrznych wątków PPP (1–31).
+- **ppp_invalid_packet_handler:** Wskaźnik funkcji do programu obsługi aplikacji dla wszystkich pakietów innych niż PPP. Protokół NETX PPP zazwyczaj wywołuje tę procedurę podczas inicjowania. W tym miejscu aplikacja może reagować na polecenia modemu lub w przypadku programu Windows XP aplikacja NETX PPP może zainicjować protokół PPP, odpowiadając przy użyciu "SERWERA KLIENTA" na początkowy "KLIENT" wysyłany przez Windows XP.
+- **ppp_byte_send:** wskaźnik funkcji do procedury danych wyjściowych bajtów seryjnych aplikacji.
 
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne utworzenie protokołu PPP.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik funkcji danych wyjściowych PPP, IP lub Byte.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS:**(0x00) Pomyślne utworzenie protokołu PPP.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik funkcji PPP, IP lub bajtów wyjściowych.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -309,7 +309,7 @@ status =  nx_ppp_create(&my_ppp, “my PPP”, &my_ip, stack_start, 1024, 2,
 
 ## <a name="nx_ppp_delete"></a>nx_ppp_delete
 
-Usuwanie wystąpienia protokołu PPP
+Usuwanie wystąpienia PROTOKOŁU PPP
 
 ### <a name="prototype"></a>Prototype
 
@@ -319,17 +319,17 @@ UINT nx_ppp_delete(NX_PPP *ppp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa poprzednio utworzone wystąpienie protokołu PPP.
+Ta usługa usuwa utworzone wcześniej wystąpienie protokołu PPP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne usunięcie protokołu PPP.
+- **NX_SUCCESS:**(0x00) Pomyślne usunięcie protokołu PPP.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -346,7 +346,7 @@ status =  nx_ppp_delete(&my_ppp);
 
 ## <a name="nx_ppp_dns_address_get"></a>nx_ppp_dns_address_get
 
-Pobierz adres IP serwera DNS
+Uzyskiwanie adresu IP serwera DNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -356,22 +356,22 @@ UINT nx_ppp_dns_address_get(NX_PPP *ppp_ptr, ULONG *dns_address_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera adres IP DNS dostarczony przez element równorzędny w uzgadnianiu IPCP. Jeśli adres IP nie został dostarczony przez element równorzędny, zwracany jest adres IP 0.
+Ta usługa pobiera adres IP DNS dostarczony przez elementu równorzędnego w uściślicie IPCP. Jeśli element równorzędny nie podał żadnego adresu IP, zwracany jest adres IP 0.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **dns_address_ptr**: miejsce docelowe dla adresu serwera DNS
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **dns_address_ptr:** miejsce docelowe dla adresu serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne uzyskanie adresu DNS.
-- **NX_PPP_NOT_ESTABLISHED**: (0XB5) Protokół PPP nie ukończył negocjacji z elementem równorzędnym.
+- **NX_SUCCESS:**(0x00) Pomyślne uzyskiwanie adresu DNS.
+- **NX_PPP_NOT_ESTABLISHED:**(0xB5) PPP nie zakończyło negocjacji z elementu równorzędnego.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze, procedury ISR
+Inicjowanie, wątki, czasomierze, isr
 
 ### <a name="example"></a>Przykład
 
@@ -388,7 +388,7 @@ status =  nx_ppp_dns_address_get(&my_ppp, &my_dns_address);
 
 ## <a name="nx_ppp_secondary_dns_address_get"></a>nx_ppp_secondary_dns_address_get
 
-Pobierz adres IP pomocniczego serwera DNS
+Uzyskiwanie pomocniczego adresu IP serwera DNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -398,22 +398,22 @@ UINT nx_ppp_secondary_dns_address_get(NX_PPP *ppp_ptr, ULONG *dns_address_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera pomocniczy adres IP serwera DNS dostarczony przez element równorzędny w uzgadnianiu IPCP. Jeśli adres IP nie został dostarczony przez element równorzędny, zwracany jest adres IP 0.
+Ta usługa pobiera pomocniczy adres IP DNS dostarczony przez elementu równorzędnego w uściśliwce IPCP. Jeśli element równorzędny nie podał żadnego adresu IP, zwracany jest adres IP 0.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **dns_address_ptr**: miejsce docelowe dla adresu pomocniczego serwera DNS
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **dns_address_ptr:** miejsce docelowe dla pomocniczego adresu serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne uzyskanie adresu DNS.
-- **NX_PPP_NOT_ESTABLISHED**: (0XB5) Protokół PPP nie ukończył negocjacji z elementem równorzędnym.
+- **NX_SUCCESS:**(0x00) Pomyślne uzyskiwanie adresu DNS.
+- **NX_PPP_NOT_ESTABLISHED:**(0xB5) PPP nie zakończyło negocjacji z elementu równorzędnego.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze, procedury ISR
+Inicjowanie, wątki, czasomierze, isr
 
 ### <a name="example"></a>Przykład
 
@@ -428,7 +428,7 @@ status =  nx_ppp_secondary_dns_address_get(&my_ppp, &my_dns_address);
 
 ## <a name="nx_ppp_dns_address_set"></a>nx_ppp_dns_address_set
 
-Ustaw adres IP podstawowego serwera DNS
+Ustawianie podstawowego adresu IP serwera DNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -438,22 +438,22 @@ UINT nx_ppp_dns_address_set(NX_PPP *ppp_ptr, ULONG dns_address);
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia adres IP serwera DNS. Jeśli element równorzędny wyśle żądanie opcji serwera DNS w stanie IPCP, ten host dostarczy informacji.
+Ta usługa ustawia adres IP serwera DNS. Jeśli komunikacja równorzędna wysyła żądanie opcji serwera DNS w stanie IPCP, ten host udostępni informacje.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **dns_address**: adres serwera DNS
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **dns_address:** adres serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślny zbiór adresów DNS.
-- **NX_PPP_NOT_ESTABLISHED**: (0XB5) Protokół PPP nie ukończył negocjacji z elementem równorzędnym.
+- **NX_SUCCESS:**(0x00) Zestaw pomyślnych adresów DNS.
+- **NX_PPP_NOT_ESTABLISHED:**(0xB5) PPP nie zakończyło negocjacji z elementu równorzędnego.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -470,7 +470,7 @@ status =  nx_ppp_dns_address_set(&my_ppp, my_dns_address);
 
 ## <a name="nx_ppp_secondary_dns_address_set"></a>nx_ppp_secondary_dns_address_set
 
-Ustaw adres IP pomocniczego serwera DNS
+Ustawianie pomocniczego adresu IP serwera DNS
 
 ### <a name="prototype"></a>Prototype
 
@@ -480,22 +480,22 @@ UINT nx_ppp_secondary_dns_address_set(NX_PPP *ppp_ptr, ULONG dns_address);
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia adres IP pomocniczego serwera DNS. Jeśli element równorzędny wyśle żądanie dodatkowej opcji serwera DNS w stanie IPCP, ten host dostarczy informacje.
+Ta usługa ustawia pomocniczy adres IP serwera DNS. Jeśli komunikacja równorzędna wysyła żądanie opcji pomocniczego serwera DNS w stanie IPCP, ten host udostępni informacje.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **dns_address**: pomocniczy adres serwera DNS
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **dns_address:** pomocniczy adres serwera DNS
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślny zbiór adresów DNS. 
-- **NX_PPP_NOT_ESTABLISHED**: (0XB5) Protokół PPP nie ukończył negocjacji z elementem równorzędnym.
+- **NX_SUCCESS:**(0x00) Zestaw pomyślnych adresów DNS. 
+- **NX_PPP_NOT_ESTABLISHED:**(0xB5) PPP nie zakończyło negocjacji z elementu równorzędnego.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -510,7 +510,7 @@ status =  nx_ppp_secondary_dns_address_set(&my_ppp, my_dns_address);
 ```
 ## <a name="nx_ppp_interface_index_get"></a>nx_ppp_interface_index_get
 
-Pobierz indeks interfejsu IP
+Uzyskiwanie indeksu interfejsu IP
 
 ### <a name="prototype"></a>Prototype
 
@@ -520,22 +520,22 @@ UINT nx_ppp_interface_index_get(NX_PPP *ppp_ptr, UINT *index_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera indeks interfejsu IP skojarzony z tym wystąpieniem protokołu PPP. Jest to przydatne tylko wtedy, gdy wystąpienie protokołu PPP nie jest podstawowym interfejsem wystąpienia IP.
+Ta usługa pobiera indeks interfejsu IP skojarzony z tym wystąpieniem PROTOKOŁU PPP. Jest to przydatne tylko wtedy, gdy wystąpienie PROTOKOŁU PPP nie jest interfejsem podstawowym wystąpienia adresu IP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **index_ptr**: miejsce docelowe dla indeksu interfejsu
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **index_ptr:** miejsce docelowe indeksu interfejsu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne pobieranie indeksu PPP.
-- **NX_IN_PROGRESS**: (0X37) Protokół PPP nie ukończył inicjacji.
+- **NX_SUCCESS:**(0x00) Pomyślne uzyskiwanie indeksu PPP.
+- **NX_IN_PROGRESS:**(0x37) PPP nie zakończyło inicjowania.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -551,7 +551,7 @@ status =  nx_ppp_interface_index_get(&my_ppp, &my_index);
 ```
 ## <a name="nx_ppp_ip_address_assign"></a>nx_ppp_ip_address_assign
 
-Przypisywanie adresów IP do protokołu IPCP
+Przypisywanie adresów IP dla ipcp
 
 ### <a name="prototype"></a>Prototype
 
@@ -562,23 +562,23 @@ UINT nx_ppp_ip_address_assign(NX_PPP *ppp_ptr, ULONG local_ip_address,
 
 ### <a name="description"></a>Opis
 
-Ta usługa konfiguruje lokalne i równorzędne adresy IP do użycia w protokole protokołu kontroli ruchu internetowego (IPCP. Należy ją wywołać dla wystąpienia protokołu PPP, które ma prawidłowe adresy IP dla siebie i drugiego elementu równorzędnego.
+Ta usługa konfiguruje lokalne i równorzędne adresy IP do użycia w protokole IPCP (Internet Protocol Control Protocol). Należy ją nazwać dla wystąpienia PROTOKOŁU PPP, które ma prawidłowe adresy IP dla siebie i dla drugiego elementu równorzędnego.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **local_ip_address**: lokalny adres IP.
-- **peer_ip_address**: adres IP elementu równorzędnego.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **local_ip_address:** lokalny adres IP.
+- **peer_ip_address:** adres IP elementu równorzędnego.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne przypisanie adresu PPP.
+- **NX_SUCCESS:**(0x00) Pomyślne przypisanie adresu PPP.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -593,7 +593,7 @@ IP_ADDRESS(256,2,2,188));
 
 ## <a name="nx_ppp_link_down_notify"></a>nx_ppp_link_down_notify
 
-Powiadamiaj aplikację o linku w dół
+Powiadamianie aplikacji przy linku
 
 ### <a name="prototype"></a>Prototype
 
@@ -604,21 +604,21 @@ UINT nx_ppp_link_down_notify(NX_PPP *ppp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje wywołanie zwrotne powiadomienia o podłączeniu aplikacji z określonym wystąpieniem PPP. Jeśli wartość nie jest równa NULL, funkcja wywołania zwrotnego łącza aplikacji jest wywoływana za każdym razem, gdy link zostanie wyłączony.
+Ta usługa rejestruje wywołanie zwrotne powiadomień w dół połączenia aplikacji z określonym wystąpieniem protokołu PPP. Jeśli nie ma wartości NULL, funkcja wywołania zwrotnego link down aplikacji jest wywoływana za każdym razem, gdy łącze nie działa.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **link_down_callback**: wskaźnik funkcji powiadomień dla aplikacji. Jeśli wartość jest równa NULL, powiadomienie o linku w dół jest wyłączone.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **link_down_callback:** Wskaźnik funkcji powiadomień w dół aplikacji. W przypadku wartości NULL powiadomienie o linku jest wyłączone.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne łącze rejestracji wywołania zwrotnego powiadomienia.
+- **NX_SUCCESS:**(0x00) Rejestracja wywołania zwrotnego powiadomienia z pomyślnym linkiem.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze, procedury ISR
+Inicjowanie, wątki, czasomierze, isr
 
 ### <a name="example"></a>Przykład
 
@@ -640,7 +640,7 @@ VOID my_link_down_callback(NX_PPP *ppp_ptr)
 ```
 ## <a name="nx_ppp_link_up_notify"></a>nx_ppp_link_up_notify
 
-Powiadamiaj aplikację przy połączeniu
+Powiadamianie aplikacji o linku
 
 ### <a name="prototype"></a>Prototype
 
@@ -650,21 +650,21 @@ UINT nx_ppp_link_up_notify(NX_PPP *ppp_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje połączenie zwrotne powiadomienia aplikacji z określonym wystąpieniem PPP. Jeśli wartość jest inna niż NULL, funkcja wywołania zwrotnego linku aplikacji jest wywoływana za każdym razem, gdy zostanie wyświetlony link.
+Ta usługa rejestruje wywołanie zwrotne powiadomień połączenia aplikacji z określonym wystąpieniem protokołu PPP. Jeśli nie ma wartości NULL, funkcja wywołania zwrotnego łączenia aplikacji jest wywoływana za każdym razem, gdy pojawia się link.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **link_up_callback**: wskaźnik funkcji powiadomień dla aplikacji. Jeśli wartość jest równa NULL, powiadomienie o linku jest wyłączone. * *
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **link_up_callback:** Wskaźnik funkcji łączenia powiadomień aplikacji. W przypadku wartości NULL powiadomienie o linku jest wyłączone.**
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne łączenie rejestracji wywołania zwrotnego powiadomień.
+- **NX_SUCCESS:**(0x00) Pomyślne połączenie rejestracji wywołania zwrotnego powiadomień.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze, procedury ISR
+Inicjowanie, wątki, czasomierze, isr
 
 ### <a name="example"></a>Przykład
 
@@ -686,7 +686,7 @@ VOID my_link_up_callback(NX_PPP *ppp_ptr)
 
 ## <a name="nx_ppp_nak_authentication_notify"></a>nx_ppp_nak_authentication_notify
 
-Powiadamiaj aplikację o otrzymaniu NAK uwierzytelniania
+Powiadamianie aplikacji o otrzymaniu uwierzytelniania nak
 
 ### <a name="prototype"></a>Prototype
 
@@ -697,21 +697,21 @@ UINT    nx_ppp_nak_authentication_notify(NX_PPP *ppp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje wywołanie zwrotne powiadomienia nak uwierzytelniania aplikacji z określonym wystąpieniem PPP. Jeśli wartość jest inna niż NULL, ta funkcja wywołania zwrotnego jest wywoływana za każdym razem, gdy wystąpienie protokołu PPP odbiera NAK podczas authentiaction.
+Ta usługa rejestruje wywołanie zwrotne powiadomień nak uwierzytelniania aplikacji przy użyciu określonego wystąpienia protokołu PPP. Jeśli ta funkcja wywołania zwrotnego nie ma wartości NULL, jest wywoływana za każdym razem, gdy wystąpienie protokołu PPP odbiera nakłońcowy podczas uwierzytelniania.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **nak_authentication_notify**: wskaźnik do funkcji wywoływana, gdy wystąpienie protokołu PPP odbiera nak uwierzytelniania. Jeśli wartość jest równa NULL, powiadomienie jest wyłączone.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **nak_authentication_notify:** wskaźnik do funkcji wywoływanej, gdy wystąpienie PROTOKOŁU PPP odbiera uwierzytelnianie NAK. Jeśli wartość NULL, powiadomienie jest wyłączone.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślna Rejestracja wywołania zwrotnego powiadomienia.
+- **NX_SUCCESS:**(0x00) Pomyślna rejestracja wywołania zwrotnego powiadomień.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze, procedury ISR
+Inicjowanie, wątki, czasomierze, isr
 
 ### <a name="example"></a>Przykład
 
@@ -732,7 +732,7 @@ VOID my_nak_auth_callback(NX_PPP *ppp_ptr)
 
 ## <a name="nx_ppp_pap_enable"></a>nx_ppp_pap_enable
 
-Włącz uwierzytelnianie PAP
+Włączanie uwierzytelniania PAP
 
 ### <a name="prototype"></a>Prototype
 
@@ -745,29 +745,29 @@ UINT  nx_ppp_pap_enable(NX_PPP *ppp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa włącza protokół uwierzytelniania hasła (PAP) dla określonego wystąpienia protokołu PPP. Jeśli jest określony wskaźnik funkcji "***verify_login***", protokół PAP jest wymagany przez to wystąpienie protokołu PPP. W przeciwnym razie protokół PAP odpowiada wymaganiom protokołu PAP elementu równorzędnego określonym podczas negocjacji protokołu LCP.
+Ta usługa włącza protokół uwierzytelniania haseł (PAP) dla określonego wystąpienia protokołu PPP. Jeśli określono wskaźnik funkcji "***verify_login***", to wystąpienie PROTOKOŁU PPP wymaga protokołu PAP. W przeciwnym razie PAP odpowiada tylko na wymagania protokołu PAP elementu równorzędnego określone podczas negocjacji LCP.
 
-Poniżej przedstawiono kilka elementów danych, do których odwołuje się wymagana funkcja wywołania zwrotnego. Oczekiwano, że *Nazwa* elementu danych ma być ciągiem ZAKOŃCZONYM wartością null o maksymalnym rozmiarze NX_PPP_NAME_SIZE-1. Oczekiwane jest również, że *hasło* elementu danych będzie ciągiem ZAKOŃCZONYM wartością null o maksymalnym rozmiarze NX_PPP_PASSWORD_SIZE-1.
+Istnieje kilka elementów danych przywołynych poniżej w wymaganych funkcjach wywołania zwrotnego. Oczekuje się, *że* nazwa elementu danych będzie ciągiem zakończonym wartością NULL o maksymalnym rozmiarze NX_PPP_NAME_SIZE-1. Oczekuje się *również,* że hasło elementu danych będzie ciągiem zakończonym wartością NULL o maksymalnym rozmiarze NX_PPP_PASSWORD_SIZE-1.
 
 >[!NOTE]
-> Ta funkcja musi być wywoływana po *nx_ppp_create* , ale przed *nx_ip_create* lub *nx_ip_interface_attach*.
+> Ta funkcja musi być wywoływana po *nx_ppp_create* ale przed nx_ip_create *lub* *nx_ip_interface_attach*.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **generate_login**: wskaźnik do funkcji aplikacji, która tworzy *nazwę* i *hasło* na potrzeby uwierzytelniania przez element równorzędny. Należy pamiętać, że wartości *nazwy* i *hasła* muszą być skopiowane do dostarczonych miejsc docelowych.
-- **verify_login**: wskaźnik do funkcji aplikacji, która weryfikuje *nazwę* i *hasło* dostarczone przez element równorzędny. Ta procedura musi porównać podaną *nazwę* i *hasło*. Jeśli ta procedura zwróci NX_SUCCESS, nazwa i hasło są poprawne, a protokół PPP może przejść do następnego kroku. W przeciwnym razie ta procedura zwraca NX_PPP_ERROR i PPP czeka na inną nazwę i hasło.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PPP.
+- **generate_login:** wskaźnik do funkcji aplikacji, która tworzy *nazwę* i *hasło na* celu uwierzytelnianie przez elementu równorzędnego. Należy pamiętać, *że wartości* nazwy *i* hasła muszą zostać skopiowane do podanych miejsc docelowych.
+- **verify_login:** wskaźnik do funkcji aplikacji, która weryfikuje *nazwę* *i hasło* podane przez elementu równorzędnego. Ta procedura musi porównać *podaną nazwę i* *hasło*. Jeśli ta procedura zwróci NX_SUCCESS, nazwa i hasło są poprawne, a protokół PPP może przejść do następnego kroku. W przeciwnym razie ta procedura zwraca NX_PPP_ERROR i PPP po prostu czeka na inną nazwę i hasło.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne włączenie protokołu PPP PAP.
-- **NX_NOT_IMPLEMENTED**: (0x80) logika PAP została wyłączona za pośrednictwem NX_PPP_DISABLE_PAP.
+- **NX_SUCCESS:**(0x00) Pomyślne włączenie protokołu PPP PAP.
+- **NX_NOT_IMPLEMENTED:** logika (0x80) PAP została wyłączona za pośrednictwem NX_PPP_DISABLE_PAP.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP lub wskaźnik funkcji aplikacji.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -811,7 +811,7 @@ return(NX_SUCCESS);
 
 ## <a name="nx_ppp_ping_request"></a>nx_ppp_ping_request
 
-Wysyłanie żądania ping protokołu LCP
+Wysyłanie żądania ping LCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -822,24 +822,24 @@ UINT  nx_ppp_ping_request(NX_PPP *ppp_ptr, CHAR *data,
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła żądanie LCP i ustawia flagę, którą urządzenie PPP oczekuje na odpowiedź ECHA. Opcja oczekiwania dotyczy przede wszystkim wywołania *nx_packet_allocate* . Usługa wraca natychmiast po wysłaniu żądania. Nie czeka na odpowiedź. 
+Ta usługa wysyła żądanie LCP i ustawia flagę, że urządzenie PPP czeka na odpowiedź echa. Opcja oczekiwania jest przeznaczona głównie dla *nx_packet_allocate* wywołania. Usługa zwraca wartość natychmiast po wysłaniu żądania. Nie czeka na odpowiedź. 
 
-Po otrzymaniu zgodnej odpowiedzi echa zadanie wątku PPP wyczyści flagę. Urządzenie PPP musi zakończyć część LCP negocjacji protokołu PPP.
+Po otrzymaniu pasującej odpowiedzi echa zadanie wątku PPP wyczyści flagę . Urządzenie PPP musi ukończyć część LCP negocjacji PROTOKOŁU PPP.
 
-Ta usługa jest przydatna w przypadku zestawów PPP, w których sondowanie sprzętu pod kątem stanu linku może nie być możliwe.
+Ta usługa jest przydatna w przypadku konfiguracji PROTOKOŁU PPP, w przypadku których sondowanie sprzętu pod celu ustalenia stanu łącza może być niemożliwe.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **dane**: wskaźnik do danych do wysłania w żądaniu ECHA.
-- **data_size**: rozmiar danych do wysłania WAIT_OPTION czas oczekiwania na wysłanie komunikatu LCP echo.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
+- **data**: Wskaźnik do danych do wysłania w żądaniu echa.
+- **data_size:** Rozmiar danych do wysłania wait_option czas oczekiwania na wysłanie komunikatu echa LCP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie wysłano żądanie echa.
-- **NX_PPP_NOT_ESTABLISHED**: nie ustanowiono połączenia PPP (0xB5).
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP lub wskaźnik funkcji aplikacji.
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS:**(0x00) Żądanie echa wysłane pomyślnie.
+- **NX_PPP_NOT_ESTABLISHED:**(0xB5) Połączenie PROTOKOŁU PPP nie zostało nawiązane.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP lub wskaźnik funkcji aplikacji.
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -868,7 +868,7 @@ while(my_ppp.nx_ppp_lcp_echo_reply_id > 0)
 
 ## <a name="nx_ppp_raw_string_send"></a>nx_ppp_raw_string_send
 
-Wyślij nieprzetworzony ciąg ASCII
+Wysyłanie nieprzetworzowego ciągu ASCII
 
 ### <a name="prototype"></a>Prototype
 
@@ -878,18 +878,18 @@ UINT  nx_ppp_raw_sting_send(NX_PPP *ppp_ptr, CHAR *string_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa wysyła ciąg ASCII bez protokołu PPP bezpośrednio poza interfejsem PPP. Jest zazwyczaj używany po odebraniu przez protokół PPP pakietu, który zawiera informacje o kontrolkach modemu.
+Ta usługa wysyła ciąg ASCII bez protokołu PPP bezpośrednio z interfejsu PPP. Jest on zwykle używany po otrzymaniu przez protokół PPP pakietu bez protokołu PPP, który zawiera informacje o kontrolce modemu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **string_ptr**: wskaźnik do ciągu do wysłania.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
+- **string_ptr:** Wskaźnik do ciągu do wysłania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne wysyłanie ciągów nieprzetworzonych PPP.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP lub wskaźnik ciągu.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS:**(0x00) Pomyślne wysłanie nieprzetworznych ciągów PROTOKOŁU PPP.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP lub wskaźnik ciągu.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -907,7 +907,7 @@ status =  nx_ppp_raw_string_send(&my_ppp, “CLIENTSERVER”);
 ```
 ## <a name="nx_ppp_restart"></a>nx_ppp_restart
 
-Uruchom ponownie przetwarzanie PPP
+Ponowne uruchamianie przetwarzania PROTOKOŁU PPP
 
 ### <a name="prototype"></a>Prototype
 
@@ -917,17 +917,17 @@ UINT  nx_ppp_restart(NX_PPP *ppp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa ponownie uruchamia przetwarzanie PPP. Jest on zazwyczaj wywoływany, gdy połączenie musi zostać ponownie nawiązane przy użyciu wywołania zwrotnego linku lub komunikatu z modemem innym niż PPP informującego o utracie komunikacji.
+Ta usługa ponownie uruchamia przetwarzanie PROTOKOŁU PPP. Zwykle jest on wywoływany, gdy należy ponownie nawiązać połączenie z wywołania zwrotnego połączenia lub przez komunikat modemu inny niż PPP wskazujący, że komunikacja została utracona.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie zainicjowano ponowne uruchomienie protokołu PPP.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS:**(0x00) Zainicjowanie pomyślnego ponownego uruchomienia protokołu PPP.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -944,7 +944,7 @@ status =  nx_ppp_restart(&my_ppp);
 
 ## <a name="nx_ppp_start"></a>nx_ppp_start
 
-Uruchom przetwarzanie PPP
+Uruchamianie przetwarzania PROTOKOŁU PPP
 
 ### <a name="prototype"></a>Prototype
 
@@ -954,21 +954,21 @@ UINT  nx_ppp_start(NX_PPP *ppp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa uruchamia przetwarzanie PPP. Jest on zazwyczaj wywoływany po wywołaniu nx_ppp_stop ().
+Ta usługa rozpoczyna przetwarzanie protokołu PPP. Zazwyczaj jest on wywoływany po wywołaniu nx_ppp_stop().
 
 >[!NOTE]
-> Protokół PPP automatycznie uruchamia przetwarzanie PPP, gdy łącze jest włączone.
+> Protokół PPP automatycznie uruchamia przetwarzanie protokołu PPP, gdy połączenie jest włączone.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie zainicjowano uruchamianie protokołu PPP. 
-- **NX_PPP_ALREADY_STARTED**: (0XB9) Protokół PPP jest już uruchomiony.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS:**(0x00) Zainicjowanie pomyślnego uruchomienia protokołu PPP. 
+- **NX_PPP_ALREADY_STARTED:**(0xb9) JUŻ uruchomiona protokołu PPP.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -985,7 +985,7 @@ status =  nx_ppp_start(&my_ppp);
 
 ## <a name="nx_ppp_status_get"></a>nx_ppp_status_get
 
-Pobierz bieżący stan protokołu PPP
+Uzyskiwanie bieżącego stanu protokołu PPP
 
 ### <a name="prototype"></a>Prototype
 
@@ -994,12 +994,12 @@ UINT  nx_ppp_status_get(NX_PPP *ppp_ptr, UINT *status_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa Pobiera bieżący stan określonego wystąpienia protokołu PPP.
+Ta usługa pobiera bieżący stan określonego wystąpienia protokołu PPP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **STATUS_PTR**: miejsce docelowe dla stanu protokołu PPP, dostępne są następujące wartości stanu:
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
+- **status_ptr:** Miejsce docelowe stanu PROTOKOŁU PPP, możliwe są następujące wartości stanu:
     - **NX_PPP_STATUS_ESTABLISHED**
     - **NX_PPP_STATUS_LCP_IN_PROGRESS**
     - **NX_PPP_STATUS_LCP_FAILED**
@@ -1011,16 +1011,16 @@ Ta usługa Pobiera bieżący stan określonego wystąpienia protokołu PPP.
     - **NX_PPP_STATUS_IPCP_FAILED**
 
 >[!NOTE]
-> Stan jest prawidłowy tylko wtedy, gdy interfejs API zwraca NX_SUCCESS. Ponadto, jeśli dowolna z wartości stanu * _FAILED jest zwracana, przetwarzanie PPP jest skutecznie przerywane, dopóki nie zostanie ponownie uruchomione przez aplikację.
+> Stan jest prawidłowy tylko wtedy, gdy interfejs API zwraca NX_SUCCESS. Ponadto jeśli zostaną zwrócone jakiekolwiek *_FAILED stanu, przetwarzanie PROTOKOŁU PPP zostanie skutecznie zatrzymane do momentu ponownego uruchomienia przez aplikację.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne żądanie stanu protokołu PPP.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
+- **NX_SUCCESS:**(0x00) Pomyślne żądanie stanu PROTOKOŁU PPP.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki, czasomierze, procedury ISR
+Inicjowanie, wątki, czasomierze, isr
 
 ### <a name="example"></a>Przykład
 
@@ -1037,7 +1037,7 @@ status =  nx_ppp_status_get(&my_ppp, &ppp_status);
 ```
 ## <a name="nx_ppp_stop"></a>nx_ppp_stop
 
-Uruchom przetwarzanie PPP
+Uruchamianie przetwarzania PROTOKOŁU PPP
 
 ### <a name="prototype"></a>Prototype
 
@@ -1047,18 +1047,18 @@ UINT  nx_ppp_stop(NX_PPP *ppp_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa przerywa przetwarzanie PPP. Użytkownik może także wywoływać nx_ppp_start (), aby uruchomić przetwarzanie PPP w razie potrzeby.
+Ta usługa zatrzymuje przetwarzanie protokołu PPP. Użytkownik może również nx_ppp_start(), aby w razie potrzeby rozpocząć przetwarzanie protokołu PPP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie zainicjowano uruchamianie protokołu PPP. 
-- **NX_PPP_ALREADY_STOPPED**: (0XB8) Protokół PPP został już zatrzymany.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- **NX_SUCCESS:**(0x00) Zainicjowanie pomyślnego uruchomienia protokołu PPP. 
+- **NX_PPP_ALREADY_STOPPED:**(0xb8) PPP już zatrzymane.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP.
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -1074,7 +1074,7 @@ status =  nx_ppp_stop(&my_ppp);
 ```
 ## <a name="nx_ppp_packet_receive"></a>nx_ppp_packet_receive
 
-Odbieranie pakietu protokołu PPP
+Odbieranie pakietu PPP
 
 ### <a name="prototype"></a>Prototype
 
@@ -1085,21 +1085,21 @@ UINT  nx_ppp_packet_receive(NX_PPP *ppp_ptr, NX_PACKET *packet_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa odbiera pakiet protokołu PPP.
+Ta usługa odbiera pakiet PPP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **packet_ptr**: wskaźnik do pakietu PPP.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
+- **packet_ptr:** Wskaźnik do pakietu PPP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne żądanie stanu protokołu PPP.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
+- **NX_SUCCESS:**(0x00) Pomyślne żądanie stanu PROTOKOŁU PPP.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -1113,7 +1113,7 @@ status =  nx_ppp_packet_receive(&my_ppp, packet_ptr);
 ```
 ## <a name="nx_ppp_packet_send_set"></a>nx_ppp_packet_send_set
 
-Ustaw funkcję wysyłania pakietów protokołu PPP
+Ustawianie funkcji wysyłania pakietów PPP
 
 ### <a name="prototype"></a>Prototype
 
@@ -1125,21 +1125,21 @@ UINT  nx_ppp_packet_send_set(NX_PPP *ppp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia ATANH wysyłania pakietów protokołu PPP.
+Ta usługa ustawia funciton wysyłania pakietów PPP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ppp_ptr**: wskaźnik do bloku kontroli PPP.
-- **nx_ppp_packet_send**: procedura wysyłania pakietu protokołu PPP.
+- **ppp_ptr:** Wskaźnik do bloku sterowania PROTOKOŁU PPP.
+- **nx_ppp_packet_send:** procedura wysyłania pakietu PPP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne żądanie stanu protokołu PPP.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PPP.
+- **NX_SUCCESS:**(0x00) Pomyślne żądanie stanu PROTOKOŁU PPP.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik PROTOKOŁU PPP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 

@@ -1,74 +1,74 @@
 ---
-title: Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Duo MQTT
-description: Pakiet klienta NetX Duo MQTT wymaga zainstalowania programu NetX Duo (w wersji 5,10 lub nowszej), prawidłowej konfiguracji i utworzenia wystąpienia adresu IP.
+title: Rozdział 1 — Wprowadzenie do Azure RTOS NetX Duo MQTT
+description: Pakiet klienta NetX Duo MQTT wymaga zainstalowania, prawidłowego skonfigurowania i utworzenia wystąpienia adresu IP netx Duo (w wersji 5.10 lub nowszej).
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 2e13b997f987e2fd82569bcb1904218908313d70
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: be650186b233d0f1202beecc22f4bd8bc0af4dbe0f677704d09df057fcbc34fc
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821816"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116797742"
 ---
-# <a name="chapter-1---introduction-to-azure-rtos-netx-duo-mqtt"></a>Rozdział 1 — wprowadzenie do usługi Azure RTO NetX Duo MQTT
+# <a name="chapter-1---introduction-to-azure-rtos-netx-duo-mqtt"></a>Rozdział 1 — Wprowadzenie do Azure RTOS NetX Duo MQTT
 
-## <a name="netx-duo-mqtt-requirements"></a>NetX Duo MQTT wymagania
+## <a name="netx-duo-mqtt-requirements"></a>NetX Duo MQTT Requirements
 
-Pakiet klienta platformy Azure RTO NetX Duo MQTT wymaga, aby NetX Duo (wersja 5,10 lub nowsza) była zainstalowana, prawidłowo skonfigurowana, a wystąpienie adresu IP zostało utworzone. W systemie musi być włączony moduł TCP. Ponadto, jeśli wymagane jest zabezpieczenie protokołu TLS, moduł bezpiecznego protokołu TLS NetX musi być skonfigurowany zgodnie z parametrem zabezpieczeń wymaganym przez brokera.
+Pakiet Azure RTOS NetX Duo MQTT wymaga zainstalowania, prawidłowego skonfigurowania i utworzenia wystąpienia ip netx duo (w wersji 5.10 lub nowszej). Moduł TCP musi być włączony w systemie. Ponadto jeśli wymagane są zabezpieczenia TLS, moduł NetX Secure TLS musi być skonfigurowany zgodnie z parametrem zabezpieczeń wymaganym przez brokera.
 
 ## <a name="netx-duo-mqtt-specification"></a>Specyfikacja NetX Duo MQTT
 
-Implementacja klienta NetX Duo MQTT jest zgodna z języka Oasis MQTT wersja 3.1.1 KTZ 29<sup>th</sup> 2014. Specyfikację można znaleźć w:
+Implementacja klienta NetX Duo MQTT jest zgodna z wersją 3.1.1 systemu PIPE MQTT z<sup>29</sup> października 2014 r. Specyfikację można znaleźć w:
 
 - [http://mqtt.org/](http://mqtt.org/)
 
-## <a name="netx-duo-mqtt-basic-operation"></a>NetX Duo MQTT — operacja podstawowa
+## <a name="netx-duo-mqtt-basic-operation"></a>Podstawowa operacja NetX Duo MQTT
 
-MQTT (transport telemetrii kolejki komunikatów) jest oparty na modelu subskrybentów wydawcy. Klient może publikować informacje na innych klientach za pośrednictwem brokera. Klient, Jeśli interesuje temat, może subskrybować temat za pośrednictwem brokera. Broker jest odpowiedzialny za dostarczanie opublikowanych komunikatów do klientów, którzy subskrybują ten temat. W tym modelu subskrybenta wydawcy, wielu klientów może publikować dane w tym samym temacie. Klient otrzyma komunikat publikowany, jeśli klient subskrybuje ten sam temat.
+MQTT (Message Queue Telemetry Transport) jest oparty na modelu wydawca-subskrybent. Klient może publikować informacje dla innych klientów za pośrednictwem brokera. Klient, jeśli interesuje się tematem, może zasubskrybować temat za pośrednictwem brokera. Broker jest odpowiedzialny za dostarczanie opublikowanych komunikatów do swoich klientów, którzy subskrybują temat. W tym modelu wydawcy i subskrybenta wielu klientów może publikować dane z tego samego tematu. Klient otrzyma komunikat, który publikuje, jeśli klient subskrybuje ten sam temat.
 
-W zależności od przypadku użycia klient może wybrać jeden z trzech poziomów QoS podczas publikowania wiadomości:
+W zależności od przypadku użycia klient może wybrać jeden z trzech poziomów QoS podczas publikowania komunikatu:
 
-- **Jakość** usług (QoS) 0: komunikat jest dostarczany najwyżej raz. Komunikaty wysyłane z użyciem QoS 0 mogą zostać utracone.
-- **QoS 1**: komunikat jest dostarczany co najmniej raz. Komunikaty wysyłane za pomocą usługi QoS 1 mogą być dostarczane więcej niż raz.
-- **Jakość** usług (QoS) 2: komunikat jest dostarczany dokładnie jeden raz. Komunikaty wysyłane z użyciem usługi QoS 2 są gwarantowane, bez duplikowania.
-
-> [!NOTE]
-> Ta implementacja klienta MQTT nie obsługuje komunikatów poziomu 2 usług QoS.
-
-Ponieważ usługi QoS 1 i QoS 2 mają być dostarczone, Broker śledzi stan komunikatów QoS 1 i QoS 2 wysyłanych do każdego klienta. Jest to szczególnie ważne w przypadku klientów, którzy oczekują komunikatów QoS1 lub QoS 2. Klient może zostać odłączony od brokera (na przykład po ponownym uruchomieniu klienta lub łącze komunikacji). Broker musi przechowywać komunikaty QoS 1 i QoS 2, aby komunikaty mogły być dostarczane później po ponownym połączeniu klienta z brokerem. Jednak klient może zrezygnować z nieodebrania żadnych starych komunikatów z brokera po ponownej nawiązaniu połączenia. Klient może to zrobić przez zainicjowanie połączenia z flagą *clean_session* ustawioną na ***NX_TRUE** _. W takim przypadku po odebraniu komunikatu MQTT CONNECT Broker odrzuca wszystkie informacje o sesji skojarzone z tym klientem, w tym niedostarczone lub niepotwierdzone komunikaty QoS 1 lub QoS 2. Jeśli _flaga clean_session * ma wartość ***NX_FALSE**_, serwer wysyła ponownie komunikaty QoS 1 i QoS 2. Klient MQTT również ponownie wysyła wszystkie niepotwierdzone komunikaty, jeśli _clean_session * jest ustawiona na ***NX_TRUE *.** To potwierdzenie jest inne niż potwierdzenie warstwy protokołu TCP, chociaż taka sytuacja występuje również. Klient MQTT wysyła potwierdzenie do brokera.
-
-Aplikacja tworzy wystąpienie klienta MQTT przez wywołanie ***nxd_mqtt_client_create ()** _. Po utworzeniu klienta aplikacja może połączyć się z brokerem, wywołując _*_nxd_mqtt_client_connect ()_*_. Po nawiązaniu połączenia z brokerem klient może subskrybować temat poprzez wywołanie _*_nxd_mqtt_client_subscribe ()_*_ lub opublikowanie tematu przez wywołanie _ *_nxd_mqtt_client_publish ()_* *.
-
-Przychodzące komunikaty MQTT są przechowywane w kolejce odbierania w wystąpieniu klienta MQTT. Aplikacja pobiera te komunikaty, wywołując ***nxd_mqtt_client_message_get ()***. W przypadku komunikatów w kolejce odbierania pierwszy komunikat (np. najstarsze) z kolejki jest zwracany do obiektu wywołującego. Zwracany jest również ciąg tematu z komunikatu.
+- **QoS 0:** komunikat jest dostarczany co najwyżej raz. Komunikaty wysyłane z QoS 0 mogą zostać utracone.
+- **QoS 1:** komunikat jest dostarczany co najmniej raz. Komunikaty wysyłane za pomocą QoS 1 mogą być dostarczane więcej niż raz.
+- **QoS 2:** Komunikat jest dostarczany dokładnie jeden raz. Gwarantuje się, że komunikaty wysyłane za pomocą QoS 2 będą dostarczane bez duplikowania.
 
 > [!NOTE]
-> Funkcja ***nxd_mqtt_client_message_get ()** _ nie blokuje, jeśli kolejka odbierania MQTT klienta jest pusta. Funkcja wraca bezpośrednio z kodem powrotnym _ *_NXD_MQTT_NO_MESSAGE_* *. Aplikacja traktuje tę wartość zwracaną jako wskazanie, że kolejka odbierania jest pusta, a nie błędu.
+> Ta implementacja klienta MQTT nie obsługuje komunikatów QoS poziom 2.
 
-Aby uniknąć sondowania kolejki odbierania dla wiadomości przychodzących, aplikacja może zarejestrować funkcję wywołania zwrotnego za pomocą klienta MQTT przez wywołanie ***nxd_mqtt_client_recieve_notify_set ()***. Funkcja wywołania zwrotnego jest zadeklarowana jako:
+Ponieważ gwarantowane jest zapewnianie jakości usług (QoS 1) i QoS 2, broker śledzi stan komunikatów QoS 1 i QoS 2 wysyłanych do każdego klienta. Jest to szczególnie ważne w przypadku klientów, którzy oczekują komunikatów QoS1 lub QoS 2. Klient może zostać odłączony od brokera (na przykład po ponownym uruchomieniu klienta lub tymczasowej utracie linku komunikacyjnego). Broker musi przechowywać komunikaty QoS 1 i QoS 2, aby komunikaty można było dostarczyć później po ponownym połączeniu klienta z brokerem. Jednak klient może zdecydować, aby nie odbierać żadnych nieaktualnych komunikatów od brokera po ponownym nawiązaniu połączenia. Klient może to zrobić, inicjując połączenie z flagą *clean_session* ustawioną na ***NX_TRUE** _. W takim przypadku po otrzymaniu komunikatu MQTT CONNECT broker odrzuca wszystkie informacje o sesji skojarzone z tym klientem, w tym niezweryfikowane lub niepotwierdzone komunikaty QoS 1 lub QoS 2. Jeśli _flaga clean_session*_ to * NX_FALSE , serwer musi ponownie wysłać komunikaty QoS 1 i QoS 2. Klient MQTT wysyła również ponownie wszystkie nieprzyznane komunikaty, jeśli _clean_session* jest ustawiony na ***NX_TRUE*.** To potwierdzenie różni się od ACK warstwy TCP, chociaż dzieje się tak również. Klient MQTT wysyła potwierdzenie do brokera.
+
+Aplikacja tworzy wystąpienie klienta MQTT przez wywołanie funkcji ***nxd_mqtt_client_create()** _. Po utworzeniu klienta aplikacja może połączyć się z brokerem, wywołując _*_nxd_mqtt_client_connect()._*_ Po nałączeniu się do brokera klient może zasubskrybować temat, wywołując _*_nxd_mqtt_client_subscribe()_*_ lub opublikować temat, wywołując wywołanie _*_nxd_mqtt_client_publish()_**.
+
+Przychodzące komunikaty MQTT są przechowywane w kolejce odbierania w wystąpieniu klienta MQTT. Aplikacja pobiera ten komunikat, wywołując ***nxd_mqtt_client_message_get()***. Jeśli w kolejce odbierania znajdują się komunikaty, pierwszy komunikat (np. najstarszy) z kolejki jest zwracany do wywołującego. Zwracany jest również ciąg tematu z komunikatu.
+
+> [!NOTE]
+> Funkcja ***nxd_mqtt_client_message_get()** _ nie blokuje, jeśli kolejka odbioru klienta MQTT jest pusta. Funkcja zwraca natychmiast z kodem powrotu _*_NXD_MQTT_NO_MESSAGE_**. Aplikacja powinna traktować tę wartość zwracaną jako wskazanie, że kolejka odbioru jest pusta, a nie jako błąd.
+
+Aby uniknąć sondowania kolejki odbierania komunikatów przychodzących, aplikacja może zarejestrować funkcję wywołania zwrotnego za pomocą klienta MQTT, wywołując ***funkcję nxd_mqtt_client_recieve_notify_set()***. Funkcja wywołania zwrotnego jest zadeklarowana jako:
 
 ```c
 VOID (*receive_notify_callback)(NXD_MQTT_CLIENT *client_ptr, 
     UINT message_count);
 ```
 
-Gdy klient MQTT odbiera komunikaty z brokera, wywołuje funkcję wywołania zwrotnego, jeśli funkcja jest ustawiona. Funkcja wywołania zwrotnego przekazuje wskaźnik do bloku kontroli klienta i wartość liczby komunikatów. Wartość liczby komunikatów wskazuje liczbę komunikatów MQTT w kolejce odbierania. Należy zauważyć, że ta funkcja wywołania zwrotnego jest wykonywana w kontekście wątku klienta MQTT. W związku z tym funkcja wywołania zwrotnego nie powinna wykonywać żadnych procedur, które mogą blokować wątek klienta MQTT. Funkcja wywołania zwrotnego powinna wyzwolić wątek aplikacji, aby wywoływać ***nxd_mqtt_client_message_get ()*** w celu pobrania komunikatów.
+Gdy klient MQTT odbiera komunikaty z brokera, wywołuje funkcję wywołania zwrotnego, jeśli funkcja jest ustawiona. Funkcja wywołania zwrotnego przekazuje wskaźnik do bloku sterowania klienta i wartość liczby komunikatów. Wartość liczby komunikatów wskazuje liczbę komunikatów MQTT w kolejce odbierania. Należy pamiętać, że ta funkcja wywołania zwrotnego jest wykonywana w kontekście wątku klienta MQTT. W związku z tym funkcja wywołania zwrotnego nie powinna wykonywać żadnych procedur, które mogą blokować wątek klienta MQTT. Funkcja wywołania zwrotnego powinna wyzwalać wątek aplikacji w celu wywołania ***nxd_mqtt_client_message_get() w*** celu pobrania komunikatów.
 
-Aby rozłączyć i zakończyć usługę klienta MQTT, aplikacja używa usługi ***nxd_mqtt_client_disconnect ()** _ i _*_nxd_mqtt_client_delete ()._*_ Wywołanie _*_nxd_mqtt_client_disconnect ()_*_ po prostu ROZŁĄCZA połączenie TCP z brokerem. Zwalnia komunikaty już odebrane i przechowywane w kolejce odbierania. Nie powoduje to jednak zwolnienia komunikatów poziomu 1 usługi QoS w kolejce transmisji. Komunikaty poziomu 1 usługi QoS są przesyłane ponownie po nawiązaniu połączenia, przy założeniu, że flaga _*_clean_session_*_ ma wartość _ *_NX_FALSE._**
+Aby odłączyć i zakończyć działanie usługi klienta MQTT, aplikacja musi używać usług ***nxd_mqtt_client_disconnect()** _ _*_i nxd_mqtt_client_delete()._*_ Wywołanie _*_nxd_mqtt_client_disconnect()_*_ po prostu rozłącza połączenie TCP z brokerem. Zwalnia komunikaty, które zostały już odebrane i zapisane w kolejce odbierania. Nie zwalnia jednak komunikatów QoS poziomu 1 w kolejce przesyłania. Komunikaty QoS poziomu 1 są ponownie emitowane podczas połączenia przy założeniu, _*_clean_session_*_ flaga usługi jest ustawiona na _ *_NX_FALSE._**
 
-Broker może także rozłączyć się z klientem. Gdy połączenie TCP między klientem i brokerem zostanie zakończone, aplikacja może zostać powiadomiona przez funkcję powiadamiania o rozłączeniu. Aby można było korzystać z mechanizmu powiadamiania, aplikacja instaluje funkcję odłączania powiadomienia przez wywołanie ***nxd_mqtt_client_disconnect_notify_set *.** Po rozłączeniu protokołu TCP i utworzeniu sesji MQTT zostaje wywołana funkcja powiadomień.
+Broker może również rozłączyć się z klientem. Po zakończeniu połączenia TCP między klientem a brokerem aplikacja może zostać powiadomiona przez funkcję powiadamiania o rozłączeniu. Aby użyć mechanizmu powiadomień, aplikacja instaluje funkcję powiadamiania o rozłączeniu, wywołując funkcję ***nxd_mqtt_client_disconnect_notify_set*.** Po zaobserwowaniu rozłączenia protokołu TCP i utworzeniu sesji MQTT wywoływana jest funkcja powiadomień.
 
-Wywołanie ***nxd_mqtt_client_delete ()*** zwalnia wszystkie bloki komunikatów w kolejce transmisji i w kolejce odbierania. Niepotwierdzone komunikaty poziomu 1 usługi QoS również są usuwane.
+Wywołanie ***nxd_mqtt_client_delete()*** zwalnia wszystkie bloki komunikatów w kolejce przesyłania i kolejce odbierania. Usuwane są również nieświadome komunikaty QoS poziomu 1.
 
 ## <a name="secure-mqtt-connection"></a>Bezpieczne połączenie MQTT
 
-Klient MQTT nawiązuje bezpieczne połączenie z brokerem przy użyciu modułu NetX Secure TLS. Domyślny numer portu dla MQTT z zabezpieczeniami TLS to 8883, zdefiniowany w ***NXD_MQTT_TLS_PORT***.
+Klient MQTT umożliwia bezpieczne połączenie z brokerem przy użyciu modułu NetX Secure TLS. Domyślny numer portu dla MQTT z zabezpieczeniami TLS to 8883, zdefiniowany w ***NXD_MQTT_TLS_PORT***.
 
-Aby można było utworzyć bezpieczne połączenie usługi MQTT z brokerem, należy wynegocjować sesję protokołu TLS po nawiązaniu połączenia TCP przed wysłaniem komunikatów MQTT CONNECT do brokera. Konfiguracja sesji TLS odbywa się przez wywołanie ***nxd_mqtt_client_secure_connect ()*** i przekazanie funkcji wywołania zwrotnego konfiguracji protokołu TLS zdefiniowanej przez użytkownika. W fazie połączenia usługi MQTT po nawiązaniu połączenia TCP klient wywołuje funkcję wywołania zwrotnego konfiguracji protokołu TLS w celu uruchomienia odpowiedniego procesu uzgadniania protokołu TLS. Po ustanowieniu sesji TLS klient kontynuuje komunikat MQTT CONNECT za pośrednictwem bezpiecznego kanału.
+Aby utworzyć bezpieczne połączenie MQTT z brokerem, należy negocjować sesję protokołu TLS po nawiązaniu połączenia TCP, zanim komunikaty MQTT CONNECT będą wysyłane do brokera. Konfigurowanie sesji TLS jest realizowane przez wywołanie ***nxd_mqtt_client_secure_connect()*** i przekazanie zdefiniowanej przez użytkownika funkcji wywołania zwrotnego konfiguracji TLS. Podczas fazy połączenia protokołu MQTT po nawiązaniu połączenia TCP klient wywołuje funkcję wywołania zwrotnego konfiguracji protokołu TLS w celu uruchomienia odpowiedniego procesu uściśniania protokołu TLS. Po nawiązyniu sesji TLS klient kontynuuje komunikat MQTT CONNECT za pośrednictwem bezpiecznego kanału.
 
-Funkcja wywołania zwrotnego zdefiniowanego przez użytkownika przyjmuje pięć wartości wejściowych i jest zadeklarowana jako:
+Funkcja wywołania zwrotnego zdefiniowana przez użytkownika przyjmuje pięć wartości wejściowych i jest zadeklarowana jako:
 
 ```c
 UINT tls_Setup_callback(NXD_MQTT_CLIENT *client_ptr,
@@ -79,14 +79,14 @@ UINT tls_Setup_callback(NXD_MQTT_CLIENT *client_ptr,
 
 Poniżej znajduje się opis parametrów wejściowych:
 
-- **client_ptr**: wskaźnik do bloku kontroli klienta MQTT.
-- **session_ptr**: wskaźnik do bloku sterowania sesją TLS.
-- **certificate_ptr**: wskaźnik do bloku kontroli certyfikatu. Funkcja instalacji konfiguruje ten certyfikat przed wysłaniem go do brokera.
-- **trusted_certificate_ptr**: wskaźnik do zaufanego certyfikatu. Funkcja konfiguracji protokołu TLS konfiguruje zaufany certyfikat w celu uwierzytelnienia serwera.
+- **client_ptr:** wskaźnik do bloku sterowania klienta MQTT.
+- **session_ptr:** wskaźnik do bloku kontroli sesji TLS.
+- **certificate_ptr:** wskaźnik do bloku kontroli certyfikatu. Funkcja konfiguracji konfiguruje ten certyfikat przed wysłaniem go do brokera.
+- **trusted_certificate_ptr:** wskaźnik do zaufanego certyfikatu. Funkcja konfiguracji TLS konfiguruje zaufany certyfikat do uwierzytelniania serwera.
 
-W funkcji konfiguracji protokołu TLS aplikacja jest odpowiedzialna za tworzenie sesji TLS i Konfigurowanie sesji przy użyciu odpowiedniego certyfikatu. Poniższy pseudo kod zawiera opis typowej procedury uruchamiania sesji TLS. Czytelnik odwołuje się do podręcznika użytkownika usługi NetX Secure TLS, aby uzyskać szczegółowe informacje na temat korzystania z interfejsów API protokołu TLS.
+W funkcji konfiguracji TLS aplikacja jest odpowiedzialna za tworzenie sesji TLS i konfigurowanie sesji przy użyciu odpowiedniego certyfikatu. Poniższy kod przykładowy przedstawia typową procedurę uruchamiania sesji TLS. Czytelnik jest określany w Podręczniku użytkownika bezpiecznego TLS NetX, aby uzyskać szczegółowe informacje na temat korzystania z interfejsów API TLS.
 
-Poniżej znajduje się przykładowe wywołanie zwrotne konfiguracji protokołu TLS:
+Poniżej znajduje się przykład wywołania zwrotnego konfiguracji TLS:
 
 ```c
 UINT tls_setup_callback(NXD_MQTT_CLIENT *client_pt
@@ -115,7 +115,7 @@ UINT tls_setup_callback(NXD_MQTT_CLIENT *client_pt
 }
 ```
 
-## <a name="known-limitations-of-the-netx-duo-mqtt-client"></a>Znane ograniczenia dotyczące klienta NetX Duo MQTT
+## <a name="known-limitations-of-the-netx-duo-mqtt-client"></a>Znane ograniczenia klienta NetX Duo MQTT
 
-- NetX Duo MQTT nie obsługuje wysyłania ani otrzymywania komunikatów poziomu 2 usług QoS.
-- NetX Duo MQTT nie obsługuje pakietów łańcucha.
+- NetX Duo MQTT nie obsługuje wysyłania ani odbierania komunikatów QoS poziomu 2.
+- NetX Duo MQTT nie obsługuje pakietów łańcuchowych.

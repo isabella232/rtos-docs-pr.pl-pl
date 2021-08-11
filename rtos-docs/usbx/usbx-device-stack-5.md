@@ -6,18 +6,18 @@ ms.author: philmea
 ms.date: 5/19/2020
 ms.service: rtos
 ms.topic: article
-ms.openlocfilehash: ea348d94e83863c0e2652df29f92d952f2242661
-ms.sourcegitcommit: 62cfdf02628530807f4d9c390d6ab623e2973fee
+ms.openlocfilehash: b8fcfa251df9140d23b50a99f13f2755d2bdfae0ca6b9529633f25e263c7edcc
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 08/05/2021
-ms.locfileid: "115178021"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116798744"
 ---
 # <a name="chapter-5---usbx-device-class-considerations"></a>Rozdział 5 — Zagadnienia dotyczące klas urządzeń USBX
 
 ## <a name="device-class-registration"></a>Rejestracja klasy urządzeń
 
-Każda klasa urządzenia jest zgodna z tą samą zasadą rejestracji. Struktura zawierająca określone parametry klasy jest przekazywana do klasy inicjuje funkcję.
+Każda klasa urządzenia jest zgodna z tą samą zasadą rejestracji. Struktura zawierająca określone parametry klasy jest przekazywana do funkcji inicjowania klasy.
 
 ```c
 /* Set the parameters for callback when insertion/extraction of a HID device. */
@@ -40,9 +40,9 @@ status = ux_device_stack_class_register(_ux_system_slave_class_hid_name,
     ux_device_class_hid_entry,1,0, (VOID *)&hid_parameter);
 ```
 
-Każda klasa może zarejestrować, opcjonalnie, funkcję wywołania zwrotnego po aktywowaniu wystąpienia klasy. Wywołanie zwrotne jest następnie wywoływane przez stos urządzenia w celu poinformowania aplikacji o utworzeniu wystąpienia.
+Każda klasa może zarejestrować, opcjonalnie, funkcję wywołania zwrotnego, gdy zostanie aktywowane wystąpienie klasy. Wywołanie zwrotne jest następnie wywoływane przez stos urządzenia w celu poinformowania aplikacji o utworzeniu wystąpienia.
 
-Aplikacja będzie miała w swojej treści 2 funkcje aktywacji i dezaktywacji, jak pokazano w poniższym przykładzie.
+Aplikacja miałaby w swojej treści 2 funkcje aktywacji i dezaktywacji, jak pokazano w poniższym przykładzie.
 
 ```c
 VOID tx_demo_hid_instance_activate(VOID *hid_instance)
@@ -58,19 +58,19 @@ VOID tx_demo_hid_instance_deactivate(VOID *hid_instance)
 }
 ```
 
-Nie zaleca się nic robić w ramach tych funkcji, ale aby zapamiętać wystąpienie klasy i zsynchronizować z resztą aplikacji.
+Nie zaleca się nic robić w ramach tych funkcji, ale aby zapamiętać wystąpienie klasy i zsynchronizować z pozostałą część aplikacji.
 
 ## <a name="general-considerations-for-bulk-transfer"></a>Ogólne zagadnienia dotyczące transferu zbiorczego
 
 Zgodnie ze specyfikacją USB 2.0 punkt końcowy musi zawsze przesyłać ładunki danych z polem danych mniejszym lub równym wartości zgłoszonej przez punkt końcowy wMaxPacketSize. Rozmiar pakietu danych jest ograniczony do bMaxPacketSize. Transfer można zakończyć w następujących przypadkach
 1. Punkt końcowy przetransferował dokładnie oczekiwaną ilość danych
-2. Gdy punkt końcowy urządzenia lub hosta pozysuje pakiet o rozmiarze mniejszym niż maksymalny rozmiar pakietu (wMaxPacketSize). Ten krótki pakiet wskazuje, że nie pozostał już pakiet danych i transfer jest ukończony lub gdy wszystkie pakiety danych do transmisji są równe wMaxPacketSize, nie można określić zakończenia transferu. Aby można było zakończyć transfer, należy wysłać pakiety o zerowej długości(ZLP), a pakiety o zerowej długości oznaczają koniec zbiorczego transferu danych. Powyższe zagadnienia dotyczą nieprzetworzonych interfejsów API zbiorczego transferu danych, np. ux_device_class_cdc_acm_read().
+2. Gdy urządzenie lub punkt końcowy hosta odechwyci pakiet o rozmiarze mniejszym niż maksymalny rozmiar pakietu (wMaxPacketSize). Ten krótki pakiet wskazuje, że nie ma już pakietów danych i transfer jest ukończony lub gdy wszystkie pakiety danych do przekazania są równe wMaxPacketSize, nie można określić końca transferu. Aby można było zakończyć transfer, należy wysłać pakiety o zerowej długości(ZLP), a pakiety o zerowej długości oznaczają koniec zbiorczego transferu danych. Powyższe zagadnienia dotyczą nieprzetworzonych interfejsów API zbiorczego transferu danych, np. ux_device_class_cdc_acm_read().
 
 ## <a name="usb-device-storage-class"></a>Klasa Storage USB
 
 Klasa magazynu urządzeń USB umożliwia, aby urządzenie magazynujące osadzone w systemie było widoczne dla hosta USB.
 
-Klasa magazynu urządzenia USB sama w sobie nie zapewnia rozwiązania magazynu. Jedynie akceptuje i interpretuje żądania SCSI pochodzące z hosta. Gdy jedno z tych żądań jest poleceniem odczytu lub zapisu, wywoła ono wstępnie zdefiniowane wywołanie do obsługi rzeczywistego urządzenia magazynującego, takiego jak sterownik urządzenia usługi ATA lub sterownik urządzenia Flash.
+Klasa magazynu urządzeń USB sama w sobie nie zapewnia rozwiązania magazynu. Jedynie akceptuje i interpretuje żądania SCSI pochodzące z hosta. Gdy jedno z tych żądań jest poleceniem odczytu lub zapisu, wywoła ono wstępnie zdefiniowane wywołanie do obsługi rzeczywistego urządzenia magazynującego, takiego jak sterownik urządzenia usługi ATA lub sterownik urządzenia Flash.
 
 Podczas inicjowania klasy magazynu urządzenia do klasy , która zawiera wszystkie niezbędne informacje, jest nadana struktura wskaźnika. Poniżej przedstawiono przykład.
 
@@ -119,13 +119,13 @@ status = ux_device_stack_class_register(_ux_system_slave_class_storage_name,
     ux_device_class_storage_entry, ux_device_class_storage_thread, 0, (VOID *)&storage_parameter);
 ```
 
-W tym przykładzie ciągi magazynu sterowników są dostosowywane przez przypisanie wskaźników ciągu do odpowiedniego parametru. Jeśli jakikolwiek wskaźnik ciągu jest pozostawiony do UX_NULL, używany jest domyślny Azure RTOS ciągu.
+W tym przykładzie ciągi magazynu sterowników są dostosowywane przez przypisanie wskaźników ciągu do odpowiedniego parametru. Jeśli jakikolwiek wskaźnik ciągu jest pozostawiony do UX_NULL, używany jest Azure RTOS ciągu ciągu.
 
-W tym przykładzie jest podany ostatni adres bloku dysku lub lbA, a także rozmiar sektora logicznego. LbA to liczba sektorów dostępnych na nośniku –1. Długość bloku jest ustawiona na 512 na zwykłym nośniku magazynu. W przypadku dysków optycznech można ustawić wartość 2048.
+W tym przykładzie jest podany ostatni adres bloku dysku lub lbA, a także rozmiar sektora logicznego. LbA to liczba sektorów dostępnych na nośniku –1. Długość bloku jest ustawiona na 512 na zwykłym nośniku magazynu. Dla dysków optycznech można ustawić wartość 2048.
 
 Aplikacja musi przekazać trzy wskaźniki funkcji wywołania zwrotnego, aby umożliwić klasie magazynu odczytywanie, zapis i uzyskiwanie stanu nośnika.
 
-Prototypy dla funkcji odczytu i zapisu przedstawiono w poniższym przykładzie.
+Prototypy funkcji odczytu i zapisu przedstawiono w poniższym przykładzie.
 
 ```c
 UINT media_read( 
@@ -148,7 +148,7 @@ UINT media_write(
 Gdzie:
 
 - *storage* to wystąpienie klasy magazynu.
-- *LUN* jest jednostką LUN, do których jest kierowane polecenie.
+- *LUN* to jednostka LUN, do których jest kierowane polecenie.
 - *data_pointer* to adres buforu, który ma być używany do odczytu lub zapisu.
 - *number_blocks* to liczba sektorów do odczytu/zapisu.
 - *lba* to adres sektora do odczytania.
@@ -166,37 +166,37 @@ ULONG media_status(
     ULONG *media_status);
 ```
 
-Parametr wywołujący media_id nie jest obecnie używany i powinien zawsze mieć wartość 0. W przyszłości może służyć do odróżnienia wielu urządzeń magazynujących lub urządzeń magazynujących z wieloma LUN SCSI. Ta wersja klasy magazynu nie obsługuje wielu wystąpień klasy magazynu lub urządzeń magazynujących z wieloma numerami LUN SCSI.
+Parametr wywołujący media_id nie jest obecnie używany i zawsze powinien mieć wartość 0. W przyszłości może służyć do odróżnienia wielu urządzeń magazynujących lub urządzeń magazynujących z wieloma LUN SCSI. Ta wersja klasy magazynu nie obsługuje wielu wystąpień klasy magazynu ani urządzeń magazynujących z wieloma numerami LUN SCSI.
 
 Zwracana wartość to kod błędu SCSI, który może mieć następujący format.
 
 - **Bity 0–7** Sense_key
-- **Bity 8–15** Dodatkowy kod Sense
-- **Bity 16–23** Dodatkowy kwalifikator kodu Sense
+- **Bity 8–15** Dodatkowy kod sense
+- **Bity 16–23** Dodatkowa kwalifikator kodu sense
 
 W poniższej tabeli przedstawiono możliwe kombinacje Sense/ASC/ASCQ.
 
 | Sense Key | ASC | AsCQ | Opis                                       |
 | --------- | --- | ---- | ------------------------------------------------- |
-| 00        | 00  | 00   | BRAK CZUĆ                                          |
-| 01        | 17  | 01   | ODZYSKANE DANE PRZY UŻYCIU PONOWNYCH PRÓB                       |
+| 00        | 00  | 00   | BRAK SENSU                                          |
+| 01        | 17  | 01   | ODZYSKANO DANE PRZY UŻYCIU PONOWNYCH PRÓB                       |
 | 01        | 18  | 00   | ODZYSKANE DANE ZA POMOCĄ ECC                           |
 | 02        | 04  | 01   | DYSK LOGICZNY NIE JEST GOTOWY — GOTOWOŚĆ          |
-| 02        | 04  | 02   | DYSK LOGICZNY NIE JEST GOTOWY — WYMAGANE INICJOWANIE |
+| 02        | 04  | 02   | DYSK LOGICZNY NIE JEST GOTOWY — WYMAGANA INICJALIZACJA |
 | 02        | 04  | 04   | JEDNOSTKA LOGICZNA NIE JEST GOTOWA — FORMATOWANIE W TOKU       |
 | 02        | 04  | Ff   | DYSK LOGICZNY NIE JEST GOTOWY — URZĄDZENIE JEST ZAJĘTE          |
 | 02        | 06  | 00   | NIE ZNALEZIONO POZYCJI ODWOŁANIA                       |
 | 02        | 08  | 00   | BŁĄD KOMUNIKACJI JEDNOSTKI LOGICZNEJ                |
 | 02        | 08  | 01   | PRZE WYCHODZĄCY CZAS KOMUNIKACJI JEDNOSTKI LOGICZNEJ               |
 | 02        | 08  | 80   | PRZEKROCZENIE KOMUNIKACJI JEDNOSTEK LOGICZNYCH                |
-| 02        | 3A  | 00   | MEDIUM NOT PRESENT                                |
+| 02        | 3A  | 00   | ŚREDNI NIE JEST OBECNY                                |
 | 02        | 54  | 00   | AWARIA INTERFEJSU SYSTEMOWEGO Z PORTU USB NA HOSTA              |
 | 02        | 80  | 00   | NIEWYSTARCZAJĄCE ZASOBY                            |
 | 02        | Ff  | Ff   | NIEZNANY BŁĄD                                     |
 | 03        | 02  | 00   | NO SEEK COMPLETE                                  |
 | 03        | 03  | 00   | BŁĄD ZAPISU                                       |
 | 03        | 10  | 00   | BŁĄD CRC IDENTYFIKATORA                                      |
-| 03        | 11  | 00   | BŁĄD ODCZYTU NIEODZYSŁANY                            |
+| 03        | 11  | 00   | BŁĄD ODCZYTU NIEODZYSŁANYCH                            |
 | 03        | 12  | 00   | NIE ZNALEZIONO ZNACZNIKA ADRESU DLA POLA IDENTYFIKATORA               |
 | 03        | 13  | 00   | NIE ZNALEZIONO ZNACZNIKA ADRESU DLA POLA DANYCH             |
 | 03        | 14  | 00   | NIE ZNALEZIONO ZAREJESTROWANEJ JEDNOSTKI                         |
@@ -213,14 +213,14 @@ W poniższej tabeli przedstawiono możliwe kombinacje Sense/ASC/ASCQ.
 | 05        | 26  | 02   | NIEPRAWIDŁOWA WARTOŚĆ PARAMETRU                           |
 | 05        | 39  | 00   | ZAPISYWANIE PARAMETRÓW NIE JEST OBSŁUGA                     |
 | 06        | 28  | 00   | PRZEJŚCIE NIE GOTOWE — ZMIENIONO NOŚNIK     |
-| 06        | 29  | 00   | RESETOWANIE ZASILANIA LUB RESETOWANIE URZĄDZENIA MAGISTRALI       |
-| 06        | 2f  | 00   | POLECENIA WYCZYSZSZONE PRZEZ INNEGO INICJATORA             |
-| 07        | 27  | 00   | PISANIE CHRONIONYCH MULTIMEDIÓW                             |
+| 06        | 29  | 00   | RESETOWANIE PRZY WŁ. LUB RESETOWANIE URZĄDZENIA MAGISTRALI WYSTĄPIŁO       |
+| 06        | 2f  | 00   | POLECENIA WYCZYSZONE PRZEZ INNEGO INICJATORA             |
+| 07        | 27  | 00   | ZAPIS NOŚNIKA CHRONIONEGO                             |
 | 0B        | 4E  | 00   | PODJĘTO NAKŁADAJĄCE SIĘ POLECENIE                      |
 
-Istnieją dwa dodatkowe, opcjonalne wywołania zwrotne, które może zaimplementować aplikacja. Jeden z nich odpowiada na polecenie **GET_STATUS_NOTIFICATION,** a drugi odpowiada na SYNCHRONIZE_CACHE **polecenia.**
+Istnieją dwa dodatkowe, opcjonalne wywołania zwrotne, które może zaimplementować aplikacja. Jeden z nich odpowiada na polecenie **GET_STATUS_NOTIFICATION,** a drugi odpowiada na polecenie **SYNCHRONIZE_CACHE** polecenia.
 
-Jeśli aplikacja chce obsługiwać polecenie GET_STATUS_NOTIFICATION z hosta, powinna zaimplementować wywołanie zwrotne za pomocą następującego prototypu.
+Jeśli aplikacja chce obsługiwać polecenie GET_STATUS_NOTIFICATION z hosta, powinna zaimplementować wywołanie zwrotne z następującym prototypem.
 
 ```c
 UINT ux_slave_class_storage_media_notification( 
@@ -239,13 +239,13 @@ Gdzie:
 - *media_notification* powinna zostać ustawiona przez aplikację na bufor zawierający odpowiedź na powiadomienie.
 - *media_notification_length* powinna zostać ustawiona przez aplikację tak, aby zawierała długość buforu odpowiedzi.
 
-Wartość zwracana wskazuje, czy polecenie zakończyło się pomyślnie — powinno być UX_SUCCESS **lub** **UX_ERROR**.
+Wartość zwracana wskazuje, czy polecenie zakończyło się  pomyślnie — powinno być UX_SUCCESS lub **UX_ERROR**.
 
 Jeśli aplikacja nie implementuje tego wywołania zwrotnego, po otrzymaniu polecenia **GET_STATUS_NOTIFICATION** USBX powiadomi hosta, że polecenie nie jest zaimplementowane.
 
-Polecenie **SYNCHRONIZE_CACHE** powinno być obsługiwane, jeśli aplikacja korzysta z pamięci podręcznej do zapisu z hosta. Host może wysłać to polecenie, jeśli wie, że urządzenie magazynujące ma zostać odłączone, na przykład w programie Windows kliknięcie prawym przyciskiem myszy ikony dysku flash na pasku narzędzi i wybranie opcji "Wysuń nazwę urządzenia magazynującego" spowoduje Windows wysłanie polecenia SYNCHRONIZE_CACHE do \[ \] tego urządzenia. 
+Polecenie **SYNCHRONIZE_CACHE** powinno być obsługiwane, jeśli aplikacja korzysta z pamięci podręcznej do zapisu z hosta. Host może wysłać to polecenie, jeśli wie, że urządzenie magazynujące zostanie odłączone, na przykład w programie Windows kliknięcie prawym przyciskiem myszy ikony dysku flash na pasku narzędzi i wybranie opcji "Wysuń nazwę urządzenia \[ \] magazynującego", program **Windows** wyda polecenie SYNCHRONIZE_CACHE temu urządzeniu.
 
-Jeśli aplikacja chce obsługiwać polecenie GET_STATUS_NOTIFICATION **z** hosta, powinna zaimplementować wywołanie zwrotne za pomocą następującego prototypu.
+Jeśli aplikacja chce obsługiwać polecenie GET_STATUS_NOTIFICATION **z** hosta, powinna zaimplementować wywołanie zwrotne z następującym prototypem.
 
 ```c
 UINT ux_slave_class_storage_media_flush(
@@ -259,16 +259,16 @@ UINT ux_slave_class_storage_media_flush(
 Gdzie:
 
 - *storage* to wystąpienie klasy magazynu.
-- *LUN* parametr określa, do której jednostki LUN jest kierowane polecenie.
+- *Parametr lun* określa, do której jednostki LUN jest kierowane polecenie.
 - *number_blocks* określa liczbę bloków do zsynchronizowania.
 - *lba* to adres sektora pierwszego bloku do zsynchronizowania.
 - *media_status* powinny być wypełnione dokładnie tak samo jak wartość zwracana wywołania zwrotnego stanu nośnika.
 
-Wartość zwracana wskazuje, czy polecenie zakończyło się pomyślnie — powinno być UX_SUCCESS **lub** **UX_ERROR**.
+Wartość zwracana wskazuje, czy polecenie zakończyło się  pomyślnie — powinno być UX_SUCCESS lub **UX_ERROR**.
 
 ### <a name="multiple-scsi-lun"></a>Wiele jednostek LUN SCSI
 
-Klasa magazynu urządzeń USBX obsługuje wiele urządzeń LUN. W związku z tym istnieje możliwość utworzenia urządzenia magazynującego, które działa jako dysk CD-ROM i dysk flash w tym samym czasie. W takim przypadku inicjowanie byłoby nieco inne. Oto przykład dysku flash i dysku CD-ROM:
+Klasa magazynu urządzeń USBX obsługuje wiele urządzeń LUN. W związku z tym istnieje możliwość utworzenia urządzenia magazynującego, które działa jako dysk CD-ROM i dysk flash w tym samym czasie. W takim przypadku inicjowanie będzie nieco inne. Oto przykład dysku flash i dysku CD-ROM:
 
 ```c
 /* Store the number of LUN in this device storage instance. */
@@ -313,7 +313,7 @@ storage_parameter.ux_slave_class_storage_parameter_lun[1].ux_slave_class_storage
 
 Klasa CDC-ACM urządzenia USB umożliwia systemowi hosta USB komunikowanie się z urządzeniem jako urządzenie szeregowe. Ta klasa jest oparta na standardzie USB i jest podzbiorem standardu CDC.
 
-Platformę urządzeń zgodną ze standardem CDC-ACM należy zadeklarować za pomocą stosu urządzeń. Przykład można znaleźć tutaj poniżej.
+Platformę urządzeń zgodną ze standardem CDC-ACM należy zadeklarować w stosie urządzenia. Przykład można znaleźć tutaj poniżej.
 
 ```c
 unsigned char device_framework_full_speed[] = {
@@ -371,9 +371,9 @@ unsigned char device_framework_full_speed[] = {
 };
 ```
 
-Klasa CDC-ACM używa złożonej struktury urządzeń do grupowania interfejsów (kontrolek i danych). W związku z tym należy zachować ostrożność podczas definiowania deskryptora urządzenia. UsbX korzysta z deskryptora IAD, aby wiedzieć wewnętrznie, jak powiązać interfejsy. Deskryptor IAD powinien być zadeklarowany przed interfejsami i zawierać pierwszy interfejs klasy CDC-ACM oraz ile interfejsów jest dołączonych.
+Klasa CDC-ACM używa złożonej struktury urządzeń do grupowania interfejsów (kontrolek i danych). W związku z tym należy zachować ostrożność podczas definiowania deskryptora urządzenia. UsbX opiera się na deskryptorze IAD, aby wiedzieć wewnętrznie, jak powiązać interfejsy. Deskryptor IAD powinien być zadeklarowany przed interfejsami i zawierać pierwszy interfejs klasy CDC-ACM oraz ile interfejsów jest dołączonych.
 
-Klasa CDC-ACM używa również deskryptora funkcjonalnego unii, który wykonuje tę samą funkcję co nowsza deskryptor IAD. Chociaż deskryptor funkcjonalny unii musi być zadeklarowany z przyczyn historycznych i zgodności ze stroną hosta, nie jest używany przez USBX.
+Klasa CDC-ACM używa również deskryptora funkcjonalnego unii, który wykonuje tę samą funkcję co nowsze deskryptor IAD. Chociaż deskryptor funkcjonalny unii musi być zadeklarowany ze względów historycznych i zgodności ze stroną hosta, nie jest używany przez USBX.
 
 Inicjowanie klasy CDC-ACM oczekuje następujących parametrów.
 
@@ -391,11 +391,11 @@ status = ux_device_stack_class_register(_ux_system_slave_class_cdc_acm_name,ux_d
     1,0, &parameter);
 ```
 
-2 zdefiniowane parametry są wskaźnikami wywołania zwrotnego do aplikacji użytkownika, które będą wywoływane, gdy stos aktywuje lub dezaktywowa tę klasę.
+2 zdefiniowane parametry to wskaźniki wywołania zwrotnego do aplikacji użytkownika, które będą wywoływane, gdy stos aktywuje lub dezaktywowa tę klasę.
 
-Trzeci zdefiniowany parametr to wskaźnik wywołania zwrotnego do aplikacji użytkownika, który będzie wywoływany w przypadku zmiany parametru kodowania linii lub stanów linii. Jeśli na przykład istnieje żądanie od hosta dotyczące zmiany stanu DTR na **TRUE,** wywołanie zwrotne jest wywoływane, aplikacja użytkownika może sprawdzać stany linii za pośrednictwem funkcji IOCTL, aby host kow był gotowy do komunikacji.
+Trzeci zdefiniowany parametr to wskaźnik wywołania zwrotnego do aplikacji użytkownika, który zostanie wywołany w przypadku zmiany parametru kodowania liniowego lub stanów wiersza. Jeśli na przykład istnieje żądanie od hosta zmiany stanu DTR na **TRUE,** wywoływane jest wywołanie zwrotne, aplikacja użytkownika może sprawdzić stany wiersza za pośrednictwem funkcji IOCTL, aby host kow był gotowy do komunikacji.
 
-CdC-ACM jest oparty na standardzie USB-IF i jest automatycznie rozpoznawany przez systemy operacyjne MACO i Linux. Na Windows tej klasy wymaga pliku inf dla Windows wersji wcześniejszej niż 10. Windows 10 nie wymaga żadnych plików inf. Dostarczamy szablon dla klasy CDC-ACM i można go znaleźć w ***usbx_windows_host_files*** katalogu. W przypadku najnowszej wersji Windows należy użyć pliku CDC_ACM_Template_Win7_64bit.inf (z wyjątkiem Systemu Win10). Ten plik należy zmodyfikować, aby odzwierciedlał identyfikator PID/VID używany przez urządzenie. Identyfikator PID/VID będzie specyficzny dla klienta końcowego, gdy firma i produkt zostaną zarejestrowane przy użyciu portu USB-IF. W pliku inf pola do zmodyfikowania znajdują się tutaj.
+CdC-ACM jest oparty na standardzie USB-IF i jest automatycznie rozpoznawany przez systemy operacyjne MACO i Linux. Na Windows tej klasy wymaga pliku inf dla Windows wersji wcześniejszej niż 10. Windows 10 nie wymaga żadnych plików inf. Dostarczamy szablon dla klasy CDC-ACM i można go znaleźć w ***usbx_windows_host_files*** katalogu. W przypadku najnowszej wersji Windows należy użyć pliku CDC_ACM_Template_Win7_64bit.inf (z wyjątkiem Systemu Win10). Ten plik musi zostać zmodyfikowany w celu odzwierciedlenia identyfikatorów PID/VID używanych przez urządzenie. Identyfikator PID/VID będzie specyficzny dla klienta końcowego, gdy firma i produkt zostaną zarejestrowane za pomocą portu USB-IF. W pliku inf pola do zmodyfikowania znajdują się tutaj.
 
 ```INF
 [DeviceList]
@@ -405,15 +405,15 @@ CdC-ACM jest oparty na standardzie USB-IF i jest automatycznie rozpoznawany prze
 %DESCRIPTION%=DriverInstall, USB\VID_8484&PID_0000
 ```
 
-W ramach struktury urządzeń urządzenia CDC-ACM identyfikator PID/VID jest przechowywany w deskryptorze urządzenia (zobacz deskryptor urządzenia zadeklarowany powyżej).
+W ramach struktury urządzenia CDC-ACM identyfikator PID/VID jest przechowywany w deskryptorze urządzenia (zobacz deskryptor urządzenia zadeklarowany powyżej).
 
-Gdy system hosta USB odnajduje urządzenie USB CDC-ACM, zainstaluje klasę szeregową, a urządzenie może być używane z dowolnym programem terminalu szeregowego. Aby uzyskać informacje referencyjne, zobacz system operacyjny hosta.
+Gdy system hosta USB odnajduje urządzenie USB CDC-ACM, zainstaluje klasę szeregową i urządzenie może być używane z dowolnym programem terminalu szeregowego. Aby uzyskać informacje, zobacz system operacyjny hosta.
 
 Poniżej zdefiniowano funkcje interfejsu API klasy CDC-ACM.
 
 ### <a name="ux_device_class_cdc_acm_ioctl"></a>ux_device_class_cdc_acm_ioctl
 
-Wykonywanie operacji IOCTL w interfejsie CDC-ACM
+Wykonywanie operacji we/wy na interfejsie CDC-ACM
 
 ### <a name="prototype"></a>Prototype
 
@@ -811,7 +811,7 @@ UINT ux_device_class_cdc_acm_ioctl(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana, gdy aplikacja chce przestać używać funkcji transmisji z wywołaniem zwrotnym.
+Ta funkcja jest wywoływana, gdy aplikacja chce przestać używać funkcji transmisji za pomocą wywołania zwrotnego.
 
 ### <a name="parameters"></a>Parametry
 
@@ -867,7 +867,7 @@ Ta funkcja jest wywoływana, gdy aplikacja musi odczytywać dane z potoku danych
 
 - **UX_SUCCESS** (0x00) Ta operacja powiodła się.
 - **UX_CONFIGURATION_HANDLE_UNKNOWN** (0x51) Urządzenie nie jest już w stanie skonfigurowanym.
-- **UX_TRANSFER_NO_ANSWER** (0x22) Brak odpowiedzi z urządzenia. Urządzenie zostało prawdopodobnie odłączone, gdy transfer był w stanie oczekiwania.
+- **UX_TRANSFER_NO_ANSWER** (0x22) Brak odpowiedzi z urządzenia. Urządzenie prawdopodobnie zostało odłączone, gdy transfer był w stanie oczekiwania.
 
 ### <a name="example"></a>Przykład
 
@@ -895,19 +895,19 @@ UINT ux_device_class_cdc_acm_write(
 
 ### <a name="description"></a>Opis
 
-Ta funkcja jest wywoływana, gdy aplikacja musi zapisywać dane w potoku danych IN (IN z hosta, OUT z urządzenia). Jest ona blokowana.
+Ta funkcja jest wywoływana, gdy aplikacja musi zapisywać dane w potoku danych IN (IN z hosta, OUT z urządzenia). Blokuje.
 
 ### <a name="parameters"></a>Parametry
 
 - **cdc_acm:** wskaźnik do wystąpienia klasy cdc.
-- **bufor:** adres buforu, w którym są przechowywane dane.
+- **buffer**: adres buforu, na którym są przechowywane dane.
 - **requested_length:** długość buforu do zapisu.
 - **actual_length:** długość zwracana do buforu po wykonaniu zapisu.
 
 ### <a name="return-value"></a>Wartość zwracana
 - **UX_SUCCESS** (0x00) Ta operacja powiodła się.
 - **UX_CONFIGURATION_HANDLE_UNKNOWN** (0x51) Urządzenie nie jest już w stanie skonfigurowanym.
-- **UX_TRANSFER_NO_ANSWER** (0x22) Brak odpowiedzi z urządzenia. Urządzenie zostało prawdopodobnie odłączone, gdy transfer był w stanie oczekiwania.
+- **UX_TRANSFER_NO_ANSWER** (0x22) Brak odpowiedzi z urządzenia. Urządzenie prawdopodobnie zostało odłączone, gdy transfer był w stanie oczekiwania.
 
 ### <a name="example"></a>Przykład
 
@@ -940,7 +940,7 @@ Ta funkcja jest wywoływana, gdy aplikacja musi zapisywać dane w potoku danych 
 ### <a name="parameters"></a>Parametry
 
 - **cdc_acm:** wskaźnik do wystąpienia klasy cdc.
-- **bufor:** adres buforu, w którym są przechowywane dane.
+- **buffer**: adres buforu, na którym są przechowywane dane.
 - **requested_length:** długość buforu do zapisu.
 - **actual_length:** długość zwracana do buforu po wykonaniu zapisu
 
@@ -948,7 +948,7 @@ Ta funkcja jest wywoływana, gdy aplikacja musi zapisywać dane w potoku danych 
 
 - **UX_SUCCESS** (0x00) Ta operacja powiodła się.
 - **UX_CONFIGURATION_HANDLE_UNKNOWN** (0x51) Urządzenie nie jest już w stanie skonfigurowanym.
-- **UX_TRANSFER_NO_ANSWER** (0x22) Brak odpowiedzi z urządzenia. Urządzenie zostało prawdopodobnie odłączone, gdy transfer był w stanie oczekiwania.
+- **UX_TRANSFER_NO_ANSWER** (0x22) Brak odpowiedzi z urządzenia. Urządzenie prawdopodobnie zostało odłączone, gdy transfer był w stanie oczekiwania.
 
 ### <a name="example"></a>Przykład
 
@@ -964,7 +964,7 @@ if(status != UX_SUCCESS)
 
 Klasa CDC-ECM urządzenia USB umożliwia systemowi hosta USB komunikowanie się z urządzeniem jako urządzenie ethernet. Ta klasa jest oparta na standardzie USB i jest podzbiorem standardu CDC.
 
-Platformę urządzeń zgodną ze standardem CDC-ACM należy zadeklarować w stosie urządzenia. Przykład można znaleźć tutaj poniżej.
+Platformę urządzeń zgodną ze standardem CDC-ACM należy zadeklarować za pomocą stosu urządzeń. Przykład można znaleźć tutaj poniżej.
 
 ```c
 unsigned char device_framework_full_speed[] = {
@@ -1019,9 +1019,9 @@ unsigned char device_framework_full_speed[] = {
 };
 ```
 
-Klasa CDC-ECM używa bardzo podobnego podejścia do deskryptora urządzeń CDC-ACM, a także wymaga deskryptora IAD. Zobacz definicję klasy CDC-ACM.
+Klasa CDC-ECM używa bardzo podobnego podejścia deskryptora urządzeń do CDC-ACM, a także wymaga deskryptora IAD. Zobacz definicję klasy CDC-ACM.
 
-Oprócz zwykłej struktury urządzeń cdc-ECM wymaga specjalnych deskryptorów ciągów. Poniżej przedstawiono przykład.
+Oprócz zwykłej struktury urządzeń CDC-ECM wymaga specjalnych deskryptorów ciągów. Poniżej przedstawiono przykład.
 
 ```c
 unsigned char string_framework[] = {
@@ -1079,11 +1079,11 @@ status = ux_device_stack_class_register(_ux_system_slave_class_cdc_ecm_name,
 
 Inicjowanie tej klasy oczekuje tego samego wywołania zwrotnego funkcji w przypadku aktywacji i dezaktywacji, chociaż w tym ćwiczeniu są one ustawione na wartość NULL, dzięki czemu nie jest wykonywane żadne wywołanie zwrotne.
 
-Następne parametry są dla definicji identyfikatorów węzłów. 2 Węzły są niezbędne dla cdc-ECM, węzła lokalnego i węzła zdalnego. Węzeł lokalny określa adres MAC urządzenia, a węzeł zdalny określa adres MAC hosta. Węzeł zdalny musi być taki sam jak ten zadeklarowany w deskryptorze ciągu struktury urządzenia.
+Następne parametry są dla definicji identyfikatorów węzłów. 2 Węzły są niezbędne dla CDC-ECM, węzła lokalnego i węzła zdalnego. Węzeł lokalny określa adres MAC urządzenia, a węzeł zdalny określa adres MAC hosta. Węzeł zdalny musi być tym samym węzłem, który został zadeklarowany w deskryptorze ciągu struktury urządzenia.
 
-Klasa CDC-ECM ma wbudowane interfejsy API do transferowania danych na oba sposoby, ale są one ukryte dla aplikacji, ponieważ aplikacja użytkownika będzie komunikować się z urządzeniem USB Ethernet za pośrednictwem netX.
+Klasa CDC-ECM ma wbudowane interfejsy API do przesyłania danych w obie strony, ale są one ukryte dla aplikacji, ponieważ aplikacja użytkownika będzie komunikować się z urządzeniem USB Ethernet za pośrednictwem netx.
 
-Klasa USBX CDC-ECM jest ściśle powiązana z Azure RTOS sieci NetX. Aplikacja korzystająca z klasy NetX i USBX CDC-ECM aktywuje stos sieci NetX w zwykły sposób, ale dodatkowo musi aktywować stos sieciowy USB w następujący sposób.
+Klasa USBX CDC-ECM jest ściśle powiązana Azure RTOS stosem sieciowym NetX. Aplikacja korzystająca z klasy NetX i USBX CDC-ECM aktywuje stos sieci NetX w zwykły sposób, ale dodatkowo musi aktywować stos sieciowy USB w następujący sposób.
 
 ```c
 /* Initialize the NetX system. */
@@ -1093,17 +1093,17 @@ nx_system_initialize();
 ux_network_driver_init();
 ```
 
-Stos sieciOWY USB musi być aktywowany tylko raz i nie jest specyficzny dla cdcecm, ale jest wymagany przez dowolną klasę USB, która wymaga usług NetX.
+Stos sieciOWY USB musi być aktywowany tylko raz i nie jest specyficzny dla CDCECM, ale jest wymagany przez dowolną klasę USB, która wymaga usług NetX.
 
-Klasa CDC-ECM zostanie rozpoznana przez hosty MAC OS i Linux. Nie ma jednak sterownika dostarczonego przez firmę Microsoft Windows do natywnego rozpoznawania usługi CDC-ECM. Niektóre produkty komercyjne istnieją dla Windows platform i dostarczają własny plik inf. Ten plik musi zostać zmodyfikowany w taki sam sposób, jak szablon inf CDC-ACM, aby był zgodne z identyfikatorem PID/VID urządzenia sieciowego USB.
+Klasa CDC-ECM zostanie rozpoznana przez hosty MAC OS i Linux. Firma Microsoft nie dostarcza jednak sterowników do natywnego rozpoznawania Windows CDC-ECM. Niektóre produkty komercyjne istnieją dla Windows platform i dostarczają własny plik inf. Ten plik musi zostać zmodyfikowany w taki sam sposób jak szablon INF CDC-ACM, aby był zgodne z identyfikatorem PID/VID urządzenia sieciowego USB.
 
 ## <a name="usb-device-hid-class"></a>Klasa HID urządzenia USB
 
 Klasa HID urządzenia USB umożliwia systemowi hosta USB łączenie się z urządzeniem HID z określonymi możliwościami klienta HID.
 
-Klasa urządzenia USBX HID jest stosunkowo prosta w porównaniu do strony hosta. Jest ona ściśle powiązana z zachowaniem urządzenia i jego deskryptorem HID.
+Klasa urządzenia USBX HID jest stosunkowo prosta w porównaniu do strony hosta. Jest ona ściśle powiązana z zachowaniem urządzenia i jego deskryptora HID.
 
-Każdy klient HID wymaga najpierw zdefiniowania struktury urządzenia HID w poniższym przykładzie.
+Każdy klient HID wymaga najpierw zdefiniowania struktury urządzenia HID jako przykładu poniżej.
 
 ```c
 UCHAR device_framework_full_speed[] = {
@@ -1129,7 +1129,7 @@ UCHAR device_framework_full_speed[] = {
 
 Framework HID zawiera deskryptor interfejsu opisujący klasę HID i podklasę urządzenia HID. Interfejs HID może być klasą autonomiczną lub częścią urządzenia złożonego.
 
-Obecnie klasa HID USBX nie obsługuje wielu identyfikatorów raportów, ponieważ większość aplikacji wymaga tylko jednego identyfikatora (id zero). Jeśli wiele identyfikatorów raportów jest funkcją, która Cię interesuje, skontaktuj się z nami.
+Obecnie klasa HID USBX nie obsługuje wielu identyfikatorów raportów, ponieważ większość aplikacji wymaga tylko jednego identyfikatora (ID zero). Jeśli wiele identyfikatorów raportów jest funkcją, która Cię interesuje, skontaktuj się z nami.
 
 Inicjalizacja klasy HID jest w następujący sposób, przy użyciu klawiatury USB jako przykładu.
 
@@ -1150,7 +1150,7 @@ if (status!=UX_SUCCESS)
 
 Aplikacja musi przekazać do klasy HID deskryptor raportu HID i jego długość. Deskryptor raportu to kolekcja elementów opisujących urządzenie. Aby uzyskać więcej informacji na temat gramatyki HID, zapoznaj się ze specyfikacją klasy HID USB.
 
-Oprócz deskryptora raportu aplikacja przekazuje wywołanie wstecz w przypadku wystąpienia zdarzenia HID.
+Oprócz deskryptora raportu aplikacja przekazuje wywołanie z powrotem w przypadku wystąpienia zdarzenia HID.
 
 Klasa USBX HID obsługuje następujące standardowe polecenia HID z hosta.
 
@@ -1163,9 +1163,9 @@ Klasa USBX HID obsługuje następujące standardowe polecenia HID z hosta.
 | UX_DEVICE_CLASS_HID_COMMAND_SET_IDLE     | 0x0a  | Ustawianie częstotliwości bezczynności punktu końcowego przerwań |
 | UX_DEVICE_CLASS_HID_COMMAND_SET_PROTOCOL | 0x0b  | Uruchamianie protokołu na urządzeniu           |
 
-Raport Pobierz i Ustaw to najczęściej używane polecenia HID do transferowania danych między hostem a urządzeniem. Najczęściej host wysyła dane w punkcie końcowym kontroli, ale może odbierać dane w punkcie końcowym przerwania lub wydając polecenie GET_REPORT w celu pobrania danych w punkcie końcowym kontroli.
+Raport Get and Set (Pobierz i ustaw) to najczęściej używane przez program HID polecenia do transferowania danych między hostem a urządzeniem. Najczęściej host wysyła dane do punktu końcowego kontroli, ale może odbierać dane w punkcie końcowym przerwania lub wydając polecenie GET_REPORT w celu pobrania danych w punkcie końcowym kontroli.
 
-Klasa HID może wysyłać dane z powrotem do hosta w punkcie końcowym przerwania przy użyciu ux_device_class_hid_event_set funkcji.
+Klasa HID może wysyłać dane z powrotem do hosta w punkcie końcowym przerwań przy użyciu ux_device_class_hid_event_set funkcji.
 
 ### <a name="ux_device_class_hid_event_set"></a>ux_device_class_hid_event_set
 
@@ -1185,13 +1185,13 @@ Ta funkcja jest wywoływana, gdy aplikacja musi wysłać zdarzenie HID z powrote
 
 ### <a name="parameters"></a>Parametry
 
-- **hid:** Wskaźnik do hid wystąpienia klasy.
-- **hid_event:** Wskaźnik do struktury hid zdarzenia.
+- **hid:** Wskaźnik do wystąpienia hid klasy.
+- **hid_event:** Wskaźnik do struktury zdarzenia ukrytego.
 
 ### <a name="return-value"></a>Wartość zwracana
 
 - **UX_SUCCESS** (0x00) Ta operacja powiodła się.
-- **UX_ERROR** (0xFF) Błąd brak miejsca dostępnego w kolejce cyklicznej.
+- **UX_ERROR** (0xFF) Błąd brak dostępnego miejsca w kolejce cyklicznej.
 
 ### <a name="example"></a>Przykład
 
@@ -1212,7 +1212,7 @@ hid_event.ux_device_class_hid_event_buffer[2] = key;
 ux_device_class_hid_event_set(hid, &hid_event);
 ```
 
-Wywołanie zwrotne zdefiniowane podczas inicjowania klasy HID wykonuje przeciwieństwo wysyłania zdarzenia. Pobiera ona jako dane wejściowe zdarzenie wysyłane przez hosta. Prototyp wywołania zwrotnego jest następujący.
+Wywołanie zwrotne zdefiniowane podczas inicjowania klasy HID wykonuje przeciwieństwo wysyłania zdarzenia. Pobiera jako dane wejściowe zdarzenie wysyłane przez hosta. Prototyp wywołania zwrotnego jest następujący.
 
 ### <a name="hid_callback"></a>hid_callback
 
@@ -1232,8 +1232,8 @@ Ta funkcja jest wywoływana, gdy host wysyła raport HID do aplikacji.
 
 ### <a name="parameters"></a>Parametry
 
-- **hid:** Wskaźnik do hid wystąpienia klasy.
-- **hid_event:** Wskaźnik do struktury hid zdarzenia.
+- **hid:** Wskaźnik do wystąpienia hid klasy.
+- **hid_event:** Wskaźnik do struktury zdarzenia ukrytego.
 
 ### <a name="example"></a>Przykład
 

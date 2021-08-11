@@ -1,59 +1,59 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z klienta SNTP usługi Azure RTO NetX Duo
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem klienta SNTP NetX Duo.
+title: Rozdział 2 — Instalowanie i używanie klienta Azure RTOS NetX Duo SNTP
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem klienta NetX Duo SNTP.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: cd917e7e70ce21dbff6c8081c2ff115c0acad8a8
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 2058875c08d64e2c16f67b48323814ec77ec96882eec26aaf2c9454459511db3
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821654"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116799051"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-sntp-client"></a>Rozdział 2 — Instalowanie i korzystanie z klienta SNTP usługi Azure RTO NetX Duo
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-sntp-client"></a>Rozdział 2 — Instalowanie i używanie klienta Azure RTOS NetX Duo SNTP
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem klienta SNTP usługi Azure RTO NetX Duo.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem klienta Azure RTOS NetX Duo SNTP.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Protokół SNTP dla NetX Duo jest dostępny pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera dwa pliki źródłowe i plik PDF, który zawiera ten dokument, w następujący sposób:
+Protokół SNTP dla netX Duo jest dostępny na stronie [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera dwa pliki źródłowe i plik PDF zawierający ten dokument w następujący sposób:
 
-- **nxd_sntp_client. c** Plik źródłowy C klienta SNTP  
-- **nxd_sntp_client. h** Plik nagłówkowy klienta SNTP  
-- **demo_netxduo_sntp_client. c** Demonstracja aplikacja kliencka SNTP  
-- **nxd_sntp_client.pdf** Podręcznik użytkownika klienta SNTP NetX Duo  
+- **nxd_sntp_client.c** Plik źródłowy klienta SNTP C  
+- **nxd_sntp_client.h** Plik nagłówka klienta SNTP  
+- **demo_netxduo_sntp_client.c** Pokaz aplikacji klienckiej SNTP  
+- **nxd_sntp_client.pdf** Podręcznik użytkownika klienta NetX Duo SNTP  
 
-## <a name="netx-duo-sntp-client-installation"></a>Instalacja klienta SNTP NetX Duo
+## <a name="netx-duo-sntp-client-installation"></a>Instalacja klienta NetX Duo SNTP
 
-Aby można było używać SNTP dla NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowana w katalogu "*\threadx\arm7\green*", następnie pliki klienta SNTP NetX Duo *nxd_sntp_client. c* i *nxd_sntp_client. h* (*nx_sntp_client. c* i *nx_sntp_client. h* w NetX) powinny zostać skopiowane do tego katalogu.
+Aby można było używać protokołu SNTP dla netX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano aplikację NetX Duo. Jeśli na przykład netx Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* do tego katalogu powinny zostać skopiowane pliki klienta NetX Duo SNTP *nxd_sntp_client.c* i *nxd_sntp_client.h* (*nx_sntp_client.c* i *nx_sntp_client.h* in NetX).
 
-## <a name="using-netx-duo-sntp-client"></a>Korzystanie z klienta SNTP NetX Duo
+## <a name="using-netx-duo-sntp-client"></a>Korzystanie z klienta NetX Duo SNTP
 
-Korzystanie z klienta SNTP NetX Duo jest proste. W zasadzie kod aplikacji musi zawierać *nxd_sntp_client. h* , po uwzględnieniu *tx_api. h, fx_api. h,* i *nx_api. h*, aby użyć odpowiednio ThreadX i NetX Duo. Po dołączeniu *nxd_sntp_client. h* kod aplikacji może następnie wprowadzić wywołania funkcji SNTP w dalszej części tego przewodnika. Aplikacja musi również zawierać *nxd_sntp_client. c* w procesie kompilacji. Te pliki muszą być kompilowane w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do korzystania z klienta SNTP NetX Duo.
+Korzystanie z klienta NetX Duo SNTP jest łatwe. Zasadniczo kod aplikacji musi zawierać kod *nxd_sntp_client.h* po dołączyć elementy *tx_api.h, fx_api.h* i *nx_api.h,* aby można było używać odpowiednio threadX i NetX Duo. Po *nxd_sntp_client.h* kod aplikacji może następnie wykonać wywołania funkcji SNTP określone w dalszej części tego przewodnika. Aplikacja musi również *uwzględniać nxd_sntp_client.c* w procesie kompilacji. Te pliki muszą zostać skompilowane w taki sam sposób, jak inne pliki aplikacji, a ich formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z klienta NetX Duo SNTP.
 
 > [!NOTE]
-> Ponieważ klient SNTP NetX Duo korzysta z usług UDP NetX Duo, należy włączyć protokół UDP przy użyciu wywołania *nx_udp_enable* przed użyciem usług SNTP.
+> Ponieważ klient NetX Duo SNTP korzysta z usług NetX Duo UDP, należy włączyć protokół UDP za pomocą *wywołania nx_udp_enable* przed użyciem usług SNTP.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Poniżej przedstawiono przykład użycia NetX Duo SNTP. Należy zauważyć, że w tym przykładzie **nie** ma gwarancji, że jest on używany w systemie. Może być konieczne wprowadzenie zmian w określonym systemie i sprzęcie. Na przykład trzeba będzie zastąpić sterownik NetX pamięci RAM rzeczywistą funkcją sterownika. Ten przykład jest przeznaczony wyłącznie do celów demonstracyjnych.
+Poniżej przedstawiono przykład sposobu korzystania z funkcji NetX Duo SNTP. Należy pamiętać, że ten przykład **nie ma** gwarancji, że będzie działać tak, jak w systemie. Może być konieczne dostosowanie określonego systemu i sprzętu. Na przykład należy zastąpić sterownik NetX ram rzeczywistą funkcją sterownika. Ten przykład jest przeznaczony wyłącznie do celów demonstracyjnych.
 
-W tym przykładzie jest dołączony plik nagłówka SNTP *nxd_sntp_client. h* . Klient SNTP jest tworzony w "*tx_application_define*". Należy zauważyć, że podczas tworzenia klienta SNTP są opcjonalne funkcje obsługi wynoszącej śmierć i przestępnej drugiej
+W tym przykładzie dołączony jest plik nagłówkowy SNTP *nxd_sntp_client.h.* Klient SNTP jest tworzony w *tx_application_define*". Należy pamiętać, że podczas tworzenia klienta SNTP funkcje obsługi zgonu i przestępnych sekund są opcjonalne.
 
-Tego pokazu można użyć w połączeniu z protokołem IPv6 lub IPv4. Aby uruchomić klienta SNTP za pośrednictwem protokołu IPv6, zdefiniuj USE_IPV6. Protokół IPv6 musi być również włączony w NetX Duo. Host klienta SNTP jest skonfigurowany do sprawdzania poprawności adresów IPv6 oraz usług ICMPv6 i IPv6 w NetX Duo. Zobacz Podręcznik użytkownika programu NetX Duo, aby uzyskać więcej informacji na temat obsługi protokołu IPv6 w programie NetX Duo.
+Tej wersji demonstracyjnej można używać z protokołu IPv6 lub IPv4. Aby uruchomić klienta SNTP za pośrednictwem protokołu IPv6, zdefiniuj USE_IPV6. Protokół IPv6 musi być również włączony w programie NetX Duo. Host klienta SNTP jest ustawiony do sprawdzania poprawności adresów IPv6 oraz usług ICMPv6 i IPv6 w NetX Duo. Aby uzyskać więcej informacji na temat obsługi protokołu IPv6 w netx duo, zobacz NetX Duo User Guide (Podręcznik użytkownika netX Duo).
 
-Następnie należy zainicjować klienta protokołu SNTP dla trybu emisji pojedynczej lub emisji.
+Następnie należy zainicjować klienta SNTP dla trybu emisji pojedynczej lub emisji.
 
-Klient SNTP początkowo zapisuje aktualizacje czasu serwera do własnej wewnętrznej struktury danych. Ta wartość nie jest taka sama jak czas lokalny urządzenia. Czas lokalny urządzenia można ustawić jako godzinę bazową w kliencie SNTP przed uruchomieniem wątku klienta SNTP. Jest to przydatne, jeśli skonfigurowano klienta SNTP (NX_SNTP_CLIENT_IGNORE_MAX_ADJUST_STARTUP ustawić na NX_FALSE) w celu porównania pierwszej aktualizacji serwera z NX_SNTP_CLIENT_MAX_ADJUSTMENT (wartość domyślna to 180 MS). W przeciwnym razie klient SNTP ustawi początkowy czas lokalny bezpośrednio przy pobieraniu pierwszej aktualizacji z serwera.
+Klient SNTP początkowo zapisuje aktualizacje czasu serwera we własnej wewnętrznej strukturze danych. To nie to samo co czas lokalny urządzenia. Czas lokalny urządzenia można ustawić jako czas punktu odniesienia w kliencie SNTP przed uruchomieniem wątku klienta SNTP. Jest to przydatne, jeśli klient SNTP jest skonfigurowany (NX_SNTP_CLIENT_IGNORE_MAX_ADJUST_STARTUP ustawiony na NX_FALSE), aby porównać pierwszą aktualizację serwera z NX_SNTP_CLIENT_MAX_ADJUSTMENT (wartość domyślna: 180 milisekund). W przeciwnym razie klient SNTP ustawi początkowy czas lokalny bezpośrednio po pobieraniu pierwszej aktualizacji z serwera.
 
-Do klienta SNTP jest stosowany czas bazowy przy użyciu usługi *nx_sntp_client_set_local_time* .
+Czas odniesienia jest stosowany do klienta SNTP przy użyciu *nx_sntp_client_set_local_time* usługi.
 
-Klient SNTP jest uruchamiany odpowiednio w trybie emisji pojedynczej i trybu emisji. W przypadku pewnego interwału (nieco mniej niż interwał sondowania emisji pojedynczej) aplikacja aktualizuje czas lokalny klienta SNTP przy użyciu *nx_sntp_client_set_local_time* z "zegara czasu rzeczywistego", który symulowany przez zwiększenie liczby sekund i milisekund bieżącego czasu. Po każdym interwale aplikacja okresowo sprawdza dostępność aktualizacji na serwerze SNTP. Usługa *nx_sntp_client_receiving _updates* sprawdza, czy klient SNTP aktualnie otrzymuje prawidłowe aktualizacje. W takim przypadku zostanie pobrany najnowszy czas aktualizacji przy użyciu usługi *nx_sntp_client_get_local_time_extended* .
+Klient SNTP jest uruchomiony odpowiednio dla trybu emisji pojedynczej i emisji. W określonym *interwale*(nieco krótszym niż interwał sondowania emisji pojedynczej) aplikacja aktualizuje lokalny czas klienta SNTP przy użyciu zegara nx_sntp_client_set_local_time z "zegara czasu rzeczywistego", który symuluje się przez zwiększanie sekund i milisekund bieżącego czasu. Po każdym interwale aplikacja okresowo sprawdza, czy na serwerze SNTP są dostępne aktualizacje. Usługa *nx_sntp_client_receiving _updates* sprawdza, czy klient SNTP obecnie otrzymuje prawidłowe aktualizacje. Jeśli tak, pobierze ona najnowszy czas aktualizacji przy użyciu *nx_sntp_client_get_local_time_extended* service.
 
-Klienta SNTP można zatrzymać w dowolnym momencie za pomocą usługi *nx_sntp_client_stop* , jeśli na przykład wykryje, że klient SNTP nie otrzymuje już prawidłowych aktualizacji. Aby ponownie uruchomić klienta, aplikacja musi wywoływać usługę emisji pojedynczej lub inicjatora emisji, a następnie wywołać usługi emisji pojedynczej lub emisji. Gdy zadanie wątku klienta SNTP zostało zatrzymane, klient SNTP może przełączyć serwery i tryby protokołu SNTP (emisji pojedynczej lub emisji), jeśli jest to konieczne, np. poprzedni serwer SNTP prawdopodobnie nie działa.
+Klienta SNTP można zatrzymać w dowolnym momencie przy użyciu usługi *nx_sntp_client_stop,* jeśli na przykład wykryje, że klient SNTP nie otrzymuje już prawidłowych aktualizacji. Aby ponownie uruchomić klienta, aplikacja musi wywołać usługę emisji pojedynczej lub emisji, a następnie wywołać usługi uruchamiania emisji pojedynczej lub emisji. Podczas zatrzymania zadania wątku klienta SNTP klient SNTP może w razie potrzeby przełączać serwery i tryby SNTP (emisji pojedynczej lub emisji), np. poprzedni serwer SNTP wydaje się nie działać.
 
 ```c
 /* 
@@ -637,91 +637,91 @@ VOID time_update_callback(NX_SNTP_TIME_MESSAGE *time_update_ptr,
 
 ```
 
-Rysunek 1 przykład korzystania z klienta SNTP z NetX Duo
+Rysunek 1 Przykład użycia klienta SNTP z NetX Duo
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Istnieje kilka opcji konfiguracji służących do definiowania klienta SNTP NetX Duo. Poniższa lista zawiera szczegółowy opis:  
+Istnieje kilka opcji konfiguracji definiowania klienta NetX Duo SNTP. Na poniższej liście szczegółowo opisano poszczególne z nich:  
   
 
 **NX_SNTP_CLIENT_THREAD_STACK_SIZE**  
-Ta opcja ustawia rozmiar stosu wątków klienta. Domyślny rozmiar klienta SNTP NetX Duo to 2048.
+Ta opcja ustawia rozmiar stosu wątku klienta. Domyślny rozmiar klienta NetX Duo SNTP to 2048.
 
 **NX_SNTP_CLIENT_THREAD_TIME_SLICE**  
-Ta opcja umożliwia ustawienie wycinka czasu harmonogramu na potrzeby wykonywania wątków klienta. Domyślny rozmiar klienta SNTP NetX Duo to TX_NO_TIME_SLICE.
+Ta opcja ustawia wycinek czasu harmonogramu zezwala na wykonywanie wątków klienta. Domyślny rozmiar klienta NetX Duo SNTP to TX_NO_TIME_SLICE.
 
 **NX_SNTP_CLIENT_ THREAD_PRIORITY**  
-Ta opcja ustawia priorytet wątku klienta. Wartość domyślna klienta SNTP NetX Duo to 2.
+Ta opcja ustawia priorytet wątku klienta. Wartość domyślna klienta NetX Duo SNTP to 2.
 
 **NX_SNTP_CLIENT_PREEMPTION_THRESHOLD**  
-Ta opcja ustawia poziom priorytetu, w którym wątek klienta umożliwia przewagę. Domyślna wartość klienta SNTP NetX Duo jest ustawiona na `NX_SNTP_CLIENT_ THREAD_PRIORITY` .
+Ta opcja ustawia poziom priorytetu, z którym wątek klienta zezwala na wywłaszkę. Domyślna wartość klienta NetX Duo SNTP to `NX_SNTP_CLIENT_ THREAD_PRIORITY` .
 
 **NX_SNTP_CLIENT_UDP_SOCKET_NAME**  
-Ta opcja ustawia nazwę gniazda UDP. Domyślna nazwa gniazda UDP klienta SNTP NetX Duo to "gniazdo klienta SNTP".
+Ta opcja ustawia nazwę gniazda UDP. Domyślna nazwa gniazda UDP klienta NetX Duo SNTP to "Gniazdo klienta SNTP".
 
 **NX_SNTP_CLIENT_UDP_PORT**  
-Ustawia port, z którym jest powiązany gniazdo klienta. Domyślnym portem klienta SNTP NetX Duo jest 123.
+To ustawienie określa port, z którym jest powiązane gniazdo klienta. Domyślny port klienta NetX Duo SNTP to 123.
 
 **NX_SNTP_SERVER_UDP_PORT**  
-Jest to port, na którym klient wysyła komunikaty SNTP do serwera SNTP w systemie. Domyślnym portem serwera NetX SNTP jest 123.
+Jest to port, na którym klient wysyła komunikaty SNTP do serwera SNTP. Domyślny port serwera NetX SNTP to 123.
 
 **NX_SNTP_CLIENT_TIME_TO_LIVE**  
-Określa liczbę routerów, które może przekazać pakiet klienta, zanim zostanie on odrzucony. Domyślny klient SNTP NetX Duo jest ustawiony na 0x80 *.*
+Określa liczbę routerów, które pakiet klienta może przekazać, zanim zostanie odrzucony. Domyślny klient NetX Duo SNTP jest ustawiony na wartość 0x80 *.*
 
 **NX_SNTP_CLIENT_MAX_QUEUE_DEPTH**  
-Maksymalna liczba pakietów UDP (Datagrams), które można umieścić w kolejce w gnieździe klienta NetX Duo SNTP. Odebrane dodatkowe pakiety oznaczają, że wydano najstarsze pakiety. Domyślny klient SNTP NetX Duo jest ustawiony na 5.
+Maksymalna liczba pakietów UDP (datagramów), które można dodać do kolejki w gnieździe klienta NetX Duo SNTP. Dodatkowe odebrane pakiety oznaczają, że są zwalniane najstarsze pakiety. Domyślny klient NetX Duo SNTP ma wartość 5.
 
 **NX_SNTP_CLIENT_PACKET_TIMEOUT**  
-Limit czasu dla przydziału pakietu NetX Duo. Domyślny limit czasu pakietu klienta SNTP NetX Duo wynosi 1 s.
+Utracą czas alokacji pakietów NetX Duo. Domyślny limit czasu pakietu klienta NetX Duo SNTP wynosi 1 sekundę.
 
 **NX_SNTP_CLIENT_NTP_VERSION**  
-Wersja SNTP używana przez klienta interfejs API klienta SNTP NetX Duo został oparty na wersji 4. Wartość domyślna to 3.
+Wersja SNTP używana przez klienta Interfejs API klienta NetX Duo SNTP bazuje na wersji 4. Wartość domyślna to 3.
 
 **NX_SNTP_CLIENT_MIN_NTP_VERSION**  
-Najstarsza wersja SNTP, z którą klient będzie mógł współpracować. Wartość domyślna klienta SNTP NetX Duo to wersja 3.
+Najstarsza wersja protokołu SNTP, z która będzie mogła współpracować klient. Wartość domyślna klienta NetX Duo SNTP to Wersja 3.
 
 **NX_SNTP_CLIENT_MIN_SERVER_STRATUM**  
-Najniższy poziom (najwyższy poziom warstwy) Serwer SNTP, który zostanie zaakceptowany przez klienta. Wartość domyślna klienta SNTP NetX Duo to 2.
+Najniższy poziom (najwyższy poziom warstwy liczbowej) warstwy serwera SNTP klienta będzie akceptować. Wartość domyślna klienta NetX Duo SNTP to 2.
 
 **NX_SNTP_CLIENT_MIN_TIME_ADJUSTMENT**  
-Minimalne dopasowanie czasu w milisekundach, po których klient będzie miał czas zegara lokalnego. Poniższe zmiany czasu zostaną zignorowane. Wartość domyślna klienta SNTP NetX Duo to 10.
+Minimalny czas korekty w milisekundach klienta spowoduje jego czas zegara lokalnego. Korekty czasu poniżej tej wartości zostaną zignorowane. Wartość domyślna klienta NetX Duo SNTP to 10.
 
 **NX_SNTP_CLIENT_MAX_TIME_ADJUSTMENT**  
-Maksymalne dopasowanie czasu (w milisekundach) przez klienta do czasu lokalnego zegara. W przypadku korekt czasowych powyżej tej kwoty dostosowanie zegara lokalnego jest ograniczone do maksymalnego dopasowania czasu. Wartość domyślna klienta SNTP NetX Duo to 180000 (3 minuty).
+Maksymalny czas korekty w milisekundach klienta spowoduje jego czas zegara lokalnego. W przypadku korekt czasu powyżej tej kwoty dostosowanie zegara lokalnego jest ograniczone do korekty maksymalnego czasu. Wartość domyślna klienta NetX Duo SNTP to 180000 (3 minuty).
 
 **NX_SNTP_CLIENT_IGNORE_MAX_ADJUST_STARTUP**  
-Dzięki temu maksymalne dostosowanie czasu należy uchylić, gdy klient otrzymuje pierwszą aktualizację z serwera czasu. Następnie Maksymalne ustawienie czasu jest wymuszane. Zamierzenie polega na tym, że klient jest zsynchronizowany z zegarem serwera najszybciej, jak to możliwe. Domyślnym ustawieniem klienta SNTP NetX Duo jest NX_TRUE.
+Pozwala to na rezygnację z korekty maksymalnego czasu, gdy klient otrzyma pierwszą aktualizację ze swojego serwera czasu. Następnie jest wymuszane dostosowanie maksymalnego czasu. Celem jest jak najszybciej pobrać klienta w synchronizowanie z zegarem serwera. Domyślnym ustawieniem klienta NetX Duo SNTP jest NX_TRUE.
 
 **NX_SNTP_CLIENT_MAX_TIME_LAPSE**  
-Maksymalny dozwolony czas (w sekundach), który upłynął, bez prawidłowej aktualizacji czasu odebranej przez klienta SNTP. Klient SNTP będzie kontynuował działanie, ale stan serwera SNTP jest ustawiony na NX_FALSE. Wartość domyślna to 7200.
+Maksymalny dopuszczalny czas (w sekundach) upłynął bez ważnej aktualizacji czasu otrzymanej przez klienta SNTP. Klient SNTP będzie kontynuować działanie, ale stan serwera SNTP jest ustawiony na NX_FALSE. Wartość domyślna to 7200.
 
 
 **NX_SNTP_UPDATE_TIMEOUT_INTERVAL**  
-Interwał (w sekundach), w którym czasomierz klienta SNTP aktualizuje czas klienta SNTP pozostały od momentu odebrania ostatniej prawidłowej aktualizacji, a klient emisji pojedynczej aktualizuje pozostały czas oczekiwania na sondowanie przed wysłaniem kolejnego żądania aktualizacji SNTP. Wartość domyślna to 1.
+Interwał (w sekundach), w którym czasomierz klienta SNTP aktualizuje czas klienta SNTP pozostały od ostatniej otrzymanej prawidłowej aktualizacji, a klient emisji pojedynczej aktualizuje pozostały czas interwału sondowania przed wysłaniem następnego żądania aktualizacji SNTP. Wartość domyślna to 1.
 
 **NX_SNTP_CLIENT_UNICAST_POLL_INTERVAL**  
-Początkowy interwał sondowania (w sekundach), w którym klient wysyła żądanie emisji pojedynczej do swojego serwera SNTP. Domyślnym ustawieniem klienta SNTP NetX Duo jest 3600.
+Interwał sondowania początkowego (w sekundach), w którym klient wysyła żądanie emisji pojedynczej do serwera SNTP. Wartość domyślna klienta NetX Duo SNTP to 3600.
 
 **NX_SNTP_CLIENT_EXP_BACKOFF_RATE**  
-Współczynnik, za pomocą którego jest zwiększany interwał sondowania emisji pojedynczej przez klienta. Gdy klient nie otrzymuje aktualizacji czasu serwera ani nie otrzymuje wskazań z serwera, który jest tymczasowo niedostępny (np. nie jest jeszcze zsynchronizowany) dla usługi aktualizacji czasowej, spowoduje to zwiększenie bieżącego interwału sondowania przez tę częstotliwość, ale nie do przekroczenia NX_SNTP_CLIENT_MAX_TIME_LAPSE. Wartość domyślna to 2.
+Współczynnik, o który zwiększa się bieżący interwał sondowania emisji pojedynczej klienta. Jeśli klient nie otrzyma aktualizacji czasu serwera lub otrzyma od serwera oznaczenia, że jest tymczasowo niedostępny (np. nie jest jeszcze zsynchronizowany) dla usługi aktualizacji czasu, spowoduje to zwiększenie bieżącego interwału sondowania o tę szybkość do wartości nieprzekraczającej NX_SNTP_CLIENT_MAX_TIME_LAPSE. Wartość domyślna to 2.
 
 **NX_SNTP_CLIENT_RTT_REQUIRED**  
-Ta opcja, jeśli jest włączona, wymaga, aby klient SNTP obliczał czas błądzenia komunikatów SNTP w przypadku zastosowania aktualizacji serwera do zegara lokalnego. Wartość domyślna to NX_FALSE (wyłączone).
+Ta opcja, jeśli jest włączona, wymaga, aby klient SNTP obliczał czas rundy komunikatów SNTP podczas stosowania aktualizacji serwera do zegara lokalnego. Wartość domyślna to NX_FALSE (wyłączona).
 
 **NX_SNTP_CLIENT_MAX_ROOT_DISPERSION**  
-Maksymalne rozproszenie zegara serwera (mikrosekund), które jest miarą precyzji zegara serwera, klient zostanie zaakceptowany. Aby wyłączyć to wymaganie, ustaw maksymalną dyspersję główną na 0x0. Domyślnym ustawieniem klienta SNTP NetX Duo jest 50000.
+Maksymalne rozproszenie zegara serwera (mikrosekund), które jest miarą dokładności zegara serwera, klient zaakceptuje. Aby wyłączyć to wymaganie, ustaw maksymalne rozproszenie głównego na 0x0. Wartość domyślna klienta NetX Duo SNTP to 50000.
 
 **NX_SNTP_CLIENT_INVALID_UPDATE_LIMIT**  
-Limit liczby kolejnych nieprawidłowych aktualizacji odebranych z serwera klienta w trybie emisji lub emisji pojedynczej. Po osiągnięciu tego limitu klient ustawia bieżący stan serwera SNTP na nieprawidłowy (NX_FALSE), mimo że będzie nadal próbować otrzymywać aktualizacje z serwera. Wartość domyślna klienta SNTP NetX Duo to 3.
+Limit liczby kolejnych nieprawidłowych aktualizacji odebranych z serwera klienta w trybie emisji pojedynczej lub emisji pojedynczej. Po osiągnięciu tego limitu klient ustawia bieżący stan serwera SNTP na nieprawidłowy (NX_FALSE), mimo że nadal będzie próbował otrzymywać aktualizacje z serwera. Wartość domyślna klienta NetX Duo SNTP to 3.
 
 **NX_SNTP_CLIENT_RANDOMIZE_ON_STARTUP**  
-Określa, czy klient SNTP w trybie emisji pojedynczej powinien wysyłać swoje pierwsze żądanie SNTP z bieżącym serwerem SNTP po losowym interwale oczekiwania. Jest on używany w przypadkach, gdy liczba klientów SNTP jest uruchamiana jednocześnie w celu ograniczenia przeciążenia ruchu na serwerze SNTP. Wartość domyślna to NX_FALSE.
+Określa, czy klient SNTP w trybie emisji pojedynczej powinien wysłać pierwsze żądanie SNTP z bieżącym serwerem SNTP po losowym interwale oczekiwania. Jest on używany w przypadkach, gdy znaczna liczba klientów SNTP jest uruchamiana jednocześnie, aby ograniczyć przeciążenie ruchu na serwerze SNTP. Wartość domyślna to NX_FALSE.
 
 **NX_SNTP_CLIENT_SLEEP_INTERVAL**  
-Przedział czasu, w którym zadanie klienta SNTP jest w stanie uśpienia. Pozwala to wykonywać wywołania interfejsu API aplikacji przez klienta SNTP. Wartość domyślna to 1 znacznik czasomierza.
+Przedział czasu, w którym zadanie klienta SNTP jest uśpięce. Dzięki temu wywołania interfejsu API aplikacji mogą być wykonywane przez klienta SNTP. Wartość domyślna to 1 takt czasomierza.
 
 **NX_SNTP_CURRENT_YEAR**  
-Aby wyświetlić datę w formacie rok/miesiąc/Data, należy ustawić tę wartość na równą lub mniejszą od bieżącego roku (nie musi być to rok w trakcie oceniania czasu NTP). Wartość domyślna to 2015.
+Aby wyświetlić datę w formacie rok/miesiąc/data, ustaw tę wartość na wartość równą lub mniejszą niż bieżący rok (nie muszą być takie same jak w szacowanym czasie NTP). Wartość domyślna to 2015.
 
 **NTP_SECONDS_AT_01011999**  
-Jest to liczba sekund do pierwszej epoki NTP na głównym zegarze NTP. Jest on zdefiniowany jako 0xBA368E80. Aby wyłączyć wyświetlanie sekund NTP w dacie i godzinie, ustaw wartość zero.
+Jest to liczba sekund do pierwszej epoki NTP na główny zegar NTP. Jest on zdefiniowany jako 0xBA368E80. Aby wyłączyć wyświetlanie NTP sekund do daty i czasu, ustaw zero.

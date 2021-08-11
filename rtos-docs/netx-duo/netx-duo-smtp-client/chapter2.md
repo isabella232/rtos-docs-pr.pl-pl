@@ -1,46 +1,46 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z klienta SMTP NetX Duo
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta SMTP NetX Duo.
+title: Rozdział 2 — Instalowanie i używanie klienta SMTP NetX Duo
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika klienta SMTP NetX Duo.
 author: philmea
 ms.author: philmea
 ms.date: 07/09/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 86f324935ba32aab010b81f825be0a6564983a2e
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: ba4d50048adba4ac992f6bbe90d236445546a5929ace74899833c686a90dadd9
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821690"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116797844"
 ---
-# <a name="chapter-2---installation-and-use-of-netx-duo-smtp-client"></a>Rozdział 2 — Instalowanie i korzystanie z klienta SMTP NetX Duo
+# <a name="chapter-2---installation-and-use-of-netx-duo-smtp-client"></a>Rozdział 2 — Instalowanie i używanie klienta SMTP NetX Duo
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika klienta SMTP NetX Duo.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, instalacją i użyciem składnika klienta SMTP NetX Duo.
 
-## <a name="netx-duo-smtp-client-installation"></a>Instalacja klienta SMTP NetX Duo
+## <a name="netx-duo-smtp-client-installation"></a>Instalacja klienta SMTP aplikacji NetX Duo
 
 Klient SMTP NetX Duo jest dostępny pod adresem [https://github.com/azure-rtos/netxduo](https://github.com/azure-rtos/netxduo) . Pakiet zawiera następujące pliki:
 
-- **nxd_smtp_client. c** Plik źródłowy języka C dla interfejsu API klienta SMTP NetX Duo
-- **nxd_smtp_client. h** Plik nagłówkowy języka C dla interfejsu API klienta SMTP NetX Duo
-- **demo_netxduo_smtp_client. c** Demonstracja dla klienta SMTP NetX Duo
-- **Podręcznik użytkownikanxd_smtp_client.pdf** Interfejs API klienta SMTP NetX Duo
+- **nxd_smtp_client.c** Plik źródłowy języka C dla interfejsu API klienta SMTP NetX Duo
+- **nxd_smtp_client.h** Plik nagłówka języka C dla interfejsu API klienta SMTP NetX Duo
+- **demo_netxduo_smtp_client.c** Pokaz dla klienta SMTP NetX Duo
+- **nxd_smtp_client.pdf użytkownika dla programu** Interfejs API klienta SMTP aplikacji NetX Duo
 
-Aby użyć interfejsu API klienta SMTP NetX Duo, cała wymieniona wyżej dystrybucja może zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowana w katalogu "c:*\myproject*", wówczas pliki *nxd_smtp_client. h i nxd_smtp_client. c* powinny być skopiowane do tego katalogu.
+Aby użyć interfejsu API klienta SMTP NetX Duo, cała wymieniona wcześniej dystrybucja może zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX Duo. Jeśli na przykład program NetX Duo jest zainstalowany w katalogu "c:*\myproject",* pliki *nxd_smtp_client.h i nxd_smtp_client.c* powinny zostać skopiowane do tego katalogu.
 
 ## <a name="using-netx-duo-smtp-client"></a>Korzystanie z klienta SMTP NetX Duo
 
-Aby utworzyć aplikację kliencką SMTP NetX Duo, należy najpierw skompilować biblioteki ThreadX i NetX Duo oraz uwzględnić je w projekcie kompilacji. Aplikacja musi następnie uwzględnić TX *_api. h* i *nx_api. h w kodzie źródłowym aplikacji*. Spowoduje to włączenie usług ThreadX i NetX Duo. Musi on również zawierać *nxd_smtp_client. c* i *nxd_smtp_client. h* po *tx_api. h* i *Nx_api. h do korzystania z usług klienta SMTP.*
+Aby utworzyć aplikację klienta SMTP NetX Duo, należy najpierw skompilować biblioteki ThreadX i NetX Duo i uwzględnić je w projekcie kompilacji. Aplikacja musi następnie uwzględnić pliki tx *_api.h* *i nx_api.h w kodzie źródłowym aplikacji*. Spowoduje to włączenie usług ThreadX i NetX Duo. Musi on również zawierać *nxd_smtp_client.c* *i nxd_smtp_client.h* po *tx_api.h* i *nx_api.h,* aby korzystać z usług klienta SMTP.
 
-Te pliki muszą być kompilowane w taki sam sposób, jak inne pliki aplikacji i kod obiektu muszą być połączone wraz z plikami aplikacji. Jest to wszystko wymagane do utworzenia aplikacji klienckiej SMTP NetX Duo.
+Te pliki muszą być kompilowane w taki sam sposób jak inne pliki aplikacji, a kod obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do utworzenia aplikacji klienckiej SMTP NetX Duo.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykład korzystania z klienta SMTP NetX Duo został opisany na rysunku 1, który pojawia się poniżej. Pula pakietów dla wystąpienia IP jest tworzona przy użyciu usługi nx_packet_pool_create w wierszu 68 i ma bardzo mały ładunek pakietu. Wynika to z faktu, że wystąpienie IP wysyła tylko pakiety sterujące, które nie wymagają dużo ładunku. Pula pakietów klienta SMTP utworzona w wierszu 84 i służy do przesyłania komunikatów klienta SMTP do danych serwera i komunikatów. Jego ładunek pakietu jest dużo większy. Wystąpienie protokołu IP jest tworzone w wierszu 118 przy użyciu tej samej puli pakietów. Protokół TCP, wymagany dla protokołu SMTP, jest włączony w wystąpieniu protokołu IP w wierszu 130.
+Przykład użycia klienta SMTP NetX Duo został opisany na rysunku 1, który znajduje się poniżej. Pula pakietów dla wystąpienia adresu IP jest tworzona przy użyciu usługi nx_packet_pool_create w wierszu 68 i ma bardzo mały ładunek pakietu. Jest to spowodowane tym, że wystąpienie adresu IP wysyła tylko pakiety sterujące, które nie wymagają większego ładunku. Pula pakietów klienta SMTP utworzona w wierszu 84 i służy do przesyłania komunikatów klienta SMTP do serwera i danych komunikatów. Ładunek pakietu jest znacznie większy. Wystąpienie adresu IP jest tworzone w wierszu 118 przy użyciu tej samej puli pakietów. Protokół TCP wymagany dla protokołu SMTP jest włączony w wystąpieniu adresu IP w wierszu 130.
 
-W wątku aplikacji klient SMTP jest tworzony przy użyciu usługi *nxd_smtp_client_create* w wierszu 170. Usługa *nxd_smtp_client_create* obsługuje połączenia z serwerem SMTP IPv4 i IPv6, chociaż ten przykład jest ograniczony do protokołu IPv4. Następnie wiadomość e-mail zostanie przesłana do klienta SMTP w celu transmisji w wierszu 184 przy użyciu usługi *nx_smtp_mail_send* . Należy pamiętać, że wiersz tematu z nagłówkiem zawartości poczty jest tworzony niezależnie od treści komunikatu. Należy również zauważyć, że żądanie wysłania poczty akceptuje tylko jeden adres e-mail adresata, który jest traktowany pod kątem poprawności składniowej.
+W wątku aplikacji klient SMTP jest tworzony przy użyciu usługi *nxd_smtp_client_create,* w wierszu 170. Usługa *nxd_smtp_client_create* obsługuje połączenia serwera SMTP IPv4 i IPv6, chociaż ten przykład jest ograniczony do protokołu IPv4. Następnie wiadomość e-mail jest przesłana do klienta SMTP w celu transmisji w wierszu 184 przy użyciu *usługi nx_smtp_mail_send* smtp. Należy pamiętać, że wiersz tematu z nagłówkiem zawartości wiadomości e-mail jest tworzony oddzielnie od treści wiadomości. Należy również pamiętać, że żądanie wysłania wiadomości e-mail akceptuje tylko jeden adres e-mail odbiorcy, który jest poprawny syntoaktycznie.
 
-Następnie aplikacja kończy działanie klienta SMTP w wierszu 200. Usługa *nx_smtp_client_delete* sprawdza, czy połączenie gniazda zostało zamknięte i czy port jest niepowiązany. Należy pamiętać, że do aplikacji klienckiej SMTP należy usunąć pulę pakietów, jeśli nie ma już jej użycia.
+Następnie aplikacja kończy działanie klienta SMTP w wierszu 200. Usługa *nx_smtp_client_delete* sprawdza, czy połączenie gniazda jest zamknięte, a port jest niepowiązany. Należy pamiętać, że usunięcie puli pakietów należy do aplikacji klienckiej SMTP, jeśli nie jest już do jej użycia.
 
 ```c
 /*
@@ -257,20 +257,20 @@ void    demo_client_thread_entry(ULONG info)
 }
 ```
 
-**Rysunek 1. Przykład użycia klienta SMTP z NetX Duo**
+**Rysunek 1. Przykład użycia klienta SMTP z netx duo**
 
 ## <a name="client-configuration-options"></a>Opcje konfiguracji klienta
 
-Istnieje kilka opcji konfiguracji z interfejsem API klienta SMTP NetX Duo. Poniżej znajduje się lista wszystkich opcji opisanych szczegółowo:
+Istnieje kilka opcji konfiguracji interfejsu API klienta SMTP NetX Duo. Poniżej znajduje się lista wszystkich opcji opisanych szczegółowo:
 
-- **NX_SMTP_CLIENT_TCP_WINDOW_SIZE** Ta opcja ustawia rozmiar okna odbierania klienta TCP. Ta wartość powinna być mniejsza niż rozmiar jednostki MTU podstawowego sprzętu sieci Ethernet i umożliwia miejsce dla nagłówków IP i TCP. Domyślny rozmiar okna klienta SMTP w programie NetX Duo to 1460.
-- **NX_SMTP_CLIENT_PACKET_TIMEOUT** Ta opcja ustawia limit czasu dla alokacji pakietu NetX. Domyślny limit czasu pakietu klienta SMTP w programie NetX Duo wynosi 2 sekundy.
-- **NX_SMTP_CLIENT_CONNECTION_TIMEOUT** Ta opcja ustawia limit czasu połączenia gniazda TCP klienta. Domyślny limit czasu połączenia klienta SMTP w programie NetX Duo wynosi 10 sekund.
-- **NX_SMTP_CLIENT_DISCONNECT_TIMEOUT** Ta opcja ustawia limit czasu rozłączenia gniazda TCP klienta. Domyślny limit czasu rozłączenia klienta SMTP w programie NetX Duo wynosi 5 sekund *. Należy pamiętać, że jeśli klient SMTP napotka błąd wewnętrzny, taki jak zerwane połączenie, może przerwać połączenie z upływem limitu czasu oczekiwania na zero.
-- **NX_SMTP_GREETING_TIMEOUT** Ta opcja określa limit czasu, przez który klient otrzymuje odpowiedź serwera na jego powitanie. Wartość domyślna klienta SMTP NetX Duo to 10 sekund.
-- **NX_SMTP_ENVELOPE_TIMEOUT** Ta opcja określa limit czasu, przez który klient otrzymuje odpowiedź serwera na polecenie klienta. Wartość domyślna klienta SMTP NetX Duo to 10 sekund.
-- **NX_SMTP_MESSAGE_TIMEOUT** Ta opcja określa limit czasu, przez który klient otrzymuje odpowiedź serwera w celu odebrania danych wiadomości e-mail. Wartość domyślna klienta SMTP NetX Duo to 30 sekund.
+- **NX_SMTP_CLIENT_TCP_WINDOW_SIZE** Ta opcja określa rozmiar okna odbierania tcp klienta. Ta wartość powinna być ustawiona na wartość poniżej rozmiaru jednostki MTU bazowego sprzętu Ethernet i pozostawić miejsce na nagłówki IP i TCP. Domyślny rozmiar okna TCP klienta SMTP NetX Duo to 1460.
+- **NX_SMTP_CLIENT_PACKET_TIMEOUT** Ta opcja ustawia limit czasu alokacji pakietów NetX. Domyślny limit czasu pakietu klienta SMTP NetX Duo wynosi 2 sekundy.
+- **NX_SMTP_CLIENT_CONNECTION_TIMEOUT** Ta opcja ustawia limit czasu połączenia gniazda TCP klienta. Domyślny limit czasu połączenia klienta SMTP NetX Duo wynosi 10 sekund.
+- **NX_SMTP_CLIENT_DISCONNECT_TIMEOUT** Ta opcja ustawia limit czasu rozłączenia gniazda TCP klienta. Domyślny limit czasu rozłączenia klienta SMTP NetX Duo wynosi 5 sekund*. Należy pamiętać, że jeśli klient SMTP napotka błąd wewnętrzny, taki jak przerwane połączenie, może to spowodować zakończenie połączenia z zerowym limitem czasu oczekiwania.
+- **NX_SMTP_GREETING_TIMEOUT** Ta opcja ustawia limit czasu dla klienta do odbierania odpowiedzi serwera na jego powitanie. Domyślna wartość klienta SMTP NetX Duo to 10 sekund.
+- **NX_SMTP_ENVELOPE_TIMEOUT** Ta opcja ustawia limit czasu dla klienta, aby otrzymać odpowiedź serwera na polecenie klienta. Domyślna wartość klienta SMTP NetX Duo to 10 sekund.
+- **NX_SMTP_MESSAGE_TIMEOUT** Ta opcja ustawia limit czasu dla klienta, aby odbierał odpowiedź serwera na odbieranie danych wiadomości e-mail. Domyślna wartość klienta SMTP NetX Duo to 30 sekund.
 - **NX_SMTP_CLIENT_SEND_TIMEOUT** Ta opcja definiuje opcję oczekiwania buforu do przechowywania hasła użytkownika podczas uwierzytelniania SMTP na serwerze. Wartość domyślna to 20 bajtów.
-- **NX_SMTP_SERVER_CHALLENGE_MAX_STRING** Ta opcja określa rozmiar buforu dla wyodrębniania wezwania serwera podczas uwierzytelniania SMTP. Wartość domyślna to 200 bajtów. W przypadku logowania i ZWYKŁEgo uwierzytelniania klient SMTP prawdopodobnie może użyć mniejszego buforu.
-- **NX_SMTP_CLIENT_MAX_PASSWORD** Ta opcja określa rozmiar buforu do przechowywania hasła użytkownika podczas uwierzytelniania przy użyciu protokołu SMTP na serwerze programu. Wartość domyślna to 20 bajtów. 
-- **NX_SMTP_CLIENT_MAX_USERNAME** Ta opcja określa rozmiar buforu do przechowywania nazwy użytkownika hosta podczas uwierzytelniania przy użyciu protokołu SMTP na serwerze programu. Wartość domyślna to 40 bajtów. 
+- **NX_SMTP_SERVER_CHALLENGE_MAX_STRING** Ta opcja definiuje rozmiar buforu wyodrębniania żądania serwera podczas uwierzytelniania SMTP. Wartość domyślna to 200 bajtów. W przypadku uwierzytelniania LOGIN i PLAIN klient SMTP może prawdopodobnie używać mniejszego buforu.
+- **NX_SMTP_CLIENT_MAX_PASSWORD** Ta opcja określa rozmiar buforu do przechowywania hasła użytkownika podczas uwierzytelniania SMTP na serwerze. Wartość domyślna to 20 bajtów. 
+- **NX_SMTP_CLIENT_MAX_USERNAME** Ta opcja określa rozmiar buforu do przechowywania nazwy użytkownika hosta podczas uwierzytelniania SMTP na serwerze. Wartość domyślna to 40 bajtów. 

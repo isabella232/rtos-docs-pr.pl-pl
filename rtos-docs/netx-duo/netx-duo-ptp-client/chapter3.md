@@ -1,28 +1,28 @@
 ---
-title: Rozdział 3 — Opis usługi Azure RTO NetX Duo PTP Client Services
-description: Ten rozdział zawiera opis wszystkich usług klienta PTP NetX Duo w kolejności alfabetycznej.
+title: Rozdział 3 — opis Azure RTOS klienta NetX Duo PTP
+description: Ten rozdział zawiera opis wszystkich usług klienta NetX Duo PTP w kolejności alfabetycznej.
 author: v-condav
 ms.author: v-condav
 ms.date: 01/27/2021
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: b4cdeca81c157934e35a219cd5535ec38f2c0746
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 686db68181e3712f9f6a09a9f471626eff610fd7f45ec5b83ba56f8b7aa378cc
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821708"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116798014"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-duo-ptp-client-services"></a>Rozdział 3 — Opis usługi Azure RTO NetX Duo PTP Client Services
+# <a name="chapter-3---description-of-azure-rtos-netx-duo-ptp-client-services"></a>Rozdział 3 — opis Azure RTOS klienta NetX Duo PTP
 
-Ten rozdział zawiera opis wszystkich usług klienta PTP NetX Duo (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług klienckich NetX Duo PTP (wymienionych poniżej) w kolejności alfabetycznej.
 
 [!NOTE]
-> *W sekcji **wartości zwracane** w poniższych opisach funkcji interfejsu API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.*
+> *W sekcji **Wartości** zwracane w poniższych opisach funkcji interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości z pogrubieniem, podczas gdy wartości bez pogrubienia są całkowicie wyłączone.*
 
 ## <a name="nx_ptp_client_create"></a>nx_ptp_client_create
 
-Utwórz wystąpienie klienta programu PTP.
+Utwórz wystąpienie klienta PTP.
 
 ### <a name="prototype"></a>Prototype
 
@@ -40,12 +40,12 @@ UINT nx_ptp_client_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wystąpienie klienta programu PTP.
+Ta usługa tworzy wystąpienie klienta PTP.
 
-Należy pamiętać, że aplikacja musi najpierw utworzyć wystąpienie IP i pulę pakietów dla klienta protokołu PTP do przesyłania pakietów. W przypadku puli pakietów aplikacja może używać tej samej puli pakietów w wystąpieniu IP. lub można utworzyć dedykowaną pulę pakietów dla klienta PTP.  Rozwiązanie dedykowanej puli pakietów ma zalety używania małych pakietów (128 bajtów pakietów, jeśli używany jest protokół IPv6 lub 108 bajtów tylko dla protokołu IPv4).
+Należy pamiętać, że aplikacja musi najpierw utworzyć wystąpienie adresu IP i pulę pakietów dla klienta PTP w celu przesyłania pakietów. W przypadku puli pakietów aplikacja może używać tej samej puli pakietów w wystąpieniu adresu IP; lub może utworzyć dedykowaną pulę pakietów dla klienta PTP.  Zaletą metody dedykowanej puli pakietów jest użycie małych pakietów (128 bajtów, jeśli jest używany protokół IPv6, lub 108 bajtów tylko dla protokołu IPv4).
 
 ### <a name="input-parameters"></a>Parametry wejściowe
-* **client_ptr** Wskaźnik do programu PTP Client do utworzenia
+* **client_ptr** Wskaźnik do klienta PTP do utworzenia
 * **ip_ptr** Wskaźnik do wystąpienia adresu IP
 * **interface_index** Indeks interfejsu sieciowego PTP
 * **packet_pool_ptr** Wskaźnik do puli pakietów klienta
@@ -56,11 +56,11 @@ Należy pamiętać, że aplikacja musi najpierw utworzyć wystąpienie IP i pul�
 * **clock_callback_data** Dane dla wywołania zwrotnego zegara
 
 ### <a name="return-values"></a>Wartości zwrócone
-* Pomyślnie utworzono klienta **NX_SUCCESS** (0x00)
-* Ładunek pakietu **NX_PTP_CLIENT_INSUFFICIENT_PACKET_PAYLOAD** (0xD04) jest za mały
-* Błąd wywołania zwrotnego zegara **NX_PTP_CLIENT_CLOCK_CALLBACK_FAILURE** (0xD05)
-* **stan** Kończenie stanu NetX Duo i wywołań usługi ThreadX
-* NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+* **NX_SUCCESS** (0x00) Pomyślnie utworzono klienta
+* **NX_PTP_CLIENT_INSUFFICIENT_PACKET_PAYLOAD** (0xD04) Ładunek pakietu jest za mały
+* **NX_PTP_CLIENT_CLOCK_CALLBACK_FAILURE** (0xD05) przy wywołaniu zwrotnym zegara
+* **stan** Uzupełnianie stanu wywołań usług NetX Duo i ThreadX
+* NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 * NX_INVALID_INTERFACE (0x4C) Nieprawidłowy interfejs
 
 ### <a name="allowed-from"></a>Dozwolone z
@@ -78,7 +78,7 @@ status = nx_ptp_client_create(&ptp_client, &ip_0, 0, &pool_0,
 
 ## <a name="nx_ptp_client_delete"></a>nx_ptp_client_delete
 
-Usuwa wystąpienie klienta programu PTP.
+Usuwa wystąpienie klienta PTP.
 
 ### <a name="prototype"></a>Prototype
 
@@ -88,14 +88,14 @@ UINT nx_ptp_client_delete(NX_PTP_CLIENT *client_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wystąpienie klienta programu PTP.
+Ta usługa usuwa wystąpienie klienta PTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
-* **client_ptr** Wskaźnik do usunięcia klienta programu PTP
+* **client_ptr** Wskaźnik do klienta PTP do usunięcia
 
 ### <a name="return-values"></a>Wartości zwrócone
-* Pomyślnie usunięto klienta **NX_SUCCESS** (0x00)
-* NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+* **NX_SUCCESS** (0x00) Pomyślnie usunięto klienta
+* NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 Wątki
@@ -110,7 +110,7 @@ status = nx_ptp_client_delete(&ptp_client);
 
 ## <a name="nx_ptp_client_master_info_get"></a>nx_ptp_client_master_info_get
 
-Pobierz informacje o zegarze głównym.
+Pobierz informacje zegara głównego.
 
 ### <a name="prototype"></a>Prototype
 
@@ -131,26 +131,26 @@ UINT nx_ptp_client_master_info_get(
 ```
 
 ### <a name="description"></a>Opis
-Ta usługa pobiera informacje o zegarze głównym. Blok kontroli wzorca jest przesyłany do aplikacji użytkownika za pomocą funkcji wywołania zwrotnego zdarzenia.
+Ta usługa pobiera informacje o zegarze głównym. Główny blok sterowania jest przekazywany do aplikacji użytkownika za pośrednictwem funkcji wywołania zwrotnego zdarzeń.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
-* **master_ptr** Wskaźnik do zegara wzorca PTP
+* **master_ptr** Wskaźnik do zegara głównego PTP
 * **adres** Adres zegara głównego
-* **port_identity** Port i tożsamość wzorca PTP
-* **port_identity_length** Długość portu i tożsamości wzorca PTP
-* **priority1** Priority1 zegara głównego programu PTP
-* **priority2** Priority2 zegara głównego programu PTP
-* **clock_class** Klasa zegara głównego programu PTP
-* **clock_accuracy** Dokładność zegara wzorca PTP
-* **clock_variance** WARIANCJA zegara głównego programu PTP
-* **grandmaster_identity** Tożsamość zegara Grandmaster
-* **grandmaster_identity_length** Długość tożsamości Grandmaster
+* **port_identity** Główny port i tożsamość PTP
+* **port_identity_length** Długość portu głównego PTP i tożsamości
+* **priority1** Priority1 zegara głównego PTP
+* **priority2** Priority2 zegara głównego PTP
+* **clock_class** Klasa zegara głównego PTP
+* **clock_accuracy** Dokładność zegara głównego PTP
+* **clock_variance** Wariancja zegara głównego PTP
+* **grandmaster_identity** Tożsamość zegara arcymastera
+* **grandmaster_identity_length** Długość tożsamości arcymastera
 * **steps_removed** Kroki usunięte z nagłówka PTP
-* **time_source** Źródło czasomierza używane przez zegar Grandmaster
+* **time_source** Źródło czasomierza używanego przez zegar arcykapłanowy
 
 ### <a name="return-values"></a>Wartości zwrócone
-* **NX_SUCCESS** (0x00) pomyślnie Pobierz informacje o zegarze głównym
-* NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+* **NX_SUCCESS** (0x00) Pomyślnie pobierz informacje o zegarze głównym
+* NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 Wątki
@@ -194,7 +194,7 @@ UCHAR time_source;
 
 ## <a name="nx_ptp_client_packet_timestamp_notify"></a>nx_ptp_client_packet_timestamp_notify
 
-Powiadamiaj klienta PTP o sygnaturze czasowej pakietu.
+Powiadom klienta PTP o sygnaturze czasowej pakietu.
 
 ### <a name="prototype"></a>Prototype
 
@@ -206,10 +206,10 @@ VOID nx_ptp_client_packet_timestamp_notify(
 ```
 
 ### <a name="description"></a>Opis
-Ta usługa powiadamia klienta programu PTP o tym, że pakiet jest przesyłany z sygnaturą czasową. Ta usługa jest przeznaczona dla sterownika sieci i wywoływana podczas przesyłania pakietu. Sygnatura czasowa jest zwykle generowana przez sprzęt.
+Ta usługa powiadamia klienta PTP, że pakiet jest przesyłany ze znacznikiem czasu. Ta usługa jest przeznaczona dla sterownika sieciowego i wywoływana podczas transmitowania pakietu. Sygnatura czasowa jest zwykle generowana przez sprzęt.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
-* **client_ptr** Wskaźnik do programu PTP Client do utworzenia
+* **client_ptr** Wskaźnik do klienta PTP do utworzenia
 * **packet_ptr** Wskaźnik do przesyłanego pakietu PTP
 * **timestamp_ptr** Wskaźnik do sygnatury czasowej pakietu PTP
 
@@ -227,7 +227,7 @@ nx_ptp_client_packet_timestamp_notify(client_ptr, packet_ptr, &ts);
 
 ## <a name="nx_ptp_client_soft_clock_callback"></a>nx_ptp_client_soft_clock_callback
 
-Implementacja oprogramowania zegara protokołu PTP.
+Implementacja oprogramowania zegara PTP.
 
 ### <a name="prototype"></a>Prototype
 
@@ -241,28 +241,28 @@ UINT nx_ptp_client_soft_clock_callback(
 ```
 
 ### <a name="description"></a>Opis
-Ta funkcja wywołania zwrotnego służy jako symulowane Źródło zegara niskiej rozdzielczości dla programu PTP. Ta procedura jest udostępniana jako odwołanie i nie może być używana w środowisku produkcyjnym.
+Ta funkcja wywołania zwrotnego służy jako symulowane źródło zegara o niskiej rozdzielczości dla PTP. Ta procedura jest dostarczana jako odwołanie i nie można jej używać w środowisku produkcyjnym.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
-* **client_ptr** Wskaźnik do programu PTP Client do utworzenia
-* **operacja** Operacja wywołania zwrotnego, prawidłowe wartości są zdefiniowane jako:
-  * **NX_PTP_CLIENT_CLOCK_INIT** Zainicjuj zegar.
-  * **NX_PTP_CLIENT_CLOCK_SET** Ustaw bieżącą sygnaturę czasową określoną przez `time_ptr` .
-  * **NX_PTP_CLIENT_CLOCK_GET** Zwróć bieżącą sygnaturę czasową do `time_ptr` .
-  * **NX_PTP_CLIENT_CLOCK_PACKET_TS_EXTRACT** Wyodrębnij sygnaturę czasową z `packet_ptr` do `time_ptr` .
-  * **NX_PTP_CLIENT_CLOCK_ADJUST** Dostosuj bieżącą sygnaturę czasową mniejszą niż *1* sekunda.
-  * **NX_PTP_CLIENT_CLOCK_PACKET_TS_PREPARE** Oznacz, `packet_ptr` które są wymagane do powiadomienia klienta PTP o sygnaturze czasowej podczas przesyłania.
-  * **NX_PTP_CLIENT_CLOCK_SOFT_TIMER_UPDATE** Aktualizuj czasomierz elastyczny. Może być ignorowany przez zegar sprzętu.
-* **time_ptr** Wskaźnik do sygnatury czasowej.
+* **client_ptr** Wskaźnik do klienta PTP do utworzenia
+* **operacja** Operacja wywołania zwrotnego prawidłowe wartości są zdefiniowane jako:
+  * **NX_PTP_CLIENT_CLOCK_INIT** Zaimicjuj zegar.
+  * **NX_PTP_CLIENT_CLOCK_SET** Ustaw bieżący znacznik czasu określony przez `time_ptr` .
+  * **NX_PTP_CLIENT_CLOCK_GET** Zwróć bieżący znacznik czasu do `time_ptr` .
+  * **NX_PTP_CLIENT_CLOCK_PACKET_TS_EXTRACT** Wyodrębnij znacznik czasu z `packet_ptr` do `time_ptr` .
+  * **NX_PTP_CLIENT_CLOCK_ADJUST** Dostosuj bieżący znacznik czasu krótszy niż *1* sekundę.
+  * **NX_PTP_CLIENT_CLOCK_PACKET_TS_PREPARE** Oznacz znacznik , który wymaga powiadomienia klienta PTP o `packet_ptr` sygnaturze czasowej, gdy jest przesyłany.
+  * **NX_PTP_CLIENT_CLOCK_SOFT_TIMER_UPDATE** Aktualizowanie czasomierza nie czasomierza. Można ją zignorować za pomocą zegara sprzętowego.
+* **time_ptr** Wskaźnik do znacznika czasu.
 * **packet_ptr** Wskaźnik do pakietu.
-* **callback_data** Wskaźnik na nieprzezroczyste dane wywołania zwrotnego.
+* **callback_data** Wskaźnik do nieprzezroczystych danych wywołania zwrotnego.
 
 ### <a name="return-values"></a>Wartości zwrócone
-* Operacja **NX_SUCCESS** (0x00) zakończyła się pomyślnie
-* **NX_PTP_PARAM_ERROR** (0XD03) nieprawidłowy parametr
+* **NX_SUCCESS** (0x00) Pomyślnie
+* **NX_PTP_PARAM_ERROR** (0xD03) Nieprawidłowy parametr
 
 ### <a name="allowed-from"></a>Dozwolone z
-Wewnętrzne PTP
+PTP wewnętrzne
 
 ### <a name="example"></a>Przykład
 ```C/* Create the PTP client instance */
@@ -291,22 +291,22 @@ UINT nx_ptp_client_start(
 ```
 
 ### <a name="description"></a>Opis
-Ta usługa uruchamia wcześniej utworzone wystąpienie klienta programu PTP.
+Ta usługa uruchamia utworzone wcześniej wystąpienie klienta PTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
-* **client_ptr** Wskaźnik do programu PTP Client do utworzenia
-* **client_port_identity_ptr** Wskaźnik do portu i tożsamości klienta, może mieć wartość NULL
-* **client_port_identity_length** Długość portu i tożsamości klienta. Musi mieć wartość 0, jeśli client_port_identity_ptr ma wartość NULL lub NX_PTP_CLOCK_PORT_IDENTITY_SIZE (10)
+* **client_ptr** Wskaźnik do klienta PTP do utworzenia
+* **client_port_identity_ptr** Wskaźnik do portu klienta i tożsamości, może mieć wartość NULL
+* **client_port_identity_length** Długość portu i tożsamości klienta. Musi być 0, jeśli client_port_identity_ptr ma wartość NULL lub NX_PTP_CLOCK_PORT_IDENTITY_SIZE (10)
 * **domena** Domena zegara PTP
-* **transport_specific** 4 bity specyficzne dla transportu
-* **event_callback** Wywołana funkcja wywołania zwrotnego dla zdarzenia
-* **event_callback_data** Dane wywołania zwrotnego zdarzenia
+* **transport_specific** 4 bity specyficznego dla transportu
+* **event_callback** Wywoływana funkcja wywołania zwrotnego w przypadku zdarzenia
+* **event_callback_data** Dane dla wywołania zwrotnego zdarzenia
 
 ### <a name="return-values"></a>Wartości zwrócone
-* **NX_SUCCESS** (0x00) — pomyślnie uruchomiono klienta
-* Klient PTP **NX_PTP_CLIENT_ALREADY_STARTED** (0xD02) jest już uruchomiony
-* **stan** Kończenie stanu NetX Duo i wywołań usługi ThreadX
-* NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+* **NX_SUCCESS** (0x00) Client successfully started
+* **NX_PTP_CLIENT_ALREADY_STARTED** (0xD02) PTP client already started
+* **stan** Uzupełnianie stanu wywołań usług NetX Duo i ThreadX
+* NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 Wątki
@@ -320,7 +320,7 @@ status = nx_ptp_client_start(&ptp_client, NX_NULL, 0, 0, 0, ptp_event_callback, 
 
 ## <a name="nx_ptp_client_stop"></a>nx_ptp_client_stop
 
-Zatrzymaj klienta PTP.  Po zatrzymaniu klienta programu PTP nie przetwarza on pakietów PTP ani nie przesyła pakietów PTP.
+Zatrzymaj klienta PTP.  Po zatrzymaniu klienta PTP nie przetwarza pakietów PTP ani nie przesyła pakietów PTP.
 
 ### <a name="prototype"></a>Prototype
 
@@ -329,15 +329,15 @@ UINT nx_ptp_client_stop(NX_PTP_CLIENT *client_ptr);
 ```
 
 ### <a name="description"></a>Opis
-Ta usługa przerywa poprzednio utworzone i uruchomione wystąpienie klienta programu PTP.
+Ta usługa zatrzymuje utworzone wcześniej i uruchomione wystąpienie klienta PTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
-* **client_ptr** Wskaźnik do zatrzymania klienta programu PTP
+* **client_ptr** Wskaźnik do klienta PTP do zatrzymania
 
 ### <a name="return-values"></a>Wartości zwrócone
-* **NX_SUCCESS** (0X00) klient został pomyślnie zatrzymany
-* Klient **NX_PTP_CLIENT_NOT_STARTED** (0xD01) nie został uruchomiony
-* NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+* **NX_SUCCESS** (0x00) Client successfully stopped (Klient usługi 0x00) został pomyślnie zatrzymany
+* **NX_PTP_CLIENT_NOT_STARTED** (0xD01) Klient nie został uruchomiony
+* NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 Wątki
@@ -363,16 +363,16 @@ UINT nx_ptp_client_sync_info_get(
 ```
 
 ### <a name="description"></a>Opis
-Ta usługa pobiera informacje o komunikacie synchronizacji. Blok kontroli synchronizacji jest przesyłany do aplikacji użytkownika za pomocą funkcji wywołania zwrotnego zdarzenia.
+Ta usługa pobiera informacje o komunikacie synchronizacji. Blok kontroli synchronizacji jest przekazywany do aplikacji użytkownika za pośrednictwem funkcji wywołania zwrotnego zdarzeń.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
-* **client_ptr** Wskaźnik do programu PTP Client do utworzenia
+* **client_ptr** Wskaźnik do klienta PTP do utworzenia
 * **flagi** Flagi w komunikacie synchronizacji
-* **utc_offset** Przesunięcie między TAI i UTC
+* **utc_offset** Przesunięcie między wartościami TAI i UTC
 
 ### <a name="return-values"></a>Wartości zwrócone
-* **NX_SUCCESS** (0x00) pomyślnie Pobierz informacje o synchronizacji
-* NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+* **NX_SUCCESS** (0x00) Pomyślnie pobierz informacje o synchronizacji
+* NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 Wątki
@@ -400,7 +400,7 @@ USHORT utc_offset;
 
 ## <a name="nx_ptp_client_time_get"></a>nx_ptp_client_time_get
 
-Pobierz bieżącą godzinę.
+Pobierz bieżącą czas.
 
 ### <a name="prototype"></a>Prototype
 
@@ -411,15 +411,15 @@ UINT nx_ptp_client_time_get(
 ```
 
 ### <a name="description"></a>Opis
-Ta usługa pobiera bieżącą wartość zegara PTP. Jest on dostępny niezależnie od tego, że klient PTP jest synchronizowany z zegarem głównym.
+Ta usługa pobiera bieżącą wartość zegara PTP. Jest on dostępny niezależnie od tego, czy klient PTP jest synchronizowany z zegarem głównym, czy nie.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
-* **client_ptr** Wskaźnik do programu PTP Client do utworzenia
+* **client_ptr** Wskaźnik do klienta PTP do utworzenia
 * **time_ptr** Wskaźnik do czasu PTP
 
 ### <a name="return-values"></a>Wartości zwrócone
-* Pomyślnie utworzono klienta **NX_SUCCESS** (0x00)
-* NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+* NX_SUCCESS (0x00) Client successfully created (Pomyślnie utworzono klienta programu **0x00)**
+* NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 Wątki
@@ -432,7 +432,7 @@ nx_ptp_client_time_get(&ptp_client, &tm);
 
 ## <a name="nx_ptp_client_time_set"></a>nx_ptp_client_time_set
 
-Ustaw bieżącą godzinę.
+Ustaw bieżącą wartość czasu.
 
 ### <a name="prototype"></a>Prototype
 
@@ -443,16 +443,16 @@ UINT nx_ptp_client_time_set(
 ```
 
 ### <a name="description"></a>Opis
-Ta usługa ustawia bieżącą wartość zegara PTP. Musi być wywoływana przed uruchomieniem klienta PTP.
+Ta usługa ustawia bieżącą wartość zegara PTP. Należy go wywołać przed rozpoczęciem klienta PTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
-* **client_ptr** Wskaźnik do programu PTP Client do utworzenia
+* **client_ptr** Wskaźnik do klienta PTP do utworzenia
 * **time_ptr** Wskaźnik do czasu PTP
 
 ### <a name="return-values"></a>Wartości zwrócone
-* Pomyślnie utworzono klienta **NX_SUCCESS** (0x00)
-* Klient PTP **NX_PTP_CLIENT_ALREADY_STARTED** (0xD02) jest już uruchomiony
-* NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+* NX_SUCCESS (0x00) Client successfully created (Pomyślnie utworzono klienta programu **0x00)**
+* **NX_PTP_CLIENT_ALREADY_STARTED** (0xD02) PTP client already started
+* NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 Wątki
@@ -465,7 +465,7 @@ status = nx_ptp_client_time_set(&ptp_client, &tm);
 
 ## <a name="nx_ptp_client_utility_convert_time_to_date"></a>nx_ptp_client_utility_convert_time_to_date
 
-Konwertuj czas PTP na datę i godzinę UTC.
+Przekonwertuj czas PTP na datę i czas UTC.
 
 ### <a name="prototype"></a>Prototype
 
@@ -477,17 +477,17 @@ UINT nx_ptp_client_utility_convert_time_to_date(
 ```
 
 ### <a name="description"></a>Opis
-Ta usługa konwertuje czas PTP na datę i godzinę UTC.
+Ta usługa konwertuje czas PTP na datę i godzina UTC.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 * **time_ptr** Wskaźnik do czasu PTP
-* **przesunięcie** Drugie przesunięcie podpisane w celu dodania czasu PTP
-* **date_time_ptr** Wskaźnik do daty wyników
+* **przesunięcie** Drugie przesunięcie ze podpisem w celu dodania czasu PTP
+* **date_time_ptr** Wskaźnik do wynikowej daty
 
 ### <a name="return-values"></a>Wartości zwrócone
-* Pomyślnie utworzono klienta **NX_SUCCESS** (0x00)
-* **Wskaźnik do daty otrzymanej** (0XD03) nieprawidłowy parametr wejściowy
-* NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+* NX_SUCCESS (0x00) Client successfully created (Pomyślnie utworzono klienta programu **0x00)**
+* **Wskaźnik do wynikowej daty** (0xD03) Nieprawidłowy parametr wejściowy
+* NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 Wątki
@@ -502,7 +502,7 @@ status = nx_ptp_client_utility_convert_time_to_date(&tm, -ptp_utc_offset, &date)
 
 ## <a name="nx_ptp_client_utility_time_diff"></a>nx_ptp_client_utility_time_diff
 
-Dwa razy.
+Różnica dwóch razy PTP.
 
 ### <a name="prototype"></a>Prototype
 
@@ -522,8 +522,8 @@ Ta usługa oblicza różnicę między dwoma czasami PTP.
 * **result_ptr** Wskaźnik do wyniku time1-time2
 
 ### <a name="return-values"></a>Wartości zwrócone
-* Pomyślnie utworzono klienta **NX_SUCCESS** (0x00)
-* NX_PTR_ERROR (0x07) nieprawidłowy parametr wskaźnika wejściowego
+* NX_SUCCESS (0x00) Client successfully created (Pomyślnie utworzono klienta programu **0x00)**
+* NX_PTR_ERROR (0x07) Nieprawidłowy parametr wskaźnika wejściowego
 
 ### <a name="allowed-from"></a>Dozwolone z
 Wątki

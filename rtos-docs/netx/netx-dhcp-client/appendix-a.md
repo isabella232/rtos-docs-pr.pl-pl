@@ -1,33 +1,33 @@
 ---
-title: Dodatek A — opis funkcji przywracania stanu
-description: Opcja konfiguracji klienta usługi Azure RTO NetX DHDP, NX_DHCP_CLIENT_RESTORE_STATE umożliwia systemowi przywrócenie utworzonego wcześniej rekordu klienta DHCP w stanie związanym między ponownymi uruchomieniami systemu.
+title: Dodatek A — opis funkcji stanu przywracania
+description: Opcja Azure RTOS konfiguracji klienta DHDP NetX, NX_DHCP_CLIENT_RESTORE_STATE, umożliwia systemowi przywrócenie wcześniej utworzonego rekordu klienta DHCP w stanie Powiązana między ponownymi uruchomieniami systemu.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: be8b5dc4885951bee3dba38af6fe5e21b81aa767
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 4b7286726eb6bfc666ba7a4b9983847da442fe212a45f4b28e184f70cf46e2b4
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822711"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116801244"
 ---
-# <a name="appendix-a---description-of-the-restore-state-feature"></a>Dodatek A — opis funkcji przywracania stanu
+# <a name="appendix-a---description-of-the-restore-state-feature"></a>Dodatek A — opis funkcji stanu przywracania
 
-Opcja konfiguracji klienta usługi Azure RTO NetX DHDP, NX_DHCP_CLIENT_RESTORE_STATE umożliwia systemowi przywrócenie utworzonego wcześniej rekordu klienta DHCP w stanie związanym między ponownymi uruchomieniami systemu.
+Opcja Azure RTOS konfiguracji klienta DHDP NetX, NX_DHCP_CLIENT_RESTORE_STATE, umożliwia systemowi przywrócenie wcześniej utworzonego rekordu klienta DHCP w stanie Powiązana między ponownymi uruchomieniami systemu.
 
-Gdy ta opcja jest włączona, aplikacja może wstrzymywać i wznawiać wątek klienta DHCP. Istnieje również usługa do aktualizowania klienta DHCP z upływem czasu między wstrzymaniem i wznowieniem wątku.
+Po włączeniu tej opcji aplikacja może wstrzymać i wznowić wątek klienta DHCP. Istnieje również usługa aktualizowania klienta DHCP o czas, który upłynął między wstrzymaniem i wznowienie wątku.
 
 ## <a name="restoring-the-dhcp-client-between-reboots"></a>Przywracanie klienta DHCP między ponownymi uruchomieniami
 
-Przed przystąpieniem do przywracania klienta DHCP po ponownym uruchomieniu komputera został wcześniej utworzony klient DHCP, który musi dotrzeć do powiązanego stanu i ma przypisany adres IP z serwera DHCP. Zanim będzie to możliwe, aplikacja DHCP musi zapisać bieżący rekord klienta DHCP w pamięci nieulotnej. W systemie musi być również niezależny opiekun czasowy, aby śledzić czas, który upłynął podczas tego stanu zasilania. W przypadku włączania aplikacji tworzy nowe wystąpienie klienta DHCP, a następnie aktualizuje je przy użyciu utworzonego wcześniej rekordu klienta DHCP. Czas, który upłynął, jest uzyskiwany z "czasu opiekuna", a następnie stosowany do pozostałego czasu dzierżawy klienta DHCP. Należy zauważyć, że może to spowodować zmianę Stanów przez klienta DHCP, np. z powiązanym z ODNAWIAniem. W tym momencie aplikacja może wznowić działanie klienta DHCP.
+Przed przywróceniem klienta DHCP po ponownym uruchomieniu, wcześniej utworzony klient DHCP, który musi osiągnąć stan Powiązana i ma przypisany adres IP z serwera DHCP. Zanim aplikacja DHCP zostanie wyzjemnia, musi zapisać bieżący rekord klienta DHCP w pamięci trwałej. Musi być również niezależny "strażnik czasu" w innym miejscu w systemie, aby śledzić czas, który upłynął podczas tego stanu wyłączonych zasilania. W przypadku zasilania aplikacja tworzy nowe wystąpienie klienta DHCP, a następnie aktualizuje je przy użyciu wcześniej utworzonego rekordu klienta DHCP. Upłynął czas uzyskany od "strażnika czasu", a następnie zastosowany do czasu pozostałego w dzierżawie klienta DHCP. Należy pamiętać, że może to spowodować, że klient DHCP zmieni stany, np. z POWIĄZANA na ODNAWIANIE. W tym momencie aplikacja może wznowić działanie klienta DHCP.
 
-Jeśli czas, który upłynął podczas włączania usługi, powoduje, że stan klienta DHCP w stanie ODNOWIENIa lub ponownego powiązania, klient DHCP automatycznie inicjuje komunikaty DHCP żądające odnowienia lub ponownego powiązania dzierżawy adresu IP. Jeśli adres IP wygasł, klient DHCP automatycznie wyczyści adres IP w wystąpieniu IP i rozpocznie proces DHCP ze stanu INIT, żądając nowego adresu IP.
+Jeśli czas, który upłynął podczas zasilania, ustawia stan klienta DHCP w stanie RENEW lub REBIND, klient DHCP automatycznie zainicjuje komunikaty DHCP żądające odnowienia lub ponownego połączenia dzierżawy adresu IP. Jeśli adres IP wygasł, klient DHCP automatycznie wyczyści adres IP w wystąpieniu adresu IP i rozpocznie proces DHCP od stanu INIT, żądając nowego adresu IP.
 
-W ten sposób klient DHCP może działać między ponownymi uruchomieniami tak, jakby nie został przerwany.
+W ten sposób klient DHCP może działać między ponownymi uruchomieniami, tak jakby był nieprzerwany.
 
-Poniżej znajduje się ilustracja tej funkcji. To zakłada, że klient DHCP działa tylko w interfejsie podstawowym.
+Poniżej przedstawiono ilustrację tej funkcji. Przyjęto założenie, że klient DHCP jest uruchomiony tylko w interfejsie podstawowym.
 
 ```C
 /* On the power up, create an IP instance, DHCP Client, enable ICMP and UDP
@@ -101,13 +101,13 @@ else
 }
 ```
 
-## <a name="resuming-the-dhcp-client-thread-after-suspension"></a>Wznawianie wątku klienta DHCP po zawieszeniu 
+## <a name="resuming-the-dhcp-client-thread-after-suspension"></a>Wznawianie wątku klienta DHCP po wstrzymaniu 
 
-Aby wstrzymać wątek klienta DHCP bez wyłączania, aplikacja wywołuje *nx_dhcp_suspend* na kliencie DHCP, który osiągnął stan powiązany i ma prawidłowy adres IP. Gdy jest gotowy do wznowienia klienta DHCP, najpierw wywołuje *nx_dhcp_client_update_time_remaining* , aby zaktualizować pozostały czas w dzierżawie adresu DHCP (Uzyskiwanie czasu od niezależnego opiekuna). Następnie wywołuje *nx_dhcp_resume* , aby wznowić wątek klienta DHCP.
+Aby wstrzymać wątek klienta DHCP bez zasilania, aplikacja wywołuje nx_dhcp_suspend klienta DHCP, który osiągnął stan BOUND i który ma prawidłowy adres IP.  Gdy klient DHCP jest gotowy do wznowienia, najpierw wywołuje usługę *nx_dhcp_client_update_time_remaining* w celu zaktualizowania czasu pozostałego na dzierżawie adresu DHCP (uzyskanie czasu, który upłynął od niezależnego strażnika czasu). Następnie wywołuje on *nx_dhcp_resume,* aby wznowić wątek klienta DHCP.
 
-W przypadku przełączenia stanu klienta DHCP w stanie ODNOWIENIa lub ponownego powiązania klient DHCP automatycznie inicjuje komunikaty DHCP żądające odnowienia lub ponownego powiązania dzierżawy adresu IP. Jeśli adres IP wygasł, klient DHCP automatycznie wyczyści adres IP i rozpocznie proces DHCP ze stanu INIT, żądając nowego adresu IP.
+Jeśli upłynął czas, w którym stan klienta DHCP jest ustawiany w stanie RENEW lub REBIND, klient DHCP automatycznie zainicjuje komunikaty DHCP żądające odnowienia lub ponownego połączenia dzierżawy adresu IP. Jeśli adres IP wygasł, klient DHCP automatycznie wyczyści adres IP i rozpocznie proces DHCP ze stanu INIT, żądając nowego adresu IP.
 
-Poniżej znajduje się ilustracja przedstawiająca korzystanie z tej funkcji.
+Poniżej przedstawiono ilustrację użycia tej funkcji.
 
 ```C
 /* Create an IP instance, DHCP Client, enable ICMP and UDP
@@ -165,11 +165,11 @@ void    thread_dhcp_client_entry(ULONG thread_input)
 }
 ```
 
-Poniżej znajduje się lista usług służących do przywracania stanu klienta DHCP z pamięci oraz do wstrzymywania i wznawiania klienta DHCP.
+Poniżej znajduje się lista usług do przywracania stanu klienta DHCP z pamięci oraz do zawieszania i wznawiania klienta DHCP.
 
 ## <a name="nx_dhcp_client_get_record"></a>nx_dhcp_client_get_record
 
-Utwórz rekord bieżącego stanu klienta DHCP
+Tworzenie rekordu bieżącego stanu klienta DHCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -180,9 +180,9 @@ ULONG nx_dhcp_ client_get_record(NX_DHCP *dhcp_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia zapisanie klienta DHCP uruchomionego na pierwszym interfejsie z włączonym protokołem DHCP, który znajduje się w wystąpieniu klienta DHCP, do rekordu wskazywanego przez record_ptr. Dzięki temu aplikacja kliencka DHCP przywraca swój stan klienta DHCP po wystąpieniu programu, na przykład o wyłączeniu i ponownym uruchomieniu.
+Ta usługa zapisuje klienta DHCP uruchomionego na pierwszym interfejsie włączonym dla protokołu DHCP znalezionego w wystąpieniu klienta DHCP w rekordzie wskazywanym przez record_ptr. Dzięki temu aplikacja klienta DHCP może przywrócić swój stan klienta DHCP po na przykład przy zasilaniu i ponownym uruchomieniu.
 
-Aby zapisać rekord klienta DHCP w określonym interfejsie, jeśli dla usługi DHCP jest włączony więcej niż jeden interfejs, Użyj usługi *nx_dhcp_interface_client_get_record* .
+Aby zapisać rekord klienta DHCP w określonym interfejsie, jeśli dla protokołu DHCP jest włączony więcej niż *jeden interfejs,* użyj nx_dhcp_interface_client_get_record usługi.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -192,13 +192,13 @@ Aby zapisać rekord klienta DHCP w określonym interfejsie, jeśli dla usługi D
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Utworzono rekord klienta **NX_SUCCESS** (0x0)
+- **NX_SUCCESS** (0x0) Utworzony rekord klienta
 
-- Klient **NX_DHCP_NOT_BOUND** (0x94) nie jest powiązany
+- **NX_DHCP_NOT_BOUND** (0x94) Klient nie jest w stanie Powiązana
 
-- **NX_DHCP_NO_INTERFACES_ENABLED** (0XA5) brak włączonych interfejsów dla protokołu DHCP
+- **NX_DHCP_NO_INTERFACES_ENABLED** (0xA5) Brak włączonych interfejsów dla protokołu DHCP
 
-- **NX_PTR_ERROR** (0X16) nieprawidłowe dane wejściowe wskaźnika
+- **NX_PTR_ERROR** (0x16) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -218,7 +218,7 @@ status=  nx_dhcp_client_get_record(dhcp_ptr, &dhcp_record);
 
 ## <a name="nx_dhcp_interface_client_get_record"></a>nx_dhcp_interface_client_get_record
 
-Utwórz rekord bieżącego stanu klienta DHCP w określonym interfejsie
+Tworzenie rekordu bieżącego stanu klienta DHCP w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -229,23 +229,23 @@ ULONG nx_dhcp_interface_client_get_record(NX_DHCP *dhcp_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia zapisanie klienta DHCP działającego w określonym interfejsie do rekordu wskazywanego przez record_ptr. Dzięki temu aplikacja kliencka DHCP przywraca swój stan klienta DHCP po wystąpieniu programu, na przykład o wyłączeniu i ponownym uruchomieniu.
+Ta usługa zapisuje klienta DHCP uruchomionego w określonym interfejsie w rekordzie wskazywanym przez record_ptr. Dzięki temu aplikacja klienta DHCP może przywrócić swój stan klienta DHCP po na przykład przy zasilaniu i ponownym uruchomieniu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcp_ptr** Wskaźnik do klienta DHCP
 
-- **interface_index** Indeks, na którym ma zostać pobrany rekord
+- **interface_index** Indeks, na którym ma być rejestrowany rekord
 
 - **record_ptr** Wskaźnik do rekordu klienta DHCP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Utworzono rekord klienta **NX_SUCCESS** (0x0)
+- **NX_SUCCESS** (0x0) Utworzony rekord klienta
 
-- Klient **NX_DHCP_NOT_BOUND** (0x94) nie jest powiązany
+- **NX_DHCP_NOT_BOUND** (0x94) Klient nie jest w stanie Powiązana
 
-- **NX_DHCP_BAD_INTERFACE_INDEX_ERROR** (0X9A) Nieprawidłowy indeks interfejsu
+- **NX_DHCP_BAD_INTERFACE_INDEX_ERROR** (0x9A) Nieprawidłowy indeks interfejsu
 
 - NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik DHCP.
 
@@ -269,7 +269,7 @@ status=  nx_dhcp_interface_client_get_record(dhcp_ptr, 1, &dhcp_record);
 
 ## <a name="nx_dhcp_-client_restore_record"></a>nx_dhcp_ client_restore_record
 
-Przywróć klienta DHCP z wcześniej zapisanego rekordu
+Przywracanie klienta DHCP z wcześniej zapisanego rekordu
 
 ### <a name="prototype"></a>Prototype
 
@@ -280,11 +280,11 @@ ULONG nx_dhcp_client_restore_record(NX_DHCP *dhcp_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia aplikacji przywrócenie klienta DHCP z poprzedniej sesji przy użyciu rekordu klienta DHCP wskazywanego przez record_ptr. Dane wejściowe time_elapsed są stosowane do pozostałego czasu dzierżawy klienta DHCP.
+Ta usługa umożliwia aplikacji przywrócenie klienta DHCP z poprzedniej sesji przy użyciu rekordu klienta DHCP wskazywanego przez record_ptr. Dane time_elapsed są stosowane do czasu pozostałego w dzierżawie klienta DHCP.
 
-Wymaga to, aby aplikacja klienta DHCP utworzyła rekord klienta DHCP przed wyłączeniem i zapisała ten rekord w pamięci nieulotnej.
+Wymaga to, aby aplikacja klienta DHCP utworzyła rekord klienta DHCP przed jego zasilaniem i zapisała ten rekord w pamięci nieulotnej.
 
-Jeśli dla klienta DHCP jest włączony więcej niż jeden interfejs, ta usługa zostanie zastosowana do pierwszego prawidłowego interfejsu znalezionego w wystąpieniu klienta DHCP.
+Jeśli dla klienta DHCP jest włączony więcej niż jeden interfejs, ta usługa jest stosowana do pierwszego prawidłowego interfejsu znalezionego w wystąpieniu klienta DHCP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -292,15 +292,15 @@ Jeśli dla klienta DHCP jest włączony więcej niż jeden interfejs, ta usługa
 
 - **record_ptr** Wskaźnik do rekordu klienta DHCP
 
-- **time_elapsed** Czas odejmowania od pozostałego czasu dzierżawy w rekordzie wejściowego klienta
+- **time_elapsed** Czas do odjęcia od czasu dzierżawy pozostałego w wejściowym rekordzie klienta
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Przywrócono rekord klienta **NX_SUCCESS** (0x0)
+- **NX_SUCCESS** (0x0) Przywrócono rekord klienta
 
-- **NX_DHCP_NO_INTERFACES_ENABLED** (0XA5) Brak interfejsów z uruchomionym protokołem DHCP
+- **NX_DHCP_NO_INTERFACES_ENABLED** (0xA5) Brak interfejsów z uruchomionym serwerem DHCP
 
-- **NX_PTR_ERROR** (0X16) nieprawidłowe dane wejściowe wskaźnika
+- **NX_PTR_ERROR** (0x16) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -324,7 +324,7 @@ status=  nx_dhcp_client_restore_record(client_ptr, &dhcp_record, time_elapsed);
 
 ## <a name="nx_dhcp_interace_client_restore_record"></a>nx_dhcp_interace_client_restore_record
 
-Przywróć klienta DHCP z wcześniej zapisanego rekordu w określonym interfejsie
+Przywracanie klienta DHCP z wcześniej zapisanego rekordu w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -335,11 +335,11 @@ ULONG nx_dhcp_interface_client_restore_record(NX_DHCP *dhcp_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia aplikacji przywrócenie klienta DHCP w określonym interfejsie przy użyciu rekordu klienta DHCP wskazywanego przez record_ptr. Dane wejściowe time_elapsed są stosowane do pozostałego czasu dzierżawy klienta DHCP.
+Ta usługa umożliwia aplikacji przywrócenie klienta DHCP w określonym interfejsie przy użyciu rekordu klienta DHCP wskazywanego przez record_ptr. Dane time_elapsed są stosowane do czasu pozostałego w dzierżawie klienta DHCP.
 
-Wymaga to, aby aplikacja klienta DHCP utworzyła rekord klienta DHCP przed wyłączeniem i zapisała ten rekord w pamięci nieulotnej.
+Wymaga to, aby aplikacja klienta DHCP utworzyła rekord klienta DHCP przed jego zasilaniem i zapisała ten rekord w pamięci nieulotnej.
 
-Jeśli dla klienta DHCP jest włączony więcej niż jeden interfejs, ta usługa zostanie zastosowana do pierwszego prawidłowego interfejsu znalezionego w wystąpieniu klienta DHCP.
+Jeśli dla klienta DHCP jest włączony więcej niż jeden interfejs, ta usługa jest stosowana do pierwszego prawidłowego interfejsu znalezionego w wystąpieniu klienta DHCP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -347,15 +347,15 @@ Jeśli dla klienta DHCP jest włączony więcej niż jeden interfejs, ta usługa
 
 - **record_ptr** Wskaźnik do rekordu klienta DHCP
 
-- **time_elapsed** Czas odejmowania od pozostałego czasu dzierżawy w rekordzie wejściowego klienta
+- **time_elapsed** Czas do odjęcia od czasu dzierżawy pozostałego w wejściowym rekordzie klienta
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Przywrócono rekord klienta **NX_SUCCESS** (0x0)
+- **NX_SUCCESS** (0x0) Przywrócono rekord klienta
 
-- Klient **NX_DHCP_NOT_BOUND** (0x94) nie jest powiązany z adresem IP
+- **NX_DHCP_NOT_BOUND** (0x94) Klient nie jest powiązany z adresem IP
 
-- **NX_DHCP_BAD_INTERFACE_INDEX_ERROR** (0X9A) Nieprawidłowy indeks interfejsu
+- **NX_DHCP_BAD_INTERFACE_INDEX_ERROR** (0x9A) Nieprawidłowy indeks interfejsu
 
 - NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik DHCP.
 
@@ -384,7 +384,7 @@ status=  nx_dhcp_interface_client_restore_record(client_ptr, 0, &dhcp_record, ti
 
 ## <a name="nx_dhcp_-client_update_time_remaining"></a>nx_dhcp_ client_update_time_remaining
 
-Aktualizowanie pozostałego czasu na dzierżawie klienta DHCP
+Aktualizowanie czasu pozostałego do dzierżawy klienta DHCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -394,26 +394,26 @@ ULONG nx_dhcp_client_update_time_remaining(NX_DHCP *dhcp_ptr
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa aktualizuje pozostały czas w dzierżawie adresu IP klienta DHCP przy użyciu time_elapsed danych wejściowych pierwszego interfejsu włączonego dla protokołu DHCP w wystąpieniu klienta DHCP. Aplikacja musi wstrzymać wątek klienta DHCP przed użyciem tej usługi przy użyciu *nx_dhcp_suspend*. Po wywołaniu tej usługi aplikacja może wznowić wątek klienta DHCP, wywołując *nx_dhcp_resume*.
+Ta usługa aktualizuje czas pozostały w dzierżawie adresu IP klienta DHCP przy użyciu danych wejściowych time_elapsed pierwszego interfejsu włączonego dla protokołu DHCP znalezionego w wystąpieniu klienta DHCP. Aplikacja musi wstrzymać wątek klienta DHCP przed rozpoczęciem korzystania z tej usługi przy użyciu nx_dhcp_suspend *.* Po wywołaniu tej usługi aplikacja może wznowić wątek klienta DHCP, wywołując *nx_dhcp_resume*.
 
-Jest to przeznaczone dla aplikacji klienckich DHCP, które muszą wstrzymać wątek klienta DHCP przez pewien czas, a następnie zaktualizować pozostały czas dzierżawy adresu IP.
+Jest on przeznaczony dla aplikacji klienckich DHCP, które muszą zawiesić wątek klienta DHCP na okres czasu, a następnie zaktualizować pozostały czas dzierżawy adresu IP.
 
 > [!NOTE]
-> Ta usługa nie jest przeznaczona do użycia z *nx_dhcp_client_get_record* i *nx_dhcp_client_restore_record* opisanymi wcześniej). Te usługi zostały opisane wcześniej w tej sekcji.
+> Ta usługa nie jest przeznaczona do nx_dhcp_client_get_record *i* *nx_dhcp_client_restore_record* opisanych wcześniej). Te usługi zostały wcześniej opisane w tej sekcji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcp_ptr** Wskaźnik do klienta DHCP
 
-- **time_elapsed** Czas odejmowania od pozostałej części czasu dzierżawy adresu IP
+- **time_elapsed** Czas odejmowania od czasu pozostałego w dzierżawie adresu IP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x0) aktualizacja dzierżawy adresu IP klienta
+- **NX_SUCCESS** (0x0) Dzierżawa adresu IP klienta została zaktualizowana
 
-- **NX_DHCP_NO_INTERFACES_ENABLED** (0XA5) brak włączonych interfejsów dla protokołu DHCP
+- **NX_DHCP_NO_INTERFACES_ENABLED** (0xA5) Brak włączonych interfejsów dla protokołu DHCP
 
-- **NX_PTR_ERROR** (0X16) nieprawidłowe dane wejściowe wskaźnika
+- **NX_PTR_ERROR** (0x16) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -437,7 +437,7 @@ status=  nx_dhcp_client_update_time_remaining(client_ptr, time_elapsed);
 
 ## <a name="nx_dhcp_interface_client_update_time_remaining"></a>nx_dhcp_interface_client_update_time_remaining
 
-Zaktualizuj pozostały czas w dzierżawie klienta DHCP w określonym interfejsie
+Aktualizowanie czasu pozostałego w dzierżawie klienta DHCP w określonym interfejsie
 
 ### <a name="prototype"></a>Prototype
 
@@ -448,26 +448,26 @@ ULONG nx_dhcp_interface_client_update_time_remaining(NX_DHCP *dhcp_ptr,
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa aktualizuje pozostały czas w dzierżawie adresu IP klienta DHCP przy użyciu time_elapsed danych wejściowych w określonym interfejsie, jeśli ten interfejs jest włączony dla protokołu DHCP. Aplikacja musi wstrzymać wątek klienta DHCP przed użyciem tej usługi przy użyciu *nx_dhcp_suspend*. Po wywołaniu tej usługi aplikacja może wznowić wątek klienta DHCP, wywołując *nx_dhcp_resume*. Zwróć uwagę, że Wstrzymywanie i wznawianie wątku klienta DHCP ma zastosowanie do wszystkich interfejsów włączonych dla protokołu DHCP.
+Ta usługa aktualizuje czas pozostały w dzierżawie adresu IP klienta DHCP przy użyciu time_elapsed wejściowych dla określonego interfejsu, jeśli ten interfejs jest włączony dla protokołu DHCP. Aplikacja musi wstrzymać wątek klienta DHCP przed rozpoczęciem korzystania z tej usługi przy użyciu nx_dhcp_suspend *.* Po wywołaniu tej usługi aplikacja może wznowić wątek klienta DHCP, wywołując *nx_dhcp_resume*. Uwaga: wstrzymanie i wznowienie wątku klienta DHCP dotyczy wszystkich interfejsów włączonych dla protokołu DHCP.
 
-Jest to przeznaczone dla aplikacji klienckich DHCP, które muszą wstrzymać wątek klienta DHCP przez pewien czas, a następnie zaktualizować pozostały czas dzierżawy adresu IP.
+Jest on przeznaczony dla aplikacji klienckich DHCP, które muszą zawiesić wątek klienta DHCP na okres czasu, a następnie zaktualizować pozostały czas dzierżawy adresu IP.
 
 > [!NOTE] 
-> Ta usługa nie jest przeznaczona do użycia z *nx_dhcp_client_get_record* i *nx_dhcp_client_restore_record* opisanymi wcześniej). Te usługi zostały opisane wcześniej w tej sekcji.
+> Ta usługa nie jest przeznaczona do nx_dhcp_client_get_record *i* *nx_dhcp_client_restore_record* opisanych wcześniej). Te usługi zostały wcześniej opisane w tej sekcji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **dhcp_ptr** Wskaźnik do klienta DHCP
 
-- **interface_index** Indeks do interfejsu do zastosowania, który upłynął czas do
+- **interface_index** Indeks do interfejsu, do których ma być stosowane upłynął czas
 
-- **time_elapsed** Czas odejmowania od pozostałej części czasu dzierżawy adresu IP
+- **time_elapsed** Czas odejmowania od czasu pozostałego w dzierżawie adresu IP
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x0) aktualizacja dzierżawy adresu IP klienta
+- **NX_SUCCESS** (0x0) Dzierżawa adresu IP klienta została zaktualizowana
 
-- **NX_DHCP_BAD_INTERFACE_INDEX_ERROR** (0X9A) Nieprawidłowy indeks interfejsu
+- **NX_DHCP_BAD_INTERFACE_INDEX_ERROR** (0x9A) Nieprawidłowy indeks interfejsu
 
 - NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik DHCP.
 
@@ -504,11 +504,11 @@ ULONG nx_dhcp_suspend(NX_DHCP *dhcp_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wstrzymuje bieżący wątek klienta DHCP. Należy pamiętać, że w przeciwieństwie do *nx_dhcp_stop* nie ma zmiany stanu klienta DHCP, gdy ta usługa jest wywoływana.
+Ta usługa wstrzymuje bieżący wątek klienta DHCP. Należy *pamiętać, nx_dhcp_stop*, nie ma żadnych zmian stanu klienta DHCP, gdy ta usługa jest wywoływana.
 
-Ta usługa zawiesza serwer DHCP działa na wszystkich interfejsach włączonych dla protokołu DHCP.
+Ta usługa wstrzymuje działanie protokołu DHCP na wszystkich interfejsach włączonych dla protokołu DHCP.
 
-Aby zaktualizować stan klienta DHCP z upływem czasu, który upłynął podczas wstrzymania klienta DHCP, zobacz *nx_dhcp_client_update_time_remaining* opisany wcześniej. Aby wznowić wstrzymany wątek klienta DHCP, aplikacja powinna wywołać *nx_dhcp_resume*.
+Aby zaktualizować stan klienta DHCP z upływem czasu, gdy klient DHCP jest wstrzymany, zobacz *nx_dhcp_client_update_time_remaining* wcześniej. Aby wznowić wstrzymany wątek klienta DHCP, aplikacja powinna *wywołać* nx_dhcp_resume .
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -516,9 +516,9 @@ Aby zaktualizować stan klienta DHCP z upływem czasu, który upłynął podczas
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x0) wątek klienta jest zawieszony
+- **NX_SUCCESS** (0x0) Wątek klienta jest zawieszony
 
-- **NX_PTR_ERROR** (0X16) nieprawidłowe dane wejściowe wskaźnika
+- **NX_PTR_ERROR** (0x16) Nieprawidłowy wskaźnik wejściowy
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -536,7 +536,7 @@ status=  nx_dhcp_suspend(client_ptr);
 
 ## <a name="nx_dhcp_resume"></a>nx_dhcp_resume
 
-Wznów zawieszony wątek klienta DHCP
+Wznawianie zawieszonego wątku klienta DHCP
 
 ### <a name="prototype"></a>Prototype
 
@@ -545,9 +545,9 @@ ULONG nx_dhcp_resume(NX_DHCP *dhcp_ptr);
 ```
 ### <a name="description"></a>Opis
 
-Ta usługa wznawia zawieszony wątek klienta DHCP. Należy pamiętać, że po wznowieniu wątku klienta nie ma zmiany rzeczywistego stanu klienta DHCP. Aby zaktualizować pozostały czas dla dzierżawy adresu IP klienta DHCP z upływem czasu przed wywołaniem *nx_dhcp_resume*, zobacz *nx_dhcp_client_update_time_remaining* opisany wcześniej.
+Ta usługa wznawia wstrzymany wątek klienta DHCP. Należy pamiętać, że po wznowieniu wątku klienta nie ma zmian rzeczywistego stanu klienta DHCP. Aby zaktualizować czas pozostały w dzierżawie adresu IP klienta DHCP z upływem czasu przed wywołaniem nx_dhcp_resume *,* zobacz nx_dhcp_client_update_time_remaining *opisane* wcześniej.
 
-Ta usługa wznawia działanie protokołu DHCP na wszystkich interfejsach włączonych dla protokołu DHCP.
+Ta usługa wznawia działanie protokołu DHCP we wszystkich interfejsach z włączoną obsługą protokołu DHCP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -555,9 +555,9 @@ Ta usługa wznawia działanie protokołu DHCP na wszystkich interfejsach włącz
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x0) wątek klienta został wznowiony
+- **NX_SUCCESS** (0x0) Wątek klienta jest wznawiany
 
-- NX_PTR_ERROR (0x16) nieprawidłowe dane wejściowe wskaźnika
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 

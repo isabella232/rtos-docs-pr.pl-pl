@@ -1,54 +1,54 @@
 ---
-title: Rozdział 3 — Opis usług Azure RTO NetX Duo TFTP
+title: Rozdział 3 — Opis Azure RTOS NetX Duo TFTP
 description: Ten rozdział zawiera opis wszystkich usług NetX Duo TFTP (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: 56f0d8edb991fff6ae30b6411e375ace58c544f7
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: db7b7469bda02597db6428ecbf080b37a095413411eef2abefb1c4804d7bb1d3
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821612"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116799067"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-duo-tftp-services"></a>Rozdział 3 — Opis usług Azure RTO NetX Duo TFTP
+# <a name="chapter-3---description-of-azure-rtos-netx-duo-tftp-services"></a>Rozdział 3 — Opis Azure RTOS NetX Duo TFTP
 
 Ten rozdział zawiera opis wszystkich usług NetX Duo TFTP (wymienionych poniżej) w kolejności alfabetycznej. O ile nie określono inaczej, wszystkie usługi obsługują komunikację IPv6 i IPv4.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w poniższych  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości z pogrubieniem, a wartości bez pogrubienia są całkowicie wyłączone.
 
-- **nxd_tftp_client_file_open**: *Otwórz plik klienta TFTP*
+- **nxd_tftp_client_file_open:** *Otwórz plik klienta TFTP*
 
-- **nxd_tftp_client_create**: *Tworzenie wystąpienia klienta TFTP*
+- **nxd_tftp_client_create:** Tworzenie *wystąpienia klienta TFTP*
 
-- **nxd_tftp_client_delete**: *usuwanie wystąpienia klienta TFTP*
+- **nxd_tftp_client_delete:** Usuwanie *wystąpienia klienta TFTP*
 
-- **nxd_tftp_client_error_info_get**: *Uzyskiwanie informacji o błędzie klienta*
+- **nxd_tftp_client_error_info_get:** *uzyskiwanie informacji o błędzie klienta*
 
-- **nxd_tftp_client_file_close**: *Zamknij plik klienta*
+- **nxd_tftp_client_file_close:** Zamknij *plik klienta*
 
-- **nxd_tftp_client_file_open**: *Otwórz plik klienta*
+- **nxd_tftp_client_file_open:** Otwórz *plik klienta*
 
-- **nxd_tftp_client_file_read**: *Odczytaj blok z pliku klienta*
+- **nxd_tftp_client_file_read:** *odczytywanie bloku z pliku klienta*
 
-- **nxd_tftp_client_file_write**: *Zapisz blok do pliku klienta*
+- **nxd_tftp_client_file_write:** bloku *zapisu w pliku klienta*
 
-- **nxd_tftp_client_packet_allocate**: *Przydziel pakiet do zapisu pliku klienta*
+- **nxd_tftp_client_packet_allocate:** *przydzielanie pakietu do zapisu plików klienta*
 
-- **nxd_tftp_client_set_interface**: *Ustaw interfejs fizyczny dla żądań TFTP*
+- **nxd_tftp_client_set_interface:** *ustawianie interfejsu fizycznego dla żądań TFTP*
 
-- **nxd_tftp_server_create**: *Utwórz serwer TFTP*
+- **nxd_tftp_server_create:** tworzenie *serwera TFTP*
 
-- **nxd_tftp_server_delete**: *usuwanie serwera TFTP*
+- **nxd_tftp_server_delete:** Usuwanie *serwera TFTP*
 
-- **nxd_tftp_server_start**: *Uruchom serwer TFTP*
+- **nxd_tftp_server_start:** *uruchamianie serwera TFTP*
 
-- **nxd_tftp_server_stop**: *ZAtrzymywanie serwera TFTP*
+- **nxd_tftp_server_stop:** *zatrzymywanie serwera TFTP*
 
 > [!NOTE] 
-> Równoważne wszystkie usługi wymienione powyżej są dostępne w protokole IPv4 klienta i serwera NetX Duo, np. *nx_tftp_server_create* i *nx_tftp_client_file_open*. Na poniższych stronach znajdują się tylko opisy interfejsów API "Duo", np. usługi zaczynające się od *nxd_*. Jeśli określono NXD_ADDRESS \* dane wejściowe, odpowiednik interfejsu API protokołu IPv4 jest wywoływany dla danych wejściowych ulong. W przeciwnym razie nie ma żadnych różnic w korzystaniu z interfejsu API.
+> Odpowiedniki protokołu IPv4 wszystkich wymienionych powyżej usług są dostępne w klientach NetX Duo TFTP Client i Server, np. *nx_tftp_server_create* *i nx_tftp_client_file_open*. Na poniższych stronach znajdują się tylko opisy interfejsu API *"Duo",* np. usługi rozpoczynające się od nxd_ , . Jeśli określono NXD_ADDRESS \* danych wejściowych, równoważny interfejs API IPv4 wywołuje dane wejściowe ULONG. W przeciwnym razie nie ma różnicy w używaniu interfejsu API.
 
 ## <a name="nxd_tftp_client_create"></a>nxd_tftp_client_create
 
@@ -63,14 +63,14 @@ UINT nxd_tftp_client_create(NX_TFTP_CLIENT *tftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wystąpienie klienta TFTP dla utworzonego wcześniej wystąpienia adresu IP.
+Ta usługa tworzy wystąpienie klienta TFTP dla wcześniej utworzonego wystąpienia adresu IP.
 
 > [!IMPORTANT]
-> Aplikacja musi utworzyć określony adres IP i pulę pakietów, które zostały już utworzone. Ponadto należy włączyć protokół UDP przed wywołaniem tej usługi.
+> Aplikacja musi upewnić się, że podany adres IP i pula pakietów zostały już utworzone. Ponadto protokół UDP musi być włączony dla wystąpienia adresu IP przed wywołaniem tej usługi.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **tftp_client_ptr** Wskaźnik do bloku kontroli klienta TFTP.
+- **tftp_client_ptr** Wskaźnik do bloku sterowania klienta TFTP.
 
 - **tftp_client_name** Nazwa tego wystąpienia klienta TFTP
 
@@ -80,23 +80,23 @@ Ta usługa tworzy wystąpienie klienta TFTP dla utworzonego wcześniej wystąpie
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**(0X00) pomyślnie utworzono TFTP.
+- **NX_SUCCESS**(0x00) Pomyślne utworzenie TFTP.
 
-- **NX_TFTP_INVALID_IP_VERSION** (0X0C) nieprawidłowa lub nieobsługiwana wersja protokołu IP
+- **NX_TFTP_INVALID_IP_VERSION** (0x0C) Nieprawidłowa lub nieobsługiwana wersja adresu IP
 
 - **NX_TFTP_INVALID_SERVER_ADDRESS** (0x08) Odebrano nieprawidłowy adres IP serwera
 
-- Nie odebrano potwierdzenia serwera **NX_TFTP_NO_ACK_RECEIVED** (0x09)
+- **NX_TFTP_NO_ACK_RECEIVED** (0x09) Nie odebrano ACK serwera
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik adresu IP, puli lub TFTP.
+- NX_PTR_ERROR (0x16) Nieprawidłowy adres IP, pula lub wskaźnik TFTP.
 
-- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowe dane wejściowe bez wskaźnika
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -129,11 +129,11 @@ Ta usługa usuwa wcześniej utworzone wystąpienie klienta TFTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne usunięcie klienta TFTP.
+- **NX_SUCCESS** (0x00) Pomyślne usunięcie klienta TFTP.
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -151,7 +151,7 @@ status =  nxd_tftp_client_delete(&my_tftp_client);
 
 ## <a name="nxd_tftp_client_error_info_get"></a>nxd_tftp_client_error_info_get
 
-Pobierz informacje o błędzie klienta
+Uzyskiwanie informacji o błędzie klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -162,7 +162,7 @@ UINT nxd_tftp_client_error_info_get(NX_TFTP_CLIENT *tftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwraca kod ostatniego odebranego błędu i ustawia wskaźnik na wewnętrzny ciąg błędu klienta. W warunkach błędów użytkownik może wyświetlić ostatni błąd wysyłany przez serwer. Pusty ciąg błędu wskazuje, że błąd nie jest obecny.
+Ta usługa zwraca ostatni otrzymany kod błędu i ustawia wskaźnik na ciąg błędu wewnętrznego klienta. W warunkach błędu użytkownik może wyświetlić ostatni błąd wysłany przez serwer. Ciąg błędu o wartości null wskazuje, że nie ma żadnego błędu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -170,15 +170,15 @@ Ta usługa zwraca kod ostatniego odebranego błędu i ustawia wskaźnik na wewn�
 
 - **error_code** Wskaźnik do obszaru docelowego dla kodu błędu
 
-- **ERROR_STRING** Wskaźnik do miejsca docelowego dla ciągu błędu
+- **error_string** Wskaźnik do miejsca docelowego dla ciągu błędu
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0x00) powiodło się pobieranie informacji o błędzie TFTP.  
+- **NX_SUCCESS** (0x00) Uzyskać informacje o pomyślnym błędzie TFTP.  
 
 - NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik klienta TFTP.
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -196,7 +196,7 @@ status =  nxd_tftp_client_error_info_get(&my_tftp_client, &error_code,
 
 ## <a name="nxd_tftp_client_file_close"></a>nxd_tftp_client_file_close
 
-Zamknij plik klienta
+Zamykanie pliku klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -207,23 +207,23 @@ UINT nxd_tftp_client_file_close(NX_TFTP_CLIENT *tftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa zamyka poprzednio otwarty plik przez to wystąpienie klienta TFTP. W przypadku wystąpienia klienta TFTP może być otwarty tylko jeden plik naraz.
+Ta usługa zamyka wcześniej otwarty plik przez to wystąpienie klienta TFTP. Wystąpienie klienta TFTP może mieć tylko jeden plik otwarty na raz.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **tftp_client_ptr** Wskaźnik do wcześniej utworzonego wystąpienia klienta TFTP.
 
-- **ip_type** Wskaż, którego protokołu IP użyć. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
+- **ip_type** Wskaż protokół IP do użycia. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie zamknięto plik TFTP.
+- **NX_SUCCESS** (0x00) Pomyślne zamknięcie pliku TFTP.
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę.
 
-- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowa wejściowa niebędąca wskaźnikiem.
+- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowe dane wejściowe bez wskaźnika.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -240,7 +240,7 @@ status =  nxd_tftp_client_file_close(&my_tftp_client);
 
 ## <a name="nx_tftp_client_file_open"></a>nx_tftp_client_file_open
 
-Otwórz plik klienta TFTP
+Otwieranie pliku klienta TFTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -252,58 +252,58 @@ UINT nx_tftp_client_file_open(NX_TFTP_CLIENT *tftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa próbuje otworzyć określony plik na serwerze TFTP o określonym adresie IP. Plik zostanie otwarty na potrzeby odczytu lub zapisu. 
+Ta usługa próbuje otworzyć określony plik na serwerze TFTP pod określonym adresem IP. Plik zostanie otwarty do odczytu lub zapisu. 
 
 > [!NOTE] 
-> Jest to ograniczone tylko do pakietów IPv4 i jest przeznaczony do obsługi aplikacji NetX TFTP. Deweloperzy są zachęcani do przenoszenia aplikacji do korzystania z równorzędnej usługi "Duo" *nxd_tftp_client_file_open.*
+> Jest to ograniczone tylko do pakietów IPv4 i jest przeznaczone do obsługi aplikacji NetX TFTP. Zachęcamy deweloperów do przenoszenia aplikacji do odpowiednika "duetu" usługi *nxd_tftp_client_file_open.*
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **tftp_client_ptr** Wskaźnik do bloku sterowania TFTP.
 
-- **file_name** Nazwa pliku ASCII, zakończona zerem i z odpowiednimi informacjami o ścieżce.
+- **file_name** Nazwa pliku ASCII, zakończone z wartością NULL i z odpowiednimi informacjami o ścieżce.
 
 - **server_ip_address** Adres TFTP serwera.
 
-- **open_type** Typ żądania otwartego:
+- **open_type** Typ otwartego żądania:
 
   **NX_TFTP_OPEN_FOR_READ** (0x01)
 
   **NX_TFTP_OPEN_FOR_WRITE** (0x02)
 
-- **WAIT_OPTION** Określa, jak długo usługa będzie czekać na otwarcie pliku klienta TFTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **wait_option** Określa, jak długo usługa będzie czekać na otwarcie pliku klienta TFTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
 
-  **wartość limitu czasu** (0X00000001 przez 0xFFFFFFFE)
+  **wartość limitu czasu** (0x00000001 do 0xFFFFFFFE)
 
-  **TX_WAIT_FOREVER** (0xffffffff) 
+  **TX_WAIT_FOREVER** (0xFFFFFFFF) 
   
-  Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer TFTP odpowie na żądanie. 
+  Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się na czas nieokreślony, dopóki serwer TFTP nie odpowie na żądanie. 
   
-  Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera TFTP.
+  Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera TFTP.
 
-- **ip_type** Wskaż, którego protokołu IP użyć. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
+- **ip_type** Wskaż protokół IP do użycia. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne otwarcie pliku klienta
+- **NX_SUCCESS** (0x00) Pomyślnie otwarty plik klienta
 
-- Klient **NX_TFTP_NOT_CLOSED** (0xC3) ma już otwarty plik
+- **NX_TFTP_NOT_CLOSED** (0xC3) Klient ma już otwarty plik
 
 - **NX_INVALID_TFTP_SERVER_ADDRESS** (0x08) Odebrano nieprawidłowy adres serwera
 
-- **NX_TFTP_NO_ACK_RECEIVED** (0X09) nie odebrano potwierdzenia z serwera
+- **NX_TFTP_NO_ACK_RECEIVED** (0x09) Nie odebrano żadnego ACK z serwera
 
 - **NX_TFTP_INVALID_SERVER_ADDRESS** (0x08) Odebrano nieprawidłowy adres IP serwera
 
-- **NX_TFTP_CODE_ERROR** (0X05) otrzymał kod błędu
+- **NX_TFTP_CODE_ERROR** (0x05) Odebrano kod błędu
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę
 
-- NX_IP_ADDRESS_ERROR (0x21) nieprawidłowy adres IP serwera
+- NX_IP_ADDRESS_ERROR (0x21) Nieprawidłowy adres IP serwera
 
-- NX_OPTION_ERROR (0x0A) Nieprawidłowy typ otwarty
+- NX_OPTION_ERROR (0x0A) Nieprawidłowy typ otwierania
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -330,7 +330,7 @@ status =  nxd_tftp_client_file_open(&my_tftp_client, “test.txt”,
 
 ## <a name="nxd_tftp_client_file_open"></a>nxd_tftp_client_file_open
 
-Otwórz plik klienta TFTP
+Otwieranie pliku klienta TFTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -342,59 +342,59 @@ UINT nxd_tftp_client_file_open(NX_TFTP_CLIENT *tftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa próbuje otworzyć określony plik na serwerze TFTP przy użyciu określonego adresu IPv6. Plik zostanie otwarty na potrzeby odczytu lub zapisu.
+Ta usługa próbuje otworzyć określony plik na serwerze TFTP pod określonym adresem IPv6. Plik zostanie otwarty do odczytu lub zapisu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **tftp_client_ptr** Wskaźnik do bloku sterowania TFTP.
 
-- **file_name** Nazwa pliku ASCII, zakończona zerem i z odpowiednimi informacjami o ścieżce.
+- **file_name** Nazwa pliku ASCII, zakończone z wartością NULL i z odpowiednimi informacjami o ścieżce.
 
 - **server_ip_address** Adres TFTP serwera.
 
-- **open_type** Typ żądania otwartego:
+- **open_type** Typ otwartego żądania:
 
   **NX_TFTP_OPEN_FOR_READ** (0x01)
 
   **NX_TFTP_OPEN_FOR_WRITE** (0x02)
 
-- **WAIT_OPTION** Określa, jak długo usługa będzie czekać na otwarcie pliku klienta TFTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **wait_option** Określa, jak długo usługa będzie czekać na otwarcie pliku klienta TFTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
 
-  **wartość limitu czasu** (0X00000001 przez 0xFFFFFFFE)
+  **wartość limitu czasu** (0x00000001 do 0xFFFFFFFE)
 
-  **TX_WAIT_FOREVER** (0xffffffff)
+  **TX_WAIT_FOREVER** (0xFFFFFFFF)
 
-  Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer TFTP odpowie na żądanie.
+  Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się na czas nieokreślony, dopóki serwer TFTP nie odpowie na żądanie.
 
-  Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera TFTP.
+  Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera TFTP.
 
-- **ip_type** Wskaż, którego protokołu IP użyć. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
+- **ip_type** Wskaż protokół IP do użycia. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne otwarcie pliku klienta
+- **NX_SUCCESS** (0x00) Pomyślnie otwarty plik klienta
 
-- Klient **NX_TFTP_NOT_CLOSED** (0xC3) ma już otwarty plik
+- **NX_TFTP_NOT_CLOSED** (0xC3) Klient ma już otwarty plik
 
 - **NX_INVALID_TFTP_SERVER_ADDRESS** (0x08) Odebrano nieprawidłowy adres serwera
 
-- **NX_TFTP_NO_ACK_RECEIVED** (0X09) nie odebrano potwierdzenia z serwera
+- **NX_TFTP_NO_ACK_RECEIVED** (0x09) Nie odebrano żadnego ACK z serwera
 
-- **NX_TFTP_INVALID_IP_VERSION** (0X0C) Nieprawidłowa wersja adresu IP
+- **NX_TFTP_INVALID_IP_VERSION** (0x0C) Nieprawidłowa wersja adresu IP
 
 - **NX_TFTP_INVALID_SERVER_ADDRESS** (0x08) Odebrano nieprawidłowy adres IP serwera
 
-- **NX_TFTP_CODE_ERROR** (0X05) otrzymał kod błędu
+- **NX_TFTP_CODE_ERROR** (0x05) Odebrano kod błędu
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę
 
-- NX_IP_ADDRESS_ERROR (0x21) nieprawidłowy adres IP serwera
+- NX_IP_ADDRESS_ERROR (0x21) Nieprawidłowy adres IP serwera
 
-- NX_OPTION_ERROR (0x0A) Nieprawidłowy typ otwarty
+- NX_OPTION_ERROR (0x0A) Nieprawidłowy typ otwierania
 
-- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -421,7 +421,7 @@ status =  nxd_tftp_client_file_open(&my_tftp_client, “test.txt”,
 
 ## <a name="nxd_tftp_client_file_read"></a>nxd_tftp_client_file_read
 
-Odczytaj blok z pliku klienta
+Odczytywanie bloku z pliku klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -437,49 +437,49 @@ Ta usługa odczytuje blok 512-bajtowy z wcześniej otwartego pliku klienta TFTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **tftp_client_ptr** Wskaźnik do bloku kontroli klienta TFTP.
+- **tftp_client_ptr** Wskaźnik do bloku sterowania klienta TFTP.
 
-- **packet_ptr** Lokalizacja docelowa pakietu zawierającego blok odczytany z pliku.
+- **packet_ptr** Miejsce docelowe pakietu zawierającego blok odczytany z pliku.
 
-- **WAIT_OPTION** Określa, jak długo usługa będzie czekać na zakończenie odczytu. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **wait_option** Określa, jak długo usługa będzie czekać na ukończenie odczytu. Opcje oczekiwania są zdefiniowane w następujący sposób:
 
-  **wartość limitu czasu** (0X00000001 przez 0xFFFFFFFE)
+  **wartość limitu czasu** (0x00000001 do 0xFFFFFFFE)
 
-  **TX_WAIT_FOREVER** (0xffffffff)
+  **TX_WAIT_FOREVER** (0xFFFFFFFF)
 
-  Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer TFTP odpowie na żądanie.
+  Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się na czas nieokreślony, dopóki serwer TFTP nie odpowie na żądanie.
 
-  Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać zawieszona podczas oczekiwania na wysłanie bloku pliku przez serwer TFTP.
+  Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na wysłanie bloku pliku przez serwer TFTP.
 
-- **ip_type** Wskaż, którego protokołu IP użyć. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
+- **ip_type** Wskaż protokół IP do użycia. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne odczytanie bloku klienta
+- **NX_SUCCESS** (0x00) Pomyślne odczytanie bloku klienta
 
-- **NX_TFTP_NOT_OPEN** (0XC3) określony plik klienta nie jest otwarty do odczytu
+- **NX_TFTP_NOT_OPEN** (0xC3) Określony plik klienta nie jest otwarty do odczytu
 
-- **NX_NO_PACKET** (0X01) żaden pakiet nie został odebrany z serwera.
+- **NX_NO_PACKET** (0x01) Brak pakietów odebranych z serwera.
 
 - **NX_INVALID_TFTP_SERVER_ADDRESS** (0x08) Odebrano nieprawidłowy adres serwera
 
-- **NX_TFTP_NO_ACK_RECEIVED** (0X09) nie odebrano potwierdzenia z serwera
+- **NX_TFTP_NO_ACK_RECEIVED** (0x09) Nie odebrano żadnego ACK z serwera
 
-- Wykryto koniec pliku **NX_TFTP_END_OF_FILE** (0xc5) (nie jest to błąd).
+- **NX_TFTP_END_OF_FILE** (0xC5) Wykryto koniec pliku (nie błąd).
 
-- **NX_TFTP_INVALID_IP_VERSION** (0X0C) Nieprawidłowa wersja adresu IP
+- **NX_TFTP_INVALID_IP_VERSION** (0x0C) Nieprawidłowa wersja adresu IP
 
-- **NX_TFTP_CODE_ERROR** (0X05) otrzymał kod błędu
+- **NX_TFTP_CODE_ERROR** (0x05) Odebrano kod błędu
 
-- **NX_TFTP_FAILED** (0xC2) odebrano nieznany kod TFTP
+- **NX_TFTP_FAILED** (0xC2) Odebrano nieznany kod TFTP
 
 - **NX_TFTP_INVALID_BLOCK_NUMBER** (0x0A) Odebrano nieprawidłowy numer bloku
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę
 
-- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -497,7 +497,7 @@ status =  nxd_tftp_client_file_read(&my_tftp_client, &return_packet_ptr, 200);
 
 ## <a name="nxd_tftp_client_file_write"></a>nxd_tftp_client_file_write
 
-Napisz blok do pliku klienta
+Zapis bloku w pliku klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -512,45 +512,45 @@ Ta usługa zapisuje blok 512-bajtowy do wcześniej otwartego pliku klienta TFTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **tftp_client_ptr** Wskaźnik do bloku kontroli klienta TFTP.
+- **tftp_client_ptr** Wskaźnik do bloku sterowania klienta TFTP.
 
 - **packet_ptr** Pakiet zawierający blok do zapisu w pliku.
 
-- **WAIT_OPTION** Określa, jak długo usługa będzie czekać na zakończenie zapisu. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **wait_option** Określa, jak długo usługa będzie czekać na ukończenie zapisu. Opcje oczekiwania są zdefiniowane w następujący sposób:
 
-  **wartość limitu czasu** (0X00000001 przez 0xFFFFFFFE)
+  **wartość limitu czasu** (0x00000001 do 0xFFFFFFFE)
 
-  **TX_WAIT_FOREVER** (0xffffffff)
+  **TX_WAIT_FOREVER** (0xFFFFFFFF)
 
-  Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer TFTP odpowie na żądanie.
+  Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się na czas nieokreślony, dopóki serwer TFTP nie odpowie na żądanie.
  
-  Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać zawieszona podczas oczekiwania na wysłanie potwierdzenia dla żądania zapisu przez serwer TFTP.
+  Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na wysłanie przez serwer TFTP ACK żądania zapisu.
 
-- **ip_type** Wskaż, którego protokołu IP użyć. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
+- **ip_type** Wskaż protokół IP do użycia. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne zapis bloku klienta
+- **NX_SUCCESS** (0x00) Pomyślne zapis bloku klienta
 
-- **NX_TFTP_NOT_OPEN** (0XC3) określony plik klienta nie jest otwarty do zapisu
+- **NX_TFTP_NOT_OPEN** (0xC3) Określony plik klienta nie jest otwarty do zapisu
 
-- **NX_TFTP_TIMEOUT** (0XC1) upłynął limit czasu oczekiwania na potwierdzenie serwera
-
-- **NX_INVALID_TFTP_SERVER_ADDRESS** (0x08) Odebrano nieprawidłowy adres serwera
-
-- **NX_TFTP_NO_ACK_RECEIVED** (0X09) nie odebrano potwierdzenia z serwera
-
-- **NX_TFTP_INVALID_IP_VERSION** (0X0C) Nieprawidłowa wersja adresu IP
+- **NX_TFTP_TIMEOUT** (0xC1) czasu oczekiwania na serwer ACK
 
 - **NX_INVALID_TFTP_SERVER_ADDRESS** (0x08) Odebrano nieprawidłowy adres serwera
 
-- **NX_TFTP_CODE_ERROR** (0X05) otrzymał kod błędu
+- **NX_TFTP_NO_ACK_RECEIVED** (0x09) Nie odebrano żadnego ACK z serwera
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- **NX_TFTP_INVALID_IP_VERSION** (0x0C) Nieprawidłowa wersja adresu IP
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- **NX_INVALID_TFTP_SERVER_ADDRESS** (0x08) Odebrano nieprawidłowy adres serwera
 
-- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- **NX_TFTP_CODE_ERROR** (0x05) Odebrano kod błędu
+
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
+
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę
+
+- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -568,7 +568,7 @@ status =  nxd_tftp_client_file_write(&my_tftp_client, packet_ptr, 200);
 
 ## <a name="nxd_tftp_client_packet_allocate"></a>nxd_tftp_client_packet_allocate
 
-Przydziel pakiet do zapisu pliku klienta
+Przydzielanie pakietu dla zapisu pliku klienta
 
 ### <a name="prototype"></a>Prototype
 
@@ -580,35 +580,35 @@ UINT nxd_tftp_client_packet_allocate(NX_PACKET_POOL *pool_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa przydziela pakiet UDP z określonej puli pakietów i tworzy miejsce dla 4-bajtowego nagłówka TFTP przed zwróceniem pakietu do obiektu wywołującego. Obiekt wywołujący może następnie utworzyć bufor do zapisu w pliku klienta.
+Ta usługa przydziela pakiet UDP z określonej puli pakietów i robi miejsce na 4-bajtowy nagłówek TFTP, zanim pakiet zostanie zwrócony do wywołującego. Następnie wywołujący może utworzyć bufor do zapisu w pliku klienta.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **pool_ptr** Wskaźnik do puli pakietów.
 
-- **packet_ptr** Miejsce docelowe dla wskaźnika do przydzielnego pakietu.
+- **packet_ptr** Miejsce docelowe wskaźnika do przydzielonego pakietu.
 
-- **WAIT_OPTION** Określa, jak długo usługa będzie oczekiwać na zakończenie przydzielenia pakietu. Opcje oczekiwania są zdefiniowane w następujący sposób:
+- **wait_option** Określa, jak długo usługa będzie czekać na ukończenie przydzielania pakietów. Opcje oczekiwania są zdefiniowane w następujący sposób:
 
-  **wartość limitu czasu** (0X00000001 przez 0xFFFFFFFE)
+  **wartość limitu czasu** (0x00000001 do 0xFFFFFFFE)
 
-  **TX_WAIT_FOREVER** (0xffffffff)
+  **TX_WAIT_FOREVER** (0xFFFFFFFF)
 
-  Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu zakończenia alokacji.
+  Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się na czas nieokreślony do momentu zakończenia alokacji.
 
-  Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na alokację pakietu.
+  Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na alokację pakietów.
 
-- **ip_type** Wskaż, którego protokołu IP użyć. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
+- **ip_type** Wskaż protokół IP do użycia. Prawidłowe opcje to IPv4 (4) lub IPv6 (6).
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Pomyślne przydzielenie pakietu **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Pomyślne przydzielenie pakietu
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę
 
-- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowa wejściowa niebędąca wskaźnikiem
+- NX_INVALID_PARAMETERS (0x4D) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -639,7 +639,7 @@ UINT nxd_tftp_client_set_interface(NX_TFTP_CLIENT *tftp_client_ptr,
 Ta usługa używa indeksu interfejsu wejściowego do ustawienia interfejsu fizycznego dla klienta TFTP do wysyłania i odbierania pakietów TFTP. Wartość domyślna to zero dla interfejsu podstawowego.
 
 > [!NOTE]
-> NetX Duo musi obsługiwać adresy wielodomowe (wersja 3.0 lub nowsza), aby można było korzystać z tej usługi.
+> Aby korzystać z tej usługi, rozwiązanie NetX Duo musi obsługiwać adresowanie wieloadresowe (w wersji 5.6 lub nowszej).
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -649,13 +649,13 @@ Ta usługa używa indeksu interfejsu wejściowego do ustawienia interfejsu fizyc
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślnie ustawił interfejs (0X0B) nieprawidłowe dane wejściowe interfejsu
+- **NX_SUCCESS** (0x00) Pomyślnie ustawiono interfejs (0x0B) Nieprawidłowe dane wejściowe interfejsu
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę
 
-- NX_TFTP_INVALID_INTERFACE (0x0B) nieprawidłowe dane wejściowe interfejsu
+- NX_TFTP_INVALID_INTERFACE (0x0B) Nieprawidłowe dane wejściowe interfejsu
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -672,7 +672,7 @@ status =  nxd_tftp_client_set_interface(&client, 0);
 
 ## <a name="nxd_tftp_server_create"></a>nxd_tftp_server_create
 
-Utwórz serwer TFTP
+Tworzenie serwera TFTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -685,20 +685,20 @@ UINT nxd_tftp_server_create(NX_TFTP_SERVER *tftp_server_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy serwer TFTP, który odpowiada na żądania klientów TFTP na porcie 69. Serwer musi być uruchomiony przez kolejne wywołanie do *nxd_tftp_server_start*.
+Ta usługa tworzy serwer TFTP, który odpowiada na żądania klientów TFTP na porcie 69. Serwer musi zostać uruchomiony przez kolejne wywołanie nxd_tftp_server_start *.*
 
 > [!IMPORTANT]
-> Aplikacja musi wykonać niektóre dostarczone wystąpienie adresu IP, pulę pakietów i wystąpienie nośnika FileX. Ponadto należy włączyć protokół UDP przed wywołaniem tej usługi.
+> Aplikacja musi upewnić się, że podane wystąpienie adresu IP, pula pakietów i wystąpienie nośnika FileX zostały już utworzone. Ponadto protokół UDP musi być włączony dla wystąpienia adresu IP przed wywołaniem tej usługi.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **tftp_server_ptr** Wskaźnik do bloku sterowania serwerem TFTP.
+- **tftp_server_ptr** Wskaźnik do bloku sterowania serwera TFTP.
 
 - **tftp_server_name** Nazwa tego wystąpienia serwera TFTP
 
 - **ip_ptr** Wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
 
-- **media_ptr** Wskaźnik na FileX wystąpienie nośnika.
+- **media_ptr** Wskaźnik do wystąpienia nośnika FileX.
 
 - **stack_ptr** Wskaźnik do obszaru stosu serwera TFTP.
 
@@ -707,21 +707,21 @@ Ta usługa tworzy serwer TFTP, który odpowiada na żądania klientów TFTP na p
 - **pool_ptr** Wskaźnik do puli pakietów TFTP. 
 
 > [!NOTE]
-> Długość dostarczonej puli musi wynosić co najmniej 580 bajtów. <sup>1</sup>
+> Dostarczona pula musi mieć ładunki pakietów o rozmiarze co najmniej 580 bajtów. <sup>1</sup>
 
-<sup>1</sup> część danych pakietu ma dokładnie 512 bajtów, ale rozmiar ładunku pakietu musi wynosić co najmniej 572 bajtów. Pozostałe bajty są używane dla nagłówków UDP, IPv6 i Ethernet oraz potencjalne bajty końcowe wymagane przez sterownik do wyrównania.
+<sup>1</sup> Część danych pakietu to dokładnie 512 bajtów, ale rozmiar ładunku pakietu musi być co najmniej 572 bajty. Pozostałe bajty są używane dla nagłówków UDP, IPv6 i Ethernet oraz potencjalnych bajtów na końcowej stronie wymaganych przez sterownik do wyrównania.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne utworzenie serwera
+- **NX_SUCCESS** (0x00) Pomyślne utworzenie serwera
 
-- Pula pakietów **NX_TFTP_POOL_ERROR** (0xC6) ma rozmiar pakietu mniejszy niż 560 bajtów
+- **NX_TFTP_POOL_ERROR** (0xC6) Rozmiar pakietu puli pakietów jest mniejszy niż 560 bajtów
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -735,7 +735,7 @@ status =  nxd_tftp_server_create(&my_server, “My TFTP Server”, &server_ip,
 
 ## <a name="nxd_tftp_server_delete"></a>nxd_tftp_server_delete
 
-Usuń serwer TFTP
+Usuwanie serwera TFTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -749,15 +749,15 @@ Ta usługa usuwa wcześniej utworzony serwer TFTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **tftp_server_ptr** Wskaźnik do bloku sterowania serwerem TFTP.
+- **tftp_server_ptr** Wskaźnik do bloku sterowania serwera TFTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne usunięcie serwera
+- **NX_SUCCESS** (0x00) Pomyślne usunięcie serwera
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -774,7 +774,7 @@ status =  nxd_tftp_server_delete(&my_server);
 
 ## <a name="nxd_tftp_server_start"></a>nxd_tftp_server_start
 
-Uruchom serwer TFTP
+Uruchamianie serwera TFTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -788,17 +788,17 @@ Ta usługa uruchamia wcześniej utworzony serwer TFTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **tftp_server_ptr** Wskaźnik do bloku sterowania serwerem TFTP.
+- **tftp_server_ptr** Wskaźnik do bloku sterowania serwera TFTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS** (0X00) pomyślne uruchomienie serwera
+- **NX_SUCCESS** (0x00) Pomyślne uruchomienie serwera
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy .
  
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacja, wątki
+Inicjowanie, wątki
 
 ### <a name="example"></a>Przykład
 
@@ -811,7 +811,7 @@ status =  nxd_tftp_server_start(&my_server);
 
 ## <a name="nxd_tftp_server_stop"></a>nxd_tftp_server_stop
 
-Zatrzymaj serwer TFTP
+Zatrzymywanie serwera TFTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -821,19 +821,19 @@ UINT nxd_tftp_server_stop(NX_TFTP_SERVER *tftp_server_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zatrzyma wcześniej utworzony serwer TFTP.
+Ta usługa zatrzymuje wcześniej utworzony serwer TFTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **tftp_server_ptr** Wskaźnik do bloku sterowania serwerem TFTP.
+- **tftp_server_ptr** Wskaźnik do bloku sterowania serwera TFTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- Zakończono pomyślne zatrzymywanie serwera **NX_SUCCESS** (0x00)
+- **NX_SUCCESS** (0x00) Pomyślne zatrzymanie serwera
 
-- NX_PTR_ERROR (0x16) Nieprawidłowy wskaźnik wejściowy.
+- NX_PTR_ERROR (0x16) Nieprawidłowe dane wejściowe wskaźnika.
 
-- NX_CALLER_ERROR (0x11) Nieprawidłowy obiekt wywołujący tej usługi
+- NX_CALLER_ERROR (0x11) Nieprawidłowy wywołujący tę usługę
 
 ### <a name="allowed-from"></a>Dozwolone z
 

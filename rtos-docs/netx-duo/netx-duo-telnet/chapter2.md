@@ -1,52 +1,52 @@
 ---
-title: Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX Duo Telnet
-description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika Telnet usługi Azure RTO NetX Duo.
+title: Rozdział 2 — Instalowanie i używanie programu Azure RTOS NetX Duo Telnet
+description: Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika Azure RTOS NetX Duo Telnet.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: d5b24690db6ccbc582387dd9dba5b0471e6f278d
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 4781f45dc37f8c48a9f491d6cb67299432f3ae6743d12d9d92134298474182a5
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821630"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116799357"
 ---
-# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-telnet"></a>Rozdział 2 — Instalowanie i korzystanie z usługi Azure RTO NetX Duo Telnet
+# <a name="chapter-2---installation-and-use-of-azure-rtos-netx-duo-telnet"></a>Rozdział 2 — Instalowanie i używanie programu Azure RTOS NetX Duo Telnet
 
-Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika Telnet usługi Azure RTO NetX Duo.
+Ten rozdział zawiera opis różnych problemów związanych z instalacją, konfiguracją i użyciem składnika Azure RTOS NetX Duo Telnet.
 
-## <a name="product-distribution"></a>Dystrybucja produktu
+## <a name="product-distribution"></a>Dystrybucja produktów
 
-Pakiet Telnet platformy Azure RTO NetX Duo jest dostępny pod adresem <https://github.com/azure-rtos/netxduo> . Pakiet zawiera następujące pliki:
+Pakiet Azure RTOS NetX Duo Telnet jest dostępny pod numerem <https://github.com/azure-rtos/netxduo> . Pakiet zawiera następujące pliki:
 
-- **nxd_telnet_client. h**: plik nagłówkowy dla klienta Telnet dla NetX Duo
-- plik źródłowy **nxd_telnet_client. c**: c dla klienta Telnet dla NetX Duo
-- **nxd_telnet_server. h**: plik nagłówkowy dla serwera Telnet dla NetX Duo
-- plik źródłowy **nxd_telnet_server. c**: c dla serwera Telnet dla NetX Duo
-- **nxd_telnet.pdf**: Opis formatu PDF programu Telnet dla NetX Duo
-- **demo_netxduo_telnet. c**: NetX Duo — Demonstracja
+- **nxd_telnet_client.h:** plik nagłówkowy dla klienta Telnet dla NetX Duo
+- **nxd_telnet_client.c:** plik źródłowy języka C dla klienta Telnet dla NetX Duo
+- **nxd_telnet_server.h:** Plik nagłówka dla serwera Telnet dla NetX Duo
+- **nxd_telnet_server.c:** plik źródłowy języka C dla serwera Telnet server for NetX Duo
+- **nxd_telnet.pdf:** opis PDF telnetu dla netx duo
+- **demo_netxduo_telnet.c:** pokaz NetX Duo Telnet
 
-## <a name="telnet-installation"></a>Instalacja programu Telnet
+## <a name="telnet-installation"></a>Instalacja Telnet
 
-Aby można było używać programu Telnet for NetX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano NetX Duo. Na przykład jeśli NetX Duo jest zainstalowana w katalogu "*\threadx\arm7\green*", wówczas pliki *nxd_telnet_client. h*, *nxd_telnet_client. c*, *nxd_telnet_server. c i nxd_telnet_server. h* powinny zostać skopiowane do tego katalogu.
+Aby można było korzystać z programu Telnet dla netX Duo, cała wymieniona wcześniej dystrybucja powinna zostać skopiowana do tego samego katalogu, w którym zainstalowano program NetX Duo. Jeśli na przykład program NetX Duo jest zainstalowany w katalogu *"\threadx\arm7\green",* pliki *nxd_telnet_client.h,* *nxd_telnet_client.c,* *nxd_telnet_server.c i nxd_telnet_server.h* powinny zostać skopiowane do tego katalogu.
 
 ## <a name="using-telnet"></a>Korzystanie z programu Telnet
 
-Korzystanie z programu Telnet dla NetX Duo jest proste. Zasadniczo kod aplikacji musi zawierać *nxd_telnet_server. h* dla aplikacji serwerowych telnet i *nxd_telnet_client. h* dla aplikacji klienckich telnet, gdy zawiera *tx_api. h* i *nx_api. h*, aby można było korzystać z ThreadX i NetX Duo. Po dołączeniu *nagłówka* kod aplikacji może być w stanie wprowadzić wywołania funkcji Telnet określone w dalszej części tego przewodnika. Aplikacja musi również zawierać *nxd_telnet_client. c* i *nxd_telnet_server. c* w procesie kompilacji. Te pliki muszą być kompilowane w taki sam sposób, jak inne pliki aplikacji i jego formularz obiektu muszą być połączone wraz z plikami aplikacji. To wszystko, co jest wymagane do korzystania z programu NetX Duo Telnet.
+Korzystanie z programu Telnet dla netX Duo jest łatwe. Zasadniczo kod aplikacji musi zawierać kod *nxd_telnet_server.h* dla aplikacji Serwera Telnet i *nxd_telnet_client.h* dla aplikacji klienckich Telnet po dojecheniu do nich plików *tx_api.h* *i nx_api.h,* aby można było używać threadX i NetX Duo. Gdy *nagłówek zostanie* dołączony, kod aplikacji będzie mógł wykonać wywołania funkcji Telnet określone w dalszej części tego przewodnika. Aplikacja musi również uwzględniać *nxd_telnet_client.c* *i nxd_telnet_server.c w* procesie kompilacji. Te pliki muszą być kompilowane w taki sam sposób jak inne pliki aplikacji, a ich formularz obiektu musi być połączony z plikami aplikacji. To wszystko, co jest wymagane do korzystania z programu NetX Duo Telnet.
 
-Jeśli nie są wymagane żadne możliwości klienta Telnet, plik *nxd_telnet_client. c* może zostać pominięty.
+Jeśli nie są wymagane możliwości klienta Telnet, *nxd_telnet_client.c* plik może zostać pominięty.
 
-Należy również pamiętać, że ponieważ Telnet korzysta z usług TCP NetX Duo, należy włączyć protokół TCP z wywołaniem *nx_tcp_enable* przed użyciem programu Telnet.
+Należy również pamiętać, że ze względu na to, że telnet korzysta z usług TCP NetX Duo, protokół TCP musi być włączony za *pomocą wywołania nx_tcp_enable* przed użyciem Telnet.
 
 ## <a name="small-example-system"></a>Mały przykładowy system
 
-Przykład korzystania z programu NetX Duo Telnet przedstawiono na rysunku 1,1 poniżej. W tym przykładzie pliki dołączane do programu Telnet *są* wprowadzane w wierszu 7 i 8. Następnie serwer Telnet jest tworzony w lokalizacji "*tx_application_define*" w wierszu 146. Należy zauważyć, że bloki kontroli serwera i klienta programu Telnet są zdefiniowane jako zmienne globalne w wierszu 23-24.
+Przykład użycia programu NetX Duo Telnet przedstawiono na rysunku 1.1 poniżej. W tym przykładzie pliki dołączania Telnet *są dostępne* w wierszach 7 i 8. Następnie serwer Telnet jest tworzony w ciągu "*tx_application_define*" w wierszu 146. Należy pamiętać, że bloki sterowania Serwer Telnet i Klient są zdefiniowane jako zmienne globalne w wierszu 23–24 wcześniej.
 
-Przed uruchomieniem serwera lub klienta programu Telnet należy sprawdzić poprawność adresu IP za pomocą NetX Duo. W przypadku połączeń IPv4 jest to realizowane przez proste oczekiwanie na chwilę, aby umożliwić sterownikowi NetX zainicjowanie systemu w wierszu 166. W przypadku połączeń IPv6 wymaga to włączenia protokołu IPv6 i ICMPv6, który wykonuje w wierszach 171-172. Klient ustawia globalne i połączone lokalne adresy IPv6 w interfejsie podstawowym w wierszach 181-186 i czeka na zakończenie walidacji NetX Duo w tle. Serwer ustawia również globalne i połączone adresy lokalne w interfejsie podstawowym w wierszach 192 – 198. Należy zauważyć, że te dwie usługi *nxd_ipv6_global_address_set* i *nxd_ipv6_linklocal_address_set* zostały zastąpione *usługą nxd_ipv6_address_set*. Poprzednie dwie usługi są nadal dostępne dla starszych aplikacji NetX Duo, ale ostatecznie są przestarzałe. Deweloperzy są zachęcani do korzystania z *nxd_ipv6_address_set* .
+Przed rozpoczęciem pracy z serwerem Telnet lub klientem muszą oni zweryfikować swój adres IP za pomocą programu NetX Duo. W przypadku połączeń IPv4 jest to realizowane przez krótkie oczekiwanie na zainicjowanie systemu przez sterownik NetX w wierszu 166. W przypadku połączeń IPv6 wymaga to włączenia protokołu IPv6 i ICMPv6 w wierszach 171–172. Klient ustawia globalne i łączy lokalne adresy IPv6 w interfejsie podstawowym w wierszach 181–186 i czeka na zakończenie weryfikacji NetX Duo w tle. Serwer ustawia również swoje globalne adresy lokalne i łączy je z interfejsem podstawowym w wierszach 192–198. Należy pamiętać, że te dwie *usługi, nxd_ipv6_global_address_set* i *nxd_ipv6_linklocal_address_set* są zastępowane nxd_ipv6_address_set *usługą*. Poprzednie dwie usługi są nadal dostępne dla starszych aplikacji NetX Duo, ale ostatecznie przestarzałe. Zachęcamy deweloperów do korzystania z *nxd_ipv6_address_set* zamiast tego.
 
-Po pomyślnym sprawdzeniu poprawności adresu IP z NetX Duo serwer Telnet jest uruchamiany w wierszu 215 przy użyciu usługi *nxd_telnet_server_start* . W wierszu 226 klient Telnet jest tworzony przy użyciu usługi *nx_telnet_client_create* . Następnie łączy się z serwerem Telnet w wierszu 242 dla aplikacji IPv4 i wiersz 238 dla aplikacji IPv6 odpowiednio przy użyciu usług *nxd_telnet_client_connect* i *nx_telnet_client_connect* . Po pomyślnej weryfikacji i połączeniu z serwerem program wykonuje kilka wymian przed rozłączeniem.
+Po pomyślnej weryfikacji adresu IP w programie NetX Duo serwer Telnet jest uruchomiony w wierszu 215 przy *użyciu nxd_telnet_server_start* service. W wierszu 226 klient Telnet jest tworzony przy użyciu *nx_telnet_client_create* usługi. Następnie łączy się z serwerem Telnet w wierszu 242 dla aplikacji IPv4 i wierszem 238 dla aplikacji IPv6 przy użyciu usług *nxd_telnet_client_connect* *i nx_telnet_client_connect.* Po pomyślnej weryfikacji i nawiązaniu połączenia z serwerem program dokonuje kilku wymian przed rozłączeniem.
 
 ```c
 /* This is a small demo of TELNET on the high-performance NetX Duo TCP/IP stack.  
@@ -462,22 +462,22 @@ void  telnet_connection_end(NX_TELNET_SERVER *server_ptr, UINT logical_connectio
 
 ## <a name="configuration-options"></a>Opcje konfiguracji
 
-Istnieje kilka opcji konfiguracji dla kompilowania programu Telnet dla NetX Duo. Te #defines mogą być ustawiane przez aplikację przed włączeniem *nxd_telnet_server. h*. i *nxd_telnet_client. h.*
+Istnieje kilka opcji konfiguracji tworzenia telnetu dla netx duo. Te #defines można ustawić przez aplikację przed dodaniem do nich *nxd_telnet_server.h* i *nxd_telnet_client.h.*
 
-Poniżej znajduje się lista wszystkich opcji, w których szczegóły są szczegółowo opisane:  
+Poniżej znajduje się lista wszystkich opcji, z których każda jest szczegółowo opisana:  
   
-- **NX_DISABLE_ERROR_CHECKING**: zdefiniowane, ta opcja usuwa podstawowe sprawdzanie błędów programu Telnet. Jest on zazwyczaj używany po debugowaniu aplikacji.
-- **NX_TELNET_MAX_CLIENTS**: Maksymalna liczba klientów Telnet obsługiwanych przez wątek serwera. Domyślnie ta wartość jest definiowana jako 4, aby określić maksymalnie 4 klientów jednocześnie.
-- **NX_TELNET_SERVER_PRIORITY**: priorytet wątku serwera Telnet. Domyślnie ta wartość jest definiowana jako 16, aby określić priorytet 16.
-- **NX_TELNET_TOS**: typ usługi wymaganej przez żądania TCP protokołu Telnet. Domyślnie ta wartość jest definiowana jako NX_IP_NORMAL, aby wskazać  
+- **NX_DISABLE_ERROR_CHECKING:** zdefiniowana, ta opcja usuwa podstawowe sprawdzanie błędów Telnet. Jest on zwykle używany po debugowaniu aplikacji.
+- **NX_TELNET_MAX_CLIENTS:** maksymalna liczba klientów Telnet obsługiwanych przez wątek serwera. Domyślnie ta wartość jest zdefiniowana jako 4, aby określić maksymalnie 4 klientów na raz.
+- **NX_TELNET_SERVER_PRIORITY:** priorytet wątku serwera Telnet. Domyślnie ta wartość jest zdefiniowana jako 16, aby określić priorytet 16.
+- **NX_TELNET_TOS:** typ usługi wymagany dla żądań TCP Telnet. Domyślnie ta wartość jest zdefiniowana jako NX_IP_NORMAL, aby wskazać  
 normalna usługa pakietów IP.
-- **NX_TELNET_FRAGMENT_OPTION**: Włącz fragment dla żądań TCP protokołu Telnet. Domyślnie ta wartość jest NX_DONT_FRAGMENT, aby wyłączyć funkcję fragmentacji TCP programu Telnet.
-- **NX_TELNET_SERVER_WINDOW_SIZE**: rozmiar okna gniazda serwera. Wartość domyślna to 2048 bajtów.
-- **NX_TELNET_TIME_TO_LIVE**: określa liczbę routerów, które ten pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
-- **NX_TELNET_SERVER_TIMEOUT**: określa liczbę ThreadXych taktów, dla których będą zawieszane usługi wewnętrzne. Wartość domyślna to 10 sekund.
-- **NX_TELNET_ACTIVITY_TIMEOUT**: określa liczbę sekund, które mogą upłynąć bez żadnej aktywności, zanim serwer odłączy połączenie z klientem. Wartość domyślna to 600 sekund.
-- **NX_TELNET_TIMEOUT_PERIOD**: określa liczbę sekund między sprawdzaniem limitów czasu aktywności klienta. Wartość domyślna to 60 sekund.
-- **NX_TELNET_SERVER_OPTION_DISABLE**: zdefiniowane, negocjowanie opcji programu Telnet jest wyłączone. Domyślnie ta opcja nie jest zdefiniowana.
-- **NX_TELNET_SERVER_USER_CREATE_PACKET_POOL**: w przypadku zdefiniowania puli pakietów serwera Telnet należy utworzyć zewnętrznie. Jest to istotne tylko w przypadku, gdy NX_TELNET_SERVER_OPTION_DISABLE nie jest zdefiniowana. Domyślnie ta opcja nie jest zdefiniowana, a wątek serwera Telnet tworzy własną pulę pakietów.
-- **NX_TELNET_SERVER_PACKET_PAYLOAD**: Określa rozmiar ładunku pakietu utworzonego przez serwer Telnet na potrzeby negocjacji opcji. Należy pamiętać, że serwer Telnet tworzy tylko tę pulę pakietów, jeśli nie zdefiniowano NX_TELNET_SERVER _OPTION_DISABLE (Opcje programu Telnet są włączone). Wartość domyślna tej opcji to 300.
-- **NX_TELNET_SERVER_PACKET_POOL_SIZE**: Określa rozmiar puli pakietów serwera Telnet używanej na potrzeby negocjacji Telnet. Należy pamiętać, że serwer Telnet tworzy tylko tę pulę pakietów, jeśli nie zdefiniowano NX_TELNET_SERVER _OPTION_DISABLE (Opcje programu Telnet są włączone). Wartość domyślna tej opcji to 2048 ( \~ pakiety 5-6).
+- **NX_TELNET_FRAGMENT_OPTION:** włącz fragment dla żądań TCP Telnet. Domyślnie ta wartość jest NX_DONT_FRAGMENT fragmentowanie TCP Telnet.
+- **NX_TELNET_SERVER_WINDOW_SIZE:** rozmiar okna gniazda serwera. Domyślnie ta wartość to 2048 bajtów.
+- **NX_TELNET_TIME_TO_LIVE:** określa liczbę routerów, które pakiet może przekazać, zanim zostanie odrzucony. Wartość domyślna to 0x80.
+- **NX_TELNET_SERVER_TIMEOUT:** określa liczbę znaczników ThreadX, dla których usługi wewnętrzne będą wstrzymywane. Wartość domyślna to 10 sekund.
+- **NX_TELNET_ACTIVITY_TIMEOUT:** określa liczbę sekund, które mogą upłynąć bez żadnej aktywności, zanim serwer rozłączy połączenie klienta. Wartość domyślna to 600 sekund.
+- **NX_TELNET_TIMEOUT_PERIOD:** Określa liczbę sekund między sprawdzeniem przecje aktywności klienta. Wartość domyślna to 60 sekund.
+- **NX_TELNET_SERVER_OPTION_DISABLE:** zdefiniowana, negocjacja opcji Telnet jest wyłączona. Domyślnie ta opcja nie jest zdefiniowana.
+- **NX_TELNET_SERVER_USER_CREATE_PACKET_POOL:** jeśli jest zdefiniowana, pula pakietów serwera Telnet musi zostać utworzona zewnętrznie. Jest to istotne tylko wtedy, NX_TELNET_SERVER_OPTION_DISABLE nie jest zdefiniowany. Domyślnie ta opcja nie jest zdefiniowana, a wątek serwera Telnet tworzy własną pulę pakietów.
+- **NX_TELNET_SERVER_PACKET_PAYLOAD:** definiuje rozmiar ładunku pakietu utworzonego przez serwer Telnet na czas negocjacji opcji. Należy pamiętać, że serwer Telnet tworzy tę pulę pakietów tylko wtedy, NX_TELNET_SERVER _OPTION_DISABLE nie jest zdefiniowany (opcje Telnet są włączone). Wartość domyślna tej opcji to 300.
+- **NX_TELNET_SERVER_PACKET_POOL_SIZE:** definiuje rozmiar puli pakietów serwera Telnet używanej do negocjacji Telnet. Należy pamiętać, że serwer Telnet tworzy tę pulę pakietów tylko wtedy, NX_TELNET_SERVER _OPTION_DISABLE nie jest zdefiniowany (opcje Telnet są włączone). Wartość domyślna tej opcji to 2048 \~ (5–6 pakietów).

@@ -1,21 +1,21 @@
 ---
-title: Dodatek B — stałe usługi Azure RTO NetX
-description: Wyświetl listę stałych usługi Azure RTO NetX.
+title: Dodatek B — Azure RTOS NetX
+description: Wyświetl listę stałych Azure RTOS NetX.
 author: philmea
 ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: d17736a613ca3cd69dcc7a00a5ec16ee680093b4
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 7f3b22675ea7bf98f653c9299fb3cef74b9b5f6588ff3328d46b989c96d77c4c
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822806"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116801278"
 ---
-# <a name="appendix-b---azure-rtos-netx-constants"></a>Dodatek B — stałe usługi Azure RTO NetX
+# <a name="appendix-b---azure-rtos-netx-constants"></a>Dodatek B — Azure RTOS NetX
 
-## <a name="alphabetic-listing"></a>Alfabetyczna lista
+## <a name="alphabetic-listing"></a>Lista alfabetyczna
 
 | Stała    | Wartość   |
 | -------------------------- | ---------- |
@@ -217,7 +217,7 @@ ms.locfileid: "104822806"
 | NX_NOT_LISTEN_STATE | 0x36 |
 | NX_NOT_SUCCESSFUL | 0x43 |
 | NX_NULL | 0 |
-| NX_OPTION_ERROR | 0x0A |
+| NX_OPTION_ERROR | 0x0a |
 | NX_OVERFLOW | 0x03 |
 | NX_PACKET_ALLOCATED | 0xAAAAAAAA |
 | NX_PACKET_DEBUG_LOG_SIZE | 100 |
@@ -308,7 +308,7 @@ ms.locfileid: "104822806"
 | NX_WINDOW_OVERFLOW       | 0x39       |
 
 
-## <a name="listings-by-value"></a>Aukcje według wartości
+## <a name="listings-by-value"></a>Oferty według wartości
 
 | Stała | Wartość |
 |----------|-------|

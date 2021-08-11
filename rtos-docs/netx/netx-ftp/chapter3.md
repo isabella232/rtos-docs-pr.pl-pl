@@ -1,47 +1,47 @@
 ---
-title: Rozdział 3 — Opis usług FTP usługi Azure RTO NetX
-description: Ten rozdział zawiera opis wszystkich usług FTP usługi Azure RTO NetX (wymienionych poniżej) w kolejności alfabetycznej.
+title: Rozdział 3 — Opis Azure RTOS FTP NetX
+description: Ten rozdział zawiera opis wszystkich usług FTP Azure RTOS NetX (wymienionych poniżej) w kolejności alfabetycznej.
 author: philmea
 ms.author: philmea
 ms.date: 06/04/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: b05d03c45607c45acf32474cf8e40861532c5fae
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: 1aec01088236dcae359c0273a0206c10ea09201eb486478ebd678529413badae
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104822626"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116799459"
 ---
-# <a name="chapter-3---description-of-azure-rtos-netx-ftp-services"></a>Rozdział 3 — Opis usług FTP usługi Azure RTO NetX
+# <a name="chapter-3---description-of-azure-rtos-netx-ftp-services"></a>Rozdział 3 — Opis Azure RTOS FTP NetX
 
-Ten rozdział zawiera opis wszystkich usług FTP usługi Azure RTO NetX (wymienionych poniżej) w kolejności alfabetycznej.
+Ten rozdział zawiera opis wszystkich usług FTP Azure RTOS NetX (wymienionych poniżej) w kolejności alfabetycznej.
 
-W sekcji "wartości zwracane" w poniższych opisach interfejsów API nie ma wpływ na wartości **pogrubione** **NX_DISABLE_ERROR_CHECKING** definiują, która jest używana do wyłączania sprawdzania błędów interfejsu API, podczas gdy wartości Niepogrubione są całkowicie wyłączone.
+W sekcji "Wartości zwracane" w następujących  opisach interfejsu API definicje interfejsu **NX_DISABLE_ERROR_CHECKING,** które są używane do wyłączania sprawdzania błędów interfejsu API, nie mają wpływu na wartości pogrubione, a wartości bez pogrubienia są całkowicie wyłączone.
 
-- **nx_ftp_client_connect**: *łączenie z serwerem FTP*
-- **nx_ftp_client_create**: *Tworzenie wystąpienia klienta FTP*
-- **nx_ftp_client_delete**: *usuwanie wystąpienia klienta FTP*
-- **nx_ftp_client_directory_create**: *Utwórz katalog na serwerze*
-- **nx_ftp_client_directory_default_set**: *Ustaw domyślny katalog na serwerze*
-- **nx_ftp_client_directory_delete**: *usuwanie katalogu na serwerze*
-- **nx_ftp_client_directory_listing_get**: *Pobieranie listy katalogów z serwera*
-- **nx_ftp_client_directory_listing_continue**: *Kontynuuj Wyświetlanie listy katalogów z serwera*
-- **nx_ftp_client_disconnect**: *Rozłącz z serwerem FTP*
-- **nx_ftp_client_file_close**: *Zamknij plik klienta*
-- **nx_ftp_client_file_delete**: *usuwanie pliku na serwerze*
-- **nx_ftp_client_file_open**: *Otwórz plik klienta*
-- **nx_ftp_client_file_read**: *Odczytaj z pliku*
-- **nx_ftp_client_file_rename**: *Zmień nazwę pliku na serwerze*
-- **nx_ftp_client_file_write**: *Zapisz do pliku*
-- **nx_ftp_server_create**: *Utwórz serwer FTP*
-- **nx_ftp_server_delete**: *usuwanie serwera FTP*
-- **nx_ftp_server_start**: *Uruchom serwer FTP*
-- **nx_ftp_server_stop**: *ZAtrzymywanie serwera FTP*
+- **nx_ftp_client_connect:** Połączenie *do serwera FTP*
+- **nx_ftp_client_create:** Tworzenie *wystąpienia klienta FTP*
+- **nx_ftp_client_delete:** *usuwanie wystąpienia klienta FTP*
+- **nx_ftp_client_directory_create:** *Tworzenie katalogu na serwerze*
+- **nx_ftp_client_directory_default_set:** ustaw *katalog domyślny na serwerze*
+- **nx_ftp_client_directory_delete:** Usuwanie *katalogu na serwerze*
+- **nx_ftp_client_directory_listing_get:** Pobierz *listę katalogów z serwera*
+- **nx_ftp_client_directory_listing_continue:** Kontynuuj *wyświetlanie listy katalogów z serwera*
+- **nx_ftp_client_disconnect:** *rozłączanie z serwerem FTP*
+- **nx_ftp_client_file_close:** Zamknij *plik klienta*
+- **nx_ftp_client_file_delete:** Usuwanie *pliku na serwerze*
+- **nx_ftp_client_file_open:** *Otwórz plik klienta*
+- **nx_ftp_client_file_read:** Odczyt *z pliku*
+- **nx_ftp_client_file_rename:** Zmiana *nazwy pliku na serwerze*
+- **nx_ftp_client_file_write:** *zapis do pliku*
+- **nx_ftp_server_create:** Tworzenie *serwera FTP*
+- **nx_ftp_server_delete:** Usuwanie *serwera FTP*
+- **nx_ftp_server_start:** Uruchom *serwer FTP*
+- **nx_ftp_server_stop:** *Zatrzymaj serwer FTP*
 
 ## <a name="nx_ftp_client_connect"></a>nx_ftp_client_connect
 
-Nawiązywanie połączenia z serwerem FTP
+Połączenie z serwerem FTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -53,28 +53,28 @@ UINT nx_ftp_client_connect(NX_FTP_CLIENT *ftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa nawiązuje połączenie utworzonego wcześniej wystąpienia klienta FTP z serwerem FTP przy użyciu podanego adresu IP.
+Ta usługa łączy wcześniej utworzone wystąpienie klienta FTP z serwerem FTP pod wskazanym adresem IP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **server_IP**: adres IP serwera FTP.
-- **Nazwa użytkownika**: Nazwa użytkownika klienta na potrzeby uwierzytelniania.
-- **hasło**: hasło klienta na potrzeby uwierzytelniania.
-- **WAIT_OPTION**: określa, jak długo usługa będzie oczekiwać na połączenie z klientem FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **server_ip:** adres IP serwera FTP.
+- **username**: nazwa użytkownika klienta do uwierzytelniania.
+- **password:** hasło klienta do uwierzytelniania.
+- **wait_option:** określa, jak długo usługa będzie czekać na połączenie klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wywołujący wątek zawiesza się na czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) POMYŚLNE połączenie FTP.
-- **NX_TFTP_EXPECTED_22X_CODE**: (0xDB) nie otrzymał odpowiedzi 22X (ok)
-- **NX_FTP_EXPECTED_23X_CODE**: (0xDC) nie otrzymał odpowiedzi 23X (ok)
-- **NX_FTP_EXPECTED_33X_CODE**: (0xDE) nie otrzymał odpowiedzi 33X (ok)
-- **NX_FTP_NOT_DISCONNECTED**: klient (0xD4) jest już połączony.
-- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik Inout.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
-- NX_IP_ADDRESS_ERROR: (0x21) nieprawidłowy adres IP.
+- **NX_SUCCESS:**(0x00) Pomyślne połączenie FTP.
+- **NX_TFTP_EXPECTED_22X_CODE:**(0xDB) Nie otrzymuję odpowiedzi 22X (ok)
+- **NX_FTP_EXPECTED_23X_CODE:**(0xDC) Nie otrzymuję odpowiedzi 23X (ok)
+- **NX_FTP_EXPECTED_33X_CODE:**(0xDE) Nie otrzymuję odpowiedzi 33X (ok)
+- **NX_FTP_NOT_DISCONNECTED:**(0xD4) Klient jest już połączony.
+- NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik inout.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
+- NX_IP_ADDRESS_ERROR: (0x21) Nieprawidłowy adres IP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -109,20 +109,20 @@ Ta usługa tworzy wystąpienie klienta FTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **ftp_client_name**: Nazwa klienta FTP.
-- **ip_ptr**: wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
-- **window_size**: anonsowany rozmiar okna dla gniazda TCP tego klienta FTP.
-- **pool_ptr**: wskaźnik do domyślnej puli pakietów dla tego klienta FTP. Należy pamiętać, że minimalny ładunek pakietu musi być wystarczająco duży, aby pomieścić pełną ścieżkę i nazwę pliku lub katalogu.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **ftp_client_name:** Nazwa klienta FTP.
+- **ip_ptr:** wskaźnik do wcześniej utworzonego wystąpienia adresu IP.
+- **window_size:** anonsowany rozmiar okna dla gniazda TCP tego klienta FTP.
+- **pool_ptr:** wskaźnik do domyślnej puli pakietów dla tego klienta FTP. Należy pamiętać, że minimalny ładunek pakietu musi być wystarczająco duży, aby pomieścić pełną ścieżkę i nazwę pliku lub katalogu.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne utworzenie klienta FTP.
-- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik FTP, adresu IP lub puli pakietów. wskaźnik hasła.
+- **NX_SUCCESS:**(0x00) Pomyślne utworzenie klienta FTP.
+- NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik FTP, wskaźnik IP lub wskaźnik puli pakietów. wskaźnik hasła.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -151,14 +151,14 @@ Ta usługa usuwa wystąpienie klienta FTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne usunięcie klienta FTP.
-- **NX_FTP_NOT_DISCONNECTED**: (0xD4) błąd usuwania klienta FTP.
+- **NX_SUCCESS:**(0x00) Pomyślne usunięcie klienta FTP.
+- **NX_FTP_NOT_DISCONNECTED:**(0xD4) Błąd usuwania klienta FTP.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -191,19 +191,19 @@ Ta usługa tworzy określony katalog na serwerze FTP, który jest połączony z 
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **directory_name**: Nazwa katalogu do utworzenia.
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na utworzenie katalogu FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **directory_name:** nazwa katalogu do utworzenia.
+- **wait_option:** określa, jak długo usługa będzie czekać na utworzenie katalogu FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wywołujący wątek zawiesza się na czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne utworzenie katalogu FTP.
-- **NX_FTP_NOT_CONNECTED**: (0XD3) klient FTP nie jest połączony.
-- **NX_FTP_EXPECTED_2XX_CODE**: (0xDA) nie otrzymał odpowiedzi 2xx (ok) 
+- **NX_SUCCESS:**(0x00) Pomyślne utworzenie katalogu FTP.
+- **NX_FTP_NOT_CONNECTED:**(0xD3) Klient FTP nie jest połączony.
+- **NX_FTP_EXPECTED_2XX_CODE:**(0xDA) Nie otrzymuję odpowiedzi 2XX (ok) 
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP. 
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -233,23 +233,23 @@ UINT nx_ftp_client_directory_default_set(NX_FTP_CLIENT *ftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa ustawia domyślny katalog na serwerze FTP, który jest połączony z określonym klientem FTP. Ten domyślny katalog ma zastosowanie tylko do połączenia tego klienta.
+Ta usługa ustawia domyślny katalog na serwerze FTP, który jest połączony z określonym klientem FTP. Ten katalog domyślny ma zastosowanie tylko do połączenia tego klienta.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **directory_path**: Nazwa ścieżki katalogu do ustawienia.
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na domyślny zestaw katalogów FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **directory_path:** nazwa ścieżki katalogu do ustawienia.
+- **wait_option:** określa, jak długo usługa będzie czekać na domyślny katalog FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne ustawienie domyślne protokołu FTP.
-- **NX_FTP_NOT_CONNECTED**: (0XD3) klient FTP nie jest połączony.
-- **NX_FTP_EXPECTED_2XX_CODE**: (0xDA) nie otrzymał odpowiedzi 2xx (ok) 
+- **NX_SUCCESS:**(0x00) Zestaw domyślny FTP powodzenie.
+- **NX_FTP_NOT_CONNECTED:**(0xD3) Klient FTP nie jest połączony.
+- **NX_FTP_EXPECTED_2XX_CODE:**(0xDA) Nie otrzymuję odpowiedzi 2XX (ok) 
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP. 
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -282,19 +282,19 @@ Ta usługa usuwa określony katalog na serwerze FTP, który jest połączony z o
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **directory_name**: Nazwa katalogu do usunięcia.
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na usunięcie katalogu FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **directory_name:** nazwa katalogu do usunięcia.
+- **wait_option:** określa, jak długo usługa będzie czekać na usunięcie katalogu FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne usunięcie katalogu FTP.
-- **NX_FTP_NOT_CONNECTED**: (0XD3) klient FTP nie jest połączony.
-- **NX_FTP_EXPECTED_2XX_CODE**: (0xDA) nie otrzymał odpowiedzi 2xx (ok) 
+- **NX_SUCCESS:**(0x00) Pomyślne usunięcie katalogu FTP.
+- **NX_FTP_NOT_CONNECTED:**(0xD3) Klient FTP nie jest połączony.
+- **NX_FTP_EXPECTED_2XX_CODE:**(0xDA) Nie otrzymuję odpowiedzi 2XX (ok) 
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP. 
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -312,7 +312,7 @@ status = nx_ftp_client_directory_delete(&my_client, "my_dir", 200);
 
 ## <a name="nx_ftp_client_directory_listing_get"></a>nx_ftp_client_directory_listing_get
 
-Pobierz listę katalogów z serwera FTP
+Uzyskiwanie listy katalogów z serwera FTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -324,26 +324,26 @@ UINT nx_ftp_client_directory_listing_get(NX_FTP_CLIENT *ftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa pobiera zawartość określonego katalogu na serwerze FTP, który jest połączony z określonym klientem FTP. Dostarczony wskaźnik pakietu będzie zawierać jeden lub więcej wpisów w katalogu. Każdy wpis jest oddzielony przez &lt; kombinację CR/LF \. ***Nx_ftp_client_directory_listing_continue***: należy wywołać, aby ukończyć operację pobierania katalogu.
+Ta usługa pobiera zawartość określonego katalogu na serwerze FTP, który jest połączony z określonym klientem FTP. Dostarczony wskaźnik pakietu będzie zawierać jeden lub więcej wpisów katalogu. Każdy wpis jest oddzielony &lt; kombinacją cr/lf\. Aby ***nx_ftp_client_directory_listing_continue*** operację get katalogu, należy nx_ftp_client_directory_listing_continue : .
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **directory_name**: Nazwa katalogu, do którego ma zostać pobrana zawartość.
-- **packet_ptr**: wskaźnik do docelowego wskaźnika pakietu. Jeśli to się powiedzie, ładunek pakietu będzie zawierać jeden lub więcej wpisów w katalogu.
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na listę katalogów FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **directory_name:** Nazwa katalogu, w którym ma być zawartości.
+- **packet_ptr:** wskaźnik do docelowego wskaźnika pakietów. W przypadku powodzenia ładunek pakietu będzie zawierać co najmniej jeden wpis katalogu.
+- **wait_option:** określa, jak długo usługa będzie czekać na listę katalogów FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślna lista katalogów FTP.
-- **NX_FTP_NOT_CONNECTED**: (0XD3) klient FTP nie jest połączony.
-- **NX_NOT_ENABLED**: (0x14) nie włączono usługi (IPv6)
-- **NX_FTP_EXPECTED_1XX_CODE**: (0xD9) nie otrzymał odpowiedzi 1XX (ok)
-- **NX_FTP_EXPECTED_2XX_CODE**: (0xDA) nie otrzymał odpowiedzi 2xx (ok)
+- **NX_SUCCESS:**(0x00) Lista pomyślnych katalogów FTP.
+- **NX_FTP_NOT_CONNECTED:**(0xD3) Klient FTP nie jest połączony.
+- **NX_NOT_ENABLED:** usługa (0x14) (IPv6) nie jest włączona
+- **NX_FTP_EXPECTED_1XX_CODE:**(0xD9) Nie otrzymuję odpowiedzi 1XX (ok)
+- **NX_FTP_EXPECTED_2XX_CODE:**(0xDA) Nie otrzymuję odpowiedzi 2XX (ok)
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -363,7 +363,7 @@ status = nx_ftp_client_directory_listing_get(&my_client, "my_dir", &my_packet,
 
 ## <a name="nx_ftp_client_directory_listing_continue"></a>nx_ftp_client_directory_listing_continue
 
-Kontynuuj Wyświetlanie listy katalogów z serwera FTP
+Kontynuuj wyświetlanie listy katalogów z serwera FTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -375,24 +375,24 @@ UINT nx_ftp_client_directory_listing_continue(NX_FTP_CLIENT
 
 ### <a name="description"></a>Opis
 
-Ta usługa kontynuuje pobieranie zawartości określonego katalogu na serwerze FTP, który jest połączony z określonym klientem FTP. Powinien być bezpośrednio poprzedzony wywołaniem ***nx_ftp_client_directory_listing_get***. Jeśli to się powiedzie, dostarczony wskaźnik pakietu będzie zawierać jeden lub więcej wpisów w katalogu. Ta procedura powinna być wywoływana do momentu otrzymania NX_FTP_END_OF_LISTING stanu.
+Ta usługa kontynuuje pobieranie zawartości określonego katalogu na serwerze FTP, który jest połączony z określonym klientem FTP. Powinno ono zostać bezpośrednio poprzedzone wywołaniem nx_ftp_client_directory_listing_get ***.*** Jeśli to się powiedzie, dostarczony wskaźnik pakietu będzie zawierać co najmniej jeden wpis w katalogu. Ta procedura powinna być wywoływana do momentu NX_FTP_END_OF_LISTING, gdy zostanie odebrany stan.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **packet_ptr**: wskaźnik do docelowego wskaźnika pakietu. Jeśli to się powiedzie, ładunek pakietu będzie zawierać co najmniej jeden wpis w katalogu oddzielony znakiem &lt; CR/LF &gt; .
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na listę katalogów FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **packet_ptr:** wskaźnik do docelowego wskaźnika pakietów. W przypadku powodzenia ładunek pakietu będzie zawierać co najmniej jeden wpis katalogu, oddzielony od siebie &lt; przecinkiem cr/lf. &gt;
+- **wait_option:** określa, jak długo usługa będzie czekać na listę katalogów FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślna lista katalogów FTP.
-- **NX_FTP_END_OF_LISTING**: (0XD8) nie ma więcej wpisów w tym katalogu.
-- **NX_FTP_NOT_CONNECTED**: (0XD3) klient FTP nie jest połączony.
-- **NX_FTP_EXPECTED_2XX_CODE** (0xDA) nie otrzymał odpowiedzi 2xx (ok)
+- **NX_SUCCESS:**(0x00) Lista pomyślnych katalogów FTP.
+- **NX_FTP_END_OF_LISTING:**(0xD8) Nie ma więcej wpisów w tym katalogu.
+- **NX_FTP_NOT_CONNECTED:**(0xD3) Klient FTP nie jest połączony.
+- **NX_FTP_EXPECTED_2XX_CODE** (0xDA) Nie otrzymuję odpowiedzi 2XX (ok)
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -412,7 +412,7 @@ status = nx_ftp_client_directory_listing_continue(&my_client, &my_packet,
 
 ## <a name="nx_ftp_client_disconnect"></a>nx_ftp_client_disconnect
 
-Rozłącz z serwerem FTP
+Rozłączanie z serwerem FTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -423,22 +423,22 @@ UINT nx_ftp_client_disconnect(NX_FTP_CLIENT *ftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa rozłącza wcześniej ustanowione połączenie z serwerem FTP z określonym klientem FTP.
+Ta usługa rozłącza wcześniej nawiązane połączenie z serwerem FTP z określonym klientem FTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na rozłączenie klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **wait_option:** określa, jak długo usługa będzie czekać na rozłączenie klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wywołujący wątek zawiesza się na czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne rozłączenie FTP.
-- **NX_FTP_NOT_CONNECTED**: (0XD3) klient FTP nie jest połączony.
-- **NX_FTP_EXPECTED_2XX_CODE**: (0xDA) nie otrzymał odpowiedzi 2xx (ok)
+- **NX_SUCCESS:**(0x00) Pomyślne rozłączenie protokołu FTP.
+- **NX_FTP_NOT_CONNECTED:**(0xD3) Klient FTP nie jest połączony.
+- **NX_FTP_EXPECTED_2XX_CODE:**(0xDA) Nie otrzymuję odpowiedzi 2XX (ok)
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -466,23 +466,23 @@ UINT nx_ftp_client_file_close(NX_FTP_CLIENT *ftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa zamyka poprzednio otwarty plik na serwerze FTP.
+Ta usługa zamyka wcześniej otwarty plik na serwerze FTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na zamknięcie pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **wait_option:** określa, jak długo usługa będzie czekać na zamknięcie pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wywołujący wątek zawiesza się na czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne zamknięcie pliku FTP.
-- **NX_FTP_NOT_CONNECTED**: (0XD3) klient FTP nie jest połączony.
-- **NX_FTP_NOT_OPEN (0xD5)**: plik nie jest otwarty; nie można zamknąć
-- **NX_FTP_EXPECTED_2XX_CODE**: (0xDA) nie otrzymał odpowiedzi 2xx (ok)
+- **NX_SUCCESS:**(0x00) Pomyślne zamknięcie pliku FTP.
+- **NX_FTP_NOT_CONNECTED:**(0xD3) Klient FTP nie jest połączony.
+- **NX_FTP_NOT_OPEN (0xD5) :** Plik nie jest otwarty; nie można go zamknąć
+- **NX_FTP_EXPECTED_2XX_CODE:**(0xDA) Nie otrzymuję odpowiedzi 2XX (ok)
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -500,7 +500,7 @@ status = nx_ftp_client_file_close(&my_client, 200);
 
 ## <a name="nx_ftp_client_file_delete"></a>nx_ftp_client_file_delete
 
-Usuń plik na serwerze FTP
+Usuwanie pliku na serwerze FTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -515,19 +515,19 @@ Ta usługa usuwa określony plik na serwerze FTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **file_name**: nazwa pliku do usunięcia.
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na usunięcie pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **file_name:** nazwa pliku do usunięcia.
+- **wait_option:** określa, jak długo usługa będzie czekać na usunięcie pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wywołujący wątek zawiesza się na czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne usunięcie pliku FTP.
-- **NX_FTP_NOT_CONNECTED**: (0XD3) klient FTP nie jest połączony.
-- **NX_FTP_EXPECTED_2XX_CODE**: (0xDA) nie otrzymał odpowiedzi 2xx (ok)
+- **NX_SUCCESS:**(0x00) Pomyślne usunięcie pliku FTP.
+- **NX_FTP_NOT_CONNECTED:**(0xD3) Klient FTP nie jest połączony.
+- **NX_FTP_EXPECTED_2XX_CODE:**(0xDA) Nie otrzymuję odpowiedzi 2XX (ok)
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -561,22 +561,22 @@ Ta usługa otwiera określony plik — do odczytu lub zapisu — na serwerze FTP
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **file_name**: nazwa pliku do otwarcia.
-- **open_type**: **NX_FTP_OPEN_FOR_READ** lub **NX_FTP_OPEN_FOR_WRITE**.
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na otwarcie pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **file_name:** Nazwa pliku do otwarcia.
+- **open_type:** **NX_FTP_OPEN_FOR_READ** lub **NX_FTP_OPEN_FOR_WRITE**.
+- **wait_option:** określa, jak długo usługa będzie czekać na otwarcie pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wywołujący wątek zawiesza się na czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne otwarcie pliku FTP.
-- **NX_OPTION_ERROR**: (0X0a) Nieprawidłowy typ otwarty.
-- **NX_FTP_NOT_CONNECTED**: (0XD3) klient FTP nie jest połączony.
-- **NX_FTP_NOT_CLOSED**: (0XD6) klient FTP jest już otwarty.
-- **NX_NO_FREE_PORTS**: (0X45) Brak dostępnych portów TCP do przypisania
+- **NX_SUCCESS:**(0x00) Pomyślnie otwarty plik FTP.
+- **NX_OPTION_ERROR:**(0x0A) Nieprawidłowy typ otwierania.
+- **NX_FTP_NOT_CONNECTED:**(0xD3) Klient FTP nie jest połączony.
+- **NX_FTP_NOT_CLOSED:**(0xD6) Klient FTP jest już otwarty.
+- **NX_NO_FREE_PORTS:**(0x45) Brak dostępnych portów TCP do przypisania
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -596,7 +596,7 @@ status = nx_ftp_client_file_open(&my_client, "my_file.txt", NX_FTP_OPEN_FOR_READ
 
 ## <a name="nx_ftp_client_file_read"></a>nx_ftp_client_file_read
 
-Odczytaj z pliku
+Odczyt z pliku
 
 ### <a name="prototype"></a>Prototype
 
@@ -607,27 +607,27 @@ UINT nx_ftp_client_file_read(NX_FTP_CLIENT *ftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa odczytuje pakiet z wcześniej otwartego pliku. Powinien być wywoływany kilkukrotnie do momentu otrzymania stanu NX_FTP_END_OF_FILE.
+Ta usługa odczytuje pakiet z wcześniej otwartego pliku. Powinien być wywoływany powtarzalnie do momentu NX_FTP_END_OF_FILE stanu.
 
-Należy zauważyć, że obiekt wywołujący nie przydziela pakietu dla tej usługi.  Musi on dostarczyć jedynie wskaźnik do wskaźnika pakietu. Ta usługa zaktualizuje ten wskaźnik pakietu, aby wskazywał pakiet pobrany z kolejki odbioru gniazda.  Jeśli zwracany jest stan pomyślne, oznacza to, że dostępny jest pakiet i jest on odpowiedzialny za wydanie pakietu po jego zakończeniu.
+Należy pamiętać, że obiekt wywołujący nie przydziela pakietu dla tej usługi.  Potrzebuje tylko wskaźnika do wskaźnika pakietu. Ta usługa zaktualizuje ten wskaźnik pakietów, aby wskazać pakiet pobrany z kolejki odbierania gniazd.  Jeśli zostanie zwrócony stan pomyślny, oznacza to, że dostępny był pakiet, a wywołujący odpowiada za zwolnienie pakietu po jego użyciu.
 
-Jeśli zwracany jest stan o wartości innej niż zero (stan błędu lub NX_FTP_END_OF_FILE), obiekt wywołujący nie zwolni pakietu. W przeciwnym razie zostanie wygenerowany błąd, gdy wskaźnik pakietu ma wartość NULL.
+Jeśli zwracany jest stan niezerowy (stan błędu lub NX_FTP_END_OF_FILE), wywołujący nie zwalnia pakietu. W przeciwnym razie jest generowany błąd, gdy wskaźnik pakietu ma wartość NULL.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **packet_ptr**: wskaźnik do miejsca docelowego dla wskaźnika pakietu danych pobranego z kolejki. Jeśli to się powiedzie, dane pakietu zawierają część lub wszystkie pliki.
-- **WAIT_OPTION**: określa, jak długo usługa będzie oczekiwać na odczytanie pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **packet_ptr:** Wskaźnik do miejsca docelowego dla wskaźnika pakietu danych pobranego z kolejki. W przypadku powodzenia dane pakietu zawierają część lub wszystkie pliki.
+- **wait_option:** określa, jak długo usługa będzie czekać na odczytanie pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne odczytanie pliku FTP.
-- **NX_FTP_NOT_OPEN**: (0XD5) klient FTP nie jest otwarty.
-- **NX_FTP_END_OF_FILE**: (0XD7) koniec warunku pliku.
+- **NX_SUCCESS:**(0x00) Pomyślny odczyt pliku FTP.
+- **NX_FTP_NOT_OPEN:**(0xD5) Klient FTP nie jest otwarty.
+- **NX_FTP_END_OF_FILE:**(0xD7) Warunek końca pliku.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -661,7 +661,7 @@ downloaded, an NX_FTP_END_OF_FILE status is returned (no packet retrieved). */
 
 ## <a name="nx_ftp_client_file_rename"></a>nx_ftp_client_file_rename
 
-Zmień nazwę pliku na serwerze FTP
+Zmienianie nazwy pliku na serwerze FTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -676,21 +676,21 @@ Ta usługa zmienia nazwę pliku na serwerze FTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **Nazwa** pliku: Bieżąca nazwa pliku.
-- **new_filename**: Nowa nazwa pliku.
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na zmianę nazwy pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **filename:** bieżąca nazwa pliku.
+- **new_filename:** nowa nazwa pliku.
+- **wait_option:** określa, jak długo usługa będzie czekać na zmianę nazwy pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0x00) pomyślna zmiana nazwy pliku FTP.
-- **NX_FTP_NOT_CONNECTED**: (0XD3) klient FTP nie jest połączony.
-- **NX_FTP_EXPECTED_3XX_CODE**: (0XDD) nie otrzymał odpowiedzi 3xx (ok)
-- **NX_FTP_EXPECTED_2XX_CODE**: (0xDA) nie otrzymał odpowiedzi 2xx (ok)
+- **NX_SUCCESS:**(0x00) Pomyślna zmiana nazwy pliku FTP.
+- **NX_FTP_NOT_CONNECTED:**(0xD3) Klient FTP nie jest połączony.
+- **NX_FTP_EXPECTED_3XX_CODE:**(0XDD) Nie odedano odpowiedzi 3XX (ok)
+- **NX_FTP_EXPECTED_2XX_CODE:**(0xDA) Nie otrzymuję odpowiedzi 2XX (ok)
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -710,7 +710,7 @@ status = nx_ftp_client_file_rename(&my_client, "my_file.txt", "new_file.txt",
 
 ## <a name="nx_ftp_client_file_write"></a>nx_ftp_client_file_write
 
-Zapisz do pliku
+Zapis do pliku
 
 ### <a name="prototype"></a>Prototype
 
@@ -725,18 +725,18 @@ Ta usługa zapisuje pakiet danych do wcześniej otwartego pliku na serwerze FTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **packet_ptr**: wskaźnik pakietu zawierający dane do zapisu.
-- **WAIT_OPTION**: określa, jak długo usługa będzie czekać na zapis pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
-  - **wartość limitu czasu**: (od 0X00000001 do 0xFFFFFFFE)
-  - **TX_WAIT_FOREVER**: (0Xffffffff) wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się w nieskończoność do momentu, aż serwer FTP odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę cykli czasomierza, która ma zostać wstrzymana podczas oczekiwania na odpowiedź serwera FTP.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **packet_ptr:** wskaźnik pakietu zawierający dane do zapisu.
+- **wait_option:** określa, jak długo usługa będzie czekać na zapis pliku klienta FTP. Opcje oczekiwania są zdefiniowane w następujący sposób:
+  - **wartość limitu czasu:**(0x00000001 do 0xFFFFFFFE)
+  - **TX_WAIT_FOREVER:**(0xFFFFFFFF) Wybranie TX_WAIT_FOREVER powoduje, że wątek wywołujący zawiesza się przez czas nieokreślony, dopóki serwer FTP nie odpowie na żądanie. Wybranie wartości liczbowej (1-0xFFFFFFFE) określa maksymalną liczbę takt czasomierzy, które mają pozostać wstrzymane podczas oczekiwania na odpowiedź serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne zapis pliku FTP.
-- **NX_FTP_NOT_OPEN**: (0XD5) klient FTP nie jest otwarty.
+- **NX_SUCCESS:**(0x00) Pomyślny zapis pliku FTP.
+- **NX_FTP_NOT_OPEN:**(0xD5) Klient FTP nie jest otwarty.
 - NX_PTR_ERROR: (0x07) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -755,7 +755,7 @@ status = nx_ftp_client_file_write(&my_client, my_packet, 200);
 
 ## <a name="nx_ftp_client_passive_mode_set"></a>nx_ftp_client_passive_mode_set
 
-Włącz lub wyłącz tryb transferu pasywnego
+Włączanie lub wyłączanie pasywnego trybu transferu
 
 ### <a name="prototype"></a>Prototype
 
@@ -766,20 +766,20 @@ UINT nx_ftp_client_passive_mode_set(NX_FTP_CLIENT *ftp_client_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa włącza tryb transferu pasywnego, jeśli passive_mode_enabled dane wejściowe są ustawione na NX_TRUE na wcześniej utworzonym wystąpieniu klienta FTP, tak że kolejne wywołania odczytu lub zapisu plików (RETR, STOR) lub pobrania listy katalogów (NLST) są wykonywane w trybie transferu. Aby wyłączyć transfer w trybie pasywnym i wrócić do domyślnego zachowania aktywnego trybu transferu, Wywołaj tę funkcję z zestawem danych wejściowych passive_mode_enabled, aby NX_FALSE.
+Ta usługa włącza pasywny tryb transferu, jeśli dane wejściowe usługi passive_mode_enabled zostały ustawione na NX_TRUE na wcześniej utworzonym wystąpieniu klienta FTP, tak aby kolejne wywołania odczytu lub zapisu plików (RETR, STOR) lub pobrania listy katalogów (NLST) były wykonywane w trybie transferu. Aby wyłączyć transfer w trybie pasywnym i przywrócić domyślne zachowanie trybu aktywnego transferu, wywołaj tę funkcję z passive_mode_enabled wejściowymi ustawionymi na NX_FALSE.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_client_ptr**: wskaźnik do bloku kontroli klienta FTP.
-- **passive_mode_enabled**:
-  - Jeśli ustawiona na NX_TRUE, tryb pasywny jest włączony.
-  - Jeśli ustawiona na NX_FALSE, tryb pasywny jest wyłączony.
+- **ftp_client_ptr:** wskaźnik do bloku sterowania klienta FTP.
+- **passive_mode_enabled:**
+  - Jeśli ustawisz wartość NX_TRUE, tryb pasywny zostanie włączony.
+  - Jeśli ustawisz wartość NX_FALSE, tryb pasywny zostanie wyłączony.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślnie ustawiono tryb pasywny.
+- **NX_SUCCESS:**(0x00) Zestaw pomyślnego trybu pasywnego.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik FTP.
-- NX_INVALID_PARAMETERS: (0x4D) nieprawidłowe dane wejściowe bez wskaźnika
+- NX_INVALID_PARAMETERS: (0x4D) Nieprawidłowe dane wejściowe bez wskaźnika
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -797,7 +797,7 @@ status = nx_ftp_client_passive_mode_set(&my_client, NX_TRUE);
 
 ## <a name="nx_ftp_server_create"></a>nx_ftp_server_create
 
-Utwórz serwer FTP
+Tworzenie serwera FTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -818,28 +818,28 @@ UINT nx_ftp_server_create(NX_FTP_SERVER *ftp_server_ptr,
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wystąpienie serwera FTP w określonym i wcześniej utworzonym wystąpieniu adresu IP NetX. Zwróć uwagę na to, że serwer FTP musi zostać uruchomiony z wywołaniem do ***nx_ftp_server_start*** , aby rozpocząć operację.
+Ta usługa tworzy wystąpienie serwera FTP w określonym i wcześniej utworzonym wystąpieniu adresu IP NetX. Należy pamiętać, że serwer FTP musi zostać uruchomiony za pomocą wywołania ***nx_ftp_server_start,*** aby rozpocząć działanie.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_server_ptr**: wskaźnik do bloku sterowania serwerem FTP.
-- **ftp_server_name**: Nazwa serwera FTP.
-- **ip_ptr**: wskaźnik do skojarzonego wystąpienia adresu IP NetX. Należy pamiętać, że dla wystąpienia IP może istnieć tylko jeden serwer FTP.
-- **media_ptr**: wskaźnik do skojarzonego wystąpienia nośnika FileX.
-- **stack_ptr**: wskaźnik do pamięci dla obszaru stosu wewnętrznego wątku serwera FTP.
-- **stack_size**: rozmiar obszaru stosu określonego przez *stack_ptr*.
-- **pool_ptr**: wskaźnik do domyślnej puli pakietów NetX. Zwróć uwagę, że rozmiar ładunku pakietów w puli musi być wystarczająco duży, aby pomieścić największą nazwę pliku/ścieżkę.
-- **ftp_login**: wskaźnik funkcji do funkcji logowania aplikacji. Ta funkcja jest podana nazwa użytkownika i hasło z klienta żądającego połączenia. Jeśli jest to prawidłowe, funkcja logowania aplikacji powinna zwracać NX_SUCCESS.
-- **ftp_logout**: wskaźnik funkcji do funkcji wylogowania aplikacji. Ta funkcja jest podana nazwa użytkownika i hasło z klienta żądającego odłączenia. Jeśli jest to prawidłowe, funkcja logowania aplikacji powinna zwracać NX_SUCCESS.
+- **ftp_server_ptr:** wskaźnik do bloku sterowania serwera FTP.
+- **ftp_server_name:** Nazwa serwera FTP.
+- **ip_ptr:** wskaźnik do skojarzonego wystąpienia adresu IP NetX. Należy pamiętać, że dla wystąpienia adresu IP może być tylko jeden serwer FTP.
+- **media_ptr:** wskaźnik do skojarzonego wystąpienia nośnika FileX.
+- **stack_ptr:** wskaźnik do pamięci dla obszaru stosu wewnętrznego wątku serwera FTP.
+- **stack_size:** rozmiar obszaru stosu określony przez *stack_ptr*.
+- **pool_ptr:** wskaźnik do domyślnej puli pakietów NetX. Należy pamiętać, że rozmiar ładunku pakietów w puli musi być wystarczająco duży, aby pomieścić największą nazwę pliku/ścieżkę.
+- **ftp_login:** Wskaźnik funkcji do funkcji logowania aplikacji. Ta funkcja jest dostarczana z klienta żądającego połączenia nazwy użytkownika i hasła. Jeśli jest to prawidłowe, funkcja logowania aplikacji powinna zwrócić NX_SUCCESS.
+- **ftp_logout:** Wskaźnik funkcji do funkcji wylogowywu aplikacji. Ta funkcja jest dostarczana z klienta z żądaniem rozłączenia nazwy użytkownika i hasła. Jeśli jest to prawidłowe, funkcja logowania aplikacji powinna zwrócić NX_SUCCESS.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne utworzenie serwera FTP.
+- **NX_SUCCESS:**(0x00) Pomyślne utworzenie serwera FTP.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik FTP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -856,7 +856,7 @@ status = nx_ftp_server_create(&my_server, "My Server Name", &ip_0, &ram_disk,
 
 ## <a name="nx_ftp_server_delete"></a>nx_ftp_server_delete
 
-Usuń serwer FTP
+Usuwanie serwera FTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -866,17 +866,17 @@ UINT nx_ftp_server_delete(NX_FTP_SERVER *ftp_server_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa usuwa wcześniej utworzone wystąpienie serwera FTP.
+Ta usługa usuwa utworzone wcześniej wystąpienie serwera FTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_server_ptr**: wskaźnik do bloku sterowania serwerem FTP.
+- **ftp_server_ptr:** wskaźnik do bloku sterowania serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne usunięcie serwera FTP.
+- **NX_SUCCESS:**(0x00) Pomyślne usunięcie serwera FTP.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -894,7 +894,7 @@ status = nx_ftp_server_delete(&my_server);
 
 ## <a name="nx_ftp_server_start"></a>nx_ftp_server_start
 
-Uruchom serwer FTP
+Uruchamianie serwera FTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -908,16 +908,16 @@ Ta usługa uruchamia wcześniej utworzone wystąpienie serwera FTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_server_ptr**: wskaźnik do bloku sterowania serwerem FTP.
+- **ftp_server_ptr:** wskaźnik do bloku sterowania serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne uruchomienie serwera FTP.
+- **NX_SUCCESS:**(0x00) Pomyślne uruchomienie serwera FTP.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik FTP.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -931,7 +931,7 @@ status = nx_ftp_server_start(&my_server);
 
 ## <a name="nx_ftp_server_stop"></a>nx_ftp_server_stop
 
-Zatrzymaj serwer FTP
+Zatrzymywanie serwera FTP
 
 ### <a name="prototype"></a>Prototype
 
@@ -941,17 +941,17 @@ UINT nx_ftp_server_stop(NX_FTP_SERVER *ftp_server_ptr);
 
 ### <a name="description"></a>Opis
 
-Ta usługa przerywa poprzednio utworzone i uruchomione wystąpienie serwera FTP.
+Ta usługa zatrzymuje utworzone wcześniej i uruchomione wystąpienie serwera FTP.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **ftp_server_ptr**: wskaźnik do bloku sterowania serwerem FTP.
+- **ftp_server_ptr:** wskaźnik do bloku sterowania serwera FTP.
 
 ### <a name="return-values"></a>Wartości zwrócone
 
-- **NX_SUCCESS**: (0X00) pomyślne zatrzymanie serwera FTP.
+- **NX_SUCCESS:**(0x00) Pomyślne zatrzymanie serwera FTP.
 - NX_PTR_ERROR: (0x16) Nieprawidłowy wskaźnik FTP.
-- NX_CALLER_ERROR: (0x11) Nieprawidłowy obiekt wywołujący tej usługi.
+- NX_CALLER_ERROR: (0x11) Nieprawidłowy wywołujący tę usługę.
 
 ### <a name="allowed-from"></a>Dozwolone z
 

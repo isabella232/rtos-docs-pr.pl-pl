@@ -1,43 +1,43 @@
 ---
-title: Rozdział 5 — interfejsy API Menedżera modułów
+title: Rozdział 5 — Interfejsy API menedżera modułów
 author: philmea
-description: Ten artykuł zawiera podsumowanie interfejsów API Menedżera modułów dostępnych dla rezydentnej części aplikacji.
+description: Ten artykuł zawiera podsumowanie interfejsów API menedżera modułów dostępnych dla rezydualnej części aplikacji.
 ms.author: philmea
 ms.date: 07/15/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: ca0fee443c23fd1bdd34651f4a7b31cf71f886f0
-ms.sourcegitcommit: e3d42e1f2920ec9cb002634b542bc20754f9544e
+ms.openlocfilehash: e8e4da0f9591fd0b5d6249292f00266d96ccb67923c42632a4cfd8c39fa1f129
+ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 03/22/2021
-ms.locfileid: "104821390"
+ms.lasthandoff: 08/07/2021
+ms.locfileid: "116799119"
 ---
-# <a name="chapter-5---module-manager-apis"></a>Rozdział 5 — interfejsy API Menedżera modułów
+# <a name="chapter-5---module-manager-apis"></a>Rozdział 5 — Interfejsy API menedżera modułów
 
-## <a name="summary-of-module-manager-apis"></a>Podsumowanie interfejsów API Menedżera modułów
+## <a name="summary-of-module-manager-apis"></a>Podsumowanie interfejsów API menedżera modułów
 
-Istnieje kilka dodatkowych interfejsów API, które są dostępne dla rezydentnej części aplikacji w następujący sposób.
+Istnieje kilka dodatkowych interfejsów API dostępnych dla rezydualnej części aplikacji w następujący sposób.
 
-- ***txm_module_manager_external_memory_enable** _ _Enable dostępu do modułu do udostępnionej przestrzeni pamięci *
-- ***txm_module_manager_file_load** _-_Load moduł z pliku za pośrednictwem FileX *
-- ***txm_module_manager_in_place_load** _-_Load dane modułu, wykonaj w miejscu *
-- ***txm_module_manager_initialize** _-_Initialize Menedżera modułów *
-- ***txm_module_manager_mm_initialize** _-_Initialize sprzęt zarządzania pamięcią *
-- ***txm_module_manager_maximum_module_priority_set** _-_Set maksymalny priorytet wątku dozwolony w module *
-- ***txm_module_manager_memory_fault_notify** _-_Register wywołanie zwrotne aplikacji dotyczące błędu pamięci *
-- ***txm_module_manager_memory_load** _-_Load module z pamięci *
-- ***txm_module_manager_object_pool_create** _-_Create pulę obiektów dla modułów *
-- ***txm_module_manager_properties_get** _-_Get właściwości modułu *
-- ***txm_module_manager_start** _-_Start wykonywanie określonego modułu *
-- ***txm_module_manager_stop** _-_Stop wykonywanie określonego modułu *
-- ***txm_module_manager_unload** _-_Unload module *
+- ***txm_module_manager_external_memory_enable** _ — _Enable dostępu do współdzielonych przestrzeni pamięci*
+- ***txm_module_manager_file_load** _ — _Load z pliku za pośrednictwem pliku FileX*
+- ***txm_module_manager_in_place_load** _ — _Load danych modułu, wykonaj w miejscu*
+- ***txm_module_manager_initialize** _ — _Initialize menedżera modułów*
+- ***txm_module_manager_mm_initialize** _ — _Initialize sprzętu do zarządzania pamięcią*
+- ***txm_module_manager_maximum_module_priority_set** _ — _Set maksymalny dozwolony priorytet wątku w module*
+- ***txm_module_manager_memory_fault_notify** _ — _Register wywołania zwrotnego aplikacji w przypadku błędu pamięci*
+- ***txm_module_manager_memory_load** _ — _Load moduł z pamięci*
+- ***txm_module_manager_object_pool_create** _ — _Create puli obiektów dla modułów*
+- ***txm_module_manager_properties_get** _ — _Get modułu*
+- ***txm_module_manager_start** _ — _Start wykonania określonego modułu*
+- ***txm_module_manager_stop** _ — _Stop wykonania określonego modułu*
+- ***txm_module_manager_unload** _ — _Unload modułu*
 
 ---
 
 ## <a name="txm_module_manager_external_memory_enable"></a>txm_module_manager_external_memory_enable
 
-Włącz moduł, aby uzyskać dostęp do udostępnionej przestrzeni pamięci.
+Włącz moduł, aby uzyskać dostęp do przestrzeni pamięci współdzielonych.
 
 ### <a name="prototype"></a>Prototype
 
@@ -51,27 +51,27 @@ UINT txm_module_manager_external_memory_enable(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy wpis w tabeli sprzętowej zarządzania pamięcią dla regionu pamięci współdzielonej, do którego moduł może uzyskać dostęp.
+Ta usługa tworzy wpis w tabeli sprzętu do zarządzania pamięcią dla regionu pamięci współdzielonych, do których moduł może uzyskać dostęp.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **module_instance** Wskaźnik do wystąpienia modułu.
-- **start_address** Adres początkowy obszaru pamięci udostępnionej.
-- **Długość** Długość regionu pamięci współdzielonej.
-- **atrybuty** Atrybuty regionu pamięci (pamięć podręczna, Odczyt, zapis itp.). Atrybuty są specyficzne dla portu; Zobacz [dodatek](appendix.md) dla formatu atrybutów.
+- **start_address** Adres początkowy regionu pamięci współdzielonych.
+- **długość** Długość regionu pamięci współdzielonych.
+- **atrybuty** Atrybuty regionu pamięci (pamięć podręczna, odczyt, zapis itp.). Atrybuty są specyficzne dla portu; Zobacz [dodatek](appendix.md) dla formatu atrybutów.
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Pomyślnie utworzono wpis pamięci **TX_SUCCESS** (0x00).
-- Menedżer **TX_NOT_AVAILABLE** (0x1D) nie został zainicjowany lub funkcja jest niedostępna.
-- **TX_PTR_ERROR** (0X03) nieprawidłowe wystąpienie modułu.
-- Moduł **TX_START_ERROR** (0x10) nie jest w stanie załadowania.
-- **TXM_MODULE_ALIGNMENT_ERROR** (0XF0) nieprawidłowe wyrównanie adresu początkowego.
-- Niezgodne właściwości **TXM_MODULE_INVALID_PROPERTIES** (0xF3).
+- **TX_SUCCESS** (0x00) Pamięci został utworzony pomyślnie.
+- **TX_NOT_AVAILABLE** (0x1D) Manager nie został zainicjowany lub funkcja nie jest dostępna.
+- **TX_PTR_ERROR** (0x03) Nieprawidłowe wystąpienie modułu.
+- **TX_START_ERROR** (0x10) Module nie jest w stanie załadowanym.
+- **TXM_MODULE_ALIGNMENT_ERROR** (0xF0) Nieprawidłowe wyrównanie adresu startowego.
+- **TXM_MODULE_INVALID_PROPERTIES** (0xF3) Niezgodne właściwości.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -94,7 +94,7 @@ txm_module_manager_external_memory_enable(&my_module, (VOID*)0x64005000, 256, 0x
 
 ## <a name="txm_module_manager_file_load"></a>txm_module_manager_file_load
 
-Załaduj moduł z pliku za pośrednictwem FileX.
+Załaduj moduł z pliku za pomocą pliku FileX.
 
 ### <a name="prototype"></a>Prototype
 
@@ -108,10 +108,10 @@ UINT txm_module_manager_file_load(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ładuje obraz binarny modułu zawartego w określonym pliku do obszaru pamięci modułu i przygotowuje go do wykonania. Przyjęto, że dostarczony nośnik jest już otwarty.
+Ta usługa ładuje obraz binarny modułu zawartego w określonym pliku do obszaru pamięci modułu i przygotowuje go do wykonania. Zakłada się, że dostarczony nośnik jest już otwarty.
 
 > [!NOTE]
-> System FileX jest używany do ładowania pliku. Aby można było włączyć dostęp do FileX, moduł, biblioteka modułów, Menedżer modułów i Biblioteka ThreadX (ze źródłami Menedżera modułów) muszą zostać skompilowane przy użyciu **FX_FILEX_PRESENT** zdefiniowanych w projektach.
+> System FileX jest wykorzystywany do ładowania pliku. Aby włączyć dostęp do pliku FileX, moduł, biblioteka modułów, Menedżer modułów i biblioteka ThreadX (ze źródłami Menedżera modułów) muszą być budowane przy **użyciu** FX_FILEX_PRESENT zdefiniowanych w projektach.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -122,16 +122,16 @@ Ta usługa ładuje obraz binarny modułu zawartego w określonym pliku do obszar
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Załadowanie modułu zakończyło się **TX_SUCCESS** (0x00).
-- **TX_CALLER_ERROR** (0X13) Nieprawidłowy obiekt wywołujący.
-- Nie zainicjowano Menedżera **TX_NOT_AVAILABLE** (0x1D).
-- **TX_NO_MEMORY** (0x10) za mało pamięci do załadowania modułu.
-- **TX_NOT_DONE** (0x20) nie jest otwarty, nie znaleziono pliku lub plik jest nieprawidłowy.
-- **TX_PTR_ERROR** (0X03) Nieprawidłowy wskaźnik modułu.
-- **TXM_MODULE_ALIGNMENT_ERROR** (0XF0) nieprawidłowe wyrównanie.
-- Moduł **TXM_MODULE_ALREADY_LOADED** (0xF1) jest już załadowany.
-- **TXM_MODULE_INVALID** (0xF2) | Nieprawidłowa Preambuła modułu.
-- Niezgodne właściwości **TXM_MODULE_INVALID_PROPERTIES** (0xF3).
+- **TX_SUCCESS** (0x00) Pomyślne ładowanie modułu.
+- **TX_CALLER_ERROR** (0x13) Nieprawidłowy wywołujący.
+- **TX_NOT_AVAILABLE** (0x1D) Manager nie został zainicjowany.
+- **TX_NO_MEMORY** (0x10) Za mało pamięci do załadowania modułu.
+- **TX_NOT_DONE** (0x20) Nośnik nie jest otwarty, nie znaleziono pliku lub plik jest nieprawidłowy.
+- **TX_PTR_ERROR** (0x03) Nieprawidłowy wskaźnik modułu.
+- **TXM_MODULE_ALIGNMENT_ERROR** (0xF0) Nieprawidłowe wyrównanie.
+- **TXM_MODULE_ALREADY_LOADED** (0xF1) module (0xF1) został już załadowany.
+- **TXM_MODULE_INVALID** (0xF2) | Nieprawidłowy moduł.
+- **TXM_MODULE_INVALID_PROPERTIES** (0xF3) Niezgodne właściwości.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -163,7 +163,7 @@ status = txm_module_manager_start(&my_module);
 
 ## <a name="txm_module_manager_in_place_load"></a>txm_module_manager_in_place_load
 
-Załaduj tylko dane modułu, wykonaj moduł w istniejącej lokalizacji.
+Ładowanie tylko danych modułu, wykonywanie modułu w istniejącej lokalizacji.
 
 ### <a name="prototype"></a>Prototype
 
@@ -176,29 +176,29 @@ UINT txm_module_manager_in_place_load(
 
 ### <a name="description"></a>Opis
 
-Ta usługa ładuje obszar danych modułu tylko do obszaru pamięci modułu i przygotowuje go do wykonania. Wykonanie kodu modułu będzie w miejscu, czyli od przesunięcia adresu określonego przez numer preambuły modułu w podanej lokalizacji.
+Ta usługa ładuje obszar danych modułu tylko do obszaru pamięci modułu i przygotowuje go do wykonania. Wykonanie kodu modułu będzie na miejscu, czyli od przesunięcia adresu określonego przez moduł w podanej lokalizacji.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **module_instance** Wskaźnik do wystąpienia modułu.
 - **module_name** Nazwa modułu.
-- **Lokalizacja** Wskaźnik do obszaru kodu modułu, najpierw preambuły.
+- **lokalizacja** Wskaźnik do obszaru kodu modułu, najpierw do obszaru kodu.
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Załadowanie modułu zakończyło się **TX_SUCCESS** (0x00).
-- **TX_CALLER_ERROR** (0X13) Nieprawidłowy obiekt wywołujący.
-- Nie zainicjowano Menedżera **TX_NOT_AVAILABLE** (0x1D).
-- **TX_NO_MEMORY** (0x10) za mało pamięci do załadowania modułu.
-- **TX_PTR_ERROR** (0X03) Nieprawidłowy wskaźnik, wystąpienie modułu lub Preambuła modułu.
-- **TXM_MODULE_ALIGNMENT_ERROR** (0XF0) nieprawidłowe wyrównanie.
-- Moduł **TXM_MODULE_ALREADY_LOADED** (0xF1) jest już załadowany.
-- **TXM_MODULE_INVALID** (0XF2) Nieprawidłowa Preambuła modułu.
-- Niezgodne właściwości **TXM_MODULE_INVALID_PROPERTIES** (0xF3).
+- **TX_SUCCESS** (0x00) Pomyślne ładowanie modułu.
+- **TX_CALLER_ERROR** (0x13) Nieprawidłowy wywołujący.
+- **TX_NOT_AVAILABLE** (0x1D) Manager nie został zainicjowany.
+- **TX_NO_MEMORY** (0x10) Za mało pamięci do załadowania modułu.
+- **TX_PTR_ERROR** (0x03) Nieprawidłowy wskaźnik, wystąpienie modułu lub błąd modułu.
+- **TXM_MODULE_ALIGNMENT_ERROR** (0xF0) Nieprawidłowe wyrównanie.
+- **TXM_MODULE_ALREADY_LOADED** (0xF1) module (0xF1) został już załadowany.
+- **TXM_MODULE_INVALID** (0xF2) Nieprawidłowy moduł.
+- **TXM_MODULE_INVALID_PROPERTIES** (0xF3) Niezgodne właściwości.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -225,7 +225,7 @@ txm_module_manager_start(&my_module);
 
 ## <a name="txm_module_manager_initialize"></a>txm_module_manager_initialize
 
-Zainicjuj Menedżera modułów.
+Zaimicjuj menedżera modułów.
 
 ### <a name="prototype"></a>Prototype
 
@@ -237,21 +237,21 @@ UINT txm_module_manager_initialize(
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje wewnętrzne zasoby Menedżera modułów, w tym obszar pamięci używany do ładowania modułów.
+Ta usługa inicjuje wewnętrzne zasoby menedżera modułów, w tym obszar pamięci używany do ładowania modułów.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **module_memory_start** Wskaźnik na początek pamięci modułu.
+- **module_memory_start** Wskaźnik do początku pamięci modułu.
 - **module_memory_size** Rozmiar w bajtach pamięci modułu.
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Pomyślnie zainicjowano **TX_SUCCESS** (0x00).
-- **TX_CALLER_ERROR** (0X13) Nieprawidłowy obiekt wywołujący.
+- **TX_SUCCESS** (0x00) Pomyślne inicjowanie.
+- **TX_CALLER_ERROR** (0x13) Nieprawidłowy wywołujący.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -269,7 +269,7 @@ txm_module_manager_initialize((VOID *) 0x64010000, 0x10000);
 
 ## <a name="txm_module_manager_initialize_mmu"></a>txm_module_manager_initialize_mmu
 
-Zainicjuj sprzęt zarządzania pamięcią.
+Inicjowanie sprzętu do zarządzania pamięcią.
 
 ### <a name="prototype"></a>Prototype
 
@@ -279,7 +279,7 @@ UINT txm_module_manager_initialize_mmu(VOID);
 
 ### <a name="description"></a>Opis
 
-Ta usługa inicjuje pamięcią.
+Ta usługa inicjuje mmu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -287,12 +287,12 @@ brak
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Pomyślnie zainicjowano **TX_SUCCESS** (0x00).
-- **TX_CALLER_ERROR** (0X13) Nieprawidłowy obiekt wywołujący.
+- **TX_SUCCESS** (0x00) Pomyślne inicjowanie.
+- **TX_CALLER_ERROR** (0x13) Nieprawidłowy wywołujący.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -329,14 +329,14 @@ Ta usługa ustawia maksymalny priorytet wątku dozwolony w module.
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Pomyślnie zainicjowano **TX_SUCCESS** (0x00).
-- Nie zainicjowano Menedżera **TX_NOT_AVAILABLE** (0x1D).
-- **TX_PTR_ERROR** (0X03) nieprawidłowe wystąpienie modułu.
-- Moduł **TX_START_ERROR** (0x10) nie jest w stanie załadowania.
+- **TX_SUCCESS** (0x00) Pomyślne inicjowanie.
+- **TX_NOT_AVAILABLE** (0x1D) Menedżer nie został zainicjowany.
+- **TX_PTR_ERROR** (0x03) Nieprawidłowe wystąpienie modułu.
+- **TX_START_ERROR** (0x10) Module nie jest w stanie załadowanym.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -352,7 +352,7 @@ txm_module_manager_maximum_module_priority_set(&my_module, 5);
 
 ## <a name="txm_module_manager_memory_fault_notify"></a>txm_module_manager_memory_fault_notify
 
-Zarejestruj wywołanie zwrotne aplikacji dla błędu pamięci.
+Rejestrowanie wywołania zwrotnego aplikacji w przypadku błędu pamięci.
 
 ### <a name="prototype"></a>Prototype
 
@@ -363,24 +363,24 @@ UINT txm_module_manager_memory_fault_notify(
 
 ### <a name="description"></a>Opis
 
-Ta usługa rejestruje określoną funkcję wywołania zwrotnego powiadomień o błędach pamięci aplikacji za pomocą Menedżera modułów. Jeśli wystąpi błąd pamięci, ta funkcja jest wywoływana ze wskaźnikiem do wątku, którego to dotyczy, i wystąpieniem modułu odpowiadającemu wątkowi, którego to dotyczy. Przetwarzanie przez Menedżera modułów automatycznie kończy działanie wątku, ale pozostawia wszystkie inne wątki w module bez zmian. Do aplikacji można zdecydować, co należy zrobić z modułem skojarzonym z błędem pamięci.
+Ta usługa rejestruje określoną funkcję wywołania zwrotnego powiadomień o błędach pamięci aplikacji za pomocą menedżera modułów. W przypadku wystąpienia błędu pamięci ta funkcja jest wywoływana ze wskaźnikiem do obrażających wątku i wystąpienia modułu odpowiadającego incydującej wątku. Przetwarzanie Menedżera modułów automatycznie kończy obrażający wątek, ale pozostawia wszystkie inne wątki w module bez zmian. To aplikacja decyduje o tym, co należy zrobić z modułem skojarzonym z błędem pamięci.
 
-Zapoznaj się z wewnętrzną strukturą **_txm_module_manager_memory_fault_info** , aby uzyskać szczegółowe informacje dotyczące samego błędu pamięci.
+Zapoznaj się z **wewnętrzną _txm_module_manager_memory_fault_info,** aby uzyskać szczegółowe informacje na temat samego błędu pamięci.
 
 > [!NOTE]
-> Funkcja wywołania zwrotnego powiadomienia o błędzie pamięci jest wykonywana bezpośrednio z powodu wyjątku błędu pamięci, więc można wywołać tylko interfejsy API ThreadX dozwolone z procedur usługi przerwania. W związku z tym w celu zatrzymania i zwolnienia nieprawidłowego modułu wywołanie zwrotne powiadomienia aplikacji musi wysłać sygnał do zadania aplikacji, aby można było zatrzymać i zwolnić moduł.
+> Funkcja wywołania zwrotnego powiadomień o błędach pamięci jest wykonywana bezpośrednio z wyjątku błędu pamięci, więc można wywołać tylko interfejsy API ThreadX dozwolone z procedur usługi przerwania. W związku z tym, aby zatrzymać i zwolnić moduł, wywołanie zwrotne powiadomienia aplikacji musi wysłać sygnał do zadania aplikacji, aby moduł można było zatrzymać i zwolnić.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **notify_function** Wskaźnik funkcji do wywołania zwrotnego powiadomienia o błędzie pamięci aplikacji. Podanie wartości NULL powoduje wyłączenie powiadomienia o błędzie pamięci.
+- **notify_function** Wskaźnik funkcji do wywołania zwrotnego powiadomienia o błędach pamięci aplikacji. Dostarczenie wartości NULL powoduje wyłączenie powiadomienia o błędach pamięci.
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Rejestracja funkcji powiadomień pomyślnych **TX_SUCCESS** (0x00).
+- **TX_SUCCESS** (0x00) Pomyślna rejestracja funkcji powiadomień.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -406,29 +406,29 @@ UINT txm_module_manager_memory_load (
 
 ### <a name="description"></a>Opis
 
-Ta usługa ładuje kod modułu i obszar danych do obszaru pamięci modułu skonfigurowanym przez ***txm_module_manager_initialize*** i przygotowuje go do wykonania.
+Ta usługa ładuje kod i obszar danych modułu do obszaru pamięci modułu, który ***został*** txm_module_manager_initialize i przygotowuje go do wykonania.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **module_instance** Wskaźnik do wystąpienia modułu.
 - **module_name** Nazwa modułu.
-- **Lokalizacja** Wskaźnik do obszaru kodu modułu, najpierw preambuły.
+- **lokalizacja** Wskaźnik do obszaru kodu modułu, najpierw przejmij.
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Załadowanie modułu zakończyło się **TX_SUCCESS** (0x00).
-- **TX_CALLER_ERROR** (0X13) Nieprawidłowy obiekt wywołujący.
-- Nie zainicjowano Menedżera **TX_NOT_AVAILABLE** (0x1D).
-- **TX_NO_MEMORY** (0x10) za mało pamięci do załadowania modułu.
-- **TX_PTR_ERROR** (0X03) Nieprawidłowy wskaźnik, wystąpienie modułu lub Preambuła modułu.
-- **TXM_MODULE_ALIGNMENT_ERROR** (0XF0) nieprawidłowe wyrównanie.
-- Moduł **TXM_MODULE_ALREADY_LOADED** (0xF1) jest już załadowany.
-- **TXM_MODULE_INVALID** (0XF2) Nieprawidłowa Preambuła modułu.
-- Niezgodne właściwości **TXM_MODULE_INVALID_PROPERTIES** (0xF3).
+- **TX_SUCCESS** (0x00) Pomyślne ładowanie modułu.
+- **TX_CALLER_ERROR** (0x13) Nieprawidłowy wywołujący.
+- **TX_NOT_AVAILABLE** (0x1D) Menedżer nie został zainicjowany.
+- **TX_NO_MEMORY** (0x10) Za mało pamięci do załadowania modułu.
+- **TX_PTR_ERROR** (0x03) Nieprawidłowy wskaźnik, wystąpienie modułu lub błąd modułu.
+- **TXM_MODULE_ALIGNMENT_ERROR** (0xF0) Nieprawidłowe wyrównanie.
+- **TXM_MODULE_ALREADY_LOADED** (0xF1) Module (moduł 0xF1) został już załadowany.
+- **TXM_MODULE_INVALID** (0xF2) Nieprawidłowy moduł.
+- **TXM_MODULE_INVALID_PROPERTIES** (0xF3) Niezgodne właściwości.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -464,21 +464,21 @@ UINT txm_module_manager_object_pool_create(
 
 ### <a name="description"></a>Opis
 
-Ta usługa tworzy pulę pamięci obiektu menedżera modułów, z której moduły mogą przydzielić obiekty ThreadX/NetX z, a tym samym zachować obiekt system z obszaru pamięci modułu.
+Ta usługa tworzy pulę pamięci obiektów menedżera modułów, z których moduły mogą przydzielać obiekty ThreadX/NetX, dzięki czemu obiekt systemowy jest poza obszarem pamięci modułu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **pool_memory_start** Wskaźnik na początek pamięci obiektu.
-- **pool_memory_size** Rozmiar w bajtach puli pamięci obiektu.
+- **pool_memory_start** Wskaźnik do początku pamięci obiektu.
+- **pool_memory_size** Rozmiar w bajtach puli pamięci obiektów.
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Pomyślnie zainicjowano **TX_SUCCESS** (0x00).
-- **TX_CALLER_ERROR** (0X13) Nieprawidłowy obiekt wywołujący.
+- **TX_SUCCESS** (0x00) Pomyślne inicjowanie.
+- **TX_CALLER_ERROR** (0x13) Nieprawidłowy wywołujący.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -512,18 +512,18 @@ UINT txm_module_manager_properties_get(
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwraca właściwości (określone w preambule) modułu.
+Ta usługa zwraca właściwości (określone w pamięci) modułu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
 - **module_instance** Wskaźnik do wystąpienia modułu.
-- **module_properties_ptr** Wskaźnik do miejsca docelowego dla właściwości modułu.
+- **module_properties_ptr** Wskaźnik do miejsca docelowego właściwości modułu.
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Pomyślnie zainicjowano **TX_SUCCESS** (0x00).
-- **TX_PTR_ERROR** (0X03) Nieprawidłowy wskaźnik.
-- **TX_CALLER_ERROR** (0X13) Nieprawidłowy obiekt wywołujący.
+- **TX_SUCCESS** (0x00) Pomyślne inicjowanie.
+- **TX_PTR_ERROR** (0x03) Nieprawidłowy wskaźnik.
+- **TX_CALLER_ERROR** (0x13) Nieprawidłowy wywołujący.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -562,23 +562,23 @@ UINT txm_module_manager_start(TXM_MODULE_INSTANCE *module_instance);
 
 ### <a name="description"></a>Opis
 
-Ta usługa uruchamia wykonywanie określonego, już załadowanego modułu.
+Ta usługa rozpoczyna wykonywanie określonego, już załadowanego modułu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
-- **module_instance** Wskaźnik do poprzednio załadowanego wystąpienia modułu.
+- **module_instance** Wskaźnik do wcześniej załadowanego wystąpienia modułu.
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- **TX_SUCCESS** (0X00) pomyślne uruchomienie modułu.
-- **TX_CALLER_ERROR** (0X13) Nieprawidłowy obiekt wywołujący.
-- Nie zainicjowano Menedżera **TX_NOT_AVAILABLE** (0x1D).
-- **TX_PTR_ERROR** (0X03) Nieprawidłowy wskaźnik lub wystąpienie modułu.
-- Moduł **TX_START_ERROR** (0x10) jest już uruchomiony.
+- **TX_SUCCESS** (0x00) Pomyślne uruchomienie modułu.
+- **TX_CALLER_ERROR** (0x13) Nieprawidłowy wywołujący.
+- **TX_NOT_AVAILABLE** (0x1D) Manager nie został zainicjowany.
+- **TX_PTR_ERROR** (0x03) Nieprawidłowy wskaźnik lub wystąpienie modułu.
+- **TX_START_ERROR** (0x10) module (0x10) module (Moduł 0x10) został już uruchomiony.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
@@ -614,7 +614,7 @@ UINT txm_module_manager_stop(TXM_MODULE_INSTANCE *module_instance);
 
 ### <a name="description"></a>Opis
 
-Ta usługa umożliwia zatrzymanie modułu, który został wcześniej załadowany i uruchomiony. Zatrzymywanie modułu obejmuje wykonanie opcjonalnego wątku zatrzymania modułu, zakończenie wszystkich wątków i usunięcie wszystkich zasobów skojarzonych z modułem.
+Ta usługa zatrzymuje moduł, który został wcześniej załadowany i uruchomiony. Zatrzymanie modułu obejmuje wykonanie opcjonalnego wątku zatrzymania modułu, zakończenie wszystkich wątków i usunięcie wszystkich zasobów skojarzonych z modułem.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -622,11 +622,11 @@ Ta usługa umożliwia zatrzymanie modułu, który został wcześniej załadowany
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- Zakończono pomyślne zatrzymywanie modułu **TX_SUCCESS** (0x00).
-- **TX_CALLER_ERROR** (0X13) Nieprawidłowy obiekt wywołujący.
-- Nie zainicjowano Menedżera **TX_NOT_AVAILABLE** (0x1D).
-- **TX_PTR_ERROR** (0X03) Nieprawidłowy wskaźnik lub wystąpienie modułu.
-- Moduł **TX_START_ERROR** (0x10) nie został uruchomiony.
+- **TX_SUCCESS** (0x00) Pomyślne zatrzymanie modułu.
+- **TX_CALLER_ERROR** (0x13) Nieprawidłowy wywołujący.
+- **TX_NOT_AVAILABLE** (0x1D) Manager nie został zainicjowany.
+- **TX_PTR_ERROR** (0x03) Nieprawidłowy wskaźnik lub wystąpienie modułu.
+- **TX_START_ERROR** (0x10) Module not started (Nie uruchomiliśmy modułu 0x10).
 
 ### <a name="allowed-from"></a>Dozwolone z
 
@@ -666,7 +666,7 @@ UINT txm_module_manager_unload(TXM_MODULE_INSTANCE *module_instance);
 
 ### <a name="description"></a>Opis
 
-Ta usługa zwalnia poprzednio załadowany i zatrzymany moduł, zwalniając wszystkie skojarzone zasoby pamięci modułu.
+Ta usługa zwalnia wcześniej załadowany i zatrzymany moduł, zwalniając wszystkie skojarzone zasoby pamięci modułu.
 
 ### <a name="input-parameters"></a>Parametry wejściowe
 
@@ -674,15 +674,15 @@ Ta usługa zwalnia poprzednio załadowany i zatrzymany moduł, zwalniając wszys
 
 ### <a name="return-values"></a>Wartości zwracane
 
-- **TX_SUCCESS** 0x00) załadowanie modułu zakończone powodzeniem.
-- **TX_CALLER_ERROR** (0X13) Nieprawidłowy obiekt wywołujący.
-- Nie zainicjowano Menedżera **TX_NOT_AVAILABLE** (0x1D).
-- **TX_NOT_DONE** (0X20) nieprawidłowy moduł lub moduł nie został zatrzymany.
-- **TX_PTR_ERROR** (0X03) Nieprawidłowy wskaźnik lub wystąpienie modułu.
+- **TX_SUCCESS** 0x00) Pomyślne zwolnienie modułu.
+- **TX_CALLER_ERROR** (0x13) Nieprawidłowy wywołujący.
+- **TX_NOT_AVAILABLE** (0x1D) Manager nie został zainicjowany.
+- **TX_NOT_DONE** (0x20) Nieprawidłowy moduł lub moduł nie został zatrzymany.
+- **TX_PTR_ERROR** (0x03) Nieprawidłowy wskaźnik lub wystąpienie modułu.
 
 ### <a name="allowed-from"></a>Dozwolone z
 
-Inicjalizacje i wątki
+Inicjowanie i wątki
 
 ### <a name="example"></a>Przykład
 
