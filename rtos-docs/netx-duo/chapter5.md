@@ -6,12 +6,12 @@ ms.author: philmea
 ms.date: 05/19/2020
 ms.topic: article
 ms.service: rtos
-ms.openlocfilehash: a0d18929f33f15a342e8fb8b3d01d4ce934d6ec7dc287707f960adb36fb4f44b
-ms.sourcegitcommit: 93d716cf7e3d735b18246d659ec9ec7f82c336de
+ms.openlocfilehash: 7d30e14ce1865e2fbce4a6e00cff787c859b32be
+ms.sourcegitcommit: 20a136b06a25e31bbde718b4d12a03ddd8db9051
 ms.translationtype: MT
 ms.contentlocale: pl-PL
-ms.lasthandoff: 08/07/2021
-ms.locfileid: "116788851"
+ms.lasthandoff: 09/07/2021
+ms.locfileid: "123552419"
 ---
 # <a name="chapter-5---azure-rtos-netx-duo-network-drivers"></a>Rozdział 5 — Azure RTOS sieciowe NetX Duo
 
@@ -45,7 +45,7 @@ VOID my_driver_entry(NX_IP_DRIVER *request);
 ```
 ## <a name="driver-requests"></a>Żądania sterowników
 
-NetX Duo tworzy żądanie sterownika za pomocą określonego polecenia i wywołuje funkcję wprowadzania sterownika w celu wykonania polecenia. Ponieważ każdy sterownik sieciowy ma jedną funkcję wejścia, netX Duo wykonuje wszystkie żądania za pośrednictwem struktury danych żądania sterownika. ***nx_ip_driver_command** _ struktury danych żądania sterownika (_*NX_IP_DRIVER**) definiuje żądanie. Informacje o stanie są zgłaszane z powrotem do wywołującego w członkowskim **_nx_ip_driver_status_*_. Jeśli to pole ma wartość _*NX_SUCCESS**, żądanie sterownika zostało ukończone pomyślnie.
+NetX Duo tworzy żądanie sterownika za pomocą określonego polecenia i wywołuje funkcję wprowadzania sterownika w celu wykonania polecenia. Ponieważ każdy sterownik sieciowy ma jedną funkcję wprowadzania, netX Duo wykonuje wszystkie żądania za pośrednictwem struktury danych żądania sterownika. ***nx_ip_driver_command** _ struktury danych żądania sterownika (_*NX_IP_DRIVER**) definiuje żądanie. Informacje o stanie są zgłaszane z powrotem do wywołującego w członkowskim **_nx_ip_driver_status_*_. Jeśli to pole ma wartość _*NX_SUCCESS**, żądanie sterownika zostało ukończone pomyślnie.
 
 NetX Duo serializuje cały dostęp do sterownika. W związku z tym sterownik nie musi obsługiwać wielu wątków asynchronicznie wywołując funkcję entry. Należy pamiętać, że funkcja sterownika urządzenia jest wykonywana z zablokowanym obiektem mutex adresu IP. W związku z tym funkcja wewnętrzna sterownika urządzenia nie powinna blokować się.
 
@@ -54,7 +54,7 @@ Zazwyczaj sterownik urządzenia obsługuje również przerwania. W związku z ty
 ### <a name="driver-initialization"></a>Inicjowanie sterownika   
 Mimo że rzeczywiste przetwarzanie inicjowania sterownika jest specyficzne dla aplikacji, zwykle składa się ono ze struktury danych i inicjalizacji sprzętu fizycznego. Informacje wymagane przez netX Duo do inicjowania sterowników to maksymalna jednostka transmisji IP (MTU), która jest liczbą bajtów dostępnych dla ładunku warstwy IP, w tym nagłówkiem IPv4 lub IPv6, oraz informacjami o tym, czy interfejs fizyczny wymaga mapowania logicznego na fizyczny. Sterownik konfiguruje wartość jednostki MTU interfejsu przez wywołanie ***nx_ip_interface_mtu_set***.
 
-Sterownik urządzenia musi wywołać wywołanie ***nx_ip_interface_address_mapping_configure _, aby** poinformować netX Duo, czy mapowanie adresów interfejsu jest wymagane. Jeśli wymagane jest mapowanie adresów, sterownik jest odpowiedzialny za skonfigurowanie interfejsu przy użyciu prawidłowego adresu MAC i dostarczenie adresu MAC do NetX za pośrednictwem adresu __*_ nx_ip_interface_physical_address_set **.
+Sterownik urządzenia musi wywołać wywołanie ***nx_ip_interface_address_mapping_configure _, aby** poinformować netX Duo, czy mapowanie adresów interfejsu jest wymagane. Jeśli wymagane jest mapowanie adresów, sterownik jest odpowiedzialny za konfigurowanie interfejsu przy użyciu prawidłowego adresu MAC i dostarczanie adresu MAC do NetX za pośrednictwem __*_ nx_ip_interface_physical_address_set **.
 
 Gdy sterownik sieciowy odbiera żądanie NX_LINK INITIALIZE z netX Duo, otrzymuje wskaźnik do bloku sterowania ip w ramach bloku sterowania żądaniami NX_IP_DRIVER pokazanym powyżej.
 
@@ -81,8 +81,8 @@ Następnie wątek pomocnika IP włącza sieć fizyczną, ustawiając polecenie s
 | nx_ip_driver_interface | Wskaźnik do wystąpienia interfejsu |
 | nx_ip_driver_status    | Stan ukończenia. Jeśli sterownik nie może włączyć określonego interfejsu, zwróci stan błędu niezerowego. |
 
-### <a name="disable-link"></a>Wyłączanie linku   
-To żądanie jest dokonywane przez firmę NetX Duo podczas usuwania wystąpienia adresu IP przez usługę ***nx_ip_delete** _service. Aplikacja może też wydać to polecenie w celu tymczasowego wyłączenia linku w celu zaoszczędzenia zasilania. Ta usługa wyłącza fizyczny interfejs sieciowy w wystąpieniu adresu IP. Przetwarzanie w celu wyłączenia linku może być tak proste, jak wyczyszczenie _flagi nx_interface_link_up* w wystąpieniu interfejsu. Może jednak również obejmować manipulowanie sprzętem fizycznym. Zazwyczaj jest to odwrotna operacja * Włącz **łącze.**_ Po wyłączeniu linku żądanie aplikacji _ *_Włącz link_** umożliwia włączenie interfejsu.
+### <a name="disable-link"></a>Wyłącz link   
+To żądanie jest dokonywane przez firmę NetX Duo podczas usuwania wystąpienia adresu IP przez usługę ***nx_ip_delete** _. Aplikacja może też wydać to polecenie w celu tymczasowego wyłączenia linku w celu zaoszczędzenia zasilania. Ta usługa wyłącza fizyczny interfejs sieciowy w wystąpieniu adresu IP. Przetwarzanie w celu wyłączenia linku może być tak proste, jak wyczyszczenie _flagi nx_interface_link_up* w wystąpieniu interfejsu. Może jednak również obejmować manipulowanie sprzętem fizycznym. Zazwyczaj jest to odwrotna operacja * Włącz **łącze.**_ Po wyłączeniu linku żądanie aplikacji _ *_Włącz link_** umożliwia włączenie interfejsu.
 
 Następujące elementy NX_IP_DRIVER są używane do żądania wyłączenia linku.
 
@@ -94,7 +94,7 @@ Następujące elementy NX_IP_DRIVER są używane do żądania wyłączenia linku
 | nx_ip_driver_status    | Stan ukończenia. Jeśli sterownik nie może wyłączyć określonego interfejsu w wystąpieniu adresu IP, zwróci stan błędu niezerowy. |
 
 ### <a name="uninitialize-link"></a>Uninitialize Link   
-To żądanie jest dokonywane przez firmę NetX Duo podczas usuwania wystąpienia adresu IP przez usługę ***nx_ip_delete** _service. To żądanie niezainicjuje interfejs i zwalnia wszystkie zasoby utworzone w fazie inicjowania. Zazwyczaj jest to odwrotna operacja operacji _ *_Initialize Link_**. Po nieocenione interfejsu nie można używać urządzenia, dopóki interfejs nie zostanie zainicjowany ponownie.
+To żądanie jest dokonywane przez firmę NetX Duo podczas usuwania wystąpienia adresu IP przez usługę ***nx_ip_delete** _. To żądanie niezainicjuje interfejs i zwalnia wszystkie zasoby utworzone w fazie inicjowania. Zazwyczaj jest to odwrotna operacja operacji _ *_Initialize Link_**. Po nieocenione interfejsu nie można używać urządzenia, dopóki interfejs nie zostanie zainicjowany ponownie.
 
 Następujące elementy NX_IP_DRIVER są używane do żądania wyłączenia linku.
 
@@ -103,10 +103,10 @@ Następujące elementy NX_IP_DRIVER są używane do żądania wyłączenia linku
 | nx_ip_driver_command   | NX_LINK_UNINITIALZE      |
 | nx_ip_driver_ptr       | Wskaźnik do wystąpienia adresu IP   |
 | nx_ip_driver_interface | Wskaźnik do wystąpienia interfejsu |
-| nx_ip_driver_status    | Stan ukończenia. Jeśli sterownik nie jest w stanie niezainicjować określonego interfejsu do wystąpienia adresu IP, zwróci stan błędu niezerowego. |
+| nx_ip_driver_status    | Stan ukończenia. Jeśli sterownik nie jest w stanie niezainicjować określonego interfejsu do wystąpienia adresu IP, zwróci stan błędu niezerowy. |
 
 ### <a name="packet-send"></a>Wysyłanie pakietów   
-To żądanie jest dokonywane podczas wewnętrznego przetwarzania wysyłania IPv4 lub IPv6, którego wszystkie protokoły NetX Duo używają do przesyłania pakietów (z wyjątkiem ARP, RARP). Po otrzymaniu polecenia wysyłania  pakietów nx_packet_prepend_ptr wskazuje początek wysyłanego pakietu, który jest początek nagłówka IPv4 lub IPv6. *nx_packet_length* wskazuje całkowity rozmiar (w bajtach) przesyłanych danych. Jeśli *nx_packet_next* jest prawidłowy, wychodzący datagram adresu IP jest przechowywany w wielu pakietach, sterownik musi postępować zgodnie z łańcuchowym pakietem i przesyłać całą ramkę. Należy pamiętać, że prawidłowy obszar danych w każdym pakiecie łańcuchowym jest przechowywany między *nx_packet_prepend_ptr* i *nx_packet_append_ptr*.
+To żądanie jest dokonywane podczas wewnętrznego przetwarzania wysyłania IPv4 lub IPv6, którego wszystkie protokoły NetX Duo używają do przesyłania pakietów (z wyjątkiem ARP, RARP). Po otrzymaniu polecenia wysyłania  pakietów nx_packet_prepend_ptr wskazuje początek wysyłanego pakietu, który jest początek nagłówka IPv4 lub IPv6. *nx_packet_length* wskazuje całkowity rozmiar (w bajtach) przesyłanych danych. Jeśli *nx_packet_next* jest prawidłowy, wychodzący datagram adresu IP jest przechowywany w wielu pakietach, sterownik musi śledzić łańcuchowy pakiet i przesyłać całą ramkę. Należy pamiętać, że prawidłowy obszar danych w każdym pakiecie łańcuchowym jest przechowywany między *nx_packet_prepend_ptr* i *nx_packet_append_ptr*.
 
 Sterownik jest odpowiedzialny za konstruowanie nagłówka fizycznego. Jeśli wymagane jest mapowanie adresu fizycznego na adres IP (np. Ethernet), warstwa IP rozpoznała już adres MAC. Docelowy adres MAC jest przekazywany z wystąpienia adresu IP przechowywanego w nx_ip_driver_physical_address_msw *i nx_ip_driver_physical_address_lsw*.
 
@@ -120,7 +120,7 @@ Następujące elementy NX_IP_DRIVER są używane do żądania wysyłania pakiet�
 | nx_ip_driver_ptr                | Wskaźnik do wystąpienia adresu IP                |
 | nx_ip_driver_packet             | Wskaźnik do pakietu do wysłania         |
 | nx_ip_driver_interface          | Wskaźnik do wystąpienia interfejsu.    |
-| nx_ip_driver_physical_address_msw | Większość znaczących 32-bitowych adresów fizycznych (tylko wtedy, gdy wymagane jest mapowanie fizyczne) |
+| nx_ip_driver_physical_address_msw | Najbardziej znaczące 32-bitowe fizycznego adresu (tylko wtedy, gdy wymagane jest mapowanie fizyczne) |
 | nx_ip_driver_physical_address_lsw | Najmniej znaczący 32-bitowy adres fizyczny (tylko wtedy, gdy wymagane jest mapowanie fizyczne) |
 | nx_ip_driver_status             | Stan ukończenia. Jeśli sterownik nie jest w stanie wysłać pakietu, zwróci stan błędu niezerowego. |
 
@@ -138,7 +138,7 @@ To żądanie jest niemal identyczne z żądaniem wysyłania pakietu. Jedyna ró�
 | nx_ip_driver_status                | Stan ukończenia. Jeśli sterownik nie jest w stanie wysłać pakietu, zwróci stan błędu niezerowego. |
 
 ### <a name="arp-send"></a>Wysyłanie ARP  
-To żądanie jest również podobne do żądania wysyłania pakietów IP. Jedyna różnica polega na tym, że nagłówek Ethernet określa pakiet ARP zamiast pakietu IP, a pola docelowego adresu fizycznego są ustawione na adres emisji MAC. W żądaniu NX_IP_DRIVER ARP są używane następujące elementy członkowskie.
+To żądanie jest również podobne do żądania wysyłania pakietów IP. Jedyna różnica polega na tym, że nagłówek Ethernet określa pakiet ARP zamiast pakietu IP, a pola docelowego adresu fizycznego są ustawione na adres emisji MAC. Następujące elementy NX_IP_DRIVER są używane dla żądania wysłania ARP.
 
 | NX_IP_DRIVER &nbsp; członkowski                | Znaczenie                                                                                                      |
 |------------------------------------|--------------------------------------------------------------------------------------------------------------|
@@ -156,14 +156,14 @@ To żądanie jest również podobne do żądania wysyłania pakietów IP. Jedyna
 Mimo że protokół ARP został zastąpiony protokołem odnajdywania sąsiadów i protokołem odnajdywania routerów w protokole IPv6, sterowniki sieciowe Ethernet muszą być nadal zgodne z routerami i równorzędne *IPv4. W związku z tym sterowniki muszą nadal obsługiwać pakiety ARP.*
 
 ### <a name="arp-response-send"></a>Wysyłanie odpowiedzi ARP  
-To żądanie jest niemal identyczne z żądaniem wysyłania pakietu ARP. Jedyna różnica polega na tym, że pola docelowego adresu fizycznego są przekazywane z wystąpienia adresu IP. Następujące elementy NX_IP_DRIVER są używane dla żądania wysłania odpowiedzi ARP.
+To żądanie jest niemal identyczne z żądaniem wysyłania pakietu ARP. Jedyna różnica polega na tym, że pola docelowego adresu fizycznego są przekazywane z wystąpienia adresu IP. Następujące elementy NX_IP_DRIVER są używane do żądania wysłania odpowiedzi ARP.
 
 | NX_IP_DRIVER &nbsp; członkowski                  | Znaczenie                                  |
 | -------------------------------------- | -----------------------------------------|
 | nx_ip_driver_command                | NX_LINK_ARP_RESPONSE_SEND            |
 | nx_ip_driver_ptr                    | Wskaźnik do wystąpienia adresu IP   |
 | nx_ip_driver_packet                 | Wskaźnik do pakietu do wysłania          |
-| nx_ip_driver_physical_address_msw | Najbardziej znaczące 32-bity adresu fizycznego |
+| nx_ip_driver_physical_address_msw | Najbardziej znaczące 32-bitowe fizycznego adresu |
 | nx_ip_driver_physical_address_lsw | Najmniej znaczący 32-bitowy adres fizyczny |
 | nx_ip_driver_interface              | Wskaźnik do wystąpienia interfejsu |
 | nx_ip_driver_status                 | Stan ukończenia. Jeśli sterownik nie może wysłać pakietu ARP, zwróci stan błędu niezerowego. |
@@ -174,7 +174,7 @@ To żądanie jest niemal identyczne z żądaniem wysyłania pakietu ARP. Jedyna 
 ### <a name="rarp-send"></a>Wysyłanie RARP   
 To żądanie jest niemal identyczne z żądaniem wysyłania pakietu ARP. Jedynymi różnicami są typ nagłówka pakietu i pola adresu fizycznego nie są wymagane, ponieważ miejsce docelowe fizyczne jest zawsze adresem emisji.
 
-W żądaniu NX_IP_DRIVER RARP są używane następujące elementy członkowskie.
+W przypadku żądania NX_IP_DRIVER RARP są używane następujące elementy członkowskie.
 
 | NX_IP_DRIVER &nbsp; członkowski                | Znaczenie                                                                                                       |
 |------------------------------------|---------------------------------------------------------------------------------------------------------------|
@@ -184,31 +184,31 @@ W żądaniu NX_IP_DRIVER RARP są używane następujące elementy członkowskie.
 | nx_ip_driver_physical_address_ms w | 0x0000FFFF (emisja)                                                                                        |
 | nx_ip_driver_physical_address_lsw  | 0xFFFFFFFF (emisja)                                                                                        |
 | nx_ip_driver_interface             | Wskaźnik do wystąpienia interfejsu.                                                                            |
-| nx_ip_driver_status                | Stan ukończenia. Jeśli sterownik nie może wysłać pakietu RARP, zwróci on niezerowy stan błędu. |
+| nx_ip_driver_status                | Stan ukończenia. Jeśli sterownik nie może wysłać pakietu RARP, zwróci stan błędu niezerowy. |
 
 > [!IMPORTANT]  
 > *Aplikacje, które wymagają usługi RARP, muszą zaimplementować to polecenie*.
 
 ### <a name="multicast-group-join"></a>Przyłączenie do grupy multiemisji   
-To żądanie jest dokonywane przy użyciu funkcji ***nx_igmp_multicast_interface join** _ i _*_nx_ipv4_multicast_interface_join_*_ w protokole IPv4, usługi _ *_nxd_ipv6_multicast_interface_join_** w protokole IPv6 i różnych operacji wymaganych przez protokół IPv6. Sterownik sieciowy pobiera podany adres grupy multiemisji i konfiguruje nośnik fizyczny do akceptowania pakietów przychodzących z tego adresu grupy multiemisji. Należy pamiętać, że w przypadku sterowników, które nie obsługują filtru multiemisji, logika odbierania sterowników może być w trybie promiscuous. W takim przypadku sterownik może wymagać filtrowania klatek przychodzących na podstawie docelowego adresu MAC, co zmniejsza ilość ruchu przekazywanego do wystąpienia adresu IP. Następujące elementy NX_IP_DRIVER są używane w przypadku żądania dołączenia do grupy multiemisji.
+To żądanie jest dokonywane przy użyciu usługi ***nx_igmp_multicast_interface join** _ i _*_nx_ipv4_multicast_interface_join_*_ w protokole IPv4, usługi _ *_nxd_ipv6_multicast_interface_join_** w protokole IPv6 i różnych operacji wymaganych przez protokół IPv6. Sterownik sieciowy pobiera podany adres grupy multiemisji i konfiguruje nośnik fizyczny do akceptowania pakietów przychodzących z tego adresu grupy multiemisji. Należy pamiętać, że w przypadku sterowników, które nie obsługują filtru multiemisji, logika odbierania sterowników może być w trybie promiscuous. W takim przypadku sterownik może wymagać filtrowania klatek przychodzących na podstawie docelowego adresu MAC, co zmniejsza ilość ruchu przekazywanego do wystąpienia adresu IP. Następujące elementy NX_IP_DRIVER są używane dla żądania dołączenia do grupy multiemisji.
 
 | NX_IP_DRIVER &nbsp; członkowski                  | Znaczenie                                 |
 | -------------------------------------- | --------------------------------------- |
 | nx_ip_driver_command                | NX_LINK_MULTICAST_JOIN               |
 | nx_ip_driver_ptr                    | Wskaźnik do wystąpienia adresu IP  |
-| nx_ip_driver_physical_address_msw | Najbardziej znaczący 32-bitowy fizyczny adres multiemisji |
+| nx_ip_driver_physical_address_msw | Najbardziej znaczące 32-bitowe fizycznego adresu multiemisji |
 | nx_ip_driver_physical_address_lsw | Najmniej znaczące 32-bitowe fizycznego adresu multiemisji |
 | nx_ip_driver_interface              | Wskaźnik do wystąpienia interfejsu |
 | nx_ip_driver_status                 | Stan ukończenia. Jeśli sterownik nie może dołączyć do grupy multiemisji, zwraca niezerowy stan błędu. |
 
 > [!NOTE]  
-> Aplikacje IPv6 wymagają zaimplementowania multiemisji w sterowniku dla *protokołów opartych na protokole ICMPv6, takich jak konfiguracja adresu. Jednak w przypadku aplikacji protokołu IPv4 implementacja tego* żądania nie jest konieczna, jeśli możliwości multiemisji nie są wymagane.
+> *Aplikacje IPv6 wymagają zaimplementowania multiemisji w sterowniku dla protokołów opartych na protokole ICMPv6, takich jak konfiguracja adresu. Jednak w przypadku aplikacji protokołu IPv4 implementacja tego* żądania nie jest konieczna, jeśli możliwości multiemisji nie są wymagane.
 
 > [!IMPORTANT]  
 > *Jeśli protokół IPv6 nie jest włączony, a* funkcje multiemisji nie są wymagane przez protokół IPv4, implementacja tego żądania nie jest wymagana.
 
 ### <a name="multicast-group-leave"></a>Pozostawienie grupy multiemisji  
-To żądanie jest wywoływane przez jawne wywołanie usług ***nx_igmp_multicast_interface_leave** _ _*_lub nx_ipv4_multicast_interface_leave_*_ w Usłudze IPv4, _ *_nxd_ipv6_multicast_interface_leave_** w protokole IPv6 lub przez różne wewnętrzne operacje NetX Duo wymagane dla protokołu IPv6. Sterownik usuwa podany adres multiemisji Ethernet z listy multiemisji. Gdy host opuści grupę multiemisji, pakiety w sieci z tym adresem multiemisji Ethernet nie będą już odbierane przez to wystąpienie adresu IP. Następujące elementy NX_IP_DRIVER są używane w przypadku żądania opuszczenia grupy multiemisji.
+To żądanie jest wywoływane przez jawne wywołanie usług ***nx_igmp_multicast_interface_leave** _ lub _*_nx_ipv4_multicast_interface_leave_*_ w protokole IPv4, _ *_nxd_ipv6_multicast_interface_leave_** usługi w protokole IPv6 lub przez różne wewnętrzne operacje NetX Duo wymagane dla protokołu IPv6. Sterownik usuwa podany adres multiemisji Ethernet z listy multiemisji. Gdy host opuści grupę multiemisji, pakiety w sieci z tym adresem multiemisji Ethernet nie będą już odbierane przez to wystąpienie adresu IP. Następujące elementy NX_IP_DRIVER są używane w przypadku żądania opuszczenia grupy multiemisji.
 
 | NX_IP_DRIVER &nbsp; członkowski              | Znaczenie                              |
 | -----------------------------------| -------------------------------------|
@@ -223,7 +223,7 @@ To żądanie jest wywoływane przez jawne wywołanie usług ***nx_igmp_multicast
 > *Jeśli funkcje multiemisji nie są wymagane przez protokół IPv4 lub IPv6, implementacja tego żądania nie jest wymagana.*
 
 ### <a name="attach-interface"></a>Dołączanie interfejsu  
-To żądanie jest wywoływane ze sterownika urządzenia NetX Duo, co umożliwia sterownikowi skojarzenie wystąpienia sterownika z odpowiednim wystąpieniem adresu IP i wystąpieniem interfejsu fizycznego w obrębie adresu IP. Następujące elementy NX_IP_DRIVER są używane do żądania dołączenia interfejsu.
+To żądanie jest wywoływane ze sterownika NetX Duo do sterownika urządzenia, dzięki czemu sterownik może skojarzyć wystąpienie sterownika z odpowiednim wystąpieniem adresu IP i wystąpieniem interfejsu fizycznego w obrębie adresu IP. Następujące elementy NX_IP_DRIVER są używane do żądania dołączania interfejsu.
 
 | NX_IP_DRIVER &nbsp; członkowski    | Znaczenie                  |
 |------------------------|--------------------------|
@@ -233,7 +233,7 @@ To żądanie jest wywoływane ze sterownika urządzenia NetX Duo, co umożliwia 
 | nx_ip_driver_status    | Stan ukończenia. Jeśli sterownik nie może odłączyć określonego interfejsu od wystąpienia adresu IP, zwróci niezerowy stan błędu. |
 
 ### <a name="detach-interface"></a>Odłączanie interfejsu    
-To żądanie jest wywoływane przez netX Duo ze sterownikiem urządzenia, dzięki czemu sterownik może nie skojarzyć wystąpienia sterownika z odpowiednim wystąpieniem adresu IP i wystąpieniem interfejsu fizycznego w obrębie adresu IP. Następujące elementy NX_IP_DRIVER są używane do żądania dołączenia interfejsu.
+To żądanie jest wywoływane przez firmę NetX Duo ze sterownikiem urządzenia, dzięki czemu sterownik może skojarzyć wystąpienie sterownika z odpowiednim wystąpieniem adresu IP i wystąpieniem interfejsu fizycznego w obrębie adresu IP. Następujące elementy NX_IP_DRIVER są używane do żądania dołączania interfejsu.
 
 | NX_IP_DRIVER &nbsp; członkowski    | Znaczenie                                                                                                                                    |
 |------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
@@ -243,9 +243,9 @@ To żądanie jest wywoływane przez netX Duo ze sterownikiem urządzenia, dzięk
 | nx_ip_driver_status    | Stan ukończenia. Jeśli sterownik nie może dołączyć określonego interfejsu do wystąpienia adresu IP, zwróci niezerowy stan błędu. |
 
 ### <a name="get-link-status"></a>Uzyskiwanie stanu linku    
-Aplikacja może query the network interface link status using the NetX Duo service ***nx_ip_interface_status_check*** service for any interface on the host. Aby uzyskać więcej informacji na temat tych usług, zobacz rozdział 4 "Description of NetX Duo Services" (Opis usług NetX Duo) na stronie 149.
+Aplikacja może odpytać o stan łącza interfejsu sieciowego przy użyciu usługi NetX Duo ***nx_ip_interface_status_check*** dla dowolnego interfejsu na hoście. Aby uzyskać więcej informacji na temat tych usług, zobacz rozdział 4 "Description of NetX Duo Services" (Opis usług NetX Duo) na stronie 149.
 
-Stan łącza znajduje się w polu *nx_interface_link_up* w strukturze NX_INTERFACE wskazywanej przez *nx_ip_driver_interface* wskaźnik. Następujące NX_IP_DRIVER są używane do żądania stanu łącza.
+Stan łącza znajduje się w polu *nx_interface_link_up* w strukturze NX_INTERFACE wskazywanej przez *nx_ip_driver_interface* wskaźnik. Następujące elementy NX_IP_DRIVER są używane do żądania stanu łącza.
 
 | NX_IP_DRIVER &nbsp; członkowski       | Znaczenie                  |
 | --------------------------- | -------------------------|
@@ -253,13 +253,13 @@ Stan łącza znajduje się w polu *nx_interface_link_up* w strukturze NX_INTERFA
 | nx_ip_driver_ptr         | Wskaźnik do wystąpienia adresu IP   |
 | nx_ip_driver_return_ptr | Wskaźnik do miejsca docelowego, w którym ma być umieszczany stan. |
 | nx_ip_driver_interface   | Wskaźnik do wystąpienia interfejsu   |
-| nx_ip_driver_status      | Stan ukończenia. Jeśli sterownik nie może uzyskać określonego stanu, zwróci niezerowy stan błędu. |
+| nx_ip_driver_status      | Stan ukończenia. Jeśli sterownik nie może uzyskać określonego stanu, zwraca niezerowy stan błędu. |
 
 > [!NOTE]  
 > ***nx_ip_status_check** _ jest nadal dostępna do sprawdzania stanu interfejsu podstawowego. Zachęcamy jednak deweloperów aplikacji do korzystania z usługi specyficznej dla interfejsu: _ *_nx_ip_interface_status_check._**
 
 ### <a name="get-link-speed"></a>Uzyskiwanie szybkości łącza  
-To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi. Sterownik przechowuje szybkość łącza w podanej lokalizacji docelowej. Następujące elementy NX_IP_DRIVER są używane do żądania szybkości łącza.
+To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi. Sterownik przechowuje szybkość linii łącza w podanej lokalizacji docelowej. Następujące elementy NX_IP_DRIVER są używane do żądania szybkości łącza.
 
 | NX_IP_DRIVER &nbsp; członkowski   | Znaczenie                   |
 | ------------------------| ------------------------- |
@@ -267,7 +267,7 @@ To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi
 | nx_ip_driver_ptr         | Wskaźnik do wystąpienia adresu IP                                                                                         |
 | nx_ip_driver_return_ptr | Wskaźnik do miejsca docelowego, w którym ma być umieszczana szybkość linii                                                             |
 | nx_ip_driver_interface   | Wskaźnik do wystąpienia interfejsu                                                                              |
-| nx_ip_driver_status      | Stan ukończenia. Jeśli sterownik nie może uzyskać informacji o szybkości, zwróci stan błędu niezerowy. |
+| nx_ip_driver_status      | Stan ukończenia. Jeśli sterownik nie może uzyskać informacji o szybkości, zwróci niezerowy stan błędu. |
 
 > [!IMPORTANT]  
 > *To żądanie nie jest używane wewnętrznie przez netX Duo, więc jego implementacja jest opcjonalna.*
@@ -295,13 +295,13 @@ To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi
 | nx_ip_driver_ptr         | Wskaźnik do wystąpienia adresu IP   |
 | nx_ip_driver_return_ptr | Wskaźnik do miejsca docelowego, w którym ma być umieszczana liczba błędów |
 | nx_ip_driver_interface   | Wskaźnik do wystąpienia interfejsu|
-| nx_ip_driver_status      | Stan ukończenia. Jeśli sterownik nie może uzyskać liczby błędów, zwróci niezerowy stan błędu. |
+| nx_ip_driver_status      | Stan ukończenia. Jeśli sterownik nie może uzyskać liczby błędów, zwróci on niezerowy stan błędu. |
 
 > [!IMPORTANT]
 > *To żądanie nie jest używane wewnętrznie przez netX Duo, więc jego implementacja jest opcjonalna.*
 
 ### <a name="get-receive-packet-count"></a>Uzyskiwanie liczby pakietów odbierania    
-To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi. Sterownik przechowuje liczbę pakietów odbioru łącza w podanej lokalizacji docelowej. Aby obsługiwać tę funkcję, sterownik musi śledzić liczbę odebranych pakietów. Następujące elementy NX_IP_DRIVER są używane do żądania liczby pakietów odbierania linku.
+To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi. Sterownik przechowuje liczbę pakietów odbioru łącza w podanej lokalizacji docelowej. Aby obsługiwać tę funkcję, sterownik musi śledzić liczbę odebranych pakietów. Następujące elementy NX_IP_DRIVER są używane dla żądania liczby pakietów odbierania linku.
 
 | NX_IP_DRIVER &nbsp; członkowski       | Znaczenie                        |
 | --------------------------- | -------------------------------|
@@ -315,7 +315,7 @@ To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi
 > *To żądanie nie jest używane wewnętrznie przez netX Duo, więc jego implementacja jest opcjonalna.*
 
 ### <a name="get-transmit-packet-count"></a>Uzyskiwanie liczby pakietów przesyłanych   
-To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi. Sterownik przechowuje liczbę pakietów przesyłanych linku w podanej lokalizacji docelowej. Aby obsługiwać tę funkcję, sterownik musi śledzić każdy pakiet przesyłany w każdym interfejsie. Następujące elementy NX_IP_DRIVER są używane w przypadku żądania liczby pakietów przesyłanych linkami.
+To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi. Sterownik przechowuje liczbę pakietów przesyłanych łącza w podanej lokalizacji docelowej. Aby obsługiwać tę funkcję, sterownik musi śledzić każdy pakiet przesyłany w każdym interfejsie. Następujące elementy NX_IP_DRIVER są używane w przypadku żądania liczby pakietów przesyłanych linkami.
 
 | NX_IP_DRIVER &nbsp; członkowski   | Znaczenie                   |
 | ----------------------- | ------------------------- |
@@ -329,7 +329,7 @@ To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi
 > *To żądanie nie jest używane wewnętrznie przez netX Duo, więc jego implementacja jest opcjonalna.*
 
 ### <a name="get-allocation-errors"></a>Uzyskiwanie błędów alokacji   
-To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi. Sterownik przechowuje liczbę błędów alokacji puli pakietów łącza w podanej lokalizacji docelowej. Następujące elementy NX_IP_DRIVER są używane dla żądania liczby błędów alokacji łącza.
+To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi. Sterownik przechowuje liczbę błędów alokacji puli pakietów łącza w podanej lokalizacji docelowej. Następujące elementy NX_IP_DRIVER są używane do żądania liczby błędów alokacji łącza.
 
 | NX_IP_DRIVER &nbsp; członkowski       | Znaczenie                       |
 | --------------------------- | ----------------------------- |
@@ -343,7 +343,7 @@ To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi
 > *To żądanie nie jest używane wewnętrznie przez netX Duo, więc jego implementacja jest opcjonalna.*
 
 ### <a name="driver-deferred-processing"></a>Przetwarzanie odroczone sterownika    
-To żądanie jest wysyłana z wątku pomocnika IP _*_ w odpowiedzi na sterownik wywołujący nx_ip_driver_deferred_processing procedury z isr przesyłania lub odbierania. Dzięki temu sterownik ISR odroczyć odbieranie pakietów i przesyłanie przetwarzania do wątku pomocnika IP, a tym samym zmniejszyć ilość przetwarzania w ISR. Pole _nx_interface_additional_link_info* w strukturze NX_INTERFACE wskazywane przez  nx_ip_driver_interface może być używane przez sterownik do przechowywania informacji o zdarzeniu przetwarzania odroczonego z kontekstu wątku pomocnika IP. Następujące elementy NX_IP_DRIVER są używane dla zdarzenia przetwarzania odroczonego.
+To żądanie jest wysyłana z wątku pomocnika IP _*_ w odpowiedzi na sterownik wywołujący nx_ip_driver_deferred_processing procedury z isr przesyłania lub odbierania. Dzięki temu sterownik ISR odroczyć odbieranie pakietów i przesyłanie przetwarzania do wątku pomocnika IP, a tym samym zmniejszyć ilość przetwarzania w ISR. Pole _nx_interface_additional_link_info* w strukturze NX_INTERFACE wskazywane przez nx_ip_driver_interface  może być używane przez sterownik do przechowywania informacji o zdarzeniu przetwarzania odroczonego z kontekstu wątku pomocnika IP. Następujące elementy NX_IP_DRIVER są używane dla zdarzenia przetwarzania odroczonego.
 
 | NX_IP_DRIVER &nbsp; członkowski     | Znaczenie                           |
 | ------------------------- | --------------------------------- |
@@ -363,7 +363,7 @@ Następujące NX_IP_DRIVER są używane do żądania polecenia użytkownika.
 | nx_ip_driver_interface  | Wskaźnik do wystąpienia interfejsu   |
 | nx_ip_driver_physical_ad dress_msw | Najbardziej znaczące 32-bity nowego adresu fizycznego  |
 | nx_ip_driver_physical_ad dress_lsw | Najmniej znaczące 32-bitowe nowe fizycznego adresu  |
-| nx_ip_driver_status                  | Stan ukończenia. Jeśli sterownik nie jest w stanie ponownie skonfigurować adresu fizycznego, zwróci stan błędu niezerowy. |
+| nx_ip_driver_status                  | Stan ukończenia. Jeśli sterownik nie jest w stanie ponownie skonfigurować adresu fizycznego, zwraca niezerowy stan błędu. |
 
 ### <a name="user-commands"></a>Polecenia użytkownika    
 To żądanie jest dokonywane z poziomu ***nx_ip_driver_direct_command*** usługi. Sterownik przetwarza polecenia użytkownika specyficzne dla aplikacji. Następujące NX_IP_DRIVER są używane do żądania polecenia użytkownika.
@@ -403,48 +403,48 @@ Można użyć następujących funkcji:
 - NX_INTERFACE_CAPABILITY_IGMP_TX_CHECKSUM
 - NX_INTERFACE_CAPABILITY_IGMP_RX_CHECKSUM
 
-W przypadku obliczeń sumy kontrolnej, które mogą być wykonywane na sprzęcie, sterownik musi poprawnie skonfigurować sprzęt lub deskryptory buforu, aby można było wygenerować i wstawić do nagłówka sumy kontrolnej dla wychodzącego pakietu przez sprzęt. Po odebraniu pakietu logika sumy kontrolnej sprzętu powinna być w stanie zweryfikować wartość sumy kontrolnej. Jeśli wartość sumy kontrolnej jest nieprawidłowa, odebrana ramka powinna zostać odrzucona.
+W przypadku obliczeń sumy kontrolnej, które mogą być wykonywane na sprzęcie, sterownik musi poprawnie skonfigurować deskryptory sprzętu lub buforu, aby można było wygenerować i wstawić do nagłówka sumy kontrolnej dla wychodzącego pakietu przez sprzęt. Po odebraniu pakietu logika sumy kontrolnej sprzętu powinna być w stanie zweryfikować wartość sumy kontrolnej. Jeśli wartość sumy kontrolnej jest nieprawidłowa, odebrana ramka powinna zostać odrzucona.
 
-Nawet dzięki możliwości wykonywania obliczeń sumy kontrolnej na sprzęcie wystąpienie adresu IP nadal utrzymuje możliwość sumy kontrolnej. W niektórych scenariuszach, na przykład datagram UDP przechodzący przez ochronę protokołu IPsec, przed przekazaniem ramki UDP w dół stosu należy obliczyć sumy kontrolne UDP w oprogramowaniu. Większość funkcji sumy kontrolnej sprzętu nie obsługuje obliczeń sumy kontrolnej dla segmentu danych chronionych przez IPsec. W przypadku ramki UDP lub ICMP, która musi być podzielona na fragmenty, w oprogramowaniu należy obliczyć sumy kontrolne UDP lub ICMP. Większość sprzętowej logiki sumy kontrolnej nie obsługuje przypadków, w których dane są podzielone na wiele ramek.
+Nawet przy możliwości wykonywania obliczeń sumy kontrolnej na sprzęcie wystąpienie adresu IP nadal utrzymuje możliwość sumy kontrolnej. W niektórych scenariuszach, na przykład datagram UDP przechodzący przez ochronę IPsec, sumy kontrolne UDP muszą zostać obliczone w oprogramowaniu przed przekazaniem ramki UDP w dół stosu. Większość funkcji sumy kontrolnej sprzętu nie obsługuje obliczeń sumy kontrolnej dla segmentu danych chronionych przez IPsec. W przypadku ramki UDP lub ICMP, która musi być podzielona na fragmenty, sumy kontrolne UDP lub ICMP muszą być obliczane w oprogramowaniu. Większość sprzętowej logiki sumy kontrolnej nie obsługuje przypadków, w których dane są podzielone na wiele ramek.
 
 ## <a name="driver-output"></a>Dane wyjściowe sterownika  
 
-Wszystkie wcześniej wymienione żądania przesyłania pakietów wymagają funkcji wyjściowej zaimplementowanej w sterowniku. Specyficzna logika przesyłania jest specyficzna dla sprzętu, ale zazwyczaj polega na sprawdzeniu pojemności sprzętowej w celu natychmiastowego wysłania pakietu. Jeśli to możliwe, ładunek pakietu (i dodatkowe ładunki w łańcuchu pakietów) są ładowane do co najmniej jednego sprzętowego buforu przesyłania i inicjowana jest operacja przesyłania. Jeśli pakiet nie mieści się w dostępnych buforach przesyłania, pakiet powinien zostać w kolejce i przesłany, gdy bufory transmisji staną się dostępne.
+Wszystkie wymienione wcześniej żądania przesyłania pakietów wymagają funkcji wyjściowej zaimplementowanej w sterowniku. Specyficzna logika przesyłania jest specyficzna dla sprzętu, ale zwykle polega na sprawdzeniu pojemności sprzętowej w celu natychmiastowego wysłania pakietu. Jeśli to możliwe, ładunek pakietu (i dodatkowe ładunki w łańcuchu pakietów) są ładowane do co najmniej jednego sprzętowego buforu przesyłania i inicjowana jest operacja przesyłania. Jeśli pakiet nie zmieści się w dostępnych buforach przesyłania, pakiet powinien zostać w kolejce i przesłany, gdy bufory transmisji staną się dostępne.
 
-Zalecana kolejka przesyłania jest listą połączonych ze sobą w sposób tylko jeden i więcej, ze wskaźnikami zarówno głowy, jak i ogona. Nowe pakiety są dodawane na końcu kolejki, zachowując najstarszy pakiet z przodu. Pole *nx_packet_queue_next* jest używane jako następne łącze pakietu w kolejce. Sterownik definiuje wskaźniki głowy i ogona kolejki przesyłania.
+Zalecana kolejka przesyłania to jednolicie połączona lista ze wskaźnikami zarówno head, jak i tail. Nowe pakiety są dodawane na końcu kolejki, zachowując najstarszy pakiet z przodu. Pole *nx_packet_queue_next* jest używane jako następne łącze pakietu w kolejce. Sterownik definiuje wskaźniki głowy i ogona kolejki przesyłania.
 
 > [!CAUTION]  
-> *Ponieważ dostęp do tej kolejki jest uzyskiwany* z części sterownika wątków i przerwań, ochrona przerwań musi być umieszczona wokół manipulacji kolejką .
+> Ponieważ dostęp do tej kolejki uzyskuje się z części sterownika wątków i przerwań, ochrona przerwań musi być umieszczana wokół *manipulacji kolejkami*.
 
-Większość implementacji sprzętu fizycznego generuje przerwanie po zakończeniu przesyłania pakietów. Gdy sterownik otrzymuje takie przerwanie, zwykle zwalnia zasoby skojarzone z właśnie przesyłanym pakietem. Jeśli logika przesyłania odczytuje dane bezpośrednio z buforu NX_PACKET, sterownik powinien użyć usługi ***nx_packet_transmit_release*** do zwolnienia pakietu skojarzonego z kompletnym przerwaniem przesyłania z powrotem do dostępnej puli pakietów. Następnie sterownik sprawdza, czy kolejka przesyłania zawiera dodatkowe pakiety oczekujące na wysłanie. Ponieważ wiele pakietów przesyłanych w kolejce, które mieszczą się w sprzętowych buforach przesyłania, jest dekodowana i ładowana do buforów. Następnie następuje zainicjowanie innej operacji wysyłania.
+Większość implementacji sprzętu fizycznego generuje przerwanie po zakończeniu przesyłania pakietów. Gdy sterownik otrzymuje takie przerwanie, zwykle zwalnia zasoby skojarzone z właśnie przesyłanym pakietem. Jeśli logika przesyłania odczytuje dane bezpośrednio z buforu NX_PACKET, sterownik powinien użyć usługi ***nx_packet_transmit_release*** do zwolnienia pakietu skojarzonego z kompletnym przerwaniem przesyłania z powrotem do dostępnej puli pakietów. Następnie sterownik sprawdza kolejkę przesyłania pod tematem dodatkowych pakietów oczekujących na ich wysłania. Ponieważ wiele pakietów przesyłanych w kolejce, które mieszczą się w sprzętowych buforach przesyłania, jest dekodowana i ładowana do buforów. Następnie następuje zainicjowanie innej operacji wysyłania.
 
-Gdy tylko dane w tabeli NX_PACKET zostały przeniesione do fifo (lub jeśli sterownik obsługuje operację kopiowania bez kopiowania, dane w ujściu NX_PACKET zostały przesłane), sterownik musi przenieść nx_packet_prepend_ptr na początek nagłówka IP *przed* wywołaniem funkcji ***nx_packet_transmit_release.** _ Pamiętaj, aby odpowiednio _nx_packet_length*. Jeśli ramka IP składa się z wielu pakietów, musi zostać zwolniona tylko część łańcucha pakietów.
+Gdy tylko dane w pliku NX_PACKET zostały przeniesione do fifo nagłówka fifo (lub jeśli sterownik obsługuje operację kopiowania zerowego, dane w programie NX_PACKET zostały przesłane), sterownik musi przenieść nx_packet_prepend_ptr na początek nagłówka IP *przed* wywołaniem funkcji ***nx_packet_transmit_release.** _ Pamiętaj, aby odpowiednio _nx_packet_length*. Jeśli ramka IP składa się z wielu pakietów, musi zostać zwolniona tylko część head łańcucha pakietów.
 
 ## <a name="driver-input"></a>Dane wejściowe sterownika
 
-Po otrzymaniu odebranego przerwania pakietu sterownik sieciowy pobiera pakiet z buforów odbioru sprzętu fizycznego i tworzy prawidłowy pakiet NetX Duo. Tworzenie prawidłowego pakietu NetX Duo obejmuje skonfigurowanie odpowiedniego pola długości i połączenie wielu pakietów, jeśli rozmiar pakietu przychodzącego jest większy niż pojedynczy ładunek pakietu. Po prawidłowym s *zbudowaniu prepend_ptr* po nagłówku warstwy fizycznej, a pakiet odbierany jest wysyłany do NetX Duo.
+Po otrzymaniu odebranego przerwania pakietów sterownik sieciowy pobiera pakiet z fizycznego sprzętu odbiera bufory i tworzy prawidłowy pakiet NetX Duo. Tworzenie prawidłowego pakietu NetX Duo obejmuje skonfigurowanie odpowiedniego pola długości i połączenie wielu pakietów, jeśli rozmiar pakietu przychodzącego jest większy niż pojedynczy ładunek pakietu. Po prawidłowym s *zbudowaniu prepend_ptr* jest przenoszony po nagłówku warstwy fizycznej, a pakiet odbierany jest wysyłany do narzędzia NetX Duo.
 
-NetX Duo zakłada, że nagłówki adresów IP (IPv4 i IPv6) i ARP są wyrównane na **granicy ULONG.** W związku z tym sterownik NetX Duo musi zapewnić takie wyrównanie. W środowiskach Ethernet odbywa się to przez uruchomienie nagłówka Ethernet dwa bajty od początku pakietu. Gdy adres *nx_packet_prepend_ptr* poza nagłówek Ethernet, źródłowy adres IP (IPv4 i IPv6) lub nagłówek ARP jest wyrównany o 4 bajty.
+NetX Duo zakłada, że nagłówki ADRESÓW IP (IPv4 i IPv6) i ARP są wyrównane do **granicy ULONG.** W związku z tym sterownik NetX Duo musi zapewnić takie wyrównanie. W środowiskach Ethernet odbywa się to przez uruchomienie nagłówka Ethernet dwa bajty od początku pakietu. Gdy adres *nx_packet_prepend_ptr* jest przenoszony poza nagłówek Ethernet, źródłowy adres IP (IPv4 i IPv6) lub nagłówek ARP jest wyrównany o 4 bajty.
 
 > [!WARNING] 
 > *Zapoznaj się z sekcją "Nagłówki Ethernet" poniżej,* aby uzyskać ważne różnice między nagłówkami IPv6 i IPv6 Ethernet.
 
-W netX Duo jest dostępnych kilka funkcji odbierania pakietów. Jeśli odebrany pakiet jest pakietem ARP, _* **nx_arp_packet_deferred_receive**_ wywoływana. Jeśli odebrany pakiet jest pakietem RARP,_*_wywoływana jest nx_rarp_packet_deferred_receive_*_ _ . Istnieje kilka opcji obsługi przychodzących pakietów IP. W celu najszybszej obsługi pakietów IP jest _*_wywoływana nx_ip_packet_receive_*_ _ . Takie podejście ma najmniejsze obciążenie, ale wymaga większej liczby przetwarzania w obsłudze usługi przerywania odbioru (ISR) sterownika. W przypadku minimalnego przetwarzania isr *___ nx_ip_packet_deferred_receive_** jest wywoływana.
+W netX Duo jest dostępnych kilka funkcji odbierania pakietów. Jeśli odebrany pakiet jest pakietem ARP, _* **nx_arp_packet_deferred_receive**_ wywoływana. Jeśli odebrany pakiet jest pakietem RARP,_*_wywoływana jest nx_rarp_packet_deferred_receive_*_ _ . Istnieje kilka opcji obsługi przychodzących pakietów IP. W celu najszybszej obsługi pakietów IP wywoływana _*_jest nx_ip_packet_receive_*_ _ . Takie podejście ma najmniejsze obciążenie, ale wymaga większej liczby przetwarzania w obsłudze usługi przerywania odbierania (ISR) sterownika. W przypadku minimalnego przetwarzania isr *___ nx_ip_packet_deferred_receive_** jest wywoływana.
 
-Po prawidłowym s zbudowaniu nowego pakietu odbierania bufory odbioru sprzętu fizycznego są konfigurowane w celu odbierania większej liczby danych. Może to wymagać przydzielenia pakietów NetX Duo i umieszczenia adresu ładunku w buforze odbioru sprzętu lub może być po prostu wartością zmiany ustawienia w buforze odbioru sprzętu. Aby zminimalizować możliwości przepełnienia, ważne jest, aby bufory odbioru sprzętu były dostępne bufory tak szybko, jak to możliwe po otrzymaniu pakietu.
+Po prawidłowym s zbudowaniu nowego pakietu odbierania bufory odbierania sprzętu fizycznego są konfigurowane w celu odbierania większej liczby danych. Może to wymagać przydzielenia pakietów NetX Duo i umieszczenia adresu ładunku w buforze odbierania sprzętu lub może to po prostu oznaczać zmianę ustawienia w buforze odbierania sprzętu. Aby zminimalizować możliwości przepełnienia, ważne jest, aby bufory odbierania sprzętu były dostępne bufory tak szybko, jak to możliwe po otrzymaniu pakietu.
 
 > [!IMPORTANT] 
 > *Początkowe bufory odbierania są konfigurowane podczas inicjowania sterownika*.
 
-### <a name="deferred-receive-packet-handling"></a>Obsługa odroczonych pakietów odbioru  
-Sterownik może odroczyć przetwarzanie pakietów do wątku pomocnika IP NetX Duo. W przypadku niektórych aplikacji może to być konieczne w celu zminimalizowania przetwarzania ISR oraz porzucania pakietów. 
+### <a name="deferred-receive-packet-handling"></a>Obsługa odroczonego odbierania pakietów  
+Sterownik może odroczyć przetwarzanie pakietów do wątku pomocnika IP NetX Duo. W przypadku niektórych aplikacji może to być konieczne w celu zminimalizowania przetwarzania ISR, a także porzucania pakietów. 
 
-Aby korzystać z obsługi odroczonych pakietów, biblioteka NetX Duo musi najpierw zostać skompilowana przy użyciu funkcji ***NX_DRIVER_DEFERRED_PROCESSING** _ defined. Powoduje to dodanie logiki odroczonego pakietu do wątku pomocnika IP NetX Duo. Następnie po odebraniu pakietu danych sterownik musi wywołać __nx_ip_packet_deferred_receive():*
+Aby korzystać z obsługi pakietów odroczonych, należy najpierw skompilować bibliotekę NetX Duo przy użyciu funkcji ***NX_DRIVER_DEFERRED_PROCESSING** _ defined. Powoduje to dodanie logiki odroczonego pakietu do wątku pomocnika IP NetX Duo. Następnie po odebraniu pakietu danych sterownik musi wywołać __nx_ip_packet_deferred_receive():*
 
 ```c
 _nx_ip_packet_deferred_receive(ip_ptr, packet_ptr);
 ```
-Funkcja odroczonego odbierania umieszcza pakiet  odbierany reprezentowany przez packet_ptr w fifo (połączonej liście) i powiadamia wątek pomocnika IP. Po wykonaniu pomocnik IP wielokrotnie wywołuje funkcję obsługi odroczonej w celu przetwarzania każdego odroczonego pakietu. Odroczone przetwarzanie procedury obsługi zwykle obejmuje usunięcie nagłówka warstwy fizycznej pakietu (zazwyczaj Ethernet) i wysłanie go do jednej z tych funkcji odbierania NetX Duo:
+Funkcja odroczonego odbierania umieszcza pakiet  odbierany reprezentowany przez packet_ptr w fifo (połączonej liście) i powiadamia wątek pomocnika IP. Po wykonaniu pomocnik IP wielokrotnie wywołuje funkcję obsługi odroczonej w celu przetwarzania każdego odroczonego pakietu. Przetwarzanie odroczonego programu obsługi zwykle obejmuje usunięcie nagłówka warstwy fizycznej pakietu (zazwyczaj Ethernet) i wysłanie go do jednej z tych funkcji odbierania NetX Duo:
 
 - ***_nx_ip_packet_receive***
 - ***_nx_arp_packet_deferred_receive***
@@ -488,7 +488,7 @@ Podobnie w przypadku pakietów przychodzących sterownik Ethernet powinien okre�
 
 ## <a name="example-ram-ethernet-network-driver"></a>Przykład sterownika sieci Ethernet pamięci RAM
 
-System pokazowy NetX Duo jest dostarczany z małym sterownikem sieciowym opartym na pamięci RAM zdefiniowanym w pliku ***nx_ram_network_driver.c.*** Ten sterownik zakłada, że wszystkie wystąpienia adresów IP znajdują się w tej samej sieci i po prostu przypisuje wirtualne adresy sprzętowe (adresy MAC) do każdego wystąpienia urządzenia podczas ich tworzenia. Ten plik zawiera dobry przykład podstawowej struktury fizycznych sterowników sieciowych NetX Duo. Użytkownicy mogą opracowywać własne sterowniki sieciowe przy użyciu struktury sterowników przedstawionej w tym przykładzie.
+System pokazowy NetX Duo jest dostarczany z małym sterownikem sieciowym opartym na pamięci RAM zdefiniowanym w ***pliku nx_ram_network_driver.c.*** Ten sterownik zakłada, że wszystkie wystąpienia adresów IP znajdują się w tej samej sieci i po prostu przypisuje wirtualne adresy sprzętowe (adresy MAC) do każdego wystąpienia urządzenia podczas ich tworzenia. Ten plik zawiera dobry przykład podstawowej struktury fizycznych sterowników sieciowych NetX Duo. Użytkownicy mogą opracowywać własne sterowniki sieciowe przy użyciu struktury sterowników przedstawionej w tym przykładzie.
 
 Funkcja wprowadzania sterownika sieciowego to ***_nx_ram_network_driver(),** _, która jest przekazywana do wywołania tworzenia wystąpienia adresu IP. Funkcje wejścia dla dodatkowych interfejsów sieciowych mogą być przekazywane do usługi _nx_ip_interface_attach()*. Po uruchomieniu wystąpienia adresu IP wywoływana jest funkcja wprowadzania sterownika w celu zainicjowania i włączenia urządzenia (zapoznaj się z **przypadkiem** NX_LINK_INITIALIZE i **NX_LINK_ENABLE**). Po **NX_LINK_ENABLE** urządzenie powinno być gotowe do przesyłania i odbierania pakietów. 
 
@@ -497,9 +497,65 @@ Wystąpienie adresu IP przesyła pakiety sieciowe za pomocą jednego z tych pole
 | Polecenie                         |  Opis                                                   |
 | ------------------------------- | -------------------------------------------------------------- |
 | ***NX_LINK_PACKET_SEND***    | Pakiet IPv4 lub IPv6 jest przesyłany.                   |
-| ***NX_LINK_ARP_SEND***       | Żądanie ARP lub pakiet odpowiedzi ARP jest przesyłany.    |
+| ***NX_LINK_ARP_SEND***       | Żądanie ARP lub pakiet odpowiedzi ARP jest przesyłany,    |
 | ***NX_LINK_ARP_RARP_SEND*** | Przesyłany jest zwrotny pakiet żądania lub odpowiedzi ARP. |
 
-Podczas przetwarzania tych poleceń sterownik sieciowy musi dołączać odpowiedni nagłówek ramki Ethernet, a następnie wysyłać go do bazowego sprzętu w celu transmisji. Podczas procesu transmisji sterownik sieciowy ma wyłączną własność obszaru buforu pakietów. W związku z tym po przesłaniu danych (lub po skopiowaniu danych do wewnętrznego bufora transferu sterownika) sterownik sieciowy jest odpowiedzialny za zwolnienie buforu pakietów przez przeniesienie wstępnie otwartego wskaźnika poza nagłówek Ethernet do nagłówka ip (i odpowiednie dostosowanie długości pakietu), a następnie przez wywołanie usługi ***nx_packet_transmit_release()*** w celu zwolnienia pakietu. Nie zwalnianie pakietu po transmisji danych spowoduje wyciek pakietów.
+Podczas przetwarzania tych poleceń sterownik sieciowy musi dołączać odpowiedni nagłówek ramki Ethernet, a następnie wysyłać go do bazowego sprzętu w celu transmisji. Podczas procesu transmisji sterownik sieciowy ma wyłączną własność obszaru buforu pakietów. W związku z tym po przesłaniu danych (lub skopiowaniu danych do wewnętrznego buforu transferu sterownika) sterownik sieciowy jest odpowiedzialny za zwolnienie buforu pakietów przez przeniesienie wstępnie otwartego wskaźnika poza nagłówek Ethernet do nagłówka ip (i odpowiednie dostosowanie długości pakietów), a następnie przez wywołanie usługi ***nx_packet_transmit_release()*** w celu zwolnienia pakietu. Nie zwalnianie pakietu po transmisji danych spowoduje wyciek pakietów.
 
-Sterownik urządzenia sieciowego jest również odpowiedzialny za obsługę przychodzących pakietów danych. W przykładzie sterownika pamięci RAM odebrany pakiet jest przetwarzany przez funkcję ***_nx_ram_network_driver_receive()***. Gdy urządzenie odbierze ramkę Ethernet, sterownik jest odpowiedzialny za przechowywanie danych w NX_PACKET strukturze. Należy pamiętać, że NetX Duo zakłada, że nagłówek IP zaczyna się od 4-bajtowego adresu dopasowanego. Ponieważ długość nagłówka Ethernet wynosi 14bajt, sterownik musi przechowywać początek nagłówka ethernetu w adresie wyrównany o 2 bajtach, aby zagwarantować, że nagłówek IP zaczyna się od wyrównanych adresów 4-bajtowych.
+Sterownik urządzenia sieciowego jest również odpowiedzialny za obsługę przychodzących pakietów danych. W przykładzie sterownika pamięci RAM odebrany pakiet jest przetwarzany przez funkcję ***_nx_ram_network_driver_receive()***. Gdy urządzenie otrzyma ramkę Ethernet, sterownik jest odpowiedzialny za przechowywanie danych w NX_PACKET sieci. Należy pamiętać, że program NetX Duo zakłada, że nagłówek IP zaczyna się od adresu dopasowanego do 4 bajtów. Ponieważ długość nagłówka Ethernet wynosi 14bajtów, sterownik musi przechowywać początek nagłówka Sieci Ethernet na adres wyrównany 2-bajtowy, aby zagwarantować, że nagłówek IP rozpoczyna się od adresu wyrównany o 4 bajtach.
+
+## <a name="tcpip-offload-driver-guidance"></a>Wskazówki dotyczące sterownika odciążania TCP/IP
+W przypadku funkcji odciążania protokołu TCP/IP dla każdego interfejsu IP jest potrzebna funkcja sterownika. Poniżej znajduje się lista dodatkowych zadań dla sterownika sieciowego.
+
+* Dla polecenia `NX_LINK_INITIALIZE` ,
+  * Utwórz wątek sterownika do obsługi zdarzeń odciążania PROTOKOŁU TCP/IP.
+* Dla polecenia `NX_LINK_INTERFACE_ATTACH` ,
+  * Ustaw możliwość na interfejs sterowników. Zobacz przykładowy kod poniżej.
+``` C
+driver_req_ptr -> nx_ip_driver_interface -> nx_interface_capability_flag = NX_INTERFACE_CAPABILITY_TCPIP_OFFLOAD;
+```
+* Dla polecenia `NX_LINK_ENABLE` ,
+  * Uruchom wątek sterownika.
+  * Ustaw funkcję wywołania zwrotnego TCP/IP na interfejs sterownika. Zobacz przykładowy kod poniżej.
+``` C
+driver_req_ptr -> nx_ip_driver_interface -> nx_interface_tcpip_offload_handler = _nx_driver_tcpip_handler;
+```
+* Dla polecenia `NX_LINK_DISABLE` ,
+  * Zatrzymaj wątek sterownika
+  * Wyczyść funkcję wywołania zwrotnego TCP/IP interfejsu sterowników.
+* Dla polecenia `NX_LINK_UNINITIALIZE` ,
+  * Usuwanie wątku sterownika
+
+### <a name="tcpip-offload-driver-thread"></a>Wątek sterownika odciążania TCP/IP
+Celem wątku sterownika jest odbieranie przychodzących pakietów TCP lub UDP. W wątku sterownika zazwyczaj istnieje pętla while, aby sprawdzić, czy dostępny jest przychodzący pakiet TCP lub UDP albo nawiązane połączenie. Gdy dane są dostępne, przekaż pakiet TCP lub UDP do netx duo. Pomieszczenie między `nx_packet_data_start` i musi być `nx_packet_prepend_ptr` wystarczające, aby wstawić nagłówek TCP/IP. W przypadku gniazda TCP przydziel pakiet o typie `NX_TCP_PACKET` . W przypadku gniazda UDP przydziel pakiet o typie `NX_UDP_PACKET` . Wprowadź dane przychodzące z `nx_packet_append_ptr` do `nx_packet_data_end` . Dane w `nx_packet_append_ptr` programie muszą zawierać tylko ładunek TCP lub UDP. Nagłówek TCP/IP **NIE MOŻE** być wypełniony pakietem. Dostosuj długość pakietu i ustaw interfejs odbierania, a następnie `_nx_tcp_socket_driver_packet_receive` wywołaj dla pakietów TCP `_nx_udp_socket_driver_packet_receive` i UDP. Jeśli połączenie TCP zostanie zamknięty, wywołaj polecenie `_nx_tcp_socket_driver_packet_receive` z pakietem ustawionym na wartość NULL. Po nawiązaniu połączenia `_nx_tcp_socket_driver_establish` wywołaj .
+
+### <a name="tcpip-offload-driver-handler"></a>Procedura obsługi sterowników odciążania TCP/IP
+Następujące polecenia sterowników są wymagane dla interfejsów sieciowych z usługami TCP/IP. 
+* W przypadku operacji `NX_TCPIP_OFFLOAD_TCP_CLIENT_SOCKET_CONNECT` :
+  * W razie potrzeby przydziel zasób.
+  * Powiąż z lokalnym portem TCP i połącz się z serwerem.
+  * Zwracanie powodzenia po nawiązaniu połączenia. Gdy połączenie jest w toku, zwróć `NX_IN_PROGRESS` . Lub w innym przypadku zwróć błąd.
+* W przypadku operacji `NX_TCPIP_OFFLOAD_TCP_SERVER_SOCKET_LISTEN` :
+  * Najpierw sprawdź, czy nie ma zduplikowanych danych nasłuchiwać. Może być wywoływana wiele razy na tym samym porcie. Za pierwszym razem od `nx_tcp_server_socket_listen` , a następnie `nx_tcp_server_socket_relisten` .
+  * W razie potrzeby przydziel zasób.
+  * Nasłuchiwać lokalnego portu TCP.
+* W przypadku operacji `NX_TCPIP_OFFLOAD_TCP_SERVER_SOCKET_ACCEPT` :
+  * W razie potrzeby przydziel zasób.
+  * Zaakceptuj połączenie.
+* W przypadku operacji `NX_TCPIP_OFFLOAD_TCP_SERVER_SOCKET_UNLISTEN` :
+  * Znajdź nasłuchiwanie gniazda TCP na porcie lokalnym.
+  * Zamknij gniazdo nasłuchiwania, jeśli zostanie znalezione.
+* W przypadku operacji `NX_TCPIP_OFFLOAD_TCP_SOCKET_DISCONNECT` :
+  * Zamknij połączenie odciążania PROTOKOŁU TCP/IP.
+  * Unbind local TCP port (Odłącz lokalny port TCP).
+  * Czyszczenie zasobów utworzonych podczas nawiązywania połączenia.
+* W przypadku operacji `NX_TCPIP_OFFLOAD_TCP_SOCKET_SEND` :
+  * Wysyłanie danych za pośrednictwem odciążania PROTOKOŁU TCP/IP. Przygotuj się do obsługi długości pakietów większej niż MSS lub sytuacji łańcucha pakietów.
+* W przypadku operacji `NX_TCPIP_OFFLOAD_UDP_SOCKET_BIND` :
+  * W razie potrzeby przydziel zasób.
+  * Powiąż z lokalnym portem UDP.
+* W przypadku operacji `NX_TCPIP_OFFLOAD_UDP_SOCKET_UNBIND` :
+  * Unbind local UDP port (Odłącz lokalny port UDP).
+  * Czyszczenie zasobów utworzonych podczas tworzenia powiązania.
+* W przypadku operacji `NX_TCPIP_OFFLOAD_UDP_SOCKET_SEND` :
+  * Wysyłanie danych za pośrednictwem odciążania PROTOKOŁU TCP/IP. Przygotuj się do obsługi sytuacji, w której długość pakietu jest większa niż rozmiar jednostki MTU lub łańcucha pakietów.
